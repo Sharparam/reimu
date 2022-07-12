@@ -1,0 +1,1 @@
+initSidebarItems({"constant":[["RGB332_BLACK",""],["RGB332_WHITE",""],["SCALING_FACTOR",""],["TARGET_SPEED",""],["WINDOW_HEIGHT",""],["WINDOW_WIDTH",""]],"fn":[["main",""]],"mod":[["cli",""],["cpu",""],["gpu",""],["util",""]]});

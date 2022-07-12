@@ -1,0 +1,3 @@
+(function() {var implementors = {};
+implementors["sdl2"] = [{"text":"impl <a class=\"trait\" href=\"https://doc.rust-lang.org/1.62.0/core/iter/traits/accum/trait.Sum.html\" title=\"trait core::iter::traits::accum::Sum\">Sum</a>&lt;<a class=\"struct\" href=\"sdl2/rect/struct.Point.html\" title=\"struct sdl2::rect::Point\">Point</a>&gt; for <a class=\"struct\" href=\"sdl2/rect/struct.Point.html\" title=\"struct sdl2::rect::Point\">Point</a>","synthetic":false,"types":["sdl2::rect::Point"]}];
+if (window.register_implementors) {window.register_implementors(implementors);} else {window.pending_implementors = implementors;}})()
