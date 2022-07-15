@@ -333,7 +333,8 @@ impl<'a> Cpu<'a> {
                 let y = self.registers[instruction.y() as usize];
                 let size = instruction.n() as usize;
                 let sprite = &self.memory[self.address_register..(self.address_register + size)];
-                self.gpu.draw_sprite(x as usize, y as usize, sprite);
+                let hit = self.gpu.draw_sprite(x as usize, y as usize, sprite);
+                self.registers[0xF] = if hit { 1 } else { 0 };
             }
 
             (0xE, _, 0x9E, _) => {
