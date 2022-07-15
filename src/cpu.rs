@@ -37,14 +37,14 @@ const FONT: [u8; FONT_BLOCK_SIZE] = [
 
 pub struct Cpu<'a> {
     gpu: &'a mut Gpu,
-    memory: [u8; MEMORY_SIZE],
+    pub memory: [u8; MEMORY_SIZE],
     registers: [u8; REGISTER_COUNT],
-    address_register: usize,
-    pc: usize,
-    delay_timer: u8,
-    sound_timer: u8,
+    pub address_register: usize,
+    pub pc: usize,
     pub stack: [usize; STACK_SIZE],
     pub sp: usize,
+    pub delay_timer: u8,
+    pub sound_timer: u8,
     keys: u16,
     running: bool,
     pub redraw: bool,
@@ -83,6 +83,10 @@ impl<'a> Cpu<'a> {
         self.running = true;
         self.redraw = false;
         self.memory[FONT_START_ADDR..(FONT_START_ADDR + FONT.len())].copy_from_slice(&FONT);
+    }
+
+    pub fn register(&self, idx: usize) -> u8 {
+        self.registers[idx]
     }
 
     pub fn load(&mut self, program_bytes: &[u8]) {
