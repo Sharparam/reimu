@@ -47,6 +47,7 @@ pub struct Cpu<'a> {
     pub sp: usize,
     keys: u16,
     running: bool,
+    pub redraw: bool,
 }
 
 impl<'a> Cpu<'a> {
@@ -63,6 +64,7 @@ impl<'a> Cpu<'a> {
             sound_timer: 0,
             keys: 0,
             running: true,
+            redraw: false,
         };
         cpu.reset();
         cpu
@@ -79,6 +81,7 @@ impl<'a> Cpu<'a> {
         self.sound_timer = 0;
         self.keys = 0;
         self.running = true;
+        self.redraw = false;
         self.memory[FONT_START_ADDR..(FONT_START_ADDR + FONT.len())].copy_from_slice(&FONT);
     }
 
@@ -154,6 +157,7 @@ impl<'a> Cpu<'a> {
             (0, _, _, 0x0E0) => {
                 // CLR
                 self.gpu.clear();
+                self.redraw = true;
             }
 
             (0, _, _, 0x0EE) => {
@@ -335,6 +339,7 @@ impl<'a> Cpu<'a> {
                 let sprite = &self.memory[self.address_register..(self.address_register + size)];
                 let hit = self.gpu.draw_sprite(x as usize, y as usize, sprite);
                 self.registers[0xF] = if hit { 1 } else { 0 };
+                self.redraw = true;
             }
 
             (0xE, _, 0x9E, _) => {
