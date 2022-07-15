@@ -1,0 +1,1 @@
+initSidebarItems({"enum":[["DpiScaling",""],["ShaderVersion",""]],"fn":[["input_to_egui",""],["translate_cursor",""],["translate_virtual_key_code",""],["with_sdl2",""]],"mod":[["painter",""]],"struct":[["EguiStateHandler",""],["FusedCursor",""]]});

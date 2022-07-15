@@ -508,6 +508,30 @@
 <span id="503">503</span>
 <span id="504">504</span>
 <span id="505">505</span>
+<span id="506">506</span>
+<span id="507">507</span>
+<span id="508">508</span>
+<span id="509">509</span>
+<span id="510">510</span>
+<span id="511">511</span>
+<span id="512">512</span>
+<span id="513">513</span>
+<span id="514">514</span>
+<span id="515">515</span>
+<span id="516">516</span>
+<span id="517">517</span>
+<span id="518">518</span>
+<span id="519">519</span>
+<span id="520">520</span>
+<span id="521">521</span>
+<span id="522">522</span>
+<span id="523">523</span>
+<span id="524">524</span>
+<span id="525">525</span>
+<span id="526">526</span>
+<span id="527">527</span>
+<span id="528">528</span>
+<span id="529">529</span>
 </pre><pre class="rust"><code><span class="kw">use</span> <span class="ident">rand::prelude</span>::<span class="kw-2">*</span>;
 
 <span class="kw">use</span> <span class="kw">crate</span>::{<span class="ident">cpu::instruction::Instruction</span>, <span class="ident">gpu::Gpu</span>};
@@ -520,6 +544,7 @@
 <span class="kw">const</span> <span class="ident">RESERVED_END</span>: <span class="ident">usize</span> <span class="op">=</span> <span class="number">352</span>;
 <span class="kw">const</span> <span class="ident">PROGRAM_START</span>: <span class="ident">usize</span> <span class="op">=</span> <span class="number">0x200</span>;
 <span class="kw">const</span> <span class="ident">STEP_SIZE</span>: <span class="ident">usize</span> <span class="op">=</span> <span class="number">2</span>;
+<span class="kw">const</span> <span class="ident">STACK_SIZE</span>: <span class="ident">usize</span> <span class="op">=</span> <span class="number">16</span>;
 
 <span class="kw">const</span> <span class="ident">FONT_START_ADDR</span>: <span class="ident">usize</span> <span class="op">=</span> <span class="number">0x050</span>;
 <span class="kw">const</span> <span class="ident">FONT_SPRITE_SIZE</span>: <span class="ident">usize</span> <span class="op">=</span> <span class="number">5</span>;
@@ -546,15 +571,17 @@
 
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Cpu</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
     <span class="ident">gpu</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="kw-2">mut</span> <span class="ident">Gpu</span>,
-    <span class="ident">memory</span>: [<span class="ident">u8</span>; <span class="ident">MEMORY_SIZE</span>],
+    <span class="kw">pub</span> <span class="ident">memory</span>: [<span class="ident">u8</span>; <span class="ident">MEMORY_SIZE</span>],
     <span class="ident">registers</span>: [<span class="ident">u8</span>; <span class="ident">REGISTER_COUNT</span>],
-    <span class="ident">address_register</span>: <span class="ident">usize</span>,
-    <span class="ident">pc</span>: <span class="ident">usize</span>,
-    <span class="ident">stack</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">usize</span><span class="op">&gt;</span>,
-    <span class="ident">delay_timer</span>: <span class="ident">u8</span>,
-    <span class="ident">sound_timer</span>: <span class="ident">u8</span>,
+    <span class="kw">pub</span> <span class="ident">address_register</span>: <span class="ident">usize</span>,
+    <span class="kw">pub</span> <span class="ident">pc</span>: <span class="ident">usize</span>,
+    <span class="kw">pub</span> <span class="ident">stack</span>: [<span class="ident">usize</span>; <span class="ident">STACK_SIZE</span>],
+    <span class="kw">pub</span> <span class="ident">sp</span>: <span class="ident">usize</span>,
+    <span class="kw">pub</span> <span class="ident">delay_timer</span>: <span class="ident">u8</span>,
+    <span class="kw">pub</span> <span class="ident">sound_timer</span>: <span class="ident">u8</span>,
     <span class="ident">keys</span>: <span class="ident">u16</span>,
     <span class="ident">running</span>: <span class="ident">bool</span>,
+    <span class="kw">pub</span> <span class="ident">redraw</span>: <span class="ident">bool</span>,
 }
 
 <span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">Cpu</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
@@ -565,11 +592,13 @@
             <span class="ident">registers</span>: [<span class="number">0</span>; <span class="ident">REGISTER_COUNT</span>],
             <span class="ident">address_register</span>: <span class="number">0</span>,
             <span class="ident">pc</span>: <span class="ident">PROGRAM_START</span>,
-            <span class="ident">stack</span>: <span class="ident">Vec::new</span>(),
+            <span class="ident">stack</span>: [<span class="number">0</span>; <span class="ident">STACK_SIZE</span>],
+            <span class="ident">sp</span>: <span class="number">0</span>,
             <span class="ident">delay_timer</span>: <span class="number">0</span>,
             <span class="ident">sound_timer</span>: <span class="number">0</span>,
             <span class="ident">keys</span>: <span class="number">0</span>,
             <span class="ident">running</span>: <span class="bool-val">true</span>,
+            <span class="ident">redraw</span>: <span class="bool-val">false</span>,
         };
         <span class="ident">cpu</span>.<span class="ident">reset</span>();
         <span class="ident">cpu</span>
@@ -580,12 +609,18 @@
         <span class="self">self</span>.<span class="ident">registers</span>.<span class="ident">fill</span>(<span class="number">0</span>);
         <span class="self">self</span>.<span class="ident">address_register</span> <span class="op">=</span> <span class="number">0</span>;
         <span class="self">self</span>.<span class="ident">pc</span> <span class="op">=</span> <span class="ident">PROGRAM_START</span>;
-        <span class="self">self</span>.<span class="ident">stack</span>.<span class="ident">clear</span>();
+        <span class="self">self</span>.<span class="ident">stack</span>.<span class="ident">fill</span>(<span class="number">0</span>);
+        <span class="self">self</span>.<span class="ident">sp</span> <span class="op">=</span> <span class="number">0</span>;
         <span class="self">self</span>.<span class="ident">delay_timer</span> <span class="op">=</span> <span class="number">0</span>;
         <span class="self">self</span>.<span class="ident">sound_timer</span> <span class="op">=</span> <span class="number">0</span>;
         <span class="self">self</span>.<span class="ident">keys</span> <span class="op">=</span> <span class="number">0</span>;
         <span class="self">self</span>.<span class="ident">running</span> <span class="op">=</span> <span class="bool-val">true</span>;
+        <span class="self">self</span>.<span class="ident">redraw</span> <span class="op">=</span> <span class="bool-val">false</span>;
         <span class="self">self</span>.<span class="ident">memory</span>[<span class="ident">FONT_START_ADDR</span>..(<span class="ident">FONT_START_ADDR</span> <span class="op">+</span> <span class="ident">FONT</span>.<span class="ident">len</span>())].<span class="ident">copy_from_slice</span>(<span class="kw-2">&amp;</span><span class="ident">FONT</span>);
+    }
+
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">register</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">idx</span>: <span class="ident">usize</span>) -&gt; <span class="ident">u8</span> {
+        <span class="self">self</span>.<span class="ident">registers</span>[<span class="ident">idx</span>]
     }
 
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">load</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">program_bytes</span>: <span class="kw-2">&amp;</span>[<span class="ident">u8</span>]) {
@@ -615,6 +650,16 @@
 
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">screen</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span>[<span class="ident">bool</span>] {
         <span class="self">self</span>.<span class="ident">gpu</span>.<span class="ident">screen</span>()
+    }
+
+    <span class="kw">fn</span> <span class="ident">stack_push</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">value</span>: <span class="ident">usize</span>) {
+        <span class="self">self</span>.<span class="ident">stack</span>[<span class="self">self</span>.<span class="ident">sp</span>] <span class="op">=</span> <span class="ident">value</span>;
+        <span class="self">self</span>.<span class="ident">sp</span> <span class="op">+</span><span class="op">=</span> <span class="number">1</span>;
+    }
+
+    <span class="kw">fn</span> <span class="ident">stack_pop</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>) -&gt; <span class="ident">usize</span> {
+        <span class="self">self</span>.<span class="ident">sp</span> <span class="op">-</span><span class="op">=</span> <span class="number">1</span>;
+        <span class="self">self</span>.<span class="ident">stack</span>[<span class="self">self</span>.<span class="ident">sp</span>]
     }
 
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">step</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>) {
@@ -650,11 +695,12 @@
             (<span class="number">0</span>, <span class="kw">_</span>, <span class="kw">_</span>, <span class="number">0x0E0</span>) =&gt; {
                 <span class="comment">// CLR</span>
                 <span class="self">self</span>.<span class="ident">gpu</span>.<span class="ident">clear</span>();
+                <span class="self">self</span>.<span class="ident">redraw</span> <span class="op">=</span> <span class="bool-val">true</span>;
             }
 
             (<span class="number">0</span>, <span class="kw">_</span>, <span class="kw">_</span>, <span class="number">0x0EE</span>) =&gt; {
                 <span class="comment">// RET</span>
-                <span class="kw">let</span> <span class="ident">return_addr</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">stack</span>.<span class="ident">pop</span>().<span class="ident">unwrap</span>();
+                <span class="kw">let</span> <span class="ident">return_addr</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">stack_pop</span>();
                 <span class="self">self</span>.<span class="ident">pc</span> <span class="op">=</span> <span class="ident">return_addr</span>;
             }
 
@@ -680,7 +726,7 @@
             (<span class="number">2</span>, <span class="kw">_</span>, <span class="kw">_</span>, <span class="kw">_</span>) =&gt; {
                 <span class="comment">// CALL</span>
                 <span class="kw">let</span> <span class="ident">return_addr</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">pc</span>;
-                <span class="self">self</span>.<span class="ident">stack</span>.<span class="ident">push</span>(<span class="ident">return_addr</span>);
+                <span class="self">self</span>.<span class="ident">stack_push</span>(<span class="ident">return_addr</span>);
                 <span class="kw">let</span> <span class="ident">sub_addr</span> <span class="op">=</span> <span class="ident">instruction</span>.<span class="ident">nnn</span>() <span class="kw">as</span> <span class="ident">usize</span>;
                 <span class="self">self</span>.<span class="ident">pc</span> <span class="op">=</span> <span class="ident">sub_addr</span>;
             }
@@ -829,7 +875,9 @@
                 <span class="kw">let</span> <span class="ident">y</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">registers</span>[<span class="ident">instruction</span>.<span class="ident">y</span>() <span class="kw">as</span> <span class="ident">usize</span>];
                 <span class="kw">let</span> <span class="ident">size</span> <span class="op">=</span> <span class="ident">instruction</span>.<span class="ident">n</span>() <span class="kw">as</span> <span class="ident">usize</span>;
                 <span class="kw">let</span> <span class="ident">sprite</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">memory</span>[<span class="self">self</span>.<span class="ident">address_register</span>..(<span class="self">self</span>.<span class="ident">address_register</span> <span class="op">+</span> <span class="ident">size</span>)];
-                <span class="self">self</span>.<span class="ident">gpu</span>.<span class="ident">draw_sprite</span>(<span class="ident">x</span> <span class="kw">as</span> <span class="ident">usize</span>, <span class="ident">y</span> <span class="kw">as</span> <span class="ident">usize</span>, <span class="ident">sprite</span>);
+                <span class="kw">let</span> <span class="ident">hit</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">gpu</span>.<span class="ident">draw_sprite</span>(<span class="ident">x</span> <span class="kw">as</span> <span class="ident">usize</span>, <span class="ident">y</span> <span class="kw">as</span> <span class="ident">usize</span>, <span class="ident">sprite</span>);
+                <span class="self">self</span>.<span class="ident">registers</span>[<span class="number">0xF</span>] <span class="op">=</span> <span class="kw">if</span> <span class="ident">hit</span> { <span class="number">1</span> } <span class="kw">else</span> { <span class="number">0</span> };
+                <span class="self">self</span>.<span class="ident">redraw</span> <span class="op">=</span> <span class="bool-val">true</span>;
             }
 
             (<span class="number">0xE</span>, <span class="kw">_</span>, <span class="number">0x9E</span>, <span class="kw">_</span>) =&gt; {
