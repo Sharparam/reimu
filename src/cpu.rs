@@ -10,6 +10,7 @@ const RESERVED_START: usize = 0x200;
 const RESERVED_END: usize = 352;
 const PROGRAM_START: usize = 0x200;
 const STEP_SIZE: usize = 2;
+const STACK_SIZE: usize = 16;
 
 const FONT_START_ADDR: usize = 0x050;
 const FONT_SPRITE_SIZE: usize = 5;
@@ -40,9 +41,10 @@ pub struct Cpu<'a> {
     registers: [u8; REGISTER_COUNT],
     address_register: usize,
     pc: usize,
-    stack: Vec<usize>,
     delay_timer: u8,
     sound_timer: u8,
+    pub stack: [usize; STACK_SIZE],
+    pub sp: usize,
     keys: u16,
     running: bool,
 }
@@ -55,7 +57,8 @@ impl<'a> Cpu<'a> {
             registers: [0; REGISTER_COUNT],
             address_register: 0,
             pc: PROGRAM_START,
-            stack: Vec::new(),
+            stack: [0; STACK_SIZE],
+            sp: 0,
             delay_timer: 0,
             sound_timer: 0,
             keys: 0,
@@ -70,7 +73,8 @@ impl<'a> Cpu<'a> {
         self.registers.fill(0);
         self.address_register = 0;
         self.pc = PROGRAM_START;
-        self.stack.clear();
+        self.stack.fill(0);
+        self.sp = 0;
         self.delay_timer = 0;
         self.sound_timer = 0;
         self.keys = 0;
@@ -105,6 +109,16 @@ impl<'a> Cpu<'a> {
 
     pub fn screen(&self) -> &[bool] {
         self.gpu.screen()
+    }
+
+    fn stack_push(&mut self, value: usize) {
+        self.stack[self.sp] = value;
+        self.sp += 1;
+    }
+
+    fn stack_pop(&mut self) -> usize {
+        self.sp -= 1;
+        self.stack[self.sp]
     }
 
     pub fn step(&mut self) {
@@ -144,7 +158,7 @@ impl<'a> Cpu<'a> {
 
             (0, _, _, 0x0EE) => {
                 // RET
-                let return_addr = self.stack.pop().unwrap();
+                let return_addr = self.stack_pop();
                 self.pc = return_addr;
             }
 
@@ -170,7 +184,7 @@ impl<'a> Cpu<'a> {
             (2, _, _, _) => {
                 // CALL
                 let return_addr = self.pc;
-                self.stack.push(return_addr);
+                self.stack_push(return_addr);
                 let sub_addr = instruction.nnn() as usize;
                 self.pc = sub_addr;
             }
