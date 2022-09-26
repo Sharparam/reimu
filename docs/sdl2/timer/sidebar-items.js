@@ -1,1 +1,1 @@
-initSidebarItems({"struct":[["Timer",""]],"type":[["TimerCallback",""]]});
+window.SIDEBAR_ITEMS = {"struct":[["Timer",""]],"type":[["TimerCallback",""]]};

@@ -1,1 +1,1 @@
-initSidebarItems({"enum":[["PixelFormatEnum",""]],"struct":[["Color",""],["Palette",""],["PixelFormat",""],["PixelMasks",""]]});
+window.SIDEBAR_ITEMS = {"enum":[["PixelFormatEnum",""]],"struct":[["Color",""],["Palette",""],["PixelFormat",""],["PixelMasks",""]]};

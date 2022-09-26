@@ -1,1 +1,1 @@
-initSidebarItems({"constant":[["START_OF_TEXT",""]]});
+window.SIDEBAR_ITEMS = {"constant":[["START_OF_TEXT",""]]};

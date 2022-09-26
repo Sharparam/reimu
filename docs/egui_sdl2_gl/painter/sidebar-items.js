@@ -1,1 +1,1 @@
-initSidebarItems({"fn":[["compile_shader",""],["link_program",""]],"struct":[["Painter",""]]});
+window.SIDEBAR_ITEMS = {"fn":[["compile_shader",""],["link_program",""]],"struct":[["Painter",""]]};

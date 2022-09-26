@@ -1,56 +1,57 @@
-var sourcesIndex = {};
-sourcesIndex["ab_glyph"] = {"name":"","dirs":[{"name":"ttfp","files":["outliner.rs"]}],"files":["codepoint_ids.rs","err.rs","font.rs","font_arc.rs","glyph.rs","lib.rs","outlined.rs","scale.rs","ttfp.rs"]};
-sourcesIndex["ab_glyph_rasterizer"] = {"name":"","files":["geometry.rs","lib.rs","raster.rs"]};
-sourcesIndex["ahash"] = {"name":"","files":["convert.rs","fallback_hash.rs","hash_map.rs","hash_set.rs","lib.rs","operations.rs","random_state.rs","specialize.rs"]};
-sourcesIndex["ansi_term"] = {"name":"","files":["ansi.rs","debug.rs","difference.rs","display.rs","lib.rs","style.rs","util.rs","windows.rs","write.rs"]};
-sourcesIndex["anyhow"] = {"name":"","files":["backtrace.rs","chain.rs","context.rs","ensure.rs","error.rs","fmt.rs","kind.rs","lib.rs","macros.rs","ptr.rs","wrapper.rs"]};
-sourcesIndex["atomic_refcell"] = {"name":"","files":["lib.rs"]};
-sourcesIndex["atty"] = {"name":"","files":["lib.rs"]};
-sourcesIndex["bitflags"] = {"name":"","files":["lib.rs"]};
-sourcesIndex["cfg_if"] = {"name":"","files":["lib.rs"]};
-sourcesIndex["clap"] = {"name":"","dirs":[{"name":"builder","files":["action.rs","app_settings.rs","arg.rs","arg_group.rs","arg_predicate.rs","arg_settings.rs","command.rs","debug_asserts.rs","macros.rs","mod.rs","possible_value.rs","usage_parser.rs","value_hint.rs","value_parser.rs"]},{"name":"error","files":["context.rs","kind.rs","mod.rs"]},{"name":"output","files":["fmt.rs","help.rs","mod.rs","usage.rs"]},{"name":"parser","dirs":[{"name":"features","files":["mod.rs","suggestions.rs"]},{"name":"matches","files":["any_value.rs","arg_matches.rs","matched_arg.rs","mod.rs","value_source.rs"]}],"files":["arg_matcher.rs","error.rs","mod.rs","parser.rs","validator.rs"]},{"name":"util","files":["color.rs","fnv.rs","graph.rs","id.rs","mod.rs","str_to_bool.rs"]}],"files":["derive.rs","lib.rs","macros.rs","mkeymap.rs"]};
-sourcesIndex["clap_derive"] = {"name":"","dirs":[{"name":"derives","files":["args.rs","into_app.rs","mod.rs","parser.rs","subcommand.rs","value_enum.rs"]},{"name":"utils","files":["doc_comments.rs","mod.rs","spanned.rs","ty.rs"]}],"files":["attrs.rs","dummies.rs","lib.rs","parse.rs"]};
-sourcesIndex["clap_lex"] = {"name":"","files":["lib.rs"]};
-sourcesIndex["egui"] = {"name":"","dirs":[{"name":"containers","files":["area.rs","collapsing_header.rs","combo_box.rs","frame.rs","mod.rs","panel.rs","popup.rs","resize.rs","scroll_area.rs","window.rs"]},{"name":"data","files":["input.rs","mod.rs","output.rs"]},{"name":"input_state","files":["touch_state.rs"]},{"name":"util","files":["cache.rs","fixed_cache.rs","history.rs","id_type_map.rs","mod.rs","undoer.rs"]},{"name":"widgets","dirs":[{"name":"plot","dirs":[{"name":"items","files":["bar.rs","box_elem.rs","mod.rs","rect_elem.rs","values.rs"]}],"files":["legend.rs","mod.rs","transform.rs"]},{"name":"text_edit","files":["builder.rs","cursor_range.rs","mod.rs","output.rs","state.rs","text_buffer.rs"]}],"files":["button.rs","color_picker.rs","drag_value.rs","hyperlink.rs","image.rs","label.rs","mod.rs","progress_bar.rs","selected_label.rs","separator.rs","slider.rs"]}],"files":["animation_manager.rs","context.rs","frame_state.rs","grid.rs","id.rs","input_state.rs","introspection.rs","layers.rs","layout.rs","lib.rs","memory.rs","menu.rs","painter.rs","placer.rs","response.rs","sense.rs","style.rs","ui.rs","widget_text.rs"]};
-sourcesIndex["egui_sdl2_gl"] = {"name":"","files":["lib.rs","painter.rs"]};
-sourcesIndex["emath"] = {"name":"","files":["align.rs","lib.rs","numeric.rs","pos2.rs","rect.rs","rect_transform.rs","rot2.rs","smart_aim.rs","vec2.rs"]};
-sourcesIndex["epaint"] = {"name":"","dirs":[{"name":"text","files":["cursor.rs","font.rs","fonts.rs","mod.rs","text_layout.rs","text_layout_types.rs"]},{"name":"util","files":["mod.rs","ordered_float.rs"]}],"files":["color.rs","lib.rs","mesh.rs","mutex.rs","shadow.rs","shape.rs","shape_transform.rs","stats.rs","stroke.rs","tessellator.rs","texture_atlas.rs"]};
-sourcesIndex["getrandom"] = {"name":"","files":["error.rs","error_impls.rs","lib.rs","linux_android.rs","use_file.rs","util.rs","util_libc.rs"]};
-sourcesIndex["gl"] = {"name":"","files":["lib.rs"]};
-sourcesIndex["hashbrown"] = {"name":"","dirs":[{"name":"external_trait_impls","files":["mod.rs"]},{"name":"raw","files":["alloc.rs","bitmask.rs","mod.rs","sse2.rs"]}],"files":["lib.rs","macros.rs","map.rs","scopeguard.rs","set.rs"]};
-sourcesIndex["heck"] = {"name":"","files":["kebab.rs","lib.rs","lower_camel.rs","shouty_kebab.rs","shouty_snake.rs","snake.rs","title.rs","upper_camel.rs"]};
-sourcesIndex["indexmap"] = {"name":"","dirs":[{"name":"map","dirs":[{"name":"core","files":["raw.rs"]}],"files":["core.rs"]}],"files":["equivalent.rs","lib.rs","macros.rs","map.rs","mutable_keys.rs","set.rs","util.rs"]};
-sourcesIndex["lazy_static"] = {"name":"","files":["inline_lazy.rs","lib.rs"]};
-sourcesIndex["libc"] = {"name":"","dirs":[{"name":"unix","dirs":[{"name":"linux_like","dirs":[{"name":"linux","dirs":[{"name":"arch","dirs":[{"name":"generic","files":["mod.rs"]}],"files":["mod.rs"]},{"name":"gnu","dirs":[{"name":"b64","dirs":[{"name":"x86_64","files":["align.rs","mod.rs","not_x32.rs"]}],"files":["mod.rs"]}],"files":["align.rs","mod.rs"]}],"files":["align.rs","mod.rs","non_exhaustive.rs"]}],"files":["mod.rs"]}],"files":["align.rs","mod.rs"]}],"files":["fixed_width_ints.rs","lib.rs","macros.rs"]};
-sourcesIndex["log"] = {"name":"","files":["lib.rs","macros.rs"]};
-sourcesIndex["nohash_hasher"] = {"name":"","files":["lib.rs"]};
-sourcesIndex["once_cell"] = {"name":"","files":["imp_std.rs","lib.rs","race.rs"]};
-sourcesIndex["os_str_bytes"] = {"name":"","dirs":[{"name":"common","files":["mod.rs","raw.rs"]}],"files":["iter.rs","lib.rs","pattern.rs","raw_str.rs","util.rs"]};
-sourcesIndex["owned_ttf_parser"] = {"name":"","files":["convert.rs","lib.rs","owned.rs","preparse.rs"]};
-sourcesIndex["pin_project_lite"] = {"name":"","files":["lib.rs"]};
-sourcesIndex["ppv_lite86"] = {"name":"","dirs":[{"name":"x86_64","files":["mod.rs","sse2.rs"]}],"files":["lib.rs","soft.rs","types.rs"]};
-sourcesIndex["proc_macro2"] = {"name":"","files":["detection.rs","fallback.rs","lib.rs","marker.rs","parse.rs","wrapper.rs"]};
-sourcesIndex["proc_macro_error"] = {"name":"","dirs":[{"name":"imp","files":["fallback.rs"]}],"files":["diagnostic.rs","dummy.rs","lib.rs","macros.rs","sealed.rs"]};
-sourcesIndex["proc_macro_error_attr"] = {"name":"","files":["lib.rs","parse.rs","settings.rs"]};
-sourcesIndex["quote"] = {"name":"","files":["ext.rs","format.rs","ident_fragment.rs","lib.rs","runtime.rs","spanned.rs","to_tokens.rs"]};
-sourcesIndex["rand"] = {"name":"","dirs":[{"name":"distributions","files":["bernoulli.rs","distribution.rs","float.rs","integer.rs","mod.rs","other.rs","slice.rs","uniform.rs","utils.rs","weighted.rs","weighted_index.rs"]},{"name":"rngs","dirs":[{"name":"adapter","files":["mod.rs","read.rs","reseeding.rs"]}],"files":["mock.rs","mod.rs","std.rs","thread.rs"]},{"name":"seq","files":["index.rs","mod.rs"]}],"files":["lib.rs","prelude.rs","rng.rs"]};
-sourcesIndex["rand_chacha"] = {"name":"","files":["chacha.rs","guts.rs","lib.rs"]};
-sourcesIndex["rand_core"] = {"name":"","files":["block.rs","error.rs","impls.rs","le.rs","lib.rs","os.rs"]};
-sourcesIndex["reimu"] = {"name":"","dirs":[{"name":"cpu","files":["instruction.rs"]}],"files":["cli.rs","cpu.rs","gpu.rs","main.rs","util.rs"]};
-sourcesIndex["sdl2"] = {"name":"","dirs":[{"name":"keyboard","files":["keycode.rs","mod.rs","scancode.rs"]},{"name":"mouse","files":["mod.rs","relative.rs"]}],"files":["audio.rs","clipboard.rs","common.rs","controller.rs","cpuinfo.rs","event.rs","filesystem.rs","haptic.rs","hint.rs","joystick.rs","lib.rs","log.rs","macros.rs","messagebox.rs","pixels.rs","rect.rs","render.rs","rwops.rs","sdl.rs","surface.rs","timer.rs","touch.rs","url.rs","version.rs","video.rs"]};
-sourcesIndex["sdl2_sys"] = {"name":"","files":["lib.rs"]};
-sourcesIndex["sharded_slab"] = {"name":"","dirs":[{"name":"page","files":["mod.rs","slot.rs","stack.rs"]}],"files":["cfg.rs","clear.rs","implementation.rs","iter.rs","lib.rs","macros.rs","pool.rs","shard.rs","sync.rs","tid.rs"]};
-sourcesIndex["smallvec"] = {"name":"","files":["lib.rs"]};
-sourcesIndex["strsim"] = {"name":"","files":["lib.rs"]};
-sourcesIndex["syn"] = {"name":"","dirs":[{"name":"gen","files":["clone.rs","debug.rs","eq.rs","gen_helper.rs","hash.rs","visit.rs","visit_mut.rs"]}],"files":["attr.rs","await.rs","bigint.rs","buffer.rs","custom_keyword.rs","custom_punctuation.rs","data.rs","derive.rs","discouraged.rs","error.rs","export.rs","expr.rs","ext.rs","file.rs","generics.rs","group.rs","ident.rs","item.rs","lib.rs","lifetime.rs","lit.rs","lookahead.rs","mac.rs","macros.rs","op.rs","parse.rs","parse_macro_input.rs","parse_quote.rs","pat.rs","path.rs","print.rs","punctuated.rs","reserved.rs","sealed.rs","span.rs","spanned.rs","stmt.rs","thread.rs","token.rs","tt.rs","ty.rs","verbatim.rs","whitespace.rs"]};
-sourcesIndex["termcolor"] = {"name":"","files":["lib.rs"]};
-sourcesIndex["textwrap"] = {"name":"","files":["core.rs","indentation.rs","lib.rs","word_separators.rs","word_splitters.rs","wrap_algorithms.rs"]};
-sourcesIndex["thread_local"] = {"name":"","files":["cached.rs","lib.rs","thread_id.rs","unreachable.rs"]};
-sourcesIndex["tracing"] = {"name":"","files":["dispatcher.rs","field.rs","instrument.rs","level_filters.rs","lib.rs","macros.rs","span.rs","stdlib.rs","subscriber.rs"]};
-sourcesIndex["tracing_attributes"] = {"name":"","files":["attr.rs","expand.rs","lib.rs"]};
-sourcesIndex["tracing_core"] = {"name":"","files":["callsite.rs","dispatcher.rs","event.rs","field.rs","lazy.rs","lib.rs","metadata.rs","parent.rs","span.rs","stdlib.rs","subscriber.rs"]};
-sourcesIndex["tracing_log"] = {"name":"","files":["lib.rs","log_tracer.rs"]};
-sourcesIndex["tracing_subscriber"] = {"name":"","dirs":[{"name":"field","files":["debug.rs","delimited.rs","display.rs","mod.rs"]},{"name":"filter","dirs":[{"name":"layer_filters","files":["combinator.rs","mod.rs"]}],"files":["directive.rs","filter_fn.rs","level.rs","mod.rs","targets.rs"]},{"name":"fmt","dirs":[{"name":"format","files":["mod.rs","pretty.rs"]},{"name":"time","files":["datetime.rs","mod.rs"]}],"files":["fmt_layer.rs","mod.rs","writer.rs"]},{"name":"layer","files":["context.rs","layered.rs","mod.rs"]},{"name":"registry","files":["extensions.rs","mod.rs","sharded.rs","stack.rs"]}],"files":["lib.rs","macros.rs","prelude.rs","reload.rs","sync.rs","util.rs"]};
-sourcesIndex["ttf_parser"] = {"name":"","dirs":[{"name":"ggg","files":["chained_context.rs","context.rs","feature_variations.rs","layout_table.rs","lookup.rs","mod.rs"]},{"name":"tables","dirs":[{"name":"cff","files":["argstack.rs","cff1.rs","cff2.rs","charset.rs","charstring.rs","dict.rs","index.rs","mod.rs","std_names.rs"]},{"name":"cmap","files":["format0.rs","format10.rs","format12.rs","format13.rs","format14.rs","format2.rs","format4.rs","format6.rs","mod.rs"]}],"files":["ankr.rs","avar.rs","cbdt.rs","cblc.rs","feat.rs","fvar.rs","gdef.rs","glyf.rs","gpos.rs","gsub.rs","gvar.rs","head.rs","hhea.rs","hmtx.rs","hvar.rs","kern.rs","kerx.rs","loca.rs","maxp.rs","mod.rs","morx.rs","mvar.rs","name.rs","os2.rs","post.rs","sbix.rs","svg.rs","trak.rs","vhea.rs","vorg.rs"]}],"files":["aat.rs","lib.rs","parser.rs","var_store.rs"]};
-sourcesIndex["unicode_ident"] = {"name":"","files":["lib.rs","tables.rs"]};
+var sourcesIndex = JSON.parse('{\
+"ab_glyph":["",[["ttfp",[],["outliner.rs"]]],["codepoint_ids.rs","err.rs","font.rs","font_arc.rs","glyph.rs","lib.rs","outlined.rs","scale.rs","ttfp.rs"]],\
+"ab_glyph_rasterizer":["",[],["geometry.rs","lib.rs","raster.rs"]],\
+"ahash":["",[],["convert.rs","fallback_hash.rs","hash_map.rs","hash_set.rs","lib.rs","operations.rs","random_state.rs","specialize.rs"]],\
+"ansi_term":["",[],["ansi.rs","debug.rs","difference.rs","display.rs","lib.rs","style.rs","util.rs","windows.rs","write.rs"]],\
+"anyhow":["",[],["backtrace.rs","chain.rs","context.rs","ensure.rs","error.rs","fmt.rs","kind.rs","lib.rs","macros.rs","ptr.rs","wrapper.rs"]],\
+"atomic_refcell":["",[],["lib.rs"]],\
+"atty":["",[],["lib.rs"]],\
+"bitflags":["",[],["lib.rs"]],\
+"cfg_if":["",[],["lib.rs"]],\
+"clap":["",[["builder",[],["action.rs","app_settings.rs","arg.rs","arg_group.rs","arg_predicate.rs","arg_settings.rs","command.rs","debug_asserts.rs","macros.rs","mod.rs","possible_value.rs","usage_parser.rs","value_hint.rs","value_parser.rs"]],["error",[],["context.rs","kind.rs","mod.rs"]],["output",[],["fmt.rs","help.rs","mod.rs","usage.rs"]],["parser",[["features",[],["mod.rs","suggestions.rs"]],["matches",[],["any_value.rs","arg_matches.rs","matched_arg.rs","mod.rs","value_source.rs"]]],["arg_matcher.rs","error.rs","mod.rs","parser.rs","validator.rs"]],["util",[],["color.rs","fnv.rs","graph.rs","id.rs","mod.rs","str_to_bool.rs"]]],["derive.rs","lib.rs","macros.rs","mkeymap.rs"]],\
+"clap_derive":["",[["derives",[],["args.rs","into_app.rs","mod.rs","parser.rs","subcommand.rs","value_enum.rs"]],["utils",[],["doc_comments.rs","mod.rs","spanned.rs","ty.rs"]]],["attrs.rs","dummies.rs","lib.rs","parse.rs"]],\
+"clap_lex":["",[],["lib.rs"]],\
+"egui":["",[["containers",[],["area.rs","collapsing_header.rs","combo_box.rs","frame.rs","mod.rs","panel.rs","popup.rs","resize.rs","scroll_area.rs","window.rs"]],["data",[],["input.rs","mod.rs","output.rs"]],["input_state",[],["touch_state.rs"]],["util",[],["cache.rs","fixed_cache.rs","history.rs","id_type_map.rs","mod.rs","undoer.rs"]],["widgets",[["plot",[["items",[],["bar.rs","box_elem.rs","mod.rs","rect_elem.rs","values.rs"]]],["legend.rs","mod.rs","transform.rs"]],["text_edit",[],["builder.rs","cursor_range.rs","mod.rs","output.rs","state.rs","text_buffer.rs"]]],["button.rs","color_picker.rs","drag_value.rs","hyperlink.rs","image.rs","label.rs","mod.rs","progress_bar.rs","selected_label.rs","separator.rs","slider.rs"]]],["animation_manager.rs","context.rs","frame_state.rs","grid.rs","id.rs","input_state.rs","introspection.rs","layers.rs","layout.rs","lib.rs","memory.rs","menu.rs","painter.rs","placer.rs","response.rs","sense.rs","style.rs","ui.rs","widget_text.rs"]],\
+"egui_sdl2_gl":["",[],["lib.rs","painter.rs"]],\
+"emath":["",[],["align.rs","lib.rs","numeric.rs","pos2.rs","rect.rs","rect_transform.rs","rot2.rs","smart_aim.rs","vec2.rs"]],\
+"epaint":["",[["text",[],["cursor.rs","font.rs","fonts.rs","mod.rs","text_layout.rs","text_layout_types.rs"]],["util",[],["mod.rs","ordered_float.rs"]]],["color.rs","lib.rs","mesh.rs","mutex.rs","shadow.rs","shape.rs","shape_transform.rs","stats.rs","stroke.rs","tessellator.rs","texture_atlas.rs"]],\
+"getrandom":["",[],["error.rs","error_impls.rs","lib.rs","linux_android.rs","use_file.rs","util.rs","util_libc.rs"]],\
+"gl":["",[],["lib.rs"]],\
+"hashbrown":["",[["external_trait_impls",[],["mod.rs"]],["raw",[],["alloc.rs","bitmask.rs","mod.rs","sse2.rs"]]],["lib.rs","macros.rs","map.rs","scopeguard.rs","set.rs"]],\
+"heck":["",[],["kebab.rs","lib.rs","lower_camel.rs","shouty_kebab.rs","shouty_snake.rs","snake.rs","title.rs","upper_camel.rs"]],\
+"indexmap":["",[["map",[["core",[],["raw.rs"]]],["core.rs"]]],["equivalent.rs","lib.rs","macros.rs","map.rs","mutable_keys.rs","set.rs","util.rs"]],\
+"lazy_static":["",[],["inline_lazy.rs","lib.rs"]],\
+"libc":["",[["unix",[["linux_like",[["linux",[["arch",[["generic",[],["mod.rs"]]],["mod.rs"]],["gnu",[["b64",[["x86_64",[],["align.rs","mod.rs","not_x32.rs"]]],["mod.rs"]]],["align.rs","mod.rs"]]],["align.rs","mod.rs","non_exhaustive.rs"]]],["mod.rs"]]],["align.rs","mod.rs"]]],["fixed_width_ints.rs","lib.rs","macros.rs"]],\
+"log":["",[],["lib.rs","macros.rs"]],\
+"nohash_hasher":["",[],["lib.rs"]],\
+"once_cell":["",[],["imp_std.rs","lib.rs","race.rs"]],\
+"os_str_bytes":["",[["common",[],["mod.rs","raw.rs"]]],["iter.rs","lib.rs","pattern.rs","raw_str.rs","util.rs"]],\
+"owned_ttf_parser":["",[],["convert.rs","lib.rs","owned.rs","preparse.rs"]],\
+"pin_project_lite":["",[],["lib.rs"]],\
+"ppv_lite86":["",[["x86_64",[],["mod.rs","sse2.rs"]]],["lib.rs","soft.rs","types.rs"]],\
+"proc_macro2":["",[],["detection.rs","fallback.rs","lib.rs","marker.rs","parse.rs","wrapper.rs"]],\
+"proc_macro_error":["",[["imp",[],["fallback.rs"]]],["diagnostic.rs","dummy.rs","lib.rs","macros.rs","sealed.rs"]],\
+"proc_macro_error_attr":["",[],["lib.rs","parse.rs","settings.rs"]],\
+"quote":["",[],["ext.rs","format.rs","ident_fragment.rs","lib.rs","runtime.rs","spanned.rs","to_tokens.rs"]],\
+"rand":["",[["distributions",[],["bernoulli.rs","distribution.rs","float.rs","integer.rs","mod.rs","other.rs","slice.rs","uniform.rs","utils.rs","weighted.rs","weighted_index.rs"]],["rngs",[["adapter",[],["mod.rs","read.rs","reseeding.rs"]]],["mock.rs","mod.rs","std.rs","thread.rs"]],["seq",[],["index.rs","mod.rs"]]],["lib.rs","prelude.rs","rng.rs"]],\
+"rand_chacha":["",[],["chacha.rs","guts.rs","lib.rs"]],\
+"rand_core":["",[],["block.rs","error.rs","impls.rs","le.rs","lib.rs","os.rs"]],\
+"reimu":["",[["cpu",[],["instruction.rs"]]],["cli.rs","cpu.rs","gpu.rs","main.rs","util.rs"]],\
+"sdl2":["",[["keyboard",[],["keycode.rs","mod.rs","scancode.rs"]],["mouse",[],["mod.rs","relative.rs"]]],["audio.rs","clipboard.rs","common.rs","controller.rs","cpuinfo.rs","event.rs","filesystem.rs","haptic.rs","hint.rs","joystick.rs","lib.rs","log.rs","macros.rs","messagebox.rs","pixels.rs","rect.rs","render.rs","rwops.rs","sdl.rs","surface.rs","timer.rs","touch.rs","url.rs","version.rs","video.rs"]],\
+"sdl2_sys":["",[],["lib.rs"]],\
+"sharded_slab":["",[["page",[],["mod.rs","slot.rs","stack.rs"]]],["cfg.rs","clear.rs","implementation.rs","iter.rs","lib.rs","macros.rs","pool.rs","shard.rs","sync.rs","tid.rs"]],\
+"smallvec":["",[],["lib.rs"]],\
+"strsim":["",[],["lib.rs"]],\
+"syn":["",[["gen",[],["clone.rs","debug.rs","eq.rs","gen_helper.rs","hash.rs","visit.rs","visit_mut.rs"]]],["attr.rs","await.rs","bigint.rs","buffer.rs","custom_keyword.rs","custom_punctuation.rs","data.rs","derive.rs","discouraged.rs","error.rs","export.rs","expr.rs","ext.rs","file.rs","generics.rs","group.rs","ident.rs","item.rs","lib.rs","lifetime.rs","lit.rs","lookahead.rs","mac.rs","macros.rs","op.rs","parse.rs","parse_macro_input.rs","parse_quote.rs","pat.rs","path.rs","print.rs","punctuated.rs","reserved.rs","sealed.rs","span.rs","spanned.rs","stmt.rs","thread.rs","token.rs","tt.rs","ty.rs","verbatim.rs","whitespace.rs"]],\
+"termcolor":["",[],["lib.rs"]],\
+"textwrap":["",[],["core.rs","indentation.rs","lib.rs","line_ending.rs","word_separators.rs","word_splitters.rs","wrap_algorithms.rs"]],\
+"thread_local":["",[],["cached.rs","lib.rs","thread_id.rs","unreachable.rs"]],\
+"tracing":["",[],["dispatcher.rs","field.rs","instrument.rs","level_filters.rs","lib.rs","macros.rs","span.rs","stdlib.rs","subscriber.rs"]],\
+"tracing_attributes":["",[],["attr.rs","expand.rs","lib.rs"]],\
+"tracing_core":["",[],["callsite.rs","dispatcher.rs","event.rs","field.rs","lazy.rs","lib.rs","metadata.rs","parent.rs","span.rs","stdlib.rs","subscriber.rs"]],\
+"tracing_log":["",[],["lib.rs","log_tracer.rs"]],\
+"tracing_subscriber":["",[["field",[],["debug.rs","delimited.rs","display.rs","mod.rs"]],["filter",[["layer_filters",[],["combinator.rs","mod.rs"]]],["directive.rs","filter_fn.rs","level.rs","mod.rs","targets.rs"]],["fmt",[["format",[],["mod.rs","pretty.rs"]],["time",[],["datetime.rs","mod.rs"]]],["fmt_layer.rs","mod.rs","writer.rs"]],["layer",[],["context.rs","layered.rs","mod.rs"]],["registry",[],["extensions.rs","mod.rs","sharded.rs","stack.rs"]]],["lib.rs","macros.rs","prelude.rs","reload.rs","sync.rs","util.rs"]],\
+"ttf_parser":["",[["ggg",[],["chained_context.rs","context.rs","feature_variations.rs","layout_table.rs","lookup.rs","mod.rs"]],["tables",[["cff",[],["argstack.rs","cff1.rs","cff2.rs","charset.rs","charstring.rs","dict.rs","index.rs","mod.rs","std_names.rs"]],["cmap",[],["format0.rs","format10.rs","format12.rs","format13.rs","format14.rs","format2.rs","format4.rs","format6.rs","mod.rs"]]],["ankr.rs","avar.rs","cbdt.rs","cblc.rs","feat.rs","fvar.rs","gdef.rs","glyf.rs","gpos.rs","gsub.rs","gvar.rs","head.rs","hhea.rs","hmtx.rs","hvar.rs","kern.rs","kerx.rs","loca.rs","maxp.rs","mod.rs","morx.rs","mvar.rs","name.rs","os2.rs","post.rs","sbix.rs","svg.rs","trak.rs","vhea.rs","vorg.rs"]]],["aat.rs","lib.rs","parser.rs","var_store.rs"]],\
+"unicode_ident":["",[],["lib.rs","tables.rs"]]\
+}');
 createSourceSidebar();

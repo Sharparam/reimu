@@ -1,1 +1,1 @@
-initSidebarItems({"enum":[["Table","An Index to Location Table."]]});
+window.SIDEBAR_ITEMS = {"enum":[["Table","An Index to Location Table."]]};

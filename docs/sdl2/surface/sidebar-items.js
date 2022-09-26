@@ -1,1 +1,1 @@
-initSidebarItems({"struct":[["Surface","Holds a `Rc<SurfaceContext>`."],["SurfaceContext","Holds a `SDL_Surface`"],["SurfaceRef","An unsized Surface reference."]]});
+window.SIDEBAR_ITEMS = {"struct":[["Surface","Holds a `Rc<SurfaceContext>`."],["SurfaceContext","Holds a `SDL_Surface`"],["SurfaceRef","An unsized Surface reference."]]};

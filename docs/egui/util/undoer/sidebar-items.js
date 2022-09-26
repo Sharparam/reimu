@@ -1,1 +1,1 @@
-initSidebarItems({"struct":[["Settings",""],["Undoer","Automatic undo system."]]});
+window.SIDEBAR_ITEMS = {"struct":[["Settings",""],["Undoer","Automatic undo system."]]};

@@ -1,1 +1,1 @@
-initSidebarItems({"fn":[["ns_per_frame",""],["sleep_for_constant_rate",""]]});
+window.SIDEBAR_ITEMS = {"fn":[["ns_per_frame",""],["sleep_for_constant_rate",""]]};

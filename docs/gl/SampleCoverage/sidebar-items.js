@@ -1,1 +1,1 @@
-initSidebarItems({"fn":[["is_loaded",""],["load_with",""]]});
+window.SIDEBAR_ITEMS = {"fn":[["is_loaded",""],["load_with",""]]};

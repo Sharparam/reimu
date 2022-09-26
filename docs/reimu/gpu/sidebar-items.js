@@ -1,1 +1,1 @@
-initSidebarItems({"constant":[["SCREEN_HEIGHT",""],["SCREEN_SIZE",""],["SCREEN_WIDTH",""]],"struct":[["Gpu",""]]});
+window.SIDEBAR_ITEMS = {"constant":[["SCREEN_HEIGHT",""],["SCREEN_SIZE",""],["SCREEN_WIDTH",""]],"struct":[["Gpu",""]]};

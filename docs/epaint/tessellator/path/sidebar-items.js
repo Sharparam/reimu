@@ -1,1 +1,1 @@
-initSidebarItems({"fn":[["add_circle_quadrant","Add one quadrant of a circle"],["rounded_rectangle","overwrites existing points"]]});
+window.SIDEBAR_ITEMS = {"fn":[["add_circle_quadrant","Add one quadrant of a circle"],["rounded_rectangle","overwrites existing points"]]};

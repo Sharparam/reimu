@@ -1,1 +1,1 @@
-initSidebarItems({"struct":[["Names","A list of glyph names."],["Table","A PostScript Table."]]});
+window.SIDEBAR_ITEMS = {"struct":[["Names","A list of glyph names."],["Table","A PostScript Table."]]};

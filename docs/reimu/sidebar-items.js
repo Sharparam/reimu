@@ -1,1 +1,1 @@
-initSidebarItems({"constant":[["RENDER_HEIGHT",""],["RENDER_WIDTH",""],["SCALING_FACTOR",""],["TARGET_SPEED",""],["WINDOW_HEIGHT",""],["WINDOW_WIDTH",""]],"fn":[["main",""],["ui_cpu_regs",""],["ui_memory",""]],"mod":[["cli",""],["cpu",""],["gpu",""],["util",""]]});
+window.SIDEBAR_ITEMS = {"constant":[["RENDER_HEIGHT",""],["RENDER_WIDTH",""],["SCALING_FACTOR",""],["TARGET_SPEED",""],["WINDOW_HEIGHT",""],["WINDOW_WIDTH",""]],"fn":[["main",""],["ui_cpu_regs",""],["ui_memory",""]],"mod":[["cli",""],["cpu",""],["gpu",""],["util",""]]};

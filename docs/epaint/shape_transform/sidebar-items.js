@@ -1,1 +1,1 @@
-initSidebarItems({"fn":[["adjust_colors",""]]});
+window.SIDEBAR_ITEMS = {"fn":[["adjust_colors",""]]};

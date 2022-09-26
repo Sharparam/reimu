@@ -1,1 +1,1 @@
-initSidebarItems({"struct":[["Table","A Vertical Header Table."]]});
+window.SIDEBAR_ITEMS = {"struct":[["Table","A Vertical Header Table."]]};

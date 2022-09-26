@@ -1,1 +1,1 @@
-initSidebarItems({"struct":[["Table","A Color Bitmap Location Table."]]});
+window.SIDEBAR_ITEMS = {"struct":[["Table","A Color Bitmap Location Table."]]};

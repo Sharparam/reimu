@@ -1,1 +1,1 @@
-initSidebarItems({"struct":[["Table","A Glyph Data Table."]]});
+window.SIDEBAR_ITEMS = {"struct":[["Table","A Glyph Data Table."]]};

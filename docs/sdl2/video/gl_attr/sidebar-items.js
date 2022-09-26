@@ -1,1 +1,1 @@
-initSidebarItems({"struct":[["ContextFlags",""],["ContextFlagsBuilder","The type that allows you to build a OpenGL context configuration."],["GLAttr","OpenGL context getters and setters. Obtain with `VideoSubsystem::gl_attr()`."]]});
+window.SIDEBAR_ITEMS = {"struct":[["ContextFlags",""],["ContextFlagsBuilder","The type that allows you to build a OpenGL context configuration."],["GLAttr","OpenGL context getters and setters. Obtain with `VideoSubsystem::gl_attr()`."]]};

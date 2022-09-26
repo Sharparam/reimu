@@ -1,1 +1,1 @@
-initSidebarItems({"struct":[["Table","A Horizontal/Vertical Metrics Variations Table."]]});
+window.SIDEBAR_ITEMS = {"struct":[["Table","A Horizontal/Vertical Metrics Variations Table."]]};
