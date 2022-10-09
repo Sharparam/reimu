@@ -2,7 +2,6 @@ var sourcesIndex = JSON.parse('{\
 "ab_glyph":["",[["ttfp",[],["outliner.rs"]]],["codepoint_ids.rs","err.rs","font.rs","font_arc.rs","glyph.rs","lib.rs","outlined.rs","scale.rs","ttfp.rs"]],\
 "ab_glyph_rasterizer":["",[],["geometry.rs","lib.rs","raster.rs"]],\
 "ahash":["",[],["convert.rs","fallback_hash.rs","hash_map.rs","hash_set.rs","lib.rs","operations.rs","random_state.rs","specialize.rs"]],\
-"ansi_term":["",[],["ansi.rs","debug.rs","difference.rs","display.rs","lib.rs","style.rs","util.rs","windows.rs","write.rs"]],\
 "anyhow":["",[],["backtrace.rs","chain.rs","context.rs","ensure.rs","error.rs","fmt.rs","kind.rs","lib.rs","macros.rs","ptr.rs","wrapper.rs"]],\
 "atomic_refcell":["",[],["lib.rs"]],\
 "atty":["",[],["lib.rs"]],\
@@ -22,8 +21,10 @@ var sourcesIndex = JSON.parse('{\
 "libc":["",[["unix",[["linux_like",[["linux",[["arch",[["generic",[],["mod.rs"]]],["mod.rs"]],["gnu",[["b64",[["x86_64",[],["align.rs","mod.rs","not_x32.rs"]]],["mod.rs"]]],["align.rs","mod.rs"]]],["align.rs","mod.rs","non_exhaustive.rs"]]],["mod.rs"]]],["align.rs","mod.rs"]]],["fixed_width_ints.rs","lib.rs","macros.rs"]],\
 "log":["",[],["lib.rs","macros.rs"]],\
 "nohash_hasher":["",[],["lib.rs"]],\
+"nu_ansi_term":["",[],["ansi.rs","debug.rs","difference.rs","display.rs","gradient.rs","lib.rs","rgb.rs","style.rs","util.rs","windows.rs","write.rs"]],\
 "once_cell":["",[],["imp_std.rs","lib.rs","race.rs"]],\
 "os_str_bytes":["",[["common",[],["mod.rs","raw.rs"]]],["iter.rs","lib.rs","pattern.rs","raw_str.rs","util.rs"]],\
+"overload":["",[],["assignment.rs","binary.rs","lib.rs","unary.rs"]],\
 "owned_ttf_parser":["",[],["convert.rs","lib.rs","owned.rs","preparse.rs"]],\
 "pin_project_lite":["",[],["lib.rs"]],\
 "ppv_lite86":["",[["x86_64",[],["mod.rs","sse2.rs"]]],["lib.rs","soft.rs","types.rs"]],\
