@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/clap-4.0.10/src/builder/value_parser.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>value_parser.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../storage.js"></script><script defer src="../../../source-script.js"></script><script defer src="../../../source-files.js"></script><script defer src="../../../main.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../../clap/index.html"><div class="logo-container"><img src="https://raw.githubusercontent.com/clap-rs/clap/master/assets/clap.png" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../../clap/index.html"><div class="logo-container">
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/clap-4.0.18/src/builder/value_parser.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>value_parser.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../storage.js"></script><script defer src="../../../source-script.js"></script><script defer src="../../../source-files.js"></script><script defer src="../../../main.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../../clap/index.html"><div class="logo-container"><img src="https://raw.githubusercontent.com/clap-rs/clap/master/assets/clap.png" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../../clap/index.html"><div class="logo-container">
                     <img src="https://raw.githubusercontent.com/clap-rs/clap/master/assets/clap.png" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../../clap/index.html">
                         <img src="https://raw.githubusercontent.com/clap-rs/clap/master/assets/clap.png" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
 <span id="2">2</span>
@@ -2286,6 +2286,160 @@
 <span id="2284">2284</span>
 <span id="2285">2285</span>
 <span id="2286">2286</span>
+<span id="2287">2287</span>
+<span id="2288">2288</span>
+<span id="2289">2289</span>
+<span id="2290">2290</span>
+<span id="2291">2291</span>
+<span id="2292">2292</span>
+<span id="2293">2293</span>
+<span id="2294">2294</span>
+<span id="2295">2295</span>
+<span id="2296">2296</span>
+<span id="2297">2297</span>
+<span id="2298">2298</span>
+<span id="2299">2299</span>
+<span id="2300">2300</span>
+<span id="2301">2301</span>
+<span id="2302">2302</span>
+<span id="2303">2303</span>
+<span id="2304">2304</span>
+<span id="2305">2305</span>
+<span id="2306">2306</span>
+<span id="2307">2307</span>
+<span id="2308">2308</span>
+<span id="2309">2309</span>
+<span id="2310">2310</span>
+<span id="2311">2311</span>
+<span id="2312">2312</span>
+<span id="2313">2313</span>
+<span id="2314">2314</span>
+<span id="2315">2315</span>
+<span id="2316">2316</span>
+<span id="2317">2317</span>
+<span id="2318">2318</span>
+<span id="2319">2319</span>
+<span id="2320">2320</span>
+<span id="2321">2321</span>
+<span id="2322">2322</span>
+<span id="2323">2323</span>
+<span id="2324">2324</span>
+<span id="2325">2325</span>
+<span id="2326">2326</span>
+<span id="2327">2327</span>
+<span id="2328">2328</span>
+<span id="2329">2329</span>
+<span id="2330">2330</span>
+<span id="2331">2331</span>
+<span id="2332">2332</span>
+<span id="2333">2333</span>
+<span id="2334">2334</span>
+<span id="2335">2335</span>
+<span id="2336">2336</span>
+<span id="2337">2337</span>
+<span id="2338">2338</span>
+<span id="2339">2339</span>
+<span id="2340">2340</span>
+<span id="2341">2341</span>
+<span id="2342">2342</span>
+<span id="2343">2343</span>
+<span id="2344">2344</span>
+<span id="2345">2345</span>
+<span id="2346">2346</span>
+<span id="2347">2347</span>
+<span id="2348">2348</span>
+<span id="2349">2349</span>
+<span id="2350">2350</span>
+<span id="2351">2351</span>
+<span id="2352">2352</span>
+<span id="2353">2353</span>
+<span id="2354">2354</span>
+<span id="2355">2355</span>
+<span id="2356">2356</span>
+<span id="2357">2357</span>
+<span id="2358">2358</span>
+<span id="2359">2359</span>
+<span id="2360">2360</span>
+<span id="2361">2361</span>
+<span id="2362">2362</span>
+<span id="2363">2363</span>
+<span id="2364">2364</span>
+<span id="2365">2365</span>
+<span id="2366">2366</span>
+<span id="2367">2367</span>
+<span id="2368">2368</span>
+<span id="2369">2369</span>
+<span id="2370">2370</span>
+<span id="2371">2371</span>
+<span id="2372">2372</span>
+<span id="2373">2373</span>
+<span id="2374">2374</span>
+<span id="2375">2375</span>
+<span id="2376">2376</span>
+<span id="2377">2377</span>
+<span id="2378">2378</span>
+<span id="2379">2379</span>
+<span id="2380">2380</span>
+<span id="2381">2381</span>
+<span id="2382">2382</span>
+<span id="2383">2383</span>
+<span id="2384">2384</span>
+<span id="2385">2385</span>
+<span id="2386">2386</span>
+<span id="2387">2387</span>
+<span id="2388">2388</span>
+<span id="2389">2389</span>
+<span id="2390">2390</span>
+<span id="2391">2391</span>
+<span id="2392">2392</span>
+<span id="2393">2393</span>
+<span id="2394">2394</span>
+<span id="2395">2395</span>
+<span id="2396">2396</span>
+<span id="2397">2397</span>
+<span id="2398">2398</span>
+<span id="2399">2399</span>
+<span id="2400">2400</span>
+<span id="2401">2401</span>
+<span id="2402">2402</span>
+<span id="2403">2403</span>
+<span id="2404">2404</span>
+<span id="2405">2405</span>
+<span id="2406">2406</span>
+<span id="2407">2407</span>
+<span id="2408">2408</span>
+<span id="2409">2409</span>
+<span id="2410">2410</span>
+<span id="2411">2411</span>
+<span id="2412">2412</span>
+<span id="2413">2413</span>
+<span id="2414">2414</span>
+<span id="2415">2415</span>
+<span id="2416">2416</span>
+<span id="2417">2417</span>
+<span id="2418">2418</span>
+<span id="2419">2419</span>
+<span id="2420">2420</span>
+<span id="2421">2421</span>
+<span id="2422">2422</span>
+<span id="2423">2423</span>
+<span id="2424">2424</span>
+<span id="2425">2425</span>
+<span id="2426">2426</span>
+<span id="2427">2427</span>
+<span id="2428">2428</span>
+<span id="2429">2429</span>
+<span id="2430">2430</span>
+<span id="2431">2431</span>
+<span id="2432">2432</span>
+<span id="2433">2433</span>
+<span id="2434">2434</span>
+<span id="2435">2435</span>
+<span id="2436">2436</span>
+<span id="2437">2437</span>
+<span id="2438">2438</span>
+<span id="2439">2439</span>
+<span id="2440">2440</span>
 </pre><pre class="rust"><code><span class="kw">use</span> <span class="ident">std::convert::TryInto</span>;
 <span class="kw">use</span> <span class="ident">std::ops::RangeBounds</span>;
 
@@ -2887,6 +3041,54 @@
 }
 
 <span class="doccomment">/// Parse/validate argument values</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// As alternatives to implementing `TypedValueParser`,</span>
+<span class="doccomment">/// - Use `Fn(&amp;str) -&gt; Result&lt;T, E&gt;` which implements `TypedValueParser`</span>
+<span class="doccomment">/// - [`TypedValueParser::map`] or [`TypedValueParser::try_map`] to adapt an existing `TypedValueParser`</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// See `ValueParserFactory` to register `TypedValueParser::Value` with</span>
+<span class="doccomment">/// [`value_parser!`][crate::value_parser].</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// # Example</span>
+<span class="doccomment">///</span>
+<span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">not</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;error-context&quot;</span>), <span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot; ```ignore&quot;</span>)]</span>
+<span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;error-context&quot;</span>, <span class="ident">doc</span> <span class="op">=</span> <span class="string">&quot; ```&quot;</span>)]</span>
+<span class="doccomment">/// # use clap::error::ErrorKind;</span>
+<span class="doccomment">/// # use clap::error::ContextKind;</span>
+<span class="doccomment">/// # use clap::error::ContextValue;</span>
+<span class="doccomment">/// #[derive(Clone)]</span>
+<span class="doccomment">/// struct Custom(u32);</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// #[derive(Clone)]</span>
+<span class="doccomment">/// struct CustomValueParser;</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// impl clap::builder::TypedValueParser for CustomValueParser {</span>
+<span class="doccomment">///     type Value = Custom;</span>
+<span class="doccomment">///</span>
+<span class="doccomment">///     fn parse_ref(</span>
+<span class="doccomment">///         &amp;self,</span>
+<span class="doccomment">///         cmd: &amp;clap::Command,</span>
+<span class="doccomment">///         arg: Option&lt;&amp;clap::Arg&gt;,</span>
+<span class="doccomment">///         value: &amp;std::ffi::OsStr,</span>
+<span class="doccomment">///     ) -&gt; Result&lt;Self::Value, clap::Error&gt; {</span>
+<span class="doccomment">///         let inner = clap::value_parser!(u32);</span>
+<span class="doccomment">///         let val = inner.parse_ref(cmd, arg, value)?;</span>
+<span class="doccomment">///</span>
+<span class="doccomment">///         const INVALID_VALUE: u32 = 10;</span>
+<span class="doccomment">///         if val == INVALID_VALUE {</span>
+<span class="doccomment">///             let mut err = clap::Error::new(ErrorKind::ValueValidation)</span>
+<span class="doccomment">///                 .with_cmd(cmd);</span>
+<span class="doccomment">///             if let Some(arg) = arg {</span>
+<span class="doccomment">///                 err.insert(ContextKind::InvalidArg, ContextValue::String(arg.to_string()));</span>
+<span class="doccomment">///             }</span>
+<span class="doccomment">///             err.insert(ContextKind::InvalidValue, ContextValue::String(INVALID_VALUE.to_string()));</span>
+<span class="doccomment">///             return Err(err);</span>
+<span class="doccomment">///         }</span>
+<span class="doccomment">///</span>
+<span class="doccomment">///         Ok(Custom(val))</span>
+<span class="doccomment">///     }</span>
+<span class="doccomment">/// }</span>
+<span class="doccomment">/// ```</span>
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">TypedValueParser</span>: <span class="ident">Clone</span> <span class="op">+</span> <span class="ident">Send</span> <span class="op">+</span> <span class="ident">Sync</span> <span class="op">+</span> <span class="lifetime">&#39;static</span> {
     <span class="doccomment">/// Argument&#39;s value type</span>
     <span class="kw">type</span> <span class="ident">Value</span>: <span class="ident">Send</span> <span class="op">+</span> <span class="ident">Sync</span> <span class="op">+</span> <span class="ident">Clone</span>;
@@ -2965,6 +3167,56 @@
         <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="ident"><span class="self">Self</span>::Value</span>) -&gt; <span class="ident">T</span> <span class="op">+</span> <span class="ident">Clone</span>,
     {
         <span class="ident">MapValueParser::new</span>(<span class="self">self</span>, <span class="ident">func</span>)
+    }
+
+    <span class="doccomment">/// Adapt a `TypedValueParser` from one value to another</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// # Example</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// ```rust</span>
+    <span class="doccomment">/// # use std::ffi::OsString;</span>
+    <span class="doccomment">/// # use std::ffi::OsStr;</span>
+    <span class="doccomment">/// # use std::path::PathBuf;</span>
+    <span class="doccomment">/// # use std::path::Path;</span>
+    <span class="doccomment">/// # use clap::Command;</span>
+    <span class="doccomment">/// # use clap::Arg;</span>
+    <span class="doccomment">/// # use clap::builder::TypedValueParser as _;</span>
+    <span class="doccomment">/// # use clap::builder::OsStringValueParser;</span>
+    <span class="doccomment">/// let cmd = Command::new(&quot;mycmd&quot;)</span>
+    <span class="doccomment">///     .arg(</span>
+    <span class="doccomment">///         Arg::new(&quot;flag&quot;)</span>
+    <span class="doccomment">///             .long(&quot;flag&quot;)</span>
+    <span class="doccomment">///             .value_parser(</span>
+    <span class="doccomment">///                 OsStringValueParser::new()</span>
+    <span class="doccomment">///                 .try_map(verify_ext)</span>
+    <span class="doccomment">///             )</span>
+    <span class="doccomment">///     );</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// fn verify_ext(os: OsString) -&gt; Result&lt;PathBuf, &amp;&#39;static str&gt; {</span>
+    <span class="doccomment">///     let path = PathBuf::from(os);</span>
+    <span class="doccomment">///     if path.extension() != Some(OsStr::new(&quot;rs&quot;)) {</span>
+    <span class="doccomment">///         return Err(&quot;only Rust files are supported&quot;);</span>
+    <span class="doccomment">///     }</span>
+    <span class="doccomment">///     Ok(path)</span>
+    <span class="doccomment">/// }</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// let error = cmd.clone().try_get_matches_from([&quot;mycmd&quot;, &quot;--flag&quot;, &quot;foo.txt&quot;]).unwrap_err();</span>
+    <span class="doccomment">/// error.print();</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// let matches = cmd.try_get_matches_from([&quot;mycmd&quot;, &quot;--flag&quot;, &quot;foo.rs&quot;]).unwrap();</span>
+    <span class="doccomment">/// assert!(matches.contains_id(&quot;flag&quot;));</span>
+    <span class="doccomment">/// assert_eq!(</span>
+    <span class="doccomment">///     matches.get_one::&lt;PathBuf&gt;(&quot;flag&quot;).map(|s| s.as_path()),</span>
+    <span class="doccomment">///     Some(Path::new(&quot;foo.rs&quot;))</span>
+    <span class="doccomment">/// );</span>
+    <span class="doccomment">/// ```</span>
+    <span class="kw">fn</span> <span class="ident">try_map</span><span class="op">&lt;</span><span class="ident">T</span>, <span class="ident">E</span>, <span class="ident">F</span><span class="op">&gt;</span>(<span class="self">self</span>, <span class="ident">func</span>: <span class="ident">F</span>) -&gt; <span class="ident">TryMapValueParser</span><span class="op">&lt;</span><span class="self">Self</span>, <span class="ident">F</span><span class="op">&gt;</span>
+    <span class="kw">where</span>
+        <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="ident"><span class="self">Self</span>::Value</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">T</span>, <span class="ident">E</span><span class="op">&gt;</span> <span class="op">+</span> <span class="ident">Clone</span> <span class="op">+</span> <span class="ident">Send</span> <span class="op">+</span> <span class="ident">Sync</span> <span class="op">+</span> <span class="lifetime">&#39;static</span>,
+        <span class="ident">T</span>: <span class="ident">Send</span> <span class="op">+</span> <span class="ident">Sync</span> <span class="op">+</span> <span class="ident">Clone</span>,
+        <span class="ident">E</span>: <span class="ident">Into</span><span class="op">&lt;</span><span class="ident">Box</span><span class="op">&lt;</span><span class="kw">dyn</span> <span class="ident">std::error::Error</span> <span class="op">+</span> <span class="ident">Send</span> <span class="op">+</span> <span class="ident">Sync</span> <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span><span class="op">&gt;</span>,
+    {
+        <span class="ident">TryMapValueParser::new</span>(<span class="self">self</span>, <span class="ident">func</span>)
     }
 }
 
@@ -4171,6 +4423,62 @@
     }
 }
 
+<span class="doccomment">/// Adapt a `TypedValueParser` from one value to another</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// See [`TypedValueParser::try_map`]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">TryMapValueParser</span><span class="op">&lt;</span><span class="ident">P</span>, <span class="ident">F</span><span class="op">&gt;</span> {
+    <span class="ident">parser</span>: <span class="ident">P</span>,
+    <span class="ident">func</span>: <span class="ident">F</span>,
+}
+
+<span class="kw">impl</span><span class="op">&lt;</span><span class="ident">P</span>, <span class="ident">F</span>, <span class="ident">T</span>, <span class="ident">E</span><span class="op">&gt;</span> <span class="ident">TryMapValueParser</span><span class="op">&lt;</span><span class="ident">P</span>, <span class="ident">F</span><span class="op">&gt;</span>
+<span class="kw">where</span>
+    <span class="ident">P</span>: <span class="ident">TypedValueParser</span>,
+    <span class="ident">P::Value</span>: <span class="ident">Send</span> <span class="op">+</span> <span class="ident">Sync</span> <span class="op">+</span> <span class="ident">Clone</span>,
+    <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="ident">P::Value</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">T</span>, <span class="ident">E</span><span class="op">&gt;</span> <span class="op">+</span> <span class="ident">Clone</span> <span class="op">+</span> <span class="ident">Send</span> <span class="op">+</span> <span class="ident">Sync</span> <span class="op">+</span> <span class="lifetime">&#39;static</span>,
+    <span class="ident">T</span>: <span class="ident">Send</span> <span class="op">+</span> <span class="ident">Sync</span> <span class="op">+</span> <span class="ident">Clone</span>,
+    <span class="ident">E</span>: <span class="ident">Into</span><span class="op">&lt;</span><span class="ident">Box</span><span class="op">&lt;</span><span class="kw">dyn</span> <span class="ident">std::error::Error</span> <span class="op">+</span> <span class="ident">Send</span> <span class="op">+</span> <span class="ident">Sync</span> <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span><span class="op">&gt;</span>,
+{
+    <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">parser</span>: <span class="ident">P</span>, <span class="ident">func</span>: <span class="ident">F</span>) -&gt; <span class="self">Self</span> {
+        <span class="self">Self</span> { <span class="ident">parser</span>, <span class="ident">func</span> }
+    }
+}
+
+<span class="kw">impl</span><span class="op">&lt;</span><span class="ident">P</span>, <span class="ident">F</span>, <span class="ident">T</span>, <span class="ident">E</span><span class="op">&gt;</span> <span class="ident">TypedValueParser</span> <span class="kw">for</span> <span class="ident">TryMapValueParser</span><span class="op">&lt;</span><span class="ident">P</span>, <span class="ident">F</span><span class="op">&gt;</span>
+<span class="kw">where</span>
+    <span class="ident">P</span>: <span class="ident">TypedValueParser</span>,
+    <span class="ident">P::Value</span>: <span class="ident">Send</span> <span class="op">+</span> <span class="ident">Sync</span> <span class="op">+</span> <span class="ident">Clone</span>,
+    <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="ident">P::Value</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">T</span>, <span class="ident">E</span><span class="op">&gt;</span> <span class="op">+</span> <span class="ident">Clone</span> <span class="op">+</span> <span class="ident">Send</span> <span class="op">+</span> <span class="ident">Sync</span> <span class="op">+</span> <span class="lifetime">&#39;static</span>,
+    <span class="ident">T</span>: <span class="ident">Send</span> <span class="op">+</span> <span class="ident">Sync</span> <span class="op">+</span> <span class="ident">Clone</span>,
+    <span class="ident">E</span>: <span class="ident">Into</span><span class="op">&lt;</span><span class="ident">Box</span><span class="op">&lt;</span><span class="kw">dyn</span> <span class="ident">std::error::Error</span> <span class="op">+</span> <span class="ident">Send</span> <span class="op">+</span> <span class="ident">Sync</span> <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span><span class="op">&gt;</span>,
+{
+    <span class="kw">type</span> <span class="ident">Value</span> <span class="op">=</span> <span class="ident">T</span>;
+
+    <span class="kw">fn</span> <span class="ident">parse_ref</span>(
+        <span class="kw-2">&amp;</span><span class="self">self</span>,
+        <span class="ident">cmd</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="kw">crate</span>::Command</span>,
+        <span class="ident">arg</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident"><span class="kw">crate</span>::Arg</span><span class="op">&gt;</span>,
+        <span class="ident">value</span>: <span class="kw-2">&amp;</span><span class="ident">std::ffi::OsStr</span>,
+    ) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident"><span class="self">Self</span>::Value</span>, <span class="ident"><span class="kw">crate</span>::Error</span><span class="op">&gt;</span> {
+        <span class="kw">let</span> <span class="ident">mid_value</span> <span class="op">=</span> <span class="macro">ok!</span>(<span class="self">self</span>.<span class="ident">parser</span>.<span class="ident">parse_ref</span>(<span class="ident">cmd</span>, <span class="ident">arg</span>, <span class="ident">value</span>));
+        <span class="kw">let</span> <span class="ident">value</span> <span class="op">=</span> <span class="macro">ok!</span>((<span class="self">self</span>.<span class="ident">func</span>)(<span class="ident">mid_value</span>).<span class="ident">map_err</span>(<span class="op">|</span><span class="ident">e</span><span class="op">|</span> {
+            <span class="kw">let</span> <span class="ident">arg</span> <span class="op">=</span> <span class="ident">arg</span>
+                .<span class="ident">map</span>(<span class="op">|</span><span class="ident">a</span><span class="op">|</span> <span class="ident">a</span>.<span class="ident">to_string</span>())
+                .<span class="ident">unwrap_or_else</span>(<span class="op">|</span><span class="op">|</span> <span class="string">&quot;...&quot;</span>.<span class="ident">to_owned</span>());
+            <span class="ident"><span class="kw">crate</span>::Error::value_validation</span>(<span class="ident">arg</span>, <span class="ident">value</span>.<span class="ident">to_string_lossy</span>().<span class="ident">into_owned</span>(), <span class="ident">e</span>.<span class="ident">into</span>())
+                .<span class="ident">with_cmd</span>(<span class="ident">cmd</span>)
+        }));
+        <span class="prelude-val">Ok</span>(<span class="ident">value</span>)
+    }
+
+    <span class="kw">fn</span> <span class="ident">possible_values</span>(
+        <span class="kw-2">&amp;</span><span class="self">self</span>,
+    ) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Box</span><span class="op">&lt;</span><span class="kw">dyn</span> <span class="ident">Iterator</span><span class="op">&lt;</span><span class="ident">Item</span> <span class="op">=</span> <span class="ident"><span class="kw">crate</span>::builder::PossibleValue</span><span class="op">&gt;</span> <span class="op">+</span> <span class="lifetime">&#39;_</span><span class="op">&gt;</span><span class="op">&gt;</span> {
+        <span class="self">self</span>.<span class="ident">parser</span>.<span class="ident">possible_values</span>()
+    }
+}
+
 <span class="doccomment">/// Register a type with [value_parser!][crate::value_parser!]</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// # Example</span>
@@ -4434,10 +4742,10 @@
 <span class="doccomment">/// Supported types</span>
 <span class="doccomment">/// - [`ValueParserFactory` types][ValueParserFactory], including</span>
 <span class="doccomment">///   - [Native types][ValueParser]: `bool`, `String`, `OsString`, `PathBuf`</span>
-<span class="doccomment">///   - [Ranged numeric types][RangedI64ValueParser]: `u8`, `i8`, `u16`, `i16, `u32`, `i32`, `u64`, `i64`</span>
+<span class="doccomment">///   - [Ranged numeric types][RangedI64ValueParser]: `u8`, `i8`, `u16`, `i16`, `u32`, `i32`, `u64`, `i64`</span>
 <span class="doccomment">/// - [`ValueEnum` types][crate::ValueEnum]</span>
-<span class="doccomment">/// - [`From&lt;&amp;OsString&gt;` types][std::convert::From] and [`From&lt;&amp;OsStr&gt;` types][std::convert::From]</span>
-<span class="doccomment">/// - [`From&lt;&amp;String&gt;` types][std::convert::From] and [`From&lt;&amp;str&gt;` types][std::convert::From]</span>
+<span class="doccomment">/// - [`From&lt;OsString&gt;` types][std::convert::From] and [`From&lt;&amp;OsStr&gt;` types][std::convert::From]</span>
+<span class="doccomment">/// - [`From&lt;String&gt;` types][std::convert::From] and [`From&lt;&amp;str&gt;` types][std::convert::From]</span>
 <span class="doccomment">/// - [`FromStr` types][std::str::FromStr], including usize, isize</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// # Example</span>
