@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/ttf-parser-0.15.2/src/tables/avar.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>avar.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../storage.js"></script><script defer src="../../../source-script.js"></script><script defer src="../../../source-files.js"></script><script defer src="../../../main.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../../ttf_parser/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../../ttf_parser/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../../ttf_parser/index.html"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/ttf-parser-0.15.2/src/tables/avar.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>avar.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../../normalize.css"><link rel="stylesheet" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../../ayu.css" disabled><link rel="stylesheet" href="../../../dark.css" disabled><link rel="stylesheet" href="../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../storage.js"></script><script defer src="../../../source-script.js"></script><script defer src="../../../source-files.js"></script><script defer src="../../../main.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><div class="width-limiter"><nav class="sub"><a class="sub-logo-container" href="../../../ttf_parser/index.html"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../wheel.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -173,180 +173,180 @@
 <span id="173">173</span>
 <span id="174">174</span>
 <span id="175">175</span>
-</pre><pre class="rust"><code><span class="doccomment">//! An [Axis Variations Table](</span>
-<span class="doccomment">//! https://docs.microsoft.com/en-us/typography/opentype/spec/avar) implementation.</span>
+</pre><pre class="rust"><code><span class="doccomment">//! An [Axis Variations Table](
+//! https://docs.microsoft.com/en-us/typography/opentype/spec/avar) implementation.
 
-<span class="kw">use</span> <span class="ident">core::convert::TryFrom</span>;
+</span><span class="kw">use </span>core::convert::TryFrom;
 
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::NormalizedCoordinate</span>;
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::parser</span>::{<span class="ident">Stream</span>, <span class="ident">FromData</span>, <span class="ident">LazyArray16</span>};
+<span class="kw">use </span><span class="kw">crate</span>::NormalizedCoordinate;
+<span class="kw">use </span><span class="kw">crate</span>::parser::{Stream, FromData, LazyArray16};
 
-<span class="doccomment">/// An axis value map.</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">Debug</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">AxisValueMap</span> {
-    <span class="doccomment">/// A normalized coordinate value obtained using default normalization.</span>
-    <span class="kw">pub</span> <span class="ident">from_coordinate</span>: <span class="ident">i16</span>,
-    <span class="doccomment">/// The modified, normalized coordinate value.</span>
-    <span class="kw">pub</span> <span class="ident">to_coordinate</span>: <span class="ident">i16</span>,
+<span class="doccomment">/// An axis value map.
+</span><span class="attribute">#[derive(Clone, Copy, Debug)]
+</span><span class="kw">pub struct </span>AxisValueMap {
+    <span class="doccomment">/// A normalized coordinate value obtained using default normalization.
+    </span><span class="kw">pub </span>from_coordinate: i16,
+    <span class="doccomment">/// The modified, normalized coordinate value.
+    </span><span class="kw">pub </span>to_coordinate: i16,
 }
 
-<span class="kw">impl</span> <span class="ident">FromData</span> <span class="kw">for</span> <span class="ident">AxisValueMap</span> {
-    <span class="kw">const</span> <span class="ident">SIZE</span>: <span class="ident">usize</span> <span class="op">=</span> <span class="number">4</span>;
+<span class="kw">impl </span>FromData <span class="kw">for </span>AxisValueMap {
+    <span class="kw">const </span>SIZE: usize = <span class="number">4</span>;
 
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">parse</span>(<span class="ident">data</span>: <span class="kw-2">&amp;</span>[<span class="ident">u8</span>]) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">s</span> <span class="op">=</span> <span class="ident">Stream::new</span>(<span class="ident">data</span>);
-        <span class="prelude-val">Some</span>(<span class="ident">AxisValueMap</span> {
-            <span class="ident">from_coordinate</span>: <span class="ident">s</span>.<span class="ident">read</span>::<span class="op">&lt;</span><span class="ident">i16</span><span class="op">&gt;</span>()<span class="question-mark">?</span>,
-            <span class="ident">to_coordinate</span>: <span class="ident">s</span>.<span class="ident">read</span>::<span class="op">&lt;</span><span class="ident">i16</span><span class="op">&gt;</span>()<span class="question-mark">?</span>,
+    <span class="attribute">#[inline]
+    </span><span class="kw">fn </span>parse(data: <span class="kw-2">&amp;</span>[u8]) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="self">Self</span>&gt; {
+        <span class="kw">let </span><span class="kw-2">mut </span>s = Stream::new(data);
+        <span class="prelude-val">Some</span>(AxisValueMap {
+            from_coordinate: s.read::&lt;i16&gt;()<span class="question-mark">?</span>,
+            to_coordinate: s.read::&lt;i16&gt;()<span class="question-mark">?</span>,
         })
     }
 }
 
 
-<span class="doccomment">/// A list of segment maps.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// Can be empty.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// The internal data layout is not designed for random access,</span>
-<span class="doccomment">/// therefore we&#39;re not providing the `get()` method and only an iterator.</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Copy</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">SegmentMaps</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="ident">count</span>: <span class="ident">u16</span>,
-    <span class="ident">data</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>],
+<span class="doccomment">/// A list of segment maps.
+///
+/// Can be empty.
+///
+/// The internal data layout is not designed for random access,
+/// therefore we&#39;re not providing the `get()` method and only an iterator.
+</span><span class="attribute">#[derive(Clone, Copy)]
+</span><span class="kw">pub struct </span>SegmentMaps&lt;<span class="lifetime">&#39;a</span>&gt; {
+    count: u16,
+    data: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8],
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">SegmentMaps</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="doccomment">/// Returns the number of segments.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">len</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">u16</span> {
-        <span class="self">self</span>.<span class="ident">count</span>
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; SegmentMaps&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="doccomment">/// Returns the number of segments.
+    </span><span class="kw">pub fn </span>len(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; u16 {
+        <span class="self">self</span>.count
     }
 }
 
-<span class="kw">impl</span> <span class="ident">core::fmt::Debug</span> <span class="kw">for</span> <span class="ident">SegmentMaps</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span> {
-    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;mut</span> <span class="ident">core::fmt::Formatter</span>) -&gt; <span class="ident">core::fmt::Result</span> {
-        <span class="macro">write!</span>(<span class="ident">f</span>, <span class="string">&quot;SegmentMaps {{ ... }}&quot;</span>)
+<span class="kw">impl </span>core::fmt::Debug <span class="kw">for </span>SegmentMaps&lt;<span class="lifetime">&#39;_</span>&gt; {
+    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>core::fmt::Formatter) -&gt; core::fmt::Result {
+        <span class="macro">write!</span>(f, <span class="string">&quot;SegmentMaps {{ ... }}&quot;</span>)
     }
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">IntoIterator</span> <span class="kw">for</span> <span class="ident">SegmentMaps</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="kw">type</span> <span class="ident">Item</span> <span class="op">=</span> <span class="ident">LazyArray16</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">AxisValueMap</span><span class="op">&gt;</span>;
-    <span class="kw">type</span> <span class="ident">IntoIter</span> <span class="op">=</span> <span class="ident">SegmentMapsIter</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>;
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; IntoIterator <span class="kw">for </span>SegmentMaps&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="kw">type </span>Item = LazyArray16&lt;<span class="lifetime">&#39;a</span>, AxisValueMap&gt;;
+    <span class="kw">type </span>IntoIter = SegmentMapsIter&lt;<span class="lifetime">&#39;a</span>&gt;;
 
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">into_iter</span>(<span class="self">self</span>) -&gt; <span class="ident"><span class="self">Self</span>::IntoIter</span> {
-        <span class="ident">SegmentMapsIter</span> {
-            <span class="ident">stream</span>: <span class="ident">Stream::new</span>(<span class="self">self</span>.<span class="ident">data</span>),
+    <span class="attribute">#[inline]
+    </span><span class="kw">fn </span>into_iter(<span class="self">self</span>) -&gt; <span class="self">Self</span>::IntoIter {
+        SegmentMapsIter {
+            stream: Stream::new(<span class="self">self</span>.data),
         }
     }
 }
 
-<span class="doccomment">/// An iterator over maps.</span>
-<span class="attribute">#[<span class="ident">allow</span>(<span class="ident">missing_debug_implementations</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">SegmentMapsIter</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="ident">stream</span>: <span class="ident">Stream</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>,
+<span class="doccomment">/// An iterator over maps.
+</span><span class="attribute">#[allow(missing_debug_implementations)]
+</span><span class="kw">pub struct </span>SegmentMapsIter&lt;<span class="lifetime">&#39;a</span>&gt; {
+    stream: Stream&lt;<span class="lifetime">&#39;a</span>&gt;,
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">Iterator</span> <span class="kw">for</span> <span class="ident">SegmentMapsIter</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="kw">type</span> <span class="ident">Item</span> <span class="op">=</span> <span class="ident">LazyArray16</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">AxisValueMap</span><span class="op">&gt;</span>;
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; Iterator <span class="kw">for </span>SegmentMapsIter&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="kw">type </span>Item = LazyArray16&lt;<span class="lifetime">&#39;a</span>, AxisValueMap&gt;;
 
-    <span class="kw">fn</span> <span class="ident">next</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident"><span class="self">Self</span>::Item</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="ident">count</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">stream</span>.<span class="ident">read</span>::<span class="op">&lt;</span><span class="ident">u16</span><span class="op">&gt;</span>()<span class="question-mark">?</span>;
-        <span class="kw">return</span> <span class="self">self</span>.<span class="ident">stream</span>.<span class="ident">read_array16</span>::<span class="op">&lt;</span><span class="ident">AxisValueMap</span><span class="op">&gt;</span>(<span class="ident">count</span>);
+    <span class="kw">fn </span>next(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="self">Self</span>::Item&gt; {
+        <span class="kw">let </span>count = <span class="self">self</span>.stream.read::&lt;u16&gt;()<span class="question-mark">?</span>;
+        <span class="kw">return </span><span class="self">self</span>.stream.read_array16::&lt;AxisValueMap&gt;(count);
     }
 }
 
 
-<span class="doccomment">/// An [Axis Variations Table](</span>
-<span class="doccomment">/// https://docs.microsoft.com/en-us/typography/opentype/spec/avar).</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">Debug</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Table</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="doccomment">/// The segment maps array — one segment map for each axis</span>
-    <span class="doccomment">/// in the order of axes specified in the `fvar` table.</span>
-    <span class="kw">pub</span> <span class="ident">segment_maps</span>: <span class="ident">SegmentMaps</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>,
+<span class="doccomment">/// An [Axis Variations Table](
+/// https://docs.microsoft.com/en-us/typography/opentype/spec/avar).
+</span><span class="attribute">#[derive(Clone, Copy, Debug)]
+</span><span class="kw">pub struct </span>Table&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="doccomment">/// The segment maps array — one segment map for each axis
+    /// in the order of axes specified in the `fvar` table.
+    </span><span class="kw">pub </span>segment_maps: SegmentMaps&lt;<span class="lifetime">&#39;a</span>&gt;,
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">Table</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="doccomment">/// Parses a table from raw data.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">parse</span>(<span class="ident">data</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>]) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">s</span> <span class="op">=</span> <span class="ident">Stream::new</span>(<span class="ident">data</span>);
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; Table&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="doccomment">/// Parses a table from raw data.
+    </span><span class="kw">pub fn </span>parse(data: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8]) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="self">Self</span>&gt; {
+        <span class="kw">let </span><span class="kw-2">mut </span>s = Stream::new(data);
 
-        <span class="kw">let</span> <span class="ident">version</span> <span class="op">=</span> <span class="ident">s</span>.<span class="ident">read</span>::<span class="op">&lt;</span><span class="ident">u32</span><span class="op">&gt;</span>()<span class="question-mark">?</span>;
-        <span class="kw">if</span> <span class="ident">version</span> <span class="op">!</span><span class="op">=</span> <span class="number">0x00010000</span> {
-            <span class="kw">return</span> <span class="prelude-val">None</span>;
+        <span class="kw">let </span>version = s.read::&lt;u32&gt;()<span class="question-mark">?</span>;
+        <span class="kw">if </span>version != <span class="number">0x00010000 </span>{
+            <span class="kw">return </span><span class="prelude-val">None</span>;
         }
 
-        <span class="ident">s</span>.<span class="ident">skip</span>::<span class="op">&lt;</span><span class="ident">u16</span><span class="op">&gt;</span>(); <span class="comment">// reserved</span>
-        <span class="prelude-val">Some</span>(<span class="self">Self</span> {
-            <span class="ident">segment_maps</span>: <span class="ident">SegmentMaps</span> {
-                <span class="comment">// TODO: check that `axisCount` is the same as in `fvar`?</span>
-                <span class="ident">count</span>: <span class="ident">s</span>.<span class="ident">read</span>::<span class="op">&lt;</span><span class="ident">u16</span><span class="op">&gt;</span>()<span class="question-mark">?</span>,
-                <span class="ident">data</span>: <span class="ident">s</span>.<span class="ident">tail</span>()<span class="question-mark">?</span>,
+        s.skip::&lt;u16&gt;(); <span class="comment">// reserved
+        </span><span class="prelude-val">Some</span>(<span class="self">Self </span>{
+            segment_maps: SegmentMaps {
+                <span class="comment">// TODO: check that `axisCount` is the same as in `fvar`?
+                </span>count: s.read::&lt;u16&gt;()<span class="question-mark">?</span>,
+                data: s.tail()<span class="question-mark">?</span>,
             },
         })
     }
 
-    <span class="doccomment">/// Maps coordinates.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">map_coordinates</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">coordinates</span>: <span class="kw-2">&amp;mut</span> [<span class="ident">NormalizedCoordinate</span>]) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
-        <span class="kw">if</span> <span class="ident">usize::from</span>(<span class="self">self</span>.<span class="ident">segment_maps</span>.<span class="ident">count</span>) <span class="op">!</span><span class="op">=</span> <span class="ident">coordinates</span>.<span class="ident">len</span>() {
-            <span class="kw">return</span> <span class="prelude-val">None</span>;
+    <span class="doccomment">/// Maps coordinates.
+    </span><span class="kw">pub fn </span>map_coordinates(<span class="kw-2">&amp;</span><span class="self">self</span>, coordinates: <span class="kw-2">&amp;mut </span>[NormalizedCoordinate]) -&gt; <span class="prelude-ty">Option</span>&lt;()&gt; {
+        <span class="kw">if </span>usize::from(<span class="self">self</span>.segment_maps.count) != coordinates.len() {
+            <span class="kw">return </span><span class="prelude-val">None</span>;
         }
 
-        <span class="kw">for</span> (<span class="ident">map</span>, <span class="ident">coord</span>) <span class="kw">in</span> <span class="self">self</span>.<span class="ident">segment_maps</span>.<span class="ident">into_iter</span>().<span class="ident">zip</span>(<span class="ident">coordinates</span>) {
-            <span class="kw-2">*</span><span class="ident">coord</span> <span class="op">=</span> <span class="ident">NormalizedCoordinate::from</span>(<span class="ident">map_value</span>(<span class="kw-2">&amp;</span><span class="ident">map</span>, <span class="ident">coord</span>.<span class="number">0</span>)<span class="question-mark">?</span>);
+        <span class="kw">for </span>(map, coord) <span class="kw">in </span><span class="self">self</span>.segment_maps.into_iter().zip(coordinates) {
+            <span class="kw-2">*</span>coord = NormalizedCoordinate::from(map_value(<span class="kw-2">&amp;</span>map, coord.<span class="number">0</span>)<span class="question-mark">?</span>);
         }
 
         <span class="prelude-val">Some</span>(())
     }
 }
 
-<span class="kw">fn</span> <span class="ident">map_value</span>(<span class="ident">map</span>: <span class="kw-2">&amp;</span><span class="ident">LazyArray16</span><span class="op">&lt;</span><span class="ident">AxisValueMap</span><span class="op">&gt;</span>, <span class="ident">value</span>: <span class="ident">i16</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">i16</span><span class="op">&gt;</span> {
-    <span class="comment">// This code is based on harfbuzz implementation.</span>
+<span class="kw">fn </span>map_value(map: <span class="kw-2">&amp;</span>LazyArray16&lt;AxisValueMap&gt;, value: i16) -&gt; <span class="prelude-ty">Option</span>&lt;i16&gt; {
+    <span class="comment">// This code is based on harfbuzz implementation.
 
-    <span class="kw">if</span> <span class="ident">map</span>.<span class="ident">len</span>() <span class="op">==</span> <span class="number">0</span> {
-        <span class="kw">return</span> <span class="prelude-val">Some</span>(<span class="ident">value</span>);
-    } <span class="kw">else</span> <span class="kw">if</span> <span class="ident">map</span>.<span class="ident">len</span>() <span class="op">==</span> <span class="number">1</span> {
-        <span class="kw">let</span> <span class="ident">record</span> <span class="op">=</span> <span class="ident">map</span>.<span class="ident">get</span>(<span class="number">0</span>)<span class="question-mark">?</span>;
-        <span class="kw">return</span> <span class="prelude-val">Some</span>(<span class="ident">value</span> <span class="op">-</span> <span class="ident">record</span>.<span class="ident">from_coordinate</span> <span class="op">+</span> <span class="ident">record</span>.<span class="ident">to_coordinate</span>);
+    </span><span class="kw">if </span>map.len() == <span class="number">0 </span>{
+        <span class="kw">return </span><span class="prelude-val">Some</span>(value);
+    } <span class="kw">else if </span>map.len() == <span class="number">1 </span>{
+        <span class="kw">let </span>record = map.get(<span class="number">0</span>)<span class="question-mark">?</span>;
+        <span class="kw">return </span><span class="prelude-val">Some</span>(value - record.from_coordinate + record.to_coordinate);
     }
 
-    <span class="kw">let</span> <span class="ident">record_0</span> <span class="op">=</span> <span class="ident">map</span>.<span class="ident">get</span>(<span class="number">0</span>)<span class="question-mark">?</span>;
-    <span class="kw">if</span> <span class="ident">value</span> <span class="op">&lt;</span><span class="op">=</span> <span class="ident">record_0</span>.<span class="ident">from_coordinate</span> {
-        <span class="kw">return</span> <span class="prelude-val">Some</span>(<span class="ident">value</span> <span class="op">-</span> <span class="ident">record_0</span>.<span class="ident">from_coordinate</span> <span class="op">+</span> <span class="ident">record_0</span>.<span class="ident">to_coordinate</span>);
+    <span class="kw">let </span>record_0 = map.get(<span class="number">0</span>)<span class="question-mark">?</span>;
+    <span class="kw">if </span>value &lt;= record_0.from_coordinate {
+        <span class="kw">return </span><span class="prelude-val">Some</span>(value - record_0.from_coordinate + record_0.to_coordinate);
     }
 
-    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">i</span> <span class="op">=</span> <span class="number">1</span>;
-    <span class="kw">while</span> <span class="ident">i</span> <span class="op">&lt;</span> <span class="ident">map</span>.<span class="ident">len</span>() <span class="op">&amp;&amp;</span> <span class="ident">value</span> <span class="op">&gt;</span> <span class="ident">map</span>.<span class="ident">get</span>(<span class="ident">i</span>)<span class="question-mark">?</span>.<span class="ident">from_coordinate</span> {
-        <span class="ident">i</span> <span class="op">+</span><span class="op">=</span> <span class="number">1</span>;
+    <span class="kw">let </span><span class="kw-2">mut </span>i = <span class="number">1</span>;
+    <span class="kw">while </span>i &lt; map.len() &amp;&amp; value &gt; map.get(i)<span class="question-mark">?</span>.from_coordinate {
+        i += <span class="number">1</span>;
     }
 
-    <span class="kw">if</span> <span class="ident">i</span> <span class="op">==</span> <span class="ident">map</span>.<span class="ident">len</span>() {
-        <span class="ident">i</span> <span class="op">-</span><span class="op">=</span> <span class="number">1</span>;
+    <span class="kw">if </span>i == map.len() {
+        i -= <span class="number">1</span>;
     }
 
-    <span class="kw">let</span> <span class="ident">record_curr</span> <span class="op">=</span> <span class="ident">map</span>.<span class="ident">get</span>(<span class="ident">i</span>)<span class="question-mark">?</span>;
-    <span class="kw">let</span> <span class="ident">curr_from</span> <span class="op">=</span> <span class="ident">record_curr</span>.<span class="ident">from_coordinate</span>;
-    <span class="kw">let</span> <span class="ident">curr_to</span> <span class="op">=</span> <span class="ident">record_curr</span>.<span class="ident">to_coordinate</span>;
-    <span class="kw">if</span> <span class="ident">value</span> <span class="op">&gt;</span><span class="op">=</span> <span class="ident">curr_from</span> {
-        <span class="kw">return</span> <span class="prelude-val">Some</span>(<span class="ident">value</span> <span class="op">-</span> <span class="ident">curr_from</span> <span class="op">+</span> <span class="ident">curr_to</span>);
+    <span class="kw">let </span>record_curr = map.get(i)<span class="question-mark">?</span>;
+    <span class="kw">let </span>curr_from = record_curr.from_coordinate;
+    <span class="kw">let </span>curr_to = record_curr.to_coordinate;
+    <span class="kw">if </span>value &gt;= curr_from {
+        <span class="kw">return </span><span class="prelude-val">Some</span>(value - curr_from + curr_to);
     }
 
-    <span class="kw">let</span> <span class="ident">record_prev</span> <span class="op">=</span> <span class="ident">map</span>.<span class="ident">get</span>(<span class="ident">i</span> <span class="op">-</span> <span class="number">1</span>)<span class="question-mark">?</span>;
-    <span class="kw">let</span> <span class="ident">prev_from</span> <span class="op">=</span> <span class="ident">record_prev</span>.<span class="ident">from_coordinate</span>;
-    <span class="kw">let</span> <span class="ident">prev_to</span> <span class="op">=</span> <span class="ident">record_prev</span>.<span class="ident">to_coordinate</span>;
-    <span class="kw">if</span> <span class="ident">prev_from</span> <span class="op">==</span> <span class="ident">curr_from</span> {
-        <span class="kw">return</span> <span class="prelude-val">Some</span>(<span class="ident">prev_to</span>);
+    <span class="kw">let </span>record_prev = map.get(i - <span class="number">1</span>)<span class="question-mark">?</span>;
+    <span class="kw">let </span>prev_from = record_prev.from_coordinate;
+    <span class="kw">let </span>prev_to = record_prev.to_coordinate;
+    <span class="kw">if </span>prev_from == curr_from {
+        <span class="kw">return </span><span class="prelude-val">Some</span>(prev_to);
     }
 
-    <span class="kw">let</span> <span class="ident">curr_from</span> <span class="op">=</span> <span class="ident">i32::from</span>(<span class="ident">curr_from</span>);
-    <span class="kw">let</span> <span class="ident">curr_to</span> <span class="op">=</span> <span class="ident">i32::from</span>(<span class="ident">curr_to</span>);
-    <span class="kw">let</span> <span class="ident">prev_from</span> <span class="op">=</span> <span class="ident">i32::from</span>(<span class="ident">prev_from</span>);
-    <span class="kw">let</span> <span class="ident">prev_to</span> <span class="op">=</span> <span class="ident">i32::from</span>(<span class="ident">prev_to</span>);
+    <span class="kw">let </span>curr_from = i32::from(curr_from);
+    <span class="kw">let </span>curr_to = i32::from(curr_to);
+    <span class="kw">let </span>prev_from = i32::from(prev_from);
+    <span class="kw">let </span>prev_to = i32::from(prev_to);
 
-    <span class="kw">let</span> <span class="ident">denom</span> <span class="op">=</span> <span class="ident">curr_from</span> <span class="op">-</span> <span class="ident">prev_from</span>;
-    <span class="kw">let</span> <span class="ident">k</span> <span class="op">=</span> (<span class="ident">curr_to</span> <span class="op">-</span> <span class="ident">prev_to</span>) <span class="op">*</span> (<span class="ident">i32::from</span>(<span class="ident">value</span>) <span class="op">-</span> <span class="ident">prev_from</span>) <span class="op">+</span> <span class="ident">denom</span> <span class="op">/</span> <span class="number">2</span>;
-    <span class="kw">let</span> <span class="ident">value</span> <span class="op">=</span> <span class="ident">prev_to</span> <span class="op">+</span> <span class="ident">k</span> <span class="op">/</span> <span class="ident">denom</span>;
-    <span class="ident">i16::try_from</span>(<span class="ident">value</span>).<span class="ident">ok</span>()
+    <span class="kw">let </span>denom = curr_from - prev_from;
+    <span class="kw">let </span>k = (curr_to - prev_to) * (i32::from(value) - prev_from) + denom / <span class="number">2</span>;
+    <span class="kw">let </span>value = prev_to + k / denom;
+    i16::try_from(value).ok()
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="ttf_parser" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0 (a55dd71d5 2022-09-19)" ></div></body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="ttf_parser" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.66.1 (90743e729 2023-01-10)" ></div></body></html>

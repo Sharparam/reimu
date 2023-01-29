@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/ttf-parser-0.15.2/src/ggg/layout_table.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>layout_table.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../storage.js"></script><script defer src="../../../source-script.js"></script><script defer src="../../../source-files.js"></script><script defer src="../../../main.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../../ttf_parser/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../../ttf_parser/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../../ttf_parser/index.html"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/ttf-parser-0.15.2/src/ggg/layout_table.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>layout_table.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../../normalize.css"><link rel="stylesheet" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../../ayu.css" disabled><link rel="stylesheet" href="../../../dark.css" disabled><link rel="stylesheet" href="../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../storage.js"></script><script defer src="../../../source-script.js"></script><script defer src="../../../source-files.js"></script><script defer src="../../../main.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><div class="width-limiter"><nav class="sub"><a class="sub-logo-container" href="../../../ttf_parser/index.html"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../wheel.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -249,256 +249,256 @@
 <span id="249">249</span>
 <span id="250">250</span>
 <span id="251">251</span>
-</pre><pre class="rust"><code><span class="comment">// Suppresses `minor_version` variable warning.</span>
-<span class="attribute">#![<span class="ident">allow</span>(<span class="ident">unused_variables</span>)]</span>
+</pre><pre class="rust"><code><span class="comment">// Suppresses `minor_version` variable warning.
+</span><span class="attribute">#![allow(unused_variables)]
 
-<span class="kw">use</span> <span class="ident"><span class="kw">super</span>::LookupList</span>;
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::parser</span>::{<span class="ident">FromData</span>, <span class="ident">LazyArray16</span>, <span class="ident">Offset</span>, <span class="ident">Offset16</span>, <span class="ident">Stream</span>};
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::Tag</span>;
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;variable-fonts&quot;</span>)]</span> <span class="kw">use</span> <span class="ident"><span class="kw">super</span>::FeatureVariations</span>;
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;variable-fonts&quot;</span>)]</span> <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::parser::Offset32</span>;
+</span><span class="kw">use </span><span class="kw">super</span>::LookupList;
+<span class="kw">use </span><span class="kw">crate</span>::parser::{FromData, LazyArray16, Offset, Offset16, Stream};
+<span class="kw">use </span><span class="kw">crate</span>::Tag;
+<span class="attribute">#[cfg(feature = <span class="string">&quot;variable-fonts&quot;</span>)] </span><span class="kw">use </span><span class="kw">super</span>::FeatureVariations;
+<span class="attribute">#[cfg(feature = <span class="string">&quot;variable-fonts&quot;</span>)] </span><span class="kw">use </span><span class="kw">crate</span>::parser::Offset32;
 
-<span class="doccomment">/// A [Layout Table](https://docs.microsoft.com/en-us/typography/opentype/spec/chapter2#table-organization).</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">Debug</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">LayoutTable</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="doccomment">/// A list of all supported scripts.</span>
-    <span class="kw">pub</span> <span class="ident">scripts</span>: <span class="ident">ScriptList</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>,
-    <span class="doccomment">/// A list of all supported features.</span>
-    <span class="kw">pub</span> <span class="ident">features</span>: <span class="ident">FeatureList</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>,
-    <span class="doccomment">/// A list of all lookups.</span>
-    <span class="kw">pub</span> <span class="ident">lookups</span>: <span class="ident">LookupList</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>,
-    <span class="doccomment">/// Used to substitute an alternate set of lookup tables</span>
-    <span class="doccomment">/// to use for any given feature under specified conditions.</span>
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;variable-fonts&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="ident">variations</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">FeatureVariations</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span><span class="op">&gt;</span>,
+<span class="doccomment">/// A [Layout Table](https://docs.microsoft.com/en-us/typography/opentype/spec/chapter2#table-organization).
+</span><span class="attribute">#[derive(Clone, Copy, Debug)]
+</span><span class="kw">pub struct </span>LayoutTable&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="doccomment">/// A list of all supported scripts.
+    </span><span class="kw">pub </span>scripts: ScriptList&lt;<span class="lifetime">&#39;a</span>&gt;,
+    <span class="doccomment">/// A list of all supported features.
+    </span><span class="kw">pub </span>features: FeatureList&lt;<span class="lifetime">&#39;a</span>&gt;,
+    <span class="doccomment">/// A list of all lookups.
+    </span><span class="kw">pub </span>lookups: LookupList&lt;<span class="lifetime">&#39;a</span>&gt;,
+    <span class="doccomment">/// Used to substitute an alternate set of lookup tables
+    /// to use for any given feature under specified conditions.
+    </span><span class="attribute">#[cfg(feature = <span class="string">&quot;variable-fonts&quot;</span>)]
+    </span><span class="kw">pub </span>variations: <span class="prelude-ty">Option</span>&lt;FeatureVariations&lt;<span class="lifetime">&#39;a</span>&gt;&gt;,
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">LayoutTable</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">parse</span>(<span class="ident">data</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>]) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">s</span> <span class="op">=</span> <span class="ident">Stream::new</span>(<span class="ident">data</span>);
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; LayoutTable&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>parse(data: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8]) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="self">Self</span>&gt; {
+        <span class="kw">let </span><span class="kw-2">mut </span>s = Stream::new(data);
 
-        <span class="kw">let</span> <span class="ident">major_version</span> <span class="op">=</span> <span class="ident">s</span>.<span class="ident">read</span>::<span class="op">&lt;</span><span class="ident">u16</span><span class="op">&gt;</span>()<span class="question-mark">?</span>;
-        <span class="kw">let</span> <span class="ident">minor_version</span> <span class="op">=</span> <span class="ident">s</span>.<span class="ident">read</span>::<span class="op">&lt;</span><span class="ident">u16</span><span class="op">&gt;</span>()<span class="question-mark">?</span>;
-        <span class="kw">if</span> <span class="ident">major_version</span> <span class="op">!</span><span class="op">=</span> <span class="number">1</span> {
-            <span class="kw">return</span> <span class="prelude-val">None</span>;
+        <span class="kw">let </span>major_version = s.read::&lt;u16&gt;()<span class="question-mark">?</span>;
+        <span class="kw">let </span>minor_version = s.read::&lt;u16&gt;()<span class="question-mark">?</span>;
+        <span class="kw">if </span>major_version != <span class="number">1 </span>{
+            <span class="kw">return </span><span class="prelude-val">None</span>;
         }
 
-        <span class="kw">let</span> <span class="ident">scripts</span> <span class="op">=</span> <span class="ident">ScriptList::parse</span>(<span class="ident">s</span>.<span class="ident">read_at_offset16</span>(<span class="ident">data</span>)<span class="question-mark">?</span>)<span class="question-mark">?</span>;
-        <span class="kw">let</span> <span class="ident">features</span> <span class="op">=</span> <span class="ident">FeatureList::parse</span>(<span class="ident">s</span>.<span class="ident">read_at_offset16</span>(<span class="ident">data</span>)<span class="question-mark">?</span>)<span class="question-mark">?</span>;
-        <span class="kw">let</span> <span class="ident">lookups</span> <span class="op">=</span> <span class="ident">LookupList::parse</span>(<span class="ident">s</span>.<span class="ident">read_at_offset16</span>(<span class="ident">data</span>)<span class="question-mark">?</span>)<span class="question-mark">?</span>;
+        <span class="kw">let </span>scripts = ScriptList::parse(s.read_at_offset16(data)<span class="question-mark">?</span>)<span class="question-mark">?</span>;
+        <span class="kw">let </span>features = FeatureList::parse(s.read_at_offset16(data)<span class="question-mark">?</span>)<span class="question-mark">?</span>;
+        <span class="kw">let </span>lookups = LookupList::parse(s.read_at_offset16(data)<span class="question-mark">?</span>)<span class="question-mark">?</span>;
 
-        <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;variable-fonts&quot;</span>)]</span> {
-            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">variations_offset</span> <span class="op">=</span> <span class="prelude-val">None</span>;
-            <span class="kw">if</span> <span class="ident">minor_version</span> <span class="op">&gt;</span><span class="op">=</span> <span class="number">1</span> {
-                <span class="ident">variations_offset</span> <span class="op">=</span> <span class="ident">s</span>.<span class="ident">read</span>::<span class="op">&lt;</span><span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Offset32</span><span class="op">&gt;</span><span class="op">&gt;</span>()<span class="question-mark">?</span>;
+        <span class="attribute">#[cfg(feature = <span class="string">&quot;variable-fonts&quot;</span>)] </span>{
+            <span class="kw">let </span><span class="kw-2">mut </span>variations_offset = <span class="prelude-val">None</span>;
+            <span class="kw">if </span>minor_version &gt;= <span class="number">1 </span>{
+                variations_offset = s.read::&lt;<span class="prelude-ty">Option</span>&lt;Offset32&gt;&gt;()<span class="question-mark">?</span>;
             }
 
-            <span class="kw">let</span> <span class="ident">variations</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">variations_offset</span> {
-                <span class="prelude-val">Some</span>(<span class="ident">offset</span>) =&gt; <span class="ident">data</span>.<span class="ident">get</span>(<span class="ident">offset</span>.<span class="ident">to_usize</span>()..).<span class="ident">and_then</span>(<span class="ident">FeatureVariations::parse</span>),
-                <span class="prelude-val">None</span> =&gt; <span class="prelude-val">None</span>,
+            <span class="kw">let </span>variations = <span class="kw">match </span>variations_offset {
+                <span class="prelude-val">Some</span>(offset) =&gt; data.get(offset.to_usize()..).and_then(FeatureVariations::parse),
+                <span class="prelude-val">None </span>=&gt; <span class="prelude-val">None</span>,
             };
 
-            <span class="prelude-val">Some</span>(<span class="self">Self</span> { <span class="ident">scripts</span>, <span class="ident">features</span>, <span class="ident">lookups</span>, <span class="ident">variations</span> })
+            <span class="prelude-val">Some</span>(<span class="self">Self </span>{ scripts, features, lookups, variations })
         }
 
-        <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">not</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;variable-fonts&quot;</span>))]</span> {
-            <span class="prelude-val">Some</span>(<span class="self">Self</span> { <span class="ident">scripts</span>, <span class="ident">features</span>, <span class="ident">lookups</span> })
-        }
-    }
-}
-
-<span class="doccomment">/// An index in [`ScriptList`].</span>
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">ScriptIndex</span> <span class="op">=</span> <span class="ident">u16</span>;
-<span class="doccomment">/// An index in [`LanguageSystemList`].</span>
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">LanguageIndex</span> <span class="op">=</span> <span class="ident">u16</span>;
-<span class="doccomment">/// An index in [`FeatureList`].</span>
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">FeatureIndex</span> <span class="op">=</span> <span class="ident">u16</span>;
-<span class="doccomment">/// An index in [`LookupList`].</span>
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">LookupIndex</span> <span class="op">=</span> <span class="ident">u16</span>;
-<span class="doccomment">/// An index in [`FeatureVariations`].</span>
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">VariationIndex</span> <span class="op">=</span> <span class="ident">u32</span>;
-
-<span class="doccomment">/// A trait to parse item in [`RecordList`].</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// Internal use only.</span>
-<span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">RecordListItem</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>: <span class="ident">Sized</span> {
-    <span class="doccomment">/// Parses raw data.</span>
-    <span class="kw">fn</span> <span class="ident">parse</span>(<span class="ident">tag</span>: <span class="ident">Tag</span>, <span class="ident">data</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>]) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>;
-}
-
-<span class="doccomment">/// A data storage used by [`ScriptList`], [`LanguageSystemList`] and [`FeatureList`] data types.</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">Debug</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">RecordList</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">T</span>: <span class="ident">RecordListItem</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span><span class="op">&gt;</span> {
-    <span class="ident">data</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>],
-    <span class="ident">records</span>: <span class="ident">LazyArray16</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">TagRecord</span><span class="op">&gt;</span>,
-    <span class="ident">data_type</span>: <span class="ident">core::marker::PhantomData</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>,
-}
-
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">T</span>: <span class="ident">RecordListItem</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span><span class="op">&gt;</span> <span class="ident">RecordList</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">T</span><span class="op">&gt;</span> {
-    <span class="kw">fn</span> <span class="ident">parse</span>(<span class="ident">data</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>]) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">s</span> <span class="op">=</span> <span class="ident">Stream::new</span>(<span class="ident">data</span>);
-        <span class="kw">let</span> <span class="ident">count</span> <span class="op">=</span> <span class="ident">s</span>.<span class="ident">read</span>::<span class="op">&lt;</span><span class="ident">u16</span><span class="op">&gt;</span>()<span class="question-mark">?</span>;
-        <span class="kw">let</span> <span class="ident">records</span> <span class="op">=</span> <span class="ident">s</span>.<span class="ident">read_array16</span>(<span class="ident">count</span>)<span class="question-mark">?</span>;
-        <span class="prelude-val">Some</span>(<span class="self">Self</span> { <span class="ident">data</span>, <span class="ident">records</span>, <span class="ident">data_type</span>: <span class="ident">core::marker::PhantomData</span> })
-    }
-
-    <span class="doccomment">/// Returns a number of items in the RecordList.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">len</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">u16</span> {
-        <span class="self">self</span>.<span class="ident">records</span>.<span class="ident">len</span>()
-    }
-
-    <span class="doccomment">/// Checks that RecordList is empty.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_empty</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span> {
-        <span class="self">self</span>.<span class="ident">records</span>.<span class="ident">is_empty</span>()
-    }
-
-    <span class="doccomment">/// Returns RecordList value by index.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">index</span>: <span class="ident">u16</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="ident">record</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">records</span>.<span class="ident">get</span>(<span class="ident">index</span>)<span class="question-mark">?</span>;
-        <span class="self">self</span>.<span class="ident">data</span>.<span class="ident">get</span>(<span class="ident">record</span>.<span class="ident">offset</span>.<span class="ident">to_usize</span>()..).<span class="ident">and_then</span>(<span class="op">|</span><span class="ident">data</span><span class="op">|</span> <span class="ident">T::parse</span>(<span class="ident">record</span>.<span class="ident">tag</span>, <span class="ident">data</span>))
-    }
-
-    <span class="doccomment">/// Returns RecordList value by [`Tag`].</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">find</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">tag</span>: <span class="ident">Tag</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="ident">record</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">records</span>.<span class="ident">binary_search_by</span>(<span class="op">|</span><span class="ident">record</span><span class="op">|</span> <span class="ident">record</span>.<span class="ident">tag</span>.<span class="ident">cmp</span>(<span class="kw-2">&amp;</span><span class="ident">tag</span>)).<span class="ident">map</span>(<span class="op">|</span><span class="ident">p</span><span class="op">|</span> <span class="ident">p</span>.<span class="number">1</span>)<span class="question-mark">?</span>;
-        <span class="self">self</span>.<span class="ident">data</span>.<span class="ident">get</span>(<span class="ident">record</span>.<span class="ident">offset</span>.<span class="ident">to_usize</span>()..).<span class="ident">and_then</span>(<span class="op">|</span><span class="ident">data</span><span class="op">|</span> <span class="ident">T::parse</span>(<span class="ident">record</span>.<span class="ident">tag</span>, <span class="ident">data</span>))
-    }
-
-    <span class="doccomment">/// Returns RecordList value index by [`Tag`].</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">index</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">tag</span>: <span class="ident">Tag</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">u16</span><span class="op">&gt;</span> {
-        <span class="self">self</span>.<span class="ident">records</span>.<span class="ident">binary_search_by</span>(<span class="op">|</span><span class="ident">record</span><span class="op">|</span> <span class="ident">record</span>.<span class="ident">tag</span>.<span class="ident">cmp</span>(<span class="kw-2">&amp;</span><span class="ident">tag</span>)).<span class="ident">map</span>(<span class="op">|</span><span class="ident">p</span><span class="op">|</span> <span class="ident">p</span>.<span class="number">0</span>)
-    }
-}
-
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">T</span>: <span class="ident">RecordListItem</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span><span class="op">&gt;</span> <span class="ident">IntoIterator</span> <span class="kw">for</span> <span class="ident">RecordList</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">T</span><span class="op">&gt;</span> {
-    <span class="kw">type</span> <span class="ident">Item</span> <span class="op">=</span> <span class="ident">T</span>;
-    <span class="kw">type</span> <span class="ident">IntoIter</span> <span class="op">=</span> <span class="ident">RecordListIter</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">T</span><span class="op">&gt;</span>;
-
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">into_iter</span>(<span class="self">self</span>) -&gt; <span class="ident"><span class="self">Self</span>::IntoIter</span> {
-        <span class="ident">RecordListIter</span> {
-            <span class="ident">list</span>: <span class="self">self</span>,
-            <span class="ident">index</span>: <span class="number">0</span>,
+        <span class="attribute">#[cfg(not(feature = <span class="string">&quot;variable-fonts&quot;</span>))] </span>{
+            <span class="prelude-val">Some</span>(<span class="self">Self </span>{ scripts, features, lookups })
         }
     }
 }
 
-<span class="doccomment">/// An iterator over [`RecordList`] values.</span>
-<span class="attribute">#[<span class="ident">allow</span>(<span class="ident">missing_debug_implementations</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">RecordListIter</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">T</span>: <span class="ident">RecordListItem</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span><span class="op">&gt;</span> {
-    <span class="ident">list</span>: <span class="ident">RecordList</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">T</span><span class="op">&gt;</span>,
-    <span class="ident">index</span>: <span class="ident">u16</span>,
+<span class="doccomment">/// An index in [`ScriptList`].
+</span><span class="kw">pub type </span>ScriptIndex = u16;
+<span class="doccomment">/// An index in [`LanguageSystemList`].
+</span><span class="kw">pub type </span>LanguageIndex = u16;
+<span class="doccomment">/// An index in [`FeatureList`].
+</span><span class="kw">pub type </span>FeatureIndex = u16;
+<span class="doccomment">/// An index in [`LookupList`].
+</span><span class="kw">pub type </span>LookupIndex = u16;
+<span class="doccomment">/// An index in [`FeatureVariations`].
+</span><span class="kw">pub type </span>VariationIndex = u32;
+
+<span class="doccomment">/// A trait to parse item in [`RecordList`].
+///
+/// Internal use only.
+</span><span class="kw">pub trait </span>RecordListItem&lt;<span class="lifetime">&#39;a</span>&gt;: Sized {
+    <span class="doccomment">/// Parses raw data.
+    </span><span class="kw">fn </span>parse(tag: Tag, data: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8]) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="self">Self</span>&gt;;
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">T</span>: <span class="ident">RecordListItem</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span><span class="op">&gt;</span> <span class="ident">Iterator</span> <span class="kw">for</span> <span class="ident">RecordListIter</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">T</span><span class="op">&gt;</span> {
-    <span class="kw">type</span> <span class="ident">Item</span> <span class="op">=</span> <span class="ident">T</span>;
+<span class="doccomment">/// A data storage used by [`ScriptList`], [`LanguageSystemList`] and [`FeatureList`] data types.
+</span><span class="attribute">#[derive(Clone, Copy, Debug)]
+</span><span class="kw">pub struct </span>RecordList&lt;<span class="lifetime">&#39;a</span>, T: RecordListItem&lt;<span class="lifetime">&#39;a</span>&gt;&gt; {
+    data: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8],
+    records: LazyArray16&lt;<span class="lifetime">&#39;a</span>, TagRecord&gt;,
+    data_type: core::marker::PhantomData&lt;T&gt;,
+}
 
-    <span class="kw">fn</span> <span class="ident">next</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident"><span class="self">Self</span>::Item</span><span class="op">&gt;</span> {
-        <span class="kw">if</span> <span class="self">self</span>.<span class="ident">index</span> <span class="op">&lt;</span> <span class="self">self</span>.<span class="ident">list</span>.<span class="ident">len</span>() {
-            <span class="self">self</span>.<span class="ident">index</span> <span class="op">+</span><span class="op">=</span> <span class="number">1</span>;
-            <span class="self">self</span>.<span class="ident">list</span>.<span class="ident">get</span>(<span class="self">self</span>.<span class="ident">index</span> <span class="op">-</span> <span class="number">1</span>)
-        } <span class="kw">else</span> {
-            <span class="prelude-val">None</span>
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>, T: RecordListItem&lt;<span class="lifetime">&#39;a</span>&gt;&gt; RecordList&lt;<span class="lifetime">&#39;a</span>, T&gt; {
+    <span class="kw">fn </span>parse(data: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8]) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="self">Self</span>&gt; {
+        <span class="kw">let </span><span class="kw-2">mut </span>s = Stream::new(data);
+        <span class="kw">let </span>count = s.read::&lt;u16&gt;()<span class="question-mark">?</span>;
+        <span class="kw">let </span>records = s.read_array16(count)<span class="question-mark">?</span>;
+        <span class="prelude-val">Some</span>(<span class="self">Self </span>{ data, records, data_type: core::marker::PhantomData })
+    }
+
+    <span class="doccomment">/// Returns a number of items in the RecordList.
+    </span><span class="kw">pub fn </span>len(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; u16 {
+        <span class="self">self</span>.records.len()
+    }
+
+    <span class="doccomment">/// Checks that RecordList is empty.
+    </span><span class="kw">pub fn </span>is_empty(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; bool {
+        <span class="self">self</span>.records.is_empty()
+    }
+
+    <span class="doccomment">/// Returns RecordList value by index.
+    </span><span class="kw">pub fn </span>get(<span class="kw-2">&amp;</span><span class="self">self</span>, index: u16) -&gt; <span class="prelude-ty">Option</span>&lt;T&gt; {
+        <span class="kw">let </span>record = <span class="self">self</span>.records.get(index)<span class="question-mark">?</span>;
+        <span class="self">self</span>.data.get(record.offset.to_usize()..).and_then(|data| T::parse(record.tag, data))
+    }
+
+    <span class="doccomment">/// Returns RecordList value by [`Tag`].
+    </span><span class="kw">pub fn </span>find(<span class="kw-2">&amp;</span><span class="self">self</span>, tag: Tag) -&gt; <span class="prelude-ty">Option</span>&lt;T&gt; {
+        <span class="kw">let </span>record = <span class="self">self</span>.records.binary_search_by(|record| record.tag.cmp(<span class="kw-2">&amp;</span>tag)).map(|p| p.<span class="number">1</span>)<span class="question-mark">?</span>;
+        <span class="self">self</span>.data.get(record.offset.to_usize()..).and_then(|data| T::parse(record.tag, data))
+    }
+
+    <span class="doccomment">/// Returns RecordList value index by [`Tag`].
+    </span><span class="kw">pub fn </span>index(<span class="kw-2">&amp;</span><span class="self">self</span>, tag: Tag) -&gt; <span class="prelude-ty">Option</span>&lt;u16&gt; {
+        <span class="self">self</span>.records.binary_search_by(|record| record.tag.cmp(<span class="kw-2">&amp;</span>tag)).map(|p| p.<span class="number">0</span>)
+    }
+}
+
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>, T: RecordListItem&lt;<span class="lifetime">&#39;a</span>&gt;&gt; IntoIterator <span class="kw">for </span>RecordList&lt;<span class="lifetime">&#39;a</span>, T&gt; {
+    <span class="kw">type </span>Item = T;
+    <span class="kw">type </span>IntoIter = RecordListIter&lt;<span class="lifetime">&#39;a</span>, T&gt;;
+
+    <span class="attribute">#[inline]
+    </span><span class="kw">fn </span>into_iter(<span class="self">self</span>) -&gt; <span class="self">Self</span>::IntoIter {
+        RecordListIter {
+            list: <span class="self">self</span>,
+            index: <span class="number">0</span>,
         }
     }
 }
 
-<span class="doccomment">/// A list of [`Script`] records.</span>
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">ScriptList</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">RecordList</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">Script</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span><span class="op">&gt;</span>;
-<span class="doccomment">/// A list of [`LanguageSystem`] records.</span>
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">LanguageSystemList</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">RecordList</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">LanguageSystem</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span><span class="op">&gt;</span>;
-<span class="doccomment">/// A list of [`Feature`] records.</span>
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">FeatureList</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">RecordList</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">Feature</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span><span class="op">&gt;</span>;
-
-
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">Debug</span>)]</span>
-<span class="kw">struct</span> <span class="ident">TagRecord</span> {
-    <span class="ident">tag</span>: <span class="ident">Tag</span>,
-    <span class="ident">offset</span>: <span class="ident">Offset16</span>,
+<span class="doccomment">/// An iterator over [`RecordList`] values.
+</span><span class="attribute">#[allow(missing_debug_implementations)]
+</span><span class="kw">pub struct </span>RecordListIter&lt;<span class="lifetime">&#39;a</span>, T: RecordListItem&lt;<span class="lifetime">&#39;a</span>&gt;&gt; {
+    list: RecordList&lt;<span class="lifetime">&#39;a</span>, T&gt;,
+    index: u16,
 }
 
-<span class="kw">impl</span> <span class="ident">FromData</span> <span class="kw">for</span> <span class="ident">TagRecord</span> {
-    <span class="kw">const</span> <span class="ident">SIZE</span>: <span class="ident">usize</span> <span class="op">=</span> <span class="number">6</span>;
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>, T: RecordListItem&lt;<span class="lifetime">&#39;a</span>&gt;&gt; Iterator <span class="kw">for </span>RecordListIter&lt;<span class="lifetime">&#39;a</span>, T&gt; {
+    <span class="kw">type </span>Item = T;
 
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">parse</span>(<span class="ident">data</span>: <span class="kw-2">&amp;</span>[<span class="ident">u8</span>]) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">s</span> <span class="op">=</span> <span class="ident">Stream::new</span>(<span class="ident">data</span>);
-        <span class="prelude-val">Some</span>(<span class="self">Self</span> {
-            <span class="ident">tag</span>: <span class="ident">s</span>.<span class="ident">read</span>::<span class="op">&lt;</span><span class="ident">Tag</span><span class="op">&gt;</span>()<span class="question-mark">?</span>,
-            <span class="ident">offset</span>: <span class="ident">s</span>.<span class="ident">read</span>::<span class="op">&lt;</span><span class="ident">Offset16</span><span class="op">&gt;</span>()<span class="question-mark">?</span>,
+    <span class="kw">fn </span>next(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="self">Self</span>::Item&gt; {
+        <span class="kw">if </span><span class="self">self</span>.index &lt; <span class="self">self</span>.list.len() {
+            <span class="self">self</span>.index += <span class="number">1</span>;
+            <span class="self">self</span>.list.get(<span class="self">self</span>.index - <span class="number">1</span>)
+        } <span class="kw">else </span>{
+            <span class="prelude-val">None
+        </span>}
+    }
+}
+
+<span class="doccomment">/// A list of [`Script`] records.
+</span><span class="kw">pub type </span>ScriptList&lt;<span class="lifetime">&#39;a</span>&gt; = RecordList&lt;<span class="lifetime">&#39;a</span>, Script&lt;<span class="lifetime">&#39;a</span>&gt;&gt;;
+<span class="doccomment">/// A list of [`LanguageSystem`] records.
+</span><span class="kw">pub type </span>LanguageSystemList&lt;<span class="lifetime">&#39;a</span>&gt; = RecordList&lt;<span class="lifetime">&#39;a</span>, LanguageSystem&lt;<span class="lifetime">&#39;a</span>&gt;&gt;;
+<span class="doccomment">/// A list of [`Feature`] records.
+</span><span class="kw">pub type </span>FeatureList&lt;<span class="lifetime">&#39;a</span>&gt; = RecordList&lt;<span class="lifetime">&#39;a</span>, Feature&lt;<span class="lifetime">&#39;a</span>&gt;&gt;;
+
+
+<span class="attribute">#[derive(Clone, Copy, Debug)]
+</span><span class="kw">struct </span>TagRecord {
+    tag: Tag,
+    offset: Offset16,
+}
+
+<span class="kw">impl </span>FromData <span class="kw">for </span>TagRecord {
+    <span class="kw">const </span>SIZE: usize = <span class="number">6</span>;
+
+    <span class="attribute">#[inline]
+    </span><span class="kw">fn </span>parse(data: <span class="kw-2">&amp;</span>[u8]) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="self">Self</span>&gt; {
+        <span class="kw">let </span><span class="kw-2">mut </span>s = Stream::new(data);
+        <span class="prelude-val">Some</span>(<span class="self">Self </span>{
+            tag: s.read::&lt;Tag&gt;()<span class="question-mark">?</span>,
+            offset: s.read::&lt;Offset16&gt;()<span class="question-mark">?</span>,
         })
     }
 }
 
-<span class="doccomment">/// A [Script Table](https://docs.microsoft.com/en-us/typography/opentype/spec/chapter2#script-table-and-language-system-record).</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">Debug</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Script</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="doccomment">/// Script tag.</span>
-    <span class="kw">pub</span> <span class="ident">tag</span>: <span class="ident">Tag</span>,
-    <span class="doccomment">/// Default language.</span>
-    <span class="kw">pub</span> <span class="ident">default_language</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">LanguageSystem</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span><span class="op">&gt;</span>,
-    <span class="doccomment">/// List of supported languages, excluding the default one. Listed alphabetically.</span>
-    <span class="kw">pub</span> <span class="ident">languages</span>: <span class="ident">LanguageSystemList</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>,
+<span class="doccomment">/// A [Script Table](https://docs.microsoft.com/en-us/typography/opentype/spec/chapter2#script-table-and-language-system-record).
+</span><span class="attribute">#[derive(Clone, Copy, Debug)]
+</span><span class="kw">pub struct </span>Script&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="doccomment">/// Script tag.
+    </span><span class="kw">pub </span>tag: Tag,
+    <span class="doccomment">/// Default language.
+    </span><span class="kw">pub </span>default_language: <span class="prelude-ty">Option</span>&lt;LanguageSystem&lt;<span class="lifetime">&#39;a</span>&gt;&gt;,
+    <span class="doccomment">/// List of supported languages, excluding the default one. Listed alphabetically.
+    </span><span class="kw">pub </span>languages: LanguageSystemList&lt;<span class="lifetime">&#39;a</span>&gt;,
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">RecordListItem</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Script</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="kw">fn</span> <span class="ident">parse</span>(<span class="ident">tag</span>: <span class="ident">Tag</span>, <span class="ident">data</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>]) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">s</span> <span class="op">=</span> <span class="ident">Stream::new</span>(<span class="ident">data</span>);
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">default_language</span> <span class="op">=</span> <span class="prelude-val">None</span>;
-        <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">offset</span>) <span class="op">=</span> <span class="ident">s</span>.<span class="ident">read</span>::<span class="op">&lt;</span><span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Offset16</span><span class="op">&gt;</span><span class="op">&gt;</span>()<span class="question-mark">?</span> {
-            <span class="ident">default_language</span> <span class="op">=</span> <span class="ident">LanguageSystem::parse</span>(
-                <span class="ident">Tag::from_bytes</span>(<span class="string">b&quot;dflt&quot;</span>),
-                <span class="ident">data</span>.<span class="ident">get</span>(<span class="ident">offset</span>.<span class="ident">to_usize</span>()..)<span class="question-mark">?</span>
-            );
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; RecordListItem&lt;<span class="lifetime">&#39;a</span>&gt; <span class="kw">for </span>Script&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="kw">fn </span>parse(tag: Tag, data: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8]) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="self">Self</span>&gt; {
+        <span class="kw">let </span><span class="kw-2">mut </span>s = Stream::new(data);
+        <span class="kw">let </span><span class="kw-2">mut </span>default_language = <span class="prelude-val">None</span>;
+        <span class="kw">if let </span><span class="prelude-val">Some</span>(offset) = s.read::&lt;<span class="prelude-ty">Option</span>&lt;Offset16&gt;&gt;()<span class="question-mark">? </span>{
+            default_language = LanguageSystem::parse(
+                Tag::from_bytes(<span class="string">b&quot;dflt&quot;</span>),
+                data.get(offset.to_usize()..)<span class="question-mark">?
+            </span>);
         }
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">languages</span> <span class="op">=</span> <span class="ident">RecordList::parse</span>(<span class="ident">s</span>.<span class="ident">tail</span>()<span class="question-mark">?</span>)<span class="question-mark">?</span>;
-        <span class="comment">// Offsets are relative to this table.</span>
-        <span class="ident">languages</span>.<span class="ident">data</span> <span class="op">=</span> <span class="ident">data</span>;
-        <span class="prelude-val">Some</span>(<span class="self">Self</span> { <span class="ident">tag</span>, <span class="ident">default_language</span>, <span class="ident">languages</span> })
+        <span class="kw">let </span><span class="kw-2">mut </span>languages = RecordList::parse(s.tail()<span class="question-mark">?</span>)<span class="question-mark">?</span>;
+        <span class="comment">// Offsets are relative to this table.
+        </span>languages.data = data;
+        <span class="prelude-val">Some</span>(<span class="self">Self </span>{ tag, default_language, languages })
     }
 }
 
-<span class="doccomment">/// A [Language System Table](https://docs.microsoft.com/en-us/typography/opentype/spec/chapter2#language-system-table).</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">Debug</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">LanguageSystem</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="doccomment">/// Language tag.</span>
-    <span class="kw">pub</span> <span class="ident">tag</span>: <span class="ident">Tag</span>,
-    <span class="doccomment">/// Index of a feature required for this language system.</span>
-    <span class="kw">pub</span> <span class="ident">required_feature</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">FeatureIndex</span><span class="op">&gt;</span>,
-    <span class="doccomment">/// Array of indices into the FeatureList, in arbitrary order.</span>
-    <span class="kw">pub</span> <span class="ident">feature_indices</span>: <span class="ident">LazyArray16</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">FeatureIndex</span><span class="op">&gt;</span>
+<span class="doccomment">/// A [Language System Table](https://docs.microsoft.com/en-us/typography/opentype/spec/chapter2#language-system-table).
+</span><span class="attribute">#[derive(Clone, Copy, Debug)]
+</span><span class="kw">pub struct </span>LanguageSystem&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="doccomment">/// Language tag.
+    </span><span class="kw">pub </span>tag: Tag,
+    <span class="doccomment">/// Index of a feature required for this language system.
+    </span><span class="kw">pub </span>required_feature: <span class="prelude-ty">Option</span>&lt;FeatureIndex&gt;,
+    <span class="doccomment">/// Array of indices into the FeatureList, in arbitrary order.
+    </span><span class="kw">pub </span>feature_indices: LazyArray16&lt;<span class="lifetime">&#39;a</span>, FeatureIndex&gt;
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">RecordListItem</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">LanguageSystem</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="kw">fn</span> <span class="ident">parse</span>(<span class="ident">tag</span>: <span class="ident">Tag</span>, <span class="ident">data</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>]) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">s</span> <span class="op">=</span> <span class="ident">Stream::new</span>(<span class="ident">data</span>);
-        <span class="kw">let</span> <span class="ident">_lookup_order</span> <span class="op">=</span> <span class="ident">s</span>.<span class="ident">read</span>::<span class="op">&lt;</span><span class="ident">Offset16</span><span class="op">&gt;</span>()<span class="question-mark">?</span>; <span class="comment">// Unsupported.</span>
-        <span class="kw">let</span> <span class="ident">required_feature</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">s</span>.<span class="ident">read</span>::<span class="op">&lt;</span><span class="ident">FeatureIndex</span><span class="op">&gt;</span>()<span class="question-mark">?</span> {
-            <span class="number">0xFFFF</span> =&gt; <span class="prelude-val">None</span>,
-            <span class="ident">v</span> =&gt; <span class="prelude-val">Some</span>(<span class="ident">v</span>),
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; RecordListItem&lt;<span class="lifetime">&#39;a</span>&gt; <span class="kw">for </span>LanguageSystem&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="kw">fn </span>parse(tag: Tag, data: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8]) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="self">Self</span>&gt; {
+        <span class="kw">let </span><span class="kw-2">mut </span>s = Stream::new(data);
+        <span class="kw">let </span>_lookup_order = s.read::&lt;Offset16&gt;()<span class="question-mark">?</span>; <span class="comment">// Unsupported.
+        </span><span class="kw">let </span>required_feature = <span class="kw">match </span>s.read::&lt;FeatureIndex&gt;()<span class="question-mark">? </span>{
+            <span class="number">0xFFFF </span>=&gt; <span class="prelude-val">None</span>,
+            v =&gt; <span class="prelude-val">Some</span>(v),
         };
-        <span class="kw">let</span> <span class="ident">count</span> <span class="op">=</span> <span class="ident">s</span>.<span class="ident">read</span>::<span class="op">&lt;</span><span class="ident">u16</span><span class="op">&gt;</span>()<span class="question-mark">?</span>;
-        <span class="kw">let</span> <span class="ident">feature_indices</span> <span class="op">=</span> <span class="ident">s</span>.<span class="ident">read_array16</span>(<span class="ident">count</span>)<span class="question-mark">?</span>;
-        <span class="prelude-val">Some</span>(<span class="self">Self</span> { <span class="ident">tag</span>, <span class="ident">required_feature</span>, <span class="ident">feature_indices</span> })
+        <span class="kw">let </span>count = s.read::&lt;u16&gt;()<span class="question-mark">?</span>;
+        <span class="kw">let </span>feature_indices = s.read_array16(count)<span class="question-mark">?</span>;
+        <span class="prelude-val">Some</span>(<span class="self">Self </span>{ tag, required_feature, feature_indices })
     }
 }
 
-<span class="doccomment">/// A [Feature](https://docs.microsoft.com/en-us/typography/opentype/spec/chapter2#feature-table).</span>
-<span class="attribute">#[<span class="ident">allow</span>(<span class="ident">missing_docs</span>)]</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">Debug</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Feature</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="kw">pub</span> <span class="ident">tag</span>: <span class="ident">Tag</span>,
-    <span class="kw">pub</span> <span class="ident">lookup_indices</span>: <span class="ident">LazyArray16</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">LookupIndex</span><span class="op">&gt;</span>,
+<span class="doccomment">/// A [Feature](https://docs.microsoft.com/en-us/typography/opentype/spec/chapter2#feature-table).
+</span><span class="attribute">#[allow(missing_docs)]
+#[derive(Clone, Copy, Debug)]
+</span><span class="kw">pub struct </span>Feature&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="kw">pub </span>tag: Tag,
+    <span class="kw">pub </span>lookup_indices: LazyArray16&lt;<span class="lifetime">&#39;a</span>, LookupIndex&gt;,
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">RecordListItem</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Feature</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="kw">fn</span> <span class="ident">parse</span>(<span class="ident">tag</span>: <span class="ident">Tag</span>, <span class="ident">data</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>]) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">s</span> <span class="op">=</span> <span class="ident">Stream::new</span>(<span class="ident">data</span>);
-        <span class="kw">let</span> <span class="ident">_params_offset</span> <span class="op">=</span> <span class="ident">s</span>.<span class="ident">read</span>::<span class="op">&lt;</span><span class="ident">Offset16</span><span class="op">&gt;</span>()<span class="question-mark">?</span>; <span class="comment">// Unsupported.</span>
-        <span class="kw">let</span> <span class="ident">count</span> <span class="op">=</span> <span class="ident">s</span>.<span class="ident">read</span>::<span class="op">&lt;</span><span class="ident">u16</span><span class="op">&gt;</span>()<span class="question-mark">?</span>;
-        <span class="kw">let</span> <span class="ident">lookup_indices</span> <span class="op">=</span> <span class="ident">s</span>.<span class="ident">read_array16</span>(<span class="ident">count</span>)<span class="question-mark">?</span>;
-        <span class="prelude-val">Some</span>(<span class="self">Self</span> { <span class="ident">tag</span>, <span class="ident">lookup_indices</span> })
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; RecordListItem&lt;<span class="lifetime">&#39;a</span>&gt; <span class="kw">for </span>Feature&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="kw">fn </span>parse(tag: Tag, data: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8]) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="self">Self</span>&gt; {
+        <span class="kw">let </span><span class="kw-2">mut </span>s = Stream::new(data);
+        <span class="kw">let </span>_params_offset = s.read::&lt;Offset16&gt;()<span class="question-mark">?</span>; <span class="comment">// Unsupported.
+        </span><span class="kw">let </span>count = s.read::&lt;u16&gt;()<span class="question-mark">?</span>;
+        <span class="kw">let </span>lookup_indices = s.read_array16(count)<span class="question-mark">?</span>;
+        <span class="prelude-val">Some</span>(<span class="self">Self </span>{ tag, lookup_indices })
     }
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="ttf_parser" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0 (a55dd71d5 2022-09-19)" ></div></body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="ttf_parser" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.66.1 (90743e729 2023-01-10)" ></div></body></html>

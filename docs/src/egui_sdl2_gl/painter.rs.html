@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/egui_sdl2_gl-0.16.0/src/painter.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>painter.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../egui_sdl2_gl/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../egui_sdl2_gl/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../egui_sdl2_gl/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/egui_sdl2_gl-0.16.0/src/painter.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>painter.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../normalize.css"><link rel="stylesheet" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../ayu.css" disabled><link rel="stylesheet" href="../../dark.css" disabled><link rel="stylesheet" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><div class="width-limiter"><nav class="sub"><a class="sub-logo-container" href="../../egui_sdl2_gl/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -831,41 +831,41 @@
 <span id="831">831</span>
 <span id="832">832</span>
 <span id="833">833</span>
-</pre><pre class="rust"><code><span class="kw">extern</span> <span class="kw">crate</span> <span class="ident">gl</span>;
-<span class="kw">extern</span> <span class="kw">crate</span> <span class="ident">sdl2</span>;
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::ShaderVersion</span>;
-<span class="kw">use</span> <span class="ident">core::mem</span>;
-<span class="kw">use</span> <span class="ident">core::ptr</span>;
-<span class="kw">use</span> <span class="ident">core::str</span>;
-<span class="kw">use</span> <span class="ident">egui</span>::{
-    <span class="ident">epaint</span>::{<span class="ident">Color32</span>, <span class="ident">FontImage</span>, <span class="ident">Mesh</span>},
-    <span class="ident">vec2</span>, <span class="ident">ClippedMesh</span>, <span class="ident">Pos2</span>, <span class="ident">Rect</span>,
+</pre><pre class="rust"><code><span class="kw">extern crate </span>gl;
+<span class="kw">extern crate </span>sdl2;
+<span class="kw">use </span><span class="kw">crate</span>::ShaderVersion;
+<span class="kw">use </span>core::mem;
+<span class="kw">use </span>core::ptr;
+<span class="kw">use </span>core::str;
+<span class="kw">use </span>egui::{
+    epaint::{Color32, FontImage, Mesh},
+    vec2, ClippedMesh, Pos2, Rect,
 };
-<span class="kw">use</span> <span class="ident">gl::types</span>::{<span class="ident">GLchar</span>, <span class="ident">GLenum</span>, <span class="ident">GLint</span>, <span class="ident">GLsizeiptr</span>, <span class="ident">GLsync</span>, <span class="ident">GLuint</span>};
-<span class="kw">use</span> <span class="ident">std::ffi::CString</span>;
-<span class="kw">use</span> <span class="ident">std::os::raw::c_void</span>;
+<span class="kw">use </span>gl::types::{GLchar, GLenum, GLint, GLsizeiptr, GLsync, GLuint};
+<span class="kw">use </span>std::ffi::CString;
+<span class="kw">use </span>std::os::raw::c_void;
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Default</span>)]</span>
-<span class="kw">struct</span> <span class="ident">UserTexture</span> {
-    <span class="ident">size</span>: (<span class="ident">usize</span>, <span class="ident">usize</span>),
+<span class="attribute">#[derive(Default)]
+</span><span class="kw">struct </span>UserTexture {
+    size: (usize, usize),
 
-    <span class="doccomment">/// Pending upload (will be emptied later).</span>
-    <span class="ident">pixels</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span>,
+    <span class="doccomment">/// Pending upload (will be emptied later).
+    </span>pixels: Vec&lt;u8&gt;,
 
-    <span class="doccomment">/// Lazily uploaded</span>
-    <span class="ident">texture</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">GLuint</span><span class="op">&gt;</span>,
+    <span class="doccomment">/// Lazily uploaded
+    </span>texture: <span class="prelude-ty">Option</span>&lt;GLuint&gt;,
 
-    <span class="doccomment">/// For user textures there is a choice between</span>
-    <span class="doccomment">/// Linear (default) and Nearest.</span>
-    <span class="ident">filtering</span>: <span class="ident">bool</span>,
+    <span class="doccomment">/// For user textures there is a choice between
+    /// Linear (default) and Nearest.
+    </span>filtering: bool,
 
-    <span class="doccomment">/// User textures can be modified and this flag</span>
-    <span class="doccomment">/// is used to indicate if pixel data for the</span>
-    <span class="doccomment">/// texture has been updated.</span>
-    <span class="ident">dirty</span>: <span class="ident">bool</span>,
+    <span class="doccomment">/// User textures can be modified and this flag
+    /// is used to indicate if pixel data for the
+    /// texture has been updated.
+    </span>dirty: bool,
 }
 
-<span class="kw">const</span> <span class="ident">VS_SRC_150</span>: <span class="kw-2">&amp;</span><span class="ident">str</span> <span class="op">=</span> <span class="string">r#&quot;
+<span class="kw">const </span>VS_SRC_150: <span class="kw-2">&amp;</span>str = <span class="string">r#&quot;
     #version 150
     uniform vec2 u_screen_size;
     in vec2 a_pos;
@@ -897,7 +897,7 @@
     }
 &quot;#</span>;
 
-<span class="kw">const</span> <span class="ident">FS_SRC_150</span>: <span class="kw-2">&amp;</span><span class="ident">str</span> <span class="op">=</span> <span class="string">r#&quot;
+<span class="kw">const </span>FS_SRC_150: <span class="kw-2">&amp;</span>str = <span class="string">r#&quot;
     #version 150
     uniform sampler2D u_sampler;
     in vec4 v_rgba;
@@ -934,8 +934,8 @@
     }
 &quot;#</span>;
 
-<span class="comment">// VS_SRC and FS_SRC shaders taken from egui_glow crate.</span>
-<span class="kw">const</span> <span class="ident">VS_SRC</span>: <span class="kw-2">&amp;</span><span class="ident">str</span> <span class="op">=</span> <span class="string">r#&quot;
+<span class="comment">// VS_SRC and FS_SRC shaders taken from egui_glow crate.
+</span><span class="kw">const </span>VS_SRC: <span class="kw-2">&amp;</span>str = <span class="string">r#&quot;
 #if !defined(GL_ES) &amp;&amp; __VERSION__ &gt;= 140
 #define I in
 #define O out
@@ -976,7 +976,7 @@ void main() {
 }
 &quot;#</span>;
 
-<span class="kw">const</span> <span class="ident">FS_SRC</span>: <span class="kw-2">&amp;</span><span class="ident">str</span> <span class="op">=</span> <span class="string">r#&quot;
+<span class="kw">const </span>FS_SRC: <span class="kw-2">&amp;</span>str = <span class="string">r#&quot;
 #ifdef GL_ES
 precision mediump float;
 #endif
@@ -1052,617 +1052,617 @@ void main() {
 #endif
 &quot;#</span>;
 
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Painter</span> {
-    <span class="ident">vertex_array</span>: <span class="ident">GLuint</span>,
-    <span class="ident">program</span>: <span class="ident">GLuint</span>,
-    <span class="ident">index_buffer</span>: <span class="ident">GLuint</span>,
-    <span class="ident">pos_buffer</span>: <span class="ident">GLuint</span>,
-    <span class="ident">tc_buffer</span>: <span class="ident">GLuint</span>,
-    <span class="ident">color_buffer</span>: <span class="ident">GLuint</span>,
-    <span class="ident">egui_texture</span>: <span class="ident">GLuint</span>,
-    <span class="comment">// Call fence for sdl vsync so the CPU won&#39;t heat up if there&#39;s no heavy activity.</span>
-    <span class="kw">pub</span> <span class="ident">gl_sync_fence</span>: <span class="ident">GLsync</span>,
-    <span class="ident">egui_texture_version</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">u64</span><span class="op">&gt;</span>,
-    <span class="ident">user_textures</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">UserTexture</span><span class="op">&gt;</span><span class="op">&gt;</span>,
-    <span class="kw">pub</span> <span class="ident">pixels_per_point</span>: <span class="ident">f32</span>,
-    <span class="kw">pub</span> <span class="ident">canvas_size</span>: (<span class="ident">u32</span>, <span class="ident">u32</span>),
-    <span class="kw">pub</span> <span class="ident">screen_rect</span>: <span class="ident">Rect</span>,
+<span class="kw">pub struct </span>Painter {
+    vertex_array: GLuint,
+    program: GLuint,
+    index_buffer: GLuint,
+    pos_buffer: GLuint,
+    tc_buffer: GLuint,
+    color_buffer: GLuint,
+    egui_texture: GLuint,
+    <span class="comment">// Call fence for sdl vsync so the CPU won&#39;t heat up if there&#39;s no heavy activity.
+    </span><span class="kw">pub </span>gl_sync_fence: GLsync,
+    egui_texture_version: <span class="prelude-ty">Option</span>&lt;u64&gt;,
+    user_textures: Vec&lt;<span class="prelude-ty">Option</span>&lt;UserTexture&gt;&gt;,
+    <span class="kw">pub </span>pixels_per_point: f32,
+    <span class="kw">pub </span>canvas_size: (u32, u32),
+    <span class="kw">pub </span>screen_rect: Rect,
 }
 
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">compile_shader</span>(<span class="ident">src</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>, <span class="ident">ty</span>: <span class="ident">GLenum</span>) -&gt; <span class="ident">GLuint</span> {
-    <span class="kw">let</span> <span class="ident">shader</span>;
-    <span class="kw">unsafe</span> {
-        <span class="ident">shader</span> <span class="op">=</span> <span class="ident">gl::CreateShader</span>(<span class="ident">ty</span>);
-        <span class="comment">// Attempt to compile the shader</span>
-        <span class="kw">let</span> <span class="ident">c_str</span> <span class="op">=</span> <span class="ident">CString::new</span>(<span class="ident">src</span>.<span class="ident">as_bytes</span>()).<span class="ident">unwrap</span>();
-        <span class="ident">gl::ShaderSource</span>(<span class="ident">shader</span>, <span class="number">1</span>, <span class="kw-2">&amp;</span><span class="ident">c_str</span>.<span class="ident">as_ptr</span>(), <span class="ident">ptr::null</span>());
-        <span class="ident">gl::CompileShader</span>(<span class="ident">shader</span>);
-        <span class="comment">// Get the compile status</span>
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">status</span> <span class="op">=</span> <span class="ident">gl::FALSE</span> <span class="kw">as</span> <span class="ident">GLint</span>;
-        <span class="ident">gl::GetShaderiv</span>(<span class="ident">shader</span>, <span class="ident">gl::COMPILE_STATUS</span>, <span class="kw-2">&amp;mut</span> <span class="ident">status</span>);
+<span class="kw">pub fn </span>compile_shader(src: <span class="kw-2">&amp;</span>str, ty: GLenum) -&gt; GLuint {
+    <span class="kw">let </span>shader;
+    <span class="kw">unsafe </span>{
+        shader = gl::CreateShader(ty);
+        <span class="comment">// Attempt to compile the shader
+        </span><span class="kw">let </span>c_str = CString::new(src.as_bytes()).unwrap();
+        gl::ShaderSource(shader, <span class="number">1</span>, <span class="kw-2">&amp;</span>c_str.as_ptr(), ptr::null());
+        gl::CompileShader(shader);
+        <span class="comment">// Get the compile status
+        </span><span class="kw">let </span><span class="kw-2">mut </span>status = gl::FALSE <span class="kw">as </span>GLint;
+        gl::GetShaderiv(shader, gl::COMPILE_STATUS, <span class="kw-2">&amp;mut </span>status);
 
-        <span class="comment">// Fail on error</span>
-        <span class="kw">if</span> <span class="ident">status</span> <span class="op">!</span><span class="op">=</span> (<span class="ident">gl::TRUE</span> <span class="kw">as</span> <span class="ident">GLint</span>) {
-            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">len</span> <span class="op">=</span> <span class="number">0</span>;
-            <span class="ident">gl::GetShaderiv</span>(<span class="ident">shader</span>, <span class="ident">gl::INFO_LOG_LENGTH</span>, <span class="kw-2">&amp;mut</span> <span class="ident">len</span>);
-            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">buf</span> <span class="op">=</span> <span class="ident">Vec::with_capacity</span>(<span class="ident">len</span> <span class="kw">as</span> <span class="ident">usize</span>);
-            <span class="comment">// clippy not happy with this, broke the CI:</span>
-            <span class="comment">// error: calling `set_len()` immediately after reserving a buffer creates uninitialized values</span>
-            <span class="comment">// buf.set_len((len as usize) - 1); // subtract 1 to skip the trailing null character</span>
-            <span class="ident">gl::GetShaderInfoLog</span>(
-                <span class="ident">shader</span>,
-                <span class="ident">len</span>,
-                <span class="ident">ptr::null_mut</span>(),
-                <span class="ident">buf</span>.<span class="ident">as_mut_ptr</span>() <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">GLchar</span>,
+        <span class="comment">// Fail on error
+        </span><span class="kw">if </span>status != (gl::TRUE <span class="kw">as </span>GLint) {
+            <span class="kw">let </span><span class="kw-2">mut </span>len = <span class="number">0</span>;
+            gl::GetShaderiv(shader, gl::INFO_LOG_LENGTH, <span class="kw-2">&amp;mut </span>len);
+            <span class="kw">let </span><span class="kw-2">mut </span>buf = Vec::with_capacity(len <span class="kw">as </span>usize);
+            <span class="comment">// clippy not happy with this, broke the CI:
+            // error: calling `set_len()` immediately after reserving a buffer creates uninitialized values
+            // buf.set_len((len as usize) - 1); // subtract 1 to skip the trailing null character
+            </span>gl::GetShaderInfoLog(
+                shader,
+                len,
+                ptr::null_mut(),
+                buf.as_mut_ptr() <span class="kw">as </span><span class="kw-2">*mut </span>GLchar,
             );
             <span class="macro">panic!</span>(
                 <span class="string">&quot;{}&quot;</span>,
-                <span class="ident">str::from_utf8</span>(<span class="kw-2">&amp;</span><span class="ident">buf</span>).<span class="ident">expect</span>(<span class="string">&quot;ShaderInfoLog not valid utf8&quot;</span>)
+                str::from_utf8(<span class="kw-2">&amp;</span>buf).expect(<span class="string">&quot;ShaderInfoLog not valid utf8&quot;</span>)
             );
         }
     }
-    <span class="ident">shader</span>
+    shader
 }
 
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">link_program</span>(<span class="ident">vs</span>: <span class="ident">GLuint</span>, <span class="ident">fs</span>: <span class="ident">GLuint</span>) -&gt; <span class="ident">GLuint</span> {
-    <span class="kw">unsafe</span> {
-        <span class="kw">let</span> <span class="ident">program</span> <span class="op">=</span> <span class="ident">gl::CreateProgram</span>();
-        <span class="ident">gl::AttachShader</span>(<span class="ident">program</span>, <span class="ident">vs</span>);
-        <span class="ident">gl::AttachShader</span>(<span class="ident">program</span>, <span class="ident">fs</span>);
-        <span class="ident">gl::LinkProgram</span>(<span class="ident">program</span>);
-        <span class="comment">// Get the link status</span>
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">status</span> <span class="op">=</span> <span class="ident">gl::FALSE</span> <span class="kw">as</span> <span class="ident">GLint</span>;
-        <span class="ident">gl::GetProgramiv</span>(<span class="ident">program</span>, <span class="ident">gl::LINK_STATUS</span>, <span class="kw-2">&amp;mut</span> <span class="ident">status</span>);
+<span class="kw">pub fn </span>link_program(vs: GLuint, fs: GLuint) -&gt; GLuint {
+    <span class="kw">unsafe </span>{
+        <span class="kw">let </span>program = gl::CreateProgram();
+        gl::AttachShader(program, vs);
+        gl::AttachShader(program, fs);
+        gl::LinkProgram(program);
+        <span class="comment">// Get the link status
+        </span><span class="kw">let </span><span class="kw-2">mut </span>status = gl::FALSE <span class="kw">as </span>GLint;
+        gl::GetProgramiv(program, gl::LINK_STATUS, <span class="kw-2">&amp;mut </span>status);
 
-        <span class="comment">// Fail on error</span>
-        <span class="kw">if</span> <span class="ident">status</span> <span class="op">!</span><span class="op">=</span> (<span class="ident">gl::TRUE</span> <span class="kw">as</span> <span class="ident">GLint</span>) {
-            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">len</span>: <span class="ident">GLint</span> <span class="op">=</span> <span class="number">0</span>;
-            <span class="ident">gl::GetProgramiv</span>(<span class="ident">program</span>, <span class="ident">gl::INFO_LOG_LENGTH</span>, <span class="kw-2">&amp;mut</span> <span class="ident">len</span>);
-            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">buf</span> <span class="op">=</span> <span class="ident">Vec::with_capacity</span>(<span class="ident">len</span> <span class="kw">as</span> <span class="ident">usize</span>);
-            <span class="comment">// clippy not happy with this, broke the CI:</span>
-            <span class="comment">// error: calling `set_len()` immediately after reserving a buffer creates uninitialized values</span>
-            <span class="comment">// buf.set_len((len as usize) - 1); // subtract 1 to skip the trailing null character</span>
-            <span class="ident">gl::GetProgramInfoLog</span>(
-                <span class="ident">program</span>,
-                <span class="ident">len</span>,
-                <span class="ident">ptr::null_mut</span>(),
-                <span class="ident">buf</span>.<span class="ident">as_mut_ptr</span>() <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">GLchar</span>,
+        <span class="comment">// Fail on error
+        </span><span class="kw">if </span>status != (gl::TRUE <span class="kw">as </span>GLint) {
+            <span class="kw">let </span><span class="kw-2">mut </span>len: GLint = <span class="number">0</span>;
+            gl::GetProgramiv(program, gl::INFO_LOG_LENGTH, <span class="kw-2">&amp;mut </span>len);
+            <span class="kw">let </span><span class="kw-2">mut </span>buf = Vec::with_capacity(len <span class="kw">as </span>usize);
+            <span class="comment">// clippy not happy with this, broke the CI:
+            // error: calling `set_len()` immediately after reserving a buffer creates uninitialized values
+            // buf.set_len((len as usize) - 1); // subtract 1 to skip the trailing null character
+            </span>gl::GetProgramInfoLog(
+                program,
+                len,
+                ptr::null_mut(),
+                buf.as_mut_ptr() <span class="kw">as </span><span class="kw-2">*mut </span>GLchar,
             );
             <span class="macro">panic!</span>(
                 <span class="string">&quot;{}&quot;</span>,
-                <span class="ident">str::from_utf8</span>(<span class="kw-2">&amp;</span><span class="ident">buf</span>).<span class="ident">expect</span>(<span class="string">&quot;ProgramInfoLog not valid utf8&quot;</span>)
+                str::from_utf8(<span class="kw-2">&amp;</span>buf).expect(<span class="string">&quot;ProgramInfoLog not valid utf8&quot;</span>)
             );
         }
-        <span class="ident">program</span>
+        program
     }
 }
 
-<span class="kw">impl</span> <span class="ident">Painter</span> {
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">window</span>: <span class="kw-2">&amp;</span><span class="ident">sdl2::video::Window</span>, <span class="ident">scale</span>: <span class="ident">f32</span>, <span class="ident">shader_ver</span>: <span class="ident">ShaderVersion</span>) -&gt; <span class="ident">Painter</span> {
-        <span class="kw">unsafe</span> {
-            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">egui_texture</span> <span class="op">=</span> <span class="number">0</span>;
-            <span class="ident">gl::load_with</span>(<span class="op">|</span><span class="ident">name</span><span class="op">|</span> <span class="ident">window</span>.<span class="ident">subsystem</span>().<span class="ident">gl_get_proc_address</span>(<span class="ident">name</span>) <span class="kw">as</span> <span class="kw-2">*const</span> <span class="kw">_</span>);
-            <span class="ident">gl::GenTextures</span>(<span class="number">1</span>, <span class="kw-2">&amp;mut</span> <span class="ident">egui_texture</span>);
-            <span class="ident">gl::BindTexture</span>(<span class="ident">gl::TEXTURE_2D</span>, <span class="ident">egui_texture</span>);
-            <span class="ident">gl::TexParameteri</span>(<span class="ident">gl::TEXTURE_2D</span>, <span class="ident">gl::TEXTURE_WRAP_S</span>, <span class="ident">gl::CLAMP_TO_EDGE</span> <span class="kw">as</span> <span class="ident">i32</span>);
-            <span class="ident">gl::TexParameteri</span>(<span class="ident">gl::TEXTURE_2D</span>, <span class="ident">gl::TEXTURE_WRAP_T</span>, <span class="ident">gl::CLAMP_TO_EDGE</span> <span class="kw">as</span> <span class="ident">i32</span>);
-            <span class="ident">gl::TexParameteri</span>(<span class="ident">gl::TEXTURE_2D</span>, <span class="ident">gl::TEXTURE_MIN_FILTER</span>, <span class="ident">gl::LINEAR</span> <span class="kw">as</span> <span class="ident">i32</span>);
-            <span class="ident">gl::TexParameteri</span>(<span class="ident">gl::TEXTURE_2D</span>, <span class="ident">gl::TEXTURE_MAG_FILTER</span>, <span class="ident">gl::LINEAR</span> <span class="kw">as</span> <span class="ident">i32</span>);
-            <span class="kw">let</span> (<span class="ident">vs_src</span>, <span class="ident">fs_src</span>) <span class="op">=</span> <span class="kw">if</span> <span class="kw">let</span> <span class="ident">ShaderVersion::Default</span> <span class="op">=</span> <span class="ident">shader_ver</span> {
-                (<span class="ident">VS_SRC_150</span>, <span class="ident">FS_SRC_150</span>)
-            } <span class="kw">else</span> {
-                (<span class="ident">VS_SRC</span>, <span class="ident">FS_SRC</span>)
+<span class="kw">impl </span>Painter {
+    <span class="kw">pub fn </span>new(window: <span class="kw-2">&amp;</span>sdl2::video::Window, scale: f32, shader_ver: ShaderVersion) -&gt; Painter {
+        <span class="kw">unsafe </span>{
+            <span class="kw">let </span><span class="kw-2">mut </span>egui_texture = <span class="number">0</span>;
+            gl::load_with(|name| window.subsystem().gl_get_proc_address(name) <span class="kw">as </span><span class="kw-2">*const </span><span class="kw">_</span>);
+            gl::GenTextures(<span class="number">1</span>, <span class="kw-2">&amp;mut </span>egui_texture);
+            gl::BindTexture(gl::TEXTURE_2D, egui_texture);
+            gl::TexParameteri(gl::TEXTURE_2D, gl::TEXTURE_WRAP_S, gl::CLAMP_TO_EDGE <span class="kw">as </span>i32);
+            gl::TexParameteri(gl::TEXTURE_2D, gl::TEXTURE_WRAP_T, gl::CLAMP_TO_EDGE <span class="kw">as </span>i32);
+            gl::TexParameteri(gl::TEXTURE_2D, gl::TEXTURE_MIN_FILTER, gl::LINEAR <span class="kw">as </span>i32);
+            gl::TexParameteri(gl::TEXTURE_2D, gl::TEXTURE_MAG_FILTER, gl::LINEAR <span class="kw">as </span>i32);
+            <span class="kw">let </span>(vs_src, fs_src) = <span class="kw">if let </span>ShaderVersion::Default = shader_ver {
+                (VS_SRC_150, FS_SRC_150)
+            } <span class="kw">else </span>{
+                (VS_SRC, FS_SRC)
             };
-            <span class="kw">let</span> <span class="ident">vert_shader</span> <span class="op">=</span> <span class="ident">compile_shader</span>(<span class="ident">vs_src</span>, <span class="ident">gl::VERTEX_SHADER</span>);
-            <span class="kw">let</span> <span class="ident">frag_shader</span> <span class="op">=</span> <span class="ident">compile_shader</span>(<span class="ident">fs_src</span>, <span class="ident">gl::FRAGMENT_SHADER</span>);
+            <span class="kw">let </span>vert_shader = compile_shader(vs_src, gl::VERTEX_SHADER);
+            <span class="kw">let </span>frag_shader = compile_shader(fs_src, gl::FRAGMENT_SHADER);
 
-            <span class="kw">let</span> <span class="ident">program</span> <span class="op">=</span> <span class="ident">link_program</span>(<span class="ident">vert_shader</span>, <span class="ident">frag_shader</span>);
-            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">vertex_array</span> <span class="op">=</span> <span class="number">0</span>;
-            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">index_buffer</span> <span class="op">=</span> <span class="number">0</span>;
-            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">pos_buffer</span> <span class="op">=</span> <span class="number">0</span>;
-            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">tc_buffer</span> <span class="op">=</span> <span class="number">0</span>;
-            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">color_buffer</span> <span class="op">=</span> <span class="number">0</span>;
-            <span class="ident">gl::GenVertexArrays</span>(<span class="number">1</span>, <span class="kw-2">&amp;mut</span> <span class="ident">vertex_array</span>);
-            <span class="ident">gl::BindVertexArray</span>(<span class="ident">vertex_array</span>);
-            <span class="ident">gl::GenBuffers</span>(<span class="number">1</span>, <span class="kw-2">&amp;mut</span> <span class="ident">index_buffer</span>);
-            <span class="ident">gl::GenBuffers</span>(<span class="number">1</span>, <span class="kw-2">&amp;mut</span> <span class="ident">pos_buffer</span>);
-            <span class="ident">gl::GenBuffers</span>(<span class="number">1</span>, <span class="kw-2">&amp;mut</span> <span class="ident">tc_buffer</span>);
-            <span class="ident">gl::GenBuffers</span>(<span class="number">1</span>, <span class="kw-2">&amp;mut</span> <span class="ident">color_buffer</span>);
+            <span class="kw">let </span>program = link_program(vert_shader, frag_shader);
+            <span class="kw">let </span><span class="kw-2">mut </span>vertex_array = <span class="number">0</span>;
+            <span class="kw">let </span><span class="kw-2">mut </span>index_buffer = <span class="number">0</span>;
+            <span class="kw">let </span><span class="kw-2">mut </span>pos_buffer = <span class="number">0</span>;
+            <span class="kw">let </span><span class="kw-2">mut </span>tc_buffer = <span class="number">0</span>;
+            <span class="kw">let </span><span class="kw-2">mut </span>color_buffer = <span class="number">0</span>;
+            gl::GenVertexArrays(<span class="number">1</span>, <span class="kw-2">&amp;mut </span>vertex_array);
+            gl::BindVertexArray(vertex_array);
+            gl::GenBuffers(<span class="number">1</span>, <span class="kw-2">&amp;mut </span>index_buffer);
+            gl::GenBuffers(<span class="number">1</span>, <span class="kw-2">&amp;mut </span>pos_buffer);
+            gl::GenBuffers(<span class="number">1</span>, <span class="kw-2">&amp;mut </span>tc_buffer);
+            gl::GenBuffers(<span class="number">1</span>, <span class="kw-2">&amp;mut </span>color_buffer);
 
-            <span class="kw">let</span> (<span class="ident">width</span>, <span class="ident">height</span>) <span class="op">=</span> <span class="ident">window</span>.<span class="ident">size</span>();
-            <span class="kw">let</span> <span class="ident">pixels_per_point</span> <span class="op">=</span> <span class="ident">scale</span>;
-            <span class="kw">let</span> <span class="ident">rect</span> <span class="op">=</span> <span class="ident">vec2</span>(<span class="ident">width</span> <span class="kw">as</span> <span class="ident">f32</span>, <span class="ident">height</span> <span class="kw">as</span> <span class="ident">f32</span>) <span class="op">/</span> <span class="ident">pixels_per_point</span>;
-            <span class="kw">let</span> <span class="ident">screen_rect</span> <span class="op">=</span> <span class="ident">Rect::from_min_size</span>(<span class="ident">Pos2::new</span>(<span class="number">0f32</span>, <span class="number">0f32</span>), <span class="ident">rect</span>);
+            <span class="kw">let </span>(width, height) = window.size();
+            <span class="kw">let </span>pixels_per_point = scale;
+            <span class="kw">let </span>rect = vec2(width <span class="kw">as </span>f32, height <span class="kw">as </span>f32) / pixels_per_point;
+            <span class="kw">let </span>screen_rect = Rect::from_min_size(Pos2::new(<span class="number">0f32</span>, <span class="number">0f32</span>), rect);
 
-            <span class="ident">gl::DetachShader</span>(<span class="ident">program</span>, <span class="ident">vert_shader</span>);
-            <span class="ident">gl::DetachShader</span>(<span class="ident">program</span>, <span class="ident">frag_shader</span>);
-            <span class="ident">gl::DeleteShader</span>(<span class="ident">vert_shader</span>);
-            <span class="ident">gl::DeleteShader</span>(<span class="ident">frag_shader</span>);
-            <span class="ident">Painter</span> {
-                <span class="ident">vertex_array</span>,
-                <span class="ident">program</span>,
-                <span class="ident">index_buffer</span>,
-                <span class="ident">pos_buffer</span>,
-                <span class="ident">tc_buffer</span>,
-                <span class="ident">color_buffer</span>,
-                <span class="ident">egui_texture</span>,
-                <span class="ident">gl_sync_fence</span>: <span class="ident">gl::FenceSync</span>(<span class="ident">gl::SYNC_GPU_COMMANDS_COMPLETE</span>, <span class="number">0</span>),
-                <span class="ident">pixels_per_point</span>,
-                <span class="ident">egui_texture_version</span>: <span class="prelude-val">None</span>,
-                <span class="ident">user_textures</span>: <span class="ident">Default::default</span>(),
-                <span class="ident">canvas_size</span>: (<span class="ident">width</span>, <span class="ident">height</span>),
-                <span class="ident">screen_rect</span>,
+            gl::DetachShader(program, vert_shader);
+            gl::DetachShader(program, frag_shader);
+            gl::DeleteShader(vert_shader);
+            gl::DeleteShader(frag_shader);
+            Painter {
+                vertex_array,
+                program,
+                index_buffer,
+                pos_buffer,
+                tc_buffer,
+                color_buffer,
+                egui_texture,
+                gl_sync_fence: gl::FenceSync(gl::SYNC_GPU_COMMANDS_COMPLETE, <span class="number">0</span>),
+                pixels_per_point,
+                egui_texture_version: <span class="prelude-val">None</span>,
+                user_textures: Default::default(),
+                canvas_size: (width, height),
+                screen_rect,
             }
         }
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">update_screen_rect</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">size</span>: (<span class="ident">u32</span>, <span class="ident">u32</span>)) {
-        <span class="self">self</span>.<span class="ident">canvas_size</span> <span class="op">=</span> <span class="ident">size</span>;
-        <span class="kw">let</span> (<span class="ident">x</span>, <span class="ident">y</span>) <span class="op">=</span> <span class="ident">size</span>;
-        <span class="kw">let</span> <span class="ident">rect</span> <span class="op">=</span> <span class="ident">vec2</span>(<span class="ident">x</span> <span class="kw">as</span> <span class="ident">f32</span>, <span class="ident">y</span> <span class="kw">as</span> <span class="ident">f32</span>) <span class="op">/</span> <span class="self">self</span>.<span class="ident">pixels_per_point</span>;
-        <span class="self">self</span>.<span class="ident">screen_rect</span> <span class="op">=</span> <span class="ident">Rect::from_min_size</span>(<span class="ident">Default::default</span>(), <span class="ident">rect</span>);
+    <span class="kw">pub fn </span>update_screen_rect(<span class="kw-2">&amp;mut </span><span class="self">self</span>, size: (u32, u32)) {
+        <span class="self">self</span>.canvas_size = size;
+        <span class="kw">let </span>(x, y) = size;
+        <span class="kw">let </span>rect = vec2(x <span class="kw">as </span>f32, y <span class="kw">as </span>f32) / <span class="self">self</span>.pixels_per_point;
+        <span class="self">self</span>.screen_rect = Rect::from_min_size(Default::default(), rect);
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new_user_texture</span>(
-        <span class="kw-2">&amp;mut</span> <span class="self">self</span>,
-        <span class="ident">size</span>: (<span class="ident">usize</span>, <span class="ident">usize</span>),
-        <span class="ident">srgba_pixels</span>: <span class="kw-2">&amp;</span>[<span class="ident">Color32</span>],
-        <span class="ident">filtering</span>: <span class="ident">bool</span>,
-    ) -&gt; <span class="ident">egui::TextureId</span> {
-        <span class="macro">assert_eq!</span>(<span class="ident">size</span>.<span class="number">0</span> <span class="op">*</span> <span class="ident">size</span>.<span class="number">1</span>, <span class="ident">srgba_pixels</span>.<span class="ident">len</span>());
+    <span class="kw">pub fn </span>new_user_texture(
+        <span class="kw-2">&amp;mut </span><span class="self">self</span>,
+        size: (usize, usize),
+        srgba_pixels: <span class="kw-2">&amp;</span>[Color32],
+        filtering: bool,
+    ) -&gt; egui::TextureId {
+        <span class="macro">assert_eq!</span>(size.<span class="number">0 </span>* size.<span class="number">1</span>, srgba_pixels.len());
 
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">pixels</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">Vec::with_capacity</span>(<span class="ident">srgba_pixels</span>.<span class="ident">len</span>() <span class="op">*</span> <span class="number">4</span>);
-        <span class="kw">for</span> <span class="ident">srgba</span> <span class="kw">in</span> <span class="ident">srgba_pixels</span> {
-            <span class="ident">pixels</span>.<span class="ident">push</span>(<span class="ident">srgba</span>[<span class="number">0</span>]);
-            <span class="ident">pixels</span>.<span class="ident">push</span>(<span class="ident">srgba</span>[<span class="number">1</span>]);
-            <span class="ident">pixels</span>.<span class="ident">push</span>(<span class="ident">srgba</span>[<span class="number">2</span>]);
-            <span class="ident">pixels</span>.<span class="ident">push</span>(<span class="ident">srgba</span>[<span class="number">3</span>]);
+        <span class="kw">let </span><span class="kw-2">mut </span>pixels: Vec&lt;u8&gt; = Vec::with_capacity(srgba_pixels.len() * <span class="number">4</span>);
+        <span class="kw">for </span>srgba <span class="kw">in </span>srgba_pixels {
+            pixels.push(srgba[<span class="number">0</span>]);
+            pixels.push(srgba[<span class="number">1</span>]);
+            pixels.push(srgba[<span class="number">2</span>]);
+            pixels.push(srgba[<span class="number">3</span>]);
         }
 
-        <span class="kw">let</span> <span class="ident">id</span> <span class="op">=</span> <span class="ident">egui::TextureId::User</span>(<span class="self">self</span>.<span class="ident">user_textures</span>.<span class="ident">len</span>() <span class="kw">as</span> <span class="ident">u64</span>);
-        <span class="self">self</span>.<span class="ident">user_textures</span>.<span class="ident">push</span>(<span class="prelude-val">Some</span>(<span class="ident">UserTexture</span> {
-            <span class="ident">size</span>,
-            <span class="ident">pixels</span>,
-            <span class="ident">texture</span>: <span class="prelude-val">None</span>,
-            <span class="ident">filtering</span>,
-            <span class="ident">dirty</span>: <span class="bool-val">true</span>,
+        <span class="kw">let </span>id = egui::TextureId::User(<span class="self">self</span>.user_textures.len() <span class="kw">as </span>u64);
+        <span class="self">self</span>.user_textures.push(<span class="prelude-val">Some</span>(UserTexture {
+            size,
+            pixels,
+            texture: <span class="prelude-val">None</span>,
+            filtering,
+            dirty: <span class="bool-val">true</span>,
         }));
-        <span class="ident">id</span>
+        id
     }
 
-    <span class="doccomment">/// Creates a new user texture from rgba8</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new_user_texture_rgba8</span>(
-        <span class="kw-2">&amp;mut</span> <span class="self">self</span>,
-        <span class="ident">size</span>: (<span class="ident">usize</span>, <span class="ident">usize</span>),
-        <span class="ident">rgba8_pixels</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span>,
-        <span class="ident">filtering</span>: <span class="ident">bool</span>,
-    ) -&gt; <span class="ident">egui::TextureId</span> {
-        <span class="kw">let</span> <span class="ident">id</span> <span class="op">=</span> <span class="ident">egui::TextureId::User</span>(<span class="self">self</span>.<span class="ident">user_textures</span>.<span class="ident">len</span>() <span class="kw">as</span> <span class="ident">u64</span>);
-        <span class="self">self</span>.<span class="ident">user_textures</span>.<span class="ident">push</span>(<span class="prelude-val">Some</span>(<span class="ident">UserTexture</span> {
-            <span class="ident">size</span>,
-            <span class="ident">pixels</span>: <span class="ident">rgba8_pixels</span>,
-            <span class="ident">texture</span>: <span class="prelude-val">None</span>,
-            <span class="ident">filtering</span>,
-            <span class="ident">dirty</span>: <span class="bool-val">true</span>,
+    <span class="doccomment">/// Creates a new user texture from rgba8
+    </span><span class="kw">pub fn </span>new_user_texture_rgba8(
+        <span class="kw-2">&amp;mut </span><span class="self">self</span>,
+        size: (usize, usize),
+        rgba8_pixels: Vec&lt;u8&gt;,
+        filtering: bool,
+    ) -&gt; egui::TextureId {
+        <span class="kw">let </span>id = egui::TextureId::User(<span class="self">self</span>.user_textures.len() <span class="kw">as </span>u64);
+        <span class="self">self</span>.user_textures.push(<span class="prelude-val">Some</span>(UserTexture {
+            size,
+            pixels: rgba8_pixels,
+            texture: <span class="prelude-val">None</span>,
+            filtering,
+            dirty: <span class="bool-val">true</span>,
         }));
-        <span class="ident">id</span>
+        id
     }
 
-    <span class="doccomment">/// fn free_user_texture() and fn free() implemented from epi both are basically the same.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">free_user_texture</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">id</span>: <span class="ident">egui::TextureId</span>) {
-        <span class="kw">if</span> <span class="kw">let</span> <span class="ident">egui::TextureId::User</span>(<span class="ident">id</span>) <span class="op">=</span> <span class="ident">id</span> {
-            <span class="kw">let</span> <span class="ident">idx</span> <span class="op">=</span> <span class="ident">id</span> <span class="kw">as</span> <span class="ident">usize</span>;
-            <span class="kw">if</span> <span class="ident">idx</span> <span class="op">&lt;</span> <span class="self">self</span>.<span class="ident">user_textures</span>.<span class="ident">len</span>() {
-                <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">UserTexture</span> {
-                    <span class="ident">texture</span>: <span class="prelude-val">Some</span>(<span class="ident">texture</span>),
+    <span class="doccomment">/// fn free_user_texture() and fn free() implemented from epi both are basically the same.
+    </span><span class="kw">pub fn </span>free_user_texture(<span class="kw-2">&amp;mut </span><span class="self">self</span>, id: egui::TextureId) {
+        <span class="kw">if let </span>egui::TextureId::User(id) = id {
+            <span class="kw">let </span>idx = id <span class="kw">as </span>usize;
+            <span class="kw">if </span>idx &lt; <span class="self">self</span>.user_textures.len() {
+                <span class="kw">if let </span><span class="prelude-val">Some</span>(UserTexture {
+                    texture: <span class="prelude-val">Some</span>(texture),
                     ..
-                }) <span class="op">=</span> <span class="self">self</span>.<span class="ident">user_textures</span>[<span class="ident">idx</span>].<span class="ident">as_mut</span>()
+                }) = <span class="self">self</span>.user_textures[idx].as_mut()
                 {
-                    <span class="kw">unsafe</span> { <span class="ident">gl::DeleteTextures</span>(<span class="number">1</span>, <span class="ident">texture</span>) }
+                    <span class="kw">unsafe </span>{ gl::DeleteTextures(<span class="number">1</span>, texture) }
                 }
-                <span class="self">self</span>.<span class="ident">user_textures</span>[<span class="ident">idx</span>] <span class="op">=</span> <span class="prelude-val">None</span>
-            }
+                <span class="self">self</span>.user_textures[idx] = <span class="prelude-val">None
+            </span>}
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">upload_egui_texture</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">texture</span>: <span class="kw-2">&amp;</span><span class="ident">FontImage</span>) {
-        <span class="kw">if</span> <span class="self">self</span>.<span class="ident">egui_texture_version</span> <span class="op">==</span> <span class="prelude-val">Some</span>(<span class="ident">texture</span>.<span class="ident">version</span>) {
-            <span class="kw">return</span>; <span class="comment">// No change</span>
+    <span class="kw">fn </span>upload_egui_texture(<span class="kw-2">&amp;mut </span><span class="self">self</span>, texture: <span class="kw-2">&amp;</span>FontImage) {
+        <span class="kw">if </span><span class="self">self</span>.egui_texture_version == <span class="prelude-val">Some</span>(texture.version) {
+            <span class="kw">return</span>; <span class="comment">// No change
+        </span>}
+
+        <span class="kw">let </span><span class="kw-2">mut </span>pixels: Vec&lt;u8&gt; = Vec::with_capacity(texture.pixels.len() * <span class="number">4</span>);
+        <span class="kw">for </span><span class="kw-2">&amp;</span>alpha <span class="kw">in </span><span class="kw-2">&amp;</span>texture.pixels {
+            <span class="kw">let </span>srgba = Color32::from_white_alpha(alpha);
+            pixels.push(srgba[<span class="number">0</span>]);
+            pixels.push(srgba[<span class="number">1</span>]);
+            pixels.push(srgba[<span class="number">2</span>]);
+            pixels.push(srgba[<span class="number">3</span>]);
         }
 
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">pixels</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">Vec::with_capacity</span>(<span class="ident">texture</span>.<span class="ident">pixels</span>.<span class="ident">len</span>() <span class="op">*</span> <span class="number">4</span>);
-        <span class="kw">for</span> <span class="kw-2">&amp;</span><span class="ident">alpha</span> <span class="kw">in</span> <span class="kw-2">&amp;</span><span class="ident">texture</span>.<span class="ident">pixels</span> {
-            <span class="kw">let</span> <span class="ident">srgba</span> <span class="op">=</span> <span class="ident">Color32::from_white_alpha</span>(<span class="ident">alpha</span>);
-            <span class="ident">pixels</span>.<span class="ident">push</span>(<span class="ident">srgba</span>[<span class="number">0</span>]);
-            <span class="ident">pixels</span>.<span class="ident">push</span>(<span class="ident">srgba</span>[<span class="number">1</span>]);
-            <span class="ident">pixels</span>.<span class="ident">push</span>(<span class="ident">srgba</span>[<span class="number">2</span>]);
-            <span class="ident">pixels</span>.<span class="ident">push</span>(<span class="ident">srgba</span>[<span class="number">3</span>]);
-        }
+        <span class="kw">unsafe </span>{
+            gl::BindTexture(gl::TEXTURE_2D, <span class="self">self</span>.egui_texture);
 
-        <span class="kw">unsafe</span> {
-            <span class="ident">gl::BindTexture</span>(<span class="ident">gl::TEXTURE_2D</span>, <span class="self">self</span>.<span class="ident">egui_texture</span>);
-
-            <span class="kw">let</span> <span class="ident">level</span> <span class="op">=</span> <span class="number">0</span>;
-            <span class="kw">let</span> <span class="ident">internal_format</span> <span class="op">=</span> <span class="ident">gl::RGBA</span>;
-            <span class="kw">let</span> <span class="ident">border</span> <span class="op">=</span> <span class="number">0</span>;
-            <span class="kw">let</span> <span class="ident">src_format</span> <span class="op">=</span> <span class="ident">gl::RGBA</span>;
-            <span class="kw">let</span> <span class="ident">src_type</span> <span class="op">=</span> <span class="ident">gl::UNSIGNED_BYTE</span>;
-            <span class="ident">gl::TexImage2D</span>(
-                <span class="ident">gl::TEXTURE_2D</span>,
-                <span class="ident">level</span>,
-                <span class="ident">internal_format</span> <span class="kw">as</span> <span class="ident">i32</span>,
-                <span class="ident">texture</span>.<span class="ident">width</span> <span class="kw">as</span> <span class="ident">i32</span>,
-                <span class="ident">texture</span>.<span class="ident">height</span> <span class="kw">as</span> <span class="ident">i32</span>,
-                <span class="ident">border</span>,
-                <span class="ident">src_format</span>,
-                <span class="ident">src_type</span>,
-                <span class="ident">pixels</span>.<span class="ident">as_ptr</span>() <span class="kw">as</span> <span class="kw-2">*const</span> <span class="ident">c_void</span>,
+            <span class="kw">let </span>level = <span class="number">0</span>;
+            <span class="kw">let </span>internal_format = gl::RGBA;
+            <span class="kw">let </span>border = <span class="number">0</span>;
+            <span class="kw">let </span>src_format = gl::RGBA;
+            <span class="kw">let </span>src_type = gl::UNSIGNED_BYTE;
+            gl::TexImage2D(
+                gl::TEXTURE_2D,
+                level,
+                internal_format <span class="kw">as </span>i32,
+                texture.width <span class="kw">as </span>i32,
+                texture.height <span class="kw">as </span>i32,
+                border,
+                src_format,
+                src_type,
+                pixels.as_ptr() <span class="kw">as </span><span class="kw-2">*const </span>c_void,
             );
 
-            <span class="self">self</span>.<span class="ident">egui_texture_version</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">texture</span>.<span class="ident">version</span>);
+            <span class="self">self</span>.egui_texture_version = <span class="prelude-val">Some</span>(texture.version);
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">upload_user_textures</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>) {
-        <span class="kw">unsafe</span> {
-            <span class="kw">for</span> <span class="ident">user_texture</span> <span class="kw">in</span> <span class="self">self</span>.<span class="ident">user_textures</span>.<span class="ident">iter_mut</span>().<span class="ident">flatten</span>() {
-                <span class="kw">if</span> <span class="op">!</span><span class="ident">user_texture</span>.<span class="ident">dirty</span> {
+    <span class="kw">fn </span>upload_user_textures(<span class="kw-2">&amp;mut </span><span class="self">self</span>) {
+        <span class="kw">unsafe </span>{
+            <span class="kw">for </span>user_texture <span class="kw">in </span><span class="self">self</span>.user_textures.iter_mut().flatten() {
+                <span class="kw">if </span>!user_texture.dirty {
                     <span class="kw">continue</span>;
                 }
 
-                <span class="kw">let</span> <span class="ident">pixels</span> <span class="op">=</span> <span class="ident">std::mem::take</span>(<span class="kw-2">&amp;mut</span> <span class="ident">user_texture</span>.<span class="ident">pixels</span>);
+                <span class="kw">let </span>pixels = std::mem::take(<span class="kw-2">&amp;mut </span>user_texture.pixels);
 
-                <span class="kw">if</span> <span class="ident">user_texture</span>.<span class="ident">texture</span>.<span class="ident">is_none</span>() {
-                    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">gl_texture</span> <span class="op">=</span> <span class="number">0</span>;
-                    <span class="ident">gl::GenTextures</span>(<span class="number">1</span>, <span class="kw-2">&amp;mut</span> <span class="ident">gl_texture</span>);
-                    <span class="ident">gl::BindTexture</span>(<span class="ident">gl::TEXTURE_2D</span>, <span class="ident">gl_texture</span>);
-                    <span class="ident">gl::TexParameteri</span>(<span class="ident">gl::TEXTURE_2D</span>, <span class="ident">gl::TEXTURE_WRAP_S</span>, <span class="ident">gl::CLAMP_TO_EDGE</span> <span class="kw">as</span> <span class="ident">i32</span>);
-                    <span class="ident">gl::TexParameteri</span>(<span class="ident">gl::TEXTURE_2D</span>, <span class="ident">gl::TEXTURE_WRAP_T</span>, <span class="ident">gl::CLAMP_TO_EDGE</span> <span class="kw">as</span> <span class="ident">i32</span>);
+                <span class="kw">if </span>user_texture.texture.is_none() {
+                    <span class="kw">let </span><span class="kw-2">mut </span>gl_texture = <span class="number">0</span>;
+                    gl::GenTextures(<span class="number">1</span>, <span class="kw-2">&amp;mut </span>gl_texture);
+                    gl::BindTexture(gl::TEXTURE_2D, gl_texture);
+                    gl::TexParameteri(gl::TEXTURE_2D, gl::TEXTURE_WRAP_S, gl::CLAMP_TO_EDGE <span class="kw">as </span>i32);
+                    gl::TexParameteri(gl::TEXTURE_2D, gl::TEXTURE_WRAP_T, gl::CLAMP_TO_EDGE <span class="kw">as </span>i32);
 
-                    <span class="kw">if</span> <span class="ident">user_texture</span>.<span class="ident">filtering</span> {
-                        <span class="ident">gl::TexParameteri</span>(
-                            <span class="ident">gl::TEXTURE_2D</span>,
-                            <span class="ident">gl::TEXTURE_MIN_FILTER</span>,
-                            <span class="ident">gl::LINEAR</span> <span class="kw">as</span> <span class="ident">i32</span>,
+                    <span class="kw">if </span>user_texture.filtering {
+                        gl::TexParameteri(
+                            gl::TEXTURE_2D,
+                            gl::TEXTURE_MIN_FILTER,
+                            gl::LINEAR <span class="kw">as </span>i32,
                         );
-                        <span class="ident">gl::TexParameteri</span>(
-                            <span class="ident">gl::TEXTURE_2D</span>,
-                            <span class="ident">gl::TEXTURE_MAG_FILTER</span>,
-                            <span class="ident">gl::LINEAR</span> <span class="kw">as</span> <span class="ident">i32</span>,
+                        gl::TexParameteri(
+                            gl::TEXTURE_2D,
+                            gl::TEXTURE_MAG_FILTER,
+                            gl::LINEAR <span class="kw">as </span>i32,
                         );
-                    } <span class="kw">else</span> {
-                        <span class="ident">gl::TexParameteri</span>(
-                            <span class="ident">gl::TEXTURE_2D</span>,
-                            <span class="ident">gl::TEXTURE_MIN_FILTER</span>,
-                            <span class="ident">gl::NEAREST</span> <span class="kw">as</span> <span class="ident">i32</span>,
+                    } <span class="kw">else </span>{
+                        gl::TexParameteri(
+                            gl::TEXTURE_2D,
+                            gl::TEXTURE_MIN_FILTER,
+                            gl::NEAREST <span class="kw">as </span>i32,
                         );
-                        <span class="ident">gl::TexParameteri</span>(
-                            <span class="ident">gl::TEXTURE_2D</span>,
-                            <span class="ident">gl::TEXTURE_MAG_FILTER</span>,
-                            <span class="ident">gl::NEAREST</span> <span class="kw">as</span> <span class="ident">i32</span>,
+                        gl::TexParameteri(
+                            gl::TEXTURE_2D,
+                            gl::TEXTURE_MAG_FILTER,
+                            gl::NEAREST <span class="kw">as </span>i32,
                         );
                     }
-                    <span class="ident">user_texture</span>.<span class="ident">texture</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">gl_texture</span>);
-                } <span class="kw">else</span> {
-                    <span class="ident">gl::BindTexture</span>(<span class="ident">gl::TEXTURE_2D</span>, <span class="ident">user_texture</span>.<span class="ident">texture</span>.<span class="ident">unwrap</span>());
+                    user_texture.texture = <span class="prelude-val">Some</span>(gl_texture);
+                } <span class="kw">else </span>{
+                    gl::BindTexture(gl::TEXTURE_2D, user_texture.texture.unwrap());
                 }
 
-                <span class="kw">let</span> <span class="ident">level</span> <span class="op">=</span> <span class="number">0</span>;
-                <span class="kw">let</span> <span class="ident">internal_format</span> <span class="op">=</span> <span class="ident">gl::RGBA</span>;
-                <span class="kw">let</span> <span class="ident">border</span> <span class="op">=</span> <span class="number">0</span>;
-                <span class="kw">let</span> <span class="ident">src_format</span> <span class="op">=</span> <span class="ident">gl::RGBA</span>;
-                <span class="kw">let</span> <span class="ident">src_type</span> <span class="op">=</span> <span class="ident">gl::UNSIGNED_BYTE</span>;
+                <span class="kw">let </span>level = <span class="number">0</span>;
+                <span class="kw">let </span>internal_format = gl::RGBA;
+                <span class="kw">let </span>border = <span class="number">0</span>;
+                <span class="kw">let </span>src_format = gl::RGBA;
+                <span class="kw">let </span>src_type = gl::UNSIGNED_BYTE;
 
-                <span class="ident">gl::TexImage2D</span>(
-                    <span class="ident">gl::TEXTURE_2D</span>,
-                    <span class="ident">level</span>,
-                    <span class="ident">internal_format</span> <span class="kw">as</span> <span class="ident">i32</span>,
-                    <span class="ident">user_texture</span>.<span class="ident">size</span>.<span class="number">0</span> <span class="kw">as</span> <span class="ident">i32</span>,
-                    <span class="ident">user_texture</span>.<span class="ident">size</span>.<span class="number">1</span> <span class="kw">as</span> <span class="ident">i32</span>,
-                    <span class="ident">border</span>,
-                    <span class="ident">src_format</span>,
-                    <span class="ident">src_type</span>,
-                    <span class="ident">pixels</span>.<span class="ident">as_ptr</span>() <span class="kw">as</span> <span class="kw-2">*const</span> <span class="ident">c_void</span>,
+                gl::TexImage2D(
+                    gl::TEXTURE_2D,
+                    level,
+                    internal_format <span class="kw">as </span>i32,
+                    user_texture.size.<span class="number">0 </span><span class="kw">as </span>i32,
+                    user_texture.size.<span class="number">1 </span><span class="kw">as </span>i32,
+                    border,
+                    src_format,
+                    src_type,
+                    pixels.as_ptr() <span class="kw">as </span><span class="kw-2">*const </span>c_void,
                 );
 
-                <span class="ident">user_texture</span>.<span class="ident">dirty</span> <span class="op">=</span> <span class="bool-val">false</span>;
+                user_texture.dirty = <span class="bool-val">false</span>;
             }
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">get_texture</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">texture_id</span>: <span class="ident">egui::TextureId</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">GLuint</span><span class="op">&gt;</span> {
-        <span class="kw">match</span> <span class="ident">texture_id</span> {
-            <span class="ident">egui::TextureId::Egui</span> =&gt; <span class="prelude-val">Some</span>(<span class="self">self</span>.<span class="ident">egui_texture</span>),
-            <span class="ident">egui::TextureId::User</span>(<span class="ident">id</span>) =&gt; {
-                <span class="kw">let</span> <span class="ident">id</span> <span class="op">=</span> <span class="ident">id</span> <span class="kw">as</span> <span class="ident">usize</span>;
-                <span class="kw">if</span> <span class="ident">id</span> <span class="op">&lt;</span> <span class="self">self</span>.<span class="ident">user_textures</span>.<span class="ident">len</span>() {
-                    <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">user_texture</span>) <span class="op">=</span> <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">user_textures</span>[<span class="ident">id</span>] {
-                        <span class="kw">return</span> <span class="ident">user_texture</span>.<span class="ident">texture</span>;
+    <span class="kw">fn </span>get_texture(<span class="kw-2">&amp;</span><span class="self">self</span>, texture_id: egui::TextureId) -&gt; <span class="prelude-ty">Option</span>&lt;GLuint&gt; {
+        <span class="kw">match </span>texture_id {
+            egui::TextureId::Egui =&gt; <span class="prelude-val">Some</span>(<span class="self">self</span>.egui_texture),
+            egui::TextureId::User(id) =&gt; {
+                <span class="kw">let </span>id = id <span class="kw">as </span>usize;
+                <span class="kw">if </span>id &lt; <span class="self">self</span>.user_textures.len() {
+                    <span class="kw">if let </span><span class="prelude-val">Some</span>(user_texture) = <span class="kw-2">&amp;</span><span class="self">self</span>.user_textures[id] {
+                        <span class="kw">return </span>user_texture.texture;
                     }
                 }
-                <span class="prelude-val">None</span>
-            }
+                <span class="prelude-val">None
+            </span>}
         }
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">update_user_texture_data</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">texture_id</span>: <span class="ident">egui::TextureId</span>, <span class="ident">_pixels</span>: <span class="kw-2">&amp;</span>[<span class="ident">Color32</span>]) {
-        <span class="kw">match</span> <span class="ident">texture_id</span> {
-            <span class="ident">egui::TextureId::Egui</span> =&gt; {}
-            <span class="ident">egui::TextureId::User</span>(<span class="ident">id</span>) =&gt; {
-                <span class="kw">let</span> <span class="ident">id</span> <span class="op">=</span> <span class="ident">id</span> <span class="kw">as</span> <span class="ident">usize</span>;
-                <span class="macro">assert!</span>(<span class="ident">id</span> <span class="op">&lt;</span> <span class="self">self</span>.<span class="ident">user_textures</span>.<span class="ident">len</span>());
-                <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">UserTexture</span> { <span class="ident">pixels</span>, <span class="ident">dirty</span>, .. }) <span class="op">=</span> <span class="kw-2">&amp;mut</span> <span class="self">self</span>.<span class="ident">user_textures</span>[<span class="ident">id</span>] {
+    <span class="kw">pub fn </span>update_user_texture_data(<span class="kw-2">&amp;mut </span><span class="self">self</span>, texture_id: egui::TextureId, _pixels: <span class="kw-2">&amp;</span>[Color32]) {
+        <span class="kw">match </span>texture_id {
+            egui::TextureId::Egui =&gt; {}
+            egui::TextureId::User(id) =&gt; {
+                <span class="kw">let </span>id = id <span class="kw">as </span>usize;
+                <span class="macro">assert!</span>(id &lt; <span class="self">self</span>.user_textures.len());
+                <span class="kw">if let </span><span class="prelude-val">Some</span>(UserTexture { pixels, dirty, .. }) = <span class="kw-2">&amp;mut </span><span class="self">self</span>.user_textures[id] {
                     {
-                        <span class="kw-2">*</span><span class="ident">pixels</span> <span class="op">=</span> <span class="ident">Vec::with_capacity</span>(<span class="ident">pixels</span>.<span class="ident">len</span>() <span class="op">*</span> <span class="number">4</span>);
+                        <span class="kw-2">*</span>pixels = Vec::with_capacity(pixels.len() * <span class="number">4</span>);
                     }
 
-                    <span class="kw">for</span> <span class="ident">p</span> <span class="kw">in</span> <span class="ident">_pixels</span> {
-                        <span class="ident">pixels</span>.<span class="ident">push</span>(<span class="ident">p</span>[<span class="number">0</span>]);
-                        <span class="ident">pixels</span>.<span class="ident">push</span>(<span class="ident">p</span>[<span class="number">1</span>]);
-                        <span class="ident">pixels</span>.<span class="ident">push</span>(<span class="ident">p</span>[<span class="number">2</span>]);
-                        <span class="ident">pixels</span>.<span class="ident">push</span>(<span class="ident">p</span>[<span class="number">3</span>]);
+                    <span class="kw">for </span>p <span class="kw">in </span>_pixels {
+                        pixels.push(p[<span class="number">0</span>]);
+                        pixels.push(p[<span class="number">1</span>]);
+                        pixels.push(p[<span class="number">2</span>]);
+                        pixels.push(p[<span class="number">3</span>]);
                     }
 
-                    <span class="kw-2">*</span><span class="ident">dirty</span> <span class="op">=</span> <span class="bool-val">true</span>;
+                    <span class="kw-2">*</span>dirty = <span class="bool-val">true</span>;
                 }
             }
         }
     }
 
-    <span class="doccomment">/// Updates texture rgba8 data</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">update_user_texture_rgba8_data</span>(
-        <span class="kw-2">&amp;mut</span> <span class="self">self</span>,
-        <span class="ident">texture_id</span>: <span class="ident">egui::TextureId</span>,
-        <span class="ident">rgba8_pixels</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span>,
+    <span class="doccomment">/// Updates texture rgba8 data
+    </span><span class="kw">pub fn </span>update_user_texture_rgba8_data(
+        <span class="kw-2">&amp;mut </span><span class="self">self</span>,
+        texture_id: egui::TextureId,
+        rgba8_pixels: Vec&lt;u8&gt;,
     ) {
-        <span class="kw">match</span> <span class="ident">texture_id</span> {
-            <span class="ident">egui::TextureId::Egui</span> =&gt; {}
-            <span class="ident">egui::TextureId::User</span>(<span class="ident">id</span>) =&gt; {
-                <span class="kw">let</span> <span class="ident">id</span> <span class="op">=</span> <span class="ident">id</span> <span class="kw">as</span> <span class="ident">usize</span>;
-                <span class="kw">if</span> <span class="ident">id</span> <span class="op">&lt;</span> <span class="self">self</span>.<span class="ident">user_textures</span>.<span class="ident">len</span>() {
-                    <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">user_textures</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">user_textures</span>[<span class="ident">id</span>].<span class="ident">as_mut</span>() {
-                        <span class="ident">user_textures</span>.<span class="ident">pixels</span> <span class="op">=</span> <span class="ident">rgba8_pixels</span>;
-                        <span class="ident">user_textures</span>.<span class="ident">dirty</span> <span class="op">=</span> <span class="bool-val">true</span>
-                    }
+        <span class="kw">match </span>texture_id {
+            egui::TextureId::Egui =&gt; {}
+            egui::TextureId::User(id) =&gt; {
+                <span class="kw">let </span>id = id <span class="kw">as </span>usize;
+                <span class="kw">if </span>id &lt; <span class="self">self</span>.user_textures.len() {
+                    <span class="kw">if let </span><span class="prelude-val">Some</span>(user_textures) = <span class="self">self</span>.user_textures[id].as_mut() {
+                        user_textures.pixels = rgba8_pixels;
+                        user_textures.dirty = <span class="bool-val">true
+                    </span>}
                 }
             }
         }
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">paint_jobs</span>(
-        <span class="kw-2">&amp;mut</span> <span class="self">self</span>,
-        <span class="ident">bg_color</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Color32</span><span class="op">&gt;</span>,
-        <span class="ident">meshes</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">ClippedMesh</span><span class="op">&gt;</span>,
-        <span class="ident">egui_texture</span>: <span class="kw-2">&amp;</span><span class="ident">FontImage</span>,
+    <span class="kw">pub fn </span>paint_jobs(
+        <span class="kw-2">&amp;mut </span><span class="self">self</span>,
+        bg_color: <span class="prelude-ty">Option</span>&lt;Color32&gt;,
+        meshes: Vec&lt;ClippedMesh&gt;,
+        egui_texture: <span class="kw-2">&amp;</span>FontImage,
     ) {
-        <span class="kw">unsafe</span> {
-            <span class="ident">gl::PixelStorei</span>(<span class="ident">gl::UNPACK_ROW_LENGTH</span>, <span class="number">0</span>);
-            <span class="ident">gl::PixelStorei</span>(<span class="ident">gl::UNPACK_ALIGNMENT</span>, <span class="number">4</span>);
+        <span class="kw">unsafe </span>{
+            gl::PixelStorei(gl::UNPACK_ROW_LENGTH, <span class="number">0</span>);
+            gl::PixelStorei(gl::UNPACK_ALIGNMENT, <span class="number">4</span>);
         }
 
-        <span class="self">self</span>.<span class="ident">upload_egui_texture</span>(<span class="ident">egui_texture</span>);
-        <span class="self">self</span>.<span class="ident">upload_user_textures</span>();
+        <span class="self">self</span>.upload_egui_texture(egui_texture);
+        <span class="self">self</span>.upload_user_textures();
 
-        <span class="kw">let</span> (<span class="ident">canvas_width</span>, <span class="ident">canvas_height</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">canvas_size</span>;
-        <span class="kw">let</span> <span class="ident">pixels_per_point</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">pixels_per_point</span>;
-        <span class="kw">unsafe</span> {
-            <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">color</span>) <span class="op">=</span> <span class="ident">bg_color</span> {
-                <span class="ident">gl::ClearColor</span>(
-                    <span class="ident">color</span>[<span class="number">0</span>] <span class="kw">as</span> <span class="ident">f32</span> <span class="op">/</span> <span class="number">255.0</span>,
-                    <span class="ident">color</span>[<span class="number">1</span>] <span class="kw">as</span> <span class="ident">f32</span> <span class="op">/</span> <span class="number">255.0</span>,
-                    <span class="ident">color</span>[<span class="number">2</span>] <span class="kw">as</span> <span class="ident">f32</span> <span class="op">/</span> <span class="number">255.0</span>,
-                    <span class="ident">color</span>[<span class="number">3</span>] <span class="kw">as</span> <span class="ident">f32</span> <span class="op">/</span> <span class="number">255.0</span>,
+        <span class="kw">let </span>(canvas_width, canvas_height) = <span class="self">self</span>.canvas_size;
+        <span class="kw">let </span>pixels_per_point = <span class="self">self</span>.pixels_per_point;
+        <span class="kw">unsafe </span>{
+            <span class="kw">if let </span><span class="prelude-val">Some</span>(color) = bg_color {
+                gl::ClearColor(
+                    color[<span class="number">0</span>] <span class="kw">as </span>f32 / <span class="number">255.0</span>,
+                    color[<span class="number">1</span>] <span class="kw">as </span>f32 / <span class="number">255.0</span>,
+                    color[<span class="number">2</span>] <span class="kw">as </span>f32 / <span class="number">255.0</span>,
+                    color[<span class="number">3</span>] <span class="kw">as </span>f32 / <span class="number">255.0</span>,
                 );
 
-                <span class="ident">gl::Clear</span>(<span class="ident">gl::COLOR_BUFFER_BIT</span>);
+                gl::Clear(gl::COLOR_BUFFER_BIT);
             }
-            <span class="comment">//Let OpenGL know we are dealing with SRGB colors so that it</span>
-            <span class="comment">//can do the blending correctly. Not setting the framebuffer</span>
-            <span class="comment">//leads to darkened, oversaturated colors.</span>
-            <span class="ident">gl::Enable</span>(<span class="ident">gl::FRAMEBUFFER_SRGB</span>);
-            <span class="ident">gl::Enable</span>(<span class="ident">gl::SCISSOR_TEST</span>);
-            <span class="ident">gl::Enable</span>(<span class="ident">gl::BLEND</span>);
-            <span class="ident">gl::BlendFunc</span>(<span class="ident">gl::ONE</span>, <span class="ident">gl::ONE_MINUS_SRC_ALPHA</span>); <span class="comment">// premultiplied alpha</span>
-            <span class="ident">gl::UseProgram</span>(<span class="self">self</span>.<span class="ident">program</span>);
-            <span class="ident">gl::ActiveTexture</span>(<span class="ident">gl::TEXTURE0</span>);
+            <span class="comment">//Let OpenGL know we are dealing with SRGB colors so that it
+            //can do the blending correctly. Not setting the framebuffer
+            //leads to darkened, oversaturated colors.
+            </span>gl::Enable(gl::FRAMEBUFFER_SRGB);
+            gl::Enable(gl::SCISSOR_TEST);
+            gl::Enable(gl::BLEND);
+            gl::BlendFunc(gl::ONE, gl::ONE_MINUS_SRC_ALPHA); <span class="comment">// premultiplied alpha
+            </span>gl::UseProgram(<span class="self">self</span>.program);
+            gl::ActiveTexture(gl::TEXTURE0);
 
-            <span class="kw">let</span> <span class="ident">u_screen_size</span> <span class="op">=</span> <span class="ident">CString::new</span>(<span class="string">&quot;u_screen_size&quot;</span>).<span class="ident">unwrap</span>();
-            <span class="kw">let</span> <span class="ident">u_screen_size_ptr</span> <span class="op">=</span> <span class="ident">u_screen_size</span>.<span class="ident">as_ptr</span>();
-            <span class="kw">let</span> <span class="ident">u_screen_size_loc</span> <span class="op">=</span> <span class="ident">gl::GetUniformLocation</span>(<span class="self">self</span>.<span class="ident">program</span>, <span class="ident">u_screen_size_ptr</span>);
-            <span class="kw">let</span> (<span class="ident">x</span>, <span class="ident">y</span>) <span class="op">=</span> (<span class="self">self</span>.<span class="ident">screen_rect</span>.<span class="ident">width</span>(), <span class="self">self</span>.<span class="ident">screen_rect</span>.<span class="ident">height</span>());
-            <span class="ident">gl::Uniform2f</span>(<span class="ident">u_screen_size_loc</span>, <span class="ident">x</span>, <span class="ident">y</span>);
-            <span class="kw">let</span> <span class="ident">u_sampler</span> <span class="op">=</span> <span class="ident">CString::new</span>(<span class="string">&quot;u_sampler&quot;</span>).<span class="ident">unwrap</span>();
-            <span class="kw">let</span> <span class="ident">u_sampler_ptr</span> <span class="op">=</span> <span class="ident">u_sampler</span>.<span class="ident">as_ptr</span>();
-            <span class="kw">let</span> <span class="ident">u_sampler_loc</span> <span class="op">=</span> <span class="ident">gl::GetUniformLocation</span>(<span class="self">self</span>.<span class="ident">program</span>, <span class="ident">u_sampler_ptr</span>);
-            <span class="ident">gl::Uniform1i</span>(<span class="ident">u_sampler_loc</span>, <span class="number">0</span>);
-            <span class="ident">gl::Viewport</span>(<span class="number">0</span>, <span class="number">0</span>, <span class="ident">canvas_width</span> <span class="kw">as</span> <span class="ident">i32</span>, <span class="ident">canvas_height</span> <span class="kw">as</span> <span class="ident">i32</span>);
-            <span class="kw">let</span> <span class="ident">screen_x</span> <span class="op">=</span> <span class="ident">canvas_width</span> <span class="kw">as</span> <span class="ident">f32</span>;
-            <span class="kw">let</span> <span class="ident">screen_y</span> <span class="op">=</span> <span class="ident">canvas_height</span> <span class="kw">as</span> <span class="ident">f32</span>;
+            <span class="kw">let </span>u_screen_size = CString::new(<span class="string">&quot;u_screen_size&quot;</span>).unwrap();
+            <span class="kw">let </span>u_screen_size_ptr = u_screen_size.as_ptr();
+            <span class="kw">let </span>u_screen_size_loc = gl::GetUniformLocation(<span class="self">self</span>.program, u_screen_size_ptr);
+            <span class="kw">let </span>(x, y) = (<span class="self">self</span>.screen_rect.width(), <span class="self">self</span>.screen_rect.height());
+            gl::Uniform2f(u_screen_size_loc, x, y);
+            <span class="kw">let </span>u_sampler = CString::new(<span class="string">&quot;u_sampler&quot;</span>).unwrap();
+            <span class="kw">let </span>u_sampler_ptr = u_sampler.as_ptr();
+            <span class="kw">let </span>u_sampler_loc = gl::GetUniformLocation(<span class="self">self</span>.program, u_sampler_ptr);
+            gl::Uniform1i(u_sampler_loc, <span class="number">0</span>);
+            gl::Viewport(<span class="number">0</span>, <span class="number">0</span>, canvas_width <span class="kw">as </span>i32, canvas_height <span class="kw">as </span>i32);
+            <span class="kw">let </span>screen_x = canvas_width <span class="kw">as </span>f32;
+            <span class="kw">let </span>screen_y = canvas_height <span class="kw">as </span>f32;
 
-            <span class="kw">for</span> <span class="ident">ClippedMesh</span>(<span class="ident">clip_rect</span>, <span class="ident">mesh</span>) <span class="kw">in</span> <span class="ident">meshes</span> {
-                <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">texture_id</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">get_texture</span>(<span class="ident">mesh</span>.<span class="ident">texture_id</span>) {
-                    <span class="ident">gl::BindTexture</span>(<span class="ident">gl::TEXTURE_2D</span>, <span class="ident">texture_id</span>);
-                    <span class="kw">let</span> <span class="ident">clip_min_x</span> <span class="op">=</span> <span class="ident">pixels_per_point</span> <span class="op">*</span> <span class="ident">clip_rect</span>.<span class="ident">min</span>.<span class="ident">x</span>;
-                    <span class="kw">let</span> <span class="ident">clip_min_y</span> <span class="op">=</span> <span class="ident">pixels_per_point</span> <span class="op">*</span> <span class="ident">clip_rect</span>.<span class="ident">min</span>.<span class="ident">y</span>;
-                    <span class="kw">let</span> <span class="ident">clip_max_x</span> <span class="op">=</span> <span class="ident">pixels_per_point</span> <span class="op">*</span> <span class="ident">clip_rect</span>.<span class="ident">max</span>.<span class="ident">x</span>;
-                    <span class="kw">let</span> <span class="ident">clip_max_y</span> <span class="op">=</span> <span class="ident">pixels_per_point</span> <span class="op">*</span> <span class="ident">clip_rect</span>.<span class="ident">max</span>.<span class="ident">y</span>;
-                    <span class="kw">let</span> <span class="ident">clip_min_x</span> <span class="op">=</span> <span class="ident">clip_min_x</span>.<span class="ident">clamp</span>(<span class="number">0.0</span>, <span class="ident">x</span>);
-                    <span class="kw">let</span> <span class="ident">clip_min_y</span> <span class="op">=</span> <span class="ident">clip_min_y</span>.<span class="ident">clamp</span>(<span class="number">0.0</span>, <span class="ident">y</span>);
-                    <span class="kw">let</span> <span class="ident">clip_max_x</span> <span class="op">=</span> <span class="ident">clip_max_x</span>.<span class="ident">clamp</span>(<span class="ident">clip_min_x</span>, <span class="ident">screen_x</span>);
-                    <span class="kw">let</span> <span class="ident">clip_max_y</span> <span class="op">=</span> <span class="ident">clip_max_y</span>.<span class="ident">clamp</span>(<span class="ident">clip_min_y</span>, <span class="ident">screen_y</span>);
-                    <span class="kw">let</span> <span class="ident">clip_min_x</span> <span class="op">=</span> <span class="ident">clip_min_x</span>.<span class="ident">round</span>() <span class="kw">as</span> <span class="ident">i32</span>;
-                    <span class="kw">let</span> <span class="ident">clip_min_y</span> <span class="op">=</span> <span class="ident">clip_min_y</span>.<span class="ident">round</span>() <span class="kw">as</span> <span class="ident">i32</span>;
-                    <span class="kw">let</span> <span class="ident">clip_max_x</span> <span class="op">=</span> <span class="ident">clip_max_x</span>.<span class="ident">round</span>() <span class="kw">as</span> <span class="ident">i32</span>;
-                    <span class="kw">let</span> <span class="ident">clip_max_y</span> <span class="op">=</span> <span class="ident">clip_max_y</span>.<span class="ident">round</span>() <span class="kw">as</span> <span class="ident">i32</span>;
+            <span class="kw">for </span>ClippedMesh(clip_rect, mesh) <span class="kw">in </span>meshes {
+                <span class="kw">if let </span><span class="prelude-val">Some</span>(texture_id) = <span class="self">self</span>.get_texture(mesh.texture_id) {
+                    gl::BindTexture(gl::TEXTURE_2D, texture_id);
+                    <span class="kw">let </span>clip_min_x = pixels_per_point * clip_rect.min.x;
+                    <span class="kw">let </span>clip_min_y = pixels_per_point * clip_rect.min.y;
+                    <span class="kw">let </span>clip_max_x = pixels_per_point * clip_rect.max.x;
+                    <span class="kw">let </span>clip_max_y = pixels_per_point * clip_rect.max.y;
+                    <span class="kw">let </span>clip_min_x = clip_min_x.clamp(<span class="number">0.0</span>, x);
+                    <span class="kw">let </span>clip_min_y = clip_min_y.clamp(<span class="number">0.0</span>, y);
+                    <span class="kw">let </span>clip_max_x = clip_max_x.clamp(clip_min_x, screen_x);
+                    <span class="kw">let </span>clip_max_y = clip_max_y.clamp(clip_min_y, screen_y);
+                    <span class="kw">let </span>clip_min_x = clip_min_x.round() <span class="kw">as </span>i32;
+                    <span class="kw">let </span>clip_min_y = clip_min_y.round() <span class="kw">as </span>i32;
+                    <span class="kw">let </span>clip_max_x = clip_max_x.round() <span class="kw">as </span>i32;
+                    <span class="kw">let </span>clip_max_y = clip_max_y.round() <span class="kw">as </span>i32;
 
-                    <span class="comment">//scissor Y coordinate is from the bottom</span>
-                    <span class="ident">gl::Scissor</span>(
-                        <span class="ident">clip_min_x</span>,
-                        <span class="ident">canvas_height</span> <span class="kw">as</span> <span class="ident">i32</span> <span class="op">-</span> <span class="ident">clip_max_y</span>,
-                        <span class="ident">clip_max_x</span> <span class="op">-</span> <span class="ident">clip_min_x</span>,
-                        <span class="ident">clip_max_y</span> <span class="op">-</span> <span class="ident">clip_min_y</span>,
+                    <span class="comment">//scissor Y coordinate is from the bottom
+                    </span>gl::Scissor(
+                        clip_min_x,
+                        canvas_height <span class="kw">as </span>i32 - clip_max_y,
+                        clip_max_x - clip_min_x,
+                        clip_max_y - clip_min_y,
                     );
 
-                    <span class="self">self</span>.<span class="ident">paint_mesh</span>(<span class="kw-2">&amp;</span><span class="ident">mesh</span>);
+                    <span class="self">self</span>.paint_mesh(<span class="kw-2">&amp;</span>mesh);
                 }
             }
 
-            <span class="ident">gl::Disable</span>(<span class="ident">gl::SCISSOR_TEST</span>);
-            <span class="ident">gl::Disable</span>(<span class="ident">gl::FRAMEBUFFER_SRGB</span>);
-            <span class="ident">gl::Disable</span>(<span class="ident">gl::BLEND</span>);
+            gl::Disable(gl::SCISSOR_TEST);
+            gl::Disable(gl::FRAMEBUFFER_SRGB);
+            gl::Disable(gl::BLEND);
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">paint_mesh</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">mesh</span>: <span class="kw-2">&amp;</span><span class="ident">Mesh</span>) {
-        <span class="macro">debug_assert!</span>(<span class="ident">mesh</span>.<span class="ident">is_valid</span>());
-        <span class="kw">unsafe</span> {
-            <span class="kw">let</span> <span class="ident">indices</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u16</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">mesh</span>.<span class="ident">indices</span>.<span class="ident">iter</span>().<span class="ident">map</span>(<span class="kw">move</span> <span class="op">|</span><span class="ident">idx</span><span class="op">|</span> <span class="kw-2">*</span><span class="ident">idx</span> <span class="kw">as</span> <span class="ident">u16</span>).<span class="ident">collect</span>();
-            <span class="kw">let</span> <span class="ident">indices_len</span> <span class="op">=</span> <span class="ident">indices</span>.<span class="ident">len</span>();
-            <span class="kw">let</span> <span class="ident">vertices</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">mesh</span>.<span class="ident">vertices</span>;
-            <span class="kw">let</span> <span class="ident">vertices_len</span> <span class="op">=</span> <span class="ident">vertices</span>.<span class="ident">len</span>();
+    <span class="kw">fn </span>paint_mesh(<span class="kw-2">&amp;</span><span class="self">self</span>, mesh: <span class="kw-2">&amp;</span>Mesh) {
+        <span class="macro">debug_assert!</span>(mesh.is_valid());
+        <span class="kw">unsafe </span>{
+            <span class="kw">let </span>indices: Vec&lt;u16&gt; = mesh.indices.iter().map(<span class="kw">move </span>|idx| <span class="kw-2">*</span>idx <span class="kw">as </span>u16).collect();
+            <span class="kw">let </span>indices_len = indices.len();
+            <span class="kw">let </span>vertices = <span class="kw-2">&amp;</span>mesh.vertices;
+            <span class="kw">let </span>vertices_len = vertices.len();
 
-            <span class="comment">// --------------------------------------------------------------------</span>
+            <span class="comment">// --------------------------------------------------------------------
 
-            <span class="ident">gl::BindVertexArray</span>(<span class="self">self</span>.<span class="ident">vertex_array</span>);
-            <span class="ident">gl::BindBuffer</span>(<span class="ident">gl::ELEMENT_ARRAY_BUFFER</span>, <span class="self">self</span>.<span class="ident">index_buffer</span>);
-            <span class="ident">gl::BufferData</span>(
-                <span class="ident">gl::ELEMENT_ARRAY_BUFFER</span>,
-                (<span class="ident">indices_len</span> <span class="op">*</span> <span class="ident">mem::size_of</span>::<span class="op">&lt;</span><span class="ident">u16</span><span class="op">&gt;</span>()) <span class="kw">as</span> <span class="ident">GLsizeiptr</span>,
-                <span class="comment">//mem::transmute(&amp;indices.as_ptr()),</span>
-                <span class="ident">indices</span>.<span class="ident">as_ptr</span>() <span class="kw">as</span> <span class="kw-2">*const</span> <span class="ident">gl::types::GLvoid</span>,
-                <span class="ident">gl::STREAM_DRAW</span>,
+            </span>gl::BindVertexArray(<span class="self">self</span>.vertex_array);
+            gl::BindBuffer(gl::ELEMENT_ARRAY_BUFFER, <span class="self">self</span>.index_buffer);
+            gl::BufferData(
+                gl::ELEMENT_ARRAY_BUFFER,
+                (indices_len * mem::size_of::&lt;u16&gt;()) <span class="kw">as </span>GLsizeiptr,
+                <span class="comment">//mem::transmute(&amp;indices.as_ptr()),
+                </span>indices.as_ptr() <span class="kw">as </span><span class="kw-2">*const </span>gl::types::GLvoid,
+                gl::STREAM_DRAW,
             );
 
-            <span class="comment">// --------------------------------------------------------------------</span>
+            <span class="comment">// --------------------------------------------------------------------
 
-            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">positions</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">f32</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">Vec::with_capacity</span>(<span class="number">2</span> <span class="op">*</span> <span class="ident">vertices_len</span>);
-            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">tex_coords</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">f32</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">Vec::with_capacity</span>(<span class="number">2</span> <span class="op">*</span> <span class="ident">vertices_len</span>);
+            </span><span class="kw">let </span><span class="kw-2">mut </span>positions: Vec&lt;f32&gt; = Vec::with_capacity(<span class="number">2 </span>* vertices_len);
+            <span class="kw">let </span><span class="kw-2">mut </span>tex_coords: Vec&lt;f32&gt; = Vec::with_capacity(<span class="number">2 </span>* vertices_len);
             {
-                <span class="kw">for</span> <span class="ident">v</span> <span class="kw">in</span> <span class="kw-2">&amp;</span><span class="ident">mesh</span>.<span class="ident">vertices</span> {
-                    <span class="ident">positions</span>.<span class="ident">push</span>(<span class="ident">v</span>.<span class="ident">pos</span>.<span class="ident">x</span>);
-                    <span class="ident">positions</span>.<span class="ident">push</span>(<span class="ident">v</span>.<span class="ident">pos</span>.<span class="ident">y</span>);
-                    <span class="ident">tex_coords</span>.<span class="ident">push</span>(<span class="ident">v</span>.<span class="ident">uv</span>.<span class="ident">x</span>);
-                    <span class="ident">tex_coords</span>.<span class="ident">push</span>(<span class="ident">v</span>.<span class="ident">uv</span>.<span class="ident">y</span>);
+                <span class="kw">for </span>v <span class="kw">in </span><span class="kw-2">&amp;</span>mesh.vertices {
+                    positions.push(v.pos.x);
+                    positions.push(v.pos.y);
+                    tex_coords.push(v.uv.x);
+                    tex_coords.push(v.uv.y);
                 }
             }
 
-            <span class="comment">// --------------------------------------------------------------------</span>
+            <span class="comment">// --------------------------------------------------------------------
 
-            <span class="ident">gl::BindBuffer</span>(<span class="ident">gl::ARRAY_BUFFER</span>, <span class="self">self</span>.<span class="ident">pos_buffer</span>);
-            <span class="ident">gl::BufferData</span>(
-                <span class="ident">gl::ARRAY_BUFFER</span>,
-                (<span class="ident">positions</span>.<span class="ident">len</span>() <span class="op">*</span> <span class="ident">mem::size_of</span>::<span class="op">&lt;</span><span class="ident">f32</span><span class="op">&gt;</span>()) <span class="kw">as</span> <span class="ident">GLsizeiptr</span>,
-                <span class="comment">//mem::transmute(&amp;positions.as_ptr()),</span>
-                <span class="ident">positions</span>.<span class="ident">as_ptr</span>() <span class="kw">as</span> <span class="kw-2">*const</span> <span class="ident">gl::types::GLvoid</span>,
-                <span class="ident">gl::STREAM_DRAW</span>,
+            </span>gl::BindBuffer(gl::ARRAY_BUFFER, <span class="self">self</span>.pos_buffer);
+            gl::BufferData(
+                gl::ARRAY_BUFFER,
+                (positions.len() * mem::size_of::&lt;f32&gt;()) <span class="kw">as </span>GLsizeiptr,
+                <span class="comment">//mem::transmute(&amp;positions.as_ptr()),
+                </span>positions.as_ptr() <span class="kw">as </span><span class="kw-2">*const </span>gl::types::GLvoid,
+                gl::STREAM_DRAW,
             );
 
-            <span class="kw">let</span> <span class="ident">a_pos</span> <span class="op">=</span> <span class="ident">CString::new</span>(<span class="string">&quot;a_pos&quot;</span>).<span class="ident">unwrap</span>();
-            <span class="kw">let</span> <span class="ident">a_pos_ptr</span> <span class="op">=</span> <span class="ident">a_pos</span>.<span class="ident">as_ptr</span>();
-            <span class="kw">let</span> <span class="ident">a_pos_loc</span> <span class="op">=</span> <span class="ident">gl::GetAttribLocation</span>(<span class="self">self</span>.<span class="ident">program</span>, <span class="ident">a_pos_ptr</span>);
-            <span class="macro">assert!</span>(<span class="ident">a_pos_loc</span> <span class="op">&gt;</span><span class="op">=</span> <span class="number">0</span>);
-            <span class="kw">let</span> <span class="ident">a_pos_loc</span> <span class="op">=</span> <span class="ident">a_pos_loc</span> <span class="kw">as</span> <span class="ident">u32</span>;
+            <span class="kw">let </span>a_pos = CString::new(<span class="string">&quot;a_pos&quot;</span>).unwrap();
+            <span class="kw">let </span>a_pos_ptr = a_pos.as_ptr();
+            <span class="kw">let </span>a_pos_loc = gl::GetAttribLocation(<span class="self">self</span>.program, a_pos_ptr);
+            <span class="macro">assert!</span>(a_pos_loc &gt;= <span class="number">0</span>);
+            <span class="kw">let </span>a_pos_loc = a_pos_loc <span class="kw">as </span>u32;
 
-            <span class="kw">let</span> <span class="ident">stride</span> <span class="op">=</span> <span class="number">0</span>;
-            <span class="ident">gl::VertexAttribPointer</span>(<span class="ident">a_pos_loc</span>, <span class="number">2</span>, <span class="ident">gl::FLOAT</span>, <span class="ident">gl::FALSE</span>, <span class="ident">stride</span>, <span class="ident">ptr::null</span>());
-            <span class="ident">gl::EnableVertexAttribArray</span>(<span class="ident">a_pos_loc</span>);
+            <span class="kw">let </span>stride = <span class="number">0</span>;
+            gl::VertexAttribPointer(a_pos_loc, <span class="number">2</span>, gl::FLOAT, gl::FALSE, stride, ptr::null());
+            gl::EnableVertexAttribArray(a_pos_loc);
 
-            <span class="comment">// --------------------------------------------------------------------</span>
+            <span class="comment">// --------------------------------------------------------------------
 
-            <span class="ident">gl::BindBuffer</span>(<span class="ident">gl::ARRAY_BUFFER</span>, <span class="self">self</span>.<span class="ident">tc_buffer</span>);
-            <span class="ident">gl::BufferData</span>(
-                <span class="ident">gl::ARRAY_BUFFER</span>,
-                (<span class="ident">tex_coords</span>.<span class="ident">len</span>() <span class="op">*</span> <span class="ident">mem::size_of</span>::<span class="op">&lt;</span><span class="ident">f32</span><span class="op">&gt;</span>()) <span class="kw">as</span> <span class="ident">GLsizeiptr</span>,
-                <span class="comment">//mem::transmute(&amp;tex_coords.as_ptr()),</span>
-                <span class="ident">tex_coords</span>.<span class="ident">as_ptr</span>() <span class="kw">as</span> <span class="kw-2">*const</span> <span class="ident">gl::types::GLvoid</span>,
-                <span class="ident">gl::STREAM_DRAW</span>,
+            </span>gl::BindBuffer(gl::ARRAY_BUFFER, <span class="self">self</span>.tc_buffer);
+            gl::BufferData(
+                gl::ARRAY_BUFFER,
+                (tex_coords.len() * mem::size_of::&lt;f32&gt;()) <span class="kw">as </span>GLsizeiptr,
+                <span class="comment">//mem::transmute(&amp;tex_coords.as_ptr()),
+                </span>tex_coords.as_ptr() <span class="kw">as </span><span class="kw-2">*const </span>gl::types::GLvoid,
+                gl::STREAM_DRAW,
             );
 
-            <span class="kw">let</span> <span class="ident">a_tc</span> <span class="op">=</span> <span class="ident">CString::new</span>(<span class="string">&quot;a_tc&quot;</span>).<span class="ident">unwrap</span>();
-            <span class="kw">let</span> <span class="ident">a_tc_ptr</span> <span class="op">=</span> <span class="ident">a_tc</span>.<span class="ident">as_ptr</span>();
-            <span class="kw">let</span> <span class="ident">a_tc_loc</span> <span class="op">=</span> <span class="ident">gl::GetAttribLocation</span>(<span class="self">self</span>.<span class="ident">program</span>, <span class="ident">a_tc_ptr</span>);
-            <span class="macro">assert!</span>(<span class="ident">a_tc_loc</span> <span class="op">&gt;</span><span class="op">=</span> <span class="number">0</span>);
-            <span class="kw">let</span> <span class="ident">a_tc_loc</span> <span class="op">=</span> <span class="ident">a_tc_loc</span> <span class="kw">as</span> <span class="ident">u32</span>;
+            <span class="kw">let </span>a_tc = CString::new(<span class="string">&quot;a_tc&quot;</span>).unwrap();
+            <span class="kw">let </span>a_tc_ptr = a_tc.as_ptr();
+            <span class="kw">let </span>a_tc_loc = gl::GetAttribLocation(<span class="self">self</span>.program, a_tc_ptr);
+            <span class="macro">assert!</span>(a_tc_loc &gt;= <span class="number">0</span>);
+            <span class="kw">let </span>a_tc_loc = a_tc_loc <span class="kw">as </span>u32;
 
-            <span class="kw">let</span> <span class="ident">stride</span> <span class="op">=</span> <span class="number">0</span>;
-            <span class="ident">gl::VertexAttribPointer</span>(<span class="ident">a_tc_loc</span>, <span class="number">2</span>, <span class="ident">gl::FLOAT</span>, <span class="ident">gl::FALSE</span>, <span class="ident">stride</span>, <span class="ident">ptr::null</span>());
-            <span class="ident">gl::EnableVertexAttribArray</span>(<span class="ident">a_tc_loc</span>);
+            <span class="kw">let </span>stride = <span class="number">0</span>;
+            gl::VertexAttribPointer(a_tc_loc, <span class="number">2</span>, gl::FLOAT, gl::FALSE, stride, ptr::null());
+            gl::EnableVertexAttribArray(a_tc_loc);
 
-            <span class="comment">// --------------------------------------------------------------------</span>
+            <span class="comment">// --------------------------------------------------------------------
 
-            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">colors</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">Vec::with_capacity</span>(<span class="number">4</span> <span class="op">*</span> <span class="ident">vertices_len</span>);
+            </span><span class="kw">let </span><span class="kw-2">mut </span>colors: Vec&lt;u8&gt; = Vec::with_capacity(<span class="number">4 </span>* vertices_len);
             {
-                <span class="kw">for</span> <span class="ident">v</span> <span class="kw">in</span> <span class="ident">vertices</span> {
-                    <span class="ident">colors</span>.<span class="ident">push</span>(<span class="ident">v</span>.<span class="ident">color</span>[<span class="number">0</span>]);
-                    <span class="ident">colors</span>.<span class="ident">push</span>(<span class="ident">v</span>.<span class="ident">color</span>[<span class="number">1</span>]);
-                    <span class="ident">colors</span>.<span class="ident">push</span>(<span class="ident">v</span>.<span class="ident">color</span>[<span class="number">2</span>]);
-                    <span class="ident">colors</span>.<span class="ident">push</span>(<span class="ident">v</span>.<span class="ident">color</span>[<span class="number">3</span>]);
+                <span class="kw">for </span>v <span class="kw">in </span>vertices {
+                    colors.push(v.color[<span class="number">0</span>]);
+                    colors.push(v.color[<span class="number">1</span>]);
+                    colors.push(v.color[<span class="number">2</span>]);
+                    colors.push(v.color[<span class="number">3</span>]);
                 }
             }
 
-            <span class="ident">gl::BindBuffer</span>(<span class="ident">gl::ARRAY_BUFFER</span>, <span class="self">self</span>.<span class="ident">color_buffer</span>);
-            <span class="ident">gl::BufferData</span>(
-                <span class="ident">gl::ARRAY_BUFFER</span>,
-                (<span class="ident">colors</span>.<span class="ident">len</span>() <span class="op">*</span> <span class="ident">mem::size_of</span>::<span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span>()) <span class="kw">as</span> <span class="ident">GLsizeiptr</span>,
-                <span class="comment">//mem::transmute(&amp;colors.as_ptr()),</span>
-                <span class="ident">colors</span>.<span class="ident">as_ptr</span>() <span class="kw">as</span> <span class="kw-2">*const</span> <span class="ident">gl::types::GLvoid</span>,
-                <span class="ident">gl::STREAM_DRAW</span>,
+            gl::BindBuffer(gl::ARRAY_BUFFER, <span class="self">self</span>.color_buffer);
+            gl::BufferData(
+                gl::ARRAY_BUFFER,
+                (colors.len() * mem::size_of::&lt;u8&gt;()) <span class="kw">as </span>GLsizeiptr,
+                <span class="comment">//mem::transmute(&amp;colors.as_ptr()),
+                </span>colors.as_ptr() <span class="kw">as </span><span class="kw-2">*const </span>gl::types::GLvoid,
+                gl::STREAM_DRAW,
             );
 
-            <span class="kw">let</span> <span class="ident">a_srgba</span> <span class="op">=</span> <span class="ident">CString::new</span>(<span class="string">&quot;a_srgba&quot;</span>).<span class="ident">unwrap</span>();
-            <span class="kw">let</span> <span class="ident">a_srgba_ptr</span> <span class="op">=</span> <span class="ident">a_srgba</span>.<span class="ident">as_ptr</span>();
-            <span class="kw">let</span> <span class="ident">a_srgba_loc</span> <span class="op">=</span> <span class="ident">gl::GetAttribLocation</span>(<span class="self">self</span>.<span class="ident">program</span>, <span class="ident">a_srgba_ptr</span>);
-            <span class="macro">assert!</span>(<span class="ident">a_srgba_loc</span> <span class="op">&gt;</span><span class="op">=</span> <span class="number">0</span>);
-            <span class="kw">let</span> <span class="ident">a_srgba_loc</span> <span class="op">=</span> <span class="ident">a_srgba_loc</span> <span class="kw">as</span> <span class="ident">u32</span>;
+            <span class="kw">let </span>a_srgba = CString::new(<span class="string">&quot;a_srgba&quot;</span>).unwrap();
+            <span class="kw">let </span>a_srgba_ptr = a_srgba.as_ptr();
+            <span class="kw">let </span>a_srgba_loc = gl::GetAttribLocation(<span class="self">self</span>.program, a_srgba_ptr);
+            <span class="macro">assert!</span>(a_srgba_loc &gt;= <span class="number">0</span>);
+            <span class="kw">let </span>a_srgba_loc = a_srgba_loc <span class="kw">as </span>u32;
 
-            <span class="kw">let</span> <span class="ident">stride</span> <span class="op">=</span> <span class="number">0</span>;
-            <span class="ident">gl::VertexAttribPointer</span>(
-                <span class="ident">a_srgba_loc</span>,
+            <span class="kw">let </span>stride = <span class="number">0</span>;
+            gl::VertexAttribPointer(
+                a_srgba_loc,
                 <span class="number">4</span>,
-                <span class="ident">gl::UNSIGNED_BYTE</span>,
-                <span class="ident">gl::FALSE</span>,
-                <span class="ident">stride</span>,
-                <span class="ident">ptr::null</span>(),
+                gl::UNSIGNED_BYTE,
+                gl::FALSE,
+                stride,
+                ptr::null(),
             );
-            <span class="ident">gl::EnableVertexAttribArray</span>(<span class="ident">a_srgba_loc</span>);
+            gl::EnableVertexAttribArray(a_srgba_loc);
 
-            <span class="comment">// --------------------------------------------------------------------</span>
-            <span class="ident">gl::DrawElements</span>(
-                <span class="ident">gl::TRIANGLES</span>,
-                <span class="ident">indices_len</span> <span class="kw">as</span> <span class="ident">i32</span>,
-                <span class="ident">gl::UNSIGNED_SHORT</span>,
-                <span class="ident">ptr::null</span>(),
+            <span class="comment">// --------------------------------------------------------------------
+            </span>gl::DrawElements(
+                gl::TRIANGLES,
+                indices_len <span class="kw">as </span>i32,
+                gl::UNSIGNED_SHORT,
+                ptr::null(),
             );
-            <span class="ident">gl::DisableVertexAttribArray</span>(<span class="ident">a_pos_loc</span>);
-            <span class="ident">gl::DisableVertexAttribArray</span>(<span class="ident">a_tc_loc</span>);
-            <span class="ident">gl::DisableVertexAttribArray</span>(<span class="ident">a_srgba_loc</span>);
+            gl::DisableVertexAttribArray(a_pos_loc);
+            gl::DisableVertexAttribArray(a_tc_loc);
+            gl::DisableVertexAttribArray(a_srgba_loc);
         }
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">cleanup</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) {
-        <span class="kw">unsafe</span> {
-            <span class="ident">gl::DeleteSync</span>(<span class="self">self</span>.<span class="ident">gl_sync_fence</span>);
-            <span class="kw">for</span> <span class="ident">user</span> <span class="kw">in</span> <span class="self">self</span>.<span class="ident">user_textures</span>.<span class="ident">iter</span>().<span class="ident">flatten</span>() {
-                <span class="kw">if</span> <span class="ident">user</span>.<span class="ident">texture</span>.<span class="ident">is_some</span>() {
-                    <span class="ident">gl::DeleteTextures</span>(<span class="number">1</span>, <span class="kw-2">&amp;</span><span class="ident">user</span>.<span class="ident">texture</span>.<span class="ident">unwrap</span>());
+    <span class="kw">pub fn </span>cleanup(<span class="kw-2">&amp;</span><span class="self">self</span>) {
+        <span class="kw">unsafe </span>{
+            gl::DeleteSync(<span class="self">self</span>.gl_sync_fence);
+            <span class="kw">for </span>user <span class="kw">in </span><span class="self">self</span>.user_textures.iter().flatten() {
+                <span class="kw">if </span>user.texture.is_some() {
+                    gl::DeleteTextures(<span class="number">1</span>, <span class="kw-2">&amp;</span>user.texture.unwrap());
                 }
             }
 
-            <span class="ident">gl::DeleteProgram</span>(<span class="self">self</span>.<span class="ident">program</span>);
-            <span class="ident">gl::DeleteBuffers</span>(<span class="number">1</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">pos_buffer</span>);
-            <span class="ident">gl::DeleteBuffers</span>(<span class="number">1</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">tc_buffer</span>);
-            <span class="ident">gl::DeleteBuffers</span>(<span class="number">1</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">color_buffer</span>);
-            <span class="ident">gl::DeleteBuffers</span>(<span class="number">1</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">index_buffer</span>);
-            <span class="ident">gl::DeleteTextures</span>(<span class="number">1</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">egui_texture</span>);
-            <span class="ident">gl::DeleteVertexArrays</span>(<span class="number">1</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">vertex_array</span>);
+            gl::DeleteProgram(<span class="self">self</span>.program);
+            gl::DeleteBuffers(<span class="number">1</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.pos_buffer);
+            gl::DeleteBuffers(<span class="number">1</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.tc_buffer);
+            gl::DeleteBuffers(<span class="number">1</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.color_buffer);
+            gl::DeleteBuffers(<span class="number">1</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.index_buffer);
+            gl::DeleteTextures(<span class="number">1</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.egui_texture);
+            gl::DeleteVertexArrays(<span class="number">1</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.vertex_array);
         }
     }
 }
 
-<span class="kw">impl</span> <span class="ident">Drop</span> <span class="kw">for</span> <span class="ident">Painter</span> {
-    <span class="kw">fn</span> <span class="ident">drop</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>) {
-        <span class="self">self</span>.<span class="ident">cleanup</span>();
+<span class="kw">impl </span>Drop <span class="kw">for </span>Painter {
+    <span class="kw">fn </span>drop(<span class="kw-2">&amp;mut </span><span class="self">self</span>) {
+        <span class="self">self</span>.cleanup();
     }
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="egui_sdl2_gl" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0 (a55dd71d5 2022-09-19)" ></div></body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="egui_sdl2_gl" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.66.1 (90743e729 2023-01-10)" ></div></body></html>

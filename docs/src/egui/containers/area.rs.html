@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/egui-0.16.1/src/containers/area.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>area.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../storage.js"></script><script defer src="../../../source-script.js"></script><script defer src="../../../source-files.js"></script><script defer src="../../../main.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../../egui/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../../egui/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../../egui/index.html"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/egui-0.16.1/src/containers/area.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>area.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../../normalize.css"><link rel="stylesheet" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../../ayu.css" disabled><link rel="stylesheet" href="../../../dark.css" disabled><link rel="stylesheet" href="../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../storage.js"></script><script defer src="../../../source-script.js"></script><script defer src="../../../source-files.js"></script><script defer src="../../../main.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><div class="width-limiter"><nav class="sub"><a class="sub-logo-container" href="../../../egui/index.html"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../wheel.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -446,453 +446,453 @@
 <span id="446">446</span>
 <span id="447">447</span>
 <span id="448">448</span>
-</pre><pre class="rust"><code><span class="doccomment">//! Area is a `Ui` that has no parent, it floats on the background.</span>
-<span class="doccomment">//! It has no frame or own size. It is potentially movable.</span>
-<span class="doccomment">//! It is the foundation for windows and popups.</span>
+</pre><pre class="rust"><code><span class="doccomment">//! Area is a `Ui` that has no parent, it floats on the background.
+//! It has no frame or own size. It is potentially movable.
+//! It is the foundation for windows and popups.
 
-<span class="kw">use</span> <span class="ident">std</span>::{<span class="ident">fmt::Debug</span>, <span class="ident">hash::Hash</span>};
+</span><span class="kw">use </span>std::{fmt::Debug, hash::Hash};
 
-<span class="kw">use</span> <span class="kw">crate</span>::<span class="kw-2">*</span>;
+<span class="kw">use crate</span>::<span class="kw-2">*</span>;
 
-<span class="doccomment">/// State that is persisted between frames.</span>
-<span class="comment">// TODO: this is not currently stored in `memory().data`, but maybe it should be?</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">Debug</span>)]</span>
-<span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;serde&quot;</span>, <span class="ident">derive</span>(<span class="ident">serde::Deserialize</span>, <span class="ident">serde::Serialize</span>))]</span>
-<span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">struct</span> <span class="ident">State</span> {
-    <span class="doccomment">/// Last known pos</span>
-    <span class="kw">pub</span> <span class="ident">pos</span>: <span class="ident">Pos2</span>,
+<span class="doccomment">/// State that is persisted between frames.
+</span><span class="comment">// TODO: this is not currently stored in `memory().data`, but maybe it should be?
+</span><span class="attribute">#[derive(Clone, Copy, Debug)]
+#[cfg_attr(feature = <span class="string">&quot;serde&quot;</span>, derive(serde::Deserialize, serde::Serialize))]
+</span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">struct </span>State {
+    <span class="doccomment">/// Last known pos
+    </span><span class="kw">pub </span>pos: Pos2,
 
-    <span class="doccomment">/// Last know size. Used for catching clicks.</span>
-    <span class="kw">pub</span> <span class="ident">size</span>: <span class="ident">Vec2</span>,
+    <span class="doccomment">/// Last know size. Used for catching clicks.
+    </span><span class="kw">pub </span>size: Vec2,
 
-    <span class="doccomment">/// If false, clicks goes straight through to what is behind us.</span>
-    <span class="doccomment">/// Good for tooltips etc.</span>
-    <span class="kw">pub</span> <span class="ident">interactable</span>: <span class="ident">bool</span>,
+    <span class="doccomment">/// If false, clicks goes straight through to what is behind us.
+    /// Good for tooltips etc.
+    </span><span class="kw">pub </span>interactable: bool,
 }
 
-<span class="kw">impl</span> <span class="ident">State</span> {
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">rect</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">Rect</span> {
-        <span class="ident">Rect::from_min_size</span>(<span class="self">self</span>.<span class="ident">pos</span>, <span class="self">self</span>.<span class="ident">size</span>)
+<span class="kw">impl </span>State {
+    <span class="kw">pub fn </span>rect(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; Rect {
+        Rect::from_min_size(<span class="self">self</span>.pos, <span class="self">self</span>.size)
     }
 }
 
-<span class="doccomment">/// An area on the screen that can be moved by dragging.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// This forms the base of the [`Window`] container.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// ```</span>
-<span class="doccomment">/// # egui::__run_test_ctx(|ctx| {</span>
-<span class="doccomment">/// egui::Area::new(&quot;my_area&quot;)</span>
-<span class="doccomment">///     .fixed_pos(egui::pos2(32.0, 32.0))</span>
-<span class="doccomment">///     .show(ctx, |ui| {</span>
-<span class="doccomment">///         ui.label(&quot;Floating text!&quot;);</span>
-<span class="doccomment">///     });</span>
-<span class="doccomment">/// # });</span>
-<span class="attribute">#[<span class="ident">must_use</span> <span class="op">=</span> <span class="string">&quot;You should call .show()&quot;</span>]</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">Debug</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Area</span> {
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">id</span>: <span class="ident">Id</span>,
-    <span class="ident">movable</span>: <span class="ident">bool</span>,
-    <span class="ident">interactable</span>: <span class="ident">bool</span>,
-    <span class="ident">enabled</span>: <span class="ident">bool</span>,
-    <span class="ident">order</span>: <span class="ident">Order</span>,
-    <span class="ident">default_pos</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Pos2</span><span class="op">&gt;</span>,
-    <span class="ident">anchor</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span>(<span class="ident">Align2</span>, <span class="ident">Vec2</span>)<span class="op">&gt;</span>,
-    <span class="ident">new_pos</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Pos2</span><span class="op">&gt;</span>,
-    <span class="ident">drag_bounds</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Rect</span><span class="op">&gt;</span>,
+<span class="doccomment">/// An area on the screen that can be moved by dragging.
+///
+/// This forms the base of the [`Window`] container.
+///
+/// ```
+/// # egui::__run_test_ctx(|ctx| {
+/// egui::Area::new(&quot;my_area&quot;)
+///     .fixed_pos(egui::pos2(32.0, 32.0))
+///     .show(ctx, |ui| {
+///         ui.label(&quot;Floating text!&quot;);
+///     });
+/// # });
+</span><span class="attribute">#[must_use = <span class="string">&quot;You should call .show()&quot;</span>]
+#[derive(Clone, Copy, Debug)]
+</span><span class="kw">pub struct </span>Area {
+    <span class="kw">pub</span>(<span class="kw">crate</span>) id: Id,
+    movable: bool,
+    interactable: bool,
+    enabled: bool,
+    order: Order,
+    default_pos: <span class="prelude-ty">Option</span>&lt;Pos2&gt;,
+    anchor: <span class="prelude-ty">Option</span>&lt;(Align2, Vec2)&gt;,
+    new_pos: <span class="prelude-ty">Option</span>&lt;Pos2&gt;,
+    drag_bounds: <span class="prelude-ty">Option</span>&lt;Rect&gt;,
 }
 
-<span class="kw">impl</span> <span class="ident">Area</span> {
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">id_source</span>: <span class="kw">impl</span> <span class="ident">Hash</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">Self</span> {
-            <span class="ident">id</span>: <span class="ident">Id::new</span>(<span class="ident">id_source</span>),
-            <span class="ident">movable</span>: <span class="bool-val">true</span>,
-            <span class="ident">interactable</span>: <span class="bool-val">true</span>,
-            <span class="ident">enabled</span>: <span class="bool-val">true</span>,
-            <span class="ident">order</span>: <span class="ident">Order::Middle</span>,
-            <span class="ident">default_pos</span>: <span class="prelude-val">None</span>,
-            <span class="ident">new_pos</span>: <span class="prelude-val">None</span>,
-            <span class="ident">anchor</span>: <span class="prelude-val">None</span>,
-            <span class="ident">drag_bounds</span>: <span class="prelude-val">None</span>,
+<span class="kw">impl </span>Area {
+    <span class="kw">pub fn </span>new(id_source: <span class="kw">impl </span>Hash) -&gt; <span class="self">Self </span>{
+        <span class="self">Self </span>{
+            id: Id::new(id_source),
+            movable: <span class="bool-val">true</span>,
+            interactable: <span class="bool-val">true</span>,
+            enabled: <span class="bool-val">true</span>,
+            order: Order::Middle,
+            default_pos: <span class="prelude-val">None</span>,
+            new_pos: <span class="prelude-val">None</span>,
+            anchor: <span class="prelude-val">None</span>,
+            drag_bounds: <span class="prelude-val">None</span>,
         }
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">id</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">id</span>: <span class="ident">Id</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">self</span>.<span class="ident">id</span> <span class="op">=</span> <span class="ident">id</span>;
-        <span class="self">self</span>
+    <span class="kw">pub fn </span>id(<span class="kw-2">mut </span><span class="self">self</span>, id: Id) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.id = id;
+        <span class="self">self
+    </span>}
+
+    <span class="kw">pub fn </span>layer(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; LayerId {
+        LayerId::new(<span class="self">self</span>.order, <span class="self">self</span>.id)
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">layer</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">LayerId</span> {
-        <span class="ident">LayerId::new</span>(<span class="self">self</span>.<span class="ident">order</span>, <span class="self">self</span>.<span class="ident">id</span>)
+    <span class="doccomment">/// If false, no content responds to click
+    /// and widgets will be shown grayed out.
+    /// You won&#39;t be able to move the window.
+    /// Default: `true`.
+    </span><span class="kw">pub fn </span>enabled(<span class="kw-2">mut </span><span class="self">self</span>, enabled: bool) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.enabled = enabled;
+        <span class="self">self
+    </span>}
+
+    <span class="doccomment">/// moveable by dragging the area?
+    </span><span class="kw">pub fn </span>movable(<span class="kw-2">mut </span><span class="self">self</span>, movable: bool) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.movable = movable;
+        <span class="self">self</span>.interactable |= movable;
+        <span class="self">self
+    </span>}
+
+    <span class="kw">pub fn </span>is_enabled(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; bool {
+        <span class="self">self</span>.enabled
     }
 
-    <span class="doccomment">/// If false, no content responds to click</span>
-    <span class="doccomment">/// and widgets will be shown grayed out.</span>
-    <span class="doccomment">/// You won&#39;t be able to move the window.</span>
-    <span class="doccomment">/// Default: `true`.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">enabled</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">enabled</span>: <span class="ident">bool</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">self</span>.<span class="ident">enabled</span> <span class="op">=</span> <span class="ident">enabled</span>;
-        <span class="self">self</span>
+    <span class="kw">pub fn </span>is_movable(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; bool {
+        <span class="self">self</span>.movable &amp;&amp; <span class="self">self</span>.enabled
     }
 
-    <span class="doccomment">/// moveable by dragging the area?</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">movable</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">movable</span>: <span class="ident">bool</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">self</span>.<span class="ident">movable</span> <span class="op">=</span> <span class="ident">movable</span>;
-        <span class="self">self</span>.<span class="ident">interactable</span> <span class="op">|</span><span class="op">=</span> <span class="ident">movable</span>;
-        <span class="self">self</span>
+    <span class="doccomment">/// If false, clicks goes straight through to what is behind us.
+    /// Good for tooltips etc.
+    </span><span class="kw">pub fn </span>interactable(<span class="kw-2">mut </span><span class="self">self</span>, interactable: bool) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.interactable = interactable;
+        <span class="self">self</span>.movable &amp;= interactable;
+        <span class="self">self
+    </span>}
+
+    <span class="doccomment">/// `order(Order::Foreground)` for an Area that should always be on top
+    </span><span class="kw">pub fn </span>order(<span class="kw-2">mut </span><span class="self">self</span>, order: Order) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.order = order;
+        <span class="self">self
+    </span>}
+
+    <span class="kw">pub fn </span>default_pos(<span class="kw-2">mut </span><span class="self">self</span>, default_pos: <span class="kw">impl </span>Into&lt;Pos2&gt;) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.default_pos = <span class="prelude-val">Some</span>(default_pos.into());
+        <span class="self">self
+    </span>}
+
+    <span class="doccomment">/// Positions the window and prevents it from being moved
+    </span><span class="kw">pub fn </span>fixed_pos(<span class="kw-2">mut </span><span class="self">self</span>, fixed_pos: <span class="kw">impl </span>Into&lt;Pos2&gt;) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.new_pos = <span class="prelude-val">Some</span>(fixed_pos.into());
+        <span class="self">self</span>.movable = <span class="bool-val">false</span>;
+        <span class="self">self
+    </span>}
+
+    <span class="doccomment">/// Positions the window but you can still move it.
+    </span><span class="kw">pub fn </span>current_pos(<span class="kw-2">mut </span><span class="self">self</span>, current_pos: <span class="kw">impl </span>Into&lt;Pos2&gt;) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.new_pos = <span class="prelude-val">Some</span>(current_pos.into());
+        <span class="self">self
+    </span>}
+
+    <span class="doccomment">/// Set anchor and distance.
+    ///
+    /// An anchor of `Align2::RIGHT_TOP` means &quot;put the right-top corner of the window
+    /// in the right-top corner of the screen&quot;.
+    ///
+    /// The offset is added to the position, so e.g. an offset of `[-5.0, 5.0]`
+    /// would move the window left and down from the given anchor.
+    ///
+    /// Anchoring also makes the window immovable.
+    ///
+    /// It is an error to set both an anchor and a position.
+    </span><span class="kw">pub fn </span>anchor(<span class="kw-2">mut </span><span class="self">self</span>, align: Align2, offset: <span class="kw">impl </span>Into&lt;Vec2&gt;) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.anchor = <span class="prelude-val">Some</span>((align, offset.into()));
+        <span class="self">self</span>.movable(<span class="bool-val">false</span>)
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_enabled</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span> {
-        <span class="self">self</span>.<span class="ident">enabled</span>
-    }
+    <span class="doccomment">/// Constrain the area up to which the window can be dragged.
+    </span><span class="kw">pub fn </span>drag_bounds(<span class="kw-2">mut </span><span class="self">self</span>, bounds: Rect) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.drag_bounds = <span class="prelude-val">Some</span>(bounds);
+        <span class="self">self
+    </span>}
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_movable</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span> {
-        <span class="self">self</span>.<span class="ident">movable</span> <span class="op">&amp;&amp;</span> <span class="self">self</span>.<span class="ident">enabled</span>
-    }
-
-    <span class="doccomment">/// If false, clicks goes straight through to what is behind us.</span>
-    <span class="doccomment">/// Good for tooltips etc.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">interactable</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">interactable</span>: <span class="ident">bool</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">self</span>.<span class="ident">interactable</span> <span class="op">=</span> <span class="ident">interactable</span>;
-        <span class="self">self</span>.<span class="ident">movable</span> <span class="op">&amp;=</span> <span class="ident">interactable</span>;
-        <span class="self">self</span>
-    }
-
-    <span class="doccomment">/// `order(Order::Foreground)` for an Area that should always be on top</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">order</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">order</span>: <span class="ident">Order</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">self</span>.<span class="ident">order</span> <span class="op">=</span> <span class="ident">order</span>;
-        <span class="self">self</span>
-    }
-
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">default_pos</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">default_pos</span>: <span class="kw">impl</span> <span class="ident">Into</span><span class="op">&lt;</span><span class="ident">Pos2</span><span class="op">&gt;</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">self</span>.<span class="ident">default_pos</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">default_pos</span>.<span class="ident">into</span>());
-        <span class="self">self</span>
-    }
-
-    <span class="doccomment">/// Positions the window and prevents it from being moved</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">fixed_pos</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">fixed_pos</span>: <span class="kw">impl</span> <span class="ident">Into</span><span class="op">&lt;</span><span class="ident">Pos2</span><span class="op">&gt;</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">self</span>.<span class="ident">new_pos</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">fixed_pos</span>.<span class="ident">into</span>());
-        <span class="self">self</span>.<span class="ident">movable</span> <span class="op">=</span> <span class="bool-val">false</span>;
-        <span class="self">self</span>
-    }
-
-    <span class="doccomment">/// Positions the window but you can still move it.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">current_pos</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">current_pos</span>: <span class="kw">impl</span> <span class="ident">Into</span><span class="op">&lt;</span><span class="ident">Pos2</span><span class="op">&gt;</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">self</span>.<span class="ident">new_pos</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">current_pos</span>.<span class="ident">into</span>());
-        <span class="self">self</span>
-    }
-
-    <span class="doccomment">/// Set anchor and distance.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// An anchor of `Align2::RIGHT_TOP` means &quot;put the right-top corner of the window</span>
-    <span class="doccomment">/// in the right-top corner of the screen&quot;.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// The offset is added to the position, so e.g. an offset of `[-5.0, 5.0]`</span>
-    <span class="doccomment">/// would move the window left and down from the given anchor.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// Anchoring also makes the window immovable.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// It is an error to set both an anchor and a position.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">anchor</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">align</span>: <span class="ident">Align2</span>, <span class="ident">offset</span>: <span class="kw">impl</span> <span class="ident">Into</span><span class="op">&lt;</span><span class="ident">Vec2</span><span class="op">&gt;</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">self</span>.<span class="ident">anchor</span> <span class="op">=</span> <span class="prelude-val">Some</span>((<span class="ident">align</span>, <span class="ident">offset</span>.<span class="ident">into</span>()));
-        <span class="self">self</span>.<span class="ident">movable</span>(<span class="bool-val">false</span>)
-    }
-
-    <span class="doccomment">/// Constrain the area up to which the window can be dragged.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">drag_bounds</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">bounds</span>: <span class="ident">Rect</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">self</span>.<span class="ident">drag_bounds</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">bounds</span>);
-        <span class="self">self</span>
-    }
-
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">get_pivot</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">Align2</span> {
-        <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>((<span class="ident">pivot</span>, <span class="kw">_</span>)) <span class="op">=</span> <span class="self">self</span>.<span class="ident">anchor</span> {
-            <span class="ident">pivot</span>
-        } <span class="kw">else</span> {
-            <span class="ident">Align2::LEFT_TOP</span>
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>get_pivot(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; Align2 {
+        <span class="kw">if let </span><span class="prelude-val">Some</span>((pivot, <span class="kw">_</span>)) = <span class="self">self</span>.anchor {
+            pivot
+        } <span class="kw">else </span>{
+            Align2::LEFT_TOP
         }
     }
 }
 
-<span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">struct</span> <span class="ident">Prepared</span> {
-    <span class="ident">layer_id</span>: <span class="ident">LayerId</span>,
-    <span class="ident">state</span>: <span class="ident">State</span>,
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">movable</span>: <span class="ident">bool</span>,
-    <span class="ident">enabled</span>: <span class="ident">bool</span>,
-    <span class="ident">drag_bounds</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Rect</span><span class="op">&gt;</span>,
+<span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">struct </span>Prepared {
+    layer_id: LayerId,
+    state: State,
+    <span class="kw">pub</span>(<span class="kw">crate</span>) movable: bool,
+    enabled: bool,
+    drag_bounds: <span class="prelude-ty">Option</span>&lt;Rect&gt;,
 }
 
-<span class="kw">impl</span> <span class="ident">Area</span> {
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">show</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span>(
+<span class="kw">impl </span>Area {
+    <span class="kw">pub fn </span>show&lt;R&gt;(
         <span class="self">self</span>,
-        <span class="ident">ctx</span>: <span class="kw-2">&amp;</span><span class="ident">CtxRef</span>,
-        <span class="ident">add_contents</span>: <span class="kw">impl</span> <span class="ident">FnOnce</span>(<span class="kw-2">&amp;mut</span> <span class="ident">Ui</span>) -&gt; <span class="ident">R</span>,
-    ) -&gt; <span class="ident">InnerResponse</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="ident">prepared</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">begin</span>(<span class="ident">ctx</span>);
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">content_ui</span> <span class="op">=</span> <span class="ident">prepared</span>.<span class="ident">content_ui</span>(<span class="ident">ctx</span>);
-        <span class="kw">let</span> <span class="ident">inner</span> <span class="op">=</span> <span class="ident">add_contents</span>(<span class="kw-2">&amp;mut</span> <span class="ident">content_ui</span>);
-        <span class="kw">let</span> <span class="ident">response</span> <span class="op">=</span> <span class="ident">prepared</span>.<span class="ident">end</span>(<span class="ident">ctx</span>, <span class="ident">content_ui</span>);
-        <span class="ident">InnerResponse</span> { <span class="ident">inner</span>, <span class="ident">response</span> }
+        ctx: <span class="kw-2">&amp;</span>CtxRef,
+        add_contents: <span class="kw">impl </span>FnOnce(<span class="kw-2">&amp;mut </span>Ui) -&gt; R,
+    ) -&gt; InnerResponse&lt;R&gt; {
+        <span class="kw">let </span>prepared = <span class="self">self</span>.begin(ctx);
+        <span class="kw">let </span><span class="kw-2">mut </span>content_ui = prepared.content_ui(ctx);
+        <span class="kw">let </span>inner = add_contents(<span class="kw-2">&amp;mut </span>content_ui);
+        <span class="kw">let </span>response = prepared.end(ctx, content_ui);
+        InnerResponse { inner, response }
     }
 
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">begin</span>(<span class="self">self</span>, <span class="ident">ctx</span>: <span class="kw-2">&amp;</span><span class="ident">CtxRef</span>) -&gt; <span class="ident">Prepared</span> {
-        <span class="kw">let</span> <span class="ident">Area</span> {
-            <span class="ident">id</span>,
-            <span class="ident">movable</span>,
-            <span class="ident">order</span>,
-            <span class="ident">interactable</span>,
-            <span class="ident">enabled</span>,
-            <span class="ident">default_pos</span>,
-            <span class="ident">new_pos</span>,
-            <span class="ident">anchor</span>,
-            <span class="ident">drag_bounds</span>,
-        } <span class="op">=</span> <span class="self">self</span>;
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>begin(<span class="self">self</span>, ctx: <span class="kw-2">&amp;</span>CtxRef) -&gt; Prepared {
+        <span class="kw">let </span>Area {
+            id,
+            movable,
+            order,
+            interactable,
+            enabled,
+            default_pos,
+            new_pos,
+            anchor,
+            drag_bounds,
+        } = <span class="self">self</span>;
 
-        <span class="kw">let</span> <span class="ident">layer_id</span> <span class="op">=</span> <span class="ident">LayerId::new</span>(<span class="ident">order</span>, <span class="ident">id</span>);
+        <span class="kw">let </span>layer_id = LayerId::new(order, id);
 
-        <span class="kw">let</span> <span class="ident">state</span> <span class="op">=</span> <span class="ident">ctx</span>.<span class="ident">memory</span>().<span class="ident">areas</span>.<span class="ident">get</span>(<span class="ident">id</span>).<span class="ident">cloned</span>();
-        <span class="kw">let</span> <span class="ident">is_new</span> <span class="op">=</span> <span class="ident">state</span>.<span class="ident">is_none</span>();
-        <span class="kw">if</span> <span class="ident">is_new</span> {
-            <span class="ident">ctx</span>.<span class="ident">request_repaint</span>(); <span class="comment">// if we don&#39;t know the previous size we are likely drawing the area in the wrong place}</span>
-        }
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">state</span> <span class="op">=</span> <span class="ident">state</span>.<span class="ident">unwrap_or_else</span>(<span class="op">|</span><span class="op">|</span> <span class="ident">State</span> {
-            <span class="ident">pos</span>: <span class="ident">default_pos</span>.<span class="ident">unwrap_or_else</span>(<span class="op">|</span><span class="op">|</span> <span class="ident">automatic_area_position</span>(<span class="ident">ctx</span>)),
-            <span class="ident">size</span>: <span class="ident">Vec2::ZERO</span>,
-            <span class="ident">interactable</span>,
+        <span class="kw">let </span>state = ctx.memory().areas.get(id).cloned();
+        <span class="kw">let </span>is_new = state.is_none();
+        <span class="kw">if </span>is_new {
+            ctx.request_repaint(); <span class="comment">// if we don&#39;t know the previous size we are likely drawing the area in the wrong place}
+        </span>}
+        <span class="kw">let </span><span class="kw-2">mut </span>state = state.unwrap_or_else(|| State {
+            pos: default_pos.unwrap_or_else(|| automatic_area_position(ctx)),
+            size: Vec2::ZERO,
+            interactable,
         });
-        <span class="ident">state</span>.<span class="ident">pos</span> <span class="op">=</span> <span class="ident">new_pos</span>.<span class="ident">unwrap_or</span>(<span class="ident">state</span>.<span class="ident">pos</span>);
+        state.pos = new_pos.unwrap_or(state.pos);
 
-        <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>((<span class="ident">anchor</span>, <span class="ident">offset</span>)) <span class="op">=</span> <span class="ident">anchor</span> {
-            <span class="kw">if</span> <span class="ident">is_new</span> {
-                <span class="comment">// unknown size</span>
-                <span class="ident">ctx</span>.<span class="ident">request_repaint</span>();
-            } <span class="kw">else</span> {
-                <span class="kw">let</span> <span class="ident">screen</span> <span class="op">=</span> <span class="ident">ctx</span>.<span class="ident">available_rect</span>();
-                <span class="ident">state</span>.<span class="ident">pos</span> <span class="op">=</span> <span class="ident">anchor</span>.<span class="ident">align_size_within_rect</span>(<span class="ident">state</span>.<span class="ident">size</span>, <span class="ident">screen</span>).<span class="ident">min</span> <span class="op">+</span> <span class="ident">offset</span>;
+        <span class="kw">if let </span><span class="prelude-val">Some</span>((anchor, offset)) = anchor {
+            <span class="kw">if </span>is_new {
+                <span class="comment">// unknown size
+                </span>ctx.request_repaint();
+            } <span class="kw">else </span>{
+                <span class="kw">let </span>screen = ctx.available_rect();
+                state.pos = anchor.align_size_within_rect(state.size, screen).min + offset;
             }
         }
 
-        <span class="ident">state</span>.<span class="ident">pos</span> <span class="op">=</span> <span class="ident">ctx</span>.<span class="ident">round_pos_to_pixels</span>(<span class="ident">state</span>.<span class="ident">pos</span>);
+        state.pos = ctx.round_pos_to_pixels(state.pos);
 
-        <span class="ident">Prepared</span> {
-            <span class="ident">layer_id</span>,
-            <span class="ident">state</span>,
-            <span class="ident">movable</span>,
-            <span class="ident">enabled</span>,
-            <span class="ident">drag_bounds</span>,
+        Prepared {
+            layer_id,
+            state,
+            movable,
+            enabled,
+            drag_bounds,
         }
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">show_open_close_animation</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">ctx</span>: <span class="kw-2">&amp;</span><span class="ident">CtxRef</span>, <span class="ident">frame</span>: <span class="kw-2">&amp;</span><span class="ident">Frame</span>, <span class="ident">is_open</span>: <span class="ident">bool</span>) {
-        <span class="comment">// must be called first so animation managers know the latest state</span>
-        <span class="kw">let</span> <span class="ident">visibility_factor</span> <span class="op">=</span> <span class="ident">ctx</span>.<span class="ident">animate_bool</span>(<span class="self">self</span>.<span class="ident">id</span>.<span class="ident">with</span>(<span class="string">&quot;close_animation&quot;</span>), <span class="ident">is_open</span>);
+    <span class="kw">pub fn </span>show_open_close_animation(<span class="kw-2">&amp;</span><span class="self">self</span>, ctx: <span class="kw-2">&amp;</span>CtxRef, frame: <span class="kw-2">&amp;</span>Frame, is_open: bool) {
+        <span class="comment">// must be called first so animation managers know the latest state
+        </span><span class="kw">let </span>visibility_factor = ctx.animate_bool(<span class="self">self</span>.id.with(<span class="string">&quot;close_animation&quot;</span>), is_open);
 
-        <span class="kw">if</span> <span class="ident">is_open</span> {
-            <span class="comment">// we actually only show close animations.</span>
-            <span class="comment">// when opening a window we show it right away.</span>
+        <span class="kw">if </span>is_open {
+            <span class="comment">// we actually only show close animations.
+            // when opening a window we show it right away.
+            </span><span class="kw">return</span>;
+        }
+        <span class="kw">if </span>visibility_factor &lt;= <span class="number">0.0 </span>{
             <span class="kw">return</span>;
         }
-        <span class="kw">if</span> <span class="ident">visibility_factor</span> <span class="op">&lt;</span><span class="op">=</span> <span class="number">0.0</span> {
-            <span class="kw">return</span>;
-        }
 
-        <span class="kw">let</span> <span class="ident">layer_id</span> <span class="op">=</span> <span class="ident">LayerId::new</span>(<span class="self">self</span>.<span class="ident">order</span>, <span class="self">self</span>.<span class="ident">id</span>);
-        <span class="kw">let</span> <span class="ident">area_rect</span> <span class="op">=</span> <span class="ident">ctx</span>.<span class="ident">memory</span>().<span class="ident">areas</span>.<span class="ident">get</span>(<span class="self">self</span>.<span class="ident">id</span>).<span class="ident">map</span>(<span class="op">|</span><span class="ident">area</span><span class="op">|</span> <span class="ident">area</span>.<span class="ident">rect</span>());
-        <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">area_rect</span>) <span class="op">=</span> <span class="ident">area_rect</span> {
-            <span class="kw">let</span> <span class="ident">clip_rect</span> <span class="op">=</span> <span class="ident">ctx</span>.<span class="ident">available_rect</span>();
-            <span class="kw">let</span> <span class="ident">painter</span> <span class="op">=</span> <span class="ident">Painter::new</span>(<span class="ident">ctx</span>.<span class="ident">clone</span>(), <span class="ident">layer_id</span>, <span class="ident">clip_rect</span>);
+        <span class="kw">let </span>layer_id = LayerId::new(<span class="self">self</span>.order, <span class="self">self</span>.id);
+        <span class="kw">let </span>area_rect = ctx.memory().areas.get(<span class="self">self</span>.id).map(|area| area.rect());
+        <span class="kw">if let </span><span class="prelude-val">Some</span>(area_rect) = area_rect {
+            <span class="kw">let </span>clip_rect = ctx.available_rect();
+            <span class="kw">let </span>painter = Painter::new(ctx.clone(), layer_id, clip_rect);
 
-            <span class="comment">// shrinkage: looks kinda a bad on its own</span>
-            <span class="comment">// let area_rect =</span>
-            <span class="comment">//     Rect::from_center_size(area_rect.center(), visibility_factor * area_rect.size());</span>
+            <span class="comment">// shrinkage: looks kinda a bad on its own
+            // let area_rect =
+            //     Rect::from_center_size(area_rect.center(), visibility_factor * area_rect.size());
 
-            <span class="kw">let</span> <span class="ident">frame</span> <span class="op">=</span> <span class="ident">frame</span>.<span class="ident">multiply_with_opacity</span>(<span class="ident">visibility_factor</span>);
-            <span class="ident">painter</span>.<span class="ident">add</span>(<span class="ident">frame</span>.<span class="ident">paint</span>(<span class="ident">area_rect</span>));
+            </span><span class="kw">let </span>frame = frame.multiply_with_opacity(visibility_factor);
+            painter.add(frame.paint(area_rect));
         }
     }
 }
 
-<span class="kw">impl</span> <span class="ident">Prepared</span> {
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">state</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span><span class="ident">State</span> {
-        <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">state</span>
+<span class="kw">impl </span>Prepared {
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>state(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span>State {
+        <span class="kw-2">&amp;</span><span class="self">self</span>.state
     }
 
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">state_mut</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>) -&gt; <span class="kw-2">&amp;mut</span> <span class="ident">State</span> {
-        <span class="kw-2">&amp;mut</span> <span class="self">self</span>.<span class="ident">state</span>
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>state_mut(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;mut </span>State {
+        <span class="kw-2">&amp;mut </span><span class="self">self</span>.state
     }
 
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">drag_bounds</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Rect</span><span class="op">&gt;</span> {
-        <span class="self">self</span>.<span class="ident">drag_bounds</span>
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>drag_bounds(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;Rect&gt; {
+        <span class="self">self</span>.drag_bounds
     }
 
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">content_ui</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">ctx</span>: <span class="kw-2">&amp;</span><span class="ident">CtxRef</span>) -&gt; <span class="ident">Ui</span> {
-        <span class="kw">let</span> <span class="ident">screen_rect</span> <span class="op">=</span> <span class="ident">ctx</span>.<span class="ident">input</span>().<span class="ident">screen_rect</span>();
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>content_ui(<span class="kw-2">&amp;</span><span class="self">self</span>, ctx: <span class="kw-2">&amp;</span>CtxRef) -&gt; Ui {
+        <span class="kw">let </span>screen_rect = ctx.input().screen_rect();
 
-        <span class="kw">let</span> <span class="ident">bounds</span> <span class="op">=</span> <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">bounds</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">drag_bounds</span> {
-            <span class="ident">bounds</span>.<span class="ident">intersect</span>(<span class="ident">screen_rect</span>) <span class="comment">// protect against infinite bounds</span>
-        } <span class="kw">else</span> {
-            <span class="kw">let</span> <span class="ident">central_area</span> <span class="op">=</span> <span class="ident">ctx</span>.<span class="ident">available_rect</span>();
+        <span class="kw">let </span>bounds = <span class="kw">if let </span><span class="prelude-val">Some</span>(bounds) = <span class="self">self</span>.drag_bounds {
+            bounds.intersect(screen_rect) <span class="comment">// protect against infinite bounds
+        </span>} <span class="kw">else </span>{
+            <span class="kw">let </span>central_area = ctx.available_rect();
 
-            <span class="kw">let</span> <span class="ident">is_within_central_area</span> <span class="op">=</span> <span class="ident">central_area</span>.<span class="ident">contains_rect</span>(<span class="self">self</span>.<span class="ident">state</span>.<span class="ident">rect</span>().<span class="ident">shrink</span>(<span class="number">1.0</span>));
-            <span class="kw">if</span> <span class="ident">is_within_central_area</span> {
-                <span class="ident">central_area</span> <span class="comment">// let&#39;s try to not cover side panels</span>
-            } <span class="kw">else</span> {
-                <span class="ident">screen_rect</span>
+            <span class="kw">let </span>is_within_central_area = central_area.contains_rect(<span class="self">self</span>.state.rect().shrink(<span class="number">1.0</span>));
+            <span class="kw">if </span>is_within_central_area {
+                central_area <span class="comment">// let&#39;s try to not cover side panels
+            </span>} <span class="kw">else </span>{
+                screen_rect
             }
         };
 
-        <span class="kw">let</span> <span class="ident">max_rect</span> <span class="op">=</span> <span class="ident">Rect::from_min_max</span>(
-            <span class="self">self</span>.<span class="ident">state</span>.<span class="ident">pos</span>,
-            <span class="ident">bounds</span>.<span class="ident">max</span>.<span class="ident">at_least</span>(<span class="self">self</span>.<span class="ident">state</span>.<span class="ident">pos</span> <span class="op">+</span> <span class="ident">Vec2::splat</span>(<span class="number">32.0</span>)),
+        <span class="kw">let </span>max_rect = Rect::from_min_max(
+            <span class="self">self</span>.state.pos,
+            bounds.max.at_least(<span class="self">self</span>.state.pos + Vec2::splat(<span class="number">32.0</span>)),
         );
 
-        <span class="kw">let</span> <span class="ident">shadow_radius</span> <span class="op">=</span> <span class="ident">ctx</span>.<span class="ident">style</span>().<span class="ident">visuals</span>.<span class="ident">window_shadow</span>.<span class="ident">extrusion</span>; <span class="comment">// hacky</span>
-        <span class="kw">let</span> <span class="ident">clip_rect_margin</span> <span class="op">=</span> <span class="ident">ctx</span>.<span class="ident">style</span>().<span class="ident">visuals</span>.<span class="ident">clip_rect_margin</span>.<span class="ident">max</span>(<span class="ident">shadow_radius</span>);
+        <span class="kw">let </span>shadow_radius = ctx.style().visuals.window_shadow.extrusion; <span class="comment">// hacky
+        </span><span class="kw">let </span>clip_rect_margin = ctx.style().visuals.clip_rect_margin.max(shadow_radius);
 
-        <span class="kw">let</span> <span class="ident">clip_rect</span> <span class="op">=</span> <span class="ident">Rect::from_min_max</span>(<span class="self">self</span>.<span class="ident">state</span>.<span class="ident">pos</span>, <span class="ident">bounds</span>.<span class="ident">max</span>)
-            .<span class="ident">expand</span>(<span class="ident">clip_rect_margin</span>)
-            .<span class="ident">intersect</span>(<span class="ident">bounds</span>);
+        <span class="kw">let </span>clip_rect = Rect::from_min_max(<span class="self">self</span>.state.pos, bounds.max)
+            .expand(clip_rect_margin)
+            .intersect(bounds);
 
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">ui</span> <span class="op">=</span> <span class="ident">Ui::new</span>(
-            <span class="ident">ctx</span>.<span class="ident">clone</span>(),
-            <span class="self">self</span>.<span class="ident">layer_id</span>,
-            <span class="self">self</span>.<span class="ident">layer_id</span>.<span class="ident">id</span>,
-            <span class="ident">max_rect</span>,
-            <span class="ident">clip_rect</span>,
+        <span class="kw">let </span><span class="kw-2">mut </span>ui = Ui::new(
+            ctx.clone(),
+            <span class="self">self</span>.layer_id,
+            <span class="self">self</span>.layer_id.id,
+            max_rect,
+            clip_rect,
         );
-        <span class="ident">ui</span>.<span class="ident">set_enabled</span>(<span class="self">self</span>.<span class="ident">enabled</span>);
+        ui.set_enabled(<span class="self">self</span>.enabled);
 
-        <span class="ident">ui</span>
+        ui
     }
 
-    <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">clippy::needless_pass_by_value</span>)]</span> <span class="comment">// intentional to swallow up `content_ui`.</span>
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">end</span>(<span class="self">self</span>, <span class="ident">ctx</span>: <span class="kw-2">&amp;</span><span class="ident">CtxRef</span>, <span class="ident">content_ui</span>: <span class="ident">Ui</span>) -&gt; <span class="ident">Response</span> {
-        <span class="kw">let</span> <span class="ident">Prepared</span> {
-            <span class="ident">layer_id</span>,
-            <span class="kw-2">mut</span> <span class="ident">state</span>,
-            <span class="ident">movable</span>,
-            <span class="ident">enabled</span>,
-            <span class="ident">drag_bounds</span>,
-        } <span class="op">=</span> <span class="self">self</span>;
+    <span class="attribute">#[allow(clippy::needless_pass_by_value)] </span><span class="comment">// intentional to swallow up `content_ui`.
+    </span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>end(<span class="self">self</span>, ctx: <span class="kw-2">&amp;</span>CtxRef, content_ui: Ui) -&gt; Response {
+        <span class="kw">let </span>Prepared {
+            layer_id,
+            <span class="kw-2">mut </span>state,
+            movable,
+            enabled,
+            drag_bounds,
+        } = <span class="self">self</span>;
 
-        <span class="ident">state</span>.<span class="ident">size</span> <span class="op">=</span> <span class="ident">content_ui</span>.<span class="ident">min_rect</span>().<span class="ident">size</span>();
+        state.size = content_ui.min_rect().size();
 
-        <span class="kw">let</span> <span class="ident">interact_id</span> <span class="op">=</span> <span class="ident">layer_id</span>.<span class="ident">id</span>.<span class="ident">with</span>(<span class="string">&quot;move&quot;</span>);
-        <span class="kw">let</span> <span class="ident">sense</span> <span class="op">=</span> <span class="kw">if</span> <span class="ident">movable</span> {
-            <span class="ident">Sense::click_and_drag</span>()
-        } <span class="kw">else</span> {
-            <span class="ident">Sense::click</span>() <span class="comment">// allow clicks to bring to front</span>
-        };
+        <span class="kw">let </span>interact_id = layer_id.id.with(<span class="string">&quot;move&quot;</span>);
+        <span class="kw">let </span>sense = <span class="kw">if </span>movable {
+            Sense::click_and_drag()
+        } <span class="kw">else </span>{
+            Sense::click() <span class="comment">// allow clicks to bring to front
+        </span>};
 
-        <span class="kw">let</span> <span class="ident">move_response</span> <span class="op">=</span> <span class="ident">ctx</span>.<span class="ident">interact</span>(
-            <span class="ident">Rect::EVERYTHING</span>,
-            <span class="ident">ctx</span>.<span class="ident">style</span>().<span class="ident">spacing</span>.<span class="ident">item_spacing</span>,
-            <span class="ident">layer_id</span>,
-            <span class="ident">interact_id</span>,
-            <span class="ident">state</span>.<span class="ident">rect</span>(),
-            <span class="ident">sense</span>,
-            <span class="ident">enabled</span>,
+        <span class="kw">let </span>move_response = ctx.interact(
+            Rect::EVERYTHING,
+            ctx.style().spacing.item_spacing,
+            layer_id,
+            interact_id,
+            state.rect(),
+            sense,
+            enabled,
         );
 
-        <span class="kw">if</span> <span class="ident">move_response</span>.<span class="ident">dragged</span>() <span class="op">&amp;&amp;</span> <span class="ident">movable</span> {
-            <span class="ident">state</span>.<span class="ident">pos</span> <span class="op">+</span><span class="op">=</span> <span class="ident">ctx</span>.<span class="ident">input</span>().<span class="ident">pointer</span>.<span class="ident">delta</span>();
+        <span class="kw">if </span>move_response.dragged() &amp;&amp; movable {
+            state.pos += ctx.input().pointer.delta();
         }
 
-        <span class="comment">// Important check - don&#39;t try to move e.g. a combobox popup!</span>
-        <span class="kw">if</span> <span class="ident">movable</span> {
-            <span class="ident">state</span>.<span class="ident">pos</span> <span class="op">=</span> <span class="ident">ctx</span>
-                .<span class="ident">constrain_window_rect_to_area</span>(<span class="ident">state</span>.<span class="ident">rect</span>(), <span class="ident">drag_bounds</span>)
-                .<span class="ident">min</span>;
+        <span class="comment">// Important check - don&#39;t try to move e.g. a combobox popup!
+        </span><span class="kw">if </span>movable {
+            state.pos = ctx
+                .constrain_window_rect_to_area(state.rect(), drag_bounds)
+                .min;
         }
 
-        <span class="kw">if</span> (<span class="ident">move_response</span>.<span class="ident">dragged</span>() <span class="op">|</span><span class="op">|</span> <span class="ident">move_response</span>.<span class="ident">clicked</span>())
-            <span class="op">|</span><span class="op">|</span> <span class="ident">pointer_pressed_on_area</span>(<span class="ident">ctx</span>, <span class="ident">layer_id</span>)
-            <span class="op">|</span><span class="op">|</span> <span class="op">!</span><span class="ident">ctx</span>.<span class="ident">memory</span>().<span class="ident">areas</span>.<span class="ident">visible_last_frame</span>(<span class="kw-2">&amp;</span><span class="ident">layer_id</span>)
+        <span class="kw">if </span>(move_response.dragged() || move_response.clicked())
+            || pointer_pressed_on_area(ctx, layer_id)
+            || !ctx.memory().areas.visible_last_frame(<span class="kw-2">&amp;</span>layer_id)
         {
-            <span class="ident">ctx</span>.<span class="ident">memory</span>().<span class="ident">areas</span>.<span class="ident">move_to_top</span>(<span class="ident">layer_id</span>);
-            <span class="ident">ctx</span>.<span class="ident">request_repaint</span>();
+            ctx.memory().areas.move_to_top(layer_id);
+            ctx.request_repaint();
         }
-        <span class="ident">ctx</span>.<span class="ident">memory</span>().<span class="ident">areas</span>.<span class="ident">set_state</span>(<span class="ident">layer_id</span>, <span class="ident">state</span>);
+        ctx.memory().areas.set_state(layer_id, state);
 
-        <span class="ident">move_response</span>
+        move_response
     }
 }
 
-<span class="kw">fn</span> <span class="ident">pointer_pressed_on_area</span>(<span class="ident">ctx</span>: <span class="kw-2">&amp;</span><span class="ident">Context</span>, <span class="ident">layer_id</span>: <span class="ident">LayerId</span>) -&gt; <span class="ident">bool</span> {
-    <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">pointer_pos</span>) <span class="op">=</span> <span class="ident">ctx</span>.<span class="ident">input</span>().<span class="ident">pointer</span>.<span class="ident">interact_pos</span>() {
-        <span class="ident">ctx</span>.<span class="ident">input</span>().<span class="ident">pointer</span>.<span class="ident">any_pressed</span>() <span class="op">&amp;&amp;</span> <span class="ident">ctx</span>.<span class="ident">layer_id_at</span>(<span class="ident">pointer_pos</span>) <span class="op">==</span> <span class="prelude-val">Some</span>(<span class="ident">layer_id</span>)
-    } <span class="kw">else</span> {
-        <span class="bool-val">false</span>
-    }
+<span class="kw">fn </span>pointer_pressed_on_area(ctx: <span class="kw-2">&amp;</span>Context, layer_id: LayerId) -&gt; bool {
+    <span class="kw">if let </span><span class="prelude-val">Some</span>(pointer_pos) = ctx.input().pointer.interact_pos() {
+        ctx.input().pointer.any_pressed() &amp;&amp; ctx.layer_id_at(pointer_pos) == <span class="prelude-val">Some</span>(layer_id)
+    } <span class="kw">else </span>{
+        <span class="bool-val">false
+    </span>}
 }
 
-<span class="kw">fn</span> <span class="ident">automatic_area_position</span>(<span class="ident">ctx</span>: <span class="kw-2">&amp;</span><span class="ident">Context</span>) -&gt; <span class="ident">Pos2</span> {
-    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">existing</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Rect</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">ctx</span>
-        .<span class="ident">memory</span>()
-        .<span class="ident">areas</span>
-        .<span class="ident">visible_windows</span>()
-        .<span class="ident">into_iter</span>()
-        .<span class="ident">map</span>(<span class="ident">State::rect</span>)
-        .<span class="ident">collect</span>();
-    <span class="ident">existing</span>.<span class="ident">sort_by_key</span>(<span class="op">|</span><span class="ident">r</span><span class="op">|</span> <span class="ident">r</span>.<span class="ident">left</span>().<span class="ident">round</span>() <span class="kw">as</span> <span class="ident">i32</span>);
+<span class="kw">fn </span>automatic_area_position(ctx: <span class="kw-2">&amp;</span>Context) -&gt; Pos2 {
+    <span class="kw">let </span><span class="kw-2">mut </span>existing: Vec&lt;Rect&gt; = ctx
+        .memory()
+        .areas
+        .visible_windows()
+        .into_iter()
+        .map(State::rect)
+        .collect();
+    existing.sort_by_key(|r| r.left().round() <span class="kw">as </span>i32);
 
-    <span class="kw">let</span> <span class="ident">available_rect</span> <span class="op">=</span> <span class="ident">ctx</span>.<span class="ident">available_rect</span>();
+    <span class="kw">let </span>available_rect = ctx.available_rect();
 
-    <span class="kw">let</span> <span class="ident">spacing</span> <span class="op">=</span> <span class="number">16.0</span>;
-    <span class="kw">let</span> <span class="ident">left</span> <span class="op">=</span> <span class="ident">available_rect</span>.<span class="ident">left</span>() <span class="op">+</span> <span class="ident">spacing</span>;
-    <span class="kw">let</span> <span class="ident">top</span> <span class="op">=</span> <span class="ident">available_rect</span>.<span class="ident">top</span>() <span class="op">+</span> <span class="ident">spacing</span>;
+    <span class="kw">let </span>spacing = <span class="number">16.0</span>;
+    <span class="kw">let </span>left = available_rect.left() + spacing;
+    <span class="kw">let </span>top = available_rect.top() + spacing;
 
-    <span class="kw">if</span> <span class="ident">existing</span>.<span class="ident">is_empty</span>() {
-        <span class="kw">return</span> <span class="ident">pos2</span>(<span class="ident">left</span>, <span class="ident">top</span>);
+    <span class="kw">if </span>existing.is_empty() {
+        <span class="kw">return </span>pos2(left, top);
     }
 
-    <span class="comment">// Separate existing rectangles into columns:</span>
-    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">column_bbs</span> <span class="op">=</span> <span class="macro">vec!</span>[<span class="ident">existing</span>[<span class="number">0</span>]];
+    <span class="comment">// Separate existing rectangles into columns:
+    </span><span class="kw">let </span><span class="kw-2">mut </span>column_bbs = <span class="macro">vec!</span>[existing[<span class="number">0</span>]];
 
-    <span class="kw">for</span> <span class="kw-2">&amp;</span><span class="ident">rect</span> <span class="kw">in</span> <span class="kw-2">&amp;</span><span class="ident">existing</span> {
-        <span class="kw">let</span> <span class="ident">current_column_bb</span> <span class="op">=</span> <span class="ident">column_bbs</span>.<span class="ident">last_mut</span>().<span class="ident">unwrap</span>();
-        <span class="kw">if</span> <span class="ident">rect</span>.<span class="ident">left</span>() <span class="op">&lt;</span> <span class="ident">current_column_bb</span>.<span class="ident">right</span>() {
-            <span class="comment">// same column</span>
-            <span class="kw-2">*</span><span class="ident">current_column_bb</span> <span class="op">=</span> <span class="ident">current_column_bb</span>.<span class="ident">union</span>(<span class="ident">rect</span>);
-        } <span class="kw">else</span> {
-            <span class="comment">// new column</span>
-            <span class="ident">column_bbs</span>.<span class="ident">push</span>(<span class="ident">rect</span>);
+    <span class="kw">for </span><span class="kw-2">&amp;</span>rect <span class="kw">in </span><span class="kw-2">&amp;</span>existing {
+        <span class="kw">let </span>current_column_bb = column_bbs.last_mut().unwrap();
+        <span class="kw">if </span>rect.left() &lt; current_column_bb.right() {
+            <span class="comment">// same column
+            </span><span class="kw-2">*</span>current_column_bb = current_column_bb.union(rect);
+        } <span class="kw">else </span>{
+            <span class="comment">// new column
+            </span>column_bbs.push(rect);
         }
     }
 
     {
-        <span class="comment">// Look for large spaces between columns (empty columns):</span>
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">x</span> <span class="op">=</span> <span class="ident">left</span>;
-        <span class="kw">for</span> <span class="ident">col_bb</span> <span class="kw">in</span> <span class="kw-2">&amp;</span><span class="ident">column_bbs</span> {
-            <span class="kw">let</span> <span class="ident">available</span> <span class="op">=</span> <span class="ident">col_bb</span>.<span class="ident">left</span>() <span class="op">-</span> <span class="ident">x</span>;
-            <span class="kw">if</span> <span class="ident">available</span> <span class="op">&gt;</span><span class="op">=</span> <span class="number">300.0</span> {
-                <span class="kw">return</span> <span class="ident">pos2</span>(<span class="ident">x</span>, <span class="ident">top</span>);
+        <span class="comment">// Look for large spaces between columns (empty columns):
+        </span><span class="kw">let </span><span class="kw-2">mut </span>x = left;
+        <span class="kw">for </span>col_bb <span class="kw">in </span><span class="kw-2">&amp;</span>column_bbs {
+            <span class="kw">let </span>available = col_bb.left() - x;
+            <span class="kw">if </span>available &gt;= <span class="number">300.0 </span>{
+                <span class="kw">return </span>pos2(x, top);
             }
-            <span class="ident">x</span> <span class="op">=</span> <span class="ident">col_bb</span>.<span class="ident">right</span>() <span class="op">+</span> <span class="ident">spacing</span>;
+            x = col_bb.right() + spacing;
         }
     }
 
-    <span class="comment">// Find first column with some available space at the bottom of it:</span>
-    <span class="kw">for</span> <span class="ident">col_bb</span> <span class="kw">in</span> <span class="kw-2">&amp;</span><span class="ident">column_bbs</span> {
-        <span class="kw">if</span> <span class="ident">col_bb</span>.<span class="ident">bottom</span>() <span class="op">&lt;</span> <span class="ident">available_rect</span>.<span class="ident">center</span>().<span class="ident">y</span> {
-            <span class="kw">return</span> <span class="ident">pos2</span>(<span class="ident">col_bb</span>.<span class="ident">left</span>(), <span class="ident">col_bb</span>.<span class="ident">bottom</span>() <span class="op">+</span> <span class="ident">spacing</span>);
+    <span class="comment">// Find first column with some available space at the bottom of it:
+    </span><span class="kw">for </span>col_bb <span class="kw">in </span><span class="kw-2">&amp;</span>column_bbs {
+        <span class="kw">if </span>col_bb.bottom() &lt; available_rect.center().y {
+            <span class="kw">return </span>pos2(col_bb.left(), col_bb.bottom() + spacing);
         }
     }
 
-    <span class="comment">// Maybe we can fit a new column?</span>
-    <span class="kw">let</span> <span class="ident">rightmost</span> <span class="op">=</span> <span class="ident">column_bbs</span>.<span class="ident">last</span>().<span class="ident">unwrap</span>().<span class="ident">right</span>();
-    <span class="kw">if</span> <span class="ident">rightmost</span> <span class="op">+</span> <span class="number">200.0</span> <span class="op">&lt;</span> <span class="ident">available_rect</span>.<span class="ident">right</span>() {
-        <span class="kw">return</span> <span class="ident">pos2</span>(<span class="ident">rightmost</span> <span class="op">+</span> <span class="ident">spacing</span>, <span class="ident">top</span>);
+    <span class="comment">// Maybe we can fit a new column?
+    </span><span class="kw">let </span>rightmost = column_bbs.last().unwrap().right();
+    <span class="kw">if </span>rightmost + <span class="number">200.0 </span>&lt; available_rect.right() {
+        <span class="kw">return </span>pos2(rightmost + spacing, top);
     }
 
-    <span class="comment">// Ok, just put us in the column with the most space at the bottom:</span>
-    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">best_pos</span> <span class="op">=</span> <span class="ident">pos2</span>(<span class="ident">left</span>, <span class="ident">column_bbs</span>[<span class="number">0</span>].<span class="ident">bottom</span>() <span class="op">+</span> <span class="ident">spacing</span>);
-    <span class="kw">for</span> <span class="ident">col_bb</span> <span class="kw">in</span> <span class="kw-2">&amp;</span><span class="ident">column_bbs</span> {
-        <span class="kw">let</span> <span class="ident">col_pos</span> <span class="op">=</span> <span class="ident">pos2</span>(<span class="ident">col_bb</span>.<span class="ident">left</span>(), <span class="ident">col_bb</span>.<span class="ident">bottom</span>() <span class="op">+</span> <span class="ident">spacing</span>);
-        <span class="kw">if</span> <span class="ident">col_pos</span>.<span class="ident">y</span> <span class="op">&lt;</span> <span class="ident">best_pos</span>.<span class="ident">y</span> {
-            <span class="ident">best_pos</span> <span class="op">=</span> <span class="ident">col_pos</span>;
+    <span class="comment">// Ok, just put us in the column with the most space at the bottom:
+    </span><span class="kw">let </span><span class="kw-2">mut </span>best_pos = pos2(left, column_bbs[<span class="number">0</span>].bottom() + spacing);
+    <span class="kw">for </span>col_bb <span class="kw">in </span><span class="kw-2">&amp;</span>column_bbs {
+        <span class="kw">let </span>col_pos = pos2(col_bb.left(), col_bb.bottom() + spacing);
+        <span class="kw">if </span>col_pos.y &lt; best_pos.y {
+            best_pos = col_pos;
         }
     }
-    <span class="ident">best_pos</span>
+    best_pos
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="egui" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0 (a55dd71d5 2022-09-19)" ></div></body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="egui" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.66.1 (90743e729 2023-01-10)" ></div></body></html>

@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/egui-0.16.1/src/widgets/button.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>button.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../storage.js"></script><script defer src="../../../source-script.js"></script><script defer src="../../../source-files.js"></script><script defer src="../../../main.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../../egui/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../../egui/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../../egui/index.html"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/egui-0.16.1/src/widgets/button.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>button.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../../normalize.css"><link rel="stylesheet" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../../ayu.css" disabled><link rel="stylesheet" href="../../../dark.css" disabled><link rel="stylesheet" href="../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../storage.js"></script><script defer src="../../../source-script.js"></script><script defer src="../../../source-files.js"></script><script defer src="../../../main.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><div class="width-limiter"><nav class="sub"><a class="sub-logo-container" href="../../../egui/index.html"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../wheel.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -529,536 +529,536 @@
 <span id="529">529</span>
 <span id="530">530</span>
 <span id="531">531</span>
-</pre><pre class="rust"><code><span class="kw">use</span> <span class="kw">crate</span>::<span class="kw-2">*</span>;
+</pre><pre class="rust"><code><span class="kw">use crate</span>::<span class="kw-2">*</span>;
 
-<span class="doccomment">/// Clickable button with text.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// See also [`Ui::button`].</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// ```</span>
-<span class="doccomment">/// # egui::__run_test_ui(|ui| {</span>
-<span class="doccomment">/// # fn do_stuff() {}</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// if ui.add(egui::Button::new(&quot;Click me&quot;)).clicked() {</span>
-<span class="doccomment">///     do_stuff();</span>
-<span class="doccomment">/// }</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// // A greyed-out and non-interactive button:</span>
-<span class="doccomment">/// if ui.add_enabled(false, egui::Button::new(&quot;Can&#39;t click this&quot;)).clicked() {</span>
-<span class="doccomment">///     unreachable!();</span>
-<span class="doccomment">/// }</span>
-<span class="doccomment">/// # });</span>
-<span class="doccomment">/// ```</span>
-<span class="attribute">#[<span class="ident">must_use</span> <span class="op">=</span> <span class="string">&quot;You should put this widget in an ui with `ui.add(widget);`&quot;</span>]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Button</span> {
-    <span class="ident">text</span>: <span class="ident">WidgetText</span>,
-    <span class="ident">wrap</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">bool</span><span class="op">&gt;</span>,
-    <span class="doccomment">/// None means default for interact</span>
-    <span class="ident">fill</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Color32</span><span class="op">&gt;</span>,
-    <span class="ident">stroke</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Stroke</span><span class="op">&gt;</span>,
-    <span class="ident">sense</span>: <span class="ident">Sense</span>,
-    <span class="ident">small</span>: <span class="ident">bool</span>,
-    <span class="ident">frame</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">bool</span><span class="op">&gt;</span>,
-    <span class="ident">min_size</span>: <span class="ident">Vec2</span>,
-    <span class="ident">image</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">widgets::Image</span><span class="op">&gt;</span>,
+<span class="doccomment">/// Clickable button with text.
+///
+/// See also [`Ui::button`].
+///
+/// ```
+/// # egui::__run_test_ui(|ui| {
+/// # fn do_stuff() {}
+///
+/// if ui.add(egui::Button::new(&quot;Click me&quot;)).clicked() {
+///     do_stuff();
+/// }
+///
+/// // A greyed-out and non-interactive button:
+/// if ui.add_enabled(false, egui::Button::new(&quot;Can&#39;t click this&quot;)).clicked() {
+///     unreachable!();
+/// }
+/// # });
+/// ```
+</span><span class="attribute">#[must_use = <span class="string">&quot;You should put this widget in an ui with `ui.add(widget);`&quot;</span>]
+</span><span class="kw">pub struct </span>Button {
+    text: WidgetText,
+    wrap: <span class="prelude-ty">Option</span>&lt;bool&gt;,
+    <span class="doccomment">/// None means default for interact
+    </span>fill: <span class="prelude-ty">Option</span>&lt;Color32&gt;,
+    stroke: <span class="prelude-ty">Option</span>&lt;Stroke&gt;,
+    sense: Sense,
+    small: bool,
+    frame: <span class="prelude-ty">Option</span>&lt;bool&gt;,
+    min_size: Vec2,
+    image: <span class="prelude-ty">Option</span>&lt;widgets::Image&gt;,
 }
 
-<span class="kw">impl</span> <span class="ident">Button</span> {
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">text</span>: <span class="kw">impl</span> <span class="ident">Into</span><span class="op">&lt;</span><span class="ident">WidgetText</span><span class="op">&gt;</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">Self</span> {
-            <span class="ident">text</span>: <span class="ident">text</span>.<span class="ident">into</span>(),
-            <span class="ident">wrap</span>: <span class="prelude-val">None</span>,
-            <span class="ident">fill</span>: <span class="prelude-val">None</span>,
-            <span class="ident">stroke</span>: <span class="prelude-val">None</span>,
-            <span class="ident">sense</span>: <span class="ident">Sense::click</span>(),
-            <span class="ident">small</span>: <span class="bool-val">false</span>,
-            <span class="ident">frame</span>: <span class="prelude-val">None</span>,
-            <span class="ident">min_size</span>: <span class="ident">Vec2::ZERO</span>,
-            <span class="ident">image</span>: <span class="prelude-val">None</span>,
+<span class="kw">impl </span>Button {
+    <span class="kw">pub fn </span>new(text: <span class="kw">impl </span>Into&lt;WidgetText&gt;) -&gt; <span class="self">Self </span>{
+        <span class="self">Self </span>{
+            text: text.into(),
+            wrap: <span class="prelude-val">None</span>,
+            fill: <span class="prelude-val">None</span>,
+            stroke: <span class="prelude-val">None</span>,
+            sense: Sense::click(),
+            small: <span class="bool-val">false</span>,
+            frame: <span class="prelude-val">None</span>,
+            min_size: Vec2::ZERO,
+            image: <span class="prelude-val">None</span>,
         }
     }
 
-    <span class="doccomment">/// Creates a button with an image to the left of the text. The size of the image as displayed is defined by the size Vec2 provided.</span>
-    <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">clippy::needless_pass_by_value</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">image_and_text</span>(
-        <span class="ident">texture_id</span>: <span class="ident">TextureId</span>,
-        <span class="ident">size</span>: <span class="kw">impl</span> <span class="ident">Into</span><span class="op">&lt;</span><span class="ident">Vec2</span><span class="op">&gt;</span>,
-        <span class="ident">text</span>: <span class="kw">impl</span> <span class="ident">Into</span><span class="op">&lt;</span><span class="ident">WidgetText</span><span class="op">&gt;</span>,
-    ) -&gt; <span class="self">Self</span> {
-        <span class="self">Self</span> {
-            <span class="ident">text</span>: <span class="ident">text</span>.<span class="ident">into</span>(),
-            <span class="ident">fill</span>: <span class="prelude-val">None</span>,
-            <span class="ident">stroke</span>: <span class="prelude-val">None</span>,
-            <span class="ident">sense</span>: <span class="ident">Sense::click</span>(),
-            <span class="ident">small</span>: <span class="bool-val">false</span>,
-            <span class="ident">frame</span>: <span class="prelude-val">None</span>,
-            <span class="ident">wrap</span>: <span class="prelude-val">None</span>,
-            <span class="ident">min_size</span>: <span class="ident">Vec2::ZERO</span>,
-            <span class="ident">image</span>: <span class="prelude-val">Some</span>(<span class="ident">widgets::Image::new</span>(<span class="ident">texture_id</span>, <span class="ident">size</span>)),
+    <span class="doccomment">/// Creates a button with an image to the left of the text. The size of the image as displayed is defined by the size Vec2 provided.
+    </span><span class="attribute">#[allow(clippy::needless_pass_by_value)]
+    </span><span class="kw">pub fn </span>image_and_text(
+        texture_id: TextureId,
+        size: <span class="kw">impl </span>Into&lt;Vec2&gt;,
+        text: <span class="kw">impl </span>Into&lt;WidgetText&gt;,
+    ) -&gt; <span class="self">Self </span>{
+        <span class="self">Self </span>{
+            text: text.into(),
+            fill: <span class="prelude-val">None</span>,
+            stroke: <span class="prelude-val">None</span>,
+            sense: Sense::click(),
+            small: <span class="bool-val">false</span>,
+            frame: <span class="prelude-val">None</span>,
+            wrap: <span class="prelude-val">None</span>,
+            min_size: Vec2::ZERO,
+            image: <span class="prelude-val">Some</span>(widgets::Image::new(texture_id, size)),
         }
     }
 
-    <span class="doccomment">/// If `true`, the text will wrap to stay within the max width of the `Ui`.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// By default [`Self::wrap`] will be true in vertical layouts</span>
-    <span class="doccomment">/// and horizontal layouts with wrapping,</span>
-    <span class="doccomment">/// and false on non-wrapping horizontal layouts.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// Note that any `\n` in the text will always produce a new line.</span>
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">wrap</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">wrap</span>: <span class="ident">bool</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">self</span>.<span class="ident">wrap</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">wrap</span>);
-        <span class="self">self</span>
-    }
+    <span class="doccomment">/// If `true`, the text will wrap to stay within the max width of the `Ui`.
+    ///
+    /// By default [`Self::wrap`] will be true in vertical layouts
+    /// and horizontal layouts with wrapping,
+    /// and false on non-wrapping horizontal layouts.
+    ///
+    /// Note that any `\n` in the text will always produce a new line.
+    </span><span class="attribute">#[inline]
+    </span><span class="kw">pub fn </span>wrap(<span class="kw-2">mut </span><span class="self">self</span>, wrap: bool) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.wrap = <span class="prelude-val">Some</span>(wrap);
+        <span class="self">self
+    </span>}
 
-    <span class="attribute">#[<span class="ident">deprecated</span> <span class="op">=</span> <span class="string">&quot;Replaced by: Button::new(RichText::new(text).color(…))&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">text_color</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">text_color</span>: <span class="ident">Color32</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">self</span>.<span class="ident">text</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">text</span>.<span class="ident">color</span>(<span class="ident">text_color</span>);
-        <span class="self">self</span>
-    }
+    <span class="attribute">#[deprecated = <span class="string">&quot;Replaced by: Button::new(RichText::new(text).color(…))&quot;</span>]
+    </span><span class="kw">pub fn </span>text_color(<span class="kw-2">mut </span><span class="self">self</span>, text_color: Color32) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.text = <span class="self">self</span>.text.color(text_color);
+        <span class="self">self
+    </span>}
 
-    <span class="attribute">#[<span class="ident">deprecated</span> <span class="op">=</span> <span class="string">&quot;Replaced by: Button::new(RichText::new(text).text_style(…))&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">text_style</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">text_style</span>: <span class="ident">TextStyle</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">self</span>.<span class="ident">text</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">text</span>.<span class="ident">text_style</span>(<span class="ident">text_style</span>);
-        <span class="self">self</span>
-    }
+    <span class="attribute">#[deprecated = <span class="string">&quot;Replaced by: Button::new(RichText::new(text).text_style(…))&quot;</span>]
+    </span><span class="kw">pub fn </span>text_style(<span class="kw-2">mut </span><span class="self">self</span>, text_style: TextStyle) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.text = <span class="self">self</span>.text.text_style(text_style);
+        <span class="self">self
+    </span>}
 
-    <span class="doccomment">/// Override background fill color. Note that this will override any on-hover effects.</span>
-    <span class="doccomment">/// Calling this will also turn on the frame.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">fill</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">fill</span>: <span class="kw">impl</span> <span class="ident">Into</span><span class="op">&lt;</span><span class="ident">Color32</span><span class="op">&gt;</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">self</span>.<span class="ident">fill</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">fill</span>.<span class="ident">into</span>());
-        <span class="self">self</span>.<span class="ident">frame</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="bool-val">true</span>);
-        <span class="self">self</span>
-    }
+    <span class="doccomment">/// Override background fill color. Note that this will override any on-hover effects.
+    /// Calling this will also turn on the frame.
+    </span><span class="kw">pub fn </span>fill(<span class="kw-2">mut </span><span class="self">self</span>, fill: <span class="kw">impl </span>Into&lt;Color32&gt;) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.fill = <span class="prelude-val">Some</span>(fill.into());
+        <span class="self">self</span>.frame = <span class="prelude-val">Some</span>(<span class="bool-val">true</span>);
+        <span class="self">self
+    </span>}
 
-    <span class="doccomment">/// Override button stroke. Note that this will override any on-hover effects.</span>
-    <span class="doccomment">/// Calling this will also turn on the frame.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">stroke</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">stroke</span>: <span class="kw">impl</span> <span class="ident">Into</span><span class="op">&lt;</span><span class="ident">Stroke</span><span class="op">&gt;</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">self</span>.<span class="ident">stroke</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">stroke</span>.<span class="ident">into</span>());
-        <span class="self">self</span>.<span class="ident">frame</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="bool-val">true</span>);
-        <span class="self">self</span>
-    }
+    <span class="doccomment">/// Override button stroke. Note that this will override any on-hover effects.
+    /// Calling this will also turn on the frame.
+    </span><span class="kw">pub fn </span>stroke(<span class="kw-2">mut </span><span class="self">self</span>, stroke: <span class="kw">impl </span>Into&lt;Stroke&gt;) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.stroke = <span class="prelude-val">Some</span>(stroke.into());
+        <span class="self">self</span>.frame = <span class="prelude-val">Some</span>(<span class="bool-val">true</span>);
+        <span class="self">self
+    </span>}
 
-    <span class="doccomment">/// Make this a small button, suitable for embedding into text.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">small</span>(<span class="kw-2">mut</span> <span class="self">self</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">self</span>.<span class="ident">text</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">text</span>.<span class="ident">text_style</span>(<span class="ident">TextStyle::Body</span>);
-        <span class="self">self</span>.<span class="ident">small</span> <span class="op">=</span> <span class="bool-val">true</span>;
-        <span class="self">self</span>
-    }
+    <span class="doccomment">/// Make this a small button, suitable for embedding into text.
+    </span><span class="kw">pub fn </span>small(<span class="kw-2">mut </span><span class="self">self</span>) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.text = <span class="self">self</span>.text.text_style(TextStyle::Body);
+        <span class="self">self</span>.small = <span class="bool-val">true</span>;
+        <span class="self">self
+    </span>}
 
-    <span class="doccomment">/// Turn off the frame</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">frame</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">frame</span>: <span class="ident">bool</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">self</span>.<span class="ident">frame</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">frame</span>);
-        <span class="self">self</span>
-    }
+    <span class="doccomment">/// Turn off the frame
+    </span><span class="kw">pub fn </span>frame(<span class="kw-2">mut </span><span class="self">self</span>, frame: bool) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.frame = <span class="prelude-val">Some</span>(frame);
+        <span class="self">self
+    </span>}
 
-    <span class="doccomment">/// By default, buttons senses clicks.</span>
-    <span class="doccomment">/// Change this to a drag-button with `Sense::drag()`.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">sense</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">sense</span>: <span class="ident">Sense</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">self</span>.<span class="ident">sense</span> <span class="op">=</span> <span class="ident">sense</span>;
-        <span class="self">self</span>
-    }
+    <span class="doccomment">/// By default, buttons senses clicks.
+    /// Change this to a drag-button with `Sense::drag()`.
+    </span><span class="kw">pub fn </span>sense(<span class="kw-2">mut </span><span class="self">self</span>, sense: Sense) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.sense = sense;
+        <span class="self">self
+    </span>}
 
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">min_size</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">min_size</span>: <span class="ident">Vec2</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">self</span>.<span class="ident">min_size</span> <span class="op">=</span> <span class="ident">min_size</span>;
-        <span class="self">self</span>
-    }
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>min_size(<span class="kw-2">mut </span><span class="self">self</span>, min_size: Vec2) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.min_size = min_size;
+        <span class="self">self
+    </span>}
 }
 
-<span class="kw">impl</span> <span class="ident">Widget</span> <span class="kw">for</span> <span class="ident">Button</span> {
-    <span class="kw">fn</span> <span class="ident">ui</span>(<span class="self">self</span>, <span class="ident">ui</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Ui</span>) -&gt; <span class="ident">Response</span> {
-        <span class="kw">let</span> <span class="ident">Button</span> {
-            <span class="ident">text</span>,
-            <span class="ident">wrap</span>,
-            <span class="ident">fill</span>,
-            <span class="ident">stroke</span>,
-            <span class="ident">sense</span>,
-            <span class="ident">small</span>,
-            <span class="ident">frame</span>,
-            <span class="ident">min_size</span>,
-            <span class="ident">image</span>,
-        } <span class="op">=</span> <span class="self">self</span>;
+<span class="kw">impl </span>Widget <span class="kw">for </span>Button {
+    <span class="kw">fn </span>ui(<span class="self">self</span>, ui: <span class="kw-2">&amp;mut </span>Ui) -&gt; Response {
+        <span class="kw">let </span>Button {
+            text,
+            wrap,
+            fill,
+            stroke,
+            sense,
+            small,
+            frame,
+            min_size,
+            image,
+        } = <span class="self">self</span>;
 
-        <span class="kw">let</span> <span class="ident">frame</span> <span class="op">=</span> <span class="ident">frame</span>.<span class="ident">unwrap_or_else</span>(<span class="op">|</span><span class="op">|</span> <span class="ident">ui</span>.<span class="ident">visuals</span>().<span class="ident">button_frame</span>);
+        <span class="kw">let </span>frame = frame.unwrap_or_else(|| ui.visuals().button_frame);
 
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">button_padding</span> <span class="op">=</span> <span class="ident">ui</span>.<span class="ident">spacing</span>().<span class="ident">button_padding</span>;
-        <span class="kw">if</span> <span class="ident">small</span> {
-            <span class="ident">button_padding</span>.<span class="ident">y</span> <span class="op">=</span> <span class="number">0.0</span>;
+        <span class="kw">let </span><span class="kw-2">mut </span>button_padding = ui.spacing().button_padding;
+        <span class="kw">if </span>small {
+            button_padding.y = <span class="number">0.0</span>;
         }
-        <span class="kw">let</span> <span class="ident">total_extra</span> <span class="op">=</span> <span class="ident">button_padding</span> <span class="op">+</span> <span class="ident">button_padding</span>;
+        <span class="kw">let </span>total_extra = button_padding + button_padding;
 
-        <span class="kw">let</span> <span class="ident">wrap_width</span> <span class="op">=</span> <span class="ident">ui</span>.<span class="ident">available_width</span>() <span class="op">-</span> <span class="ident">total_extra</span>.<span class="ident">x</span>;
-        <span class="kw">let</span> <span class="ident">text</span> <span class="op">=</span> <span class="ident">text</span>.<span class="ident">into_galley</span>(<span class="ident">ui</span>, <span class="ident">wrap</span>, <span class="ident">wrap_width</span>, <span class="ident">TextStyle::Button</span>);
+        <span class="kw">let </span>wrap_width = ui.available_width() - total_extra.x;
+        <span class="kw">let </span>text = text.into_galley(ui, wrap, wrap_width, TextStyle::Button);
 
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">desired_size</span> <span class="op">=</span> <span class="ident">text</span>.<span class="ident">size</span>() <span class="op">+</span> <span class="number">2.0</span> <span class="op">*</span> <span class="ident">button_padding</span>;
-        <span class="kw">if</span> <span class="op">!</span><span class="ident">small</span> {
-            <span class="ident">desired_size</span>.<span class="ident">y</span> <span class="op">=</span> <span class="ident">desired_size</span>.<span class="ident">y</span>.<span class="ident">at_least</span>(<span class="ident">ui</span>.<span class="ident">spacing</span>().<span class="ident">interact_size</span>.<span class="ident">y</span>);
+        <span class="kw">let </span><span class="kw-2">mut </span>desired_size = text.size() + <span class="number">2.0 </span>* button_padding;
+        <span class="kw">if </span>!small {
+            desired_size.y = desired_size.y.at_least(ui.spacing().interact_size.y);
         }
-        <span class="ident">desired_size</span> <span class="op">=</span> <span class="ident">desired_size</span>.<span class="ident">at_least</span>(<span class="ident">min_size</span>);
+        desired_size = desired_size.at_least(min_size);
 
-        <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">image</span>) <span class="op">=</span> <span class="ident">image</span> {
-            <span class="ident">desired_size</span>.<span class="ident">x</span> <span class="op">+</span><span class="op">=</span> <span class="ident">image</span>.<span class="ident">size</span>().<span class="ident">x</span> <span class="op">+</span> <span class="ident">ui</span>.<span class="ident">spacing</span>().<span class="ident">icon_spacing</span>;
-            <span class="ident">desired_size</span>.<span class="ident">y</span> <span class="op">=</span> <span class="ident">desired_size</span>.<span class="ident">y</span>.<span class="ident">max</span>(<span class="ident">image</span>.<span class="ident">size</span>().<span class="ident">y</span> <span class="op">+</span> <span class="number">2.0</span> <span class="op">*</span> <span class="ident">button_padding</span>.<span class="ident">y</span>);
+        <span class="kw">if let </span><span class="prelude-val">Some</span>(image) = image {
+            desired_size.x += image.size().x + ui.spacing().icon_spacing;
+            desired_size.y = desired_size.y.max(image.size().y + <span class="number">2.0 </span>* button_padding.y);
         }
 
-        <span class="kw">let</span> (<span class="ident">rect</span>, <span class="ident">response</span>) <span class="op">=</span> <span class="ident">ui</span>.<span class="ident">allocate_at_least</span>(<span class="ident">desired_size</span>, <span class="ident">sense</span>);
-        <span class="ident">response</span>.<span class="ident">widget_info</span>(<span class="op">|</span><span class="op">|</span> <span class="ident">WidgetInfo::labeled</span>(<span class="ident">WidgetType::Button</span>, <span class="ident">text</span>.<span class="ident">text</span>()));
+        <span class="kw">let </span>(rect, response) = ui.allocate_at_least(desired_size, sense);
+        response.widget_info(|| WidgetInfo::labeled(WidgetType::Button, text.text()));
 
-        <span class="kw">if</span> <span class="ident">ui</span>.<span class="ident">is_rect_visible</span>(<span class="ident">rect</span>) {
-            <span class="kw">let</span> <span class="ident">visuals</span> <span class="op">=</span> <span class="ident">ui</span>.<span class="ident">style</span>().<span class="ident">interact</span>(<span class="kw-2">&amp;</span><span class="ident">response</span>);
-            <span class="kw">let</span> <span class="ident">text_pos</span> <span class="op">=</span> <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">image</span>) <span class="op">=</span> <span class="ident">image</span> {
-                <span class="kw">let</span> <span class="ident">icon_spacing</span> <span class="op">=</span> <span class="ident">ui</span>.<span class="ident">spacing</span>().<span class="ident">icon_spacing</span>;
-                <span class="ident">pos2</span>(
-                    <span class="ident">rect</span>.<span class="ident">min</span>.<span class="ident">x</span> <span class="op">+</span> <span class="ident">button_padding</span>.<span class="ident">x</span> <span class="op">+</span> <span class="ident">image</span>.<span class="ident">size</span>().<span class="ident">x</span> <span class="op">+</span> <span class="ident">icon_spacing</span>,
-                    <span class="ident">rect</span>.<span class="ident">center</span>().<span class="ident">y</span> <span class="op">-</span> <span class="number">0.5</span> <span class="op">*</span> <span class="ident">text</span>.<span class="ident">size</span>().<span class="ident">y</span>,
+        <span class="kw">if </span>ui.is_rect_visible(rect) {
+            <span class="kw">let </span>visuals = ui.style().interact(<span class="kw-2">&amp;</span>response);
+            <span class="kw">let </span>text_pos = <span class="kw">if let </span><span class="prelude-val">Some</span>(image) = image {
+                <span class="kw">let </span>icon_spacing = ui.spacing().icon_spacing;
+                pos2(
+                    rect.min.x + button_padding.x + image.size().x + icon_spacing,
+                    rect.center().y - <span class="number">0.5 </span>* text.size().y,
                 )
-            } <span class="kw">else</span> {
-                <span class="ident">ui</span>.<span class="ident">layout</span>()
-                    .<span class="ident">align_size_within_rect</span>(<span class="ident">text</span>.<span class="ident">size</span>(), <span class="ident">rect</span>.<span class="ident">shrink2</span>(<span class="ident">button_padding</span>))
-                    .<span class="ident">min</span>
+            } <span class="kw">else </span>{
+                ui.layout()
+                    .align_size_within_rect(text.size(), rect.shrink2(button_padding))
+                    .min
             };
 
-            <span class="kw">if</span> <span class="ident">frame</span> {
-                <span class="kw">let</span> <span class="ident">fill</span> <span class="op">=</span> <span class="ident">fill</span>.<span class="ident">unwrap_or</span>(<span class="ident">visuals</span>.<span class="ident">bg_fill</span>);
-                <span class="kw">let</span> <span class="ident">stroke</span> <span class="op">=</span> <span class="ident">stroke</span>.<span class="ident">unwrap_or</span>(<span class="ident">visuals</span>.<span class="ident">bg_stroke</span>);
-                <span class="ident">ui</span>.<span class="ident">painter</span>().<span class="ident">rect</span>(
-                    <span class="ident">rect</span>.<span class="ident">expand</span>(<span class="ident">visuals</span>.<span class="ident">expansion</span>),
-                    <span class="ident">visuals</span>.<span class="ident">corner_radius</span>,
-                    <span class="ident">fill</span>,
-                    <span class="ident">stroke</span>,
+            <span class="kw">if </span>frame {
+                <span class="kw">let </span>fill = fill.unwrap_or(visuals.bg_fill);
+                <span class="kw">let </span>stroke = stroke.unwrap_or(visuals.bg_stroke);
+                ui.painter().rect(
+                    rect.expand(visuals.expansion),
+                    visuals.corner_radius,
+                    fill,
+                    stroke,
                 );
             }
 
-            <span class="ident">text</span>.<span class="ident">paint_with_visuals</span>(<span class="ident">ui</span>.<span class="ident">painter</span>(), <span class="ident">text_pos</span>, <span class="ident">visuals</span>);
+            text.paint_with_visuals(ui.painter(), text_pos, visuals);
         }
 
-        <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">image</span>) <span class="op">=</span> <span class="ident">image</span> {
-            <span class="kw">let</span> <span class="ident">image_rect</span> <span class="op">=</span> <span class="ident">Rect::from_min_size</span>(
-                <span class="ident">pos2</span>(<span class="ident">rect</span>.<span class="ident">min</span>.<span class="ident">x</span>, <span class="ident">rect</span>.<span class="ident">center</span>().<span class="ident">y</span> <span class="op">-</span> <span class="number">0.5</span> <span class="op">-</span> (<span class="ident">image</span>.<span class="ident">size</span>().<span class="ident">y</span> <span class="op">/</span> <span class="number">2.0</span>)),
-                <span class="ident">image</span>.<span class="ident">size</span>(),
+        <span class="kw">if let </span><span class="prelude-val">Some</span>(image) = image {
+            <span class="kw">let </span>image_rect = Rect::from_min_size(
+                pos2(rect.min.x, rect.center().y - <span class="number">0.5 </span>- (image.size().y / <span class="number">2.0</span>)),
+                image.size(),
             );
-            <span class="ident">image</span>.<span class="ident">paint_at</span>(<span class="ident">ui</span>, <span class="ident">image_rect</span>);
+            image.paint_at(ui, image_rect);
         }
 
-        <span class="ident">response</span>
+        response
     }
 }
 
-<span class="comment">// ----------------------------------------------------------------------------</span>
+<span class="comment">// ----------------------------------------------------------------------------
 
-<span class="comment">// TODO: allow checkbox without a text label</span>
-<span class="doccomment">/// Boolean on/off control with text label.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// Usually you&#39;d use [`Ui::checkbox`] instead.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// ```</span>
-<span class="doccomment">/// # egui::__run_test_ui(|ui| {</span>
-<span class="doccomment">/// # let mut my_bool = true;</span>
-<span class="doccomment">/// // These are equivalent:</span>
-<span class="doccomment">/// ui.checkbox(&amp;mut my_bool, &quot;Checked&quot;);</span>
-<span class="doccomment">/// ui.add(egui::Checkbox::new(&amp;mut my_bool, &quot;Checked&quot;));</span>
-<span class="doccomment">/// # });</span>
-<span class="doccomment">/// ```</span>
-<span class="attribute">#[<span class="ident">must_use</span> <span class="op">=</span> <span class="string">&quot;You should put this widget in an ui with `ui.add(widget);`&quot;</span>]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Checkbox</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="ident">checked</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="kw-2">mut</span> <span class="ident">bool</span>,
-    <span class="ident">text</span>: <span class="ident">WidgetText</span>,
+// TODO: allow checkbox without a text label
+</span><span class="doccomment">/// Boolean on/off control with text label.
+///
+/// Usually you&#39;d use [`Ui::checkbox`] instead.
+///
+/// ```
+/// # egui::__run_test_ui(|ui| {
+/// # let mut my_bool = true;
+/// // These are equivalent:
+/// ui.checkbox(&amp;mut my_bool, &quot;Checked&quot;);
+/// ui.add(egui::Checkbox::new(&amp;mut my_bool, &quot;Checked&quot;));
+/// # });
+/// ```
+</span><span class="attribute">#[must_use = <span class="string">&quot;You should put this widget in an ui with `ui.add(widget);`&quot;</span>]
+</span><span class="kw">pub struct </span>Checkbox&lt;<span class="lifetime">&#39;a</span>&gt; {
+    checked: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span><span class="kw-2">mut </span>bool,
+    text: WidgetText,
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">Checkbox</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">checked</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="kw-2">mut</span> <span class="ident">bool</span>, <span class="ident">text</span>: <span class="kw">impl</span> <span class="ident">Into</span><span class="op">&lt;</span><span class="ident">WidgetText</span><span class="op">&gt;</span>) -&gt; <span class="self">Self</span> {
-        <span class="ident">Checkbox</span> {
-            <span class="ident">checked</span>,
-            <span class="ident">text</span>: <span class="ident">text</span>.<span class="ident">into</span>(),
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; Checkbox&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="kw">pub fn </span>new(checked: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span><span class="kw-2">mut </span>bool, text: <span class="kw">impl </span>Into&lt;WidgetText&gt;) -&gt; <span class="self">Self </span>{
+        Checkbox {
+            checked,
+            text: text.into(),
         }
     }
 
-    <span class="attribute">#[<span class="ident">deprecated</span> <span class="op">=</span> <span class="string">&quot;Replaced by: Checkbox::new(RichText::new(text).color(…))&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">text_color</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">text_color</span>: <span class="ident">Color32</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">self</span>.<span class="ident">text</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">text</span>.<span class="ident">color</span>(<span class="ident">text_color</span>);
-        <span class="self">self</span>
-    }
+    <span class="attribute">#[deprecated = <span class="string">&quot;Replaced by: Checkbox::new(RichText::new(text).color(…))&quot;</span>]
+    </span><span class="kw">pub fn </span>text_color(<span class="kw-2">mut </span><span class="self">self</span>, text_color: Color32) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.text = <span class="self">self</span>.text.color(text_color);
+        <span class="self">self
+    </span>}
 
-    <span class="attribute">#[<span class="ident">deprecated</span> <span class="op">=</span> <span class="string">&quot;Replaced by: Checkbox::new(RichText::new(text).text_style(…))&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">text_style</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">text_style</span>: <span class="ident">TextStyle</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">self</span>.<span class="ident">text</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">text</span>.<span class="ident">text_style</span>(<span class="ident">text_style</span>);
-        <span class="self">self</span>
-    }
+    <span class="attribute">#[deprecated = <span class="string">&quot;Replaced by: Checkbox::new(RichText::new(text).text_style(…))&quot;</span>]
+    </span><span class="kw">pub fn </span>text_style(<span class="kw-2">mut </span><span class="self">self</span>, text_style: TextStyle) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.text = <span class="self">self</span>.text.text_style(text_style);
+        <span class="self">self
+    </span>}
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">Widget</span> <span class="kw">for</span> <span class="ident">Checkbox</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="kw">fn</span> <span class="ident">ui</span>(<span class="self">self</span>, <span class="ident">ui</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Ui</span>) -&gt; <span class="ident">Response</span> {
-        <span class="kw">let</span> <span class="ident">Checkbox</span> { <span class="ident">checked</span>, <span class="ident">text</span> } <span class="op">=</span> <span class="self">self</span>;
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; Widget <span class="kw">for </span>Checkbox&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="kw">fn </span>ui(<span class="self">self</span>, ui: <span class="kw-2">&amp;mut </span>Ui) -&gt; Response {
+        <span class="kw">let </span>Checkbox { checked, text } = <span class="self">self</span>;
 
-        <span class="kw">let</span> <span class="ident">spacing</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">ui</span>.<span class="ident">spacing</span>();
-        <span class="kw">let</span> <span class="ident">icon_width</span> <span class="op">=</span> <span class="ident">spacing</span>.<span class="ident">icon_width</span>;
-        <span class="kw">let</span> <span class="ident">icon_spacing</span> <span class="op">=</span> <span class="ident">ui</span>.<span class="ident">spacing</span>().<span class="ident">icon_spacing</span>;
-        <span class="kw">let</span> <span class="ident">button_padding</span> <span class="op">=</span> <span class="ident">spacing</span>.<span class="ident">button_padding</span>;
-        <span class="kw">let</span> <span class="ident">total_extra</span> <span class="op">=</span> <span class="ident">button_padding</span> <span class="op">+</span> <span class="ident">vec2</span>(<span class="ident">icon_width</span> <span class="op">+</span> <span class="ident">icon_spacing</span>, <span class="number">0.0</span>) <span class="op">+</span> <span class="ident">button_padding</span>;
+        <span class="kw">let </span>spacing = <span class="kw-2">&amp;</span>ui.spacing();
+        <span class="kw">let </span>icon_width = spacing.icon_width;
+        <span class="kw">let </span>icon_spacing = ui.spacing().icon_spacing;
+        <span class="kw">let </span>button_padding = spacing.button_padding;
+        <span class="kw">let </span>total_extra = button_padding + vec2(icon_width + icon_spacing, <span class="number">0.0</span>) + button_padding;
 
-        <span class="kw">let</span> <span class="ident">wrap_width</span> <span class="op">=</span> <span class="ident">ui</span>.<span class="ident">available_width</span>() <span class="op">-</span> <span class="ident">total_extra</span>.<span class="ident">x</span>;
-        <span class="kw">let</span> <span class="ident">text</span> <span class="op">=</span> <span class="ident">text</span>.<span class="ident">into_galley</span>(<span class="ident">ui</span>, <span class="prelude-val">None</span>, <span class="ident">wrap_width</span>, <span class="ident">TextStyle::Button</span>);
+        <span class="kw">let </span>wrap_width = ui.available_width() - total_extra.x;
+        <span class="kw">let </span>text = text.into_galley(ui, <span class="prelude-val">None</span>, wrap_width, TextStyle::Button);
 
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">desired_size</span> <span class="op">=</span> <span class="ident">total_extra</span> <span class="op">+</span> <span class="ident">text</span>.<span class="ident">size</span>();
-        <span class="ident">desired_size</span> <span class="op">=</span> <span class="ident">desired_size</span>.<span class="ident">at_least</span>(<span class="ident">spacing</span>.<span class="ident">interact_size</span>);
-        <span class="ident">desired_size</span>.<span class="ident">y</span> <span class="op">=</span> <span class="ident">desired_size</span>.<span class="ident">y</span>.<span class="ident">max</span>(<span class="ident">icon_width</span>);
-        <span class="kw">let</span> (<span class="ident">rect</span>, <span class="kw-2">mut</span> <span class="ident">response</span>) <span class="op">=</span> <span class="ident">ui</span>.<span class="ident">allocate_exact_size</span>(<span class="ident">desired_size</span>, <span class="ident">Sense::click</span>());
+        <span class="kw">let </span><span class="kw-2">mut </span>desired_size = total_extra + text.size();
+        desired_size = desired_size.at_least(spacing.interact_size);
+        desired_size.y = desired_size.y.max(icon_width);
+        <span class="kw">let </span>(rect, <span class="kw-2">mut </span>response) = ui.allocate_exact_size(desired_size, Sense::click());
 
-        <span class="kw">if</span> <span class="ident">response</span>.<span class="ident">clicked</span>() {
-            <span class="kw-2">*</span><span class="ident">checked</span> <span class="op">=</span> <span class="op">!</span><span class="kw-2">*</span><span class="ident">checked</span>;
-            <span class="ident">response</span>.<span class="ident">mark_changed</span>();
+        <span class="kw">if </span>response.clicked() {
+            <span class="kw-2">*</span>checked = !<span class="kw-2">*</span>checked;
+            response.mark_changed();
         }
-        <span class="ident">response</span>.<span class="ident">widget_info</span>(<span class="op">|</span><span class="op">|</span> <span class="ident">WidgetInfo::selected</span>(<span class="ident">WidgetType::Checkbox</span>, <span class="kw-2">*</span><span class="ident">checked</span>, <span class="ident">text</span>.<span class="ident">text</span>()));
+        response.widget_info(|| WidgetInfo::selected(WidgetType::Checkbox, <span class="kw-2">*</span>checked, text.text()));
 
-        <span class="kw">if</span> <span class="ident">ui</span>.<span class="ident">is_rect_visible</span>(<span class="ident">rect</span>) {
-            <span class="comment">// let visuals = ui.style().interact_selectable(&amp;response, *checked); // too colorful</span>
-            <span class="kw">let</span> <span class="ident">visuals</span> <span class="op">=</span> <span class="ident">ui</span>.<span class="ident">style</span>().<span class="ident">interact</span>(<span class="kw-2">&amp;</span><span class="ident">response</span>);
-            <span class="kw">let</span> <span class="ident">text_pos</span> <span class="op">=</span> <span class="ident">pos2</span>(
-                <span class="ident">rect</span>.<span class="ident">min</span>.<span class="ident">x</span> <span class="op">+</span> <span class="ident">button_padding</span>.<span class="ident">x</span> <span class="op">+</span> <span class="ident">icon_width</span> <span class="op">+</span> <span class="ident">icon_spacing</span>,
-                <span class="ident">rect</span>.<span class="ident">center</span>().<span class="ident">y</span> <span class="op">-</span> <span class="number">0.5</span> <span class="op">*</span> <span class="ident">text</span>.<span class="ident">size</span>().<span class="ident">y</span>,
+        <span class="kw">if </span>ui.is_rect_visible(rect) {
+            <span class="comment">// let visuals = ui.style().interact_selectable(&amp;response, *checked); // too colorful
+            </span><span class="kw">let </span>visuals = ui.style().interact(<span class="kw-2">&amp;</span>response);
+            <span class="kw">let </span>text_pos = pos2(
+                rect.min.x + button_padding.x + icon_width + icon_spacing,
+                rect.center().y - <span class="number">0.5 </span>* text.size().y,
             );
-            <span class="kw">let</span> (<span class="ident">small_icon_rect</span>, <span class="ident">big_icon_rect</span>) <span class="op">=</span> <span class="ident">ui</span>.<span class="ident">spacing</span>().<span class="ident">icon_rectangles</span>(<span class="ident">rect</span>);
-            <span class="ident">ui</span>.<span class="ident">painter</span>().<span class="ident">add</span>(<span class="ident">epaint::RectShape</span> {
-                <span class="ident">rect</span>: <span class="ident">big_icon_rect</span>.<span class="ident">expand</span>(<span class="ident">visuals</span>.<span class="ident">expansion</span>),
-                <span class="ident">corner_radius</span>: <span class="ident">visuals</span>.<span class="ident">corner_radius</span>,
-                <span class="ident">fill</span>: <span class="ident">visuals</span>.<span class="ident">bg_fill</span>,
-                <span class="ident">stroke</span>: <span class="ident">visuals</span>.<span class="ident">bg_stroke</span>,
+            <span class="kw">let </span>(small_icon_rect, big_icon_rect) = ui.spacing().icon_rectangles(rect);
+            ui.painter().add(epaint::RectShape {
+                rect: big_icon_rect.expand(visuals.expansion),
+                corner_radius: visuals.corner_radius,
+                fill: visuals.bg_fill,
+                stroke: visuals.bg_stroke,
             });
 
-            <span class="kw">if</span> <span class="kw-2">*</span><span class="ident">checked</span> {
-                <span class="comment">// Check mark:</span>
-                <span class="ident">ui</span>.<span class="ident">painter</span>().<span class="ident">add</span>(<span class="ident">Shape::line</span>(
+            <span class="kw">if </span><span class="kw-2">*</span>checked {
+                <span class="comment">// Check mark:
+                </span>ui.painter().add(Shape::line(
                     <span class="macro">vec!</span>[
-                        <span class="ident">pos2</span>(<span class="ident">small_icon_rect</span>.<span class="ident">left</span>(), <span class="ident">small_icon_rect</span>.<span class="ident">center</span>().<span class="ident">y</span>),
-                        <span class="ident">pos2</span>(<span class="ident">small_icon_rect</span>.<span class="ident">center</span>().<span class="ident">x</span>, <span class="ident">small_icon_rect</span>.<span class="ident">bottom</span>()),
-                        <span class="ident">pos2</span>(<span class="ident">small_icon_rect</span>.<span class="ident">right</span>(), <span class="ident">small_icon_rect</span>.<span class="ident">top</span>()),
+                        pos2(small_icon_rect.left(), small_icon_rect.center().y),
+                        pos2(small_icon_rect.center().x, small_icon_rect.bottom()),
+                        pos2(small_icon_rect.right(), small_icon_rect.top()),
                     ],
-                    <span class="ident">visuals</span>.<span class="ident">fg_stroke</span>,
+                    visuals.fg_stroke,
                 ));
             }
 
-            <span class="ident">text</span>.<span class="ident">paint_with_visuals</span>(<span class="ident">ui</span>.<span class="ident">painter</span>(), <span class="ident">text_pos</span>, <span class="ident">visuals</span>);
+            text.paint_with_visuals(ui.painter(), text_pos, visuals);
         }
 
-        <span class="ident">response</span>
+        response
     }
 }
 
-<span class="comment">// ----------------------------------------------------------------------------</span>
+<span class="comment">// ----------------------------------------------------------------------------
 
-<span class="doccomment">/// One out of several alternatives, either selected or not.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// Usually you&#39;d use [`Ui::radio_value`] or [`Ui::radio`] instead.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// ```</span>
-<span class="doccomment">/// # egui::__run_test_ui(|ui| {</span>
-<span class="doccomment">/// #[derive(PartialEq)]</span>
-<span class="doccomment">/// enum Enum { First, Second, Third }</span>
-<span class="doccomment">/// let mut my_enum = Enum::First;</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// ui.radio_value(&amp;mut my_enum, Enum::First, &quot;First&quot;);</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// // is equivalent to:</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// if ui.add(egui::RadioButton::new(my_enum == Enum::First, &quot;First&quot;)).clicked() {</span>
-<span class="doccomment">///     my_enum = Enum::First</span>
-<span class="doccomment">/// }</span>
-<span class="doccomment">/// # });</span>
-<span class="doccomment">/// ```</span>
-<span class="attribute">#[<span class="ident">must_use</span> <span class="op">=</span> <span class="string">&quot;You should put this widget in an ui with `ui.add(widget);`&quot;</span>]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">RadioButton</span> {
-    <span class="ident">checked</span>: <span class="ident">bool</span>,
-    <span class="ident">text</span>: <span class="ident">WidgetText</span>,
+</span><span class="doccomment">/// One out of several alternatives, either selected or not.
+///
+/// Usually you&#39;d use [`Ui::radio_value`] or [`Ui::radio`] instead.
+///
+/// ```
+/// # egui::__run_test_ui(|ui| {
+/// #[derive(PartialEq)]
+/// enum Enum { First, Second, Third }
+/// let mut my_enum = Enum::First;
+///
+/// ui.radio_value(&amp;mut my_enum, Enum::First, &quot;First&quot;);
+///
+/// // is equivalent to:
+///
+/// if ui.add(egui::RadioButton::new(my_enum == Enum::First, &quot;First&quot;)).clicked() {
+///     my_enum = Enum::First
+/// }
+/// # });
+/// ```
+</span><span class="attribute">#[must_use = <span class="string">&quot;You should put this widget in an ui with `ui.add(widget);`&quot;</span>]
+</span><span class="kw">pub struct </span>RadioButton {
+    checked: bool,
+    text: WidgetText,
 }
 
-<span class="kw">impl</span> <span class="ident">RadioButton</span> {
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">checked</span>: <span class="ident">bool</span>, <span class="ident">text</span>: <span class="kw">impl</span> <span class="ident">Into</span><span class="op">&lt;</span><span class="ident">WidgetText</span><span class="op">&gt;</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">Self</span> {
-            <span class="ident">checked</span>,
-            <span class="ident">text</span>: <span class="ident">text</span>.<span class="ident">into</span>(),
+<span class="kw">impl </span>RadioButton {
+    <span class="kw">pub fn </span>new(checked: bool, text: <span class="kw">impl </span>Into&lt;WidgetText&gt;) -&gt; <span class="self">Self </span>{
+        <span class="self">Self </span>{
+            checked,
+            text: text.into(),
         }
     }
 
-    <span class="attribute">#[<span class="ident">deprecated</span> <span class="op">=</span> <span class="string">&quot;Replaced by: RadioButton::new(RichText::new(text).color(…))&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">text_color</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">text_color</span>: <span class="ident">Color32</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">self</span>.<span class="ident">text</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">text</span>.<span class="ident">color</span>(<span class="ident">text_color</span>);
-        <span class="self">self</span>
-    }
+    <span class="attribute">#[deprecated = <span class="string">&quot;Replaced by: RadioButton::new(RichText::new(text).color(…))&quot;</span>]
+    </span><span class="kw">pub fn </span>text_color(<span class="kw-2">mut </span><span class="self">self</span>, text_color: Color32) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.text = <span class="self">self</span>.text.color(text_color);
+        <span class="self">self
+    </span>}
 
-    <span class="attribute">#[<span class="ident">deprecated</span> <span class="op">=</span> <span class="string">&quot;Replaced by: RadioButton::new(RichText::new(text).text_style(…))&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">text_style</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">text_style</span>: <span class="ident">TextStyle</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">self</span>.<span class="ident">text</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">text</span>.<span class="ident">text_style</span>(<span class="ident">text_style</span>);
-        <span class="self">self</span>
-    }
+    <span class="attribute">#[deprecated = <span class="string">&quot;Replaced by: RadioButton::new(RichText::new(text).text_style(…))&quot;</span>]
+    </span><span class="kw">pub fn </span>text_style(<span class="kw-2">mut </span><span class="self">self</span>, text_style: TextStyle) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.text = <span class="self">self</span>.text.text_style(text_style);
+        <span class="self">self
+    </span>}
 }
 
-<span class="kw">impl</span> <span class="ident">Widget</span> <span class="kw">for</span> <span class="ident">RadioButton</span> {
-    <span class="kw">fn</span> <span class="ident">ui</span>(<span class="self">self</span>, <span class="ident">ui</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Ui</span>) -&gt; <span class="ident">Response</span> {
-        <span class="kw">let</span> <span class="ident">RadioButton</span> { <span class="ident">checked</span>, <span class="ident">text</span> } <span class="op">=</span> <span class="self">self</span>;
+<span class="kw">impl </span>Widget <span class="kw">for </span>RadioButton {
+    <span class="kw">fn </span>ui(<span class="self">self</span>, ui: <span class="kw-2">&amp;mut </span>Ui) -&gt; Response {
+        <span class="kw">let </span>RadioButton { checked, text } = <span class="self">self</span>;
 
-        <span class="kw">let</span> <span class="ident">icon_width</span> <span class="op">=</span> <span class="ident">ui</span>.<span class="ident">spacing</span>().<span class="ident">icon_width</span>;
-        <span class="kw">let</span> <span class="ident">icon_spacing</span> <span class="op">=</span> <span class="ident">ui</span>.<span class="ident">spacing</span>().<span class="ident">icon_spacing</span>;
-        <span class="kw">let</span> <span class="ident">button_padding</span> <span class="op">=</span> <span class="ident">ui</span>.<span class="ident">spacing</span>().<span class="ident">button_padding</span>;
-        <span class="kw">let</span> <span class="ident">total_extra</span> <span class="op">=</span> <span class="ident">button_padding</span> <span class="op">+</span> <span class="ident">vec2</span>(<span class="ident">icon_width</span> <span class="op">+</span> <span class="ident">icon_spacing</span>, <span class="number">0.0</span>) <span class="op">+</span> <span class="ident">button_padding</span>;
+        <span class="kw">let </span>icon_width = ui.spacing().icon_width;
+        <span class="kw">let </span>icon_spacing = ui.spacing().icon_spacing;
+        <span class="kw">let </span>button_padding = ui.spacing().button_padding;
+        <span class="kw">let </span>total_extra = button_padding + vec2(icon_width + icon_spacing, <span class="number">0.0</span>) + button_padding;
 
-        <span class="kw">let</span> <span class="ident">wrap_width</span> <span class="op">=</span> <span class="ident">ui</span>.<span class="ident">available_width</span>() <span class="op">-</span> <span class="ident">total_extra</span>.<span class="ident">x</span>;
-        <span class="kw">let</span> <span class="ident">text</span> <span class="op">=</span> <span class="ident">text</span>.<span class="ident">into_galley</span>(<span class="ident">ui</span>, <span class="prelude-val">None</span>, <span class="ident">wrap_width</span>, <span class="ident">TextStyle::Button</span>);
+        <span class="kw">let </span>wrap_width = ui.available_width() - total_extra.x;
+        <span class="kw">let </span>text = text.into_galley(ui, <span class="prelude-val">None</span>, wrap_width, TextStyle::Button);
 
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">desired_size</span> <span class="op">=</span> <span class="ident">total_extra</span> <span class="op">+</span> <span class="ident">text</span>.<span class="ident">size</span>();
-        <span class="ident">desired_size</span> <span class="op">=</span> <span class="ident">desired_size</span>.<span class="ident">at_least</span>(<span class="ident">ui</span>.<span class="ident">spacing</span>().<span class="ident">interact_size</span>);
-        <span class="ident">desired_size</span>.<span class="ident">y</span> <span class="op">=</span> <span class="ident">desired_size</span>.<span class="ident">y</span>.<span class="ident">max</span>(<span class="ident">icon_width</span>);
-        <span class="kw">let</span> (<span class="ident">rect</span>, <span class="ident">response</span>) <span class="op">=</span> <span class="ident">ui</span>.<span class="ident">allocate_exact_size</span>(<span class="ident">desired_size</span>, <span class="ident">Sense::click</span>());
-        <span class="ident">response</span>
-            .<span class="ident">widget_info</span>(<span class="op">|</span><span class="op">|</span> <span class="ident">WidgetInfo::selected</span>(<span class="ident">WidgetType::RadioButton</span>, <span class="ident">checked</span>, <span class="ident">text</span>.<span class="ident">text</span>()));
+        <span class="kw">let </span><span class="kw-2">mut </span>desired_size = total_extra + text.size();
+        desired_size = desired_size.at_least(ui.spacing().interact_size);
+        desired_size.y = desired_size.y.max(icon_width);
+        <span class="kw">let </span>(rect, response) = ui.allocate_exact_size(desired_size, Sense::click());
+        response
+            .widget_info(|| WidgetInfo::selected(WidgetType::RadioButton, checked, text.text()));
 
-        <span class="kw">if</span> <span class="ident">ui</span>.<span class="ident">is_rect_visible</span>(<span class="ident">rect</span>) {
-            <span class="kw">let</span> <span class="ident">text_pos</span> <span class="op">=</span> <span class="ident">pos2</span>(
-                <span class="ident">rect</span>.<span class="ident">min</span>.<span class="ident">x</span> <span class="op">+</span> <span class="ident">button_padding</span>.<span class="ident">x</span> <span class="op">+</span> <span class="ident">icon_width</span> <span class="op">+</span> <span class="ident">icon_spacing</span>,
-                <span class="ident">rect</span>.<span class="ident">center</span>().<span class="ident">y</span> <span class="op">-</span> <span class="number">0.5</span> <span class="op">*</span> <span class="ident">text</span>.<span class="ident">size</span>().<span class="ident">y</span>,
+        <span class="kw">if </span>ui.is_rect_visible(rect) {
+            <span class="kw">let </span>text_pos = pos2(
+                rect.min.x + button_padding.x + icon_width + icon_spacing,
+                rect.center().y - <span class="number">0.5 </span>* text.size().y,
             );
 
-            <span class="comment">// let visuals = ui.style().interact_selectable(&amp;response, checked); // too colorful</span>
-            <span class="kw">let</span> <span class="ident">visuals</span> <span class="op">=</span> <span class="ident">ui</span>.<span class="ident">style</span>().<span class="ident">interact</span>(<span class="kw-2">&amp;</span><span class="ident">response</span>);
+            <span class="comment">// let visuals = ui.style().interact_selectable(&amp;response, checked); // too colorful
+            </span><span class="kw">let </span>visuals = ui.style().interact(<span class="kw-2">&amp;</span>response);
 
-            <span class="kw">let</span> (<span class="ident">small_icon_rect</span>, <span class="ident">big_icon_rect</span>) <span class="op">=</span> <span class="ident">ui</span>.<span class="ident">spacing</span>().<span class="ident">icon_rectangles</span>(<span class="ident">rect</span>);
+            <span class="kw">let </span>(small_icon_rect, big_icon_rect) = ui.spacing().icon_rectangles(rect);
 
-            <span class="kw">let</span> <span class="ident">painter</span> <span class="op">=</span> <span class="ident">ui</span>.<span class="ident">painter</span>();
+            <span class="kw">let </span>painter = ui.painter();
 
-            <span class="ident">painter</span>.<span class="ident">add</span>(<span class="ident">epaint::CircleShape</span> {
-                <span class="ident">center</span>: <span class="ident">big_icon_rect</span>.<span class="ident">center</span>(),
-                <span class="ident">radius</span>: <span class="ident">big_icon_rect</span>.<span class="ident">width</span>() <span class="op">/</span> <span class="number">2.0</span> <span class="op">+</span> <span class="ident">visuals</span>.<span class="ident">expansion</span>,
-                <span class="ident">fill</span>: <span class="ident">visuals</span>.<span class="ident">bg_fill</span>,
-                <span class="ident">stroke</span>: <span class="ident">visuals</span>.<span class="ident">bg_stroke</span>,
+            painter.add(epaint::CircleShape {
+                center: big_icon_rect.center(),
+                radius: big_icon_rect.width() / <span class="number">2.0 </span>+ visuals.expansion,
+                fill: visuals.bg_fill,
+                stroke: visuals.bg_stroke,
             });
 
-            <span class="kw">if</span> <span class="ident">checked</span> {
-                <span class="ident">painter</span>.<span class="ident">add</span>(<span class="ident">epaint::CircleShape</span> {
-                    <span class="ident">center</span>: <span class="ident">small_icon_rect</span>.<span class="ident">center</span>(),
-                    <span class="ident">radius</span>: <span class="ident">small_icon_rect</span>.<span class="ident">width</span>() <span class="op">/</span> <span class="number">3.0</span>,
-                    <span class="ident">fill</span>: <span class="ident">visuals</span>.<span class="ident">fg_stroke</span>.<span class="ident">color</span>, <span class="comment">// Intentional to use stroke and not fill</span>
-                    <span class="comment">// fill: ui.visuals().selection.stroke.color, // too much color</span>
-                    <span class="ident">stroke</span>: <span class="ident">Default::default</span>(),
+            <span class="kw">if </span>checked {
+                painter.add(epaint::CircleShape {
+                    center: small_icon_rect.center(),
+                    radius: small_icon_rect.width() / <span class="number">3.0</span>,
+                    fill: visuals.fg_stroke.color, <span class="comment">// Intentional to use stroke and not fill
+                    // fill: ui.visuals().selection.stroke.color, // too much color
+                    </span>stroke: Default::default(),
                 });
             }
 
-            <span class="ident">text</span>.<span class="ident">paint_with_visuals</span>(<span class="ident">ui</span>.<span class="ident">painter</span>(), <span class="ident">text_pos</span>, <span class="ident">visuals</span>);
+            text.paint_with_visuals(ui.painter(), text_pos, visuals);
         }
 
-        <span class="ident">response</span>
+        response
     }
 }
 
-<span class="comment">// ----------------------------------------------------------------------------</span>
+<span class="comment">// ----------------------------------------------------------------------------
 
-<span class="doccomment">/// A clickable image within a frame.</span>
-<span class="attribute">#[<span class="ident">must_use</span> <span class="op">=</span> <span class="string">&quot;You should put this widget in an ui with `ui.add(widget);`&quot;</span>]</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ImageButton</span> {
-    <span class="ident">image</span>: <span class="ident">widgets::Image</span>,
-    <span class="ident">sense</span>: <span class="ident">Sense</span>,
-    <span class="ident">frame</span>: <span class="ident">bool</span>,
-    <span class="ident">selected</span>: <span class="ident">bool</span>,
+</span><span class="doccomment">/// A clickable image within a frame.
+</span><span class="attribute">#[must_use = <span class="string">&quot;You should put this widget in an ui with `ui.add(widget);`&quot;</span>]
+#[derive(Clone, Debug)]
+</span><span class="kw">pub struct </span>ImageButton {
+    image: widgets::Image,
+    sense: Sense,
+    frame: bool,
+    selected: bool,
 }
 
-<span class="kw">impl</span> <span class="ident">ImageButton</span> {
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">texture_id</span>: <span class="ident">TextureId</span>, <span class="ident">size</span>: <span class="kw">impl</span> <span class="ident">Into</span><span class="op">&lt;</span><span class="ident">Vec2</span><span class="op">&gt;</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">Self</span> {
-            <span class="ident">image</span>: <span class="ident">widgets::Image::new</span>(<span class="ident">texture_id</span>, <span class="ident">size</span>),
-            <span class="ident">sense</span>: <span class="ident">Sense::click</span>(),
-            <span class="ident">frame</span>: <span class="bool-val">true</span>,
-            <span class="ident">selected</span>: <span class="bool-val">false</span>,
+<span class="kw">impl </span>ImageButton {
+    <span class="kw">pub fn </span>new(texture_id: TextureId, size: <span class="kw">impl </span>Into&lt;Vec2&gt;) -&gt; <span class="self">Self </span>{
+        <span class="self">Self </span>{
+            image: widgets::Image::new(texture_id, size),
+            sense: Sense::click(),
+            frame: <span class="bool-val">true</span>,
+            selected: <span class="bool-val">false</span>,
         }
     }
 
-    <span class="doccomment">/// Select UV range. Default is (0,0) in top-left, (1,1) bottom right.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">uv</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">uv</span>: <span class="kw">impl</span> <span class="ident">Into</span><span class="op">&lt;</span><span class="ident">Rect</span><span class="op">&gt;</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">self</span>.<span class="ident">image</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">image</span>.<span class="ident">uv</span>(<span class="ident">uv</span>);
-        <span class="self">self</span>
-    }
+    <span class="doccomment">/// Select UV range. Default is (0,0) in top-left, (1,1) bottom right.
+    </span><span class="kw">pub fn </span>uv(<span class="kw-2">mut </span><span class="self">self</span>, uv: <span class="kw">impl </span>Into&lt;Rect&gt;) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.image = <span class="self">self</span>.image.uv(uv);
+        <span class="self">self
+    </span>}
 
-    <span class="doccomment">/// Multiply image color with this. Default is WHITE (no tint).</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">tint</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">tint</span>: <span class="kw">impl</span> <span class="ident">Into</span><span class="op">&lt;</span><span class="ident">Color32</span><span class="op">&gt;</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">self</span>.<span class="ident">image</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">image</span>.<span class="ident">tint</span>(<span class="ident">tint</span>);
-        <span class="self">self</span>
-    }
+    <span class="doccomment">/// Multiply image color with this. Default is WHITE (no tint).
+    </span><span class="kw">pub fn </span>tint(<span class="kw-2">mut </span><span class="self">self</span>, tint: <span class="kw">impl </span>Into&lt;Color32&gt;) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.image = <span class="self">self</span>.image.tint(tint);
+        <span class="self">self
+    </span>}
 
-    <span class="doccomment">/// If `true`, mark this button as &quot;selected&quot;.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">selected</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">selected</span>: <span class="ident">bool</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">self</span>.<span class="ident">selected</span> <span class="op">=</span> <span class="ident">selected</span>;
-        <span class="self">self</span>
-    }
+    <span class="doccomment">/// If `true`, mark this button as &quot;selected&quot;.
+    </span><span class="kw">pub fn </span>selected(<span class="kw-2">mut </span><span class="self">self</span>, selected: bool) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.selected = selected;
+        <span class="self">self
+    </span>}
 
-    <span class="doccomment">/// Turn off the frame</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">frame</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">frame</span>: <span class="ident">bool</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">self</span>.<span class="ident">frame</span> <span class="op">=</span> <span class="ident">frame</span>;
-        <span class="self">self</span>
-    }
+    <span class="doccomment">/// Turn off the frame
+    </span><span class="kw">pub fn </span>frame(<span class="kw-2">mut </span><span class="self">self</span>, frame: bool) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.frame = frame;
+        <span class="self">self
+    </span>}
 
-    <span class="doccomment">/// By default, buttons senses clicks.</span>
-    <span class="doccomment">/// Change this to a drag-button with `Sense::drag()`.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">sense</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">sense</span>: <span class="ident">Sense</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">self</span>.<span class="ident">sense</span> <span class="op">=</span> <span class="ident">sense</span>;
-        <span class="self">self</span>
-    }
+    <span class="doccomment">/// By default, buttons senses clicks.
+    /// Change this to a drag-button with `Sense::drag()`.
+    </span><span class="kw">pub fn </span>sense(<span class="kw-2">mut </span><span class="self">self</span>, sense: Sense) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.sense = sense;
+        <span class="self">self
+    </span>}
 }
 
-<span class="kw">impl</span> <span class="ident">Widget</span> <span class="kw">for</span> <span class="ident">ImageButton</span> {
-    <span class="kw">fn</span> <span class="ident">ui</span>(<span class="self">self</span>, <span class="ident">ui</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Ui</span>) -&gt; <span class="ident">Response</span> {
-        <span class="kw">let</span> <span class="self">Self</span> {
-            <span class="ident">image</span>,
-            <span class="ident">sense</span>,
-            <span class="ident">frame</span>,
-            <span class="ident">selected</span>,
-        } <span class="op">=</span> <span class="self">self</span>;
+<span class="kw">impl </span>Widget <span class="kw">for </span>ImageButton {
+    <span class="kw">fn </span>ui(<span class="self">self</span>, ui: <span class="kw-2">&amp;mut </span>Ui) -&gt; Response {
+        <span class="kw">let </span><span class="self">Self </span>{
+            image,
+            sense,
+            frame,
+            selected,
+        } = <span class="self">self</span>;
 
-        <span class="kw">let</span> <span class="ident">padding</span> <span class="op">=</span> <span class="kw">if</span> <span class="ident">frame</span> {
-            <span class="comment">// so we can see that it is a button:</span>
-            <span class="ident">Vec2::splat</span>(<span class="ident">ui</span>.<span class="ident">spacing</span>().<span class="ident">button_padding</span>.<span class="ident">x</span>)
-        } <span class="kw">else</span> {
-            <span class="ident">Vec2::ZERO</span>
+        <span class="kw">let </span>padding = <span class="kw">if </span>frame {
+            <span class="comment">// so we can see that it is a button:
+            </span>Vec2::splat(ui.spacing().button_padding.x)
+        } <span class="kw">else </span>{
+            Vec2::ZERO
         };
-        <span class="kw">let</span> <span class="ident">padded_size</span> <span class="op">=</span> <span class="ident">image</span>.<span class="ident">size</span>() <span class="op">+</span> <span class="number">2.0</span> <span class="op">*</span> <span class="ident">padding</span>;
-        <span class="kw">let</span> (<span class="ident">rect</span>, <span class="ident">response</span>) <span class="op">=</span> <span class="ident">ui</span>.<span class="ident">allocate_exact_size</span>(<span class="ident">padded_size</span>, <span class="ident">sense</span>);
-        <span class="ident">response</span>.<span class="ident">widget_info</span>(<span class="op">|</span><span class="op">|</span> <span class="ident">WidgetInfo::new</span>(<span class="ident">WidgetType::ImageButton</span>));
+        <span class="kw">let </span>padded_size = image.size() + <span class="number">2.0 </span>* padding;
+        <span class="kw">let </span>(rect, response) = ui.allocate_exact_size(padded_size, sense);
+        response.widget_info(|| WidgetInfo::new(WidgetType::ImageButton));
 
-        <span class="kw">if</span> <span class="ident">ui</span>.<span class="ident">is_rect_visible</span>(<span class="ident">rect</span>) {
-            <span class="kw">let</span> (<span class="ident">expansion</span>, <span class="ident">corner_radius</span>, <span class="ident">fill</span>, <span class="ident">stroke</span>) <span class="op">=</span> <span class="kw">if</span> <span class="ident">selected</span> {
-                <span class="kw">let</span> <span class="ident">selection</span> <span class="op">=</span> <span class="ident">ui</span>.<span class="ident">visuals</span>().<span class="ident">selection</span>;
-                (<span class="op">-</span><span class="ident">padding</span>, <span class="number">0.0</span>, <span class="ident">selection</span>.<span class="ident">bg_fill</span>, <span class="ident">selection</span>.<span class="ident">stroke</span>)
-            } <span class="kw">else</span> <span class="kw">if</span> <span class="ident">frame</span> {
-                <span class="kw">let</span> <span class="ident">visuals</span> <span class="op">=</span> <span class="ident">ui</span>.<span class="ident">style</span>().<span class="ident">interact</span>(<span class="kw-2">&amp;</span><span class="ident">response</span>);
-                <span class="kw">let</span> <span class="ident">expansion</span> <span class="op">=</span> <span class="kw">if</span> <span class="ident">response</span>.<span class="ident">hovered</span> {
-                    <span class="ident">Vec2::splat</span>(<span class="ident">visuals</span>.<span class="ident">expansion</span>) <span class="op">-</span> <span class="ident">padding</span>
-                } <span class="kw">else</span> {
-                    <span class="ident">Vec2::splat</span>(<span class="ident">visuals</span>.<span class="ident">expansion</span>)
+        <span class="kw">if </span>ui.is_rect_visible(rect) {
+            <span class="kw">let </span>(expansion, corner_radius, fill, stroke) = <span class="kw">if </span>selected {
+                <span class="kw">let </span>selection = ui.visuals().selection;
+                (-padding, <span class="number">0.0</span>, selection.bg_fill, selection.stroke)
+            } <span class="kw">else if </span>frame {
+                <span class="kw">let </span>visuals = ui.style().interact(<span class="kw-2">&amp;</span>response);
+                <span class="kw">let </span>expansion = <span class="kw">if </span>response.hovered {
+                    Vec2::splat(visuals.expansion) - padding
+                } <span class="kw">else </span>{
+                    Vec2::splat(visuals.expansion)
                 };
                 (
-                    <span class="ident">expansion</span>,
-                    <span class="ident">visuals</span>.<span class="ident">corner_radius</span>,
-                    <span class="ident">visuals</span>.<span class="ident">bg_fill</span>,
-                    <span class="ident">visuals</span>.<span class="ident">bg_stroke</span>,
+                    expansion,
+                    visuals.corner_radius,
+                    visuals.bg_fill,
+                    visuals.bg_stroke,
                 )
-            } <span class="kw">else</span> {
-                <span class="ident">Default::default</span>()
+            } <span class="kw">else </span>{
+                Default::default()
             };
 
-            <span class="comment">// Draw frame background (for transparent images):</span>
-            <span class="ident">ui</span>.<span class="ident">painter</span>()
-                .<span class="ident">rect_filled</span>(<span class="ident">rect</span>.<span class="ident">expand2</span>(<span class="ident">expansion</span>), <span class="ident">corner_radius</span>, <span class="ident">fill</span>);
+            <span class="comment">// Draw frame background (for transparent images):
+            </span>ui.painter()
+                .rect_filled(rect.expand2(expansion), corner_radius, fill);
 
-            <span class="kw">let</span> <span class="ident">image_rect</span> <span class="op">=</span> <span class="ident">ui</span>
-                .<span class="ident">layout</span>()
-                .<span class="ident">align_size_within_rect</span>(<span class="ident">image</span>.<span class="ident">size</span>(), <span class="ident">rect</span>.<span class="ident">shrink2</span>(<span class="ident">padding</span>));
-            <span class="comment">// let image_rect = image_rect.expand2(expansion); // can make it blurry, so let&#39;s not</span>
-            <span class="ident">image</span>.<span class="ident">paint_at</span>(<span class="ident">ui</span>, <span class="ident">image_rect</span>);
+            <span class="kw">let </span>image_rect = ui
+                .layout()
+                .align_size_within_rect(image.size(), rect.shrink2(padding));
+            <span class="comment">// let image_rect = image_rect.expand2(expansion); // can make it blurry, so let&#39;s not
+            </span>image.paint_at(ui, image_rect);
 
-            <span class="comment">// Draw frame outline:</span>
-            <span class="ident">ui</span>.<span class="ident">painter</span>()
-                .<span class="ident">rect_stroke</span>(<span class="ident">rect</span>.<span class="ident">expand2</span>(<span class="ident">expansion</span>), <span class="ident">corner_radius</span>, <span class="ident">stroke</span>);
+            <span class="comment">// Draw frame outline:
+            </span>ui.painter()
+                .rect_stroke(rect.expand2(expansion), corner_radius, stroke);
         }
 
-        <span class="ident">response</span>
+        response
     }
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="egui" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0 (a55dd71d5 2022-09-19)" ></div></body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="egui" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.66.1 (90743e729 2023-01-10)" ></div></body></html>

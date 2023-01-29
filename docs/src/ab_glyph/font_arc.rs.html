@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/ab_glyph-0.2.15/src/font_arc.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>font_arc.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../ab_glyph/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../ab_glyph/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../ab_glyph/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/ab_glyph-0.2.15/src/font_arc.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>font_arc.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../normalize.css"><link rel="stylesheet" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../ayu.css" disabled><link rel="stylesheet" href="../../dark.css" disabled><link rel="stylesheet" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><div class="width-limiter"><nav class="sub"><a class="sub-logo-container" href="../../ab_glyph/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -160,167 +160,167 @@
 <span id="160">160</span>
 <span id="161">161</span>
 <span id="162">162</span>
-</pre><pre class="rust"><code><span class="kw">use</span> <span class="kw">crate</span>::{<span class="ident">Font</span>, <span class="ident">FontRef</span>, <span class="ident">FontVec</span>, <span class="ident">GlyphId</span>, <span class="ident">GlyphImage</span>, <span class="ident">InvalidFont</span>, <span class="ident">Outline</span>};
-<span class="kw">use</span> <span class="ident">alloc::sync::Arc</span>;
-<span class="kw">use</span> <span class="ident">core::fmt</span>;
+</pre><pre class="rust"><code><span class="kw">use crate</span>::{Font, FontRef, FontVec, GlyphId, GlyphImage, InvalidFont, Outline};
+<span class="kw">use </span>alloc::sync::Arc;
+<span class="kw">use </span>core::fmt;
 
-<span class="doccomment">/// `Font` implementor that wraps another concrete `Font + &#39;static` type storing in an `Arc`.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// Provides convenient type erasure &amp; cheap clones (particularly for `FontVec`).</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// # Example</span>
-<span class="doccomment">/// ```</span>
-<span class="doccomment">/// use ab_glyph::{Font, FontArc};</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// # fn main() -&gt; Result&lt;(), ab_glyph::InvalidFont&gt; {</span>
-<span class="doccomment">/// let font = FontArc::try_from_slice(include_bytes!(&quot;../../dev/fonts/Exo2-Light.otf&quot;))?;</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// assert_eq!(font.glyph_id(&#39;s&#39;), ab_glyph::GlyphId(56));</span>
-<span class="doccomment">/// # Ok(()) }</span>
-<span class="doccomment">/// ```</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">FontArc</span>(<span class="ident">Arc</span><span class="op">&lt;</span><span class="kw">dyn</span> <span class="ident">Font</span> <span class="op">+</span> <span class="ident">Send</span> <span class="op">+</span> <span class="ident">Sync</span> <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>);
+<span class="doccomment">/// `Font` implementor that wraps another concrete `Font + &#39;static` type storing in an `Arc`.
+///
+/// Provides convenient type erasure &amp; cheap clones (particularly for `FontVec`).
+///
+/// # Example
+/// ```
+/// use ab_glyph::{Font, FontArc};
+///
+/// # fn main() -&gt; Result&lt;(), ab_glyph::InvalidFont&gt; {
+/// let font = FontArc::try_from_slice(include_bytes!(&quot;../../dev/fonts/Exo2-Light.otf&quot;))?;
+///
+/// assert_eq!(font.glyph_id(&#39;s&#39;), ab_glyph::GlyphId(56));
+/// # Ok(()) }
+/// ```
+</span><span class="attribute">#[derive(Clone)]
+</span><span class="kw">pub struct </span>FontArc(Arc&lt;<span class="kw">dyn </span>Font + Send + Sync + <span class="lifetime">&#39;static</span>&gt;);
 
-<span class="kw">impl</span> <span class="ident">FontArc</span> {
-    <span class="doccomment">/// # Example</span>
-    <span class="doccomment">/// ```</span>
-    <span class="doccomment">/// # use ab_glyph::*;</span>
-    <span class="doccomment">/// # fn main() -&gt; Result&lt;(), ab_glyph::InvalidFont&gt; {</span>
-    <span class="doccomment">/// # let font_data = include_bytes!(&quot;../../dev/fonts/Exo2-Light.otf&quot;).to_vec();</span>
-    <span class="doccomment">/// # let font_vec = FontVec::try_from_vec(font_data)?;</span>
-    <span class="doccomment">/// let font_arc = FontArc::new(font_vec);</span>
-    <span class="doccomment">/// # Ok(()) }</span>
-    <span class="doccomment">/// ```</span>
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Font</span> <span class="op">+</span> <span class="ident">Send</span> <span class="op">+</span> <span class="ident">Sync</span> <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="ident">font</span>: <span class="ident">F</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">Self</span>(<span class="ident">Arc::new</span>(<span class="ident">font</span>))
+<span class="kw">impl </span>FontArc {
+    <span class="doccomment">/// # Example
+    /// ```
+    /// # use ab_glyph::*;
+    /// # fn main() -&gt; Result&lt;(), ab_glyph::InvalidFont&gt; {
+    /// # let font_data = include_bytes!(&quot;../../dev/fonts/Exo2-Light.otf&quot;).to_vec();
+    /// # let font_vec = FontVec::try_from_vec(font_data)?;
+    /// let font_arc = FontArc::new(font_vec);
+    /// # Ok(()) }
+    /// ```
+    </span><span class="attribute">#[inline]
+    </span><span class="kw">pub fn </span>new&lt;F: Font + Send + Sync + <span class="lifetime">&#39;static</span>&gt;(font: F) -&gt; <span class="self">Self </span>{
+        <span class="self">Self</span>(Arc::new(font))
     }
 
-    <span class="doccomment">/// Creates an `FontArc` from owned data.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// # Example</span>
-    <span class="doccomment">/// ```</span>
-    <span class="doccomment">/// # use ab_glyph::*;</span>
-    <span class="doccomment">/// # fn main() -&gt; Result&lt;(), InvalidFont&gt; {</span>
-    <span class="doccomment">/// # let owned_font_data = include_bytes!(&quot;../../dev/fonts/Exo2-Light.otf&quot;).to_vec();</span>
-    <span class="doccomment">/// let font = FontArc::try_from_vec(owned_font_data)?;</span>
-    <span class="doccomment">/// # Ok(()) }</span>
-    <span class="doccomment">/// ```</span>
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">try_from_vec</span>(<span class="ident">data</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="self">Self</span>, <span class="ident">InvalidFont</span><span class="op">&gt;</span> {
-        <span class="prelude-val">Ok</span>(<span class="ident">FontVec::try_from_vec</span>(<span class="ident">data</span>)<span class="question-mark">?</span>.<span class="ident">into</span>())
+    <span class="doccomment">/// Creates an `FontArc` from owned data.
+    ///
+    /// # Example
+    /// ```
+    /// # use ab_glyph::*;
+    /// # fn main() -&gt; Result&lt;(), InvalidFont&gt; {
+    /// # let owned_font_data = include_bytes!(&quot;../../dev/fonts/Exo2-Light.otf&quot;).to_vec();
+    /// let font = FontArc::try_from_vec(owned_font_data)?;
+    /// # Ok(()) }
+    /// ```
+    </span><span class="attribute">#[inline]
+    </span><span class="kw">pub fn </span>try_from_vec(data: Vec&lt;u8&gt;) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>, InvalidFont&gt; {
+        <span class="prelude-val">Ok</span>(FontVec::try_from_vec(data)<span class="question-mark">?</span>.into())
     }
 
-    <span class="doccomment">/// Creates an `FontArc` from a byte-slice.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// # Example</span>
-    <span class="doccomment">/// ```</span>
-    <span class="doccomment">/// # use ab_glyph::*;</span>
-    <span class="doccomment">/// # fn main() -&gt; Result&lt;(), InvalidFont&gt; {</span>
-    <span class="doccomment">/// let font = FontArc::try_from_slice(include_bytes!(&quot;../../dev/fonts/Exo2-Light.otf&quot;))?;</span>
-    <span class="doccomment">/// # Ok(()) }</span>
-    <span class="doccomment">/// ```</span>
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">try_from_slice</span>(<span class="ident">data</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> [<span class="ident">u8</span>]) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="self">Self</span>, <span class="ident">InvalidFont</span><span class="op">&gt;</span> {
-        <span class="prelude-val">Ok</span>(<span class="ident">FontRef::try_from_slice</span>(<span class="ident">data</span>)<span class="question-mark">?</span>.<span class="ident">into</span>())
-    }
-}
-
-<span class="kw">impl</span> <span class="ident">fmt::Debug</span> <span class="kw">for</span> <span class="ident">FontArc</span> {
-    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;mut</span> <span class="ident">fmt::Formatter</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>) -&gt; <span class="ident">fmt::Result</span> {
-        <span class="macro">write!</span>(<span class="ident">f</span>, <span class="string">&quot;FontArc&quot;</span>)
+    <span class="doccomment">/// Creates an `FontArc` from a byte-slice.
+    ///
+    /// # Example
+    /// ```
+    /// # use ab_glyph::*;
+    /// # fn main() -&gt; Result&lt;(), InvalidFont&gt; {
+    /// let font = FontArc::try_from_slice(include_bytes!(&quot;../../dev/fonts/Exo2-Light.otf&quot;))?;
+    /// # Ok(()) }
+    /// ```
+    </span><span class="attribute">#[inline]
+    </span><span class="kw">pub fn </span>try_from_slice(data: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>[u8]) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>, InvalidFont&gt; {
+        <span class="prelude-val">Ok</span>(FontRef::try_from_slice(data)<span class="question-mark">?</span>.into())
     }
 }
 
-<span class="kw">impl</span> <span class="ident">Font</span> <span class="kw">for</span> <span class="ident">FontArc</span> {
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">units_per_em</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">f32</span><span class="op">&gt;</span> {
-        <span class="self">self</span>.<span class="number">0</span>.<span class="ident">units_per_em</span>()
-    }
-
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">ascent_unscaled</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">f32</span> {
-        <span class="self">self</span>.<span class="number">0</span>.<span class="ident">ascent_unscaled</span>()
-    }
-
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">descent_unscaled</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">f32</span> {
-        <span class="self">self</span>.<span class="number">0</span>.<span class="ident">descent_unscaled</span>()
-    }
-
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">line_gap_unscaled</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">f32</span> {
-        <span class="self">self</span>.<span class="number">0</span>.<span class="ident">line_gap_unscaled</span>()
-    }
-
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">glyph_id</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">c</span>: <span class="ident">char</span>) -&gt; <span class="ident">GlyphId</span> {
-        <span class="self">self</span>.<span class="number">0</span>.<span class="ident">glyph_id</span>(<span class="ident">c</span>)
-    }
-
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">h_advance_unscaled</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">id</span>: <span class="ident">GlyphId</span>) -&gt; <span class="ident">f32</span> {
-        <span class="self">self</span>.<span class="number">0</span>.<span class="ident">h_advance_unscaled</span>(<span class="ident">id</span>)
-    }
-
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">h_side_bearing_unscaled</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">id</span>: <span class="ident">GlyphId</span>) -&gt; <span class="ident">f32</span> {
-        <span class="self">self</span>.<span class="number">0</span>.<span class="ident">h_side_bearing_unscaled</span>(<span class="ident">id</span>)
-    }
-
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">v_advance_unscaled</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">id</span>: <span class="ident">GlyphId</span>) -&gt; <span class="ident">f32</span> {
-        <span class="self">self</span>.<span class="number">0</span>.<span class="ident">v_advance_unscaled</span>(<span class="ident">id</span>)
-    }
-
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">v_side_bearing_unscaled</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">id</span>: <span class="ident">GlyphId</span>) -&gt; <span class="ident">f32</span> {
-        <span class="self">self</span>.<span class="number">0</span>.<span class="ident">v_side_bearing_unscaled</span>(<span class="ident">id</span>)
-    }
-
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">kern_unscaled</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">first</span>: <span class="ident">GlyphId</span>, <span class="ident">second</span>: <span class="ident">GlyphId</span>) -&gt; <span class="ident">f32</span> {
-        <span class="self">self</span>.<span class="number">0</span>.<span class="ident">kern_unscaled</span>(<span class="ident">first</span>, <span class="ident">second</span>)
-    }
-
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">outline</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">glyph</span>: <span class="ident">GlyphId</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Outline</span><span class="op">&gt;</span> {
-        <span class="self">self</span>.<span class="number">0</span>.<span class="ident">outline</span>(<span class="ident">glyph</span>)
-    }
-
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">glyph_count</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">usize</span> {
-        <span class="self">self</span>.<span class="number">0</span>.<span class="ident">glyph_count</span>()
-    }
-
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">codepoint_ids</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident"><span class="kw">crate</span>::CodepointIdIter</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span> {
-        <span class="self">self</span>.<span class="number">0</span>.<span class="ident">codepoint_ids</span>()
-    }
-
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">glyph_raster_image</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">id</span>: <span class="ident">GlyphId</span>, <span class="ident">size</span>: <span class="ident">u16</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">GlyphImage</span><span class="op">&gt;</span> {
-        <span class="self">self</span>.<span class="number">0</span>.<span class="ident">glyph_raster_image</span>(<span class="ident">id</span>, <span class="ident">size</span>)
+<span class="kw">impl </span>fmt::Debug <span class="kw">for </span>FontArc {
+    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>fmt::Formatter&lt;<span class="lifetime">&#39;_</span>&gt;) -&gt; fmt::Result {
+        <span class="macro">write!</span>(f, <span class="string">&quot;FontArc&quot;</span>)
     }
 }
 
-<span class="kw">impl</span> <span class="ident">From</span><span class="op">&lt;</span><span class="ident">FontVec</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">FontArc</span> {
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">font</span>: <span class="ident">FontVec</span>) -&gt; <span class="self">Self</span> {
-        <span class="ident"><span class="self">Self</span>::new</span>(<span class="ident">font</span>)
+<span class="kw">impl </span>Font <span class="kw">for </span>FontArc {
+    <span class="attribute">#[inline]
+    </span><span class="kw">fn </span>units_per_em(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;f32&gt; {
+        <span class="self">self</span>.<span class="number">0</span>.units_per_em()
+    }
+
+    <span class="attribute">#[inline]
+    </span><span class="kw">fn </span>ascent_unscaled(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; f32 {
+        <span class="self">self</span>.<span class="number">0</span>.ascent_unscaled()
+    }
+
+    <span class="attribute">#[inline]
+    </span><span class="kw">fn </span>descent_unscaled(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; f32 {
+        <span class="self">self</span>.<span class="number">0</span>.descent_unscaled()
+    }
+
+    <span class="attribute">#[inline]
+    </span><span class="kw">fn </span>line_gap_unscaled(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; f32 {
+        <span class="self">self</span>.<span class="number">0</span>.line_gap_unscaled()
+    }
+
+    <span class="attribute">#[inline]
+    </span><span class="kw">fn </span>glyph_id(<span class="kw-2">&amp;</span><span class="self">self</span>, c: char) -&gt; GlyphId {
+        <span class="self">self</span>.<span class="number">0</span>.glyph_id(c)
+    }
+
+    <span class="attribute">#[inline]
+    </span><span class="kw">fn </span>h_advance_unscaled(<span class="kw-2">&amp;</span><span class="self">self</span>, id: GlyphId) -&gt; f32 {
+        <span class="self">self</span>.<span class="number">0</span>.h_advance_unscaled(id)
+    }
+
+    <span class="attribute">#[inline]
+    </span><span class="kw">fn </span>h_side_bearing_unscaled(<span class="kw-2">&amp;</span><span class="self">self</span>, id: GlyphId) -&gt; f32 {
+        <span class="self">self</span>.<span class="number">0</span>.h_side_bearing_unscaled(id)
+    }
+
+    <span class="attribute">#[inline]
+    </span><span class="kw">fn </span>v_advance_unscaled(<span class="kw-2">&amp;</span><span class="self">self</span>, id: GlyphId) -&gt; f32 {
+        <span class="self">self</span>.<span class="number">0</span>.v_advance_unscaled(id)
+    }
+
+    <span class="attribute">#[inline]
+    </span><span class="kw">fn </span>v_side_bearing_unscaled(<span class="kw-2">&amp;</span><span class="self">self</span>, id: GlyphId) -&gt; f32 {
+        <span class="self">self</span>.<span class="number">0</span>.v_side_bearing_unscaled(id)
+    }
+
+    <span class="attribute">#[inline]
+    </span><span class="kw">fn </span>kern_unscaled(<span class="kw-2">&amp;</span><span class="self">self</span>, first: GlyphId, second: GlyphId) -&gt; f32 {
+        <span class="self">self</span>.<span class="number">0</span>.kern_unscaled(first, second)
+    }
+
+    <span class="attribute">#[inline]
+    </span><span class="kw">fn </span>outline(<span class="kw-2">&amp;</span><span class="self">self</span>, glyph: GlyphId) -&gt; <span class="prelude-ty">Option</span>&lt;Outline&gt; {
+        <span class="self">self</span>.<span class="number">0</span>.outline(glyph)
+    }
+
+    <span class="attribute">#[inline]
+    </span><span class="kw">fn </span>glyph_count(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; usize {
+        <span class="self">self</span>.<span class="number">0</span>.glyph_count()
+    }
+
+    <span class="attribute">#[inline]
+    </span><span class="kw">fn </span>codepoint_ids(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw">crate</span>::CodepointIdIter&lt;<span class="lifetime">&#39;_</span>&gt; {
+        <span class="self">self</span>.<span class="number">0</span>.codepoint_ids()
+    }
+
+    <span class="attribute">#[inline]
+    </span><span class="kw">fn </span>glyph_raster_image(<span class="kw-2">&amp;</span><span class="self">self</span>, id: GlyphId, size: u16) -&gt; <span class="prelude-ty">Option</span>&lt;GlyphImage&gt; {
+        <span class="self">self</span>.<span class="number">0</span>.glyph_raster_image(id, size)
     }
 }
-<span class="kw">impl</span> <span class="ident">From</span><span class="op">&lt;</span><span class="ident">FontRef</span><span class="op">&lt;</span><span class="lifetime">&#39;static</span><span class="op">&gt;</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">FontArc</span> {
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">font</span>: <span class="ident">FontRef</span><span class="op">&lt;</span><span class="lifetime">&#39;static</span><span class="op">&gt;</span>) -&gt; <span class="self">Self</span> {
-        <span class="ident"><span class="self">Self</span>::new</span>(<span class="ident">font</span>)
+
+<span class="kw">impl </span>From&lt;FontVec&gt; <span class="kw">for </span>FontArc {
+    <span class="attribute">#[inline]
+    </span><span class="kw">fn </span>from(font: FontVec) -&gt; <span class="self">Self </span>{
+        <span class="self">Self</span>::new(font)
     }
 }
-<span class="kw">impl</span> <span class="ident">From</span><span class="op">&lt;</span><span class="ident">Arc</span><span class="op">&lt;</span><span class="kw">dyn</span> <span class="ident">Font</span> <span class="op">+</span> <span class="ident">Send</span> <span class="op">+</span> <span class="ident">Sync</span> <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">FontArc</span> {
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">font</span>: <span class="ident">Arc</span><span class="op">&lt;</span><span class="kw">dyn</span> <span class="ident">Font</span> <span class="op">+</span> <span class="ident">Send</span> <span class="op">+</span> <span class="ident">Sync</span> <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">Self</span>(<span class="ident">font</span>)
+<span class="kw">impl </span>From&lt;FontRef&lt;<span class="lifetime">&#39;static</span>&gt;&gt; <span class="kw">for </span>FontArc {
+    <span class="attribute">#[inline]
+    </span><span class="kw">fn </span>from(font: FontRef&lt;<span class="lifetime">&#39;static</span>&gt;) -&gt; <span class="self">Self </span>{
+        <span class="self">Self</span>::new(font)
+    }
+}
+<span class="kw">impl </span>From&lt;Arc&lt;<span class="kw">dyn </span>Font + Send + Sync + <span class="lifetime">&#39;static</span>&gt;&gt; <span class="kw">for </span>FontArc {
+    <span class="attribute">#[inline]
+    </span><span class="kw">fn </span>from(font: Arc&lt;<span class="kw">dyn </span>Font + Send + Sync + <span class="lifetime">&#39;static</span>&gt;) -&gt; <span class="self">Self </span>{
+        <span class="self">Self</span>(font)
     }
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="ab_glyph" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0 (a55dd71d5 2022-09-19)" ></div></body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="ab_glyph" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.66.1 (90743e729 2023-01-10)" ></div></body></html>

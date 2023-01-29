@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/sdl2-0.35.2/src/sdl2/surface.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>surface.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../sdl2/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../sdl2/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../sdl2/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/sdl2-0.35.2/src/sdl2/surface.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>surface.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../normalize.css"><link rel="stylesheet" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../ayu.css" disabled><link rel="stylesheet" href="../../dark.css" disabled><link rel="stylesheet" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><div class="width-limiter"><nav class="sub"><a class="sub-logo-container" href="../../sdl2/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -818,825 +818,825 @@
 <span id="818">818</span>
 <span id="819">819</span>
 <span id="820">820</span>
-</pre><pre class="rust"><code><span class="kw">use</span> <span class="ident">std::marker::PhantomData</span>;
-<span class="kw">use</span> <span class="ident">std::mem</span>;
-<span class="kw">use</span> <span class="ident">std::ops</span>::{<span class="ident">Deref</span>, <span class="ident">DerefMut</span>};
-<span class="kw">use</span> <span class="ident">std::path::Path</span>;
-<span class="kw">use</span> <span class="ident">std::rc::Rc</span>;
+</pre><pre class="rust"><code><span class="kw">use </span>std::marker::PhantomData;
+<span class="kw">use </span>std::mem;
+<span class="kw">use </span>std::ops::{Deref, DerefMut};
+<span class="kw">use </span>std::path::Path;
+<span class="kw">use </span>std::rc::Rc;
 
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::get_error</span>;
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::pixels</span>;
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::rect::Rect</span>;
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::render</span>::{<span class="ident">BlendMode</span>, <span class="ident">Canvas</span>};
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::render</span>::{<span class="ident">Texture</span>, <span class="ident">TextureCreator</span>, <span class="ident">TextureValueError</span>};
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::rwops::RWops</span>;
-<span class="kw">use</span> <span class="ident">libc::c_int</span>;
-<span class="kw">use</span> <span class="ident">std::convert::TryFrom</span>;
-<span class="kw">use</span> <span class="ident">std::mem::transmute</span>;
-<span class="kw">use</span> <span class="ident">std::ptr</span>;
+<span class="kw">use </span><span class="kw">crate</span>::get_error;
+<span class="kw">use </span><span class="kw">crate</span>::pixels;
+<span class="kw">use </span><span class="kw">crate</span>::rect::Rect;
+<span class="kw">use </span><span class="kw">crate</span>::render::{BlendMode, Canvas};
+<span class="kw">use </span><span class="kw">crate</span>::render::{Texture, TextureCreator, TextureValueError};
+<span class="kw">use </span><span class="kw">crate</span>::rwops::RWops;
+<span class="kw">use </span>libc::c_int;
+<span class="kw">use </span>std::convert::TryFrom;
+<span class="kw">use </span>std::mem::transmute;
+<span class="kw">use </span>std::ptr;
 
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::sys</span>;
+<span class="kw">use </span><span class="kw">crate</span>::sys;
 
-<span class="doccomment">/// Holds a `SDL_Surface`</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// When the `SurfaceContext` is dropped, it frees the `SDL_Surface`</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// *INTERNAL USE ONLY*</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">SurfaceContext</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="ident">raw</span>: <span class="kw-2">*mut</span> <span class="ident">sys::SDL_Surface</span>,
-    <span class="ident">_marker</span>: <span class="ident">PhantomData</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> ()<span class="op">&gt;</span>,
+<span class="doccomment">/// Holds a `SDL_Surface`
+///
+/// When the `SurfaceContext` is dropped, it frees the `SDL_Surface`
+///
+/// *INTERNAL USE ONLY*
+</span><span class="kw">pub struct </span>SurfaceContext&lt;<span class="lifetime">&#39;a</span>&gt; {
+    raw: <span class="kw-2">*mut </span>sys::SDL_Surface,
+    _marker: PhantomData&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>()&gt;,
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">Drop</span> <span class="kw">for</span> <span class="ident">SurfaceContext</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;SDL_FreeSurface&quot;</span>)]</span>
-    <span class="kw">fn</span> <span class="ident">drop</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>) {
-        <span class="kw">unsafe</span> {
-            <span class="ident">sys::SDL_FreeSurface</span>(<span class="self">self</span>.<span class="ident">raw</span>);
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; Drop <span class="kw">for </span>SurfaceContext&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="attribute">#[inline]
+    #[doc(alias = <span class="string">&quot;SDL_FreeSurface&quot;</span>)]
+    </span><span class="kw">fn </span>drop(<span class="kw-2">&amp;mut </span><span class="self">self</span>) {
+        <span class="kw">unsafe </span>{
+            sys::SDL_FreeSurface(<span class="self">self</span>.raw);
         }
     }
 }
 
-<span class="doccomment">/// Holds a `Rc&lt;SurfaceContext&gt;`.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// Note: If a `Surface` goes out of scope but it cloned its context,</span>
-<span class="doccomment">/// then the `SDL_Surface` will not be free&#39;d until there are no more references to the `SurfaceContext`.</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Surface</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="ident">context</span>: <span class="ident">Rc</span><span class="op">&lt;</span><span class="ident">SurfaceContext</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span><span class="op">&gt;</span>,
+<span class="doccomment">/// Holds a `Rc&lt;SurfaceContext&gt;`.
+///
+/// Note: If a `Surface` goes out of scope but it cloned its context,
+/// then the `SDL_Surface` will not be free&#39;d until there are no more references to the `SurfaceContext`.
+</span><span class="kw">pub struct </span>Surface&lt;<span class="lifetime">&#39;a</span>&gt; {
+    context: Rc&lt;SurfaceContext&lt;<span class="lifetime">&#39;a</span>&gt;&gt;,
 }
 
-<span class="doccomment">/// An unsized Surface reference.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// This type is used whenever Surfaces need to be borrowed from the SDL library, without concern</span>
-<span class="doccomment">/// for freeing the Surface.</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">SurfaceRef</span> {
-    <span class="comment">// It&#39;s nothing! (it gets transmuted to SDL_Surface later).</span>
-    <span class="comment">// The empty private field is need to a) make `std::mem::swap()` copy nothing instead of</span>
-    <span class="comment">// clobbering two surfaces (SDL_Surface&#39;s size could change in the future),</span>
-    <span class="comment">// and b) prevent user initialization of this type.</span>
-    <span class="ident">_raw</span>: (),
+<span class="doccomment">/// An unsized Surface reference.
+///
+/// This type is used whenever Surfaces need to be borrowed from the SDL library, without concern
+/// for freeing the Surface.
+</span><span class="kw">pub struct </span>SurfaceRef {
+    <span class="comment">// It&#39;s nothing! (it gets transmuted to SDL_Surface later).
+    // The empty private field is need to a) make `std::mem::swap()` copy nothing instead of
+    // clobbering two surfaces (SDL_Surface&#39;s size could change in the future),
+    // and b) prevent user initialization of this type.
+    </span>_raw: (),
 }
 
-<span class="kw">impl</span> <span class="ident">AsRef</span><span class="op">&lt;</span><span class="ident">SurfaceRef</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">SurfaceRef</span> {
-    <span class="kw">fn</span> <span class="ident">as_ref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span><span class="ident">SurfaceRef</span> {
-        <span class="self">self</span>
+<span class="kw">impl </span>AsRef&lt;SurfaceRef&gt; <span class="kw">for </span>SurfaceRef {
+    <span class="kw">fn </span>as_ref(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span>SurfaceRef {
+        <span class="self">self
+    </span>}
+}
+
+<span class="attribute">#[test]
+</span><span class="kw">fn </span>test_surface_ref_size() {
+    <span class="comment">// `SurfaceRef` must be 0 bytes.
+    </span><span class="macro">assert_eq!</span>(::std::mem::size_of::&lt;SurfaceRef&gt;(), <span class="number">0</span>);
+}
+
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; Deref <span class="kw">for </span>Surface&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="kw">type </span>Target = SurfaceRef;
+
+    <span class="attribute">#[inline]
+    </span><span class="kw">fn </span>deref(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span>SurfaceRef {
+        <span class="kw">unsafe </span>{ mem::transmute(<span class="self">self</span>.context.raw) }
     }
 }
 
-<span class="attribute">#[<span class="ident">test</span>]</span>
-<span class="kw">fn</span> <span class="ident">test_surface_ref_size</span>() {
-    <span class="comment">// `SurfaceRef` must be 0 bytes.</span>
-    <span class="macro">assert_eq!</span>(<span class="ident">::std::mem::size_of</span>::<span class="op">&lt;</span><span class="ident">SurfaceRef</span><span class="op">&gt;</span>(), <span class="number">0</span>);
-}
-
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">Deref</span> <span class="kw">for</span> <span class="ident">Surface</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="kw">type</span> <span class="ident">Target</span> <span class="op">=</span> <span class="ident">SurfaceRef</span>;
-
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">deref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span><span class="ident">SurfaceRef</span> {
-        <span class="kw">unsafe</span> { <span class="ident">mem::transmute</span>(<span class="self">self</span>.<span class="ident">context</span>.<span class="ident">raw</span>) }
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; DerefMut <span class="kw">for </span>Surface&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="attribute">#[inline]
+    </span><span class="kw">fn </span>deref_mut(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;mut </span>SurfaceRef {
+        <span class="kw">unsafe </span>{ mem::transmute(<span class="self">self</span>.context.raw) }
     }
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">DerefMut</span> <span class="kw">for</span> <span class="ident">Surface</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">deref_mut</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>) -&gt; <span class="kw-2">&amp;mut</span> <span class="ident">SurfaceRef</span> {
-        <span class="kw">unsafe</span> { <span class="ident">mem::transmute</span>(<span class="self">self</span>.<span class="ident">context</span>.<span class="ident">raw</span>) }
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; AsRef&lt;SurfaceRef&gt; <span class="kw">for </span>Surface&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="attribute">#[inline]
+    </span><span class="kw">fn </span>as_ref(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span>SurfaceRef {
+        <span class="kw">unsafe </span>{ mem::transmute(<span class="self">self</span>.context.raw) }
     }
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">AsRef</span><span class="op">&lt;</span><span class="ident">SurfaceRef</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Surface</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">as_ref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span><span class="ident">SurfaceRef</span> {
-        <span class="kw">unsafe</span> { <span class="ident">mem::transmute</span>(<span class="self">self</span>.<span class="ident">context</span>.<span class="ident">raw</span>) }
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; AsMut&lt;SurfaceRef&gt; <span class="kw">for </span>Surface&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="attribute">#[inline]
+    </span><span class="kw">fn </span>as_mut(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;mut </span>SurfaceRef {
+        <span class="kw">unsafe </span>{ mem::transmute(<span class="self">self</span>.context.raw) }
     }
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">AsMut</span><span class="op">&lt;</span><span class="ident">SurfaceRef</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Surface</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">as_mut</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>) -&gt; <span class="kw-2">&amp;mut</span> <span class="ident">SurfaceRef</span> {
-        <span class="kw">unsafe</span> { <span class="ident">mem::transmute</span>(<span class="self">self</span>.<span class="ident">context</span>.<span class="ident">raw</span>) }
-    }
-}
-
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">Surface</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="kw">pub</span> <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_ll</span><span class="op">&lt;</span><span class="lifetime">&#39;b</span><span class="op">&gt;</span>(<span class="ident">raw</span>: <span class="kw-2">*mut</span> <span class="ident">sys::SDL_Surface</span>) -&gt; <span class="ident">Surface</span><span class="op">&lt;</span><span class="lifetime">&#39;b</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="ident">context</span> <span class="op">=</span> <span class="ident">SurfaceContext</span> {
-            <span class="ident">raw</span>,
-            <span class="ident">_marker</span>: <span class="ident">PhantomData</span>,
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; Surface&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="kw">pub unsafe fn </span>from_ll&lt;<span class="lifetime">&#39;b</span>&gt;(raw: <span class="kw-2">*mut </span>sys::SDL_Surface) -&gt; Surface&lt;<span class="lifetime">&#39;b</span>&gt; {
+        <span class="kw">let </span>context = SurfaceContext {
+            raw,
+            _marker: PhantomData,
         };
-        <span class="ident">Surface</span> {
-            <span class="ident">context</span>: <span class="ident">Rc::new</span>(<span class="ident">context</span>),
+        Surface {
+            context: Rc::new(context),
         }
     }
 
-    <span class="doccomment">/// Creates a new surface using a pixel format.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// # Example</span>
-    <span class="doccomment">/// ```no_run</span>
-    <span class="doccomment">/// use sdl2::pixels::PixelFormatEnum;</span>
-    <span class="doccomment">/// use sdl2::surface::Surface;</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// let surface = Surface::new(512, 512, PixelFormatEnum::RGB24).unwrap();</span>
-    <span class="doccomment">/// ```</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(
-        <span class="ident">width</span>: <span class="ident">u32</span>,
-        <span class="ident">height</span>: <span class="ident">u32</span>,
-        <span class="ident">format</span>: <span class="ident">pixels::PixelFormatEnum</span>,
-    ) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">Surface</span><span class="op">&lt;</span><span class="lifetime">&#39;static</span><span class="op">&gt;</span>, <span class="ident">String</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="ident">masks</span> <span class="op">=</span> <span class="ident">format</span>.<span class="ident">into_masks</span>()<span class="question-mark">?</span>;
-        <span class="ident">Surface::from_pixelmasks</span>(<span class="ident">width</span>, <span class="ident">height</span>, <span class="ident">masks</span>)
+    <span class="doccomment">/// Creates a new surface using a pixel format.
+    ///
+    /// # Example
+    /// ```no_run
+    /// use sdl2::pixels::PixelFormatEnum;
+    /// use sdl2::surface::Surface;
+    ///
+    /// let surface = Surface::new(512, 512, PixelFormatEnum::RGB24).unwrap();
+    /// ```
+    </span><span class="kw">pub fn </span>new(
+        width: u32,
+        height: u32,
+        format: pixels::PixelFormatEnum,
+    ) -&gt; <span class="prelude-ty">Result</span>&lt;Surface&lt;<span class="lifetime">&#39;static</span>&gt;, String&gt; {
+        <span class="kw">let </span>masks = format.into_masks()<span class="question-mark">?</span>;
+        Surface::from_pixelmasks(width, height, masks)
     }
 
-    <span class="doccomment">/// Creates a new surface using pixel masks.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// # Example</span>
-    <span class="doccomment">/// ```no_run</span>
-    <span class="doccomment">/// use sdl2::pixels::PixelFormatEnum;</span>
-    <span class="doccomment">/// use sdl2::surface::Surface;</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// let masks = PixelFormatEnum::RGB24.into_masks().unwrap();</span>
-    <span class="doccomment">/// let surface = Surface::from_pixelmasks(512, 512, masks).unwrap();</span>
-    <span class="doccomment">/// ```</span>
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;SDL_CreateRGBSurface&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">from_pixelmasks</span>(
-        <span class="ident">width</span>: <span class="ident">u32</span>,
-        <span class="ident">height</span>: <span class="ident">u32</span>,
-        <span class="ident">masks</span>: <span class="ident">pixels::PixelMasks</span>,
-    ) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">Surface</span><span class="op">&lt;</span><span class="lifetime">&#39;static</span><span class="op">&gt;</span>, <span class="ident">String</span><span class="op">&gt;</span> {
-        <span class="kw">unsafe</span> {
-            <span class="kw">if</span> <span class="ident">width</span> <span class="op">&gt;</span><span class="op">=</span> (<span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">31</span>) <span class="op">|</span><span class="op">|</span> <span class="ident">height</span> <span class="op">&gt;</span><span class="op">=</span> (<span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">31</span>) {
-                <span class="prelude-val">Err</span>(<span class="string">&quot;Image is too large.&quot;</span>.<span class="ident">to_owned</span>())
-            } <span class="kw">else</span> {
-                <span class="kw">let</span> <span class="ident">raw</span> <span class="op">=</span> <span class="ident">sys::SDL_CreateRGBSurface</span>(
+    <span class="doccomment">/// Creates a new surface using pixel masks.
+    ///
+    /// # Example
+    /// ```no_run
+    /// use sdl2::pixels::PixelFormatEnum;
+    /// use sdl2::surface::Surface;
+    ///
+    /// let masks = PixelFormatEnum::RGB24.into_masks().unwrap();
+    /// let surface = Surface::from_pixelmasks(512, 512, masks).unwrap();
+    /// ```
+    </span><span class="attribute">#[doc(alias = <span class="string">&quot;SDL_CreateRGBSurface&quot;</span>)]
+    </span><span class="kw">pub fn </span>from_pixelmasks(
+        width: u32,
+        height: u32,
+        masks: pixels::PixelMasks,
+    ) -&gt; <span class="prelude-ty">Result</span>&lt;Surface&lt;<span class="lifetime">&#39;static</span>&gt;, String&gt; {
+        <span class="kw">unsafe </span>{
+            <span class="kw">if </span>width &gt;= (<span class="number">1 </span>&lt;&lt; <span class="number">31</span>) || height &gt;= (<span class="number">1 </span>&lt;&lt; <span class="number">31</span>) {
+                <span class="prelude-val">Err</span>(<span class="string">&quot;Image is too large.&quot;</span>.to_owned())
+            } <span class="kw">else </span>{
+                <span class="kw">let </span>raw = sys::SDL_CreateRGBSurface(
                     <span class="number">0</span>,
-                    <span class="ident">width</span> <span class="kw">as</span> <span class="ident">c_int</span>,
-                    <span class="ident">height</span> <span class="kw">as</span> <span class="ident">c_int</span>,
-                    <span class="ident">masks</span>.<span class="ident">bpp</span> <span class="kw">as</span> <span class="ident">c_int</span>,
-                    <span class="ident">masks</span>.<span class="ident">rmask</span>,
-                    <span class="ident">masks</span>.<span class="ident">gmask</span>,
-                    <span class="ident">masks</span>.<span class="ident">bmask</span>,
-                    <span class="ident">masks</span>.<span class="ident">amask</span>,
+                    width <span class="kw">as </span>c_int,
+                    height <span class="kw">as </span>c_int,
+                    masks.bpp <span class="kw">as </span>c_int,
+                    masks.rmask,
+                    masks.gmask,
+                    masks.bmask,
+                    masks.amask,
                 );
 
-                <span class="kw">if</span> <span class="ident">raw</span>.<span class="ident">is_null</span>() {
-                    <span class="prelude-val">Err</span>(<span class="ident">get_error</span>())
-                } <span class="kw">else</span> {
-                    <span class="prelude-val">Ok</span>(<span class="ident">Surface::from_ll</span>(<span class="ident">raw</span>))
+                <span class="kw">if </span>raw.is_null() {
+                    <span class="prelude-val">Err</span>(get_error())
+                } <span class="kw">else </span>{
+                    <span class="prelude-val">Ok</span>(Surface::from_ll(raw))
                 }
             }
         }
     }
 
-    <span class="doccomment">/// Creates a new surface from an existing buffer, using a pixel format.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">from_data</span>(
-        <span class="ident">data</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="kw-2">mut</span> [<span class="ident">u8</span>],
-        <span class="ident">width</span>: <span class="ident">u32</span>,
-        <span class="ident">height</span>: <span class="ident">u32</span>,
-        <span class="ident">pitch</span>: <span class="ident">u32</span>,
-        <span class="ident">format</span>: <span class="ident">pixels::PixelFormatEnum</span>,
-    ) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">Surface</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>, <span class="ident">String</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="ident">masks</span> <span class="op">=</span> <span class="ident">format</span>.<span class="ident">into_masks</span>()<span class="question-mark">?</span>;
-        <span class="ident">Surface::from_data_pixelmasks</span>(<span class="ident">data</span>, <span class="ident">width</span>, <span class="ident">height</span>, <span class="ident">pitch</span>, <span class="ident">masks</span>)
+    <span class="doccomment">/// Creates a new surface from an existing buffer, using a pixel format.
+    </span><span class="kw">pub fn </span>from_data(
+        data: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span><span class="kw-2">mut </span>[u8],
+        width: u32,
+        height: u32,
+        pitch: u32,
+        format: pixels::PixelFormatEnum,
+    ) -&gt; <span class="prelude-ty">Result</span>&lt;Surface&lt;<span class="lifetime">&#39;a</span>&gt;, String&gt; {
+        <span class="kw">let </span>masks = format.into_masks()<span class="question-mark">?</span>;
+        Surface::from_data_pixelmasks(data, width, height, pitch, masks)
     }
 
-    <span class="doccomment">/// Creates a new surface from an existing buffer, using pixel masks.</span>
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;SDL_CreateRGBSurfaceFrom&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">from_data_pixelmasks</span>(
-        <span class="ident">data</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="kw-2">mut</span> [<span class="ident">u8</span>],
-        <span class="ident">width</span>: <span class="ident">u32</span>,
-        <span class="ident">height</span>: <span class="ident">u32</span>,
-        <span class="ident">pitch</span>: <span class="ident">u32</span>,
-        <span class="ident">masks</span>: <span class="ident">pixels::PixelMasks</span>,
-    ) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">Surface</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>, <span class="ident">String</span><span class="op">&gt;</span> {
-        <span class="kw">unsafe</span> {
-            <span class="kw">if</span> <span class="ident">width</span> <span class="op">&gt;</span><span class="op">=</span> (<span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">31</span>) <span class="op">|</span><span class="op">|</span> <span class="ident">height</span> <span class="op">&gt;</span><span class="op">=</span> (<span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">31</span>) {
-                <span class="prelude-val">Err</span>(<span class="string">&quot;Image is too large.&quot;</span>.<span class="ident">to_owned</span>())
-            } <span class="kw">else</span> <span class="kw">if</span> <span class="ident">pitch</span> <span class="op">&gt;</span><span class="op">=</span> (<span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">31</span>) {
-                <span class="prelude-val">Err</span>(<span class="string">&quot;Pitch is too large.&quot;</span>.<span class="ident">to_owned</span>())
-            } <span class="kw">else</span> {
-                <span class="kw">let</span> <span class="ident">raw</span> <span class="op">=</span> <span class="ident">sys::SDL_CreateRGBSurfaceFrom</span>(
-                    <span class="ident">data</span>.<span class="ident">as_mut_ptr</span>() <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="kw">_</span>,
-                    <span class="ident">width</span> <span class="kw">as</span> <span class="ident">c_int</span>,
-                    <span class="ident">height</span> <span class="kw">as</span> <span class="ident">c_int</span>,
-                    <span class="ident">masks</span>.<span class="ident">bpp</span> <span class="kw">as</span> <span class="ident">c_int</span>,
-                    <span class="ident">pitch</span> <span class="kw">as</span> <span class="ident">c_int</span>,
-                    <span class="ident">masks</span>.<span class="ident">rmask</span>,
-                    <span class="ident">masks</span>.<span class="ident">gmask</span>,
-                    <span class="ident">masks</span>.<span class="ident">bmask</span>,
-                    <span class="ident">masks</span>.<span class="ident">amask</span>,
+    <span class="doccomment">/// Creates a new surface from an existing buffer, using pixel masks.
+    </span><span class="attribute">#[doc(alias = <span class="string">&quot;SDL_CreateRGBSurfaceFrom&quot;</span>)]
+    </span><span class="kw">pub fn </span>from_data_pixelmasks(
+        data: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span><span class="kw-2">mut </span>[u8],
+        width: u32,
+        height: u32,
+        pitch: u32,
+        masks: pixels::PixelMasks,
+    ) -&gt; <span class="prelude-ty">Result</span>&lt;Surface&lt;<span class="lifetime">&#39;a</span>&gt;, String&gt; {
+        <span class="kw">unsafe </span>{
+            <span class="kw">if </span>width &gt;= (<span class="number">1 </span>&lt;&lt; <span class="number">31</span>) || height &gt;= (<span class="number">1 </span>&lt;&lt; <span class="number">31</span>) {
+                <span class="prelude-val">Err</span>(<span class="string">&quot;Image is too large.&quot;</span>.to_owned())
+            } <span class="kw">else if </span>pitch &gt;= (<span class="number">1 </span>&lt;&lt; <span class="number">31</span>) {
+                <span class="prelude-val">Err</span>(<span class="string">&quot;Pitch is too large.&quot;</span>.to_owned())
+            } <span class="kw">else </span>{
+                <span class="kw">let </span>raw = sys::SDL_CreateRGBSurfaceFrom(
+                    data.as_mut_ptr() <span class="kw">as </span><span class="kw-2">*mut </span><span class="kw">_</span>,
+                    width <span class="kw">as </span>c_int,
+                    height <span class="kw">as </span>c_int,
+                    masks.bpp <span class="kw">as </span>c_int,
+                    pitch <span class="kw">as </span>c_int,
+                    masks.rmask,
+                    masks.gmask,
+                    masks.bmask,
+                    masks.amask,
                 );
 
-                <span class="kw">if</span> <span class="ident">raw</span>.<span class="ident">is_null</span>() {
-                    <span class="prelude-val">Err</span>(<span class="ident">get_error</span>())
-                } <span class="kw">else</span> {
-                    <span class="prelude-val">Ok</span>(<span class="ident">Surface::from_ll</span>(<span class="ident">raw</span>))
+                <span class="kw">if </span>raw.is_null() {
+                    <span class="prelude-val">Err</span>(get_error())
+                } <span class="kw">else </span>{
+                    <span class="prelude-val">Ok</span>(Surface::from_ll(raw))
                 }
             }
         }
     }
 
-    <span class="doccomment">/// A convenience function for [`TextureCreator::create_texture_from_surface`].</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// ```no_run</span>
-    <span class="doccomment">/// use sdl2::pixels::PixelFormatEnum;</span>
-    <span class="doccomment">/// use sdl2::surface::Surface;</span>
-    <span class="doccomment">/// use sdl2::render::{Canvas, Texture};</span>
-    <span class="doccomment">/// use sdl2::video::Window;</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// // We init systems.</span>
-    <span class="doccomment">/// let sdl_context = sdl2::init().expect(&quot;failed to init SDL&quot;);</span>
-    <span class="doccomment">/// let video_subsystem = sdl_context.video().expect(&quot;failed to get video context&quot;);</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// // We create a window.</span>
-    <span class="doccomment">/// let window = video_subsystem.window(&quot;sdl2 demo&quot;, 800, 600)</span>
-    <span class="doccomment">///     .build()</span>
-    <span class="doccomment">///     .expect(&quot;failed to build window&quot;);</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// // We get the canvas from which we can get the `TextureCreator`.</span>
-    <span class="doccomment">/// let mut canvas: Canvas&lt;Window&gt; = window.into_canvas()</span>
-    <span class="doccomment">///     .build()</span>
-    <span class="doccomment">///     .expect(&quot;failed to build window&#39;s canvas&quot;);</span>
-    <span class="doccomment">/// let texture_creator = canvas.texture_creator();</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// let surface = Surface::new(512, 512, PixelFormatEnum::RGB24).unwrap();</span>
-    <span class="doccomment">/// let texture = surface.as_texture(&amp;texture_creator).unwrap();</span>
-    <span class="doccomment">/// ```</span>
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">not</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;unsafe_textures&quot;</span>))]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">as_texture</span><span class="op">&lt;</span><span class="lifetime">&#39;b</span>, <span class="ident">T</span><span class="op">&gt;</span>(
+    <span class="doccomment">/// A convenience function for [`TextureCreator::create_texture_from_surface`].
+    ///
+    /// ```no_run
+    /// use sdl2::pixels::PixelFormatEnum;
+    /// use sdl2::surface::Surface;
+    /// use sdl2::render::{Canvas, Texture};
+    /// use sdl2::video::Window;
+    ///
+    /// // We init systems.
+    /// let sdl_context = sdl2::init().expect(&quot;failed to init SDL&quot;);
+    /// let video_subsystem = sdl_context.video().expect(&quot;failed to get video context&quot;);
+    ///
+    /// // We create a window.
+    /// let window = video_subsystem.window(&quot;sdl2 demo&quot;, 800, 600)
+    ///     .build()
+    ///     .expect(&quot;failed to build window&quot;);
+    ///
+    /// // We get the canvas from which we can get the `TextureCreator`.
+    /// let mut canvas: Canvas&lt;Window&gt; = window.into_canvas()
+    ///     .build()
+    ///     .expect(&quot;failed to build window&#39;s canvas&quot;);
+    /// let texture_creator = canvas.texture_creator();
+    ///
+    /// let surface = Surface::new(512, 512, PixelFormatEnum::RGB24).unwrap();
+    /// let texture = surface.as_texture(&amp;texture_creator).unwrap();
+    /// ```
+    </span><span class="attribute">#[cfg(not(feature = <span class="string">&quot;unsafe_textures&quot;</span>))]
+    </span><span class="kw">pub fn </span>as_texture&lt;<span class="lifetime">&#39;b</span>, T&gt;(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
-        <span class="ident">texture_creator</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;b</span> <span class="ident">TextureCreator</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>,
-    ) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">Texture</span><span class="op">&lt;</span><span class="lifetime">&#39;b</span><span class="op">&gt;</span>, <span class="ident">TextureValueError</span><span class="op">&gt;</span> {
-        <span class="ident">texture_creator</span>.<span class="ident">create_texture_from_surface</span>(<span class="self">self</span>)
+        texture_creator: <span class="kw-2">&amp;</span><span class="lifetime">&#39;b </span>TextureCreator&lt;T&gt;,
+    ) -&gt; <span class="prelude-ty">Result</span>&lt;Texture&lt;<span class="lifetime">&#39;b</span>&gt;, TextureValueError&gt; {
+        texture_creator.create_texture_from_surface(<span class="self">self</span>)
     }
 
-    <span class="doccomment">/// A convenience function for [`TextureCreator::create_texture_from_surface`].</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// ```no_run</span>
-    <span class="doccomment">/// use sdl2::pixels::PixelFormatEnum;</span>
-    <span class="doccomment">/// use sdl2::surface::Surface;</span>
-    <span class="doccomment">/// use sdl2::render::{Canvas, Texture};</span>
-    <span class="doccomment">/// use sdl2::video::Window;</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// // We init systems.</span>
-    <span class="doccomment">/// let sdl_context = sdl2::init().expect(&quot;failed to init SDL&quot;);</span>
-    <span class="doccomment">/// let video_subsystem = sdl_context.video().expect(&quot;failed to get video context&quot;);</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// // We create a window.</span>
-    <span class="doccomment">/// let window = video_subsystem.window(&quot;sdl2 demo&quot;, 800, 600)</span>
-    <span class="doccomment">///     .build()</span>
-    <span class="doccomment">///     .expect(&quot;failed to build window&quot;);</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// // We get the canvas from which we can get the `TextureCreator`.</span>
-    <span class="doccomment">/// let mut canvas: Canvas&lt;Window&gt; = window.into_canvas()</span>
-    <span class="doccomment">///     .build()</span>
-    <span class="doccomment">///     .expect(&quot;failed to build window&#39;s canvas&quot;);</span>
-    <span class="doccomment">/// let texture_creator = canvas.texture_creator();</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// let surface = Surface::new(512, 512, PixelFormatEnum::RGB24).unwrap();</span>
-    <span class="doccomment">/// let texture = surface.as_texture(&amp;texture_creator).unwrap();</span>
-    <span class="doccomment">/// ```</span>
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;unsafe_textures&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">as_texture</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>(
+    <span class="doccomment">/// A convenience function for [`TextureCreator::create_texture_from_surface`].
+    ///
+    /// ```no_run
+    /// use sdl2::pixels::PixelFormatEnum;
+    /// use sdl2::surface::Surface;
+    /// use sdl2::render::{Canvas, Texture};
+    /// use sdl2::video::Window;
+    ///
+    /// // We init systems.
+    /// let sdl_context = sdl2::init().expect(&quot;failed to init SDL&quot;);
+    /// let video_subsystem = sdl_context.video().expect(&quot;failed to get video context&quot;);
+    ///
+    /// // We create a window.
+    /// let window = video_subsystem.window(&quot;sdl2 demo&quot;, 800, 600)
+    ///     .build()
+    ///     .expect(&quot;failed to build window&quot;);
+    ///
+    /// // We get the canvas from which we can get the `TextureCreator`.
+    /// let mut canvas: Canvas&lt;Window&gt; = window.into_canvas()
+    ///     .build()
+    ///     .expect(&quot;failed to build window&#39;s canvas&quot;);
+    /// let texture_creator = canvas.texture_creator();
+    ///
+    /// let surface = Surface::new(512, 512, PixelFormatEnum::RGB24).unwrap();
+    /// let texture = surface.as_texture(&amp;texture_creator).unwrap();
+    /// ```
+    </span><span class="attribute">#[cfg(feature = <span class="string">&quot;unsafe_textures&quot;</span>)]
+    </span><span class="kw">pub fn </span>as_texture&lt;T&gt;(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
-        <span class="ident">texture_creator</span>: <span class="kw-2">&amp;</span><span class="ident">TextureCreator</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>,
-    ) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">Texture</span>, <span class="ident">TextureValueError</span><span class="op">&gt;</span> {
-        <span class="ident">texture_creator</span>.<span class="ident">create_texture_from_surface</span>(<span class="self">self</span>)
+        texture_creator: <span class="kw-2">&amp;</span>TextureCreator&lt;T&gt;,
+    ) -&gt; <span class="prelude-ty">Result</span>&lt;Texture, TextureValueError&gt; {
+        texture_creator.create_texture_from_surface(<span class="self">self</span>)
     }
 
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;SDL_LoadBMP_RW&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">load_bmp_rw</span>(<span class="ident">rwops</span>: <span class="kw-2">&amp;mut</span> <span class="ident">RWops</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">Surface</span><span class="op">&lt;</span><span class="lifetime">&#39;static</span><span class="op">&gt;</span>, <span class="ident">String</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="ident">raw</span> <span class="op">=</span> <span class="kw">unsafe</span> { <span class="ident">sys::SDL_LoadBMP_RW</span>(<span class="ident">rwops</span>.<span class="ident">raw</span>(), <span class="number">0</span>) };
+    <span class="attribute">#[doc(alias = <span class="string">&quot;SDL_LoadBMP_RW&quot;</span>)]
+    </span><span class="kw">pub fn </span>load_bmp_rw(rwops: <span class="kw-2">&amp;mut </span>RWops) -&gt; <span class="prelude-ty">Result</span>&lt;Surface&lt;<span class="lifetime">&#39;static</span>&gt;, String&gt; {
+        <span class="kw">let </span>raw = <span class="kw">unsafe </span>{ sys::SDL_LoadBMP_RW(rwops.raw(), <span class="number">0</span>) };
 
-        <span class="kw">if</span> <span class="ident">raw</span>.<span class="ident">is_null</span>() {
-            <span class="prelude-val">Err</span>(<span class="ident">get_error</span>())
-        } <span class="kw">else</span> {
-            <span class="prelude-val">Ok</span>(<span class="kw">unsafe</span> { <span class="ident">Surface::from_ll</span>(<span class="ident">raw</span>) })
+        <span class="kw">if </span>raw.is_null() {
+            <span class="prelude-val">Err</span>(get_error())
+        } <span class="kw">else </span>{
+            <span class="prelude-val">Ok</span>(<span class="kw">unsafe </span>{ Surface::from_ll(raw) })
         }
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">load_bmp</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">AsRef</span><span class="op">&lt;</span><span class="ident">Path</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="ident">path</span>: <span class="ident">P</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">Surface</span><span class="op">&lt;</span><span class="lifetime">&#39;static</span><span class="op">&gt;</span>, <span class="ident">String</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">file</span> <span class="op">=</span> <span class="ident">RWops::from_file</span>(<span class="ident">path</span>, <span class="string">&quot;rb&quot;</span>)<span class="question-mark">?</span>;
-        <span class="ident">Surface::load_bmp_rw</span>(<span class="kw-2">&amp;mut</span> <span class="ident">file</span>)
+    <span class="kw">pub fn </span>load_bmp&lt;P: AsRef&lt;Path&gt;&gt;(path: P) -&gt; <span class="prelude-ty">Result</span>&lt;Surface&lt;<span class="lifetime">&#39;static</span>&gt;, String&gt; {
+        <span class="kw">let </span><span class="kw-2">mut </span>file = RWops::from_file(path, <span class="string">&quot;rb&quot;</span>)<span class="question-mark">?</span>;
+        Surface::load_bmp_rw(<span class="kw-2">&amp;mut </span>file)
     }
 
-    <span class="doccomment">/// Creates a Software Canvas to allow rendering in the Surface itself. This `Canvas` will</span>
-    <span class="doccomment">/// never be accelerated materially, so there is no performance change between `Surface` and</span>
-    <span class="doccomment">/// `Canvas` coming from a `Surface`.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// The only change is this case is that `Canvas` has a</span>
-    <span class="doccomment">/// better API to draw stuff in the `Surface` in that case, but don&#39;t expect any performance</span>
-    <span class="doccomment">/// changes, there will be none.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">into_canvas</span>(<span class="self">self</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">Canvas</span><span class="op">&lt;</span><span class="ident">Surface</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span><span class="op">&gt;</span>, <span class="ident">String</span><span class="op">&gt;</span> {
-        <span class="ident">Canvas::from_surface</span>(<span class="self">self</span>)
+    <span class="doccomment">/// Creates a Software Canvas to allow rendering in the Surface itself. This `Canvas` will
+    /// never be accelerated materially, so there is no performance change between `Surface` and
+    /// `Canvas` coming from a `Surface`.
+    ///
+    /// The only change is this case is that `Canvas` has a
+    /// better API to draw stuff in the `Surface` in that case, but don&#39;t expect any performance
+    /// changes, there will be none.
+    </span><span class="kw">pub fn </span>into_canvas(<span class="self">self</span>) -&gt; <span class="prelude-ty">Result</span>&lt;Canvas&lt;Surface&lt;<span class="lifetime">&#39;a</span>&gt;&gt;, String&gt; {
+        Canvas::from_surface(<span class="self">self</span>)
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">context</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">Rc</span><span class="op">&lt;</span><span class="ident">SurfaceContext</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span><span class="op">&gt;</span> {
-        <span class="self">self</span>.<span class="ident">context</span>.<span class="ident">clone</span>()
+    <span class="kw">pub fn </span>context(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; Rc&lt;SurfaceContext&lt;<span class="lifetime">&#39;a</span>&gt;&gt; {
+        <span class="self">self</span>.context.clone()
     }
 }
 
-<span class="kw">impl</span> <span class="ident">SurfaceRef</span> {
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_ll</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>(<span class="ident">raw</span>: <span class="kw-2">*const</span> <span class="ident">sys::SDL_Surface</span>) -&gt; <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">SurfaceRef</span> {
-        <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">raw</span> <span class="kw">as</span> <span class="kw-2">*const</span> () <span class="kw">as</span> <span class="kw-2">*const</span> <span class="ident">SurfaceRef</span>)
+<span class="kw">impl </span>SurfaceRef {
+    <span class="attribute">#[inline]
+    </span><span class="kw">pub unsafe fn </span>from_ll&lt;<span class="lifetime">&#39;a</span>&gt;(raw: <span class="kw-2">*const </span>sys::SDL_Surface) -&gt; <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>SurfaceRef {
+        <span class="kw-2">&amp;*</span>(raw <span class="kw">as </span><span class="kw-2">*const </span>() <span class="kw">as </span><span class="kw-2">*const </span>SurfaceRef)
     }
 
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_ll_mut</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>(<span class="ident">raw</span>: <span class="kw-2">*mut</span> <span class="ident">sys::SDL_Surface</span>) -&gt; <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="kw-2">mut</span> <span class="ident">SurfaceRef</span> {
-        <span class="kw-2">&amp;mut</span> <span class="kw-2">*</span>(<span class="ident">raw</span> <span class="kw">as</span> <span class="kw-2">*mut</span> () <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">SurfaceRef</span>)
+    <span class="attribute">#[inline]
+    </span><span class="kw">pub unsafe fn </span>from_ll_mut&lt;<span class="lifetime">&#39;a</span>&gt;(raw: <span class="kw-2">*mut </span>sys::SDL_Surface) -&gt; <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span><span class="kw-2">mut </span>SurfaceRef {
+        <span class="kw-2">&amp;mut *</span>(raw <span class="kw">as </span><span class="kw-2">*mut </span>() <span class="kw">as </span><span class="kw-2">*mut </span>SurfaceRef)
     }
 
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="comment">// this can prevent introducing UB until</span>
-    <span class="comment">// https://github.com/rust-lang/rust-clippy/issues/5953 is fixed</span>
-    <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">clippy::trivially_copy_pass_by_ref</span>)]</span>
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;SDL_Surface&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">raw</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">*mut</span> <span class="ident">sys::SDL_Surface</span> {
-        <span class="self">self</span> <span class="kw">as</span> <span class="kw-2">*const</span> <span class="ident">SurfaceRef</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">SurfaceRef</span> <span class="kw">as</span> <span class="kw-2">*mut</span> () <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">sys::SDL_Surface</span>
+    <span class="attribute">#[inline]
+    </span><span class="comment">// this can prevent introducing UB until
+    // https://github.com/rust-lang/rust-clippy/issues/5953 is fixed
+    </span><span class="attribute">#[allow(clippy::trivially_copy_pass_by_ref)]
+    #[doc(alias = <span class="string">&quot;SDL_Surface&quot;</span>)]
+    </span><span class="kw">pub fn </span>raw(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">*mut </span>sys::SDL_Surface {
+        <span class="self">self </span><span class="kw">as </span><span class="kw-2">*const </span>SurfaceRef <span class="kw">as </span><span class="kw-2">*mut </span>SurfaceRef <span class="kw">as </span><span class="kw-2">*mut </span>() <span class="kw">as </span><span class="kw-2">*mut </span>sys::SDL_Surface
     }
 
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">raw_ref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span><span class="ident">sys::SDL_Surface</span> {
-        <span class="kw">unsafe</span> { <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="self">self</span> <span class="kw">as</span> <span class="kw-2">*const</span> <span class="kw">_</span> <span class="kw">as</span> <span class="kw-2">*const</span> () <span class="kw">as</span> <span class="kw-2">*const</span> <span class="ident">sys::SDL_Surface</span>) }
+    <span class="attribute">#[inline]
+    </span><span class="kw">fn </span>raw_ref(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span>sys::SDL_Surface {
+        <span class="kw">unsafe </span>{ <span class="kw-2">&amp;*</span>(<span class="self">self </span><span class="kw">as </span><span class="kw-2">*const </span><span class="kw">_ as </span><span class="kw-2">*const </span>() <span class="kw">as </span><span class="kw-2">*const </span>sys::SDL_Surface) }
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">width</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">u32</span> {
-        <span class="self">self</span>.<span class="ident">raw_ref</span>().<span class="ident">w</span> <span class="kw">as</span> <span class="ident">u32</span>
+    <span class="kw">pub fn </span>width(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; u32 {
+        <span class="self">self</span>.raw_ref().w <span class="kw">as </span>u32
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">height</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">u32</span> {
-        <span class="self">self</span>.<span class="ident">raw_ref</span>().<span class="ident">h</span> <span class="kw">as</span> <span class="ident">u32</span>
+    <span class="kw">pub fn </span>height(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; u32 {
+        <span class="self">self</span>.raw_ref().h <span class="kw">as </span>u32
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">pitch</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">u32</span> {
-        <span class="self">self</span>.<span class="ident">raw_ref</span>().<span class="ident">pitch</span> <span class="kw">as</span> <span class="ident">u32</span>
+    <span class="kw">pub fn </span>pitch(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; u32 {
+        <span class="self">self</span>.raw_ref().pitch <span class="kw">as </span>u32
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">size</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; (<span class="ident">u32</span>, <span class="ident">u32</span>) {
-        (<span class="self">self</span>.<span class="ident">width</span>(), <span class="self">self</span>.<span class="ident">height</span>())
+    <span class="kw">pub fn </span>size(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; (u32, u32) {
+        (<span class="self">self</span>.width(), <span class="self">self</span>.height())
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">rect</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">Rect</span> {
-        <span class="ident">Rect::new</span>(<span class="number">0</span>, <span class="number">0</span>, <span class="self">self</span>.<span class="ident">width</span>(), <span class="self">self</span>.<span class="ident">height</span>())
+    <span class="kw">pub fn </span>rect(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; Rect {
+        Rect::new(<span class="number">0</span>, <span class="number">0</span>, <span class="self">self</span>.width(), <span class="self">self</span>.height())
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">pixel_format</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">pixels::PixelFormat</span> {
-        <span class="kw">unsafe</span> { <span class="ident">pixels::PixelFormat::from_ll</span>(<span class="self">self</span>.<span class="ident">raw_ref</span>().<span class="ident">format</span>) }
+    <span class="kw">pub fn </span>pixel_format(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; pixels::PixelFormat {
+        <span class="kw">unsafe </span>{ pixels::PixelFormat::from_ll(<span class="self">self</span>.raw_ref().format) }
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">pixel_format_enum</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">pixels::PixelFormatEnum</span> {
-        <span class="ident">pixels::PixelFormatEnum::from</span>(<span class="self">self</span>.<span class="ident">pixel_format</span>())
+    <span class="kw">pub fn </span>pixel_format_enum(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; pixels::PixelFormatEnum {
+        pixels::PixelFormatEnum::from(<span class="self">self</span>.pixel_format())
     }
 
-    <span class="doccomment">/// Locks a surface so that the pixels can be directly accessed safely.</span>
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;SDL_LockSurface&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">with_lock</span><span class="op">&lt;</span><span class="ident">R</span>, <span class="ident">F</span>: <span class="ident">FnOnce</span>(<span class="kw-2">&amp;</span>[<span class="ident">u8</span>]) -&gt; <span class="ident">R</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) -&gt; <span class="ident">R</span> {
-        <span class="kw">unsafe</span> {
-            <span class="kw">if</span> <span class="ident">sys::SDL_LockSurface</span>(<span class="self">self</span>.<span class="ident">raw</span>()) <span class="op">!</span><span class="op">=</span> <span class="number">0</span> {
+    <span class="doccomment">/// Locks a surface so that the pixels can be directly accessed safely.
+    </span><span class="attribute">#[doc(alias = <span class="string">&quot;SDL_LockSurface&quot;</span>)]
+    </span><span class="kw">pub fn </span>with_lock&lt;R, F: FnOnce(<span class="kw-2">&amp;</span>[u8]) -&gt; R&gt;(<span class="kw-2">&amp;</span><span class="self">self</span>, f: F) -&gt; R {
+        <span class="kw">unsafe </span>{
+            <span class="kw">if </span>sys::SDL_LockSurface(<span class="self">self</span>.raw()) != <span class="number">0 </span>{
                 <span class="macro">panic!</span>(<span class="string">&quot;could not lock surface&quot;</span>);
             }
 
-            <span class="kw">let</span> <span class="ident">raw_pixels</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">raw_ref</span>().<span class="ident">pixels</span> <span class="kw">as</span> <span class="kw-2">*const</span> <span class="kw">_</span>;
-            <span class="kw">let</span> <span class="ident">len</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">raw_ref</span>().<span class="ident">pitch</span> <span class="kw">as</span> <span class="ident">usize</span> <span class="op">*</span> (<span class="self">self</span>.<span class="ident">raw_ref</span>().<span class="ident">h</span> <span class="kw">as</span> <span class="ident">usize</span>);
-            <span class="kw">let</span> <span class="ident">pixels</span> <span class="op">=</span> <span class="ident">::std::slice::from_raw_parts</span>(<span class="ident">raw_pixels</span>, <span class="ident">len</span>);
-            <span class="kw">let</span> <span class="ident">rv</span> <span class="op">=</span> <span class="ident">f</span>(<span class="ident">pixels</span>);
-            <span class="ident">sys::SDL_UnlockSurface</span>(<span class="self">self</span>.<span class="ident">raw</span>());
-            <span class="ident">rv</span>
+            <span class="kw">let </span>raw_pixels = <span class="self">self</span>.raw_ref().pixels <span class="kw">as </span><span class="kw-2">*const </span><span class="kw">_</span>;
+            <span class="kw">let </span>len = <span class="self">self</span>.raw_ref().pitch <span class="kw">as </span>usize * (<span class="self">self</span>.raw_ref().h <span class="kw">as </span>usize);
+            <span class="kw">let </span>pixels = ::std::slice::from_raw_parts(raw_pixels, len);
+            <span class="kw">let </span>rv = f(pixels);
+            sys::SDL_UnlockSurface(<span class="self">self</span>.raw());
+            rv
         }
     }
 
-    <span class="doccomment">/// Locks a surface so that the pixels can be directly accessed safely.</span>
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;SDL_LockSurface&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">with_lock_mut</span><span class="op">&lt;</span><span class="ident">R</span>, <span class="ident">F</span>: <span class="ident">FnOnce</span>(<span class="kw-2">&amp;mut</span> [<span class="ident">u8</span>]) -&gt; <span class="ident">R</span><span class="op">&gt;</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) -&gt; <span class="ident">R</span> {
-        <span class="kw">unsafe</span> {
-            <span class="kw">if</span> <span class="ident">sys::SDL_LockSurface</span>(<span class="self">self</span>.<span class="ident">raw</span>()) <span class="op">!</span><span class="op">=</span> <span class="number">0</span> {
+    <span class="doccomment">/// Locks a surface so that the pixels can be directly accessed safely.
+    </span><span class="attribute">#[doc(alias = <span class="string">&quot;SDL_LockSurface&quot;</span>)]
+    </span><span class="kw">pub fn </span>with_lock_mut&lt;R, F: FnOnce(<span class="kw-2">&amp;mut </span>[u8]) -&gt; R&gt;(<span class="kw-2">&amp;mut </span><span class="self">self</span>, f: F) -&gt; R {
+        <span class="kw">unsafe </span>{
+            <span class="kw">if </span>sys::SDL_LockSurface(<span class="self">self</span>.raw()) != <span class="number">0 </span>{
                 <span class="macro">panic!</span>(<span class="string">&quot;could not lock surface&quot;</span>);
             }
 
-            <span class="kw">let</span> <span class="ident">raw_pixels</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">raw_ref</span>().<span class="ident">pixels</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="kw">_</span>;
-            <span class="kw">let</span> <span class="ident">len</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">raw_ref</span>().<span class="ident">pitch</span> <span class="kw">as</span> <span class="ident">usize</span> <span class="op">*</span> (<span class="self">self</span>.<span class="ident">raw_ref</span>().<span class="ident">h</span> <span class="kw">as</span> <span class="ident">usize</span>);
-            <span class="kw">let</span> <span class="ident">pixels</span> <span class="op">=</span> <span class="ident">::std::slice::from_raw_parts_mut</span>(<span class="ident">raw_pixels</span>, <span class="ident">len</span>);
-            <span class="kw">let</span> <span class="ident">rv</span> <span class="op">=</span> <span class="ident">f</span>(<span class="ident">pixels</span>);
-            <span class="ident">sys::SDL_UnlockSurface</span>(<span class="self">self</span>.<span class="ident">raw</span>());
-            <span class="ident">rv</span>
+            <span class="kw">let </span>raw_pixels = <span class="self">self</span>.raw_ref().pixels <span class="kw">as </span><span class="kw-2">*mut </span><span class="kw">_</span>;
+            <span class="kw">let </span>len = <span class="self">self</span>.raw_ref().pitch <span class="kw">as </span>usize * (<span class="self">self</span>.raw_ref().h <span class="kw">as </span>usize);
+            <span class="kw">let </span>pixels = ::std::slice::from_raw_parts_mut(raw_pixels, len);
+            <span class="kw">let </span>rv = f(pixels);
+            sys::SDL_UnlockSurface(<span class="self">self</span>.raw());
+            rv
         }
     }
 
-    <span class="doccomment">/// Returns the Surface&#39;s pixel buffer if the Surface doesn&#39;t require locking</span>
-    <span class="doccomment">/// (e.g. it&#39;s a software surface).</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">without_lock</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span>[<span class="ident">u8</span>]<span class="op">&gt;</span> {
-        <span class="kw">if</span> <span class="self">self</span>.<span class="ident">must_lock</span>() {
-            <span class="prelude-val">None</span>
-        } <span class="kw">else</span> {
-            <span class="kw">unsafe</span> {
-                <span class="kw">let</span> <span class="ident">raw_pixels</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">raw_ref</span>().<span class="ident">pixels</span> <span class="kw">as</span> <span class="kw-2">*const</span> <span class="kw">_</span>;
-                <span class="kw">let</span> <span class="ident">len</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">raw_ref</span>().<span class="ident">pitch</span> <span class="kw">as</span> <span class="ident">usize</span> <span class="op">*</span> (<span class="self">self</span>.<span class="ident">raw_ref</span>().<span class="ident">h</span> <span class="kw">as</span> <span class="ident">usize</span>);
+    <span class="doccomment">/// Returns the Surface&#39;s pixel buffer if the Surface doesn&#39;t require locking
+    /// (e.g. it&#39;s a software surface).
+    </span><span class="kw">pub fn </span>without_lock(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span>[u8]&gt; {
+        <span class="kw">if </span><span class="self">self</span>.must_lock() {
+            <span class="prelude-val">None
+        </span>} <span class="kw">else </span>{
+            <span class="kw">unsafe </span>{
+                <span class="kw">let </span>raw_pixels = <span class="self">self</span>.raw_ref().pixels <span class="kw">as </span><span class="kw-2">*const </span><span class="kw">_</span>;
+                <span class="kw">let </span>len = <span class="self">self</span>.raw_ref().pitch <span class="kw">as </span>usize * (<span class="self">self</span>.raw_ref().h <span class="kw">as </span>usize);
 
-                <span class="prelude-val">Some</span>(<span class="ident">::std::slice::from_raw_parts</span>(<span class="ident">raw_pixels</span>, <span class="ident">len</span>))
+                <span class="prelude-val">Some</span>(::std::slice::from_raw_parts(raw_pixels, len))
             }
         }
     }
 
-    <span class="doccomment">/// Returns the Surface&#39;s pixel buffer if the Surface doesn&#39;t require locking</span>
-    <span class="doccomment">/// (e.g. it&#39;s a software surface).</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">without_lock_mut</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;mut</span> [<span class="ident">u8</span>]<span class="op">&gt;</span> {
-        <span class="kw">if</span> <span class="self">self</span>.<span class="ident">must_lock</span>() {
-            <span class="prelude-val">None</span>
-        } <span class="kw">else</span> {
-            <span class="kw">unsafe</span> {
-                <span class="kw">let</span> <span class="ident">raw_pixels</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">raw_ref</span>().<span class="ident">pixels</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="kw">_</span>;
-                <span class="kw">let</span> <span class="ident">len</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">raw_ref</span>().<span class="ident">pitch</span> <span class="kw">as</span> <span class="ident">usize</span> <span class="op">*</span> (<span class="self">self</span>.<span class="ident">raw_ref</span>().<span class="ident">h</span> <span class="kw">as</span> <span class="ident">usize</span>);
+    <span class="doccomment">/// Returns the Surface&#39;s pixel buffer if the Surface doesn&#39;t require locking
+    /// (e.g. it&#39;s a software surface).
+    </span><span class="kw">pub fn </span>without_lock_mut(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;mut </span>[u8]&gt; {
+        <span class="kw">if </span><span class="self">self</span>.must_lock() {
+            <span class="prelude-val">None
+        </span>} <span class="kw">else </span>{
+            <span class="kw">unsafe </span>{
+                <span class="kw">let </span>raw_pixels = <span class="self">self</span>.raw_ref().pixels <span class="kw">as </span><span class="kw-2">*mut </span><span class="kw">_</span>;
+                <span class="kw">let </span>len = <span class="self">self</span>.raw_ref().pitch <span class="kw">as </span>usize * (<span class="self">self</span>.raw_ref().h <span class="kw">as </span>usize);
 
-                <span class="prelude-val">Some</span>(<span class="ident">::std::slice::from_raw_parts_mut</span>(<span class="ident">raw_pixels</span>, <span class="ident">len</span>))
+                <span class="prelude-val">Some</span>(::std::slice::from_raw_parts_mut(raw_pixels, len))
             }
         }
     }
 
-    <span class="doccomment">/// Returns true if the Surface needs to be locked before accessing the Surface pixels.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">must_lock</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span> {
-        <span class="comment">// Implements the SDL_MUSTLOCK macro.</span>
-        (<span class="self">self</span>.<span class="ident">raw_ref</span>().<span class="ident">flags</span> <span class="op">&amp;</span> <span class="ident">sys::SDL_RLEACCEL</span>) <span class="op">!</span><span class="op">=</span> <span class="number">0</span>
-    }
+    <span class="doccomment">/// Returns true if the Surface needs to be locked before accessing the Surface pixels.
+    </span><span class="kw">pub fn </span>must_lock(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; bool {
+        <span class="comment">// Implements the SDL_MUSTLOCK macro.
+        </span>(<span class="self">self</span>.raw_ref().flags &amp; sys::SDL_RLEACCEL) != <span class="number">0
+    </span>}
 
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;SDL_SaveBMP_RW&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">save_bmp_rw</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">rwops</span>: <span class="kw-2">&amp;mut</span> <span class="ident">RWops</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">String</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="ident">ret</span> <span class="op">=</span> <span class="kw">unsafe</span> { <span class="ident">sys::SDL_SaveBMP_RW</span>(<span class="self">self</span>.<span class="ident">raw</span>(), <span class="ident">rwops</span>.<span class="ident">raw</span>(), <span class="number">0</span>) };
-        <span class="kw">if</span> <span class="ident">ret</span> <span class="op">==</span> <span class="number">0</span> {
+    <span class="attribute">#[doc(alias = <span class="string">&quot;SDL_SaveBMP_RW&quot;</span>)]
+    </span><span class="kw">pub fn </span>save_bmp_rw(<span class="kw-2">&amp;</span><span class="self">self</span>, rwops: <span class="kw-2">&amp;mut </span>RWops) -&gt; <span class="prelude-ty">Result</span>&lt;(), String&gt; {
+        <span class="kw">let </span>ret = <span class="kw">unsafe </span>{ sys::SDL_SaveBMP_RW(<span class="self">self</span>.raw(), rwops.raw(), <span class="number">0</span>) };
+        <span class="kw">if </span>ret == <span class="number">0 </span>{
             <span class="prelude-val">Ok</span>(())
-        } <span class="kw">else</span> {
-            <span class="prelude-val">Err</span>(<span class="ident">get_error</span>())
+        } <span class="kw">else </span>{
+            <span class="prelude-val">Err</span>(get_error())
         }
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">save_bmp</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">AsRef</span><span class="op">&lt;</span><span class="ident">Path</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">path</span>: <span class="ident">P</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">String</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">file</span> <span class="op">=</span> <span class="ident">RWops::from_file</span>(<span class="ident">path</span>, <span class="string">&quot;wb&quot;</span>)<span class="question-mark">?</span>;
-        <span class="self">self</span>.<span class="ident">save_bmp_rw</span>(<span class="kw-2">&amp;mut</span> <span class="ident">file</span>)
+    <span class="kw">pub fn </span>save_bmp&lt;P: AsRef&lt;Path&gt;&gt;(<span class="kw-2">&amp;</span><span class="self">self</span>, path: P) -&gt; <span class="prelude-ty">Result</span>&lt;(), String&gt; {
+        <span class="kw">let </span><span class="kw-2">mut </span>file = RWops::from_file(path, <span class="string">&quot;wb&quot;</span>)<span class="question-mark">?</span>;
+        <span class="self">self</span>.save_bmp_rw(<span class="kw-2">&amp;mut </span>file)
     }
 
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;SDL_SetSurfacePalette&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_palette</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">palette</span>: <span class="kw-2">&amp;</span><span class="ident">pixels::Palette</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">String</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="ident">result</span> <span class="op">=</span> <span class="kw">unsafe</span> { <span class="ident">sys::SDL_SetSurfacePalette</span>(<span class="self">self</span>.<span class="ident">raw</span>(), <span class="ident">palette</span>.<span class="ident">raw</span>()) };
+    <span class="attribute">#[doc(alias = <span class="string">&quot;SDL_SetSurfacePalette&quot;</span>)]
+    </span><span class="kw">pub fn </span>set_palette(<span class="kw-2">&amp;mut </span><span class="self">self</span>, palette: <span class="kw-2">&amp;</span>pixels::Palette) -&gt; <span class="prelude-ty">Result</span>&lt;(), String&gt; {
+        <span class="kw">let </span>result = <span class="kw">unsafe </span>{ sys::SDL_SetSurfacePalette(<span class="self">self</span>.raw(), palette.raw()) };
 
-        <span class="kw">match</span> <span class="ident">result</span> {
-            <span class="number">0</span> =&gt; <span class="prelude-val">Ok</span>(()),
-            <span class="kw">_</span> =&gt; <span class="prelude-val">Err</span>(<span class="ident">get_error</span>()),
+        <span class="kw">match </span>result {
+            <span class="number">0 </span>=&gt; <span class="prelude-val">Ok</span>(()),
+            <span class="kw">_ </span>=&gt; <span class="prelude-val">Err</span>(get_error()),
         }
     }
 
-    <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">non_snake_case</span>)]</span>
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;SDL_SetSurfaceRLE&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">enable_RLE</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>) {
-        <span class="kw">let</span> <span class="ident">result</span> <span class="op">=</span> <span class="kw">unsafe</span> { <span class="ident">sys::SDL_SetSurfaceRLE</span>(<span class="self">self</span>.<span class="ident">raw</span>(), <span class="number">1</span>) };
+    <span class="attribute">#[allow(non_snake_case)]
+    #[doc(alias = <span class="string">&quot;SDL_SetSurfaceRLE&quot;</span>)]
+    </span><span class="kw">pub fn </span>enable_RLE(<span class="kw-2">&amp;mut </span><span class="self">self</span>) {
+        <span class="kw">let </span>result = <span class="kw">unsafe </span>{ sys::SDL_SetSurfaceRLE(<span class="self">self</span>.raw(), <span class="number">1</span>) };
 
-        <span class="kw">if</span> <span class="ident">result</span> <span class="op">!</span><span class="op">=</span> <span class="number">0</span> {
-            <span class="comment">// Should only panic on a null Surface</span>
-            <span class="macro">panic!</span>(<span class="string">&quot;{}&quot;</span>, <span class="ident">get_error</span>());
+        <span class="kw">if </span>result != <span class="number">0 </span>{
+            <span class="comment">// Should only panic on a null Surface
+            </span><span class="macro">panic!</span>(<span class="string">&quot;{}&quot;</span>, get_error());
         }
     }
 
-    <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">non_snake_case</span>)]</span>
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;SDL_SetSurfaceRLE&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">disable_RLE</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>) {
-        <span class="kw">let</span> <span class="ident">result</span> <span class="op">=</span> <span class="kw">unsafe</span> { <span class="ident">sys::SDL_SetSurfaceRLE</span>(<span class="self">self</span>.<span class="ident">raw</span>(), <span class="number">0</span>) };
+    <span class="attribute">#[allow(non_snake_case)]
+    #[doc(alias = <span class="string">&quot;SDL_SetSurfaceRLE&quot;</span>)]
+    </span><span class="kw">pub fn </span>disable_RLE(<span class="kw-2">&amp;mut </span><span class="self">self</span>) {
+        <span class="kw">let </span>result = <span class="kw">unsafe </span>{ sys::SDL_SetSurfaceRLE(<span class="self">self</span>.raw(), <span class="number">0</span>) };
 
-        <span class="kw">if</span> <span class="ident">result</span> <span class="op">!</span><span class="op">=</span> <span class="number">0</span> {
-            <span class="comment">// Should only panic on a null Surface</span>
-            <span class="macro">panic!</span>(<span class="string">&quot;{}&quot;</span>, <span class="ident">get_error</span>());
+        <span class="kw">if </span>result != <span class="number">0 </span>{
+            <span class="comment">// Should only panic on a null Surface
+            </span><span class="macro">panic!</span>(<span class="string">&quot;{}&quot;</span>, get_error());
         }
     }
 
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;SDL_SetColorKey&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_color_key</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">enable</span>: <span class="ident">bool</span>, <span class="ident">color</span>: <span class="ident">pixels::Color</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">String</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="ident">key</span> <span class="op">=</span> <span class="ident">color</span>.<span class="ident">to_u32</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">pixel_format</span>());
-        <span class="kw">let</span> <span class="ident">result</span> <span class="op">=</span> <span class="kw">unsafe</span> { <span class="ident">sys::SDL_SetColorKey</span>(<span class="self">self</span>.<span class="ident">raw</span>(), <span class="kw">if</span> <span class="ident">enable</span> { <span class="number">1</span> } <span class="kw">else</span> { <span class="number">0</span> }, <span class="ident">key</span>) };
-        <span class="kw">if</span> <span class="ident">result</span> <span class="op">==</span> <span class="number">0</span> {
+    <span class="attribute">#[doc(alias = <span class="string">&quot;SDL_SetColorKey&quot;</span>)]
+    </span><span class="kw">pub fn </span>set_color_key(<span class="kw-2">&amp;mut </span><span class="self">self</span>, enable: bool, color: pixels::Color) -&gt; <span class="prelude-ty">Result</span>&lt;(), String&gt; {
+        <span class="kw">let </span>key = color.to_u32(<span class="kw-2">&amp;</span><span class="self">self</span>.pixel_format());
+        <span class="kw">let </span>result = <span class="kw">unsafe </span>{ sys::SDL_SetColorKey(<span class="self">self</span>.raw(), <span class="kw">if </span>enable { <span class="number">1 </span>} <span class="kw">else </span>{ <span class="number">0 </span>}, key) };
+        <span class="kw">if </span>result == <span class="number">0 </span>{
             <span class="prelude-val">Ok</span>(())
-        } <span class="kw">else</span> {
-            <span class="prelude-val">Err</span>(<span class="ident">get_error</span>())
+        } <span class="kw">else </span>{
+            <span class="prelude-val">Err</span>(get_error())
         }
     }
 
-    <span class="doccomment">/// The function will fail if the surface doesn&#39;t have color key enabled.</span>
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;SDL_GetColorKey&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">color_key</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">pixels::Color</span>, <span class="ident">String</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">key</span> <span class="op">=</span> <span class="number">0</span>;
+    <span class="doccomment">/// The function will fail if the surface doesn&#39;t have color key enabled.
+    </span><span class="attribute">#[doc(alias = <span class="string">&quot;SDL_GetColorKey&quot;</span>)]
+    </span><span class="kw">pub fn </span>color_key(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Result</span>&lt;pixels::Color, String&gt; {
+        <span class="kw">let </span><span class="kw-2">mut </span>key = <span class="number">0</span>;
 
-        <span class="comment">// SDL_GetColorKey does not mutate, but requires a non-const pointer anyway.</span>
+        <span class="comment">// SDL_GetColorKey does not mutate, but requires a non-const pointer anyway.
 
-        <span class="kw">let</span> <span class="ident">result</span> <span class="op">=</span> <span class="kw">unsafe</span> { <span class="ident">sys::SDL_GetColorKey</span>(<span class="self">self</span>.<span class="ident">raw</span>(), <span class="kw-2">&amp;mut</span> <span class="ident">key</span>) };
+        </span><span class="kw">let </span>result = <span class="kw">unsafe </span>{ sys::SDL_GetColorKey(<span class="self">self</span>.raw(), <span class="kw-2">&amp;mut </span>key) };
 
-        <span class="kw">if</span> <span class="ident">result</span> <span class="op">==</span> <span class="number">0</span> {
-            <span class="prelude-val">Ok</span>(<span class="ident">pixels::Color::from_u32</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">pixel_format</span>(), <span class="ident">key</span>))
-        } <span class="kw">else</span> {
-            <span class="prelude-val">Err</span>(<span class="ident">get_error</span>())
+        <span class="kw">if </span>result == <span class="number">0 </span>{
+            <span class="prelude-val">Ok</span>(pixels::Color::from_u32(<span class="kw-2">&amp;</span><span class="self">self</span>.pixel_format(), key))
+        } <span class="kw">else </span>{
+            <span class="prelude-val">Err</span>(get_error())
         }
     }
 
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;SDL_SetSurfaceColorMod&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_color_mod</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">color</span>: <span class="ident">pixels::Color</span>) {
-        <span class="kw">let</span> (<span class="ident">r</span>, <span class="ident">g</span>, <span class="ident">b</span>) <span class="op">=</span> <span class="ident">color</span>.<span class="ident">rgb</span>();
-        <span class="kw">let</span> <span class="ident">result</span> <span class="op">=</span> <span class="kw">unsafe</span> { <span class="ident">sys::SDL_SetSurfaceColorMod</span>(<span class="self">self</span>.<span class="ident">raw</span>(), <span class="ident">r</span>, <span class="ident">g</span>, <span class="ident">b</span>) };
+    <span class="attribute">#[doc(alias = <span class="string">&quot;SDL_SetSurfaceColorMod&quot;</span>)]
+    </span><span class="kw">pub fn </span>set_color_mod(<span class="kw-2">&amp;mut </span><span class="self">self</span>, color: pixels::Color) {
+        <span class="kw">let </span>(r, g, b) = color.rgb();
+        <span class="kw">let </span>result = <span class="kw">unsafe </span>{ sys::SDL_SetSurfaceColorMod(<span class="self">self</span>.raw(), r, g, b) };
 
-        <span class="kw">if</span> <span class="ident">result</span> <span class="op">!</span><span class="op">=</span> <span class="number">0</span> {
-            <span class="comment">// Should only fail on a null Surface</span>
-            <span class="macro">panic!</span>(<span class="string">&quot;{}&quot;</span>, <span class="ident">get_error</span>());
+        <span class="kw">if </span>result != <span class="number">0 </span>{
+            <span class="comment">// Should only fail on a null Surface
+            </span><span class="macro">panic!</span>(<span class="string">&quot;{}&quot;</span>, get_error());
         }
     }
 
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;SDL_GetSurfaceColorMod&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">color_mod</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">pixels::Color</span> {
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">r</span> <span class="op">=</span> <span class="number">0</span>;
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">g</span> <span class="op">=</span> <span class="number">0</span>;
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">b</span> <span class="op">=</span> <span class="number">0</span>;
+    <span class="attribute">#[doc(alias = <span class="string">&quot;SDL_GetSurfaceColorMod&quot;</span>)]
+    </span><span class="kw">pub fn </span>color_mod(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; pixels::Color {
+        <span class="kw">let </span><span class="kw-2">mut </span>r = <span class="number">0</span>;
+        <span class="kw">let </span><span class="kw-2">mut </span>g = <span class="number">0</span>;
+        <span class="kw">let </span><span class="kw-2">mut </span>b = <span class="number">0</span>;
 
-        <span class="comment">// SDL_GetSurfaceColorMod does not mutate, but requires a non-const pointer anyway.</span>
+        <span class="comment">// SDL_GetSurfaceColorMod does not mutate, but requires a non-const pointer anyway.
 
-        <span class="kw">let</span> <span class="ident">result</span> <span class="op">=</span>
-            <span class="kw">unsafe</span> { <span class="ident">sys::SDL_GetSurfaceColorMod</span>(<span class="self">self</span>.<span class="ident">raw</span>(), <span class="kw-2">&amp;mut</span> <span class="ident">r</span>, <span class="kw-2">&amp;mut</span> <span class="ident">g</span>, <span class="kw-2">&amp;mut</span> <span class="ident">b</span>) <span class="op">==</span> <span class="number">0</span> };
+        </span><span class="kw">let </span>result =
+            <span class="kw">unsafe </span>{ sys::SDL_GetSurfaceColorMod(<span class="self">self</span>.raw(), <span class="kw-2">&amp;mut </span>r, <span class="kw-2">&amp;mut </span>g, <span class="kw-2">&amp;mut </span>b) == <span class="number">0 </span>};
 
-        <span class="kw">if</span> <span class="ident">result</span> {
-            <span class="ident">pixels::Color::RGB</span>(<span class="ident">r</span>, <span class="ident">g</span>, <span class="ident">b</span>)
-        } <span class="kw">else</span> {
-            <span class="comment">// Should only fail on a null Surface</span>
-            <span class="macro">panic!</span>(<span class="string">&quot;{}&quot;</span>, <span class="ident">get_error</span>())
+        <span class="kw">if </span>result {
+            pixels::Color::RGB(r, g, b)
+        } <span class="kw">else </span>{
+            <span class="comment">// Should only fail on a null Surface
+            </span><span class="macro">panic!</span>(<span class="string">&quot;{}&quot;</span>, get_error())
         }
     }
 
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;SDL_FillRect&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">fill_rect</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">rect</span>: <span class="ident">R</span>, <span class="ident">color</span>: <span class="ident">pixels::Color</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">String</span><span class="op">&gt;</span>
-    <span class="kw">where</span>
-        <span class="ident">R</span>: <span class="ident">Into</span><span class="op">&lt;</span><span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Rect</span><span class="op">&gt;</span><span class="op">&gt;</span>,
+    <span class="attribute">#[doc(alias = <span class="string">&quot;SDL_FillRect&quot;</span>)]
+    </span><span class="kw">pub fn </span>fill_rect&lt;R&gt;(<span class="kw-2">&amp;mut </span><span class="self">self</span>, rect: R, color: pixels::Color) -&gt; <span class="prelude-ty">Result</span>&lt;(), String&gt;
+    <span class="kw">where
+        </span>R: Into&lt;<span class="prelude-ty">Option</span>&lt;Rect&gt;&gt;,
     {
-        <span class="kw">unsafe</span> {
-            <span class="kw">let</span> <span class="ident">rect</span> <span class="op">=</span> <span class="ident">rect</span>.<span class="ident">into</span>();
-            <span class="kw">let</span> <span class="ident">rect_ptr</span> <span class="op">=</span> <span class="ident">mem::transmute</span>(<span class="ident">rect</span>.<span class="ident">as_ref</span>()); <span class="comment">// TODO find a better way to transform</span>
-                                                          <span class="comment">// Option&lt;&amp;...&gt; into a *const _</span>
-            <span class="kw">let</span> <span class="ident">format</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">pixel_format</span>();
-            <span class="kw">let</span> <span class="ident">result</span> <span class="op">=</span> <span class="ident">sys::SDL_FillRect</span>(<span class="self">self</span>.<span class="ident">raw</span>(), <span class="ident">rect_ptr</span>, <span class="ident">color</span>.<span class="ident">to_u32</span>(<span class="kw-2">&amp;</span><span class="ident">format</span>));
-            <span class="kw">match</span> <span class="ident">result</span> {
-                <span class="number">0</span> =&gt; <span class="prelude-val">Ok</span>(()),
-                <span class="kw">_</span> =&gt; <span class="prelude-val">Err</span>(<span class="ident">get_error</span>()),
+        <span class="kw">unsafe </span>{
+            <span class="kw">let </span>rect = rect.into();
+            <span class="kw">let </span>rect_ptr = mem::transmute(rect.as_ref()); <span class="comment">// TODO find a better way to transform
+                                                          // Option&lt;&amp;...&gt; into a *const _
+            </span><span class="kw">let </span>format = <span class="self">self</span>.pixel_format();
+            <span class="kw">let </span>result = sys::SDL_FillRect(<span class="self">self</span>.raw(), rect_ptr, color.to_u32(<span class="kw-2">&amp;</span>format));
+            <span class="kw">match </span>result {
+                <span class="number">0 </span>=&gt; <span class="prelude-val">Ok</span>(()),
+                <span class="kw">_ </span>=&gt; <span class="prelude-val">Err</span>(get_error()),
             }
         }
     }
 
-    <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">clippy::clone_on_copy</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">fill_rects</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">rects</span>: <span class="kw-2">&amp;</span>[<span class="ident">Rect</span>], <span class="ident">color</span>: <span class="ident">pixels::Color</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">String</span><span class="op">&gt;</span> {
-        <span class="kw">for</span> <span class="ident">rect</span> <span class="kw">in</span> <span class="ident">rects</span>.<span class="ident">iter</span>() {
-            <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Err</span>(<span class="ident">e</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">fill_rect</span>(<span class="ident">rect</span>.<span class="ident">clone</span>(), <span class="ident">color</span>) {
-                <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">e</span>);
+    <span class="attribute">#[allow(clippy::clone_on_copy)]
+    </span><span class="kw">pub fn </span>fill_rects(<span class="kw-2">&amp;mut </span><span class="self">self</span>, rects: <span class="kw-2">&amp;</span>[Rect], color: pixels::Color) -&gt; <span class="prelude-ty">Result</span>&lt;(), String&gt; {
+        <span class="kw">for </span>rect <span class="kw">in </span>rects.iter() {
+            <span class="kw">if let </span><span class="prelude-val">Err</span>(e) = <span class="self">self</span>.fill_rect(rect.clone(), color) {
+                <span class="kw">return </span><span class="prelude-val">Err</span>(e);
             }
         }
 
         <span class="prelude-val">Ok</span>(())
     }
 
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;SDL_SetSurfaceAlphaMod&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_alpha_mod</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">alpha</span>: <span class="ident">u8</span>) {
-        <span class="kw">let</span> <span class="ident">result</span> <span class="op">=</span> <span class="kw">unsafe</span> { <span class="ident">sys::SDL_SetSurfaceAlphaMod</span>(<span class="self">self</span>.<span class="ident">raw</span>(), <span class="ident">alpha</span>) };
+    <span class="attribute">#[doc(alias = <span class="string">&quot;SDL_SetSurfaceAlphaMod&quot;</span>)]
+    </span><span class="kw">pub fn </span>set_alpha_mod(<span class="kw-2">&amp;mut </span><span class="self">self</span>, alpha: u8) {
+        <span class="kw">let </span>result = <span class="kw">unsafe </span>{ sys::SDL_SetSurfaceAlphaMod(<span class="self">self</span>.raw(), alpha) };
 
-        <span class="kw">if</span> <span class="ident">result</span> <span class="op">!</span><span class="op">=</span> <span class="number">0</span> {
-            <span class="comment">// Should only fail on a null Surface</span>
-            <span class="macro">panic!</span>(<span class="string">&quot;{}&quot;</span>, <span class="ident">get_error</span>());
+        <span class="kw">if </span>result != <span class="number">0 </span>{
+            <span class="comment">// Should only fail on a null Surface
+            </span><span class="macro">panic!</span>(<span class="string">&quot;{}&quot;</span>, get_error());
         }
     }
 
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;SDL_GetSurfaceAlphaMod&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">alpha_mod</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">u8</span> {
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">alpha</span> <span class="op">=</span> <span class="number">0</span>;
-        <span class="kw">let</span> <span class="ident">result</span> <span class="op">=</span> <span class="kw">unsafe</span> { <span class="ident">sys::SDL_GetSurfaceAlphaMod</span>(<span class="self">self</span>.<span class="ident">raw</span>(), <span class="kw-2">&amp;mut</span> <span class="ident">alpha</span>) };
+    <span class="attribute">#[doc(alias = <span class="string">&quot;SDL_GetSurfaceAlphaMod&quot;</span>)]
+    </span><span class="kw">pub fn </span>alpha_mod(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; u8 {
+        <span class="kw">let </span><span class="kw-2">mut </span>alpha = <span class="number">0</span>;
+        <span class="kw">let </span>result = <span class="kw">unsafe </span>{ sys::SDL_GetSurfaceAlphaMod(<span class="self">self</span>.raw(), <span class="kw-2">&amp;mut </span>alpha) };
 
-        <span class="kw">match</span> <span class="ident">result</span> {
-            <span class="number">0</span> =&gt; <span class="ident">alpha</span>,
-            <span class="comment">// Should only fail on a null Surface</span>
-            <span class="kw">_</span> =&gt; <span class="macro">panic!</span>(<span class="string">&quot;{}&quot;</span>, <span class="ident">get_error</span>()),
+        <span class="kw">match </span>result {
+            <span class="number">0 </span>=&gt; alpha,
+            <span class="comment">// Should only fail on a null Surface
+            </span><span class="kw">_ </span>=&gt; <span class="macro">panic!</span>(<span class="string">&quot;{}&quot;</span>, get_error()),
         }
     }
 
-    <span class="doccomment">/// The function will fail if the blend mode is not supported by SDL.</span>
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;SDL_SetSurfaceBlendMode&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_blend_mode</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">mode</span>: <span class="ident">BlendMode</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">String</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="ident">result</span> <span class="op">=</span> <span class="kw">unsafe</span> { <span class="ident">sys::SDL_SetSurfaceBlendMode</span>(<span class="self">self</span>.<span class="ident">raw</span>(), <span class="ident">transmute</span>(<span class="ident">mode</span>)) };
+    <span class="doccomment">/// The function will fail if the blend mode is not supported by SDL.
+    </span><span class="attribute">#[doc(alias = <span class="string">&quot;SDL_SetSurfaceBlendMode&quot;</span>)]
+    </span><span class="kw">pub fn </span>set_blend_mode(<span class="kw-2">&amp;mut </span><span class="self">self</span>, mode: BlendMode) -&gt; <span class="prelude-ty">Result</span>&lt;(), String&gt; {
+        <span class="kw">let </span>result = <span class="kw">unsafe </span>{ sys::SDL_SetSurfaceBlendMode(<span class="self">self</span>.raw(), transmute(mode)) };
 
-        <span class="kw">match</span> <span class="ident">result</span> {
-            <span class="number">0</span> =&gt; <span class="prelude-val">Ok</span>(()),
-            <span class="kw">_</span> =&gt; <span class="prelude-val">Err</span>(<span class="ident">get_error</span>()),
+        <span class="kw">match </span>result {
+            <span class="number">0 </span>=&gt; <span class="prelude-val">Ok</span>(()),
+            <span class="kw">_ </span>=&gt; <span class="prelude-val">Err</span>(get_error()),
         }
     }
 
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;SDL_GetSurfaceBlendMode&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">blend_mode</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">BlendMode</span> {
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">mode</span> <span class="op">=</span> <span class="ident">sys::SDL_BlendMode::SDL_BLENDMODE_NONE</span>;
-        <span class="kw">let</span> <span class="ident">result</span> <span class="op">=</span> <span class="kw">unsafe</span> { <span class="ident">sys::SDL_GetSurfaceBlendMode</span>(<span class="self">self</span>.<span class="ident">raw</span>(), <span class="kw-2">&amp;mut</span> <span class="ident">mode</span>) };
+    <span class="attribute">#[doc(alias = <span class="string">&quot;SDL_GetSurfaceBlendMode&quot;</span>)]
+    </span><span class="kw">pub fn </span>blend_mode(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; BlendMode {
+        <span class="kw">let </span><span class="kw-2">mut </span>mode = sys::SDL_BlendMode::SDL_BLENDMODE_NONE;
+        <span class="kw">let </span>result = <span class="kw">unsafe </span>{ sys::SDL_GetSurfaceBlendMode(<span class="self">self</span>.raw(), <span class="kw-2">&amp;mut </span>mode) };
 
-        <span class="kw">match</span> <span class="ident">result</span> {
-            <span class="number">0</span> =&gt; <span class="ident">BlendMode::try_from</span>(<span class="ident">mode</span> <span class="kw">as</span> <span class="ident">u32</span>).<span class="ident">unwrap</span>(),
-            <span class="comment">// Should only fail on a null Surface</span>
-            <span class="kw">_</span> =&gt; <span class="macro">panic!</span>(<span class="string">&quot;{}&quot;</span>, <span class="ident">get_error</span>()),
+        <span class="kw">match </span>result {
+            <span class="number">0 </span>=&gt; BlendMode::try_from(mode <span class="kw">as </span>u32).unwrap(),
+            <span class="comment">// Should only fail on a null Surface
+            </span><span class="kw">_ </span>=&gt; <span class="macro">panic!</span>(<span class="string">&quot;{}&quot;</span>, get_error()),
         }
     }
 
-    <span class="doccomment">/// Sets the clip rectangle for the surface.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// If the rectangle is `None`, clipping will be disabled.</span>
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;SDL_SetClipRect&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_clip_rect</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">rect</span>: <span class="ident">R</span>) -&gt; <span class="ident">bool</span>
-    <span class="kw">where</span>
-        <span class="ident">R</span>: <span class="ident">Into</span><span class="op">&lt;</span><span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Rect</span><span class="op">&gt;</span><span class="op">&gt;</span>,
+    <span class="doccomment">/// Sets the clip rectangle for the surface.
+    ///
+    /// If the rectangle is `None`, clipping will be disabled.
+    </span><span class="attribute">#[doc(alias = <span class="string">&quot;SDL_SetClipRect&quot;</span>)]
+    </span><span class="kw">pub fn </span>set_clip_rect&lt;R&gt;(<span class="kw-2">&amp;mut </span><span class="self">self</span>, rect: R) -&gt; bool
+    <span class="kw">where
+        </span>R: Into&lt;<span class="prelude-ty">Option</span>&lt;Rect&gt;&gt;,
     {
-        <span class="kw">let</span> <span class="ident">rect</span> <span class="op">=</span> <span class="ident">rect</span>.<span class="ident">into</span>();
-        <span class="kw">unsafe</span> {
-            <span class="ident">sys::SDL_SetClipRect</span>(
-                <span class="self">self</span>.<span class="ident">raw</span>(),
-                <span class="kw">match</span> <span class="ident">rect</span> {
-                    <span class="prelude-val">Some</span>(<span class="ident">rect</span>) =&gt; <span class="ident">rect</span>.<span class="ident">raw</span>(),
-                    <span class="prelude-val">None</span> =&gt; <span class="ident">ptr::null</span>(),
+        <span class="kw">let </span>rect = rect.into();
+        <span class="kw">unsafe </span>{
+            sys::SDL_SetClipRect(
+                <span class="self">self</span>.raw(),
+                <span class="kw">match </span>rect {
+                    <span class="prelude-val">Some</span>(rect) =&gt; rect.raw(),
+                    <span class="prelude-val">None </span>=&gt; ptr::null(),
                 },
-            ) <span class="op">==</span> <span class="ident">sys::SDL_bool::SDL_TRUE</span>
+            ) == sys::SDL_bool::SDL_TRUE
         }
     }
 
-    <span class="doccomment">/// Gets the clip rectangle for the surface.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// Returns `None` if clipping is disabled.</span>
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;SDL_GetClipRect&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">clip_rect</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Rect</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">raw</span> <span class="op">=</span> <span class="ident">mem::MaybeUninit::uninit</span>();
-        <span class="kw">unsafe</span> { <span class="ident">sys::SDL_GetClipRect</span>(<span class="self">self</span>.<span class="ident">raw</span>(), <span class="ident">raw</span>.<span class="ident">as_mut_ptr</span>()) };
-        <span class="kw">let</span> <span class="ident">raw</span> <span class="op">=</span> <span class="kw">unsafe</span> { <span class="ident">raw</span>.<span class="ident">assume_init</span>() };
+    <span class="doccomment">/// Gets the clip rectangle for the surface.
+    ///
+    /// Returns `None` if clipping is disabled.
+    </span><span class="attribute">#[doc(alias = <span class="string">&quot;SDL_GetClipRect&quot;</span>)]
+    </span><span class="kw">pub fn </span>clip_rect(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;Rect&gt; {
+        <span class="kw">let </span><span class="kw-2">mut </span>raw = mem::MaybeUninit::uninit();
+        <span class="kw">unsafe </span>{ sys::SDL_GetClipRect(<span class="self">self</span>.raw(), raw.as_mut_ptr()) };
+        <span class="kw">let </span>raw = <span class="kw">unsafe </span>{ raw.assume_init() };
 
-        <span class="kw">if</span> <span class="ident">raw</span>.<span class="ident">w</span> <span class="op">==</span> <span class="number">0</span> <span class="op">|</span><span class="op">|</span> <span class="ident">raw</span>.<span class="ident">h</span> <span class="op">==</span> <span class="number">0</span> {
-            <span class="prelude-val">None</span>
-        } <span class="kw">else</span> {
-            <span class="prelude-val">Some</span>(<span class="ident">Rect::from_ll</span>(<span class="ident">raw</span>))
+        <span class="kw">if </span>raw.w == <span class="number">0 </span>|| raw.h == <span class="number">0 </span>{
+            <span class="prelude-val">None
+        </span>} <span class="kw">else </span>{
+            <span class="prelude-val">Some</span>(Rect::from_ll(raw))
         }
     }
 
-    <span class="doccomment">/// Copies the surface into a new one that is optimized for blitting to a surface of a specified pixel format.</span>
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;SDL_ConvertSurface&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">convert</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">format</span>: <span class="kw-2">&amp;</span><span class="ident">pixels::PixelFormat</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">Surface</span><span class="op">&lt;</span><span class="lifetime">&#39;static</span><span class="op">&gt;</span>, <span class="ident">String</span><span class="op">&gt;</span> {
-        <span class="comment">// SDL_ConvertSurface takes a flag as the last parameter, which should be 0 by the docs.</span>
-        <span class="kw">let</span> <span class="ident">surface_ptr</span> <span class="op">=</span> <span class="kw">unsafe</span> { <span class="ident">sys::SDL_ConvertSurface</span>(<span class="self">self</span>.<span class="ident">raw</span>(), <span class="ident">format</span>.<span class="ident">raw</span>(), <span class="number">0u32</span>) };
+    <span class="doccomment">/// Copies the surface into a new one that is optimized for blitting to a surface of a specified pixel format.
+    </span><span class="attribute">#[doc(alias = <span class="string">&quot;SDL_ConvertSurface&quot;</span>)]
+    </span><span class="kw">pub fn </span>convert(<span class="kw-2">&amp;</span><span class="self">self</span>, format: <span class="kw-2">&amp;</span>pixels::PixelFormat) -&gt; <span class="prelude-ty">Result</span>&lt;Surface&lt;<span class="lifetime">&#39;static</span>&gt;, String&gt; {
+        <span class="comment">// SDL_ConvertSurface takes a flag as the last parameter, which should be 0 by the docs.
+        </span><span class="kw">let </span>surface_ptr = <span class="kw">unsafe </span>{ sys::SDL_ConvertSurface(<span class="self">self</span>.raw(), format.raw(), <span class="number">0u32</span>) };
 
-        <span class="kw">if</span> <span class="ident">surface_ptr</span>.<span class="ident">is_null</span>() {
-            <span class="prelude-val">Err</span>(<span class="ident">get_error</span>())
-        } <span class="kw">else</span> {
-            <span class="kw">unsafe</span> { <span class="prelude-val">Ok</span>(<span class="ident">Surface::from_ll</span>(<span class="ident">surface_ptr</span>)) }
+        <span class="kw">if </span>surface_ptr.is_null() {
+            <span class="prelude-val">Err</span>(get_error())
+        } <span class="kw">else </span>{
+            <span class="kw">unsafe </span>{ <span class="prelude-val">Ok</span>(Surface::from_ll(surface_ptr)) }
         }
     }
 
-    <span class="doccomment">/// Copies the surface into a new one of a specified pixel format.</span>
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;SDL_ConvertSurfaceFormat&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">convert_format</span>(
+    <span class="doccomment">/// Copies the surface into a new one of a specified pixel format.
+    </span><span class="attribute">#[doc(alias = <span class="string">&quot;SDL_ConvertSurfaceFormat&quot;</span>)]
+    </span><span class="kw">pub fn </span>convert_format(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
-        <span class="ident">format</span>: <span class="ident">pixels::PixelFormatEnum</span>,
-    ) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">Surface</span><span class="op">&lt;</span><span class="lifetime">&#39;static</span><span class="op">&gt;</span>, <span class="ident">String</span><span class="op">&gt;</span> {
-        <span class="comment">// SDL_ConvertSurfaceFormat takes a flag as the last parameter, which should be 0 by the docs.</span>
-        <span class="kw">let</span> <span class="ident">surface_ptr</span> <span class="op">=</span> <span class="kw">unsafe</span> { <span class="ident">sys::SDL_ConvertSurfaceFormat</span>(<span class="self">self</span>.<span class="ident">raw</span>(), <span class="ident">format</span> <span class="kw">as</span> <span class="ident">u32</span>, <span class="number">0u32</span>) };
+        format: pixels::PixelFormatEnum,
+    ) -&gt; <span class="prelude-ty">Result</span>&lt;Surface&lt;<span class="lifetime">&#39;static</span>&gt;, String&gt; {
+        <span class="comment">// SDL_ConvertSurfaceFormat takes a flag as the last parameter, which should be 0 by the docs.
+        </span><span class="kw">let </span>surface_ptr = <span class="kw">unsafe </span>{ sys::SDL_ConvertSurfaceFormat(<span class="self">self</span>.raw(), format <span class="kw">as </span>u32, <span class="number">0u32</span>) };
 
-        <span class="kw">if</span> <span class="ident">surface_ptr</span>.<span class="ident">is_null</span>() {
-            <span class="prelude-val">Err</span>(<span class="ident">get_error</span>())
-        } <span class="kw">else</span> {
-            <span class="kw">unsafe</span> { <span class="prelude-val">Ok</span>(<span class="ident">Surface::from_ll</span>(<span class="ident">surface_ptr</span>)) }
+        <span class="kw">if </span>surface_ptr.is_null() {
+            <span class="prelude-val">Err</span>(get_error())
+        } <span class="kw">else </span>{
+            <span class="kw">unsafe </span>{ <span class="prelude-val">Ok</span>(Surface::from_ll(surface_ptr)) }
         }
     }
 
-    <span class="doccomment">/// Performs surface blitting (surface copying).</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// Returns the final blit rectangle, if a `dst_rect` was provided.</span>
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;SDL_UpperBlit&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">blit</span><span class="op">&lt;</span><span class="ident">R1</span>, <span class="ident">R2</span><span class="op">&gt;</span>(
+    <span class="doccomment">/// Performs surface blitting (surface copying).
+    ///
+    /// Returns the final blit rectangle, if a `dst_rect` was provided.
+    </span><span class="attribute">#[doc(alias = <span class="string">&quot;SDL_UpperBlit&quot;</span>)]
+    </span><span class="kw">pub fn </span>blit&lt;R1, R2&gt;(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
-        <span class="ident">src_rect</span>: <span class="ident">R1</span>,
-        <span class="ident">dst</span>: <span class="kw-2">&amp;mut</span> <span class="ident">SurfaceRef</span>,
-        <span class="ident">dst_rect</span>: <span class="ident">R2</span>,
-    ) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Rect</span><span class="op">&gt;</span>, <span class="ident">String</span><span class="op">&gt;</span>
-    <span class="kw">where</span>
-        <span class="ident">R1</span>: <span class="ident">Into</span><span class="op">&lt;</span><span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Rect</span><span class="op">&gt;</span><span class="op">&gt;</span>,
-        <span class="ident">R2</span>: <span class="ident">Into</span><span class="op">&lt;</span><span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Rect</span><span class="op">&gt;</span><span class="op">&gt;</span>,
+        src_rect: R1,
+        dst: <span class="kw-2">&amp;mut </span>SurfaceRef,
+        dst_rect: R2,
+    ) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="prelude-ty">Option</span>&lt;Rect&gt;, String&gt;
+    <span class="kw">where
+        </span>R1: Into&lt;<span class="prelude-ty">Option</span>&lt;Rect&gt;&gt;,
+        R2: Into&lt;<span class="prelude-ty">Option</span>&lt;Rect&gt;&gt;,
     {
-        <span class="kw">let</span> <span class="ident">src_rect</span> <span class="op">=</span> <span class="ident">src_rect</span>.<span class="ident">into</span>();
-        <span class="kw">let</span> <span class="ident">dst_rect</span> <span class="op">=</span> <span class="ident">dst_rect</span>.<span class="ident">into</span>();
+        <span class="kw">let </span>src_rect = src_rect.into();
+        <span class="kw">let </span>dst_rect = dst_rect.into();
 
-        <span class="kw">unsafe</span> {
-            <span class="kw">let</span> <span class="ident">src_rect_ptr</span> <span class="op">=</span> <span class="ident">src_rect</span>.<span class="ident">as_ref</span>().<span class="ident">map</span>(<span class="op">|</span><span class="ident">r</span><span class="op">|</span> <span class="ident">r</span>.<span class="ident">raw</span>()).<span class="ident">unwrap_or</span>(<span class="ident">ptr::null</span>());
+        <span class="kw">unsafe </span>{
+            <span class="kw">let </span>src_rect_ptr = src_rect.as_ref().map(|r| r.raw()).unwrap_or(ptr::null());
 
-            <span class="comment">// Copy the rect here to make a mutable copy without requiring</span>
-            <span class="comment">// a mutable argument</span>
-            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">dst_rect</span> <span class="op">=</span> <span class="ident">dst_rect</span>;
-            <span class="kw">let</span> <span class="ident">dst_rect_ptr</span> <span class="op">=</span> <span class="ident">dst_rect</span>
-                .<span class="ident">as_mut</span>()
-                .<span class="ident">map</span>(<span class="op">|</span><span class="ident">r</span><span class="op">|</span> <span class="ident">r</span>.<span class="ident">raw_mut</span>())
-                .<span class="ident">unwrap_or</span>(<span class="ident">ptr::null_mut</span>());
-            <span class="kw">let</span> <span class="ident">result</span> <span class="op">=</span> <span class="ident">sys::SDL_UpperBlit</span>(<span class="self">self</span>.<span class="ident">raw</span>(), <span class="ident">src_rect_ptr</span>, <span class="ident">dst</span>.<span class="ident">raw</span>(), <span class="ident">dst_rect_ptr</span>);
+            <span class="comment">// Copy the rect here to make a mutable copy without requiring
+            // a mutable argument
+            </span><span class="kw">let </span><span class="kw-2">mut </span>dst_rect = dst_rect;
+            <span class="kw">let </span>dst_rect_ptr = dst_rect
+                .as_mut()
+                .map(|r| r.raw_mut())
+                .unwrap_or(ptr::null_mut());
+            <span class="kw">let </span>result = sys::SDL_UpperBlit(<span class="self">self</span>.raw(), src_rect_ptr, dst.raw(), dst_rect_ptr);
 
-            <span class="kw">if</span> <span class="ident">result</span> <span class="op">==</span> <span class="number">0</span> {
-                <span class="prelude-val">Ok</span>(<span class="ident">dst_rect</span>)
-            } <span class="kw">else</span> {
-                <span class="prelude-val">Err</span>(<span class="ident">get_error</span>())
+            <span class="kw">if </span>result == <span class="number">0 </span>{
+                <span class="prelude-val">Ok</span>(dst_rect)
+            } <span class="kw">else </span>{
+                <span class="prelude-val">Err</span>(get_error())
             }
         }
     }
 
-    <span class="doccomment">/// Performs low-level surface blitting.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// Unless you know what you&#39;re doing, use `blit()` instead, which will clip the input rectangles.</span>
-    <span class="doccomment">/// This function could crash if the rectangles aren&#39;t pre-clipped to the surface, and is therefore unsafe.</span>
-    <span class="kw">pub</span> <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">lower_blit</span><span class="op">&lt;</span><span class="ident">R1</span>, <span class="ident">R2</span><span class="op">&gt;</span>(
+    <span class="doccomment">/// Performs low-level surface blitting.
+    ///
+    /// Unless you know what you&#39;re doing, use `blit()` instead, which will clip the input rectangles.
+    /// This function could crash if the rectangles aren&#39;t pre-clipped to the surface, and is therefore unsafe.
+    </span><span class="kw">pub unsafe fn </span>lower_blit&lt;R1, R2&gt;(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
-        <span class="ident">src_rect</span>: <span class="ident">R1</span>,
-        <span class="ident">dst</span>: <span class="kw-2">&amp;mut</span> <span class="ident">SurfaceRef</span>,
-        <span class="ident">dst_rect</span>: <span class="ident">R2</span>,
-    ) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">String</span><span class="op">&gt;</span>
-    <span class="kw">where</span>
-        <span class="ident">R1</span>: <span class="ident">Into</span><span class="op">&lt;</span><span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Rect</span><span class="op">&gt;</span><span class="op">&gt;</span>,
-        <span class="ident">R2</span>: <span class="ident">Into</span><span class="op">&lt;</span><span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Rect</span><span class="op">&gt;</span><span class="op">&gt;</span>,
+        src_rect: R1,
+        dst: <span class="kw-2">&amp;mut </span>SurfaceRef,
+        dst_rect: R2,
+    ) -&gt; <span class="prelude-ty">Result</span>&lt;(), String&gt;
+    <span class="kw">where
+        </span>R1: Into&lt;<span class="prelude-ty">Option</span>&lt;Rect&gt;&gt;,
+        R2: Into&lt;<span class="prelude-ty">Option</span>&lt;Rect&gt;&gt;,
     {
-        <span class="kw">let</span> <span class="ident">src_rect</span> <span class="op">=</span> <span class="ident">src_rect</span>.<span class="ident">into</span>();
-        <span class="kw">let</span> <span class="ident">dst_rect</span> <span class="op">=</span> <span class="ident">dst_rect</span>.<span class="ident">into</span>();
+        <span class="kw">let </span>src_rect = src_rect.into();
+        <span class="kw">let </span>dst_rect = dst_rect.into();
 
-        <span class="kw">match</span> {
-            <span class="comment">// The rectangles don&#39;t change, but the function requires mutable pointers.</span>
-            <span class="kw">let</span> <span class="ident">src_rect_ptr</span> <span class="op">=</span> <span class="ident">src_rect</span>.<span class="ident">as_ref</span>().<span class="ident">map</span>(<span class="op">|</span><span class="ident">r</span><span class="op">|</span> <span class="ident">r</span>.<span class="ident">raw</span>()).<span class="ident">unwrap_or</span>(<span class="ident">ptr::null</span>()) <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="kw">_</span>;
-            <span class="kw">let</span> <span class="ident">dst_rect_ptr</span> <span class="op">=</span> <span class="ident">dst_rect</span>.<span class="ident">as_ref</span>().<span class="ident">map</span>(<span class="op">|</span><span class="ident">r</span><span class="op">|</span> <span class="ident">r</span>.<span class="ident">raw</span>()).<span class="ident">unwrap_or</span>(<span class="ident">ptr::null</span>()) <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="kw">_</span>;
-            <span class="ident">sys::SDL_LowerBlit</span>(<span class="self">self</span>.<span class="ident">raw</span>(), <span class="ident">src_rect_ptr</span>, <span class="ident">dst</span>.<span class="ident">raw</span>(), <span class="ident">dst_rect_ptr</span>)
+        <span class="kw">match </span>{
+            <span class="comment">// The rectangles don&#39;t change, but the function requires mutable pointers.
+            </span><span class="kw">let </span>src_rect_ptr = src_rect.as_ref().map(|r| r.raw()).unwrap_or(ptr::null()) <span class="kw">as </span><span class="kw-2">*mut </span><span class="kw">_</span>;
+            <span class="kw">let </span>dst_rect_ptr = dst_rect.as_ref().map(|r| r.raw()).unwrap_or(ptr::null()) <span class="kw">as </span><span class="kw-2">*mut </span><span class="kw">_</span>;
+            sys::SDL_LowerBlit(<span class="self">self</span>.raw(), src_rect_ptr, dst.raw(), dst_rect_ptr)
         } {
-            <span class="number">0</span> =&gt; <span class="prelude-val">Ok</span>(()),
-            <span class="kw">_</span> =&gt; <span class="prelude-val">Err</span>(<span class="ident">get_error</span>()),
+            <span class="number">0 </span>=&gt; <span class="prelude-val">Ok</span>(()),
+            <span class="kw">_ </span>=&gt; <span class="prelude-val">Err</span>(get_error()),
         }
     }
 
-    <span class="doccomment">/// Performs scaled surface bliting (surface copying).</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// Returns the final blit rectangle, if a `dst_rect` was provided.</span>
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;SDL_UpperBlitScaled&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">blit_scaled</span><span class="op">&lt;</span><span class="ident">R1</span>, <span class="ident">R2</span><span class="op">&gt;</span>(
+    <span class="doccomment">/// Performs scaled surface bliting (surface copying).
+    ///
+    /// Returns the final blit rectangle, if a `dst_rect` was provided.
+    </span><span class="attribute">#[doc(alias = <span class="string">&quot;SDL_UpperBlitScaled&quot;</span>)]
+    </span><span class="kw">pub fn </span>blit_scaled&lt;R1, R2&gt;(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
-        <span class="ident">src_rect</span>: <span class="ident">R1</span>,
-        <span class="ident">dst</span>: <span class="kw-2">&amp;mut</span> <span class="ident">SurfaceRef</span>,
-        <span class="ident">dst_rect</span>: <span class="ident">R2</span>,
-    ) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Rect</span><span class="op">&gt;</span>, <span class="ident">String</span><span class="op">&gt;</span>
-    <span class="kw">where</span>
-        <span class="ident">R1</span>: <span class="ident">Into</span><span class="op">&lt;</span><span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Rect</span><span class="op">&gt;</span><span class="op">&gt;</span>,
-        <span class="ident">R2</span>: <span class="ident">Into</span><span class="op">&lt;</span><span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Rect</span><span class="op">&gt;</span><span class="op">&gt;</span>,
+        src_rect: R1,
+        dst: <span class="kw-2">&amp;mut </span>SurfaceRef,
+        dst_rect: R2,
+    ) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="prelude-ty">Option</span>&lt;Rect&gt;, String&gt;
+    <span class="kw">where
+        </span>R1: Into&lt;<span class="prelude-ty">Option</span>&lt;Rect&gt;&gt;,
+        R2: Into&lt;<span class="prelude-ty">Option</span>&lt;Rect&gt;&gt;,
     {
-        <span class="kw">let</span> <span class="ident">src_rect</span> <span class="op">=</span> <span class="ident">src_rect</span>.<span class="ident">into</span>();
-        <span class="kw">let</span> <span class="ident">dst_rect</span> <span class="op">=</span> <span class="ident">dst_rect</span>.<span class="ident">into</span>();
+        <span class="kw">let </span>src_rect = src_rect.into();
+        <span class="kw">let </span>dst_rect = dst_rect.into();
 
-        <span class="kw">match</span> <span class="kw">unsafe</span> {
-            <span class="kw">let</span> <span class="ident">src_rect_ptr</span> <span class="op">=</span> <span class="ident">src_rect</span>.<span class="ident">as_ref</span>().<span class="ident">map</span>(<span class="op">|</span><span class="ident">r</span><span class="op">|</span> <span class="ident">r</span>.<span class="ident">raw</span>()).<span class="ident">unwrap_or</span>(<span class="ident">ptr::null</span>());
+        <span class="kw">match unsafe </span>{
+            <span class="kw">let </span>src_rect_ptr = src_rect.as_ref().map(|r| r.raw()).unwrap_or(ptr::null());
 
-            <span class="comment">// Copy the rect here to make a mutable copy without requiring</span>
-            <span class="comment">// a mutable argument</span>
-            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">dst_rect</span> <span class="op">=</span> <span class="ident">dst_rect</span>;
-            <span class="kw">let</span> <span class="ident">dst_rect_ptr</span> <span class="op">=</span> <span class="ident">dst_rect</span>
-                .<span class="ident">as_mut</span>()
-                .<span class="ident">map</span>(<span class="op">|</span><span class="ident">r</span><span class="op">|</span> <span class="ident">r</span>.<span class="ident">raw_mut</span>())
-                .<span class="ident">unwrap_or</span>(<span class="ident">ptr::null_mut</span>());
-            <span class="ident">sys::SDL_UpperBlitScaled</span>(<span class="self">self</span>.<span class="ident">raw</span>(), <span class="ident">src_rect_ptr</span>, <span class="ident">dst</span>.<span class="ident">raw</span>(), <span class="ident">dst_rect_ptr</span>)
+            <span class="comment">// Copy the rect here to make a mutable copy without requiring
+            // a mutable argument
+            </span><span class="kw">let </span><span class="kw-2">mut </span>dst_rect = dst_rect;
+            <span class="kw">let </span>dst_rect_ptr = dst_rect
+                .as_mut()
+                .map(|r| r.raw_mut())
+                .unwrap_or(ptr::null_mut());
+            sys::SDL_UpperBlitScaled(<span class="self">self</span>.raw(), src_rect_ptr, dst.raw(), dst_rect_ptr)
         } {
-            <span class="number">0</span> =&gt; <span class="prelude-val">Ok</span>(<span class="ident">dst_rect</span>),
-            <span class="kw">_</span> =&gt; <span class="prelude-val">Err</span>(<span class="ident">get_error</span>()),
+            <span class="number">0 </span>=&gt; <span class="prelude-val">Ok</span>(dst_rect),
+            <span class="kw">_ </span>=&gt; <span class="prelude-val">Err</span>(get_error()),
         }
     }
 
-    <span class="doccomment">/// Performs low-level scaled surface blitting.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// Unless you know what you&#39;re doing, use `blit_scaled()` instead, which will clip the input rectangles.</span>
-    <span class="doccomment">/// This function could crash if the rectangles aren&#39;t pre-clipped to the surface, and is therefore unsafe.</span>
-    <span class="kw">pub</span> <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">lower_blit_scaled</span><span class="op">&lt;</span><span class="ident">R1</span>, <span class="ident">R2</span><span class="op">&gt;</span>(
+    <span class="doccomment">/// Performs low-level scaled surface blitting.
+    ///
+    /// Unless you know what you&#39;re doing, use `blit_scaled()` instead, which will clip the input rectangles.
+    /// This function could crash if the rectangles aren&#39;t pre-clipped to the surface, and is therefore unsafe.
+    </span><span class="kw">pub unsafe fn </span>lower_blit_scaled&lt;R1, R2&gt;(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
-        <span class="ident">src_rect</span>: <span class="ident">R1</span>,
-        <span class="ident">dst</span>: <span class="kw-2">&amp;mut</span> <span class="ident">SurfaceRef</span>,
-        <span class="ident">dst_rect</span>: <span class="ident">R2</span>,
-    ) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">String</span><span class="op">&gt;</span>
-    <span class="kw">where</span>
-        <span class="ident">R1</span>: <span class="ident">Into</span><span class="op">&lt;</span><span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Rect</span><span class="op">&gt;</span><span class="op">&gt;</span>,
-        <span class="ident">R2</span>: <span class="ident">Into</span><span class="op">&lt;</span><span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Rect</span><span class="op">&gt;</span><span class="op">&gt;</span>,
+        src_rect: R1,
+        dst: <span class="kw-2">&amp;mut </span>SurfaceRef,
+        dst_rect: R2,
+    ) -&gt; <span class="prelude-ty">Result</span>&lt;(), String&gt;
+    <span class="kw">where
+        </span>R1: Into&lt;<span class="prelude-ty">Option</span>&lt;Rect&gt;&gt;,
+        R2: Into&lt;<span class="prelude-ty">Option</span>&lt;Rect&gt;&gt;,
     {
-        <span class="kw">match</span> {
-            <span class="comment">// The rectangles don&#39;t change, but the function requires mutable pointers.</span>
-            <span class="kw">let</span> <span class="ident">src_rect_ptr</span> <span class="op">=</span> <span class="ident">src_rect</span>
-                .<span class="ident">into</span>()
-                .<span class="ident">as_ref</span>()
-                .<span class="ident">map</span>(<span class="op">|</span><span class="ident">r</span><span class="op">|</span> <span class="ident">r</span>.<span class="ident">raw</span>())
-                .<span class="ident">unwrap_or</span>(<span class="ident">ptr::null</span>()) <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="kw">_</span>;
-            <span class="kw">let</span> <span class="ident">dst_rect_ptr</span> <span class="op">=</span> <span class="ident">dst_rect</span>
-                .<span class="ident">into</span>()
-                .<span class="ident">as_ref</span>()
-                .<span class="ident">map</span>(<span class="op">|</span><span class="ident">r</span><span class="op">|</span> <span class="ident">r</span>.<span class="ident">raw</span>())
-                .<span class="ident">unwrap_or</span>(<span class="ident">ptr::null</span>()) <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="kw">_</span>;
-            <span class="ident">sys::SDL_LowerBlitScaled</span>(<span class="self">self</span>.<span class="ident">raw</span>(), <span class="ident">src_rect_ptr</span>, <span class="ident">dst</span>.<span class="ident">raw</span>(), <span class="ident">dst_rect_ptr</span>)
+        <span class="kw">match </span>{
+            <span class="comment">// The rectangles don&#39;t change, but the function requires mutable pointers.
+            </span><span class="kw">let </span>src_rect_ptr = src_rect
+                .into()
+                .as_ref()
+                .map(|r| r.raw())
+                .unwrap_or(ptr::null()) <span class="kw">as </span><span class="kw-2">*mut </span><span class="kw">_</span>;
+            <span class="kw">let </span>dst_rect_ptr = dst_rect
+                .into()
+                .as_ref()
+                .map(|r| r.raw())
+                .unwrap_or(ptr::null()) <span class="kw">as </span><span class="kw-2">*mut </span><span class="kw">_</span>;
+            sys::SDL_LowerBlitScaled(<span class="self">self</span>.raw(), src_rect_ptr, dst.raw(), dst_rect_ptr)
         } {
-            <span class="number">0</span> =&gt; <span class="prelude-val">Ok</span>(()),
-            <span class="kw">_</span> =&gt; <span class="prelude-val">Err</span>(<span class="ident">get_error</span>()),
+            <span class="number">0 </span>=&gt; <span class="prelude-val">Ok</span>(()),
+            <span class="kw">_ </span>=&gt; <span class="prelude-val">Err</span>(get_error()),
         }
     }
 
     <span class="comment">/*
     pub fn SDL_ConvertPixels(width: c_int, height: c_int, src_format: uint32_t, src: *c_void, src_pitch: c_int, dst_format: uint32_t, dst: *c_void, dst_pitch: c_int) -&gt; c_int;
-    */</span>
-}
+    */
+</span>}
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="sdl2" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0 (a55dd71d5 2022-09-19)" ></div></body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="sdl2" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.66.1 (90743e729 2023-01-10)" ></div></body></html>

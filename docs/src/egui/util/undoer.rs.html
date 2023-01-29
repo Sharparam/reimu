@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/egui-0.16.1/src/util/undoer.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>undoer.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../storage.js"></script><script defer src="../../../source-script.js"></script><script defer src="../../../source-files.js"></script><script defer src="../../../main.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../../egui/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../../egui/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../../egui/index.html"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/egui-0.16.1/src/util/undoer.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>undoer.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../../normalize.css"><link rel="stylesheet" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../../ayu.css" disabled><link rel="stylesheet" href="../../../dark.css" disabled><link rel="stylesheet" href="../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../storage.js"></script><script defer src="../../../source-script.js"></script><script defer src="../../../source-files.js"></script><script defer src="../../../main.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><div class="width-limiter"><nav class="sub"><a class="sub-logo-container" href="../../../egui/index.html"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../wheel.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -170,169 +170,169 @@
 <span id="170">170</span>
 <span id="171">171</span>
 <span id="172">172</span>
-</pre><pre class="rust"><code><span class="kw">use</span> <span class="ident">std::collections::VecDeque</span>;
+</pre><pre class="rust"><code><span class="kw">use </span>std::collections::VecDeque;
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>)]</span>
-<span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;serde&quot;</span>, <span class="ident">derive</span>(<span class="ident">serde::Deserialize</span>, <span class="ident">serde::Serialize</span>))]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Settings</span> {
-    <span class="doccomment">/// Maximum number of undos.</span>
-    <span class="doccomment">/// If your state is resource intensive, you should keep this low.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// Default: `100`</span>
-    <span class="kw">pub</span> <span class="ident">max_undos</span>: <span class="ident">usize</span>,
+<span class="attribute">#[derive(Clone, Debug, PartialEq)]
+#[cfg_attr(feature = <span class="string">&quot;serde&quot;</span>, derive(serde::Deserialize, serde::Serialize))]
+</span><span class="kw">pub struct </span>Settings {
+    <span class="doccomment">/// Maximum number of undos.
+    /// If your state is resource intensive, you should keep this low.
+    ///
+    /// Default: `100`
+    </span><span class="kw">pub </span>max_undos: usize,
 
-    <span class="doccomment">/// When that state hasn&#39;t changed for this many seconds,</span>
-    <span class="doccomment">/// create a new undo point (if one is needed).</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// Default value: `1.0` seconds.</span>
-    <span class="kw">pub</span> <span class="ident">stable_time</span>: <span class="ident">f32</span>,
+    <span class="doccomment">/// When that state hasn&#39;t changed for this many seconds,
+    /// create a new undo point (if one is needed).
+    ///
+    /// Default value: `1.0` seconds.
+    </span><span class="kw">pub </span>stable_time: f32,
 
-    <span class="doccomment">/// If the state is changing so often that we never get to `stable_time`,</span>
-    <span class="doccomment">/// then still create a save point every `auto_save_interval` seconds,</span>
-    <span class="doccomment">/// so we have something to undo to.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// Default value: `30` seconds.</span>
-    <span class="kw">pub</span> <span class="ident">auto_save_interval</span>: <span class="ident">f32</span>,
+    <span class="doccomment">/// If the state is changing so often that we never get to `stable_time`,
+    /// then still create a save point every `auto_save_interval` seconds,
+    /// so we have something to undo to.
+    ///
+    /// Default value: `30` seconds.
+    </span><span class="kw">pub </span>auto_save_interval: f32,
 }
 
-<span class="kw">impl</span> <span class="ident">Default</span> <span class="kw">for</span> <span class="ident">Settings</span> {
-    <span class="kw">fn</span> <span class="ident">default</span>() -&gt; <span class="self">Self</span> {
-        <span class="self">Self</span> {
-            <span class="ident">max_undos</span>: <span class="number">100</span>,
-            <span class="ident">stable_time</span>: <span class="number">1.0</span>,
-            <span class="ident">auto_save_interval</span>: <span class="number">30.0</span>,
+<span class="kw">impl </span>Default <span class="kw">for </span>Settings {
+    <span class="kw">fn </span>default() -&gt; <span class="self">Self </span>{
+        <span class="self">Self </span>{
+            max_undos: <span class="number">100</span>,
+            stable_time: <span class="number">1.0</span>,
+            auto_save_interval: <span class="number">30.0</span>,
         }
     }
 }
 
-<span class="doccomment">/// Automatic undo system.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// Every frame you feed it the most recent state.</span>
-<span class="doccomment">/// The `Undoer` compares it with the latest undo point</span>
-<span class="doccomment">/// and if there is a change it may create a new undo point.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// `Undoer` follows two simple rules:</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// 1) If the state has changed since the latest undo point, but has</span>
-<span class="doccomment">///    remained stable for `stable_time` seconds, an new undo point is created.</span>
-<span class="doccomment">/// 2) If the state does not stabilize within `auto_save_interval` seconds, an undo point is created.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// Rule 1) will make sure an undo point is not created until you _stop_ dragging that slider.</span>
-<span class="doccomment">/// Rule 2) will make sure that you will get some undo points even if you are constantly changing the state.</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Default</span>)]</span>
-<span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;serde&quot;</span>, <span class="ident">derive</span>(<span class="ident">serde::Deserialize</span>, <span class="ident">serde::Serialize</span>))]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Undoer</span><span class="op">&lt;</span><span class="ident">State</span><span class="op">&gt;</span> {
-    <span class="ident">settings</span>: <span class="ident">Settings</span>,
+<span class="doccomment">/// Automatic undo system.
+///
+/// Every frame you feed it the most recent state.
+/// The `Undoer` compares it with the latest undo point
+/// and if there is a change it may create a new undo point.
+///
+/// `Undoer` follows two simple rules:
+///
+/// 1) If the state has changed since the latest undo point, but has
+///    remained stable for `stable_time` seconds, an new undo point is created.
+/// 2) If the state does not stabilize within `auto_save_interval` seconds, an undo point is created.
+///
+/// Rule 1) will make sure an undo point is not created until you _stop_ dragging that slider.
+/// Rule 2) will make sure that you will get some undo points even if you are constantly changing the state.
+</span><span class="attribute">#[derive(Clone, Default)]
+#[cfg_attr(feature = <span class="string">&quot;serde&quot;</span>, derive(serde::Deserialize, serde::Serialize))]
+</span><span class="kw">pub struct </span>Undoer&lt;State&gt; {
+    settings: Settings,
 
-    <span class="doccomment">/// New undoes are added to the back.</span>
-    <span class="doccomment">/// Two adjacent undo points are never equal.</span>
-    <span class="doccomment">/// The latest undo point may (often) be the current state.</span>
-    <span class="ident">undos</span>: <span class="ident">VecDeque</span><span class="op">&lt;</span><span class="ident">State</span><span class="op">&gt;</span>,
+    <span class="doccomment">/// New undoes are added to the back.
+    /// Two adjacent undo points are never equal.
+    /// The latest undo point may (often) be the current state.
+    </span>undos: VecDeque&lt;State&gt;,
 
-    <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;serde&quot;</span>, <span class="ident">serde</span>(<span class="ident">skip</span>))]</span>
-    <span class="ident">flux</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Flux</span><span class="op">&lt;</span><span class="ident">State</span><span class="op">&gt;</span><span class="op">&gt;</span>,
+    <span class="attribute">#[cfg_attr(feature = <span class="string">&quot;serde&quot;</span>, serde(skip))]
+    </span>flux: <span class="prelude-ty">Option</span>&lt;Flux&lt;State&gt;&gt;,
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="ident">State</span><span class="op">&gt;</span> <span class="ident">std::fmt::Debug</span> <span class="kw">for</span> <span class="ident">Undoer</span><span class="op">&lt;</span><span class="ident">State</span><span class="op">&gt;</span> {
-    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;mut</span> <span class="ident">std::fmt::Formatter</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>) -&gt; <span class="ident">std::fmt::Result</span> {
-        <span class="kw">let</span> <span class="self">Self</span> { <span class="ident">undos</span>, .. } <span class="op">=</span> <span class="self">self</span>;
-        <span class="ident">f</span>.<span class="ident">debug_struct</span>(<span class="string">&quot;Undoer&quot;</span>)
-            .<span class="ident">field</span>(<span class="string">&quot;undo count&quot;</span>, <span class="kw-2">&amp;</span><span class="ident">undos</span>.<span class="ident">len</span>())
-            .<span class="ident">finish</span>()
+<span class="kw">impl</span>&lt;State&gt; std::fmt::Debug <span class="kw">for </span>Undoer&lt;State&gt; {
+    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>std::fmt::Formatter&lt;<span class="lifetime">&#39;_</span>&gt;) -&gt; std::fmt::Result {
+        <span class="kw">let </span><span class="self">Self </span>{ undos, .. } = <span class="self">self</span>;
+        f.debug_struct(<span class="string">&quot;Undoer&quot;</span>)
+            .field(<span class="string">&quot;undo count&quot;</span>, <span class="kw-2">&amp;</span>undos.len())
+            .finish()
     }
 }
 
-<span class="doccomment">/// Represents how the current state is changing</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>)]</span>
-<span class="kw">struct</span> <span class="ident">Flux</span><span class="op">&lt;</span><span class="ident">State</span><span class="op">&gt;</span> {
-    <span class="ident">start_time</span>: <span class="ident">f64</span>,
-    <span class="ident">latest_change_time</span>: <span class="ident">f64</span>,
-    <span class="ident">latest_state</span>: <span class="ident">State</span>,
+<span class="doccomment">/// Represents how the current state is changing
+</span><span class="attribute">#[derive(Clone)]
+</span><span class="kw">struct </span>Flux&lt;State&gt; {
+    start_time: f64,
+    latest_change_time: f64,
+    latest_state: State,
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="ident">State</span><span class="op">&gt;</span> <span class="ident">Undoer</span><span class="op">&lt;</span><span class="ident">State</span><span class="op">&gt;</span>
-<span class="kw">where</span>
-    <span class="ident">State</span>: <span class="ident">Clone</span> <span class="op">+</span> <span class="ident">PartialEq</span>,
+<span class="kw">impl</span>&lt;State&gt; Undoer&lt;State&gt;
+<span class="kw">where
+    </span>State: Clone + PartialEq,
 {
-    <span class="doccomment">/// Do we have an undo point different from the given state?</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">has_undo</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">current_state</span>: <span class="kw-2">&amp;</span><span class="ident">State</span>) -&gt; <span class="ident">bool</span> {
-        <span class="kw">match</span> <span class="self">self</span>.<span class="ident">undos</span>.<span class="ident">len</span>() {
-            <span class="number">0</span> =&gt; <span class="bool-val">false</span>,
-            <span class="number">1</span> =&gt; <span class="self">self</span>.<span class="ident">undos</span>.<span class="ident">back</span>() <span class="op">!</span><span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">current_state</span>),
-            <span class="kw">_</span> =&gt; <span class="bool-val">true</span>,
+    <span class="doccomment">/// Do we have an undo point different from the given state?
+    </span><span class="kw">pub fn </span>has_undo(<span class="kw-2">&amp;</span><span class="self">self</span>, current_state: <span class="kw-2">&amp;</span>State) -&gt; bool {
+        <span class="kw">match </span><span class="self">self</span>.undos.len() {
+            <span class="number">0 </span>=&gt; <span class="bool-val">false</span>,
+            <span class="number">1 </span>=&gt; <span class="self">self</span>.undos.back() != <span class="prelude-val">Some</span>(current_state),
+            <span class="kw">_ </span>=&gt; <span class="bool-val">true</span>,
         }
     }
 
-    <span class="doccomment">/// Return true if the state is currently changing</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_in_flux</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span> {
-        <span class="self">self</span>.<span class="ident">flux</span>.<span class="ident">is_some</span>()
+    <span class="doccomment">/// Return true if the state is currently changing
+    </span><span class="kw">pub fn </span>is_in_flux(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; bool {
+        <span class="self">self</span>.flux.is_some()
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">undo</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">current_state</span>: <span class="kw-2">&amp;</span><span class="ident">State</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">State</span><span class="op">&gt;</span> {
-        <span class="kw">if</span> <span class="self">self</span>.<span class="ident">has_undo</span>(<span class="ident">current_state</span>) {
-            <span class="self">self</span>.<span class="ident">flux</span> <span class="op">=</span> <span class="prelude-val">None</span>;
+    <span class="kw">pub fn </span>undo(<span class="kw-2">&amp;mut </span><span class="self">self</span>, current_state: <span class="kw-2">&amp;</span>State) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span>State&gt; {
+        <span class="kw">if </span><span class="self">self</span>.has_undo(current_state) {
+            <span class="self">self</span>.flux = <span class="prelude-val">None</span>;
 
-            <span class="kw">if</span> <span class="self">self</span>.<span class="ident">undos</span>.<span class="ident">back</span>() <span class="op">==</span> <span class="prelude-val">Some</span>(<span class="ident">current_state</span>) {
-                <span class="self">self</span>.<span class="ident">undos</span>.<span class="ident">pop_back</span>();
+            <span class="kw">if </span><span class="self">self</span>.undos.back() == <span class="prelude-val">Some</span>(current_state) {
+                <span class="self">self</span>.undos.pop_back();
             }
 
-            <span class="comment">// Note: we keep the undo point intact.</span>
-            <span class="self">self</span>.<span class="ident">undos</span>.<span class="ident">back</span>()
-        } <span class="kw">else</span> {
-            <span class="prelude-val">None</span>
-        }
+            <span class="comment">// Note: we keep the undo point intact.
+            </span><span class="self">self</span>.undos.back()
+        } <span class="kw">else </span>{
+            <span class="prelude-val">None
+        </span>}
     }
 
-    <span class="doccomment">/// Add an undo point if, and only if, there has been a change since the latest undo point.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// * `time`: current time in seconds.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">add_undo</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">current_state</span>: <span class="kw-2">&amp;</span><span class="ident">State</span>) {
-        <span class="kw">if</span> <span class="self">self</span>.<span class="ident">undos</span>.<span class="ident">back</span>() <span class="op">!</span><span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">current_state</span>) {
-            <span class="self">self</span>.<span class="ident">undos</span>.<span class="ident">push_back</span>(<span class="ident">current_state</span>.<span class="ident">clone</span>());
+    <span class="doccomment">/// Add an undo point if, and only if, there has been a change since the latest undo point.
+    ///
+    /// * `time`: current time in seconds.
+    </span><span class="kw">pub fn </span>add_undo(<span class="kw-2">&amp;mut </span><span class="self">self</span>, current_state: <span class="kw-2">&amp;</span>State) {
+        <span class="kw">if </span><span class="self">self</span>.undos.back() != <span class="prelude-val">Some</span>(current_state) {
+            <span class="self">self</span>.undos.push_back(current_state.clone());
         }
-        <span class="kw">while</span> <span class="self">self</span>.<span class="ident">undos</span>.<span class="ident">len</span>() <span class="op">&gt;</span> <span class="self">self</span>.<span class="ident">settings</span>.<span class="ident">max_undos</span> {
-            <span class="self">self</span>.<span class="ident">undos</span>.<span class="ident">pop_front</span>();
+        <span class="kw">while </span><span class="self">self</span>.undos.len() &gt; <span class="self">self</span>.settings.max_undos {
+            <span class="self">self</span>.undos.pop_front();
         }
-        <span class="self">self</span>.<span class="ident">flux</span> <span class="op">=</span> <span class="prelude-val">None</span>;
+        <span class="self">self</span>.flux = <span class="prelude-val">None</span>;
     }
 
-    <span class="doccomment">/// Call this as often as you want (e.g. every frame)</span>
-    <span class="doccomment">/// and `Undoer` will determine if a new undo point should be created.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// * `current_time`: current time in seconds.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">feed_state</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">current_time</span>: <span class="ident">f64</span>, <span class="ident">current_state</span>: <span class="kw-2">&amp;</span><span class="ident">State</span>) {
-        <span class="kw">match</span> <span class="self">self</span>.<span class="ident">undos</span>.<span class="ident">back</span>() {
-            <span class="prelude-val">None</span> =&gt; {
-                <span class="comment">// First time feed_state is called.</span>
-                <span class="comment">// always create an undo point:</span>
-                <span class="self">self</span>.<span class="ident">add_undo</span>(<span class="ident">current_state</span>);
+    <span class="doccomment">/// Call this as often as you want (e.g. every frame)
+    /// and `Undoer` will determine if a new undo point should be created.
+    ///
+    /// * `current_time`: current time in seconds.
+    </span><span class="kw">pub fn </span>feed_state(<span class="kw-2">&amp;mut </span><span class="self">self</span>, current_time: f64, current_state: <span class="kw-2">&amp;</span>State) {
+        <span class="kw">match </span><span class="self">self</span>.undos.back() {
+            <span class="prelude-val">None </span>=&gt; {
+                <span class="comment">// First time feed_state is called.
+                // always create an undo point:
+                </span><span class="self">self</span>.add_undo(current_state);
             }
-            <span class="prelude-val">Some</span>(<span class="ident">latest_undo</span>) =&gt; {
-                <span class="kw">if</span> <span class="ident">latest_undo</span> <span class="op">==</span> <span class="ident">current_state</span> {
-                    <span class="self">self</span>.<span class="ident">flux</span> <span class="op">=</span> <span class="prelude-val">None</span>;
-                } <span class="kw">else</span> {
-                    <span class="kw">match</span> <span class="self">self</span>.<span class="ident">flux</span>.<span class="ident">as_mut</span>() {
-                        <span class="prelude-val">None</span> =&gt; {
-                            <span class="self">self</span>.<span class="ident">flux</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">Flux</span> {
-                                <span class="ident">start_time</span>: <span class="ident">current_time</span>,
-                                <span class="ident">latest_change_time</span>: <span class="ident">current_time</span>,
-                                <span class="ident">latest_state</span>: <span class="ident">current_state</span>.<span class="ident">clone</span>(),
+            <span class="prelude-val">Some</span>(latest_undo) =&gt; {
+                <span class="kw">if </span>latest_undo == current_state {
+                    <span class="self">self</span>.flux = <span class="prelude-val">None</span>;
+                } <span class="kw">else </span>{
+                    <span class="kw">match </span><span class="self">self</span>.flux.as_mut() {
+                        <span class="prelude-val">None </span>=&gt; {
+                            <span class="self">self</span>.flux = <span class="prelude-val">Some</span>(Flux {
+                                start_time: current_time,
+                                latest_change_time: current_time,
+                                latest_state: current_state.clone(),
                             });
                         }
-                        <span class="prelude-val">Some</span>(<span class="ident">flux</span>) =&gt; {
-                            <span class="kw">if</span> <span class="kw-2">&amp;</span><span class="ident">flux</span>.<span class="ident">latest_state</span> <span class="op">==</span> <span class="ident">current_state</span> {
-                                <span class="kw">let</span> <span class="ident">time_since_latest_change</span> <span class="op">=</span>
-                                    (<span class="ident">current_time</span> <span class="op">-</span> <span class="ident">flux</span>.<span class="ident">latest_change_time</span>) <span class="kw">as</span> <span class="ident">f32</span>;
-                                <span class="kw">if</span> <span class="ident">time_since_latest_change</span> <span class="op">&gt;</span><span class="op">=</span> <span class="self">self</span>.<span class="ident">settings</span>.<span class="ident">stable_time</span> {
-                                    <span class="self">self</span>.<span class="ident">add_undo</span>(<span class="ident">current_state</span>);
+                        <span class="prelude-val">Some</span>(flux) =&gt; {
+                            <span class="kw">if </span><span class="kw-2">&amp;</span>flux.latest_state == current_state {
+                                <span class="kw">let </span>time_since_latest_change =
+                                    (current_time - flux.latest_change_time) <span class="kw">as </span>f32;
+                                <span class="kw">if </span>time_since_latest_change &gt;= <span class="self">self</span>.settings.stable_time {
+                                    <span class="self">self</span>.add_undo(current_state);
                                 }
-                            } <span class="kw">else</span> {
-                                <span class="kw">let</span> <span class="ident">time_since_flux_start</span> <span class="op">=</span> (<span class="ident">current_time</span> <span class="op">-</span> <span class="ident">flux</span>.<span class="ident">start_time</span>) <span class="kw">as</span> <span class="ident">f32</span>;
-                                <span class="kw">if</span> <span class="ident">time_since_flux_start</span> <span class="op">&gt;</span><span class="op">=</span> <span class="self">self</span>.<span class="ident">settings</span>.<span class="ident">auto_save_interval</span> {
-                                    <span class="self">self</span>.<span class="ident">add_undo</span>(<span class="ident">current_state</span>);
-                                } <span class="kw">else</span> {
-                                    <span class="ident">flux</span>.<span class="ident">latest_change_time</span> <span class="op">=</span> <span class="ident">current_time</span>;
-                                    <span class="ident">flux</span>.<span class="ident">latest_state</span> <span class="op">=</span> <span class="ident">current_state</span>.<span class="ident">clone</span>();
+                            } <span class="kw">else </span>{
+                                <span class="kw">let </span>time_since_flux_start = (current_time - flux.start_time) <span class="kw">as </span>f32;
+                                <span class="kw">if </span>time_since_flux_start &gt;= <span class="self">self</span>.settings.auto_save_interval {
+                                    <span class="self">self</span>.add_undo(current_state);
+                                } <span class="kw">else </span>{
+                                    flux.latest_change_time = current_time;
+                                    flux.latest_state = current_state.clone();
                                 }
                             }
                         }
@@ -343,4 +343,4 @@
     }
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="egui" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0 (a55dd71d5 2022-09-19)" ></div></body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="egui" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.66.1 (90743e729 2023-01-10)" ></div></body></html>

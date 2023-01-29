@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/sdl2-0.35.2/src/sdl2/joystick.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>joystick.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../sdl2/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../sdl2/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../sdl2/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/sdl2-0.35.2/src/sdl2/joystick.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>joystick.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../normalize.css"><link rel="stylesheet" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../ayu.css" disabled><link rel="stylesheet" href="../../dark.css" disabled><link rel="stylesheet" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><div class="width-limiter"><nav class="sub"><a class="sub-logo-container" href="../../sdl2/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -553,560 +553,560 @@
 <span id="553">553</span>
 <span id="554">554</span>
 <span id="555">555</span>
-</pre><pre class="rust"><code><span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::sys</span>;
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::sys::SDL_JoystickPowerLevel</span>;
+</pre><pre class="rust"><code><span class="kw">use </span><span class="kw">crate</span>::sys;
+<span class="kw">use </span><span class="kw">crate</span>::sys::SDL_JoystickPowerLevel;
 
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::clear_error</span>;
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::common</span>::{<span class="ident">validate_int</span>, <span class="ident">IntegerOrSdlError</span>};
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::get_error</span>;
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::JoystickSubsystem</span>;
-<span class="kw">use</span> <span class="ident">libc::c_char</span>;
-<span class="kw">use</span> <span class="ident">std::ffi</span>::{<span class="ident">CStr</span>, <span class="ident">CString</span>, <span class="ident">NulError</span>};
-<span class="kw">use</span> <span class="ident">std::fmt</span>::{<span class="ident">Display</span>, <span class="ident">Error</span>, <span class="ident">Formatter</span>};
+<span class="kw">use </span><span class="kw">crate</span>::clear_error;
+<span class="kw">use </span><span class="kw">crate</span>::common::{validate_int, IntegerOrSdlError};
+<span class="kw">use </span><span class="kw">crate</span>::get_error;
+<span class="kw">use </span><span class="kw">crate</span>::JoystickSubsystem;
+<span class="kw">use </span>libc::c_char;
+<span class="kw">use </span>std::ffi::{CStr, CString, NulError};
+<span class="kw">use </span>std::fmt::{Display, Error, Formatter};
 
-<span class="kw">impl</span> <span class="ident">JoystickSubsystem</span> {
-    <span class="doccomment">/// Retrieve the total number of attached joysticks *and* controllers identified by SDL.</span>
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;SDL_NumJoysticks&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">num_joysticks</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">u32</span>, <span class="ident">String</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="ident">result</span> <span class="op">=</span> <span class="kw">unsafe</span> { <span class="ident">sys::SDL_NumJoysticks</span>() };
+<span class="kw">impl </span>JoystickSubsystem {
+    <span class="doccomment">/// Retrieve the total number of attached joysticks *and* controllers identified by SDL.
+    </span><span class="attribute">#[doc(alias = <span class="string">&quot;SDL_NumJoysticks&quot;</span>)]
+    </span><span class="kw">pub fn </span>num_joysticks(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Result</span>&lt;u32, String&gt; {
+        <span class="kw">let </span>result = <span class="kw">unsafe </span>{ sys::SDL_NumJoysticks() };
 
-        <span class="kw">if</span> <span class="ident">result</span> <span class="op">&gt;</span><span class="op">=</span> <span class="number">0</span> {
-            <span class="prelude-val">Ok</span>(<span class="ident">result</span> <span class="kw">as</span> <span class="ident">u32</span>)
-        } <span class="kw">else</span> {
-            <span class="prelude-val">Err</span>(<span class="ident">get_error</span>())
+        <span class="kw">if </span>result &gt;= <span class="number">0 </span>{
+            <span class="prelude-val">Ok</span>(result <span class="kw">as </span>u32)
+        } <span class="kw">else </span>{
+            <span class="prelude-val">Err</span>(get_error())
         }
     }
 
-    <span class="doccomment">/// Attempt to open the joystick at index `joystick_index` and return it.</span>
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;SDL_JoystickOpen&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">open</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">joystick_index</span>: <span class="ident">u32</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">Joystick</span>, <span class="ident">IntegerOrSdlError</span><span class="op">&gt;</span> {
-        <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::common::IntegerOrSdlError</span>::<span class="kw-2">*</span>;
-        <span class="kw">let</span> <span class="ident">joystick_index</span> <span class="op">=</span> <span class="ident">validate_int</span>(<span class="ident">joystick_index</span>, <span class="string">&quot;joystick_index&quot;</span>)<span class="question-mark">?</span>;
+    <span class="doccomment">/// Attempt to open the joystick at index `joystick_index` and return it.
+    </span><span class="attribute">#[doc(alias = <span class="string">&quot;SDL_JoystickOpen&quot;</span>)]
+    </span><span class="kw">pub fn </span>open(<span class="kw-2">&amp;</span><span class="self">self</span>, joystick_index: u32) -&gt; <span class="prelude-ty">Result</span>&lt;Joystick, IntegerOrSdlError&gt; {
+        <span class="kw">use </span><span class="kw">crate</span>::common::IntegerOrSdlError::<span class="kw-2">*</span>;
+        <span class="kw">let </span>joystick_index = validate_int(joystick_index, <span class="string">&quot;joystick_index&quot;</span>)<span class="question-mark">?</span>;
 
-        <span class="kw">let</span> <span class="ident">joystick</span> <span class="op">=</span> <span class="kw">unsafe</span> { <span class="ident">sys::SDL_JoystickOpen</span>(<span class="ident">joystick_index</span>) };
+        <span class="kw">let </span>joystick = <span class="kw">unsafe </span>{ sys::SDL_JoystickOpen(joystick_index) };
 
-        <span class="kw">if</span> <span class="ident">joystick</span>.<span class="ident">is_null</span>() {
-            <span class="prelude-val">Err</span>(<span class="ident">SdlError</span>(<span class="ident">get_error</span>()))
-        } <span class="kw">else</span> {
-            <span class="prelude-val">Ok</span>(<span class="ident">Joystick</span> {
-                <span class="ident">subsystem</span>: <span class="self">self</span>.<span class="ident">clone</span>(),
-                <span class="ident">raw</span>: <span class="ident">joystick</span>,
+        <span class="kw">if </span>joystick.is_null() {
+            <span class="prelude-val">Err</span>(SdlError(get_error()))
+        } <span class="kw">else </span>{
+            <span class="prelude-val">Ok</span>(Joystick {
+                subsystem: <span class="self">self</span>.clone(),
+                raw: joystick,
             })
         }
     }
 
-    <span class="doccomment">/// Return the name of the joystick at index `joystick_index`.</span>
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;SDL_JoystickNameForIndex&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">name_for_index</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">joystick_index</span>: <span class="ident">u32</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">String</span>, <span class="ident">IntegerOrSdlError</span><span class="op">&gt;</span> {
-        <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::common::IntegerOrSdlError</span>::<span class="kw-2">*</span>;
-        <span class="kw">let</span> <span class="ident">joystick_index</span> <span class="op">=</span> <span class="ident">validate_int</span>(<span class="ident">joystick_index</span>, <span class="string">&quot;joystick_index&quot;</span>)<span class="question-mark">?</span>;
+    <span class="doccomment">/// Return the name of the joystick at index `joystick_index`.
+    </span><span class="attribute">#[doc(alias = <span class="string">&quot;SDL_JoystickNameForIndex&quot;</span>)]
+    </span><span class="kw">pub fn </span>name_for_index(<span class="kw-2">&amp;</span><span class="self">self</span>, joystick_index: u32) -&gt; <span class="prelude-ty">Result</span>&lt;String, IntegerOrSdlError&gt; {
+        <span class="kw">use </span><span class="kw">crate</span>::common::IntegerOrSdlError::<span class="kw-2">*</span>;
+        <span class="kw">let </span>joystick_index = validate_int(joystick_index, <span class="string">&quot;joystick_index&quot;</span>)<span class="question-mark">?</span>;
 
-        <span class="kw">let</span> <span class="ident">c_str</span> <span class="op">=</span> <span class="kw">unsafe</span> { <span class="ident">sys::SDL_JoystickNameForIndex</span>(<span class="ident">joystick_index</span>) };
+        <span class="kw">let </span>c_str = <span class="kw">unsafe </span>{ sys::SDL_JoystickNameForIndex(joystick_index) };
 
-        <span class="kw">if</span> <span class="ident">c_str</span>.<span class="ident">is_null</span>() {
-            <span class="prelude-val">Err</span>(<span class="ident">SdlError</span>(<span class="ident">get_error</span>()))
-        } <span class="kw">else</span> {
-            <span class="prelude-val">Ok</span>(<span class="kw">unsafe</span> {
-                <span class="ident">CStr::from_ptr</span>(<span class="ident">c_str</span> <span class="kw">as</span> <span class="kw-2">*const</span> <span class="kw">_</span>)
-                    .<span class="ident">to_str</span>()
-                    .<span class="ident">unwrap</span>()
-                    .<span class="ident">to_string</span>()
+        <span class="kw">if </span>c_str.is_null() {
+            <span class="prelude-val">Err</span>(SdlError(get_error()))
+        } <span class="kw">else </span>{
+            <span class="prelude-val">Ok</span>(<span class="kw">unsafe </span>{
+                CStr::from_ptr(c_str <span class="kw">as </span><span class="kw-2">*const </span><span class="kw">_</span>)
+                    .to_str()
+                    .unwrap()
+                    .to_string()
             })
         }
     }
 
-    <span class="doccomment">/// Get the GUID for the joystick at index `joystick_index`</span>
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;SDL_JoystickGetDeviceGUID&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">device_guid</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">joystick_index</span>: <span class="ident">u32</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">Guid</span>, <span class="ident">IntegerOrSdlError</span><span class="op">&gt;</span> {
-        <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::common::IntegerOrSdlError</span>::<span class="kw-2">*</span>;
-        <span class="kw">let</span> <span class="ident">joystick_index</span> <span class="op">=</span> <span class="ident">validate_int</span>(<span class="ident">joystick_index</span>, <span class="string">&quot;joystick_index&quot;</span>)<span class="question-mark">?</span>;
+    <span class="doccomment">/// Get the GUID for the joystick at index `joystick_index`
+    </span><span class="attribute">#[doc(alias = <span class="string">&quot;SDL_JoystickGetDeviceGUID&quot;</span>)]
+    </span><span class="kw">pub fn </span>device_guid(<span class="kw-2">&amp;</span><span class="self">self</span>, joystick_index: u32) -&gt; <span class="prelude-ty">Result</span>&lt;Guid, IntegerOrSdlError&gt; {
+        <span class="kw">use </span><span class="kw">crate</span>::common::IntegerOrSdlError::<span class="kw-2">*</span>;
+        <span class="kw">let </span>joystick_index = validate_int(joystick_index, <span class="string">&quot;joystick_index&quot;</span>)<span class="question-mark">?</span>;
 
-        <span class="kw">let</span> <span class="ident">raw</span> <span class="op">=</span> <span class="kw">unsafe</span> { <span class="ident">sys::SDL_JoystickGetDeviceGUID</span>(<span class="ident">joystick_index</span>) };
+        <span class="kw">let </span>raw = <span class="kw">unsafe </span>{ sys::SDL_JoystickGetDeviceGUID(joystick_index) };
 
-        <span class="kw">let</span> <span class="ident">guid</span> <span class="op">=</span> <span class="ident">Guid</span> { <span class="ident">raw</span> };
+        <span class="kw">let </span>guid = Guid { raw };
 
-        <span class="kw">if</span> <span class="ident">guid</span>.<span class="ident">is_zero</span>() {
-            <span class="prelude-val">Err</span>(<span class="ident">SdlError</span>(<span class="ident">get_error</span>()))
-        } <span class="kw">else</span> {
-            <span class="prelude-val">Ok</span>(<span class="ident">guid</span>)
+        <span class="kw">if </span>guid.is_zero() {
+            <span class="prelude-val">Err</span>(SdlError(get_error()))
+        } <span class="kw">else </span>{
+            <span class="prelude-val">Ok</span>(guid)
         }
     }
 
-    <span class="doccomment">/// If state is `true` joystick events are processed, otherwise</span>
-    <span class="doccomment">/// they&#39;re ignored.</span>
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;SDL_JoystickEventState&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_event_state</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">state</span>: <span class="ident">bool</span>) {
-        <span class="kw">unsafe</span> { <span class="ident">sys::SDL_JoystickEventState</span>(<span class="ident">state</span> <span class="kw">as</span> <span class="ident">i32</span>) };
+    <span class="doccomment">/// If state is `true` joystick events are processed, otherwise
+    /// they&#39;re ignored.
+    </span><span class="attribute">#[doc(alias = <span class="string">&quot;SDL_JoystickEventState&quot;</span>)]
+    </span><span class="kw">pub fn </span>set_event_state(<span class="kw-2">&amp;</span><span class="self">self</span>, state: bool) {
+        <span class="kw">unsafe </span>{ sys::SDL_JoystickEventState(state <span class="kw">as </span>i32) };
     }
 
-    <span class="doccomment">/// Return `true` if joystick events are processed.</span>
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;SDL_JoystickEventState&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">event_state</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span> {
-        <span class="kw">unsafe</span> { <span class="ident">sys::SDL_JoystickEventState</span>(<span class="ident">sys::SDL_QUERY</span> <span class="kw">as</span> <span class="ident">i32</span>) <span class="op">==</span> <span class="ident">sys::SDL_ENABLE</span> <span class="kw">as</span> <span class="ident">i32</span> }
+    <span class="doccomment">/// Return `true` if joystick events are processed.
+    </span><span class="attribute">#[doc(alias = <span class="string">&quot;SDL_JoystickEventState&quot;</span>)]
+    </span><span class="kw">pub fn </span>event_state(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; bool {
+        <span class="kw">unsafe </span>{ sys::SDL_JoystickEventState(sys::SDL_QUERY <span class="kw">as </span>i32) == sys::SDL_ENABLE <span class="kw">as </span>i32 }
     }
 
-    <span class="doccomment">/// Force joystick update when not using the event loop</span>
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;SDL_JoystickUpdate&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">update</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) {
-        <span class="kw">unsafe</span> { <span class="ident">sys::SDL_JoystickUpdate</span>() };
+    <span class="doccomment">/// Force joystick update when not using the event loop
+    </span><span class="attribute">#[inline]
+    #[doc(alias = <span class="string">&quot;SDL_JoystickUpdate&quot;</span>)]
+    </span><span class="kw">pub fn </span>update(<span class="kw-2">&amp;</span><span class="self">self</span>) {
+        <span class="kw">unsafe </span>{ sys::SDL_JoystickUpdate() };
     }
 }
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Eq</span>, <span class="ident">PartialEq</span>, <span class="ident">Hash</span>, <span class="ident">Debug</span>)]</span>
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">i32</span>)]</span>
-<span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">PowerLevel</span> {
-    <span class="ident">Unknown</span> <span class="op">=</span> <span class="ident">SDL_JoystickPowerLevel::SDL_JOYSTICK_POWER_UNKNOWN</span> <span class="kw">as</span> <span class="ident">i32</span>,
-    <span class="ident">Empty</span> <span class="op">=</span> <span class="ident">SDL_JoystickPowerLevel::SDL_JOYSTICK_POWER_EMPTY</span> <span class="kw">as</span> <span class="ident">i32</span>,
-    <span class="ident">Low</span> <span class="op">=</span> <span class="ident">SDL_JoystickPowerLevel::SDL_JOYSTICK_POWER_LOW</span> <span class="kw">as</span> <span class="ident">i32</span>,
-    <span class="ident">Medium</span> <span class="op">=</span> <span class="ident">SDL_JoystickPowerLevel::SDL_JOYSTICK_POWER_MEDIUM</span> <span class="kw">as</span> <span class="ident">i32</span>,
-    <span class="ident">Full</span> <span class="op">=</span> <span class="ident">SDL_JoystickPowerLevel::SDL_JOYSTICK_POWER_FULL</span> <span class="kw">as</span> <span class="ident">i32</span>,
-    <span class="ident">Wired</span> <span class="op">=</span> <span class="ident">SDL_JoystickPowerLevel::SDL_JOYSTICK_POWER_WIRED</span> <span class="kw">as</span> <span class="ident">i32</span>,
+<span class="attribute">#[derive(Copy, Clone, Eq, PartialEq, Hash, Debug)]
+#[repr(i32)]
+</span><span class="kw">pub enum </span>PowerLevel {
+    Unknown = SDL_JoystickPowerLevel::SDL_JOYSTICK_POWER_UNKNOWN <span class="kw">as </span>i32,
+    Empty = SDL_JoystickPowerLevel::SDL_JOYSTICK_POWER_EMPTY <span class="kw">as </span>i32,
+    Low = SDL_JoystickPowerLevel::SDL_JOYSTICK_POWER_LOW <span class="kw">as </span>i32,
+    Medium = SDL_JoystickPowerLevel::SDL_JOYSTICK_POWER_MEDIUM <span class="kw">as </span>i32,
+    Full = SDL_JoystickPowerLevel::SDL_JOYSTICK_POWER_FULL <span class="kw">as </span>i32,
+    Wired = SDL_JoystickPowerLevel::SDL_JOYSTICK_POWER_WIRED <span class="kw">as </span>i32,
 }
 
-<span class="kw">impl</span> <span class="ident">PowerLevel</span> {
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">from_ll</span>(<span class="ident">raw</span>: <span class="ident">SDL_JoystickPowerLevel</span>) -&gt; <span class="ident">PowerLevel</span> {
-        <span class="kw">match</span> <span class="ident">raw</span> {
-            <span class="ident">SDL_JoystickPowerLevel::SDL_JOYSTICK_POWER_UNKNOWN</span> =&gt; <span class="ident">PowerLevel::Unknown</span>,
-            <span class="ident">SDL_JoystickPowerLevel::SDL_JOYSTICK_POWER_EMPTY</span> =&gt; <span class="ident">PowerLevel::Empty</span>,
-            <span class="ident">SDL_JoystickPowerLevel::SDL_JOYSTICK_POWER_LOW</span> =&gt; <span class="ident">PowerLevel::Low</span>,
-            <span class="ident">SDL_JoystickPowerLevel::SDL_JOYSTICK_POWER_MEDIUM</span> =&gt; <span class="ident">PowerLevel::Medium</span>,
-            <span class="ident">SDL_JoystickPowerLevel::SDL_JOYSTICK_POWER_FULL</span> =&gt; <span class="ident">PowerLevel::Full</span>,
-            <span class="ident">SDL_JoystickPowerLevel::SDL_JOYSTICK_POWER_WIRED</span> =&gt; <span class="ident">PowerLevel::Wired</span>,
-            <span class="kw">_</span> =&gt; <span class="macro">panic!</span>(<span class="string">&quot;Unexpected power level: {:?}&quot;</span>, <span class="ident">raw</span>),
+<span class="kw">impl </span>PowerLevel {
+    <span class="kw">pub fn </span>from_ll(raw: SDL_JoystickPowerLevel) -&gt; PowerLevel {
+        <span class="kw">match </span>raw {
+            SDL_JoystickPowerLevel::SDL_JOYSTICK_POWER_UNKNOWN =&gt; PowerLevel::Unknown,
+            SDL_JoystickPowerLevel::SDL_JOYSTICK_POWER_EMPTY =&gt; PowerLevel::Empty,
+            SDL_JoystickPowerLevel::SDL_JOYSTICK_POWER_LOW =&gt; PowerLevel::Low,
+            SDL_JoystickPowerLevel::SDL_JOYSTICK_POWER_MEDIUM =&gt; PowerLevel::Medium,
+            SDL_JoystickPowerLevel::SDL_JOYSTICK_POWER_FULL =&gt; PowerLevel::Full,
+            SDL_JoystickPowerLevel::SDL_JOYSTICK_POWER_WIRED =&gt; PowerLevel::Wired,
+            <span class="kw">_ </span>=&gt; <span class="macro">panic!</span>(<span class="string">&quot;Unexpected power level: {:?}&quot;</span>, raw),
         }
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">to_ll</span>(<span class="self">self</span>) -&gt; <span class="ident">SDL_JoystickPowerLevel</span> {
-        <span class="kw">match</span> <span class="self">self</span> {
-            <span class="ident">PowerLevel::Unknown</span> =&gt; <span class="ident">SDL_JoystickPowerLevel::SDL_JOYSTICK_POWER_UNKNOWN</span>,
-            <span class="ident">PowerLevel::Empty</span> =&gt; <span class="ident">SDL_JoystickPowerLevel::SDL_JOYSTICK_POWER_EMPTY</span>,
-            <span class="ident">PowerLevel::Low</span> =&gt; <span class="ident">SDL_JoystickPowerLevel::SDL_JOYSTICK_POWER_LOW</span>,
-            <span class="ident">PowerLevel::Medium</span> =&gt; <span class="ident">SDL_JoystickPowerLevel::SDL_JOYSTICK_POWER_MEDIUM</span>,
-            <span class="ident">PowerLevel::Full</span> =&gt; <span class="ident">SDL_JoystickPowerLevel::SDL_JOYSTICK_POWER_FULL</span>,
-            <span class="ident">PowerLevel::Wired</span> =&gt; <span class="ident">SDL_JoystickPowerLevel::SDL_JOYSTICK_POWER_WIRED</span>,
+    <span class="kw">pub fn </span>to_ll(<span class="self">self</span>) -&gt; SDL_JoystickPowerLevel {
+        <span class="kw">match </span><span class="self">self </span>{
+            PowerLevel::Unknown =&gt; SDL_JoystickPowerLevel::SDL_JOYSTICK_POWER_UNKNOWN,
+            PowerLevel::Empty =&gt; SDL_JoystickPowerLevel::SDL_JOYSTICK_POWER_EMPTY,
+            PowerLevel::Low =&gt; SDL_JoystickPowerLevel::SDL_JOYSTICK_POWER_LOW,
+            PowerLevel::Medium =&gt; SDL_JoystickPowerLevel::SDL_JOYSTICK_POWER_MEDIUM,
+            PowerLevel::Full =&gt; SDL_JoystickPowerLevel::SDL_JOYSTICK_POWER_FULL,
+            PowerLevel::Wired =&gt; SDL_JoystickPowerLevel::SDL_JOYSTICK_POWER_WIRED,
         }
     }
 }
 
-<span class="doccomment">/// Wrapper around the `SDL_Joystick` object</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Joystick</span> {
-    <span class="ident">subsystem</span>: <span class="ident">JoystickSubsystem</span>,
-    <span class="ident">raw</span>: <span class="kw-2">*mut</span> <span class="ident">sys::SDL_Joystick</span>,
+<span class="doccomment">/// Wrapper around the `SDL_Joystick` object
+</span><span class="kw">pub struct </span>Joystick {
+    subsystem: JoystickSubsystem,
+    raw: <span class="kw-2">*mut </span>sys::SDL_Joystick,
 }
 
-<span class="kw">impl</span> <span class="ident">Joystick</span> {
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">subsystem</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span><span class="ident">JoystickSubsystem</span> {
-        <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">subsystem</span>
+<span class="kw">impl </span>Joystick {
+    <span class="attribute">#[inline]
+    </span><span class="kw">pub const fn </span>subsystem(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span>JoystickSubsystem {
+        <span class="kw-2">&amp;</span><span class="self">self</span>.subsystem
     }
 
-    <span class="doccomment">/// Return the name of the joystick or an empty string if no name</span>
-    <span class="doccomment">/// is found.</span>
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;SDL_JoystickName&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">name</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">String</span> {
-        <span class="kw">let</span> <span class="ident">name</span> <span class="op">=</span> <span class="kw">unsafe</span> { <span class="ident">sys::SDL_JoystickName</span>(<span class="self">self</span>.<span class="ident">raw</span>) };
+    <span class="doccomment">/// Return the name of the joystick or an empty string if no name
+    /// is found.
+    </span><span class="attribute">#[doc(alias = <span class="string">&quot;SDL_JoystickName&quot;</span>)]
+    </span><span class="kw">pub fn </span>name(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; String {
+        <span class="kw">let </span>name = <span class="kw">unsafe </span>{ sys::SDL_JoystickName(<span class="self">self</span>.raw) };
 
-        <span class="ident">c_str_to_string</span>(<span class="ident">name</span>)
+        c_str_to_string(name)
     }
 
-    <span class="doccomment">/// Return true if the joystick has been opened and currently</span>
-    <span class="doccomment">/// connected.</span>
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;SDL_JoystickGetAttached&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">attached</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span> {
-        <span class="kw">unsafe</span> { <span class="ident">sys::SDL_JoystickGetAttached</span>(<span class="self">self</span>.<span class="ident">raw</span>) <span class="op">!</span><span class="op">=</span> <span class="ident">sys::SDL_bool::SDL_FALSE</span> }
+    <span class="doccomment">/// Return true if the joystick has been opened and currently
+    /// connected.
+    </span><span class="attribute">#[doc(alias = <span class="string">&quot;SDL_JoystickGetAttached&quot;</span>)]
+    </span><span class="kw">pub fn </span>attached(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; bool {
+        <span class="kw">unsafe </span>{ sys::SDL_JoystickGetAttached(<span class="self">self</span>.raw) != sys::SDL_bool::SDL_FALSE }
     }
 
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;SDL_JoystickInstanceID&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">instance_id</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">u32</span> {
-        <span class="kw">let</span> <span class="ident">result</span> <span class="op">=</span> <span class="kw">unsafe</span> { <span class="ident">sys::SDL_JoystickInstanceID</span>(<span class="self">self</span>.<span class="ident">raw</span>) };
+    <span class="attribute">#[doc(alias = <span class="string">&quot;SDL_JoystickInstanceID&quot;</span>)]
+    </span><span class="kw">pub fn </span>instance_id(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; u32 {
+        <span class="kw">let </span>result = <span class="kw">unsafe </span>{ sys::SDL_JoystickInstanceID(<span class="self">self</span>.raw) };
 
-        <span class="kw">if</span> <span class="ident">result</span> <span class="op">&lt;</span> <span class="number">0</span> {
-            <span class="comment">// Should only fail if the joystick is NULL.</span>
-            <span class="macro">panic!</span>(<span class="string">&quot;{}&quot;</span>, <span class="ident">get_error</span>())
-        } <span class="kw">else</span> {
-            <span class="ident">result</span> <span class="kw">as</span> <span class="ident">u32</span>
+        <span class="kw">if </span>result &lt; <span class="number">0 </span>{
+            <span class="comment">// Should only fail if the joystick is NULL.
+            </span><span class="macro">panic!</span>(<span class="string">&quot;{}&quot;</span>, get_error())
+        } <span class="kw">else </span>{
+            result <span class="kw">as </span>u32
         }
     }
 
-    <span class="doccomment">/// Retrieve the joystick&#39;s GUID</span>
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;SDL_JoystickGetGUID&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">guid</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">Guid</span> {
-        <span class="kw">let</span> <span class="ident">raw</span> <span class="op">=</span> <span class="kw">unsafe</span> { <span class="ident">sys::SDL_JoystickGetGUID</span>(<span class="self">self</span>.<span class="ident">raw</span>) };
+    <span class="doccomment">/// Retrieve the joystick&#39;s GUID
+    </span><span class="attribute">#[doc(alias = <span class="string">&quot;SDL_JoystickGetGUID&quot;</span>)]
+    </span><span class="kw">pub fn </span>guid(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; Guid {
+        <span class="kw">let </span>raw = <span class="kw">unsafe </span>{ sys::SDL_JoystickGetGUID(<span class="self">self</span>.raw) };
 
-        <span class="kw">let</span> <span class="ident">guid</span> <span class="op">=</span> <span class="ident">Guid</span> { <span class="ident">raw</span> };
+        <span class="kw">let </span>guid = Guid { raw };
 
-        <span class="kw">if</span> <span class="ident">guid</span>.<span class="ident">is_zero</span>() {
-            <span class="comment">// Should only fail if the joystick is NULL.</span>
-            <span class="macro">panic!</span>(<span class="string">&quot;{}&quot;</span>, <span class="ident">get_error</span>())
-        } <span class="kw">else</span> {
-            <span class="ident">guid</span>
+        <span class="kw">if </span>guid.is_zero() {
+            <span class="comment">// Should only fail if the joystick is NULL.
+            </span><span class="macro">panic!</span>(<span class="string">&quot;{}&quot;</span>, get_error())
+        } <span class="kw">else </span>{
+            guid
         }
     }
 
-    <span class="doccomment">/// Retrieve the battery level of this joystick</span>
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;SDL_JoystickCurrentPowerLevel&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">power_level</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">PowerLevel</span>, <span class="ident">IntegerOrSdlError</span><span class="op">&gt;</span> {
-        <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::common::IntegerOrSdlError</span>::<span class="kw-2">*</span>;
-        <span class="ident">clear_error</span>();
+    <span class="doccomment">/// Retrieve the battery level of this joystick
+    </span><span class="attribute">#[doc(alias = <span class="string">&quot;SDL_JoystickCurrentPowerLevel&quot;</span>)]
+    </span><span class="kw">pub fn </span>power_level(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Result</span>&lt;PowerLevel, IntegerOrSdlError&gt; {
+        <span class="kw">use </span><span class="kw">crate</span>::common::IntegerOrSdlError::<span class="kw-2">*</span>;
+        clear_error();
 
-        <span class="kw">let</span> <span class="ident">result</span> <span class="op">=</span> <span class="kw">unsafe</span> { <span class="ident">sys::SDL_JoystickCurrentPowerLevel</span>(<span class="self">self</span>.<span class="ident">raw</span>) };
+        <span class="kw">let </span>result = <span class="kw">unsafe </span>{ sys::SDL_JoystickCurrentPowerLevel(<span class="self">self</span>.raw) };
 
-        <span class="kw">let</span> <span class="ident">state</span> <span class="op">=</span> <span class="ident">PowerLevel::from_ll</span>(<span class="ident">result</span>);
+        <span class="kw">let </span>state = PowerLevel::from_ll(result);
 
-        <span class="kw">if</span> <span class="ident">result</span> <span class="op">!</span><span class="op">=</span> <span class="ident">SDL_JoystickPowerLevel::SDL_JOYSTICK_POWER_UNKNOWN</span> {
-            <span class="prelude-val">Ok</span>(<span class="ident">state</span>)
-        } <span class="kw">else</span> {
-            <span class="kw">let</span> <span class="ident">err</span> <span class="op">=</span> <span class="ident">get_error</span>();
+        <span class="kw">if </span>result != SDL_JoystickPowerLevel::SDL_JOYSTICK_POWER_UNKNOWN {
+            <span class="prelude-val">Ok</span>(state)
+        } <span class="kw">else </span>{
+            <span class="kw">let </span>err = get_error();
 
-            <span class="kw">if</span> <span class="ident">err</span>.<span class="ident">is_empty</span>() {
-                <span class="prelude-val">Ok</span>(<span class="ident">state</span>)
-            } <span class="kw">else</span> {
-                <span class="prelude-val">Err</span>(<span class="ident">SdlError</span>(<span class="ident">err</span>))
+            <span class="kw">if </span>err.is_empty() {
+                <span class="prelude-val">Ok</span>(state)
+            } <span class="kw">else </span>{
+                <span class="prelude-val">Err</span>(SdlError(err))
             }
         }
     }
 
-    <span class="doccomment">/// Retrieve the number of axes for this joystick</span>
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;SDL_JoystickNumAxes&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">num_axes</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">u32</span> {
-        <span class="kw">let</span> <span class="ident">result</span> <span class="op">=</span> <span class="kw">unsafe</span> { <span class="ident">sys::SDL_JoystickNumAxes</span>(<span class="self">self</span>.<span class="ident">raw</span>) };
+    <span class="doccomment">/// Retrieve the number of axes for this joystick
+    </span><span class="attribute">#[doc(alias = <span class="string">&quot;SDL_JoystickNumAxes&quot;</span>)]
+    </span><span class="kw">pub fn </span>num_axes(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; u32 {
+        <span class="kw">let </span>result = <span class="kw">unsafe </span>{ sys::SDL_JoystickNumAxes(<span class="self">self</span>.raw) };
 
-        <span class="kw">if</span> <span class="ident">result</span> <span class="op">&lt;</span> <span class="number">0</span> {
-            <span class="comment">// Should only fail if the joystick is NULL.</span>
-            <span class="macro">panic!</span>(<span class="string">&quot;{}&quot;</span>, <span class="ident">get_error</span>())
-        } <span class="kw">else</span> {
-            <span class="ident">result</span> <span class="kw">as</span> <span class="ident">u32</span>
+        <span class="kw">if </span>result &lt; <span class="number">0 </span>{
+            <span class="comment">// Should only fail if the joystick is NULL.
+            </span><span class="macro">panic!</span>(<span class="string">&quot;{}&quot;</span>, get_error())
+        } <span class="kw">else </span>{
+            result <span class="kw">as </span>u32
         }
     }
 
-    <span class="doccomment">/// Gets the position of the given `axis`.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// The function will fail if the joystick doesn&#39;t have the provided axis.</span>
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;SDL_JoystickGetAxis&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">axis</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">axis</span>: <span class="ident">u32</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">i16</span>, <span class="ident">IntegerOrSdlError</span><span class="op">&gt;</span> {
-        <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::common::IntegerOrSdlError</span>::<span class="kw-2">*</span>;
-        <span class="comment">// This interface is a bit messed up: 0 is a valid position</span>
-        <span class="comment">// but can also mean that an error occured. As far as I can</span>
-        <span class="comment">// tell the only way to know if an error happened is to see if</span>
-        <span class="comment">// get_error() returns a non-empty string.</span>
-        <span class="ident">clear_error</span>();
+    <span class="doccomment">/// Gets the position of the given `axis`.
+    ///
+    /// The function will fail if the joystick doesn&#39;t have the provided axis.
+    </span><span class="attribute">#[doc(alias = <span class="string">&quot;SDL_JoystickGetAxis&quot;</span>)]
+    </span><span class="kw">pub fn </span>axis(<span class="kw-2">&amp;</span><span class="self">self</span>, axis: u32) -&gt; <span class="prelude-ty">Result</span>&lt;i16, IntegerOrSdlError&gt; {
+        <span class="kw">use </span><span class="kw">crate</span>::common::IntegerOrSdlError::<span class="kw-2">*</span>;
+        <span class="comment">// This interface is a bit messed up: 0 is a valid position
+        // but can also mean that an error occured. As far as I can
+        // tell the only way to know if an error happened is to see if
+        // get_error() returns a non-empty string.
+        </span>clear_error();
 
-        <span class="kw">let</span> <span class="ident">axis</span> <span class="op">=</span> <span class="ident">validate_int</span>(<span class="ident">axis</span>, <span class="string">&quot;axis&quot;</span>)<span class="question-mark">?</span>;
-        <span class="kw">let</span> <span class="ident">pos</span> <span class="op">=</span> <span class="kw">unsafe</span> { <span class="ident">sys::SDL_JoystickGetAxis</span>(<span class="self">self</span>.<span class="ident">raw</span>, <span class="ident">axis</span>) };
+        <span class="kw">let </span>axis = validate_int(axis, <span class="string">&quot;axis&quot;</span>)<span class="question-mark">?</span>;
+        <span class="kw">let </span>pos = <span class="kw">unsafe </span>{ sys::SDL_JoystickGetAxis(<span class="self">self</span>.raw, axis) };
 
-        <span class="kw">if</span> <span class="ident">pos</span> <span class="op">!</span><span class="op">=</span> <span class="number">0</span> {
-            <span class="prelude-val">Ok</span>(<span class="ident">pos</span>)
-        } <span class="kw">else</span> {
-            <span class="kw">let</span> <span class="ident">err</span> <span class="op">=</span> <span class="ident">get_error</span>();
+        <span class="kw">if </span>pos != <span class="number">0 </span>{
+            <span class="prelude-val">Ok</span>(pos)
+        } <span class="kw">else </span>{
+            <span class="kw">let </span>err = get_error();
 
-            <span class="kw">if</span> <span class="ident">err</span>.<span class="ident">is_empty</span>() {
-                <span class="prelude-val">Ok</span>(<span class="ident">pos</span>)
-            } <span class="kw">else</span> {
-                <span class="prelude-val">Err</span>(<span class="ident">SdlError</span>(<span class="ident">err</span>))
+            <span class="kw">if </span>err.is_empty() {
+                <span class="prelude-val">Ok</span>(pos)
+            } <span class="kw">else </span>{
+                <span class="prelude-val">Err</span>(SdlError(err))
             }
         }
     }
 
-    <span class="doccomment">/// Retrieve the number of buttons for this joystick</span>
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;SDL_JoystickNumButtons&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">num_buttons</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">u32</span> {
-        <span class="kw">let</span> <span class="ident">result</span> <span class="op">=</span> <span class="kw">unsafe</span> { <span class="ident">sys::SDL_JoystickNumButtons</span>(<span class="self">self</span>.<span class="ident">raw</span>) };
+    <span class="doccomment">/// Retrieve the number of buttons for this joystick
+    </span><span class="attribute">#[doc(alias = <span class="string">&quot;SDL_JoystickNumButtons&quot;</span>)]
+    </span><span class="kw">pub fn </span>num_buttons(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; u32 {
+        <span class="kw">let </span>result = <span class="kw">unsafe </span>{ sys::SDL_JoystickNumButtons(<span class="self">self</span>.raw) };
 
-        <span class="kw">if</span> <span class="ident">result</span> <span class="op">&lt;</span> <span class="number">0</span> {
-            <span class="comment">// Should only fail if the joystick is NULL.</span>
-            <span class="macro">panic!</span>(<span class="string">&quot;{}&quot;</span>, <span class="ident">get_error</span>())
-        } <span class="kw">else</span> {
-            <span class="ident">result</span> <span class="kw">as</span> <span class="ident">u32</span>
+        <span class="kw">if </span>result &lt; <span class="number">0 </span>{
+            <span class="comment">// Should only fail if the joystick is NULL.
+            </span><span class="macro">panic!</span>(<span class="string">&quot;{}&quot;</span>, get_error())
+        } <span class="kw">else </span>{
+            result <span class="kw">as </span>u32
         }
     }
 
-    <span class="doccomment">/// Return `Ok(true)` if `button` is pressed.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// The function will fail if the joystick doesn&#39;t have the provided button.</span>
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;SDL_JoystickGetButton&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">button</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">button</span>: <span class="ident">u32</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">bool</span>, <span class="ident">IntegerOrSdlError</span><span class="op">&gt;</span> {
-        <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::common::IntegerOrSdlError</span>::<span class="kw-2">*</span>;
-        <span class="comment">// Same deal as axis, 0 can mean both unpressed or</span>
-        <span class="comment">// error...</span>
-        <span class="ident">clear_error</span>();
+    <span class="doccomment">/// Return `Ok(true)` if `button` is pressed.
+    ///
+    /// The function will fail if the joystick doesn&#39;t have the provided button.
+    </span><span class="attribute">#[doc(alias = <span class="string">&quot;SDL_JoystickGetButton&quot;</span>)]
+    </span><span class="kw">pub fn </span>button(<span class="kw-2">&amp;</span><span class="self">self</span>, button: u32) -&gt; <span class="prelude-ty">Result</span>&lt;bool, IntegerOrSdlError&gt; {
+        <span class="kw">use </span><span class="kw">crate</span>::common::IntegerOrSdlError::<span class="kw-2">*</span>;
+        <span class="comment">// Same deal as axis, 0 can mean both unpressed or
+        // error...
+        </span>clear_error();
 
-        <span class="kw">let</span> <span class="ident">button</span> <span class="op">=</span> <span class="ident">validate_int</span>(<span class="ident">button</span>, <span class="string">&quot;button&quot;</span>)<span class="question-mark">?</span>;
-        <span class="kw">let</span> <span class="ident">pressed</span> <span class="op">=</span> <span class="kw">unsafe</span> { <span class="ident">sys::SDL_JoystickGetButton</span>(<span class="self">self</span>.<span class="ident">raw</span>, <span class="ident">button</span>) };
+        <span class="kw">let </span>button = validate_int(button, <span class="string">&quot;button&quot;</span>)<span class="question-mark">?</span>;
+        <span class="kw">let </span>pressed = <span class="kw">unsafe </span>{ sys::SDL_JoystickGetButton(<span class="self">self</span>.raw, button) };
 
-        <span class="kw">match</span> <span class="ident">pressed</span> {
-            <span class="number">1</span> =&gt; <span class="prelude-val">Ok</span>(<span class="bool-val">true</span>),
-            <span class="number">0</span> =&gt; {
-                <span class="kw">let</span> <span class="ident">err</span> <span class="op">=</span> <span class="ident">get_error</span>();
+        <span class="kw">match </span>pressed {
+            <span class="number">1 </span>=&gt; <span class="prelude-val">Ok</span>(<span class="bool-val">true</span>),
+            <span class="number">0 </span>=&gt; {
+                <span class="kw">let </span>err = get_error();
 
-                <span class="kw">if</span> <span class="ident">err</span>.<span class="ident">is_empty</span>() {
-                    <span class="comment">// Button is not pressed</span>
-                    <span class="prelude-val">Ok</span>(<span class="bool-val">false</span>)
-                } <span class="kw">else</span> {
-                    <span class="prelude-val">Err</span>(<span class="ident">SdlError</span>(<span class="ident">err</span>))
+                <span class="kw">if </span>err.is_empty() {
+                    <span class="comment">// Button is not pressed
+                    </span><span class="prelude-val">Ok</span>(<span class="bool-val">false</span>)
+                } <span class="kw">else </span>{
+                    <span class="prelude-val">Err</span>(SdlError(err))
                 }
             }
-            <span class="comment">// Should be unreachable</span>
-            <span class="kw">_</span> =&gt; <span class="macro">unreachable!</span>(),
+            <span class="comment">// Should be unreachable
+            </span><span class="kw">_ </span>=&gt; <span class="macro">unreachable!</span>(),
         }
     }
 
-    <span class="doccomment">/// Retrieve the number of balls for this joystick</span>
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;SDL_JoystickNumBalls&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">num_balls</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">u32</span> {
-        <span class="kw">let</span> <span class="ident">result</span> <span class="op">=</span> <span class="kw">unsafe</span> { <span class="ident">sys::SDL_JoystickNumBalls</span>(<span class="self">self</span>.<span class="ident">raw</span>) };
+    <span class="doccomment">/// Retrieve the number of balls for this joystick
+    </span><span class="attribute">#[doc(alias = <span class="string">&quot;SDL_JoystickNumBalls&quot;</span>)]
+    </span><span class="kw">pub fn </span>num_balls(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; u32 {
+        <span class="kw">let </span>result = <span class="kw">unsafe </span>{ sys::SDL_JoystickNumBalls(<span class="self">self</span>.raw) };
 
-        <span class="kw">if</span> <span class="ident">result</span> <span class="op">&lt;</span> <span class="number">0</span> {
-            <span class="comment">// Should only fail if the joystick is NULL.</span>
-            <span class="macro">panic!</span>(<span class="string">&quot;{}&quot;</span>, <span class="ident">get_error</span>())
-        } <span class="kw">else</span> {
-            <span class="ident">result</span> <span class="kw">as</span> <span class="ident">u32</span>
+        <span class="kw">if </span>result &lt; <span class="number">0 </span>{
+            <span class="comment">// Should only fail if the joystick is NULL.
+            </span><span class="macro">panic!</span>(<span class="string">&quot;{}&quot;</span>, get_error())
+        } <span class="kw">else </span>{
+            result <span class="kw">as </span>u32
         }
     }
 
-    <span class="doccomment">/// Return a pair `(dx, dy)` containing the difference in axis</span>
-    <span class="doccomment">/// position since the last poll</span>
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;SDL_JoystickGetBall&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ball</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">ball</span>: <span class="ident">u32</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(<span class="ident">i32</span>, <span class="ident">i32</span>), <span class="ident">IntegerOrSdlError</span><span class="op">&gt;</span> {
-        <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::common::IntegerOrSdlError</span>::<span class="kw-2">*</span>;
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">dx</span> <span class="op">=</span> <span class="number">0</span>;
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">dy</span> <span class="op">=</span> <span class="number">0</span>;
+    <span class="doccomment">/// Return a pair `(dx, dy)` containing the difference in axis
+    /// position since the last poll
+    </span><span class="attribute">#[doc(alias = <span class="string">&quot;SDL_JoystickGetBall&quot;</span>)]
+    </span><span class="kw">pub fn </span>ball(<span class="kw-2">&amp;</span><span class="self">self</span>, ball: u32) -&gt; <span class="prelude-ty">Result</span>&lt;(i32, i32), IntegerOrSdlError&gt; {
+        <span class="kw">use </span><span class="kw">crate</span>::common::IntegerOrSdlError::<span class="kw-2">*</span>;
+        <span class="kw">let </span><span class="kw-2">mut </span>dx = <span class="number">0</span>;
+        <span class="kw">let </span><span class="kw-2">mut </span>dy = <span class="number">0</span>;
 
-        <span class="kw">let</span> <span class="ident">ball</span> <span class="op">=</span> <span class="ident">validate_int</span>(<span class="ident">ball</span>, <span class="string">&quot;ball&quot;</span>)<span class="question-mark">?</span>;
-        <span class="kw">let</span> <span class="ident">result</span> <span class="op">=</span> <span class="kw">unsafe</span> { <span class="ident">sys::SDL_JoystickGetBall</span>(<span class="self">self</span>.<span class="ident">raw</span>, <span class="ident">ball</span>, <span class="kw-2">&amp;mut</span> <span class="ident">dx</span>, <span class="kw-2">&amp;mut</span> <span class="ident">dy</span>) };
+        <span class="kw">let </span>ball = validate_int(ball, <span class="string">&quot;ball&quot;</span>)<span class="question-mark">?</span>;
+        <span class="kw">let </span>result = <span class="kw">unsafe </span>{ sys::SDL_JoystickGetBall(<span class="self">self</span>.raw, ball, <span class="kw-2">&amp;mut </span>dx, <span class="kw-2">&amp;mut </span>dy) };
 
-        <span class="kw">if</span> <span class="ident">result</span> <span class="op">==</span> <span class="number">0</span> {
-            <span class="prelude-val">Ok</span>((<span class="ident">dx</span>, <span class="ident">dy</span>))
-        } <span class="kw">else</span> {
-            <span class="prelude-val">Err</span>(<span class="ident">SdlError</span>(<span class="ident">get_error</span>()))
+        <span class="kw">if </span>result == <span class="number">0 </span>{
+            <span class="prelude-val">Ok</span>((dx, dy))
+        } <span class="kw">else </span>{
+            <span class="prelude-val">Err</span>(SdlError(get_error()))
         }
     }
 
-    <span class="doccomment">/// Retrieve the number of balls for this joystick</span>
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;SDL_JoystickNumHats&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">num_hats</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">u32</span> {
-        <span class="kw">let</span> <span class="ident">result</span> <span class="op">=</span> <span class="kw">unsafe</span> { <span class="ident">sys::SDL_JoystickNumHats</span>(<span class="self">self</span>.<span class="ident">raw</span>) };
+    <span class="doccomment">/// Retrieve the number of balls for this joystick
+    </span><span class="attribute">#[doc(alias = <span class="string">&quot;SDL_JoystickNumHats&quot;</span>)]
+    </span><span class="kw">pub fn </span>num_hats(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; u32 {
+        <span class="kw">let </span>result = <span class="kw">unsafe </span>{ sys::SDL_JoystickNumHats(<span class="self">self</span>.raw) };
 
-        <span class="kw">if</span> <span class="ident">result</span> <span class="op">&lt;</span> <span class="number">0</span> {
-            <span class="comment">// Should only fail if the joystick is NULL.</span>
-            <span class="macro">panic!</span>(<span class="string">&quot;{}&quot;</span>, <span class="ident">get_error</span>())
-        } <span class="kw">else</span> {
-            <span class="ident">result</span> <span class="kw">as</span> <span class="ident">u32</span>
+        <span class="kw">if </span>result &lt; <span class="number">0 </span>{
+            <span class="comment">// Should only fail if the joystick is NULL.
+            </span><span class="macro">panic!</span>(<span class="string">&quot;{}&quot;</span>, get_error())
+        } <span class="kw">else </span>{
+            result <span class="kw">as </span>u32
         }
     }
 
-    <span class="doccomment">/// Return the position of `hat` for this joystick</span>
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;SDL_JoystickGetHat&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">hat</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">hat</span>: <span class="ident">u32</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">HatState</span>, <span class="ident">IntegerOrSdlError</span><span class="op">&gt;</span> {
-        <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::common::IntegerOrSdlError</span>::<span class="kw-2">*</span>;
-        <span class="comment">// Guess what? This function as well uses 0 to report an error</span>
-        <span class="comment">// but 0 is also a valid value (HatState::Centered). So we</span>
-        <span class="comment">// have to use the same hack as `axis`...</span>
-        <span class="ident">clear_error</span>();
+    <span class="doccomment">/// Return the position of `hat` for this joystick
+    </span><span class="attribute">#[doc(alias = <span class="string">&quot;SDL_JoystickGetHat&quot;</span>)]
+    </span><span class="kw">pub fn </span>hat(<span class="kw-2">&amp;</span><span class="self">self</span>, hat: u32) -&gt; <span class="prelude-ty">Result</span>&lt;HatState, IntegerOrSdlError&gt; {
+        <span class="kw">use </span><span class="kw">crate</span>::common::IntegerOrSdlError::<span class="kw-2">*</span>;
+        <span class="comment">// Guess what? This function as well uses 0 to report an error
+        // but 0 is also a valid value (HatState::Centered). So we
+        // have to use the same hack as `axis`...
+        </span>clear_error();
 
-        <span class="kw">let</span> <span class="ident">hat</span> <span class="op">=</span> <span class="ident">validate_int</span>(<span class="ident">hat</span>, <span class="string">&quot;hat&quot;</span>)<span class="question-mark">?</span>;
-        <span class="kw">let</span> <span class="ident">result</span> <span class="op">=</span> <span class="kw">unsafe</span> { <span class="ident">sys::SDL_JoystickGetHat</span>(<span class="self">self</span>.<span class="ident">raw</span>, <span class="ident">hat</span>) };
+        <span class="kw">let </span>hat = validate_int(hat, <span class="string">&quot;hat&quot;</span>)<span class="question-mark">?</span>;
+        <span class="kw">let </span>result = <span class="kw">unsafe </span>{ sys::SDL_JoystickGetHat(<span class="self">self</span>.raw, hat) };
 
-        <span class="kw">let</span> <span class="ident">state</span> <span class="op">=</span> <span class="ident">HatState::from_raw</span>(<span class="ident">result</span> <span class="kw">as</span> <span class="ident">u8</span>);
+        <span class="kw">let </span>state = HatState::from_raw(result <span class="kw">as </span>u8);
 
-        <span class="kw">if</span> <span class="ident">result</span> <span class="op">!</span><span class="op">=</span> <span class="number">0</span> {
-            <span class="prelude-val">Ok</span>(<span class="ident">state</span>)
-        } <span class="kw">else</span> {
-            <span class="kw">let</span> <span class="ident">err</span> <span class="op">=</span> <span class="ident">get_error</span>();
+        <span class="kw">if </span>result != <span class="number">0 </span>{
+            <span class="prelude-val">Ok</span>(state)
+        } <span class="kw">else </span>{
+            <span class="kw">let </span>err = get_error();
 
-            <span class="kw">if</span> <span class="ident">err</span>.<span class="ident">is_empty</span>() {
-                <span class="prelude-val">Ok</span>(<span class="ident">state</span>)
-            } <span class="kw">else</span> {
-                <span class="prelude-val">Err</span>(<span class="ident">SdlError</span>(<span class="ident">err</span>))
+            <span class="kw">if </span>err.is_empty() {
+                <span class="prelude-val">Ok</span>(state)
+            } <span class="kw">else </span>{
+                <span class="prelude-val">Err</span>(SdlError(err))
             }
         }
     }
 
-    <span class="doccomment">/// Set the rumble motors to their specified intensities, if supported.</span>
-    <span class="doccomment">/// Automatically resets back to zero after `duration_ms` milliseconds have passed.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// # Notes</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// The value range for the intensities is 0 to 0xFFFF.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// Do *not* use `std::u32::MAX` or similar for `duration_ms` if you want</span>
-    <span class="doccomment">/// the rumble effect to keep playing for a long time, as this results in</span>
-    <span class="doccomment">/// the effect ending immediately after starting due to an overflow.</span>
-    <span class="doccomment">/// Use some smaller, &quot;huge enough&quot; number instead.</span>
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;SDL_JoystickRumble&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_rumble</span>(
-        <span class="kw-2">&amp;mut</span> <span class="self">self</span>,
-        <span class="ident">low_frequency_rumble</span>: <span class="ident">u16</span>,
-        <span class="ident">high_frequency_rumble</span>: <span class="ident">u16</span>,
-        <span class="ident">duration_ms</span>: <span class="ident">u32</span>,
-    ) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">IntegerOrSdlError</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="ident">result</span> <span class="op">=</span> <span class="kw">unsafe</span> {
-            <span class="ident">sys::SDL_JoystickRumble</span>(
-                <span class="self">self</span>.<span class="ident">raw</span>,
-                <span class="ident">low_frequency_rumble</span>,
-                <span class="ident">high_frequency_rumble</span>,
-                <span class="ident">duration_ms</span>,
+    <span class="doccomment">/// Set the rumble motors to their specified intensities, if supported.
+    /// Automatically resets back to zero after `duration_ms` milliseconds have passed.
+    ///
+    /// # Notes
+    ///
+    /// The value range for the intensities is 0 to 0xFFFF.
+    ///
+    /// Do *not* use `std::u32::MAX` or similar for `duration_ms` if you want
+    /// the rumble effect to keep playing for a long time, as this results in
+    /// the effect ending immediately after starting due to an overflow.
+    /// Use some smaller, &quot;huge enough&quot; number instead.
+    </span><span class="attribute">#[doc(alias = <span class="string">&quot;SDL_JoystickRumble&quot;</span>)]
+    </span><span class="kw">pub fn </span>set_rumble(
+        <span class="kw-2">&amp;mut </span><span class="self">self</span>,
+        low_frequency_rumble: u16,
+        high_frequency_rumble: u16,
+        duration_ms: u32,
+    ) -&gt; <span class="prelude-ty">Result</span>&lt;(), IntegerOrSdlError&gt; {
+        <span class="kw">let </span>result = <span class="kw">unsafe </span>{
+            sys::SDL_JoystickRumble(
+                <span class="self">self</span>.raw,
+                low_frequency_rumble,
+                high_frequency_rumble,
+                duration_ms,
             )
         };
 
-        <span class="kw">if</span> <span class="ident">result</span> <span class="op">!</span><span class="op">=</span> <span class="number">0</span> {
-            <span class="prelude-val">Err</span>(<span class="ident">IntegerOrSdlError::SdlError</span>(<span class="ident">get_error</span>()))
-        } <span class="kw">else</span> {
+        <span class="kw">if </span>result != <span class="number">0 </span>{
+            <span class="prelude-val">Err</span>(IntegerOrSdlError::SdlError(get_error()))
+        } <span class="kw">else </span>{
             <span class="prelude-val">Ok</span>(())
         }
     }
 }
 
-<span class="kw">impl</span> <span class="ident">Drop</span> <span class="kw">for</span> <span class="ident">Joystick</span> {
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;SDL_JoystickClose&quot;</span>)]</span>
-    <span class="kw">fn</span> <span class="ident">drop</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>) {
-        <span class="kw">if</span> <span class="self">self</span>.<span class="ident">attached</span>() {
-            <span class="kw">unsafe</span> { <span class="ident">sys::SDL_JoystickClose</span>(<span class="self">self</span>.<span class="ident">raw</span>) }
+<span class="kw">impl </span>Drop <span class="kw">for </span>Joystick {
+    <span class="attribute">#[doc(alias = <span class="string">&quot;SDL_JoystickClose&quot;</span>)]
+    </span><span class="kw">fn </span>drop(<span class="kw-2">&amp;mut </span><span class="self">self</span>) {
+        <span class="kw">if </span><span class="self">self</span>.attached() {
+            <span class="kw">unsafe </span>{ sys::SDL_JoystickClose(<span class="self">self</span>.raw) }
         }
     }
 }
 
-<span class="doccomment">/// Wrapper around a `SDL_JoystickGUID`, a globally unique identifier</span>
-<span class="doccomment">/// for a joystick.</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Guid</span> {
-    <span class="ident">raw</span>: <span class="ident">sys::SDL_JoystickGUID</span>,
+<span class="doccomment">/// Wrapper around a `SDL_JoystickGUID`, a globally unique identifier
+/// for a joystick.
+</span><span class="attribute">#[derive(Copy, Clone)]
+</span><span class="kw">pub struct </span>Guid {
+    raw: sys::SDL_JoystickGUID,
 }
 
-<span class="kw">impl</span> <span class="ident">PartialEq</span> <span class="kw">for</span> <span class="ident">Guid</span> {
-    <span class="kw">fn</span> <span class="ident">eq</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">other</span>: <span class="kw-2">&amp;</span><span class="ident">Guid</span>) -&gt; <span class="ident">bool</span> {
-        <span class="self">self</span>.<span class="ident">raw</span>.<span class="ident">data</span> <span class="op">==</span> <span class="ident">other</span>.<span class="ident">raw</span>.<span class="ident">data</span>
+<span class="kw">impl </span>PartialEq <span class="kw">for </span>Guid {
+    <span class="kw">fn </span>eq(<span class="kw-2">&amp;</span><span class="self">self</span>, other: <span class="kw-2">&amp;</span>Guid) -&gt; bool {
+        <span class="self">self</span>.raw.data == other.raw.data
     }
 }
 
-<span class="kw">impl</span> <span class="ident">Eq</span> <span class="kw">for</span> <span class="ident">Guid</span> {}
+<span class="kw">impl </span>Eq <span class="kw">for </span>Guid {}
 
-<span class="kw">impl</span> <span class="ident">Guid</span> {
-    <span class="doccomment">/// Create a GUID from a string representation.</span>
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;SDL_JoystickGetGUIDFromString&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">from_string</span>(<span class="ident">guid</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">Guid</span>, <span class="ident">NulError</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="ident">guid</span> <span class="op">=</span> <span class="ident">CString::new</span>(<span class="ident">guid</span>)<span class="question-mark">?</span>;
+<span class="kw">impl </span>Guid {
+    <span class="doccomment">/// Create a GUID from a string representation.
+    </span><span class="attribute">#[doc(alias = <span class="string">&quot;SDL_JoystickGetGUIDFromString&quot;</span>)]
+    </span><span class="kw">pub fn </span>from_string(guid: <span class="kw-2">&amp;</span>str) -&gt; <span class="prelude-ty">Result</span>&lt;Guid, NulError&gt; {
+        <span class="kw">let </span>guid = CString::new(guid)<span class="question-mark">?</span>;
 
-        <span class="kw">let</span> <span class="ident">raw</span> <span class="op">=</span> <span class="kw">unsafe</span> { <span class="ident">sys::SDL_JoystickGetGUIDFromString</span>(<span class="ident">guid</span>.<span class="ident">as_ptr</span>() <span class="kw">as</span> <span class="kw-2">*const</span> <span class="ident">c_char</span>) };
+        <span class="kw">let </span>raw = <span class="kw">unsafe </span>{ sys::SDL_JoystickGetGUIDFromString(guid.as_ptr() <span class="kw">as </span><span class="kw-2">*const </span>c_char) };
 
-        <span class="prelude-val">Ok</span>(<span class="ident">Guid</span> { <span class="ident">raw</span> })
+        <span class="prelude-val">Ok</span>(Guid { raw })
     }
 
-    <span class="doccomment">/// Return `true` if GUID is full 0s</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_zero</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span> {
-        <span class="kw">for</span> <span class="kw-2">&amp;</span><span class="ident">i</span> <span class="kw">in</span> <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">raw</span>.<span class="ident">data</span> {
-            <span class="kw">if</span> <span class="ident">i</span> <span class="op">!</span><span class="op">=</span> <span class="number">0</span> {
-                <span class="kw">return</span> <span class="bool-val">false</span>;
+    <span class="doccomment">/// Return `true` if GUID is full 0s
+    </span><span class="kw">pub fn </span>is_zero(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; bool {
+        <span class="kw">for </span><span class="kw-2">&amp;</span>i <span class="kw">in </span><span class="kw-2">&amp;</span><span class="self">self</span>.raw.data {
+            <span class="kw">if </span>i != <span class="number">0 </span>{
+                <span class="kw">return </span><span class="bool-val">false</span>;
             }
         }
 
-        <span class="bool-val">true</span>
-    }
+        <span class="bool-val">true
+    </span>}
 
-    <span class="doccomment">/// Return a String representation of GUID</span>
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;SDL_JoystickGetGUIDString&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">string</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">String</span> {
-        <span class="comment">// Doc says &quot;buf should supply at least 33bytes&quot;. I took that</span>
-        <span class="comment">// to mean that 33bytes should be enough in all cases, but</span>
-        <span class="comment">// maybe I&#39;m wrong?</span>
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">buf</span> <span class="op">=</span> [<span class="number">0</span>; <span class="number">33</span>];
+    <span class="doccomment">/// Return a String representation of GUID
+    </span><span class="attribute">#[doc(alias = <span class="string">&quot;SDL_JoystickGetGUIDString&quot;</span>)]
+    </span><span class="kw">pub fn </span>string(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; String {
+        <span class="comment">// Doc says &quot;buf should supply at least 33bytes&quot;. I took that
+        // to mean that 33bytes should be enough in all cases, but
+        // maybe I&#39;m wrong?
+        </span><span class="kw">let </span><span class="kw-2">mut </span>buf = [<span class="number">0</span>; <span class="number">33</span>];
 
-        <span class="kw">let</span> <span class="ident">len</span> <span class="op">=</span> <span class="ident">buf</span>.<span class="ident">len</span>() <span class="kw">as</span> <span class="ident">i32</span>;
-        <span class="kw">let</span> <span class="ident">c_str</span> <span class="op">=</span> <span class="ident">buf</span>.<span class="ident">as_mut_ptr</span>();
+        <span class="kw">let </span>len = buf.len() <span class="kw">as </span>i32;
+        <span class="kw">let </span>c_str = buf.as_mut_ptr();
 
-        <span class="kw">unsafe</span> {
-            <span class="ident">sys::SDL_JoystickGetGUIDString</span>(<span class="self">self</span>.<span class="ident">raw</span>, <span class="ident">c_str</span>, <span class="ident">len</span>);
+        <span class="kw">unsafe </span>{
+            sys::SDL_JoystickGetGUIDString(<span class="self">self</span>.raw, c_str, len);
         }
 
-        <span class="comment">// The buffer should always be NUL terminated (the</span>
-        <span class="comment">// documentation doesn&#39;t explicitly say it but I checked the</span>
-        <span class="comment">// code)</span>
-        <span class="kw">if</span> <span class="ident">c_str</span>.<span class="ident">is_null</span>() {
-            <span class="ident">String::new</span>()
-        } <span class="kw">else</span> {
-            <span class="kw">unsafe</span> {
-                <span class="ident">CStr::from_ptr</span>(<span class="ident">c_str</span> <span class="kw">as</span> <span class="kw-2">*const</span> <span class="kw">_</span>)
-                    .<span class="ident">to_str</span>()
-                    .<span class="ident">unwrap</span>()
-                    .<span class="ident">to_string</span>()
+        <span class="comment">// The buffer should always be NUL terminated (the
+        // documentation doesn&#39;t explicitly say it but I checked the
+        // code)
+        </span><span class="kw">if </span>c_str.is_null() {
+            String::new()
+        } <span class="kw">else </span>{
+            <span class="kw">unsafe </span>{
+                CStr::from_ptr(c_str <span class="kw">as </span><span class="kw-2">*const </span><span class="kw">_</span>)
+                    .to_str()
+                    .unwrap()
+                    .to_string()
             }
         }
     }
 
-    <span class="doccomment">/// Return a copy of the internal SDL_JoystickGUID</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">raw</span>(<span class="self">self</span>) -&gt; <span class="ident">sys::SDL_JoystickGUID</span> {
-        <span class="self">self</span>.<span class="ident">raw</span>
+    <span class="doccomment">/// Return a copy of the internal SDL_JoystickGUID
+    </span><span class="kw">pub fn </span>raw(<span class="self">self</span>) -&gt; sys::SDL_JoystickGUID {
+        <span class="self">self</span>.raw
     }
 }
 
-<span class="kw">impl</span> <span class="ident">Display</span> <span class="kw">for</span> <span class="ident">Guid</span> {
-    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Formatter</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">Error</span><span class="op">&gt;</span> {
-        <span class="macro">write!</span>(<span class="ident">f</span>, <span class="string">&quot;{}&quot;</span>, <span class="self">self</span>.<span class="ident">string</span>())
+<span class="kw">impl </span>Display <span class="kw">for </span>Guid {
+    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>Formatter) -&gt; <span class="prelude-ty">Result</span>&lt;(), Error&gt; {
+        <span class="macro">write!</span>(f, <span class="string">&quot;{}&quot;</span>, <span class="self">self</span>.string())
     }
 }
 
-<span class="doccomment">/// This is represented in SDL2 as a bitfield but obviously not all</span>
-<span class="doccomment">/// combinations make sense: 5 for instance would mean up and down at</span>
-<span class="doccomment">/// the same time... To simplify things I turn it into an enum which</span>
-<span class="doccomment">/// is how the SDL2 docs present it anyway (using macros).</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Eq</span>, <span class="ident">PartialEq</span>, <span class="ident">Hash</span>, <span class="ident">Debug</span>)]</span>
-<span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">HatState</span> {
-    <span class="ident">Centered</span> <span class="op">=</span> <span class="number">0</span>,
-    <span class="ident">Up</span> <span class="op">=</span> <span class="number">0x01</span>,
-    <span class="ident">Right</span> <span class="op">=</span> <span class="number">0x02</span>,
-    <span class="ident">Down</span> <span class="op">=</span> <span class="number">0x04</span>,
-    <span class="ident">Left</span> <span class="op">=</span> <span class="number">0x08</span>,
-    <span class="ident">RightUp</span> <span class="op">=</span> <span class="number">0x02</span> <span class="op">|</span> <span class="number">0x01</span>,
-    <span class="ident">RightDown</span> <span class="op">=</span> <span class="number">0x02</span> <span class="op">|</span> <span class="number">0x04</span>,
-    <span class="ident">LeftUp</span> <span class="op">=</span> <span class="number">0x08</span> <span class="op">|</span> <span class="number">0x01</span>,
-    <span class="ident">LeftDown</span> <span class="op">=</span> <span class="number">0x08</span> <span class="op">|</span> <span class="number">0x04</span>,
+<span class="doccomment">/// This is represented in SDL2 as a bitfield but obviously not all
+/// combinations make sense: 5 for instance would mean up and down at
+/// the same time... To simplify things I turn it into an enum which
+/// is how the SDL2 docs present it anyway (using macros).
+</span><span class="attribute">#[derive(Copy, Clone, Eq, PartialEq, Hash, Debug)]
+</span><span class="kw">pub enum </span>HatState {
+    Centered = <span class="number">0</span>,
+    Up = <span class="number">0x01</span>,
+    Right = <span class="number">0x02</span>,
+    Down = <span class="number">0x04</span>,
+    Left = <span class="number">0x08</span>,
+    RightUp = <span class="number">0x02 </span>| <span class="number">0x01</span>,
+    RightDown = <span class="number">0x02 </span>| <span class="number">0x04</span>,
+    LeftUp = <span class="number">0x08 </span>| <span class="number">0x01</span>,
+    LeftDown = <span class="number">0x08 </span>| <span class="number">0x04</span>,
 }
 
-<span class="kw">impl</span> <span class="ident">HatState</span> {
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">from_raw</span>(<span class="ident">raw</span>: <span class="ident">u8</span>) -&gt; <span class="ident">HatState</span> {
-        <span class="kw">match</span> <span class="ident">raw</span> {
-            <span class="number">0</span> =&gt; <span class="ident">HatState::Centered</span>,
-            <span class="number">1</span> =&gt; <span class="ident">HatState::Up</span>,
-            <span class="number">2</span> =&gt; <span class="ident">HatState::Right</span>,
-            <span class="number">4</span> =&gt; <span class="ident">HatState::Down</span>,
-            <span class="number">8</span> =&gt; <span class="ident">HatState::Left</span>,
-            <span class="number">3</span> =&gt; <span class="ident">HatState::RightUp</span>,
-            <span class="number">6</span> =&gt; <span class="ident">HatState::RightDown</span>,
-            <span class="number">9</span> =&gt; <span class="ident">HatState::LeftUp</span>,
-            <span class="number">12</span> =&gt; <span class="ident">HatState::LeftDown</span>,
+<span class="kw">impl </span>HatState {
+    <span class="kw">pub fn </span>from_raw(raw: u8) -&gt; HatState {
+        <span class="kw">match </span>raw {
+            <span class="number">0 </span>=&gt; HatState::Centered,
+            <span class="number">1 </span>=&gt; HatState::Up,
+            <span class="number">2 </span>=&gt; HatState::Right,
+            <span class="number">4 </span>=&gt; HatState::Down,
+            <span class="number">8 </span>=&gt; HatState::Left,
+            <span class="number">3 </span>=&gt; HatState::RightUp,
+            <span class="number">6 </span>=&gt; HatState::RightDown,
+            <span class="number">9 </span>=&gt; HatState::LeftUp,
+            <span class="number">12 </span>=&gt; HatState::LeftDown,
 
-            <span class="comment">// The Xinput driver on Windows can report hat states on certain hardware that don&#39;t</span>
-            <span class="comment">// make any sense from a gameplay perspective, and so aren&#39;t worth putting in the</span>
-            <span class="comment">// HatState enumeration.</span>
-            <span class="kw">_</span> =&gt; <span class="ident">HatState::Centered</span>,
+            <span class="comment">// The Xinput driver on Windows can report hat states on certain hardware that don&#39;t
+            // make any sense from a gameplay perspective, and so aren&#39;t worth putting in the
+            // HatState enumeration.
+            </span><span class="kw">_ </span>=&gt; HatState::Centered,
         }
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">to_raw</span>(<span class="self">self</span>) -&gt; <span class="ident">u8</span> {
-        <span class="kw">match</span> <span class="self">self</span> {
-            <span class="ident">HatState::Centered</span> =&gt; <span class="number">0</span>,
-            <span class="ident">HatState::Up</span> =&gt; <span class="number">1</span>,
-            <span class="ident">HatState::Right</span> =&gt; <span class="number">2</span>,
-            <span class="ident">HatState::Down</span> =&gt; <span class="number">4</span>,
-            <span class="ident">HatState::Left</span> =&gt; <span class="number">8</span>,
-            <span class="ident">HatState::RightUp</span> =&gt; <span class="number">3</span>,
-            <span class="ident">HatState::RightDown</span> =&gt; <span class="number">6</span>,
-            <span class="ident">HatState::LeftUp</span> =&gt; <span class="number">9</span>,
-            <span class="ident">HatState::LeftDown</span> =&gt; <span class="number">12</span>,
+    <span class="kw">pub fn </span>to_raw(<span class="self">self</span>) -&gt; u8 {
+        <span class="kw">match </span><span class="self">self </span>{
+            HatState::Centered =&gt; <span class="number">0</span>,
+            HatState::Up =&gt; <span class="number">1</span>,
+            HatState::Right =&gt; <span class="number">2</span>,
+            HatState::Down =&gt; <span class="number">4</span>,
+            HatState::Left =&gt; <span class="number">8</span>,
+            HatState::RightUp =&gt; <span class="number">3</span>,
+            HatState::RightDown =&gt; <span class="number">6</span>,
+            HatState::LeftUp =&gt; <span class="number">9</span>,
+            HatState::LeftDown =&gt; <span class="number">12</span>,
         }
     }
 }
 
-<span class="doccomment">/// Convert C string `c_str` to a String. Return an empty string if</span>
-<span class="doccomment">/// `c_str` is NULL.</span>
-<span class="kw">fn</span> <span class="ident">c_str_to_string</span>(<span class="ident">c_str</span>: <span class="kw-2">*const</span> <span class="ident">c_char</span>) -&gt; <span class="ident">String</span> {
-    <span class="kw">if</span> <span class="ident">c_str</span>.<span class="ident">is_null</span>() {
-        <span class="ident">String::new</span>()
-    } <span class="kw">else</span> {
-        <span class="kw">let</span> <span class="ident">bytes</span> <span class="op">=</span> <span class="kw">unsafe</span> { <span class="ident">CStr::from_ptr</span>(<span class="ident">c_str</span> <span class="kw">as</span> <span class="kw-2">*const</span> <span class="kw">_</span>).<span class="ident">to_bytes</span>() };
+<span class="doccomment">/// Convert C string `c_str` to a String. Return an empty string if
+/// `c_str` is NULL.
+</span><span class="kw">fn </span>c_str_to_string(c_str: <span class="kw-2">*const </span>c_char) -&gt; String {
+    <span class="kw">if </span>c_str.is_null() {
+        String::new()
+    } <span class="kw">else </span>{
+        <span class="kw">let </span>bytes = <span class="kw">unsafe </span>{ CStr::from_ptr(c_str <span class="kw">as </span><span class="kw-2">*const </span><span class="kw">_</span>).to_bytes() };
 
-        <span class="ident">String::from_utf8_lossy</span>(<span class="ident">bytes</span>).<span class="ident">to_string</span>()
+        String::from_utf8_lossy(bytes).to_string()
     }
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="sdl2" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0 (a55dd71d5 2022-09-19)" ></div></body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="sdl2" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.66.1 (90743e729 2023-01-10)" ></div></body></html>

@@ -1,6 +1,5 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/clap-4.0.18/src/output/textwrap/core.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>core.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../../storage.js"></script><script defer src="../../../../source-script.js"></script><script defer src="../../../../source-files.js"></script><script defer src="../../../../main.js"></script><noscript><link rel="stylesheet" href="../../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../../../clap/index.html"><div class="logo-container"><img src="https://raw.githubusercontent.com/clap-rs/clap/master/assets/clap.png" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../../../clap/index.html"><div class="logo-container">
-                    <img src="https://raw.githubusercontent.com/clap-rs/clap/master/assets/clap.png" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../../../clap/index.html">
-                        <img src="https://raw.githubusercontent.com/clap-rs/clap/master/assets/clap.png" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/clap-4.0.18/src/output/textwrap/core.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>core.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../../../normalize.css"><link rel="stylesheet" href="../../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../../../ayu.css" disabled><link rel="stylesheet" href="../../../../dark.css" disabled><link rel="stylesheet" href="../../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../../storage.js"></script><script defer src="../../../../source-script.js"></script><script defer src="../../../../source-files.js"></script><script defer src="../../../../main.js"></script><noscript><link rel="stylesheet" href="../../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><div class="width-limiter"><nav class="sub"><a class="sub-logo-container" href="../../../../clap/index.html">
+                        <img src="https://raw.githubusercontent.com/clap-rs/clap/master/assets/clap.png" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../../wheel.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -158,163 +157,163 @@
 <span id="156">156</span>
 <span id="157">157</span>
 <span id="158">158</span>
-</pre><pre class="rust"><code><span class="doccomment">/// Compute the display width of `text`</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// # Examples</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// **Note:** When the `unicode` Cargo feature is disabled, all characters are presumed to take up</span>
-<span class="doccomment">/// 1 width.  With the feature enabled, function will correctly deal with [combining characters] in</span>
-<span class="doccomment">/// their decomposed form (see [Unicode equivalence]).</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// An example of a decomposed character is “é”, which can be decomposed into: “e” followed by a</span>
-<span class="doccomment">/// combining acute accent: “◌́”.  Without the `unicode` Cargo feature, every `char` has a width of</span>
-<span class="doccomment">/// 1. This includes the combining accent:</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// ## Emojis and CJK Characters</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// Characters such as emojis and [CJK characters] used in the</span>
-<span class="doccomment">/// Chinese, Japanese, and Korean languages are seen as double-width,</span>
-<span class="doccomment">/// even if the `unicode-width` feature is disabled:</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// # Limitations</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// The displayed width of a string cannot always be computed from the</span>
-<span class="doccomment">/// string alone. This is because the width depends on the rendering</span>
-<span class="doccomment">/// engine used. This is particularly visible with [emoji modifier</span>
-<span class="doccomment">/// sequences] where a base emoji is modified with, e.g., skin tone or</span>
-<span class="doccomment">/// hair color modifiers. It is up to the rendering engine to detect</span>
-<span class="doccomment">/// this and to produce a suitable emoji.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// A simple example is “❤️”, which consists of “❤” (U+2764: Black</span>
-<span class="doccomment">/// Heart Symbol) followed by U+FE0F (Variation Selector-16). By</span>
-<span class="doccomment">/// itself, “❤” is a black heart, but if you follow it with the</span>
-<span class="doccomment">/// variant selector, you may get a wider red heart.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// A more complex example would be “👨‍🦰” which should depict a man</span>
-<span class="doccomment">/// with red hair. Here the computed width is too large — and the</span>
-<span class="doccomment">/// width differs depending on the use of the `unicode-width` feature:</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// This happens because the grapheme consists of three code points:</span>
-<span class="doccomment">/// “👨” (U+1F468: Man), Zero Width Joiner (U+200D), and “🦰”</span>
-<span class="doccomment">/// (U+1F9B0: Red Hair). You can see them above in the test. With</span>
-<span class="doccomment">/// `unicode-width` enabled, the ZWJ is correctly seen as having zero</span>
-<span class="doccomment">/// width, without it is counted as a double-width character.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// ## Terminal Support</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// Modern browsers typically do a great job at combining characters</span>
-<span class="doccomment">/// as shown above, but terminals often struggle more. As an example,</span>
-<span class="doccomment">/// Gnome Terminal version 3.38.1, shows “❤️” as a big red heart, but</span>
-<span class="doccomment">/// shows &quot;👨‍🦰&quot; as “👨🦰”.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// [combining characters]: https://en.wikipedia.org/wiki/Combining_character</span>
-<span class="doccomment">/// [Unicode equivalence]: https://en.wikipedia.org/wiki/Unicode_equivalence</span>
-<span class="doccomment">/// [CJK characters]: https://en.wikipedia.org/wiki/CJK_characters</span>
-<span class="doccomment">/// [emoji modifier sequences]: https://unicode.org/emoji/charts/full-emoji-modifiers.html</span>
-<span class="attribute">#[<span class="ident">inline</span>(<span class="ident">never</span>)]</span>
-<span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">display_width</span>(<span class="ident">text</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) -&gt; <span class="ident">usize</span> {
-    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">width</span> <span class="op">=</span> <span class="number">0</span>;
+</pre><pre class="rust"><code><span class="doccomment">/// Compute the display width of `text`
+///
+/// # Examples
+///
+/// **Note:** When the `unicode` Cargo feature is disabled, all characters are presumed to take up
+/// 1 width.  With the feature enabled, function will correctly deal with [combining characters] in
+/// their decomposed form (see [Unicode equivalence]).
+///
+/// An example of a decomposed character is “é”, which can be decomposed into: “e” followed by a
+/// combining acute accent: “◌́”.  Without the `unicode` Cargo feature, every `char` has a width of
+/// 1. This includes the combining accent:
+///
+/// ## Emojis and CJK Characters
+///
+/// Characters such as emojis and [CJK characters] used in the
+/// Chinese, Japanese, and Korean languages are seen as double-width,
+/// even if the `unicode-width` feature is disabled:
+///
+/// # Limitations
+///
+/// The displayed width of a string cannot always be computed from the
+/// string alone. This is because the width depends on the rendering
+/// engine used. This is particularly visible with [emoji modifier
+/// sequences] where a base emoji is modified with, e.g., skin tone or
+/// hair color modifiers. It is up to the rendering engine to detect
+/// this and to produce a suitable emoji.
+///
+/// A simple example is “❤️”, which consists of “❤” (U+2764: Black
+/// Heart Symbol) followed by U+FE0F (Variation Selector-16). By
+/// itself, “❤” is a black heart, but if you follow it with the
+/// variant selector, you may get a wider red heart.
+///
+/// A more complex example would be “👨‍🦰” which should depict a man
+/// with red hair. Here the computed width is too large — and the
+/// width differs depending on the use of the `unicode-width` feature:
+///
+/// This happens because the grapheme consists of three code points:
+/// “👨” (U+1F468: Man), Zero Width Joiner (U+200D), and “🦰”
+/// (U+1F9B0: Red Hair). You can see them above in the test. With
+/// `unicode-width` enabled, the ZWJ is correctly seen as having zero
+/// width, without it is counted as a double-width character.
+///
+/// ## Terminal Support
+///
+/// Modern browsers typically do a great job at combining characters
+/// as shown above, but terminals often struggle more. As an example,
+/// Gnome Terminal version 3.38.1, shows “❤️” as a big red heart, but
+/// shows &quot;👨‍🦰&quot; as “👨🦰”.
+///
+/// [combining characters]: https://en.wikipedia.org/wiki/Combining_character
+/// [Unicode equivalence]: https://en.wikipedia.org/wiki/Unicode_equivalence
+/// [CJK characters]: https://en.wikipedia.org/wiki/CJK_characters
+/// [emoji modifier sequences]: https://unicode.org/emoji/charts/full-emoji-modifiers.html
+</span><span class="attribute">#[inline(never)]
+</span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>display_width(text: <span class="kw-2">&amp;</span>str) -&gt; usize {
+    <span class="kw">let </span><span class="kw-2">mut </span>width = <span class="number">0</span>;
 
-    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">control_sequence</span> <span class="op">=</span> <span class="bool-val">false</span>;
-    <span class="kw">let</span> <span class="ident">control_terminate</span>: <span class="ident">char</span> <span class="op">=</span> <span class="string">&#39;m&#39;</span>;
+    <span class="kw">let </span><span class="kw-2">mut </span>control_sequence = <span class="bool-val">false</span>;
+    <span class="kw">let </span>control_terminate: char = <span class="string">&#39;m&#39;</span>;
 
-    <span class="kw">for</span> <span class="ident">ch</span> <span class="kw">in</span> <span class="ident">text</span>.<span class="ident">chars</span>() {
-        <span class="kw">if</span> <span class="ident">ch</span>.<span class="ident">is_ascii_control</span>() {
-            <span class="ident">control_sequence</span> <span class="op">=</span> <span class="bool-val">true</span>;
-        } <span class="kw">else</span> <span class="kw">if</span> <span class="ident">control_sequence</span> <span class="op">&amp;&amp;</span> <span class="ident">ch</span> <span class="op">==</span> <span class="ident">control_terminate</span> {
-            <span class="ident">control_sequence</span> <span class="op">=</span> <span class="bool-val">false</span>;
+    <span class="kw">for </span>ch <span class="kw">in </span>text.chars() {
+        <span class="kw">if </span>ch.is_ascii_control() {
+            control_sequence = <span class="bool-val">true</span>;
+        } <span class="kw">else if </span>control_sequence &amp;&amp; ch == control_terminate {
+            control_sequence = <span class="bool-val">false</span>;
             <span class="kw">continue</span>;
         }
 
-        <span class="kw">if</span> <span class="op">!</span><span class="ident">control_sequence</span> {
-            <span class="ident">width</span> <span class="op">+</span><span class="op">=</span> <span class="ident">ch_width</span>(<span class="ident">ch</span>);
+        <span class="kw">if </span>!control_sequence {
+            width += ch_width(ch);
         }
     }
-    <span class="ident">width</span>
+    width
 }
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;unicode&quot;</span>)]</span>
-<span class="kw">fn</span> <span class="ident">ch_width</span>(<span class="ident">ch</span>: <span class="ident">char</span>) -&gt; <span class="ident">usize</span> {
-    <span class="ident">unicode_width::UnicodeWidthChar::width</span>(<span class="ident">ch</span>).<span class="ident">unwrap_or</span>(<span class="number">0</span>)
+<span class="attribute">#[cfg(feature = <span class="string">&quot;unicode&quot;</span>)]
+</span><span class="kw">fn </span>ch_width(ch: char) -&gt; usize {
+    unicode_width::UnicodeWidthChar::width(ch).unwrap_or(<span class="number">0</span>)
 }
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">not</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;unicode&quot;</span>))]</span>
-<span class="kw">fn</span> <span class="ident">ch_width</span>(<span class="kw">_</span>: <span class="ident">char</span>) -&gt; <span class="ident">usize</span> {
-    <span class="number">1</span>
-}
+<span class="attribute">#[cfg(not(feature = <span class="string">&quot;unicode&quot;</span>))]
+</span><span class="kw">fn </span>ch_width(<span class="kw">_</span>: char) -&gt; usize {
+    <span class="number">1
+</span>}
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">test</span>)]</span>
-<span class="kw">mod</span> <span class="ident">tests</span> {
-    <span class="kw">use</span> <span class="kw">super</span>::<span class="kw-2">*</span>;
+<span class="attribute">#[cfg(test)]
+</span><span class="kw">mod </span>tests {
+    <span class="kw">use super</span>::<span class="kw-2">*</span>;
 
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;unicode&quot;</span>)]</span>
-    <span class="kw">use</span> <span class="ident">unicode_width::UnicodeWidthChar</span>;
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;unicode&quot;</span>)]
+    </span><span class="kw">use </span>unicode_width::UnicodeWidthChar;
 
-    <span class="attribute">#[<span class="ident">test</span>]</span>
-    <span class="kw">fn</span> <span class="ident">emojis_have_correct_width</span>() {
-        <span class="kw">use</span> <span class="ident">unic_emoji_char::is_emoji</span>;
+    <span class="attribute">#[test]
+    </span><span class="kw">fn </span>emojis_have_correct_width() {
+        <span class="kw">use </span>unic_emoji_char::is_emoji;
 
-        <span class="comment">// Emojis in the Basic Latin (ASCII) and Latin-1 Supplement</span>
-        <span class="comment">// blocks all have a width of 1 column. This includes</span>
-        <span class="comment">// characters such as &#39;#&#39; and &#39;©&#39;.</span>
-        <span class="kw">for</span> <span class="ident">ch</span> <span class="kw">in</span> <span class="string">&#39;\u{1}&#39;</span>..<span class="string">&#39;\u{FF}&#39;</span> {
-            <span class="kw">if</span> <span class="ident">is_emoji</span>(<span class="ident">ch</span>) {
-                <span class="kw">let</span> <span class="ident">desc</span> <span class="op">=</span> <span class="macro">format!</span>(<span class="string">&quot;{:?} U+{:04X}&quot;</span>, <span class="ident">ch</span>, <span class="ident">ch</span> <span class="kw">as</span> <span class="ident">u32</span>);
+        <span class="comment">// Emojis in the Basic Latin (ASCII) and Latin-1 Supplement
+        // blocks all have a width of 1 column. This includes
+        // characters such as &#39;#&#39; and &#39;©&#39;.
+        </span><span class="kw">for </span>ch <span class="kw">in </span><span class="string">&#39;\u{1}&#39;</span>..<span class="string">&#39;\u{FF}&#39; </span>{
+            <span class="kw">if </span>is_emoji(ch) {
+                <span class="kw">let </span>desc = <span class="macro">format!</span>(<span class="string">&quot;{:?} U+{:04X}&quot;</span>, ch, ch <span class="kw">as </span>u32);
 
-                <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;unicode&quot;</span>)]</span>
-                <span class="macro">assert_eq!</span>(<span class="ident">ch</span>.<span class="ident">width</span>().<span class="ident">unwrap</span>(), <span class="number">1</span>, <span class="string">&quot;char: {}&quot;</span>, <span class="ident">desc</span>);
+                <span class="attribute">#[cfg(feature = <span class="string">&quot;unicode&quot;</span>)]
+                </span><span class="macro">assert_eq!</span>(ch.width().unwrap(), <span class="number">1</span>, <span class="string">&quot;char: {}&quot;</span>, desc);
 
-                <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">not</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;unicode&quot;</span>))]</span>
-                <span class="macro">assert_eq!</span>(<span class="ident">ch_width</span>(<span class="ident">ch</span>), <span class="number">1</span>, <span class="string">&quot;char: {}&quot;</span>, <span class="ident">desc</span>);
+                <span class="attribute">#[cfg(not(feature = <span class="string">&quot;unicode&quot;</span>))]
+                </span><span class="macro">assert_eq!</span>(ch_width(ch), <span class="number">1</span>, <span class="string">&quot;char: {}&quot;</span>, desc);
             }
         }
 
-        <span class="comment">// Emojis in the remaining blocks of the Basic Multilingual</span>
-        <span class="comment">// Plane (BMP), in the Supplementary Multilingual Plane (SMP),</span>
-        <span class="comment">// and in the Supplementary Ideographic Plane (SIP), are all 1</span>
-        <span class="comment">// or 2 columns wide when unicode-width is used, and always 2</span>
-        <span class="comment">// columns wide otherwise. This includes all of our favorite</span>
-        <span class="comment">// emojis such as 😊.</span>
-        <span class="kw">for</span> <span class="ident">ch</span> <span class="kw">in</span> <span class="string">&#39;\u{FF}&#39;</span>..<span class="string">&#39;\u{2FFFF}&#39;</span> {
-            <span class="kw">if</span> <span class="ident">is_emoji</span>(<span class="ident">ch</span>) {
-                <span class="kw">let</span> <span class="ident">desc</span> <span class="op">=</span> <span class="macro">format!</span>(<span class="string">&quot;{:?} U+{:04X}&quot;</span>, <span class="ident">ch</span>, <span class="ident">ch</span> <span class="kw">as</span> <span class="ident">u32</span>);
+        <span class="comment">// Emojis in the remaining blocks of the Basic Multilingual
+        // Plane (BMP), in the Supplementary Multilingual Plane (SMP),
+        // and in the Supplementary Ideographic Plane (SIP), are all 1
+        // or 2 columns wide when unicode-width is used, and always 2
+        // columns wide otherwise. This includes all of our favorite
+        // emojis such as 😊.
+        </span><span class="kw">for </span>ch <span class="kw">in </span><span class="string">&#39;\u{FF}&#39;</span>..<span class="string">&#39;\u{2FFFF}&#39; </span>{
+            <span class="kw">if </span>is_emoji(ch) {
+                <span class="kw">let </span>desc = <span class="macro">format!</span>(<span class="string">&quot;{:?} U+{:04X}&quot;</span>, ch, ch <span class="kw">as </span>u32);
 
-                <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;unicode&quot;</span>)]</span>
-                <span class="macro">assert!</span>(<span class="ident">ch</span>.<span class="ident">width</span>().<span class="ident">unwrap</span>() <span class="op">&lt;</span><span class="op">=</span> <span class="number">2</span>, <span class="string">&quot;char: {}&quot;</span>, <span class="ident">desc</span>);
+                <span class="attribute">#[cfg(feature = <span class="string">&quot;unicode&quot;</span>)]
+                </span><span class="macro">assert!</span>(ch.width().unwrap() &lt;= <span class="number">2</span>, <span class="string">&quot;char: {}&quot;</span>, desc);
 
-                <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">not</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;unicode&quot;</span>))]</span>
-                <span class="macro">assert_eq!</span>(<span class="ident">ch_width</span>(<span class="ident">ch</span>), <span class="number">1</span>, <span class="string">&quot;char: {}&quot;</span>, <span class="ident">desc</span>);
+                <span class="attribute">#[cfg(not(feature = <span class="string">&quot;unicode&quot;</span>))]
+                </span><span class="macro">assert_eq!</span>(ch_width(ch), <span class="number">1</span>, <span class="string">&quot;char: {}&quot;</span>, desc);
             }
         }
 
-        <span class="comment">// The remaining planes contain almost no assigned code points</span>
-        <span class="comment">// and thus also no emojis.</span>
+        <span class="comment">// The remaining planes contain almost no assigned code points
+        // and thus also no emojis.
+    </span>}
+
+    <span class="attribute">#[test]
+    #[cfg(feature = <span class="string">&quot;unicode&quot;</span>)]
+    </span><span class="kw">fn </span>display_width_works() {
+        <span class="macro">assert_eq!</span>(<span class="string">&quot;Café Plain&quot;</span>.len(), <span class="number">11</span>); <span class="comment">// “é” is two bytes
+        </span><span class="macro">assert_eq!</span>(display_width(<span class="string">&quot;Café Plain&quot;</span>), <span class="number">10</span>);
     }
 
-    <span class="attribute">#[<span class="ident">test</span>]</span>
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;unicode&quot;</span>)]</span>
-    <span class="kw">fn</span> <span class="ident">display_width_works</span>() {
-        <span class="macro">assert_eq!</span>(<span class="string">&quot;Café Plain&quot;</span>.<span class="ident">len</span>(), <span class="number">11</span>); <span class="comment">// “é” is two bytes</span>
-        <span class="macro">assert_eq!</span>(<span class="ident">display_width</span>(<span class="string">&quot;Café Plain&quot;</span>), <span class="number">10</span>);
+    <span class="attribute">#[test]
+    #[cfg(feature = <span class="string">&quot;unicode&quot;</span>)]
+    </span><span class="kw">fn </span>display_width_narrow_emojis() {
+        <span class="macro">assert_eq!</span>(display_width(<span class="string">&quot;⁉&quot;</span>), <span class="number">1</span>);
     }
 
-    <span class="attribute">#[<span class="ident">test</span>]</span>
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;unicode&quot;</span>)]</span>
-    <span class="kw">fn</span> <span class="ident">display_width_narrow_emojis</span>() {
-        <span class="macro">assert_eq!</span>(<span class="ident">display_width</span>(<span class="string">&quot;⁉&quot;</span>), <span class="number">1</span>);
+    <span class="attribute">#[test]
+    #[cfg(feature = <span class="string">&quot;unicode&quot;</span>)]
+    </span><span class="kw">fn </span>display_width_narrow_emojis_variant_selector() {
+        <span class="macro">assert_eq!</span>(display_width(<span class="string">&quot;⁉\u{fe0f}&quot;</span>), <span class="number">1</span>);
     }
 
-    <span class="attribute">#[<span class="ident">test</span>]</span>
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;unicode&quot;</span>)]</span>
-    <span class="kw">fn</span> <span class="ident">display_width_narrow_emojis_variant_selector</span>() {
-        <span class="macro">assert_eq!</span>(<span class="ident">display_width</span>(<span class="string">&quot;⁉\u{fe0f}&quot;</span>), <span class="number">1</span>);
-    }
-
-    <span class="attribute">#[<span class="ident">test</span>]</span>
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;unicode&quot;</span>)]</span>
-    <span class="kw">fn</span> <span class="ident">display_width_emojis</span>() {
-        <span class="macro">assert_eq!</span>(<span class="ident">display_width</span>(<span class="string">&quot;😂😭🥺🤣✨😍🙏🥰😊🔥&quot;</span>), <span class="number">20</span>);
+    <span class="attribute">#[test]
+    #[cfg(feature = <span class="string">&quot;unicode&quot;</span>)]
+    </span><span class="kw">fn </span>display_width_emojis() {
+        <span class="macro">assert_eq!</span>(display_width(<span class="string">&quot;😂😭🥺🤣✨😍🙏🥰😊🔥&quot;</span>), <span class="number">20</span>);
     }
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../../../" data-current-crate="clap" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0 (a55dd71d5 2022-09-19)" ></div></body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../../../" data-current-crate="clap" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.66.1 (90743e729 2023-01-10)" ></div></body></html>

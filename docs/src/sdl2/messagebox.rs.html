@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/sdl2-0.35.2/src/sdl2/messagebox.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>messagebox.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../sdl2/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../sdl2/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../sdl2/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/sdl2-0.35.2/src/sdl2/messagebox.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>messagebox.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../normalize.css"><link rel="stylesheet" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../ayu.css" disabled><link rel="stylesheet" href="../../dark.css" disabled><link rel="stylesheet" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><div class="width-limiter"><nav class="sub"><a class="sub-logo-container" href="../../sdl2/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -261,268 +261,268 @@
 <span id="261">261</span>
 <span id="262">262</span>
 <span id="263">263</span>
-</pre><pre class="rust"><code><span class="kw">use</span> <span class="ident">std::error</span>;
-<span class="kw">use</span> <span class="ident">std::ffi</span>::{<span class="ident">CString</span>, <span class="ident">NulError</span>};
-<span class="kw">use</span> <span class="ident">std::fmt</span>;
-<span class="kw">use</span> <span class="ident">std::os::raw</span>::{<span class="ident">c_char</span>, <span class="ident">c_int</span>};
-<span class="kw">use</span> <span class="ident">std::ptr</span>;
+</pre><pre class="rust"><code><span class="kw">use </span>std::error;
+<span class="kw">use </span>std::ffi::{CString, NulError};
+<span class="kw">use </span>std::fmt;
+<span class="kw">use </span>std::os::raw::{c_char, c_int};
+<span class="kw">use </span>std::ptr;
 
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::get_error</span>;
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::video::Window</span>;
+<span class="kw">use </span><span class="kw">crate</span>::get_error;
+<span class="kw">use </span><span class="kw">crate</span>::video::Window;
 
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::sys</span>;
+<span class="kw">use </span><span class="kw">crate</span>::sys;
 
-<span class="macro">bitflags!</span> {
-    <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">MessageBoxFlag</span>: <span class="ident">u32</span> {
-        <span class="kw">const</span> <span class="ident">ERROR</span> <span class="op">=</span>
-            <span class="ident">sys::SDL_MessageBoxFlags::SDL_MESSAGEBOX_ERROR</span> <span class="kw">as</span> <span class="ident">u32</span>;
-        <span class="kw">const</span> <span class="ident">WARNING</span> <span class="op">=</span>
-            <span class="ident">sys::SDL_MessageBoxFlags::SDL_MESSAGEBOX_WARNING</span> <span class="kw">as</span> <span class="ident">u32</span>;
-        <span class="kw">const</span> <span class="ident">INFORMATION</span> <span class="op">=</span>
-            <span class="ident">sys::SDL_MessageBoxFlags::SDL_MESSAGEBOX_INFORMATION</span> <span class="kw">as</span> <span class="ident">u32</span>;
+<span class="macro">bitflags! </span>{
+    <span class="kw">pub struct </span>MessageBoxFlag: u32 {
+        <span class="kw">const </span>ERROR =
+            sys::SDL_MessageBoxFlags::SDL_MESSAGEBOX_ERROR <span class="kw">as </span>u32;
+        <span class="kw">const </span>WARNING =
+            sys::SDL_MessageBoxFlags::SDL_MESSAGEBOX_WARNING <span class="kw">as </span>u32;
+        <span class="kw">const </span>INFORMATION =
+            sys::SDL_MessageBoxFlags::SDL_MESSAGEBOX_INFORMATION <span class="kw">as </span>u32;
     }
 }
 
-<span class="macro">bitflags!</span> {
-    <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">MessageBoxButtonFlag</span>: <span class="ident">u32</span> {
-        <span class="kw">const</span> <span class="ident">ESCAPEKEY_DEFAULT</span> <span class="op">=</span>
-            <span class="ident">sys::SDL_MessageBoxButtonFlags::SDL_MESSAGEBOX_BUTTON_ESCAPEKEY_DEFAULT</span> <span class="kw">as</span> <span class="ident">u32</span>;
-        <span class="kw">const</span> <span class="ident">RETURNKEY_DEFAULT</span> <span class="op">=</span>
-            <span class="ident">sys::SDL_MessageBoxButtonFlags::SDL_MESSAGEBOX_BUTTON_RETURNKEY_DEFAULT</span> <span class="kw">as</span> <span class="ident">u32</span>;
-        <span class="kw">const</span> <span class="ident">NOTHING</span> <span class="op">=</span> <span class="number">0</span>;
+<span class="macro">bitflags! </span>{
+    <span class="kw">pub struct </span>MessageBoxButtonFlag: u32 {
+        <span class="kw">const </span>ESCAPEKEY_DEFAULT =
+            sys::SDL_MessageBoxButtonFlags::SDL_MESSAGEBOX_BUTTON_ESCAPEKEY_DEFAULT <span class="kw">as </span>u32;
+        <span class="kw">const </span>RETURNKEY_DEFAULT =
+            sys::SDL_MessageBoxButtonFlags::SDL_MESSAGEBOX_BUTTON_RETURNKEY_DEFAULT <span class="kw">as </span>u32;
+        <span class="kw">const </span>NOTHING = <span class="number">0</span>;
     }
 }
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">MessageBoxColorScheme</span> {
-    <span class="kw">pub</span> <span class="ident">background</span>: (<span class="ident">u8</span>, <span class="ident">u8</span>, <span class="ident">u8</span>),
-    <span class="kw">pub</span> <span class="ident">text</span>: (<span class="ident">u8</span>, <span class="ident">u8</span>, <span class="ident">u8</span>),
-    <span class="kw">pub</span> <span class="ident">button_border</span>: (<span class="ident">u8</span>, <span class="ident">u8</span>, <span class="ident">u8</span>),
-    <span class="kw">pub</span> <span class="ident">button_background</span>: (<span class="ident">u8</span>, <span class="ident">u8</span>, <span class="ident">u8</span>),
-    <span class="kw">pub</span> <span class="ident">button_selected</span>: (<span class="ident">u8</span>, <span class="ident">u8</span>, <span class="ident">u8</span>),
+<span class="attribute">#[derive(Debug)]
+</span><span class="kw">pub struct </span>MessageBoxColorScheme {
+    <span class="kw">pub </span>background: (u8, u8, u8),
+    <span class="kw">pub </span>text: (u8, u8, u8),
+    <span class="kw">pub </span>button_border: (u8, u8, u8),
+    <span class="kw">pub </span>button_background: (u8, u8, u8),
+    <span class="kw">pub </span>button_selected: (u8, u8, u8),
 }
 
-<span class="kw">impl</span> <span class="ident">Into</span><span class="op">&lt;</span><span class="ident">sys::SDL_MessageBoxColorScheme</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">MessageBoxColorScheme</span> {
-    <span class="kw">fn</span> <span class="ident">into</span>(<span class="self">self</span>) -&gt; <span class="ident">sys::SDL_MessageBoxColorScheme</span> {
-        <span class="ident">sys::SDL_MessageBoxColorScheme</span> {
-            <span class="ident">colors</span>: <span class="self">self</span>.<span class="ident">into</span>(),
+<span class="kw">impl </span>Into&lt;sys::SDL_MessageBoxColorScheme&gt; <span class="kw">for </span>MessageBoxColorScheme {
+    <span class="kw">fn </span>into(<span class="self">self</span>) -&gt; sys::SDL_MessageBoxColorScheme {
+        sys::SDL_MessageBoxColorScheme {
+            colors: <span class="self">self</span>.into(),
         }
     }
 }
 
-<span class="kw">impl</span> <span class="ident">From</span><span class="op">&lt;</span><span class="ident">sys::SDL_MessageBoxColorScheme</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">MessageBoxColorScheme</span> {
-    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">prim</span>: <span class="ident">sys::SDL_MessageBoxColorScheme</span>) -&gt; <span class="ident">MessageBoxColorScheme</span> {
-        <span class="ident">prim</span>.<span class="ident">colors</span>.<span class="ident">into</span>()
+<span class="kw">impl </span>From&lt;sys::SDL_MessageBoxColorScheme&gt; <span class="kw">for </span>MessageBoxColorScheme {
+    <span class="kw">fn </span>from(prim: sys::SDL_MessageBoxColorScheme) -&gt; MessageBoxColorScheme {
+        prim.colors.into()
     }
 }
 
-<span class="doccomment">/// `button_id` is the integer that will be returned</span>
-<span class="doccomment">/// by `show_message_box`. It is not sed by SDL2,</span>
-<span class="doccomment">/// and should only be used to know which button has been triggered</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ButtonData</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="kw">pub</span> <span class="ident">flags</span>: <span class="ident">MessageBoxButtonFlag</span>,
-    <span class="kw">pub</span> <span class="ident">button_id</span>: <span class="ident">i32</span>,
-    <span class="kw">pub</span> <span class="ident">text</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">str</span>,
+<span class="doccomment">/// `button_id` is the integer that will be returned
+/// by `show_message_box`. It is not sed by SDL2,
+/// and should only be used to know which button has been triggered
+</span><span class="attribute">#[derive(Debug)]
+</span><span class="kw">pub struct </span>ButtonData&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="kw">pub </span>flags: MessageBoxButtonFlag,
+    <span class="kw">pub </span>button_id: i32,
+    <span class="kw">pub </span>text: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>str,
 }
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
-<span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">ClickedButton</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="ident">CloseButton</span>,
-    <span class="ident">CustomButton</span>(<span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">ButtonData</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>),
+<span class="attribute">#[derive(Debug)]
+</span><span class="kw">pub enum </span>ClickedButton&lt;<span class="lifetime">&#39;a</span>&gt; {
+    CloseButton,
+    CustomButton(<span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>ButtonData&lt;<span class="lifetime">&#39;a</span>&gt;),
 }
 
-<span class="kw">impl</span> <span class="ident">From</span><span class="op">&lt;</span><span class="ident">MessageBoxColorScheme</span><span class="op">&gt;</span> <span class="kw">for</span> [<span class="ident">sys::SDL_MessageBoxColor</span>; <span class="number">5</span>] {
-    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">scheme</span>: <span class="ident">MessageBoxColorScheme</span>) -&gt; [<span class="ident">sys::SDL_MessageBoxColor</span>; <span class="number">5</span>] {
-        <span class="kw">fn</span> <span class="ident">to_message_box_color</span>(<span class="ident">t</span>: (<span class="ident">u8</span>, <span class="ident">u8</span>, <span class="ident">u8</span>)) -&gt; <span class="ident">sys::SDL_MessageBoxColor</span> {
-            <span class="ident">sys::SDL_MessageBoxColor</span> {
-                <span class="ident">r</span>: <span class="ident">t</span>.<span class="number">0</span>,
-                <span class="ident">g</span>: <span class="ident">t</span>.<span class="number">1</span>,
-                <span class="ident">b</span>: <span class="ident">t</span>.<span class="number">2</span>,
+<span class="kw">impl </span>From&lt;MessageBoxColorScheme&gt; <span class="kw">for </span>[sys::SDL_MessageBoxColor; <span class="number">5</span>] {
+    <span class="kw">fn </span>from(scheme: MessageBoxColorScheme) -&gt; [sys::SDL_MessageBoxColor; <span class="number">5</span>] {
+        <span class="kw">fn </span>to_message_box_color(t: (u8, u8, u8)) -&gt; sys::SDL_MessageBoxColor {
+            sys::SDL_MessageBoxColor {
+                r: t.<span class="number">0</span>,
+                g: t.<span class="number">1</span>,
+                b: t.<span class="number">2</span>,
             }
         }
         [
-            <span class="ident">to_message_box_color</span>(<span class="ident">scheme</span>.<span class="ident">background</span>),
-            <span class="ident">to_message_box_color</span>(<span class="ident">scheme</span>.<span class="ident">text</span>),
-            <span class="ident">to_message_box_color</span>(<span class="ident">scheme</span>.<span class="ident">button_border</span>),
-            <span class="ident">to_message_box_color</span>(<span class="ident">scheme</span>.<span class="ident">button_background</span>),
-            <span class="ident">to_message_box_color</span>(<span class="ident">scheme</span>.<span class="ident">button_selected</span>),
+            to_message_box_color(scheme.background),
+            to_message_box_color(scheme.text),
+            to_message_box_color(scheme.button_border),
+            to_message_box_color(scheme.button_background),
+            to_message_box_color(scheme.button_selected),
         ]
     }
 }
 
-<span class="kw">impl</span> <span class="ident">Into</span><span class="op">&lt;</span><span class="ident">MessageBoxColorScheme</span><span class="op">&gt;</span> <span class="kw">for</span> [<span class="ident">sys::SDL_MessageBoxColor</span>; <span class="number">5</span>] {
-    <span class="kw">fn</span> <span class="ident">into</span>(<span class="self">self</span>) -&gt; <span class="ident">MessageBoxColorScheme</span> {
-        <span class="kw">fn</span> <span class="ident">from_message_box_color</span>(<span class="ident">prim_color</span>: <span class="ident">sys::SDL_MessageBoxColor</span>) -&gt; (<span class="ident">u8</span>, <span class="ident">u8</span>, <span class="ident">u8</span>) {
-            (<span class="ident">prim_color</span>.<span class="ident">r</span>, <span class="ident">prim_color</span>.<span class="ident">g</span>, <span class="ident">prim_color</span>.<span class="ident">b</span>)
+<span class="kw">impl </span>Into&lt;MessageBoxColorScheme&gt; <span class="kw">for </span>[sys::SDL_MessageBoxColor; <span class="number">5</span>] {
+    <span class="kw">fn </span>into(<span class="self">self</span>) -&gt; MessageBoxColorScheme {
+        <span class="kw">fn </span>from_message_box_color(prim_color: sys::SDL_MessageBoxColor) -&gt; (u8, u8, u8) {
+            (prim_color.r, prim_color.g, prim_color.b)
         }
-        <span class="ident">MessageBoxColorScheme</span> {
-            <span class="ident">background</span>: <span class="ident">from_message_box_color</span>(<span class="self">self</span>[<span class="number">0</span>]),
-            <span class="ident">text</span>: <span class="ident">from_message_box_color</span>(<span class="self">self</span>[<span class="number">1</span>]),
-            <span class="ident">button_border</span>: <span class="ident">from_message_box_color</span>(<span class="self">self</span>[<span class="number">2</span>]),
-            <span class="ident">button_background</span>: <span class="ident">from_message_box_color</span>(<span class="self">self</span>[<span class="number">3</span>]),
-            <span class="ident">button_selected</span>: <span class="ident">from_message_box_color</span>(<span class="self">self</span>[<span class="number">4</span>]),
-        }
-    }
-}
-
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>)]</span>
-<span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">ShowMessageError</span> {
-    <span class="ident">InvalidTitle</span>(<span class="ident">NulError</span>),
-    <span class="ident">InvalidMessage</span>(<span class="ident">NulError</span>),
-    <span class="doccomment">/// Second argument of the tuple (i32) corresponds to the</span>
-    <span class="doccomment">/// first button_id having an error</span>
-    <span class="ident">InvalidButton</span>(<span class="ident">NulError</span>, <span class="ident">i32</span>),
-    <span class="ident">SdlError</span>(<span class="ident">String</span>),
-}
-
-<span class="kw">impl</span> <span class="ident">fmt::Display</span> <span class="kw">for</span> <span class="ident">ShowMessageError</span> {
-    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;mut</span> <span class="ident">fmt::Formatter</span>) -&gt; <span class="ident">fmt::Result</span> {
-        <span class="kw">use</span> <span class="ident"><span class="self">self</span>::ShowMessageError</span>::<span class="kw-2">*</span>;
-
-        <span class="kw">match</span> <span class="kw-2">*</span><span class="self">self</span> {
-            <span class="ident">InvalidTitle</span>(<span class="kw-2">ref</span> <span class="ident">e</span>) =&gt; <span class="macro">write!</span>(<span class="ident">f</span>, <span class="string">&quot;Invalid title: {}&quot;</span>, <span class="ident">e</span>),
-            <span class="ident">InvalidMessage</span>(<span class="kw-2">ref</span> <span class="ident">e</span>) =&gt; <span class="macro">write!</span>(<span class="ident">f</span>, <span class="string">&quot;Invalid message: {}&quot;</span>, <span class="ident">e</span>),
-            <span class="ident">InvalidButton</span>(<span class="kw-2">ref</span> <span class="ident">e</span>, <span class="ident">value</span>) =&gt; <span class="macro">write!</span>(<span class="ident">f</span>, <span class="string">&quot;Invalid button ({}): {}&quot;</span>, <span class="ident">value</span>, <span class="ident">e</span>),
-            <span class="ident">SdlError</span>(<span class="kw-2">ref</span> <span class="ident">e</span>) =&gt; <span class="macro">write!</span>(<span class="ident">f</span>, <span class="string">&quot;SDL error: {}&quot;</span>, <span class="ident">e</span>),
+        MessageBoxColorScheme {
+            background: from_message_box_color(<span class="self">self</span>[<span class="number">0</span>]),
+            text: from_message_box_color(<span class="self">self</span>[<span class="number">1</span>]),
+            button_border: from_message_box_color(<span class="self">self</span>[<span class="number">2</span>]),
+            button_background: from_message_box_color(<span class="self">self</span>[<span class="number">3</span>]),
+            button_selected: from_message_box_color(<span class="self">self</span>[<span class="number">4</span>]),
         }
     }
 }
 
-<span class="kw">impl</span> <span class="ident">error::Error</span> <span class="kw">for</span> <span class="ident">ShowMessageError</span> {
-    <span class="kw">fn</span> <span class="ident">description</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span><span class="ident">str</span> {
-        <span class="kw">use</span> <span class="ident"><span class="self">self</span>::ShowMessageError</span>::<span class="kw-2">*</span>;
+<span class="attribute">#[derive(Debug, Clone)]
+</span><span class="kw">pub enum </span>ShowMessageError {
+    InvalidTitle(NulError),
+    InvalidMessage(NulError),
+    <span class="doccomment">/// Second argument of the tuple (i32) corresponds to the
+    /// first button_id having an error
+    </span>InvalidButton(NulError, i32),
+    SdlError(String),
+}
 
-        <span class="kw">match</span> <span class="kw-2">*</span><span class="self">self</span> {
-            <span class="ident">InvalidTitle</span>(<span class="kw">_</span>) =&gt; <span class="string">&quot;invalid title&quot;</span>,
-            <span class="ident">InvalidMessage</span>(<span class="kw">_</span>) =&gt; <span class="string">&quot;invalid message&quot;</span>,
-            <span class="ident">InvalidButton</span>(..) =&gt; <span class="string">&quot;invalid button&quot;</span>,
-            <span class="ident">SdlError</span>(<span class="kw-2">ref</span> <span class="ident">e</span>) =&gt; <span class="ident">e</span>,
+<span class="kw">impl </span>fmt::Display <span class="kw">for </span>ShowMessageError {
+    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>fmt::Formatter) -&gt; fmt::Result {
+        <span class="kw">use </span><span class="self">self</span>::ShowMessageError::<span class="kw-2">*</span>;
+
+        <span class="kw">match </span><span class="kw-2">*</span><span class="self">self </span>{
+            InvalidTitle(<span class="kw-2">ref </span>e) =&gt; <span class="macro">write!</span>(f, <span class="string">&quot;Invalid title: {}&quot;</span>, e),
+            InvalidMessage(<span class="kw-2">ref </span>e) =&gt; <span class="macro">write!</span>(f, <span class="string">&quot;Invalid message: {}&quot;</span>, e),
+            InvalidButton(<span class="kw-2">ref </span>e, value) =&gt; <span class="macro">write!</span>(f, <span class="string">&quot;Invalid button ({}): {}&quot;</span>, value, e),
+            SdlError(<span class="kw-2">ref </span>e) =&gt; <span class="macro">write!</span>(f, <span class="string">&quot;SDL error: {}&quot;</span>, e),
         }
     }
 }
 
-<span class="doccomment">/// Show a simple message box, meant to be informative only.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// There is no way to know if the user clicked &quot;Ok&quot; or closed the message box,</span>
-<span class="doccomment">/// If you want to retrieve which button was clicked and customize a bit more</span>
-<span class="doccomment">/// your message box, use `show_message_box` instead.</span>
-<span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;SDL_ShowSimpleMessageBox&quot;</span>)]</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">show_simple_message_box</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">W</span><span class="op">&gt;</span>(
-    <span class="ident">flags</span>: <span class="ident">MessageBoxFlag</span>,
-    <span class="ident">title</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>,
-    <span class="ident">message</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>,
-    <span class="ident">window</span>: <span class="ident">W</span>,
-) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">ShowMessageError</span><span class="op">&gt;</span>
-<span class="kw">where</span>
-    <span class="ident">W</span>: <span class="ident">Into</span><span class="op">&lt;</span><span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">Window</span><span class="op">&gt;</span><span class="op">&gt;</span>,
+<span class="kw">impl </span>error::Error <span class="kw">for </span>ShowMessageError {
+    <span class="kw">fn </span>description(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span>str {
+        <span class="kw">use </span><span class="self">self</span>::ShowMessageError::<span class="kw-2">*</span>;
+
+        <span class="kw">match </span><span class="kw-2">*</span><span class="self">self </span>{
+            InvalidTitle(<span class="kw">_</span>) =&gt; <span class="string">&quot;invalid title&quot;</span>,
+            InvalidMessage(<span class="kw">_</span>) =&gt; <span class="string">&quot;invalid message&quot;</span>,
+            InvalidButton(..) =&gt; <span class="string">&quot;invalid button&quot;</span>,
+            SdlError(<span class="kw-2">ref </span>e) =&gt; e,
+        }
+    }
+}
+
+<span class="doccomment">/// Show a simple message box, meant to be informative only.
+///
+/// There is no way to know if the user clicked &quot;Ok&quot; or closed the message box,
+/// If you want to retrieve which button was clicked and customize a bit more
+/// your message box, use `show_message_box` instead.
+</span><span class="attribute">#[doc(alias = <span class="string">&quot;SDL_ShowSimpleMessageBox&quot;</span>)]
+</span><span class="kw">pub fn </span>show_simple_message_box&lt;<span class="lifetime">&#39;a</span>, W&gt;(
+    flags: MessageBoxFlag,
+    title: <span class="kw-2">&amp;</span>str,
+    message: <span class="kw-2">&amp;</span>str,
+    window: W,
+) -&gt; <span class="prelude-ty">Result</span>&lt;(), ShowMessageError&gt;
+<span class="kw">where
+    </span>W: Into&lt;<span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>Window&gt;&gt;,
 {
-    <span class="kw">use</span> <span class="ident"><span class="self">self</span>::ShowMessageError</span>::<span class="kw-2">*</span>;
-    <span class="kw">let</span> <span class="ident">result</span> <span class="op">=</span> <span class="kw">unsafe</span> {
-        <span class="kw">let</span> <span class="ident">title</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">CString::new</span>(<span class="ident">title</span>) {
-            <span class="prelude-val">Ok</span>(<span class="ident">s</span>) =&gt; <span class="ident">s</span>,
-            <span class="prelude-val">Err</span>(<span class="ident">err</span>) =&gt; <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">InvalidTitle</span>(<span class="ident">err</span>)),
+    <span class="kw">use </span><span class="self">self</span>::ShowMessageError::<span class="kw-2">*</span>;
+    <span class="kw">let </span>result = <span class="kw">unsafe </span>{
+        <span class="kw">let </span>title = <span class="kw">match </span>CString::new(title) {
+            <span class="prelude-val">Ok</span>(s) =&gt; s,
+            <span class="prelude-val">Err</span>(err) =&gt; <span class="kw">return </span><span class="prelude-val">Err</span>(InvalidTitle(err)),
         };
-        <span class="kw">let</span> <span class="ident">message</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">CString::new</span>(<span class="ident">message</span>) {
-            <span class="prelude-val">Ok</span>(<span class="ident">s</span>) =&gt; <span class="ident">s</span>,
-            <span class="prelude-val">Err</span>(<span class="ident">err</span>) =&gt; <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">InvalidMessage</span>(<span class="ident">err</span>)),
+        <span class="kw">let </span>message = <span class="kw">match </span>CString::new(message) {
+            <span class="prelude-val">Ok</span>(s) =&gt; s,
+            <span class="prelude-val">Err</span>(err) =&gt; <span class="kw">return </span><span class="prelude-val">Err</span>(InvalidMessage(err)),
         };
-        <span class="ident">sys::SDL_ShowSimpleMessageBox</span>(
-            <span class="ident">flags</span>.<span class="ident">bits</span>(),
-            <span class="ident">title</span>.<span class="ident">as_ptr</span>() <span class="kw">as</span> <span class="kw-2">*const</span> <span class="ident">c_char</span>,
-            <span class="ident">message</span>.<span class="ident">as_ptr</span>() <span class="kw">as</span> <span class="kw-2">*const</span> <span class="ident">c_char</span>,
-            <span class="ident">window</span>.<span class="ident">into</span>().<span class="ident">map_or</span>(<span class="ident">ptr::null_mut</span>(), <span class="op">|</span><span class="ident">win</span><span class="op">|</span> <span class="ident">win</span>.<span class="ident">raw</span>()),
+        sys::SDL_ShowSimpleMessageBox(
+            flags.bits(),
+            title.as_ptr() <span class="kw">as </span><span class="kw-2">*const </span>c_char,
+            message.as_ptr() <span class="kw">as </span><span class="kw-2">*const </span>c_char,
+            window.into().map_or(ptr::null_mut(), |win| win.raw()),
         )
-    } <span class="op">==</span> <span class="number">0</span>;
+    } == <span class="number">0</span>;
 
-    <span class="kw">if</span> <span class="ident">result</span> {
+    <span class="kw">if </span>result {
         <span class="prelude-val">Ok</span>(())
-    } <span class="kw">else</span> {
-        <span class="prelude-val">Err</span>(<span class="ident">SdlError</span>(<span class="ident">get_error</span>()))
+    } <span class="kw">else </span>{
+        <span class="prelude-val">Err</span>(SdlError(get_error()))
     }
 }
 
-<span class="doccomment">/// Show a customizable message box.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// An array of buttons is required for it to work. The array can be empty,</span>
-<span class="doccomment">/// but it will have no button beside the close button.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// On success, it will return either the button clicked or the close button.</span>
-<span class="doccomment">/// Note that the variant of the `ClickedButton` enum will also be returned if the message box</span>
-<span class="doccomment">/// has been forcefully closed (Alt-F4, ...)</span>
-<span class="doccomment">///</span>
-<span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;SDL_ShowMessageBox&quot;</span>)]</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">show_message_box</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="lifetime">&#39;b</span>, <span class="ident">W</span>, <span class="ident">M</span><span class="op">&gt;</span>(
-    <span class="ident">flags</span>: <span class="ident">MessageBoxFlag</span>,
-    <span class="ident">buttons</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">ButtonData</span>],
-    <span class="ident">title</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>,
-    <span class="ident">message</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>,
-    <span class="ident">window</span>: <span class="ident">W</span>,
-    <span class="ident">scheme</span>: <span class="ident">M</span>,
-) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">ClickedButton</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>, <span class="ident">ShowMessageError</span><span class="op">&gt;</span>
-<span class="kw">where</span>
-    <span class="ident">W</span>: <span class="ident">Into</span><span class="op">&lt;</span><span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;b</span> <span class="ident">Window</span><span class="op">&gt;</span><span class="op">&gt;</span>,
-    <span class="ident">M</span>: <span class="ident">Into</span><span class="op">&lt;</span><span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">MessageBoxColorScheme</span><span class="op">&gt;</span><span class="op">&gt;</span>,
+<span class="doccomment">/// Show a customizable message box.
+///
+/// An array of buttons is required for it to work. The array can be empty,
+/// but it will have no button beside the close button.
+///
+/// On success, it will return either the button clicked or the close button.
+/// Note that the variant of the `ClickedButton` enum will also be returned if the message box
+/// has been forcefully closed (Alt-F4, ...)
+///
+</span><span class="attribute">#[doc(alias = <span class="string">&quot;SDL_ShowMessageBox&quot;</span>)]
+</span><span class="kw">pub fn </span>show_message_box&lt;<span class="lifetime">&#39;a</span>, <span class="lifetime">&#39;b</span>, W, M&gt;(
+    flags: MessageBoxFlag,
+    buttons: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[ButtonData],
+    title: <span class="kw-2">&amp;</span>str,
+    message: <span class="kw-2">&amp;</span>str,
+    window: W,
+    scheme: M,
+) -&gt; <span class="prelude-ty">Result</span>&lt;ClickedButton&lt;<span class="lifetime">&#39;a</span>&gt;, ShowMessageError&gt;
+<span class="kw">where
+    </span>W: Into&lt;<span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;b </span>Window&gt;&gt;,
+    M: Into&lt;<span class="prelude-ty">Option</span>&lt;MessageBoxColorScheme&gt;&gt;,
 {
-    <span class="kw">let</span> <span class="ident">window</span> <span class="op">=</span> <span class="ident">window</span>.<span class="ident">into</span>();
-    <span class="kw">let</span> <span class="ident">scheme</span> <span class="op">=</span> <span class="ident">scheme</span>.<span class="ident">into</span>();
+    <span class="kw">let </span>window = window.into();
+    <span class="kw">let </span>scheme = scheme.into();
 
-    <span class="kw">use</span> <span class="ident"><span class="self">self</span>::ShowMessageError</span>::<span class="kw-2">*</span>;
-    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">button_id</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">0</span>;
-    <span class="kw">let</span> <span class="ident">title</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">CString::new</span>(<span class="ident">title</span>) {
-        <span class="prelude-val">Ok</span>(<span class="ident">s</span>) =&gt; <span class="ident">s</span>,
-        <span class="prelude-val">Err</span>(<span class="ident">err</span>) =&gt; <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">InvalidTitle</span>(<span class="ident">err</span>)),
+    <span class="kw">use </span><span class="self">self</span>::ShowMessageError::<span class="kw-2">*</span>;
+    <span class="kw">let </span><span class="kw-2">mut </span>button_id: c_int = <span class="number">0</span>;
+    <span class="kw">let </span>title = <span class="kw">match </span>CString::new(title) {
+        <span class="prelude-val">Ok</span>(s) =&gt; s,
+        <span class="prelude-val">Err</span>(err) =&gt; <span class="kw">return </span><span class="prelude-val">Err</span>(InvalidTitle(err)),
     };
-    <span class="kw">let</span> <span class="ident">message</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">CString::new</span>(<span class="ident">message</span>) {
-        <span class="prelude-val">Ok</span>(<span class="ident">s</span>) =&gt; <span class="ident">s</span>,
-        <span class="prelude-val">Err</span>(<span class="ident">err</span>) =&gt; <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">InvalidMessage</span>(<span class="ident">err</span>)),
+    <span class="kw">let </span>message = <span class="kw">match </span>CString::new(message) {
+        <span class="prelude-val">Ok</span>(s) =&gt; s,
+        <span class="prelude-val">Err</span>(err) =&gt; <span class="kw">return </span><span class="prelude-val">Err</span>(InvalidMessage(err)),
     };
-    <span class="kw">let</span> <span class="ident">button_texts</span>: <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="kw">_</span><span class="op">&gt;</span>, (<span class="kw">_</span>, <span class="ident">i32</span>)<span class="op">&gt;</span> <span class="op">=</span> <span class="ident">buttons</span>
-        .<span class="ident">iter</span>()
-        .<span class="ident">map</span>(<span class="op">|</span><span class="ident">b</span><span class="op">|</span> <span class="ident">CString::new</span>(<span class="ident">b</span>.<span class="ident">text</span>).<span class="ident">map_err</span>(<span class="op">|</span><span class="ident">e</span><span class="op">|</span> (<span class="ident">e</span>, <span class="ident">b</span>.<span class="ident">button_id</span>)))
-        .<span class="ident">collect</span>(); <span class="comment">// Create CString for every button; and catch any CString Error</span>
-    <span class="kw">let</span> <span class="ident">button_texts</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">button_texts</span> {
-        <span class="prelude-val">Ok</span>(<span class="ident">b</span>) =&gt; <span class="ident">b</span>,
-        <span class="prelude-val">Err</span>(<span class="ident">e</span>) =&gt; <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">InvalidButton</span>(<span class="ident">e</span>.<span class="number">0</span>, <span class="ident">e</span>.<span class="number">1</span>)),
+    <span class="kw">let </span>button_texts: <span class="prelude-ty">Result</span>&lt;Vec&lt;<span class="kw">_</span>&gt;, (<span class="kw">_</span>, i32)&gt; = buttons
+        .iter()
+        .map(|b| CString::new(b.text).map_err(|e| (e, b.button_id)))
+        .collect(); <span class="comment">// Create CString for every button; and catch any CString Error
+    </span><span class="kw">let </span>button_texts = <span class="kw">match </span>button_texts {
+        <span class="prelude-val">Ok</span>(b) =&gt; b,
+        <span class="prelude-val">Err</span>(e) =&gt; <span class="kw">return </span><span class="prelude-val">Err</span>(InvalidButton(e.<span class="number">0</span>, e.<span class="number">1</span>)),
     };
-    <span class="kw">let</span> <span class="ident">raw_buttons</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">sys::SDL_MessageBoxButtonData</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">buttons</span>
-        .<span class="ident">iter</span>()
-        .<span class="ident">zip</span>(<span class="ident">button_texts</span>.<span class="ident">iter</span>())
-        .<span class="ident">map</span>(<span class="op">|</span>(<span class="ident">b</span>, <span class="ident">b_text</span>)<span class="op">|</span> <span class="ident">sys::SDL_MessageBoxButtonData</span> {
-            <span class="ident">flags</span>: <span class="ident">b</span>.<span class="ident">flags</span>.<span class="ident">bits</span>(),
-            <span class="ident">buttonid</span>: <span class="ident">b</span>.<span class="ident">button_id</span> <span class="kw">as</span> <span class="ident">c_int</span>,
-            <span class="ident">text</span>: <span class="ident">b_text</span>.<span class="ident">as_ptr</span>(),
+    <span class="kw">let </span>raw_buttons: Vec&lt;sys::SDL_MessageBoxButtonData&gt; = buttons
+        .iter()
+        .zip(button_texts.iter())
+        .map(|(b, b_text)| sys::SDL_MessageBoxButtonData {
+            flags: b.flags.bits(),
+            buttonid: b.button_id <span class="kw">as </span>c_int,
+            text: b_text.as_ptr(),
         })
-        .<span class="ident">collect</span>();
-    <span class="kw">let</span> <span class="ident">result</span> <span class="op">=</span> <span class="kw">unsafe</span> {
-        <span class="kw">let</span> <span class="ident">msg_box_data</span> <span class="op">=</span> <span class="ident">sys::SDL_MessageBoxData</span> {
-            <span class="ident">flags</span>: <span class="ident">flags</span>.<span class="ident">bits</span>(),
-            <span class="ident">window</span>: <span class="ident">window</span>.<span class="ident">map_or</span>(<span class="ident">ptr::null_mut</span>(), <span class="op">|</span><span class="ident">win</span><span class="op">|</span> <span class="ident">win</span>.<span class="ident">raw</span>()),
-            <span class="ident">title</span>: <span class="ident">title</span>.<span class="ident">as_ptr</span>() <span class="kw">as</span> <span class="kw-2">*const</span> <span class="ident">c_char</span>,
-            <span class="ident">message</span>: <span class="ident">message</span>.<span class="ident">as_ptr</span>() <span class="kw">as</span> <span class="kw-2">*const</span> <span class="ident">c_char</span>,
-            <span class="ident">numbuttons</span>: <span class="ident">raw_buttons</span>.<span class="ident">len</span>() <span class="kw">as</span> <span class="ident">c_int</span>,
-            <span class="ident">buttons</span>: <span class="ident">raw_buttons</span>.<span class="ident">as_ptr</span>(),
-            <span class="ident">colorScheme</span>: <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">scheme</span>) <span class="op">=</span> <span class="ident">scheme</span> {
-                <span class="kw-2">&amp;</span><span class="ident">sys::SDL_MessageBoxColorScheme</span> {
-                    <span class="ident">colors</span>: <span class="ident">From::from</span>(<span class="ident">scheme</span>),
-                } <span class="kw">as</span> <span class="kw-2">*const</span> <span class="kw">_</span>
-            } <span class="kw">else</span> {
-                <span class="ident">ptr::null</span>()
+        .collect();
+    <span class="kw">let </span>result = <span class="kw">unsafe </span>{
+        <span class="kw">let </span>msg_box_data = sys::SDL_MessageBoxData {
+            flags: flags.bits(),
+            window: window.map_or(ptr::null_mut(), |win| win.raw()),
+            title: title.as_ptr() <span class="kw">as </span><span class="kw-2">*const </span>c_char,
+            message: message.as_ptr() <span class="kw">as </span><span class="kw-2">*const </span>c_char,
+            numbuttons: raw_buttons.len() <span class="kw">as </span>c_int,
+            buttons: raw_buttons.as_ptr(),
+            colorScheme: <span class="kw">if let </span><span class="prelude-val">Some</span>(scheme) = scheme {
+                <span class="kw-2">&amp;</span>sys::SDL_MessageBoxColorScheme {
+                    colors: From::from(scheme),
+                } <span class="kw">as </span><span class="kw-2">*const </span><span class="kw">_
+            </span>} <span class="kw">else </span>{
+                ptr::null()
             },
         };
-        <span class="ident">sys::SDL_ShowMessageBox</span>(<span class="kw-2">&amp;</span><span class="ident">msg_box_data</span> <span class="kw">as</span> <span class="kw-2">*const</span> <span class="kw">_</span>, <span class="kw-2">&amp;mut</span> <span class="ident">button_id</span> <span class="kw">as</span> <span class="kw-2">&amp;mut</span> <span class="kw">_</span>)
-    } <span class="op">==</span> <span class="number">0</span>;
-    <span class="kw">if</span> <span class="ident">result</span> {
-        <span class="kw">match</span> <span class="ident">button_id</span> {
-            <span class="op">-</span><span class="number">1</span> =&gt; <span class="prelude-val">Ok</span>(<span class="ident">ClickedButton::CloseButton</span>),
-            <span class="ident">id</span> =&gt; {
-                <span class="kw">let</span> <span class="ident">button</span> <span class="op">=</span> <span class="ident">buttons</span>.<span class="ident">iter</span>().<span class="ident">find</span>(<span class="op">|</span><span class="ident">b</span><span class="op">|</span> <span class="ident">b</span>.<span class="ident">button_id</span> <span class="op">==</span> <span class="ident">id</span>);
-                <span class="prelude-val">Ok</span>(<span class="ident">ClickedButton::CustomButton</span>(<span class="ident">button</span>.<span class="ident">unwrap</span>()))
+        sys::SDL_ShowMessageBox(<span class="kw-2">&amp;</span>msg_box_data <span class="kw">as </span><span class="kw-2">*const </span><span class="kw">_</span>, <span class="kw-2">&amp;mut </span>button_id <span class="kw">as </span><span class="kw-2">&amp;mut </span><span class="kw">_</span>)
+    } == <span class="number">0</span>;
+    <span class="kw">if </span>result {
+        <span class="kw">match </span>button_id {
+            -<span class="number">1 </span>=&gt; <span class="prelude-val">Ok</span>(ClickedButton::CloseButton),
+            id =&gt; {
+                <span class="kw">let </span>button = buttons.iter().find(|b| b.button_id == id);
+                <span class="prelude-val">Ok</span>(ClickedButton::CustomButton(button.unwrap()))
             }
         }
-    } <span class="kw">else</span> {
-        <span class="prelude-val">Err</span>(<span class="ident">SdlError</span>(<span class="ident">get_error</span>()))
+    } <span class="kw">else </span>{
+        <span class="prelude-val">Err</span>(SdlError(get_error()))
     }
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="sdl2" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0 (a55dd71d5 2022-09-19)" ></div></body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="sdl2" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.66.1 (90743e729 2023-01-10)" ></div></body></html>

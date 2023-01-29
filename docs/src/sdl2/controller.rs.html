@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/sdl2-0.35.2/src/sdl2/controller.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>controller.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../sdl2/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../sdl2/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../sdl2/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/sdl2-0.35.2/src/sdl2/controller.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>controller.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../normalize.css"><link rel="stylesheet" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../ayu.css" disabled><link rel="stylesheet" href="../../dark.css" disabled><link rel="stylesheet" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><div class="width-limiter"><nav class="sub"><a class="sub-logo-container" href="../../sdl2/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -620,627 +620,627 @@
 <span id="620">620</span>
 <span id="621">621</span>
 <span id="622">622</span>
-</pre><pre class="rust"><code><span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::rwops::RWops</span>;
-<span class="kw">use</span> <span class="ident">libc::c_char</span>;
-<span class="kw">use</span> <span class="ident">std::error</span>;
-<span class="kw">use</span> <span class="ident">std::ffi</span>::{<span class="ident">CStr</span>, <span class="ident">CString</span>, <span class="ident">NulError</span>};
-<span class="kw">use</span> <span class="ident">std::fmt</span>;
-<span class="kw">use</span> <span class="ident">std::io</span>;
-<span class="kw">use</span> <span class="ident">std::path::Path</span>;
+</pre><pre class="rust"><code><span class="kw">use </span><span class="kw">crate</span>::rwops::RWops;
+<span class="kw">use </span>libc::c_char;
+<span class="kw">use </span>std::error;
+<span class="kw">use </span>std::ffi::{CStr, CString, NulError};
+<span class="kw">use </span>std::fmt;
+<span class="kw">use </span>std::io;
+<span class="kw">use </span>std::path::Path;
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;hidapi&quot;</span>)]</span>
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::sensor::SensorType</span>;
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;hidapi&quot;</span>)]</span>
-<span class="kw">use</span> <span class="ident">std::convert::TryInto</span>;
+<span class="attribute">#[cfg(feature = <span class="string">&quot;hidapi&quot;</span>)]
+</span><span class="kw">use </span><span class="kw">crate</span>::sensor::SensorType;
+<span class="attribute">#[cfg(feature = <span class="string">&quot;hidapi&quot;</span>)]
+</span><span class="kw">use </span>std::convert::TryInto;
 
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::common</span>::{<span class="ident">validate_int</span>, <span class="ident">IntegerOrSdlError</span>};
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::get_error</span>;
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::joystick</span>;
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::GameControllerSubsystem</span>;
-<span class="kw">use</span> <span class="ident">std::mem::transmute</span>;
+<span class="kw">use </span><span class="kw">crate</span>::common::{validate_int, IntegerOrSdlError};
+<span class="kw">use </span><span class="kw">crate</span>::get_error;
+<span class="kw">use </span><span class="kw">crate</span>::joystick;
+<span class="kw">use </span><span class="kw">crate</span>::GameControllerSubsystem;
+<span class="kw">use </span>std::mem::transmute;
 
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::sys</span>;
+<span class="kw">use </span><span class="kw">crate</span>::sys;
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>)]</span>
-<span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">AddMappingError</span> {
-    <span class="ident">InvalidMapping</span>(<span class="ident">NulError</span>),
-    <span class="ident">InvalidFilePath</span>(<span class="ident">String</span>),
-    <span class="ident">ReadError</span>(<span class="ident">String</span>),
-    <span class="ident">SdlError</span>(<span class="ident">String</span>),
+<span class="attribute">#[derive(Debug, Clone)]
+</span><span class="kw">pub enum </span>AddMappingError {
+    InvalidMapping(NulError),
+    InvalidFilePath(String),
+    ReadError(String),
+    SdlError(String),
 }
 
-<span class="kw">impl</span> <span class="ident">fmt::Display</span> <span class="kw">for</span> <span class="ident">AddMappingError</span> {
-    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;mut</span> <span class="ident">fmt::Formatter</span>) -&gt; <span class="ident">fmt::Result</span> {
-        <span class="kw">use</span> <span class="ident"><span class="self">self</span>::AddMappingError</span>::<span class="kw-2">*</span>;
+<span class="kw">impl </span>fmt::Display <span class="kw">for </span>AddMappingError {
+    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>fmt::Formatter) -&gt; fmt::Result {
+        <span class="kw">use </span><span class="self">self</span>::AddMappingError::<span class="kw-2">*</span>;
 
-        <span class="kw">match</span> <span class="kw-2">*</span><span class="self">self</span> {
-            <span class="ident">InvalidMapping</span>(<span class="kw-2">ref</span> <span class="ident">e</span>) =&gt; <span class="macro">write!</span>(<span class="ident">f</span>, <span class="string">&quot;Null error: {}&quot;</span>, <span class="ident">e</span>),
-            <span class="ident">InvalidFilePath</span>(<span class="kw-2">ref</span> <span class="ident">value</span>) =&gt; <span class="macro">write!</span>(<span class="ident">f</span>, <span class="string">&quot;Invalid file path ({})&quot;</span>, <span class="ident">value</span>),
-            <span class="ident">ReadError</span>(<span class="kw-2">ref</span> <span class="ident">e</span>) =&gt; <span class="macro">write!</span>(<span class="ident">f</span>, <span class="string">&quot;Read error: {}&quot;</span>, <span class="ident">e</span>),
-            <span class="ident">SdlError</span>(<span class="kw-2">ref</span> <span class="ident">e</span>) =&gt; <span class="macro">write!</span>(<span class="ident">f</span>, <span class="string">&quot;SDL error: {}&quot;</span>, <span class="ident">e</span>),
+        <span class="kw">match </span><span class="kw-2">*</span><span class="self">self </span>{
+            InvalidMapping(<span class="kw-2">ref </span>e) =&gt; <span class="macro">write!</span>(f, <span class="string">&quot;Null error: {}&quot;</span>, e),
+            InvalidFilePath(<span class="kw-2">ref </span>value) =&gt; <span class="macro">write!</span>(f, <span class="string">&quot;Invalid file path ({})&quot;</span>, value),
+            ReadError(<span class="kw-2">ref </span>e) =&gt; <span class="macro">write!</span>(f, <span class="string">&quot;Read error: {}&quot;</span>, e),
+            SdlError(<span class="kw-2">ref </span>e) =&gt; <span class="macro">write!</span>(f, <span class="string">&quot;SDL error: {}&quot;</span>, e),
         }
     }
 }
 
-<span class="kw">impl</span> <span class="ident">error::Error</span> <span class="kw">for</span> <span class="ident">AddMappingError</span> {
-    <span class="kw">fn</span> <span class="ident">description</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span><span class="ident">str</span> {
-        <span class="kw">use</span> <span class="ident"><span class="self">self</span>::AddMappingError</span>::<span class="kw-2">*</span>;
+<span class="kw">impl </span>error::Error <span class="kw">for </span>AddMappingError {
+    <span class="kw">fn </span>description(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span>str {
+        <span class="kw">use </span><span class="self">self</span>::AddMappingError::<span class="kw-2">*</span>;
 
-        <span class="kw">match</span> <span class="kw-2">*</span><span class="self">self</span> {
-            <span class="ident">InvalidMapping</span>(<span class="kw">_</span>) =&gt; <span class="string">&quot;invalid mapping&quot;</span>,
-            <span class="ident">InvalidFilePath</span>(<span class="kw">_</span>) =&gt; <span class="string">&quot;invalid file path&quot;</span>,
-            <span class="ident">ReadError</span>(<span class="kw">_</span>) =&gt; <span class="string">&quot;read error&quot;</span>,
-            <span class="ident">SdlError</span>(<span class="kw-2">ref</span> <span class="ident">e</span>) =&gt; <span class="ident">e</span>,
+        <span class="kw">match </span><span class="kw-2">*</span><span class="self">self </span>{
+            InvalidMapping(<span class="kw">_</span>) =&gt; <span class="string">&quot;invalid mapping&quot;</span>,
+            InvalidFilePath(<span class="kw">_</span>) =&gt; <span class="string">&quot;invalid file path&quot;</span>,
+            ReadError(<span class="kw">_</span>) =&gt; <span class="string">&quot;read error&quot;</span>,
+            SdlError(<span class="kw-2">ref </span>e) =&gt; e,
         }
     }
 }
 
-<span class="kw">impl</span> <span class="ident">GameControllerSubsystem</span> {
-    <span class="doccomment">/// Retrieve the total number of attached joysticks *and* controllers identified by SDL.</span>
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;SDL_NumJoysticks&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">num_joysticks</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">u32</span>, <span class="ident">String</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="ident">result</span> <span class="op">=</span> <span class="kw">unsafe</span> { <span class="ident">sys::SDL_NumJoysticks</span>() };
+<span class="kw">impl </span>GameControllerSubsystem {
+    <span class="doccomment">/// Retrieve the total number of attached joysticks *and* controllers identified by SDL.
+    </span><span class="attribute">#[doc(alias = <span class="string">&quot;SDL_NumJoysticks&quot;</span>)]
+    </span><span class="kw">pub fn </span>num_joysticks(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Result</span>&lt;u32, String&gt; {
+        <span class="kw">let </span>result = <span class="kw">unsafe </span>{ sys::SDL_NumJoysticks() };
 
-        <span class="kw">if</span> <span class="ident">result</span> <span class="op">&gt;</span><span class="op">=</span> <span class="number">0</span> {
-            <span class="prelude-val">Ok</span>(<span class="ident">result</span> <span class="kw">as</span> <span class="ident">u32</span>)
-        } <span class="kw">else</span> {
-            <span class="prelude-val">Err</span>(<span class="ident">get_error</span>())
+        <span class="kw">if </span>result &gt;= <span class="number">0 </span>{
+            <span class="prelude-val">Ok</span>(result <span class="kw">as </span>u32)
+        } <span class="kw">else </span>{
+            <span class="prelude-val">Err</span>(get_error())
         }
     }
 
-    <span class="doccomment">/// Return true if the joystick at index `joystick_index` is a game controller.</span>
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;SDL_IsGameController&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_game_controller</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">joystick_index</span>: <span class="ident">u32</span>) -&gt; <span class="ident">bool</span> {
-        <span class="kw">match</span> <span class="ident">validate_int</span>(<span class="ident">joystick_index</span>, <span class="string">&quot;joystick_index&quot;</span>) {
-            <span class="prelude-val">Ok</span>(<span class="ident">joystick_index</span>) =&gt; <span class="kw">unsafe</span> {
-                <span class="ident">sys::SDL_IsGameController</span>(<span class="ident">joystick_index</span>) <span class="op">!</span><span class="op">=</span> <span class="ident">sys::SDL_bool::SDL_FALSE</span>
+    <span class="doccomment">/// Return true if the joystick at index `joystick_index` is a game controller.
+    </span><span class="attribute">#[inline]
+    #[doc(alias = <span class="string">&quot;SDL_IsGameController&quot;</span>)]
+    </span><span class="kw">pub fn </span>is_game_controller(<span class="kw-2">&amp;</span><span class="self">self</span>, joystick_index: u32) -&gt; bool {
+        <span class="kw">match </span>validate_int(joystick_index, <span class="string">&quot;joystick_index&quot;</span>) {
+            <span class="prelude-val">Ok</span>(joystick_index) =&gt; <span class="kw">unsafe </span>{
+                sys::SDL_IsGameController(joystick_index) != sys::SDL_bool::SDL_FALSE
             },
             <span class="prelude-val">Err</span>(<span class="kw">_</span>) =&gt; <span class="bool-val">false</span>,
         }
     }
 
-    <span class="doccomment">/// Attempt to open the controller at index `joystick_index` and return it.</span>
-    <span class="doccomment">/// Controller IDs are the same as joystick IDs and the maximum number can</span>
-    <span class="doccomment">/// be retrieved using the `SDL_NumJoysticks` function.</span>
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;SDL_GameControllerOpen&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">open</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">joystick_index</span>: <span class="ident">u32</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">GameController</span>, <span class="ident">IntegerOrSdlError</span><span class="op">&gt;</span> {
-        <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::common::IntegerOrSdlError</span>::<span class="kw-2">*</span>;
-        <span class="kw">let</span> <span class="ident">joystick_index</span> <span class="op">=</span> <span class="ident">validate_int</span>(<span class="ident">joystick_index</span>, <span class="string">&quot;joystick_index&quot;</span>)<span class="question-mark">?</span>;
-        <span class="kw">let</span> <span class="ident">controller</span> <span class="op">=</span> <span class="kw">unsafe</span> { <span class="ident">sys::SDL_GameControllerOpen</span>(<span class="ident">joystick_index</span>) };
+    <span class="doccomment">/// Attempt to open the controller at index `joystick_index` and return it.
+    /// Controller IDs are the same as joystick IDs and the maximum number can
+    /// be retrieved using the `SDL_NumJoysticks` function.
+    </span><span class="attribute">#[doc(alias = <span class="string">&quot;SDL_GameControllerOpen&quot;</span>)]
+    </span><span class="kw">pub fn </span>open(<span class="kw-2">&amp;</span><span class="self">self</span>, joystick_index: u32) -&gt; <span class="prelude-ty">Result</span>&lt;GameController, IntegerOrSdlError&gt; {
+        <span class="kw">use </span><span class="kw">crate</span>::common::IntegerOrSdlError::<span class="kw-2">*</span>;
+        <span class="kw">let </span>joystick_index = validate_int(joystick_index, <span class="string">&quot;joystick_index&quot;</span>)<span class="question-mark">?</span>;
+        <span class="kw">let </span>controller = <span class="kw">unsafe </span>{ sys::SDL_GameControllerOpen(joystick_index) };
 
-        <span class="kw">if</span> <span class="ident">controller</span>.<span class="ident">is_null</span>() {
-            <span class="prelude-val">Err</span>(<span class="ident">SdlError</span>(<span class="ident">get_error</span>()))
-        } <span class="kw">else</span> {
-            <span class="prelude-val">Ok</span>(<span class="ident">GameController</span> {
-                <span class="ident">subsystem</span>: <span class="self">self</span>.<span class="ident">clone</span>(),
-                <span class="ident">raw</span>: <span class="ident">controller</span>,
+        <span class="kw">if </span>controller.is_null() {
+            <span class="prelude-val">Err</span>(SdlError(get_error()))
+        } <span class="kw">else </span>{
+            <span class="prelude-val">Ok</span>(GameController {
+                subsystem: <span class="self">self</span>.clone(),
+                raw: controller,
             })
         }
     }
 
-    <span class="doccomment">/// Return the name of the controller at index `joystick_index`.</span>
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;SDL_GameControllerNameForIndex&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">name_for_index</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">joystick_index</span>: <span class="ident">u32</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">String</span>, <span class="ident">IntegerOrSdlError</span><span class="op">&gt;</span> {
-        <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::common::IntegerOrSdlError</span>::<span class="kw-2">*</span>;
-        <span class="kw">let</span> <span class="ident">joystick_index</span> <span class="op">=</span> <span class="ident">validate_int</span>(<span class="ident">joystick_index</span>, <span class="string">&quot;joystick_index&quot;</span>)<span class="question-mark">?</span>;
-        <span class="kw">let</span> <span class="ident">c_str</span> <span class="op">=</span> <span class="kw">unsafe</span> { <span class="ident">sys::SDL_GameControllerNameForIndex</span>(<span class="ident">joystick_index</span>) };
+    <span class="doccomment">/// Return the name of the controller at index `joystick_index`.
+    </span><span class="attribute">#[doc(alias = <span class="string">&quot;SDL_GameControllerNameForIndex&quot;</span>)]
+    </span><span class="kw">pub fn </span>name_for_index(<span class="kw-2">&amp;</span><span class="self">self</span>, joystick_index: u32) -&gt; <span class="prelude-ty">Result</span>&lt;String, IntegerOrSdlError&gt; {
+        <span class="kw">use </span><span class="kw">crate</span>::common::IntegerOrSdlError::<span class="kw-2">*</span>;
+        <span class="kw">let </span>joystick_index = validate_int(joystick_index, <span class="string">&quot;joystick_index&quot;</span>)<span class="question-mark">?</span>;
+        <span class="kw">let </span>c_str = <span class="kw">unsafe </span>{ sys::SDL_GameControllerNameForIndex(joystick_index) };
 
-        <span class="kw">if</span> <span class="ident">c_str</span>.<span class="ident">is_null</span>() {
-            <span class="prelude-val">Err</span>(<span class="ident">SdlError</span>(<span class="ident">get_error</span>()))
-        } <span class="kw">else</span> {
-            <span class="prelude-val">Ok</span>(<span class="kw">unsafe</span> {
-                <span class="ident">CStr::from_ptr</span>(<span class="ident">c_str</span> <span class="kw">as</span> <span class="kw-2">*const</span> <span class="kw">_</span>)
-                    .<span class="ident">to_str</span>()
-                    .<span class="ident">unwrap</span>()
-                    .<span class="ident">to_owned</span>()
+        <span class="kw">if </span>c_str.is_null() {
+            <span class="prelude-val">Err</span>(SdlError(get_error()))
+        } <span class="kw">else </span>{
+            <span class="prelude-val">Ok</span>(<span class="kw">unsafe </span>{
+                CStr::from_ptr(c_str <span class="kw">as </span><span class="kw-2">*const </span><span class="kw">_</span>)
+                    .to_str()
+                    .unwrap()
+                    .to_owned()
             })
         }
     }
 
-    <span class="doccomment">/// If state is `true` controller events are processed, otherwise</span>
-    <span class="doccomment">/// they&#39;re ignored.</span>
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;SDL_GameControllerEventState&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_event_state</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">state</span>: <span class="ident">bool</span>) {
-        <span class="kw">unsafe</span> { <span class="ident">sys::SDL_GameControllerEventState</span>(<span class="ident">state</span> <span class="kw">as</span> <span class="ident">i32</span>) };
+    <span class="doccomment">/// If state is `true` controller events are processed, otherwise
+    /// they&#39;re ignored.
+    </span><span class="attribute">#[doc(alias = <span class="string">&quot;SDL_GameControllerEventState&quot;</span>)]
+    </span><span class="kw">pub fn </span>set_event_state(<span class="kw-2">&amp;</span><span class="self">self</span>, state: bool) {
+        <span class="kw">unsafe </span>{ sys::SDL_GameControllerEventState(state <span class="kw">as </span>i32) };
     }
 
-    <span class="doccomment">/// Return `true` if controller events are processed.</span>
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;SDL_GameControllerEventState&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">event_state</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span> {
-        <span class="kw">unsafe</span> {
-            <span class="ident">sys::SDL_GameControllerEventState</span>(<span class="ident">sys::SDL_QUERY</span> <span class="kw">as</span> <span class="ident">i32</span>) <span class="op">==</span> <span class="ident">sys::SDL_ENABLE</span> <span class="kw">as</span> <span class="ident">i32</span>
+    <span class="doccomment">/// Return `true` if controller events are processed.
+    </span><span class="attribute">#[doc(alias = <span class="string">&quot;SDL_GameControllerEventState&quot;</span>)]
+    </span><span class="kw">pub fn </span>event_state(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; bool {
+        <span class="kw">unsafe </span>{
+            sys::SDL_GameControllerEventState(sys::SDL_QUERY <span class="kw">as </span>i32) == sys::SDL_ENABLE <span class="kw">as </span>i32
         }
     }
 
-    <span class="doccomment">/// Add a new controller input mapping from a mapping string.</span>
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;SDL_GameControllerAddMapping&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">add_mapping</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">mapping</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">MappingStatus</span>, <span class="ident">AddMappingError</span><span class="op">&gt;</span> {
-        <span class="kw">use</span> <span class="ident"><span class="self">self</span>::AddMappingError</span>::<span class="kw-2">*</span>;
-        <span class="kw">let</span> <span class="ident">mapping</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">CString::new</span>(<span class="ident">mapping</span>) {
-            <span class="prelude-val">Ok</span>(<span class="ident">s</span>) =&gt; <span class="ident">s</span>,
-            <span class="prelude-val">Err</span>(<span class="ident">err</span>) =&gt; <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">InvalidMapping</span>(<span class="ident">err</span>)),
+    <span class="doccomment">/// Add a new controller input mapping from a mapping string.
+    </span><span class="attribute">#[doc(alias = <span class="string">&quot;SDL_GameControllerAddMapping&quot;</span>)]
+    </span><span class="kw">pub fn </span>add_mapping(<span class="kw-2">&amp;</span><span class="self">self</span>, mapping: <span class="kw-2">&amp;</span>str) -&gt; <span class="prelude-ty">Result</span>&lt;MappingStatus, AddMappingError&gt; {
+        <span class="kw">use </span><span class="self">self</span>::AddMappingError::<span class="kw-2">*</span>;
+        <span class="kw">let </span>mapping = <span class="kw">match </span>CString::new(mapping) {
+            <span class="prelude-val">Ok</span>(s) =&gt; s,
+            <span class="prelude-val">Err</span>(err) =&gt; <span class="kw">return </span><span class="prelude-val">Err</span>(InvalidMapping(err)),
         };
 
-        <span class="kw">let</span> <span class="ident">result</span> <span class="op">=</span>
-            <span class="kw">unsafe</span> { <span class="ident">sys::SDL_GameControllerAddMapping</span>(<span class="ident">mapping</span>.<span class="ident">as_ptr</span>() <span class="kw">as</span> <span class="kw-2">*const</span> <span class="ident">c_char</span>) };
+        <span class="kw">let </span>result =
+            <span class="kw">unsafe </span>{ sys::SDL_GameControllerAddMapping(mapping.as_ptr() <span class="kw">as </span><span class="kw-2">*const </span>c_char) };
 
-        <span class="kw">match</span> <span class="ident">result</span> {
-            <span class="number">1</span> =&gt; <span class="prelude-val">Ok</span>(<span class="ident">MappingStatus::Added</span>),
-            <span class="number">0</span> =&gt; <span class="prelude-val">Ok</span>(<span class="ident">MappingStatus::Updated</span>),
-            <span class="kw">_</span> =&gt; <span class="prelude-val">Err</span>(<span class="ident">SdlError</span>(<span class="ident">get_error</span>())),
+        <span class="kw">match </span>result {
+            <span class="number">1 </span>=&gt; <span class="prelude-val">Ok</span>(MappingStatus::Added),
+            <span class="number">0 </span>=&gt; <span class="prelude-val">Ok</span>(MappingStatus::Updated),
+            <span class="kw">_ </span>=&gt; <span class="prelude-val">Err</span>(SdlError(get_error())),
         }
     }
 
-    <span class="doccomment">/// Load controller input mappings from a file.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">load_mappings</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">AsRef</span><span class="op">&lt;</span><span class="ident">Path</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">path</span>: <span class="ident">P</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">i32</span>, <span class="ident">AddMappingError</span><span class="op">&gt;</span> {
-        <span class="kw">use</span> <span class="ident"><span class="self">self</span>::AddMappingError</span>::<span class="kw-2">*</span>;
+    <span class="doccomment">/// Load controller input mappings from a file.
+    </span><span class="kw">pub fn </span>load_mappings&lt;P: AsRef&lt;Path&gt;&gt;(<span class="kw-2">&amp;</span><span class="self">self</span>, path: P) -&gt; <span class="prelude-ty">Result</span>&lt;i32, AddMappingError&gt; {
+        <span class="kw">use </span><span class="self">self</span>::AddMappingError::<span class="kw-2">*</span>;
 
-        <span class="kw">let</span> <span class="ident">rw</span> <span class="op">=</span> <span class="ident">RWops::from_file</span>(<span class="ident">path</span>, <span class="string">&quot;r&quot;</span>).<span class="ident">map_err</span>(<span class="ident">InvalidFilePath</span>)<span class="question-mark">?</span>;
-        <span class="self">self</span>.<span class="ident">load_mappings_from_rw</span>(<span class="ident">rw</span>)
+        <span class="kw">let </span>rw = RWops::from_file(path, <span class="string">&quot;r&quot;</span>).map_err(InvalidFilePath)<span class="question-mark">?</span>;
+        <span class="self">self</span>.load_mappings_from_rw(rw)
     }
 
-    <span class="doccomment">/// Load controller input mappings from a [`Read`](std::io::Read) object.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">load_mappings_from_read</span><span class="op">&lt;</span><span class="ident">R</span>: <span class="ident">io::Read</span><span class="op">&gt;</span>(
+    <span class="doccomment">/// Load controller input mappings from a [`Read`](std::io::Read) object.
+    </span><span class="kw">pub fn </span>load_mappings_from_read&lt;R: io::Read&gt;(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
-        <span class="ident">read</span>: <span class="kw-2">&amp;mut</span> <span class="ident">R</span>,
-    ) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">i32</span>, <span class="ident">AddMappingError</span><span class="op">&gt;</span> {
-        <span class="kw">use</span> <span class="ident"><span class="self">self</span>::AddMappingError</span>::<span class="kw-2">*</span>;
+        read: <span class="kw-2">&amp;mut </span>R,
+    ) -&gt; <span class="prelude-ty">Result</span>&lt;i32, AddMappingError&gt; {
+        <span class="kw">use </span><span class="self">self</span>::AddMappingError::<span class="kw-2">*</span>;
 
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">buffer</span> <span class="op">=</span> <span class="ident">Vec::with_capacity</span>(<span class="number">1024</span>);
-        <span class="kw">let</span> <span class="ident">rw</span> <span class="op">=</span> <span class="ident">RWops::from_read</span>(<span class="ident">read</span>, <span class="kw-2">&amp;mut</span> <span class="ident">buffer</span>).<span class="ident">map_err</span>(<span class="ident">ReadError</span>)<span class="question-mark">?</span>;
-        <span class="self">self</span>.<span class="ident">load_mappings_from_rw</span>(<span class="ident">rw</span>)
+        <span class="kw">let </span><span class="kw-2">mut </span>buffer = Vec::with_capacity(<span class="number">1024</span>);
+        <span class="kw">let </span>rw = RWops::from_read(read, <span class="kw-2">&amp;mut </span>buffer).map_err(ReadError)<span class="question-mark">?</span>;
+        <span class="self">self</span>.load_mappings_from_rw(rw)
     }
 
-    <span class="doccomment">/// Load controller input mappings from an SDL [`RWops`] object.</span>
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;SDL_GameControllerAddMappingsFromRW&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">load_mappings_from_rw</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">rw</span>: <span class="ident">RWops</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">i32</span>, <span class="ident">AddMappingError</span><span class="op">&gt;</span> {
-        <span class="kw">use</span> <span class="ident"><span class="self">self</span>::AddMappingError</span>::<span class="kw-2">*</span>;
+    <span class="doccomment">/// Load controller input mappings from an SDL [`RWops`] object.
+    </span><span class="attribute">#[doc(alias = <span class="string">&quot;SDL_GameControllerAddMappingsFromRW&quot;</span>)]
+    </span><span class="kw">pub fn </span>load_mappings_from_rw&lt;<span class="lifetime">&#39;a</span>&gt;(<span class="kw-2">&amp;</span><span class="self">self</span>, rw: RWops&lt;<span class="lifetime">&#39;a</span>&gt;) -&gt; <span class="prelude-ty">Result</span>&lt;i32, AddMappingError&gt; {
+        <span class="kw">use </span><span class="self">self</span>::AddMappingError::<span class="kw-2">*</span>;
 
-        <span class="kw">let</span> <span class="ident">result</span> <span class="op">=</span> <span class="kw">unsafe</span> { <span class="ident">sys::SDL_GameControllerAddMappingsFromRW</span>(<span class="ident">rw</span>.<span class="ident">raw</span>(), <span class="number">0</span>) };
-        <span class="kw">match</span> <span class="ident">result</span> {
-            <span class="op">-</span><span class="number">1</span> =&gt; <span class="prelude-val">Err</span>(<span class="ident">SdlError</span>(<span class="ident">get_error</span>())),
-            <span class="kw">_</span> =&gt; <span class="prelude-val">Ok</span>(<span class="ident">result</span>),
+        <span class="kw">let </span>result = <span class="kw">unsafe </span>{ sys::SDL_GameControllerAddMappingsFromRW(rw.raw(), <span class="number">0</span>) };
+        <span class="kw">match </span>result {
+            -<span class="number">1 </span>=&gt; <span class="prelude-val">Err</span>(SdlError(get_error())),
+            <span class="kw">_ </span>=&gt; <span class="prelude-val">Ok</span>(result),
         }
     }
 
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;SDL_GameControllerMappingForGUID&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">mapping_for_guid</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">guid</span>: <span class="ident">joystick::Guid</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">String</span>, <span class="ident">String</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="ident">c_str</span> <span class="op">=</span> <span class="kw">unsafe</span> { <span class="ident">sys::SDL_GameControllerMappingForGUID</span>(<span class="ident">guid</span>.<span class="ident">raw</span>()) };
+    <span class="attribute">#[doc(alias = <span class="string">&quot;SDL_GameControllerMappingForGUID&quot;</span>)]
+    </span><span class="kw">pub fn </span>mapping_for_guid(<span class="kw-2">&amp;</span><span class="self">self</span>, guid: joystick::Guid) -&gt; <span class="prelude-ty">Result</span>&lt;String, String&gt; {
+        <span class="kw">let </span>c_str = <span class="kw">unsafe </span>{ sys::SDL_GameControllerMappingForGUID(guid.raw()) };
 
-        <span class="ident">c_str_to_string_or_err</span>(<span class="ident">c_str</span>)
+        c_str_to_string_or_err(c_str)
     }
 
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="doccomment">/// Force controller update when not using the event loop</span>
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;SDL_GameControllerUpdate&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">update</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) {
-        <span class="kw">unsafe</span> { <span class="ident">sys::SDL_GameControllerUpdate</span>() };
+    <span class="attribute">#[inline]
+    </span><span class="doccomment">/// Force controller update when not using the event loop
+    </span><span class="attribute">#[doc(alias = <span class="string">&quot;SDL_GameControllerUpdate&quot;</span>)]
+    </span><span class="kw">pub fn </span>update(<span class="kw-2">&amp;</span><span class="self">self</span>) {
+        <span class="kw">unsafe </span>{ sys::SDL_GameControllerUpdate() };
     }
 }
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Eq</span>, <span class="ident">PartialEq</span>, <span class="ident">Hash</span>, <span class="ident">Debug</span>)]</span>
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">i32</span>)]</span>
-<span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">Axis</span> {
-    <span class="ident">LeftX</span> <span class="op">=</span> <span class="ident">sys::SDL_GameControllerAxis::SDL_CONTROLLER_AXIS_LEFTX</span> <span class="kw">as</span> <span class="ident">i32</span>,
-    <span class="ident">LeftY</span> <span class="op">=</span> <span class="ident">sys::SDL_GameControllerAxis::SDL_CONTROLLER_AXIS_LEFTY</span> <span class="kw">as</span> <span class="ident">i32</span>,
-    <span class="ident">RightX</span> <span class="op">=</span> <span class="ident">sys::SDL_GameControllerAxis::SDL_CONTROLLER_AXIS_RIGHTX</span> <span class="kw">as</span> <span class="ident">i32</span>,
-    <span class="ident">RightY</span> <span class="op">=</span> <span class="ident">sys::SDL_GameControllerAxis::SDL_CONTROLLER_AXIS_RIGHTY</span> <span class="kw">as</span> <span class="ident">i32</span>,
-    <span class="ident">TriggerLeft</span> <span class="op">=</span> <span class="ident">sys::SDL_GameControllerAxis::SDL_CONTROLLER_AXIS_TRIGGERLEFT</span> <span class="kw">as</span> <span class="ident">i32</span>,
-    <span class="ident">TriggerRight</span> <span class="op">=</span> <span class="ident">sys::SDL_GameControllerAxis::SDL_CONTROLLER_AXIS_TRIGGERRIGHT</span> <span class="kw">as</span> <span class="ident">i32</span>,
+<span class="attribute">#[derive(Copy, Clone, Eq, PartialEq, Hash, Debug)]
+#[repr(i32)]
+</span><span class="kw">pub enum </span>Axis {
+    LeftX = sys::SDL_GameControllerAxis::SDL_CONTROLLER_AXIS_LEFTX <span class="kw">as </span>i32,
+    LeftY = sys::SDL_GameControllerAxis::SDL_CONTROLLER_AXIS_LEFTY <span class="kw">as </span>i32,
+    RightX = sys::SDL_GameControllerAxis::SDL_CONTROLLER_AXIS_RIGHTX <span class="kw">as </span>i32,
+    RightY = sys::SDL_GameControllerAxis::SDL_CONTROLLER_AXIS_RIGHTY <span class="kw">as </span>i32,
+    TriggerLeft = sys::SDL_GameControllerAxis::SDL_CONTROLLER_AXIS_TRIGGERLEFT <span class="kw">as </span>i32,
+    TriggerRight = sys::SDL_GameControllerAxis::SDL_CONTROLLER_AXIS_TRIGGERRIGHT <span class="kw">as </span>i32,
 }
 
-<span class="kw">impl</span> <span class="ident">Axis</span> {
-    <span class="doccomment">/// Return the Axis from a string description in the same format</span>
-    <span class="doccomment">/// used by the game controller mapping strings.</span>
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;SDL_GameControllerGetAxisFromString&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">from_string</span>(<span class="ident">axis</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Axis</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="ident">id</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">CString::new</span>(<span class="ident">axis</span>) {
-            <span class="prelude-val">Ok</span>(<span class="ident">axis</span>) =&gt; <span class="kw">unsafe</span> {
-                <span class="ident">sys::SDL_GameControllerGetAxisFromString</span>(<span class="ident">axis</span>.<span class="ident">as_ptr</span>() <span class="kw">as</span> <span class="kw-2">*const</span> <span class="ident">c_char</span>)
+<span class="kw">impl </span>Axis {
+    <span class="doccomment">/// Return the Axis from a string description in the same format
+    /// used by the game controller mapping strings.
+    </span><span class="attribute">#[doc(alias = <span class="string">&quot;SDL_GameControllerGetAxisFromString&quot;</span>)]
+    </span><span class="kw">pub fn </span>from_string(axis: <span class="kw-2">&amp;</span>str) -&gt; <span class="prelude-ty">Option</span>&lt;Axis&gt; {
+        <span class="kw">let </span>id = <span class="kw">match </span>CString::new(axis) {
+            <span class="prelude-val">Ok</span>(axis) =&gt; <span class="kw">unsafe </span>{
+                sys::SDL_GameControllerGetAxisFromString(axis.as_ptr() <span class="kw">as </span><span class="kw-2">*const </span>c_char)
             },
-            <span class="comment">// string contains a nul byte - it won&#39;t match anything.</span>
-            <span class="prelude-val">Err</span>(<span class="kw">_</span>) =&gt; <span class="ident">sys::SDL_GameControllerAxis::SDL_CONTROLLER_AXIS_INVALID</span>,
+            <span class="comment">// string contains a nul byte - it won&#39;t match anything.
+            </span><span class="prelude-val">Err</span>(<span class="kw">_</span>) =&gt; sys::SDL_GameControllerAxis::SDL_CONTROLLER_AXIS_INVALID,
         };
 
-        <span class="ident">Axis::from_ll</span>(<span class="ident">id</span>)
+        Axis::from_ll(id)
     }
 
-    <span class="doccomment">/// Return a string for a given axis in the same format using by</span>
-    <span class="doccomment">/// the game controller mapping strings</span>
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;SDL_GameControllerGetStringForAxis&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">string</span>(<span class="self">self</span>) -&gt; <span class="ident">String</span> {
-        <span class="kw">let</span> <span class="ident">axis</span>: <span class="ident">sys::SDL_GameControllerAxis</span>;
-        <span class="kw">unsafe</span> {
-            <span class="ident">axis</span> <span class="op">=</span> <span class="ident">transmute</span>(<span class="self">self</span>);
+    <span class="doccomment">/// Return a string for a given axis in the same format using by
+    /// the game controller mapping strings
+    </span><span class="attribute">#[doc(alias = <span class="string">&quot;SDL_GameControllerGetStringForAxis&quot;</span>)]
+    </span><span class="kw">pub fn </span>string(<span class="self">self</span>) -&gt; String {
+        <span class="kw">let </span>axis: sys::SDL_GameControllerAxis;
+        <span class="kw">unsafe </span>{
+            axis = transmute(<span class="self">self</span>);
         }
 
-        <span class="kw">let</span> <span class="ident">string</span> <span class="op">=</span> <span class="kw">unsafe</span> { <span class="ident">sys::SDL_GameControllerGetStringForAxis</span>(<span class="ident">axis</span>) };
+        <span class="kw">let </span>string = <span class="kw">unsafe </span>{ sys::SDL_GameControllerGetStringForAxis(axis) };
 
-        <span class="ident">c_str_to_string</span>(<span class="ident">string</span>)
+        c_str_to_string(string)
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">from_ll</span>(<span class="ident">bitflags</span>: <span class="ident">sys::SDL_GameControllerAxis</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Axis</span><span class="op">&gt;</span> {
-        <span class="prelude-val">Some</span>(<span class="kw">match</span> <span class="ident">bitflags</span> {
-            <span class="ident">sys::SDL_GameControllerAxis::SDL_CONTROLLER_AXIS_INVALID</span> =&gt; <span class="kw">return</span> <span class="prelude-val">None</span>,
-            <span class="ident">sys::SDL_GameControllerAxis::SDL_CONTROLLER_AXIS_LEFTX</span> =&gt; <span class="ident">Axis::LeftX</span>,
-            <span class="ident">sys::SDL_GameControllerAxis::SDL_CONTROLLER_AXIS_LEFTY</span> =&gt; <span class="ident">Axis::LeftY</span>,
-            <span class="ident">sys::SDL_GameControllerAxis::SDL_CONTROLLER_AXIS_RIGHTX</span> =&gt; <span class="ident">Axis::RightX</span>,
-            <span class="ident">sys::SDL_GameControllerAxis::SDL_CONTROLLER_AXIS_RIGHTY</span> =&gt; <span class="ident">Axis::RightY</span>,
-            <span class="ident">sys::SDL_GameControllerAxis::SDL_CONTROLLER_AXIS_TRIGGERLEFT</span> =&gt; <span class="ident">Axis::TriggerLeft</span>,
-            <span class="ident">sys::SDL_GameControllerAxis::SDL_CONTROLLER_AXIS_TRIGGERRIGHT</span> =&gt; <span class="ident">Axis::TriggerRight</span>,
-            <span class="kw">_</span> =&gt; <span class="kw">return</span> <span class="prelude-val">None</span>,
+    <span class="kw">pub fn </span>from_ll(bitflags: sys::SDL_GameControllerAxis) -&gt; <span class="prelude-ty">Option</span>&lt;Axis&gt; {
+        <span class="prelude-val">Some</span>(<span class="kw">match </span>bitflags {
+            sys::SDL_GameControllerAxis::SDL_CONTROLLER_AXIS_INVALID =&gt; <span class="kw">return </span><span class="prelude-val">None</span>,
+            sys::SDL_GameControllerAxis::SDL_CONTROLLER_AXIS_LEFTX =&gt; Axis::LeftX,
+            sys::SDL_GameControllerAxis::SDL_CONTROLLER_AXIS_LEFTY =&gt; Axis::LeftY,
+            sys::SDL_GameControllerAxis::SDL_CONTROLLER_AXIS_RIGHTX =&gt; Axis::RightX,
+            sys::SDL_GameControllerAxis::SDL_CONTROLLER_AXIS_RIGHTY =&gt; Axis::RightY,
+            sys::SDL_GameControllerAxis::SDL_CONTROLLER_AXIS_TRIGGERLEFT =&gt; Axis::TriggerLeft,
+            sys::SDL_GameControllerAxis::SDL_CONTROLLER_AXIS_TRIGGERRIGHT =&gt; Axis::TriggerRight,
+            <span class="kw">_ </span>=&gt; <span class="kw">return </span><span class="prelude-val">None</span>,
         })
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">to_ll</span>(<span class="self">self</span>) -&gt; <span class="ident">sys::SDL_GameControllerAxis</span> {
-        <span class="kw">match</span> <span class="self">self</span> {
-            <span class="ident">Axis::LeftX</span> =&gt; <span class="ident">sys::SDL_GameControllerAxis::SDL_CONTROLLER_AXIS_LEFTX</span>,
-            <span class="ident">Axis::LeftY</span> =&gt; <span class="ident">sys::SDL_GameControllerAxis::SDL_CONTROLLER_AXIS_LEFTY</span>,
-            <span class="ident">Axis::RightX</span> =&gt; <span class="ident">sys::SDL_GameControllerAxis::SDL_CONTROLLER_AXIS_RIGHTX</span>,
-            <span class="ident">Axis::RightY</span> =&gt; <span class="ident">sys::SDL_GameControllerAxis::SDL_CONTROLLER_AXIS_RIGHTY</span>,
-            <span class="ident">Axis::TriggerLeft</span> =&gt; <span class="ident">sys::SDL_GameControllerAxis::SDL_CONTROLLER_AXIS_TRIGGERLEFT</span>,
-            <span class="ident">Axis::TriggerRight</span> =&gt; <span class="ident">sys::SDL_GameControllerAxis::SDL_CONTROLLER_AXIS_TRIGGERRIGHT</span>,
+    <span class="kw">pub fn </span>to_ll(<span class="self">self</span>) -&gt; sys::SDL_GameControllerAxis {
+        <span class="kw">match </span><span class="self">self </span>{
+            Axis::LeftX =&gt; sys::SDL_GameControllerAxis::SDL_CONTROLLER_AXIS_LEFTX,
+            Axis::LeftY =&gt; sys::SDL_GameControllerAxis::SDL_CONTROLLER_AXIS_LEFTY,
+            Axis::RightX =&gt; sys::SDL_GameControllerAxis::SDL_CONTROLLER_AXIS_RIGHTX,
+            Axis::RightY =&gt; sys::SDL_GameControllerAxis::SDL_CONTROLLER_AXIS_RIGHTY,
+            Axis::TriggerLeft =&gt; sys::SDL_GameControllerAxis::SDL_CONTROLLER_AXIS_TRIGGERLEFT,
+            Axis::TriggerRight =&gt; sys::SDL_GameControllerAxis::SDL_CONTROLLER_AXIS_TRIGGERRIGHT,
         }
     }
 }
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Eq</span>, <span class="ident">PartialEq</span>, <span class="ident">Hash</span>, <span class="ident">Debug</span>)]</span>
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">i32</span>)]</span>
-<span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">Button</span> {
-    <span class="ident">A</span> <span class="op">=</span> <span class="ident">sys::SDL_GameControllerButton::SDL_CONTROLLER_BUTTON_A</span> <span class="kw">as</span> <span class="ident">i32</span>,
-    <span class="ident">B</span> <span class="op">=</span> <span class="ident">sys::SDL_GameControllerButton::SDL_CONTROLLER_BUTTON_B</span> <span class="kw">as</span> <span class="ident">i32</span>,
-    <span class="ident">X</span> <span class="op">=</span> <span class="ident">sys::SDL_GameControllerButton::SDL_CONTROLLER_BUTTON_X</span> <span class="kw">as</span> <span class="ident">i32</span>,
-    <span class="ident">Y</span> <span class="op">=</span> <span class="ident">sys::SDL_GameControllerButton::SDL_CONTROLLER_BUTTON_Y</span> <span class="kw">as</span> <span class="ident">i32</span>,
-    <span class="ident">Back</span> <span class="op">=</span> <span class="ident">sys::SDL_GameControllerButton::SDL_CONTROLLER_BUTTON_BACK</span> <span class="kw">as</span> <span class="ident">i32</span>,
-    <span class="ident">Guide</span> <span class="op">=</span> <span class="ident">sys::SDL_GameControllerButton::SDL_CONTROLLER_BUTTON_GUIDE</span> <span class="kw">as</span> <span class="ident">i32</span>,
-    <span class="ident">Start</span> <span class="op">=</span> <span class="ident">sys::SDL_GameControllerButton::SDL_CONTROLLER_BUTTON_START</span> <span class="kw">as</span> <span class="ident">i32</span>,
-    <span class="ident">LeftStick</span> <span class="op">=</span> <span class="ident">sys::SDL_GameControllerButton::SDL_CONTROLLER_BUTTON_LEFTSTICK</span> <span class="kw">as</span> <span class="ident">i32</span>,
-    <span class="ident">RightStick</span> <span class="op">=</span> <span class="ident">sys::SDL_GameControllerButton::SDL_CONTROLLER_BUTTON_RIGHTSTICK</span> <span class="kw">as</span> <span class="ident">i32</span>,
-    <span class="ident">LeftShoulder</span> <span class="op">=</span> <span class="ident">sys::SDL_GameControllerButton::SDL_CONTROLLER_BUTTON_LEFTSHOULDER</span> <span class="kw">as</span> <span class="ident">i32</span>,
-    <span class="ident">RightShoulder</span> <span class="op">=</span> <span class="ident">sys::SDL_GameControllerButton::SDL_CONTROLLER_BUTTON_RIGHTSHOULDER</span> <span class="kw">as</span> <span class="ident">i32</span>,
-    <span class="ident">DPadUp</span> <span class="op">=</span> <span class="ident">sys::SDL_GameControllerButton::SDL_CONTROLLER_BUTTON_DPAD_UP</span> <span class="kw">as</span> <span class="ident">i32</span>,
-    <span class="ident">DPadDown</span> <span class="op">=</span> <span class="ident">sys::SDL_GameControllerButton::SDL_CONTROLLER_BUTTON_DPAD_DOWN</span> <span class="kw">as</span> <span class="ident">i32</span>,
-    <span class="ident">DPadLeft</span> <span class="op">=</span> <span class="ident">sys::SDL_GameControllerButton::SDL_CONTROLLER_BUTTON_DPAD_LEFT</span> <span class="kw">as</span> <span class="ident">i32</span>,
-    <span class="ident">DPadRight</span> <span class="op">=</span> <span class="ident">sys::SDL_GameControllerButton::SDL_CONTROLLER_BUTTON_DPAD_RIGHT</span> <span class="kw">as</span> <span class="ident">i32</span>,
-    <span class="ident">Misc1</span> <span class="op">=</span> <span class="ident">sys::SDL_GameControllerButton::SDL_CONTROLLER_BUTTON_MISC1</span> <span class="kw">as</span> <span class="ident">i32</span>,
-    <span class="ident">Paddle1</span> <span class="op">=</span> <span class="ident">sys::SDL_GameControllerButton::SDL_CONTROLLER_BUTTON_PADDLE1</span> <span class="kw">as</span> <span class="ident">i32</span>,
-    <span class="ident">Paddle2</span> <span class="op">=</span> <span class="ident">sys::SDL_GameControllerButton::SDL_CONTROLLER_BUTTON_PADDLE2</span> <span class="kw">as</span> <span class="ident">i32</span>,
-    <span class="ident">Paddle3</span> <span class="op">=</span> <span class="ident">sys::SDL_GameControllerButton::SDL_CONTROLLER_BUTTON_PADDLE3</span> <span class="kw">as</span> <span class="ident">i32</span>,
-    <span class="ident">Paddle4</span> <span class="op">=</span> <span class="ident">sys::SDL_GameControllerButton::SDL_CONTROLLER_BUTTON_PADDLE4</span> <span class="kw">as</span> <span class="ident">i32</span>,
-    <span class="ident">Touchpad</span> <span class="op">=</span> <span class="ident">sys::SDL_GameControllerButton::SDL_CONTROLLER_BUTTON_TOUCHPAD</span> <span class="kw">as</span> <span class="ident">i32</span>,
+<span class="attribute">#[derive(Copy, Clone, Eq, PartialEq, Hash, Debug)]
+#[repr(i32)]
+</span><span class="kw">pub enum </span>Button {
+    A = sys::SDL_GameControllerButton::SDL_CONTROLLER_BUTTON_A <span class="kw">as </span>i32,
+    B = sys::SDL_GameControllerButton::SDL_CONTROLLER_BUTTON_B <span class="kw">as </span>i32,
+    X = sys::SDL_GameControllerButton::SDL_CONTROLLER_BUTTON_X <span class="kw">as </span>i32,
+    Y = sys::SDL_GameControllerButton::SDL_CONTROLLER_BUTTON_Y <span class="kw">as </span>i32,
+    Back = sys::SDL_GameControllerButton::SDL_CONTROLLER_BUTTON_BACK <span class="kw">as </span>i32,
+    Guide = sys::SDL_GameControllerButton::SDL_CONTROLLER_BUTTON_GUIDE <span class="kw">as </span>i32,
+    Start = sys::SDL_GameControllerButton::SDL_CONTROLLER_BUTTON_START <span class="kw">as </span>i32,
+    LeftStick = sys::SDL_GameControllerButton::SDL_CONTROLLER_BUTTON_LEFTSTICK <span class="kw">as </span>i32,
+    RightStick = sys::SDL_GameControllerButton::SDL_CONTROLLER_BUTTON_RIGHTSTICK <span class="kw">as </span>i32,
+    LeftShoulder = sys::SDL_GameControllerButton::SDL_CONTROLLER_BUTTON_LEFTSHOULDER <span class="kw">as </span>i32,
+    RightShoulder = sys::SDL_GameControllerButton::SDL_CONTROLLER_BUTTON_RIGHTSHOULDER <span class="kw">as </span>i32,
+    DPadUp = sys::SDL_GameControllerButton::SDL_CONTROLLER_BUTTON_DPAD_UP <span class="kw">as </span>i32,
+    DPadDown = sys::SDL_GameControllerButton::SDL_CONTROLLER_BUTTON_DPAD_DOWN <span class="kw">as </span>i32,
+    DPadLeft = sys::SDL_GameControllerButton::SDL_CONTROLLER_BUTTON_DPAD_LEFT <span class="kw">as </span>i32,
+    DPadRight = sys::SDL_GameControllerButton::SDL_CONTROLLER_BUTTON_DPAD_RIGHT <span class="kw">as </span>i32,
+    Misc1 = sys::SDL_GameControllerButton::SDL_CONTROLLER_BUTTON_MISC1 <span class="kw">as </span>i32,
+    Paddle1 = sys::SDL_GameControllerButton::SDL_CONTROLLER_BUTTON_PADDLE1 <span class="kw">as </span>i32,
+    Paddle2 = sys::SDL_GameControllerButton::SDL_CONTROLLER_BUTTON_PADDLE2 <span class="kw">as </span>i32,
+    Paddle3 = sys::SDL_GameControllerButton::SDL_CONTROLLER_BUTTON_PADDLE3 <span class="kw">as </span>i32,
+    Paddle4 = sys::SDL_GameControllerButton::SDL_CONTROLLER_BUTTON_PADDLE4 <span class="kw">as </span>i32,
+    Touchpad = sys::SDL_GameControllerButton::SDL_CONTROLLER_BUTTON_TOUCHPAD <span class="kw">as </span>i32,
 }
 
-<span class="kw">impl</span> <span class="ident">Button</span> {
-    <span class="doccomment">/// Return the Button from a string description in the same format</span>
-    <span class="doccomment">/// used by the game controller mapping strings.</span>
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;SDL_GameControllerGetButtonFromString&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">from_string</span>(<span class="ident">button</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Button</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="ident">id</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">CString::new</span>(<span class="ident">button</span>) {
-            <span class="prelude-val">Ok</span>(<span class="ident">button</span>) =&gt; <span class="kw">unsafe</span> {
-                <span class="ident">sys::SDL_GameControllerGetButtonFromString</span>(<span class="ident">button</span>.<span class="ident">as_ptr</span>() <span class="kw">as</span> <span class="kw-2">*const</span> <span class="ident">c_char</span>)
+<span class="kw">impl </span>Button {
+    <span class="doccomment">/// Return the Button from a string description in the same format
+    /// used by the game controller mapping strings.
+    </span><span class="attribute">#[doc(alias = <span class="string">&quot;SDL_GameControllerGetButtonFromString&quot;</span>)]
+    </span><span class="kw">pub fn </span>from_string(button: <span class="kw-2">&amp;</span>str) -&gt; <span class="prelude-ty">Option</span>&lt;Button&gt; {
+        <span class="kw">let </span>id = <span class="kw">match </span>CString::new(button) {
+            <span class="prelude-val">Ok</span>(button) =&gt; <span class="kw">unsafe </span>{
+                sys::SDL_GameControllerGetButtonFromString(button.as_ptr() <span class="kw">as </span><span class="kw-2">*const </span>c_char)
             },
-            <span class="comment">// string contains a nul byte - it won&#39;t match anything.</span>
-            <span class="prelude-val">Err</span>(<span class="kw">_</span>) =&gt; <span class="ident">sys::SDL_GameControllerButton::SDL_CONTROLLER_BUTTON_INVALID</span>,
+            <span class="comment">// string contains a nul byte - it won&#39;t match anything.
+            </span><span class="prelude-val">Err</span>(<span class="kw">_</span>) =&gt; sys::SDL_GameControllerButton::SDL_CONTROLLER_BUTTON_INVALID,
         };
 
-        <span class="ident">Button::from_ll</span>(<span class="ident">id</span>)
+        Button::from_ll(id)
     }
 
-    <span class="doccomment">/// Return a string for a given button in the same format using by</span>
-    <span class="doccomment">/// the game controller mapping strings</span>
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;SDL_GameControllerGetStringForButton&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">string</span>(<span class="self">self</span>) -&gt; <span class="ident">String</span> {
-        <span class="kw">let</span> <span class="ident">button</span>: <span class="ident">sys::SDL_GameControllerButton</span>;
-        <span class="kw">unsafe</span> {
-            <span class="ident">button</span> <span class="op">=</span> <span class="ident">transmute</span>(<span class="self">self</span>);
+    <span class="doccomment">/// Return a string for a given button in the same format using by
+    /// the game controller mapping strings
+    </span><span class="attribute">#[doc(alias = <span class="string">&quot;SDL_GameControllerGetStringForButton&quot;</span>)]
+    </span><span class="kw">pub fn </span>string(<span class="self">self</span>) -&gt; String {
+        <span class="kw">let </span>button: sys::SDL_GameControllerButton;
+        <span class="kw">unsafe </span>{
+            button = transmute(<span class="self">self</span>);
         }
 
-        <span class="kw">let</span> <span class="ident">string</span> <span class="op">=</span> <span class="kw">unsafe</span> { <span class="ident">sys::SDL_GameControllerGetStringForButton</span>(<span class="ident">button</span>) };
+        <span class="kw">let </span>string = <span class="kw">unsafe </span>{ sys::SDL_GameControllerGetStringForButton(button) };
 
-        <span class="ident">c_str_to_string</span>(<span class="ident">string</span>)
+        c_str_to_string(string)
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">from_ll</span>(<span class="ident">bitflags</span>: <span class="ident">sys::SDL_GameControllerButton</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Button</span><span class="op">&gt;</span> {
-        <span class="prelude-val">Some</span>(<span class="kw">match</span> <span class="ident">bitflags</span> {
-            <span class="ident">sys::SDL_GameControllerButton::SDL_CONTROLLER_BUTTON_INVALID</span> =&gt; <span class="kw">return</span> <span class="prelude-val">None</span>,
-            <span class="ident">sys::SDL_GameControllerButton::SDL_CONTROLLER_BUTTON_A</span> =&gt; <span class="ident">Button::A</span>,
-            <span class="ident">sys::SDL_GameControllerButton::SDL_CONTROLLER_BUTTON_B</span> =&gt; <span class="ident">Button::B</span>,
-            <span class="ident">sys::SDL_GameControllerButton::SDL_CONTROLLER_BUTTON_X</span> =&gt; <span class="ident">Button::X</span>,
-            <span class="ident">sys::SDL_GameControllerButton::SDL_CONTROLLER_BUTTON_Y</span> =&gt; <span class="ident">Button::Y</span>,
-            <span class="ident">sys::SDL_GameControllerButton::SDL_CONTROLLER_BUTTON_BACK</span> =&gt; <span class="ident">Button::Back</span>,
-            <span class="ident">sys::SDL_GameControllerButton::SDL_CONTROLLER_BUTTON_GUIDE</span> =&gt; <span class="ident">Button::Guide</span>,
-            <span class="ident">sys::SDL_GameControllerButton::SDL_CONTROLLER_BUTTON_START</span> =&gt; <span class="ident">Button::Start</span>,
-            <span class="ident">sys::SDL_GameControllerButton::SDL_CONTROLLER_BUTTON_LEFTSTICK</span> =&gt; <span class="ident">Button::LeftStick</span>,
-            <span class="ident">sys::SDL_GameControllerButton::SDL_CONTROLLER_BUTTON_RIGHTSTICK</span> =&gt; <span class="ident">Button::RightStick</span>,
-            <span class="ident">sys::SDL_GameControllerButton::SDL_CONTROLLER_BUTTON_LEFTSHOULDER</span> =&gt; {
-                <span class="ident">Button::LeftShoulder</span>
+    <span class="kw">pub fn </span>from_ll(bitflags: sys::SDL_GameControllerButton) -&gt; <span class="prelude-ty">Option</span>&lt;Button&gt; {
+        <span class="prelude-val">Some</span>(<span class="kw">match </span>bitflags {
+            sys::SDL_GameControllerButton::SDL_CONTROLLER_BUTTON_INVALID =&gt; <span class="kw">return </span><span class="prelude-val">None</span>,
+            sys::SDL_GameControllerButton::SDL_CONTROLLER_BUTTON_A =&gt; Button::A,
+            sys::SDL_GameControllerButton::SDL_CONTROLLER_BUTTON_B =&gt; Button::B,
+            sys::SDL_GameControllerButton::SDL_CONTROLLER_BUTTON_X =&gt; Button::X,
+            sys::SDL_GameControllerButton::SDL_CONTROLLER_BUTTON_Y =&gt; Button::Y,
+            sys::SDL_GameControllerButton::SDL_CONTROLLER_BUTTON_BACK =&gt; Button::Back,
+            sys::SDL_GameControllerButton::SDL_CONTROLLER_BUTTON_GUIDE =&gt; Button::Guide,
+            sys::SDL_GameControllerButton::SDL_CONTROLLER_BUTTON_START =&gt; Button::Start,
+            sys::SDL_GameControllerButton::SDL_CONTROLLER_BUTTON_LEFTSTICK =&gt; Button::LeftStick,
+            sys::SDL_GameControllerButton::SDL_CONTROLLER_BUTTON_RIGHTSTICK =&gt; Button::RightStick,
+            sys::SDL_GameControllerButton::SDL_CONTROLLER_BUTTON_LEFTSHOULDER =&gt; {
+                Button::LeftShoulder
             }
-            <span class="ident">sys::SDL_GameControllerButton::SDL_CONTROLLER_BUTTON_RIGHTSHOULDER</span> =&gt; {
-                <span class="ident">Button::RightShoulder</span>
+            sys::SDL_GameControllerButton::SDL_CONTROLLER_BUTTON_RIGHTSHOULDER =&gt; {
+                Button::RightShoulder
             }
-            <span class="ident">sys::SDL_GameControllerButton::SDL_CONTROLLER_BUTTON_DPAD_UP</span> =&gt; <span class="ident">Button::DPadUp</span>,
-            <span class="ident">sys::SDL_GameControllerButton::SDL_CONTROLLER_BUTTON_DPAD_DOWN</span> =&gt; <span class="ident">Button::DPadDown</span>,
-            <span class="ident">sys::SDL_GameControllerButton::SDL_CONTROLLER_BUTTON_DPAD_LEFT</span> =&gt; <span class="ident">Button::DPadLeft</span>,
-            <span class="ident">sys::SDL_GameControllerButton::SDL_CONTROLLER_BUTTON_DPAD_RIGHT</span> =&gt; <span class="ident">Button::DPadRight</span>,
-            <span class="ident">sys::SDL_GameControllerButton::SDL_CONTROLLER_BUTTON_MISC1</span> =&gt; <span class="ident">Button::Misc1</span>,
-            <span class="ident">sys::SDL_GameControllerButton::SDL_CONTROLLER_BUTTON_PADDLE1</span> =&gt; <span class="ident">Button::Paddle1</span>,
-            <span class="ident">sys::SDL_GameControllerButton::SDL_CONTROLLER_BUTTON_PADDLE2</span> =&gt; <span class="ident">Button::Paddle2</span>,
-            <span class="ident">sys::SDL_GameControllerButton::SDL_CONTROLLER_BUTTON_PADDLE3</span> =&gt; <span class="ident">Button::Paddle3</span>,
-            <span class="ident">sys::SDL_GameControllerButton::SDL_CONTROLLER_BUTTON_PADDLE4</span> =&gt; <span class="ident">Button::Paddle4</span>,
-            <span class="ident">sys::SDL_GameControllerButton::SDL_CONTROLLER_BUTTON_TOUCHPAD</span> =&gt; <span class="ident">Button::Touchpad</span>,
-            <span class="kw">_</span> =&gt; <span class="kw">return</span> <span class="prelude-val">None</span>,
+            sys::SDL_GameControllerButton::SDL_CONTROLLER_BUTTON_DPAD_UP =&gt; Button::DPadUp,
+            sys::SDL_GameControllerButton::SDL_CONTROLLER_BUTTON_DPAD_DOWN =&gt; Button::DPadDown,
+            sys::SDL_GameControllerButton::SDL_CONTROLLER_BUTTON_DPAD_LEFT =&gt; Button::DPadLeft,
+            sys::SDL_GameControllerButton::SDL_CONTROLLER_BUTTON_DPAD_RIGHT =&gt; Button::DPadRight,
+            sys::SDL_GameControllerButton::SDL_CONTROLLER_BUTTON_MISC1 =&gt; Button::Misc1,
+            sys::SDL_GameControllerButton::SDL_CONTROLLER_BUTTON_PADDLE1 =&gt; Button::Paddle1,
+            sys::SDL_GameControllerButton::SDL_CONTROLLER_BUTTON_PADDLE2 =&gt; Button::Paddle2,
+            sys::SDL_GameControllerButton::SDL_CONTROLLER_BUTTON_PADDLE3 =&gt; Button::Paddle3,
+            sys::SDL_GameControllerButton::SDL_CONTROLLER_BUTTON_PADDLE4 =&gt; Button::Paddle4,
+            sys::SDL_GameControllerButton::SDL_CONTROLLER_BUTTON_TOUCHPAD =&gt; Button::Touchpad,
+            <span class="kw">_ </span>=&gt; <span class="kw">return </span><span class="prelude-val">None</span>,
         })
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">to_ll</span>(<span class="self">self</span>) -&gt; <span class="ident">sys::SDL_GameControllerButton</span> {
-        <span class="kw">match</span> <span class="self">self</span> {
-            <span class="ident">Button::A</span> =&gt; <span class="ident">sys::SDL_GameControllerButton::SDL_CONTROLLER_BUTTON_A</span>,
-            <span class="ident">Button::B</span> =&gt; <span class="ident">sys::SDL_GameControllerButton::SDL_CONTROLLER_BUTTON_B</span>,
-            <span class="ident">Button::X</span> =&gt; <span class="ident">sys::SDL_GameControllerButton::SDL_CONTROLLER_BUTTON_X</span>,
-            <span class="ident">Button::Y</span> =&gt; <span class="ident">sys::SDL_GameControllerButton::SDL_CONTROLLER_BUTTON_Y</span>,
-            <span class="ident">Button::Back</span> =&gt; <span class="ident">sys::SDL_GameControllerButton::SDL_CONTROLLER_BUTTON_BACK</span>,
-            <span class="ident">Button::Guide</span> =&gt; <span class="ident">sys::SDL_GameControllerButton::SDL_CONTROLLER_BUTTON_GUIDE</span>,
-            <span class="ident">Button::Start</span> =&gt; <span class="ident">sys::SDL_GameControllerButton::SDL_CONTROLLER_BUTTON_START</span>,
-            <span class="ident">Button::LeftStick</span> =&gt; <span class="ident">sys::SDL_GameControllerButton::SDL_CONTROLLER_BUTTON_LEFTSTICK</span>,
-            <span class="ident">Button::RightStick</span> =&gt; <span class="ident">sys::SDL_GameControllerButton::SDL_CONTROLLER_BUTTON_RIGHTSTICK</span>,
-            <span class="ident">Button::LeftShoulder</span> =&gt; {
-                <span class="ident">sys::SDL_GameControllerButton::SDL_CONTROLLER_BUTTON_LEFTSHOULDER</span>
+    <span class="kw">pub fn </span>to_ll(<span class="self">self</span>) -&gt; sys::SDL_GameControllerButton {
+        <span class="kw">match </span><span class="self">self </span>{
+            Button::A =&gt; sys::SDL_GameControllerButton::SDL_CONTROLLER_BUTTON_A,
+            Button::B =&gt; sys::SDL_GameControllerButton::SDL_CONTROLLER_BUTTON_B,
+            Button::X =&gt; sys::SDL_GameControllerButton::SDL_CONTROLLER_BUTTON_X,
+            Button::Y =&gt; sys::SDL_GameControllerButton::SDL_CONTROLLER_BUTTON_Y,
+            Button::Back =&gt; sys::SDL_GameControllerButton::SDL_CONTROLLER_BUTTON_BACK,
+            Button::Guide =&gt; sys::SDL_GameControllerButton::SDL_CONTROLLER_BUTTON_GUIDE,
+            Button::Start =&gt; sys::SDL_GameControllerButton::SDL_CONTROLLER_BUTTON_START,
+            Button::LeftStick =&gt; sys::SDL_GameControllerButton::SDL_CONTROLLER_BUTTON_LEFTSTICK,
+            Button::RightStick =&gt; sys::SDL_GameControllerButton::SDL_CONTROLLER_BUTTON_RIGHTSTICK,
+            Button::LeftShoulder =&gt; {
+                sys::SDL_GameControllerButton::SDL_CONTROLLER_BUTTON_LEFTSHOULDER
             }
-            <span class="ident">Button::RightShoulder</span> =&gt; {
-                <span class="ident">sys::SDL_GameControllerButton::SDL_CONTROLLER_BUTTON_RIGHTSHOULDER</span>
+            Button::RightShoulder =&gt; {
+                sys::SDL_GameControllerButton::SDL_CONTROLLER_BUTTON_RIGHTSHOULDER
             }
-            <span class="ident">Button::DPadUp</span> =&gt; <span class="ident">sys::SDL_GameControllerButton::SDL_CONTROLLER_BUTTON_DPAD_UP</span>,
-            <span class="ident">Button::DPadDown</span> =&gt; <span class="ident">sys::SDL_GameControllerButton::SDL_CONTROLLER_BUTTON_DPAD_DOWN</span>,
-            <span class="ident">Button::DPadLeft</span> =&gt; <span class="ident">sys::SDL_GameControllerButton::SDL_CONTROLLER_BUTTON_DPAD_LEFT</span>,
-            <span class="ident">Button::DPadRight</span> =&gt; <span class="ident">sys::SDL_GameControllerButton::SDL_CONTROLLER_BUTTON_DPAD_RIGHT</span>,
-            <span class="ident">Button::Misc1</span> =&gt; <span class="ident">sys::SDL_GameControllerButton::SDL_CONTROLLER_BUTTON_MISC1</span>,
-            <span class="ident">Button::Paddle1</span> =&gt; <span class="ident">sys::SDL_GameControllerButton::SDL_CONTROLLER_BUTTON_PADDLE1</span>,
-            <span class="ident">Button::Paddle2</span> =&gt; <span class="ident">sys::SDL_GameControllerButton::SDL_CONTROLLER_BUTTON_PADDLE2</span>,
-            <span class="ident">Button::Paddle3</span> =&gt; <span class="ident">sys::SDL_GameControllerButton::SDL_CONTROLLER_BUTTON_PADDLE3</span>,
-            <span class="ident">Button::Paddle4</span> =&gt; <span class="ident">sys::SDL_GameControllerButton::SDL_CONTROLLER_BUTTON_PADDLE4</span>,
-            <span class="ident">Button::Touchpad</span> =&gt; <span class="ident">sys::SDL_GameControllerButton::SDL_CONTROLLER_BUTTON_TOUCHPAD</span>,
+            Button::DPadUp =&gt; sys::SDL_GameControllerButton::SDL_CONTROLLER_BUTTON_DPAD_UP,
+            Button::DPadDown =&gt; sys::SDL_GameControllerButton::SDL_CONTROLLER_BUTTON_DPAD_DOWN,
+            Button::DPadLeft =&gt; sys::SDL_GameControllerButton::SDL_CONTROLLER_BUTTON_DPAD_LEFT,
+            Button::DPadRight =&gt; sys::SDL_GameControllerButton::SDL_CONTROLLER_BUTTON_DPAD_RIGHT,
+            Button::Misc1 =&gt; sys::SDL_GameControllerButton::SDL_CONTROLLER_BUTTON_MISC1,
+            Button::Paddle1 =&gt; sys::SDL_GameControllerButton::SDL_CONTROLLER_BUTTON_PADDLE1,
+            Button::Paddle2 =&gt; sys::SDL_GameControllerButton::SDL_CONTROLLER_BUTTON_PADDLE2,
+            Button::Paddle3 =&gt; sys::SDL_GameControllerButton::SDL_CONTROLLER_BUTTON_PADDLE3,
+            Button::Paddle4 =&gt; sys::SDL_GameControllerButton::SDL_CONTROLLER_BUTTON_PADDLE4,
+            Button::Touchpad =&gt; sys::SDL_GameControllerButton::SDL_CONTROLLER_BUTTON_TOUCHPAD,
         }
     }
 }
 
-<span class="doccomment">/// Possible return values for `add_mapping`</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Eq</span>, <span class="ident">PartialEq</span>, <span class="ident">Hash</span>, <span class="ident">Debug</span>)]</span>
-<span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">MappingStatus</span> {
-    <span class="ident">Added</span> <span class="op">=</span> <span class="number">1</span>,
-    <span class="ident">Updated</span> <span class="op">=</span> <span class="number">0</span>,
+<span class="doccomment">/// Possible return values for `add_mapping`
+</span><span class="attribute">#[derive(Copy, Clone, Eq, PartialEq, Hash, Debug)]
+</span><span class="kw">pub enum </span>MappingStatus {
+    Added = <span class="number">1</span>,
+    Updated = <span class="number">0</span>,
 }
 
-<span class="doccomment">/// Wrapper around the `SDL_GameController` object</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">GameController</span> {
-    <span class="ident">subsystem</span>: <span class="ident">GameControllerSubsystem</span>,
-    <span class="ident">raw</span>: <span class="kw-2">*mut</span> <span class="ident">sys::SDL_GameController</span>,
+<span class="doccomment">/// Wrapper around the `SDL_GameController` object
+</span><span class="kw">pub struct </span>GameController {
+    subsystem: GameControllerSubsystem,
+    raw: <span class="kw-2">*mut </span>sys::SDL_GameController,
 }
 
-<span class="kw">impl</span> <span class="ident">GameController</span> {
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">subsystem</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span><span class="ident">GameControllerSubsystem</span> {
-        <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">subsystem</span>
+<span class="kw">impl </span>GameController {
+    <span class="attribute">#[inline]
+    </span><span class="kw">pub fn </span>subsystem(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span>GameControllerSubsystem {
+        <span class="kw-2">&amp;</span><span class="self">self</span>.subsystem
     }
 
-    <span class="doccomment">/// Return the name of the controller or an empty string if no</span>
-    <span class="doccomment">/// name is found.</span>
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;SDL_GameControllerName&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">name</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">String</span> {
-        <span class="kw">let</span> <span class="ident">name</span> <span class="op">=</span> <span class="kw">unsafe</span> { <span class="ident">sys::SDL_GameControllerName</span>(<span class="self">self</span>.<span class="ident">raw</span>) };
+    <span class="doccomment">/// Return the name of the controller or an empty string if no
+    /// name is found.
+    </span><span class="attribute">#[doc(alias = <span class="string">&quot;SDL_GameControllerName&quot;</span>)]
+    </span><span class="kw">pub fn </span>name(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; String {
+        <span class="kw">let </span>name = <span class="kw">unsafe </span>{ sys::SDL_GameControllerName(<span class="self">self</span>.raw) };
 
-        <span class="ident">c_str_to_string</span>(<span class="ident">name</span>)
+        c_str_to_string(name)
     }
 
-    <span class="doccomment">/// Return a String describing the controller&#39;s button and axis</span>
-    <span class="doccomment">/// mappings</span>
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;SDL_GameControllerMapping&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">mapping</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">String</span> {
-        <span class="kw">let</span> <span class="ident">mapping</span> <span class="op">=</span> <span class="kw">unsafe</span> { <span class="ident">sys::SDL_GameControllerMapping</span>(<span class="self">self</span>.<span class="ident">raw</span>) };
+    <span class="doccomment">/// Return a String describing the controller&#39;s button and axis
+    /// mappings
+    </span><span class="attribute">#[doc(alias = <span class="string">&quot;SDL_GameControllerMapping&quot;</span>)]
+    </span><span class="kw">pub fn </span>mapping(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; String {
+        <span class="kw">let </span>mapping = <span class="kw">unsafe </span>{ sys::SDL_GameControllerMapping(<span class="self">self</span>.raw) };
 
-        <span class="ident">c_str_to_string</span>(<span class="ident">mapping</span>)
+        c_str_to_string(mapping)
     }
 
-    <span class="doccomment">/// Return true if the controller has been opened and currently</span>
-    <span class="doccomment">/// connected.</span>
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;SDL_GameControllerGetAttached&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">attached</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span> {
-        <span class="kw">unsafe</span> { <span class="ident">sys::SDL_GameControllerGetAttached</span>(<span class="self">self</span>.<span class="ident">raw</span>) <span class="op">!</span><span class="op">=</span> <span class="ident">sys::SDL_bool::SDL_FALSE</span> }
+    <span class="doccomment">/// Return true if the controller has been opened and currently
+    /// connected.
+    </span><span class="attribute">#[doc(alias = <span class="string">&quot;SDL_GameControllerGetAttached&quot;</span>)]
+    </span><span class="kw">pub fn </span>attached(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; bool {
+        <span class="kw">unsafe </span>{ sys::SDL_GameControllerGetAttached(<span class="self">self</span>.raw) != sys::SDL_bool::SDL_FALSE }
     }
 
-    <span class="doccomment">/// Return the joystick instance id of this controller</span>
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;SDL_GameControllerGetJoystick&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">instance_id</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">u32</span> {
-        <span class="kw">let</span> <span class="ident">result</span> <span class="op">=</span> <span class="kw">unsafe</span> {
-            <span class="kw">let</span> <span class="ident">joystick</span> <span class="op">=</span> <span class="ident">sys::SDL_GameControllerGetJoystick</span>(<span class="self">self</span>.<span class="ident">raw</span>);
-            <span class="ident">sys::SDL_JoystickInstanceID</span>(<span class="ident">joystick</span>)
+    <span class="doccomment">/// Return the joystick instance id of this controller
+    </span><span class="attribute">#[doc(alias = <span class="string">&quot;SDL_GameControllerGetJoystick&quot;</span>)]
+    </span><span class="kw">pub fn </span>instance_id(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; u32 {
+        <span class="kw">let </span>result = <span class="kw">unsafe </span>{
+            <span class="kw">let </span>joystick = sys::SDL_GameControllerGetJoystick(<span class="self">self</span>.raw);
+            sys::SDL_JoystickInstanceID(joystick)
         };
 
-        <span class="kw">if</span> <span class="ident">result</span> <span class="op">&lt;</span> <span class="number">0</span> {
-            <span class="comment">// Should only fail if the joystick is NULL.</span>
-            <span class="macro">panic!</span>(<span class="string">&quot;{}&quot;</span>, <span class="ident">get_error</span>())
-        } <span class="kw">else</span> {
-            <span class="ident">result</span> <span class="kw">as</span> <span class="ident">u32</span>
+        <span class="kw">if </span>result &lt; <span class="number">0 </span>{
+            <span class="comment">// Should only fail if the joystick is NULL.
+            </span><span class="macro">panic!</span>(<span class="string">&quot;{}&quot;</span>, get_error())
+        } <span class="kw">else </span>{
+            result <span class="kw">as </span>u32
         }
     }
 
-    <span class="doccomment">/// Get the position of the given `axis`</span>
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;SDL_GameControllerGetAxis&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">axis</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">axis</span>: <span class="ident">Axis</span>) -&gt; <span class="ident">i16</span> {
-        <span class="comment">// This interface is a bit messed up: 0 is a valid position</span>
-        <span class="comment">// but can also mean that an error occured.</span>
-        <span class="comment">// Fortunately, an error can only occur if the controller pointer is NULL.</span>
-        <span class="comment">// There should be no apparent reason for this to change in the future.</span>
+    <span class="doccomment">/// Get the position of the given `axis`
+    </span><span class="attribute">#[doc(alias = <span class="string">&quot;SDL_GameControllerGetAxis&quot;</span>)]
+    </span><span class="kw">pub fn </span>axis(<span class="kw-2">&amp;</span><span class="self">self</span>, axis: Axis) -&gt; i16 {
+        <span class="comment">// This interface is a bit messed up: 0 is a valid position
+        // but can also mean that an error occured.
+        // Fortunately, an error can only occur if the controller pointer is NULL.
+        // There should be no apparent reason for this to change in the future.
 
-        <span class="kw">let</span> <span class="ident">raw_axis</span>: <span class="ident">sys::SDL_GameControllerAxis</span>;
-        <span class="kw">unsafe</span> {
-            <span class="ident">raw_axis</span> <span class="op">=</span> <span class="ident">transmute</span>(<span class="ident">axis</span>);
+        </span><span class="kw">let </span>raw_axis: sys::SDL_GameControllerAxis;
+        <span class="kw">unsafe </span>{
+            raw_axis = transmute(axis);
         }
 
-        <span class="kw">unsafe</span> { <span class="ident">sys::SDL_GameControllerGetAxis</span>(<span class="self">self</span>.<span class="ident">raw</span>, <span class="ident">raw_axis</span>) }
+        <span class="kw">unsafe </span>{ sys::SDL_GameControllerGetAxis(<span class="self">self</span>.raw, raw_axis) }
     }
 
-    <span class="doccomment">/// Returns `true` if `button` is pressed.</span>
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;SDL_GameControllerGetButton&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">button</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">button</span>: <span class="ident">Button</span>) -&gt; <span class="ident">bool</span> {
-        <span class="comment">// This interface is a bit messed up: 0 is a valid position</span>
-        <span class="comment">// but can also mean that an error occured.</span>
-        <span class="comment">// Fortunately, an error can only occur if the controller pointer is NULL.</span>
-        <span class="comment">// There should be no apparent reason for this to change in the future.</span>
+    <span class="doccomment">/// Returns `true` if `button` is pressed.
+    </span><span class="attribute">#[doc(alias = <span class="string">&quot;SDL_GameControllerGetButton&quot;</span>)]
+    </span><span class="kw">pub fn </span>button(<span class="kw-2">&amp;</span><span class="self">self</span>, button: Button) -&gt; bool {
+        <span class="comment">// This interface is a bit messed up: 0 is a valid position
+        // but can also mean that an error occured.
+        // Fortunately, an error can only occur if the controller pointer is NULL.
+        // There should be no apparent reason for this to change in the future.
 
-        <span class="kw">let</span> <span class="ident">raw_button</span>: <span class="ident">sys::SDL_GameControllerButton</span>;
-        <span class="kw">unsafe</span> {
-            <span class="ident">raw_button</span> <span class="op">=</span> <span class="ident">transmute</span>(<span class="ident">button</span>);
+        </span><span class="kw">let </span>raw_button: sys::SDL_GameControllerButton;
+        <span class="kw">unsafe </span>{
+            raw_button = transmute(button);
         }
 
-        <span class="kw">unsafe</span> { <span class="ident">sys::SDL_GameControllerGetButton</span>(<span class="self">self</span>.<span class="ident">raw</span>, <span class="ident">raw_button</span>) <span class="op">!</span><span class="op">=</span> <span class="number">0</span> }
+        <span class="kw">unsafe </span>{ sys::SDL_GameControllerGetButton(<span class="self">self</span>.raw, raw_button) != <span class="number">0 </span>}
     }
 
-    <span class="doccomment">/// Set the rumble motors to their specified intensities, if supported.</span>
-    <span class="doccomment">/// Automatically resets back to zero after `duration_ms` milliseconds have passed.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// # Notes</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// The value range for the intensities is 0 to 0xFFFF.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// Do *not* use `std::u32::MAX` or similar for `duration_ms` if you want</span>
-    <span class="doccomment">/// the rumble effect to keep playing for a long time, as this results in</span>
-    <span class="doccomment">/// the effect ending immediately after starting due to an overflow.</span>
-    <span class="doccomment">/// Use some smaller, &quot;huge enough&quot; number instead.</span>
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;SDL_GameControllerRumble&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_rumble</span>(
-        <span class="kw-2">&amp;mut</span> <span class="self">self</span>,
-        <span class="ident">low_frequency_rumble</span>: <span class="ident">u16</span>,
-        <span class="ident">high_frequency_rumble</span>: <span class="ident">u16</span>,
-        <span class="ident">duration_ms</span>: <span class="ident">u32</span>,
-    ) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">IntegerOrSdlError</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="ident">result</span> <span class="op">=</span> <span class="kw">unsafe</span> {
-            <span class="ident">sys::SDL_GameControllerRumble</span>(
-                <span class="self">self</span>.<span class="ident">raw</span>,
-                <span class="ident">low_frequency_rumble</span>,
-                <span class="ident">high_frequency_rumble</span>,
-                <span class="ident">duration_ms</span>,
+    <span class="doccomment">/// Set the rumble motors to their specified intensities, if supported.
+    /// Automatically resets back to zero after `duration_ms` milliseconds have passed.
+    ///
+    /// # Notes
+    ///
+    /// The value range for the intensities is 0 to 0xFFFF.
+    ///
+    /// Do *not* use `std::u32::MAX` or similar for `duration_ms` if you want
+    /// the rumble effect to keep playing for a long time, as this results in
+    /// the effect ending immediately after starting due to an overflow.
+    /// Use some smaller, &quot;huge enough&quot; number instead.
+    </span><span class="attribute">#[doc(alias = <span class="string">&quot;SDL_GameControllerRumble&quot;</span>)]
+    </span><span class="kw">pub fn </span>set_rumble(
+        <span class="kw-2">&amp;mut </span><span class="self">self</span>,
+        low_frequency_rumble: u16,
+        high_frequency_rumble: u16,
+        duration_ms: u32,
+    ) -&gt; <span class="prelude-ty">Result</span>&lt;(), IntegerOrSdlError&gt; {
+        <span class="kw">let </span>result = <span class="kw">unsafe </span>{
+            sys::SDL_GameControllerRumble(
+                <span class="self">self</span>.raw,
+                low_frequency_rumble,
+                high_frequency_rumble,
+                duration_ms,
             )
         };
 
-        <span class="kw">if</span> <span class="ident">result</span> <span class="op">!</span><span class="op">=</span> <span class="number">0</span> {
-            <span class="prelude-val">Err</span>(<span class="ident">IntegerOrSdlError::SdlError</span>(<span class="ident">get_error</span>()))
-        } <span class="kw">else</span> {
+        <span class="kw">if </span>result != <span class="number">0 </span>{
+            <span class="prelude-val">Err</span>(IntegerOrSdlError::SdlError(get_error()))
+        } <span class="kw">else </span>{
             <span class="prelude-val">Ok</span>(())
         }
     }
 }
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;hidapi&quot;</span>)]</span>
-<span class="kw">impl</span> <span class="ident">GameController</span> {
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;SDL_GameControllerHasSensor&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">has_sensor</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">sensor_type</span>: <span class="ident"><span class="kw">crate</span>::sensor::SensorType</span>) -&gt; <span class="ident">bool</span> {
-        <span class="kw">let</span> <span class="ident">result</span> <span class="op">=</span> <span class="kw">unsafe</span> { <span class="ident">sys::SDL_GameControllerHasSensor</span>(<span class="self">self</span>.<span class="ident">raw</span>, <span class="ident">sensor_type</span>.<span class="ident">into</span>()) };
+<span class="attribute">#[cfg(feature = <span class="string">&quot;hidapi&quot;</span>)]
+</span><span class="kw">impl </span>GameController {
+    <span class="attribute">#[doc(alias = <span class="string">&quot;SDL_GameControllerHasSensor&quot;</span>)]
+    </span><span class="kw">pub fn </span>has_sensor(<span class="kw-2">&amp;</span><span class="self">self</span>, sensor_type: <span class="kw">crate</span>::sensor::SensorType) -&gt; bool {
+        <span class="kw">let </span>result = <span class="kw">unsafe </span>{ sys::SDL_GameControllerHasSensor(<span class="self">self</span>.raw, sensor_type.into()) };
 
-        <span class="kw">match</span> <span class="ident">result</span> {
-            <span class="ident">sys::SDL_bool::SDL_FALSE</span> =&gt; <span class="bool-val">false</span>,
-            <span class="ident">sys::SDL_bool::SDL_TRUE</span> =&gt; <span class="bool-val">true</span>,
+        <span class="kw">match </span>result {
+            sys::SDL_bool::SDL_FALSE =&gt; <span class="bool-val">false</span>,
+            sys::SDL_bool::SDL_TRUE =&gt; <span class="bool-val">true</span>,
         }
     }
 
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;SDL_GameControllerIsSensorEnabled&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">sensor_enabled</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">sensor_type</span>: <span class="ident"><span class="kw">crate</span>::sensor::SensorType</span>) -&gt; <span class="ident">bool</span> {
-        <span class="kw">let</span> <span class="ident">result</span> <span class="op">=</span>
-            <span class="kw">unsafe</span> { <span class="ident">sys::SDL_GameControllerIsSensorEnabled</span>(<span class="self">self</span>.<span class="ident">raw</span>, <span class="ident">sensor_type</span>.<span class="ident">into</span>()) };
+    <span class="attribute">#[doc(alias = <span class="string">&quot;SDL_GameControllerIsSensorEnabled&quot;</span>)]
+    </span><span class="kw">pub fn </span>sensor_enabled(<span class="kw-2">&amp;</span><span class="self">self</span>, sensor_type: <span class="kw">crate</span>::sensor::SensorType) -&gt; bool {
+        <span class="kw">let </span>result =
+            <span class="kw">unsafe </span>{ sys::SDL_GameControllerIsSensorEnabled(<span class="self">self</span>.raw, sensor_type.into()) };
 
-        <span class="kw">match</span> <span class="ident">result</span> {
-            <span class="ident">sys::SDL_bool::SDL_FALSE</span> =&gt; <span class="bool-val">false</span>,
-            <span class="ident">sys::SDL_bool::SDL_TRUE</span> =&gt; <span class="bool-val">true</span>,
+        <span class="kw">match </span>result {
+            sys::SDL_bool::SDL_FALSE =&gt; <span class="bool-val">false</span>,
+            sys::SDL_bool::SDL_TRUE =&gt; <span class="bool-val">true</span>,
         }
     }
 
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;SDL_GameControllerHasSensor&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">sensor_set_enabled</span>(
+    <span class="attribute">#[doc(alias = <span class="string">&quot;SDL_GameControllerHasSensor&quot;</span>)]
+    </span><span class="kw">pub fn </span>sensor_set_enabled(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
-        <span class="ident">sensor_type</span>: <span class="ident"><span class="kw">crate</span>::sensor::SensorType</span>,
-        <span class="ident">enabled</span>: <span class="ident">bool</span>,
-    ) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">IntegerOrSdlError</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="ident">result</span> <span class="op">=</span> <span class="kw">unsafe</span> {
-            <span class="ident">sys::SDL_GameControllerSetSensorEnabled</span>(
-                <span class="self">self</span>.<span class="ident">raw</span>,
-                <span class="ident">sensor_type</span>.<span class="ident">into</span>(),
-                <span class="kw">if</span> <span class="ident">enabled</span> {
-                    <span class="ident">sys::SDL_bool::SDL_TRUE</span>
-                } <span class="kw">else</span> {
-                    <span class="ident">sys::SDL_bool::SDL_FALSE</span>
+        sensor_type: <span class="kw">crate</span>::sensor::SensorType,
+        enabled: bool,
+    ) -&gt; <span class="prelude-ty">Result</span>&lt;(), IntegerOrSdlError&gt; {
+        <span class="kw">let </span>result = <span class="kw">unsafe </span>{
+            sys::SDL_GameControllerSetSensorEnabled(
+                <span class="self">self</span>.raw,
+                sensor_type.into(),
+                <span class="kw">if </span>enabled {
+                    sys::SDL_bool::SDL_TRUE
+                } <span class="kw">else </span>{
+                    sys::SDL_bool::SDL_FALSE
                 },
             )
         };
 
-        <span class="kw">if</span> <span class="ident">result</span> <span class="op">!</span><span class="op">=</span> <span class="number">0</span> {
-            <span class="prelude-val">Err</span>(<span class="ident">IntegerOrSdlError::SdlError</span>(<span class="ident">get_error</span>()))
-        } <span class="kw">else</span> {
+        <span class="kw">if </span>result != <span class="number">0 </span>{
+            <span class="prelude-val">Err</span>(IntegerOrSdlError::SdlError(get_error()))
+        } <span class="kw">else </span>{
             <span class="prelude-val">Ok</span>(())
         }
     }
 
-    <span class="doccomment">/// Get data from a sensor.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// The number of data points depends on the sensor. Both Gyroscope and</span>
-    <span class="doccomment">/// Accelerometer return 3 values, one for each axis.</span>
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;SDL_GameControllerGetSensorData&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">sensor_get_data</span>(
+    <span class="doccomment">/// Get data from a sensor.
+    ///
+    /// The number of data points depends on the sensor. Both Gyroscope and
+    /// Accelerometer return 3 values, one for each axis.
+    </span><span class="attribute">#[doc(alias = <span class="string">&quot;SDL_GameControllerGetSensorData&quot;</span>)]
+    </span><span class="kw">pub fn </span>sensor_get_data(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
-        <span class="ident">sensor_type</span>: <span class="ident">SensorType</span>,
-        <span class="ident">data</span>: <span class="kw-2">&amp;mut</span> [<span class="ident">f32</span>],
-    ) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">IntegerOrSdlError</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="ident">result</span> <span class="op">=</span> <span class="kw">unsafe</span> {
-            <span class="ident">sys::SDL_GameControllerGetSensorData</span>(
-                <span class="self">self</span>.<span class="ident">raw</span>,
-                <span class="ident">sensor_type</span>.<span class="ident">into</span>(),
-                <span class="ident">data</span>.<span class="ident">as_mut_ptr</span>(),
-                <span class="ident">data</span>.<span class="ident">len</span>().<span class="ident">try_into</span>().<span class="ident">unwrap</span>(),
+        sensor_type: SensorType,
+        data: <span class="kw-2">&amp;mut </span>[f32],
+    ) -&gt; <span class="prelude-ty">Result</span>&lt;(), IntegerOrSdlError&gt; {
+        <span class="kw">let </span>result = <span class="kw">unsafe </span>{
+            sys::SDL_GameControllerGetSensorData(
+                <span class="self">self</span>.raw,
+                sensor_type.into(),
+                data.as_mut_ptr(),
+                data.len().try_into().unwrap(),
             )
         };
 
-        <span class="kw">if</span> <span class="ident">result</span> <span class="op">!</span><span class="op">=</span> <span class="number">0</span> {
-            <span class="prelude-val">Err</span>(<span class="ident">IntegerOrSdlError::SdlError</span>(<span class="ident">get_error</span>()))
-        } <span class="kw">else</span> {
+        <span class="kw">if </span>result != <span class="number">0 </span>{
+            <span class="prelude-val">Err</span>(IntegerOrSdlError::SdlError(get_error()))
+        } <span class="kw">else </span>{
             <span class="prelude-val">Ok</span>(())
         }
     }
 }
 
-<span class="kw">impl</span> <span class="ident">Drop</span> <span class="kw">for</span> <span class="ident">GameController</span> {
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;SDL_GameControllerClose&quot;</span>)]</span>
-    <span class="kw">fn</span> <span class="ident">drop</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>) {
-        <span class="kw">unsafe</span> { <span class="ident">sys::SDL_GameControllerClose</span>(<span class="self">self</span>.<span class="ident">raw</span>) }
+<span class="kw">impl </span>Drop <span class="kw">for </span>GameController {
+    <span class="attribute">#[doc(alias = <span class="string">&quot;SDL_GameControllerClose&quot;</span>)]
+    </span><span class="kw">fn </span>drop(<span class="kw-2">&amp;mut </span><span class="self">self</span>) {
+        <span class="kw">unsafe </span>{ sys::SDL_GameControllerClose(<span class="self">self</span>.raw) }
     }
 }
 
-<span class="doccomment">/// Convert C string `c_str` to a String. Return an empty string if</span>
-<span class="doccomment">/// `c_str` is NULL.</span>
-<span class="kw">fn</span> <span class="ident">c_str_to_string</span>(<span class="ident">c_str</span>: <span class="kw-2">*const</span> <span class="ident">c_char</span>) -&gt; <span class="ident">String</span> {
-    <span class="kw">if</span> <span class="ident">c_str</span>.<span class="ident">is_null</span>() {
-        <span class="ident">String::new</span>()
-    } <span class="kw">else</span> {
-        <span class="kw">unsafe</span> {
-            <span class="ident">CStr::from_ptr</span>(<span class="ident">c_str</span> <span class="kw">as</span> <span class="kw-2">*const</span> <span class="kw">_</span>)
-                .<span class="ident">to_str</span>()
-                .<span class="ident">unwrap</span>()
-                .<span class="ident">to_owned</span>()
+<span class="doccomment">/// Convert C string `c_str` to a String. Return an empty string if
+/// `c_str` is NULL.
+</span><span class="kw">fn </span>c_str_to_string(c_str: <span class="kw-2">*const </span>c_char) -&gt; String {
+    <span class="kw">if </span>c_str.is_null() {
+        String::new()
+    } <span class="kw">else </span>{
+        <span class="kw">unsafe </span>{
+            CStr::from_ptr(c_str <span class="kw">as </span><span class="kw-2">*const </span><span class="kw">_</span>)
+                .to_str()
+                .unwrap()
+                .to_owned()
         }
     }
 }
 
-<span class="doccomment">/// Convert C string `c_str` to a String. Return an SDL error if</span>
-<span class="doccomment">/// `c_str` is NULL.</span>
-<span class="kw">fn</span> <span class="ident">c_str_to_string_or_err</span>(<span class="ident">c_str</span>: <span class="kw-2">*const</span> <span class="ident">c_char</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">String</span>, <span class="ident">String</span><span class="op">&gt;</span> {
-    <span class="kw">if</span> <span class="ident">c_str</span>.<span class="ident">is_null</span>() {
-        <span class="prelude-val">Err</span>(<span class="ident">get_error</span>())
-    } <span class="kw">else</span> {
-        <span class="prelude-val">Ok</span>(<span class="kw">unsafe</span> {
-            <span class="ident">CStr::from_ptr</span>(<span class="ident">c_str</span> <span class="kw">as</span> <span class="kw-2">*const</span> <span class="kw">_</span>)
-                .<span class="ident">to_str</span>()
-                .<span class="ident">unwrap</span>()
-                .<span class="ident">to_owned</span>()
+<span class="doccomment">/// Convert C string `c_str` to a String. Return an SDL error if
+/// `c_str` is NULL.
+</span><span class="kw">fn </span>c_str_to_string_or_err(c_str: <span class="kw-2">*const </span>c_char) -&gt; <span class="prelude-ty">Result</span>&lt;String, String&gt; {
+    <span class="kw">if </span>c_str.is_null() {
+        <span class="prelude-val">Err</span>(get_error())
+    } <span class="kw">else </span>{
+        <span class="prelude-val">Ok</span>(<span class="kw">unsafe </span>{
+            CStr::from_ptr(c_str <span class="kw">as </span><span class="kw-2">*const </span><span class="kw">_</span>)
+                .to_str()
+                .unwrap()
+                .to_owned()
         })
     }
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="sdl2" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0 (a55dd71d5 2022-09-19)" ></div></body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="sdl2" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.66.1 (90743e729 2023-01-10)" ></div></body></html>

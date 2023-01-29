@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/ab_glyph_rasterizer-0.1.5/src/geometry.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>geometry.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../ab_glyph_rasterizer/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../ab_glyph_rasterizer/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../ab_glyph_rasterizer/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/ab_glyph_rasterizer-0.1.5/src/geometry.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>geometry.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../normalize.css"><link rel="stylesheet" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../ayu.css" disabled><link rel="stylesheet" href="../../dark.css" disabled><link rel="stylesheet" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><div class="width-limiter"><nav class="sub"><a class="sub-logo-container" href="../../ab_glyph_rasterizer/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -146,153 +146,153 @@
 <span id="146">146</span>
 <span id="147">147</span>
 <span id="148">148</span>
-</pre><pre class="rust"><code><span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">all</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;libm&quot;</span>, <span class="ident">not</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;std&quot;</span>)))]</span>
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::nostd_float::FloatExt</span>;
+</pre><pre class="rust"><code><span class="attribute">#[cfg(all(feature = <span class="string">&quot;libm&quot;</span>, not(feature = <span class="string">&quot;std&quot;</span>)))]
+</span><span class="kw">use </span><span class="kw">crate</span>::nostd_float::FloatExt;
 
-<span class="doccomment">/// An (x, y) coordinate.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// # Example</span>
-<span class="doccomment">/// ```</span>
-<span class="doccomment">/// use ab_glyph_rasterizer::{point, Point};</span>
-<span class="doccomment">/// let p: Point = point(0.1, 23.2);</span>
-<span class="doccomment">/// ```</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">Default</span>, <span class="ident">PartialEq</span>, <span class="ident">PartialOrd</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Point</span> {
-    <span class="kw">pub</span> <span class="ident">x</span>: <span class="ident">f32</span>,
-    <span class="kw">pub</span> <span class="ident">y</span>: <span class="ident">f32</span>,
+<span class="doccomment">/// An (x, y) coordinate.
+///
+/// # Example
+/// ```
+/// use ab_glyph_rasterizer::{point, Point};
+/// let p: Point = point(0.1, 23.2);
+/// ```
+</span><span class="attribute">#[derive(Clone, Copy, Default, PartialEq, PartialOrd)]
+</span><span class="kw">pub struct </span>Point {
+    <span class="kw">pub </span>x: f32,
+    <span class="kw">pub </span>y: f32,
 }
 
-<span class="kw">impl</span> <span class="ident">core::fmt::Debug</span> <span class="kw">for</span> <span class="ident">Point</span> {
-    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;mut</span> <span class="ident">core::fmt::Formatter</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>) -&gt; <span class="ident">core::fmt::Result</span> {
-        <span class="macro">write!</span>(<span class="ident">f</span>, <span class="string">&quot;point({:?}, {:?})&quot;</span>, <span class="self">self</span>.<span class="ident">x</span>, <span class="self">self</span>.<span class="ident">y</span>)
+<span class="kw">impl </span>core::fmt::Debug <span class="kw">for </span>Point {
+    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>core::fmt::Formatter&lt;<span class="lifetime">&#39;_</span>&gt;) -&gt; core::fmt::Result {
+        <span class="macro">write!</span>(f, <span class="string">&quot;point({:?}, {:?})&quot;</span>, <span class="self">self</span>.x, <span class="self">self</span>.y)
     }
 }
 
-<span class="kw">impl</span> <span class="ident">Point</span> {
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">distance_to</span>(<span class="self">self</span>, <span class="ident">other</span>: <span class="ident">Point</span>) -&gt; <span class="ident">f32</span> {
-        <span class="kw">let</span> <span class="ident">d</span> <span class="op">=</span> <span class="ident">other</span> <span class="op">-</span> <span class="self">self</span>;
-        (<span class="ident">d</span>.<span class="ident">x</span> <span class="op">*</span> <span class="ident">d</span>.<span class="ident">x</span> <span class="op">+</span> <span class="ident">d</span>.<span class="ident">y</span> <span class="op">*</span> <span class="ident">d</span>.<span class="ident">y</span>).<span class="ident">sqrt</span>()
+<span class="kw">impl </span>Point {
+    <span class="attribute">#[inline]
+    </span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>distance_to(<span class="self">self</span>, other: Point) -&gt; f32 {
+        <span class="kw">let </span>d = other - <span class="self">self</span>;
+        (d.x * d.x + d.y * d.y).sqrt()
     }
 }
 
-<span class="doccomment">/// [`Point`](struct.Point.html) constructor.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// # Example</span>
-<span class="doccomment">/// ```</span>
-<span class="doccomment">/// # use ab_glyph_rasterizer::{point, Point};</span>
-<span class="doccomment">/// let p = point(0.1, 23.2);</span>
-<span class="doccomment">/// ```</span>
-<span class="attribute">#[<span class="ident">inline</span>]</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">point</span>(<span class="ident">x</span>: <span class="ident">f32</span>, <span class="ident">y</span>: <span class="ident">f32</span>) -&gt; <span class="ident">Point</span> {
-    <span class="ident">Point</span> { <span class="ident">x</span>, <span class="ident">y</span> }
+<span class="doccomment">/// [`Point`](struct.Point.html) constructor.
+///
+/// # Example
+/// ```
+/// # use ab_glyph_rasterizer::{point, Point};
+/// let p = point(0.1, 23.2);
+/// ```
+</span><span class="attribute">#[inline]
+</span><span class="kw">pub fn </span>point(x: f32, y: f32) -&gt; Point {
+    Point { x, y }
 }
 
-<span class="doccomment">/// Linear interpolation between points.</span>
-<span class="attribute">#[<span class="ident">inline</span>]</span>
-<span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">lerp</span>(<span class="ident">t</span>: <span class="ident">f32</span>, <span class="ident">p0</span>: <span class="ident">Point</span>, <span class="ident">p1</span>: <span class="ident">Point</span>) -&gt; <span class="ident">Point</span> {
-    <span class="ident">point</span>(<span class="ident">p0</span>.<span class="ident">x</span> <span class="op">+</span> <span class="ident">t</span> <span class="op">*</span> (<span class="ident">p1</span>.<span class="ident">x</span> <span class="op">-</span> <span class="ident">p0</span>.<span class="ident">x</span>), <span class="ident">p0</span>.<span class="ident">y</span> <span class="op">+</span> <span class="ident">t</span> <span class="op">*</span> (<span class="ident">p1</span>.<span class="ident">y</span> <span class="op">-</span> <span class="ident">p0</span>.<span class="ident">y</span>))
+<span class="doccomment">/// Linear interpolation between points.
+</span><span class="attribute">#[inline]
+</span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>lerp(t: f32, p0: Point, p1: Point) -&gt; Point {
+    point(p0.x + t * (p1.x - p0.x), p0.y + t * (p1.y - p0.y))
 }
 
-<span class="kw">impl</span> <span class="ident">core::ops::Sub</span> <span class="kw">for</span> <span class="ident">Point</span> {
-    <span class="kw">type</span> <span class="ident">Output</span> <span class="op">=</span> <span class="ident">Point</span>;
-    <span class="doccomment">/// Subtract rhs.x from x, rhs.y from y.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// ```</span>
-    <span class="doccomment">/// # use ab_glyph_rasterizer::*;</span>
-    <span class="doccomment">/// let p1 = point(1.0, 2.0) - point(2.0, 1.5);</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// assert!((p1.x - -1.0).abs() &lt;= core::f32::EPSILON);</span>
-    <span class="doccomment">/// assert!((p1.y - 0.5).abs() &lt;= core::f32::EPSILON);</span>
-    <span class="doccomment">/// ```</span>
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">sub</span>(<span class="self">self</span>, <span class="ident">rhs</span>: <span class="ident">Point</span>) -&gt; <span class="ident">Point</span> {
-        <span class="ident">point</span>(<span class="self">self</span>.<span class="ident">x</span> <span class="op">-</span> <span class="ident">rhs</span>.<span class="ident">x</span>, <span class="self">self</span>.<span class="ident">y</span> <span class="op">-</span> <span class="ident">rhs</span>.<span class="ident">y</span>)
+<span class="kw">impl </span>core::ops::Sub <span class="kw">for </span>Point {
+    <span class="kw">type </span>Output = Point;
+    <span class="doccomment">/// Subtract rhs.x from x, rhs.y from y.
+    ///
+    /// ```
+    /// # use ab_glyph_rasterizer::*;
+    /// let p1 = point(1.0, 2.0) - point(2.0, 1.5);
+    ///
+    /// assert!((p1.x - -1.0).abs() &lt;= core::f32::EPSILON);
+    /// assert!((p1.y - 0.5).abs() &lt;= core::f32::EPSILON);
+    /// ```
+    </span><span class="attribute">#[inline]
+    </span><span class="kw">fn </span>sub(<span class="self">self</span>, rhs: Point) -&gt; Point {
+        point(<span class="self">self</span>.x - rhs.x, <span class="self">self</span>.y - rhs.y)
     }
 }
 
-<span class="kw">impl</span> <span class="ident">core::ops::Add</span> <span class="kw">for</span> <span class="ident">Point</span> {
-    <span class="kw">type</span> <span class="ident">Output</span> <span class="op">=</span> <span class="ident">Point</span>;
-    <span class="doccomment">/// Add rhs.x to x, rhs.y to y.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// ```</span>
-    <span class="doccomment">/// # use ab_glyph_rasterizer::*;</span>
-    <span class="doccomment">/// let p1 = point(1.0, 2.0) + point(2.0, 1.5);</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// assert!((p1.x - 3.0).abs() &lt;= core::f32::EPSILON);</span>
-    <span class="doccomment">/// assert!((p1.y - 3.5).abs() &lt;= core::f32::EPSILON);</span>
-    <span class="doccomment">/// ```</span>
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">add</span>(<span class="self">self</span>, <span class="ident">rhs</span>: <span class="ident">Point</span>) -&gt; <span class="ident">Point</span> {
-        <span class="ident">point</span>(<span class="self">self</span>.<span class="ident">x</span> <span class="op">+</span> <span class="ident">rhs</span>.<span class="ident">x</span>, <span class="self">self</span>.<span class="ident">y</span> <span class="op">+</span> <span class="ident">rhs</span>.<span class="ident">y</span>)
+<span class="kw">impl </span>core::ops::Add <span class="kw">for </span>Point {
+    <span class="kw">type </span>Output = Point;
+    <span class="doccomment">/// Add rhs.x to x, rhs.y to y.
+    ///
+    /// ```
+    /// # use ab_glyph_rasterizer::*;
+    /// let p1 = point(1.0, 2.0) + point(2.0, 1.5);
+    ///
+    /// assert!((p1.x - 3.0).abs() &lt;= core::f32::EPSILON);
+    /// assert!((p1.y - 3.5).abs() &lt;= core::f32::EPSILON);
+    /// ```
+    </span><span class="attribute">#[inline]
+    </span><span class="kw">fn </span>add(<span class="self">self</span>, rhs: Point) -&gt; Point {
+        point(<span class="self">self</span>.x + rhs.x, <span class="self">self</span>.y + rhs.y)
     }
 }
 
-<span class="kw">impl</span> <span class="ident">core::ops::AddAssign</span> <span class="kw">for</span> <span class="ident">Point</span> {
-    <span class="doccomment">/// ```</span>
-    <span class="doccomment">/// # use ab_glyph_rasterizer::*;</span>
-    <span class="doccomment">/// let mut p1 = point(1.0, 2.0);</span>
-    <span class="doccomment">/// p1 += point(2.0, 1.5);</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// assert!((p1.x - 3.0).abs() &lt;= core::f32::EPSILON);</span>
-    <span class="doccomment">/// assert!((p1.y - 3.5).abs() &lt;= core::f32::EPSILON);</span>
-    <span class="doccomment">/// ```</span>
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">add_assign</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">other</span>: <span class="self">Self</span>) {
-        <span class="self">self</span>.<span class="ident">x</span> <span class="op">+</span><span class="op">=</span> <span class="ident">other</span>.<span class="ident">x</span>;
-        <span class="self">self</span>.<span class="ident">y</span> <span class="op">+</span><span class="op">=</span> <span class="ident">other</span>.<span class="ident">y</span>;
+<span class="kw">impl </span>core::ops::AddAssign <span class="kw">for </span>Point {
+    <span class="doccomment">/// ```
+    /// # use ab_glyph_rasterizer::*;
+    /// let mut p1 = point(1.0, 2.0);
+    /// p1 += point(2.0, 1.5);
+    ///
+    /// assert!((p1.x - 3.0).abs() &lt;= core::f32::EPSILON);
+    /// assert!((p1.y - 3.5).abs() &lt;= core::f32::EPSILON);
+    /// ```
+    </span><span class="attribute">#[inline]
+    </span><span class="kw">fn </span>add_assign(<span class="kw-2">&amp;mut </span><span class="self">self</span>, other: <span class="self">Self</span>) {
+        <span class="self">self</span>.x += other.x;
+        <span class="self">self</span>.y += other.y;
     }
 }
 
-<span class="kw">impl</span> <span class="ident">core::ops::SubAssign</span> <span class="kw">for</span> <span class="ident">Point</span> {
-    <span class="doccomment">/// ```</span>
-    <span class="doccomment">/// # use ab_glyph_rasterizer::*;</span>
-    <span class="doccomment">/// let mut p1 = point(1.0, 2.0);</span>
-    <span class="doccomment">/// p1 -= point(2.0, 1.5);</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// assert!((p1.x - -1.0).abs() &lt;= core::f32::EPSILON);</span>
-    <span class="doccomment">/// assert!((p1.y - 0.5).abs() &lt;= core::f32::EPSILON);</span>
-    <span class="doccomment">/// ```</span>
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">sub_assign</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">other</span>: <span class="self">Self</span>) {
-        <span class="self">self</span>.<span class="ident">x</span> <span class="op">-</span><span class="op">=</span> <span class="ident">other</span>.<span class="ident">x</span>;
-        <span class="self">self</span>.<span class="ident">y</span> <span class="op">-</span><span class="op">=</span> <span class="ident">other</span>.<span class="ident">y</span>;
+<span class="kw">impl </span>core::ops::SubAssign <span class="kw">for </span>Point {
+    <span class="doccomment">/// ```
+    /// # use ab_glyph_rasterizer::*;
+    /// let mut p1 = point(1.0, 2.0);
+    /// p1 -= point(2.0, 1.5);
+    ///
+    /// assert!((p1.x - -1.0).abs() &lt;= core::f32::EPSILON);
+    /// assert!((p1.y - 0.5).abs() &lt;= core::f32::EPSILON);
+    /// ```
+    </span><span class="attribute">#[inline]
+    </span><span class="kw">fn </span>sub_assign(<span class="kw-2">&amp;mut </span><span class="self">self</span>, other: <span class="self">Self</span>) {
+        <span class="self">self</span>.x -= other.x;
+        <span class="self">self</span>.y -= other.y;
     }
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Into</span><span class="op">&lt;</span><span class="ident">f32</span><span class="op">&gt;</span><span class="op">&gt;</span> <span class="ident">From</span><span class="op">&lt;</span>(<span class="ident">F</span>, <span class="ident">F</span>)<span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Point</span> {
-    <span class="doccomment">/// ```</span>
-    <span class="doccomment">/// # use ab_glyph_rasterizer::*;</span>
-    <span class="doccomment">/// let p: Point = (23_f32, 34.5_f32).into();</span>
-    <span class="doccomment">/// let p2: Point = (5u8, 44u8).into();</span>
-    <span class="doccomment">/// ```</span>
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">from</span>((<span class="ident">x</span>, <span class="ident">y</span>): (<span class="ident">F</span>, <span class="ident">F</span>)) -&gt; <span class="self">Self</span> {
-        <span class="ident">point</span>(<span class="ident">x</span>.<span class="ident">into</span>(), <span class="ident">y</span>.<span class="ident">into</span>())
+<span class="kw">impl</span>&lt;F: Into&lt;f32&gt;&gt; From&lt;(F, F)&gt; <span class="kw">for </span>Point {
+    <span class="doccomment">/// ```
+    /// # use ab_glyph_rasterizer::*;
+    /// let p: Point = (23_f32, 34.5_f32).into();
+    /// let p2: Point = (5u8, 44u8).into();
+    /// ```
+    </span><span class="attribute">#[inline]
+    </span><span class="kw">fn </span>from((x, y): (F, F)) -&gt; <span class="self">Self </span>{
+        point(x.into(), y.into())
     }
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Into</span><span class="op">&lt;</span><span class="ident">f32</span><span class="op">&gt;</span><span class="op">&gt;</span> <span class="ident">From</span><span class="op">&lt;</span>[<span class="ident">F</span>; <span class="number">2</span>]<span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Point</span> {
-    <span class="doccomment">/// ```</span>
-    <span class="doccomment">/// # use ab_glyph_rasterizer::*;</span>
-    <span class="doccomment">/// let p: Point = [23_f32, 34.5].into();</span>
-    <span class="doccomment">/// let p2: Point = [5u8, 44].into();</span>
-    <span class="doccomment">/// ```</span>
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">from</span>([<span class="ident">x</span>, <span class="ident">y</span>]: [<span class="ident">F</span>; <span class="number">2</span>]) -&gt; <span class="self">Self</span> {
-        <span class="ident">point</span>(<span class="ident">x</span>.<span class="ident">into</span>(), <span class="ident">y</span>.<span class="ident">into</span>())
+<span class="kw">impl</span>&lt;F: Into&lt;f32&gt;&gt; From&lt;[F; <span class="number">2</span>]&gt; <span class="kw">for </span>Point {
+    <span class="doccomment">/// ```
+    /// # use ab_glyph_rasterizer::*;
+    /// let p: Point = [23_f32, 34.5].into();
+    /// let p2: Point = [5u8, 44].into();
+    /// ```
+    </span><span class="attribute">#[inline]
+    </span><span class="kw">fn </span>from([x, y]: [F; <span class="number">2</span>]) -&gt; <span class="self">Self </span>{
+        point(x.into(), y.into())
     }
 }
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">test</span>)]</span>
-<span class="kw">mod</span> <span class="ident">test</span> {
-    <span class="kw">use</span> <span class="kw">super</span>::<span class="kw-2">*</span>;
+<span class="attribute">#[cfg(test)]
+</span><span class="kw">mod </span>test {
+    <span class="kw">use super</span>::<span class="kw-2">*</span>;
 
-    <span class="attribute">#[<span class="ident">test</span>]</span>
-    <span class="kw">fn</span> <span class="ident">distance_to</span>() {
-        <span class="kw">let</span> <span class="ident">distance</span> <span class="op">=</span> <span class="ident">point</span>(<span class="number">0.0</span>, <span class="number">0.0</span>).<span class="ident">distance_to</span>(<span class="ident">point</span>(<span class="number">3.0</span>, <span class="number">4.0</span>));
-        <span class="macro">assert!</span>((<span class="ident">distance</span> <span class="op">-</span> <span class="number">5.0</span>).<span class="ident">abs</span>() <span class="op">&lt;</span><span class="op">=</span> <span class="ident">core::f32::EPSILON</span>);
+    <span class="attribute">#[test]
+    </span><span class="kw">fn </span>distance_to() {
+        <span class="kw">let </span>distance = point(<span class="number">0.0</span>, <span class="number">0.0</span>).distance_to(point(<span class="number">3.0</span>, <span class="number">4.0</span>));
+        <span class="macro">assert!</span>((distance - <span class="number">5.0</span>).abs() &lt;= core::f32::EPSILON);
     }
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="ab_glyph_rasterizer" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0 (a55dd71d5 2022-09-19)" ></div></body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="ab_glyph_rasterizer" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.66.1 (90743e729 2023-01-10)" ></div></body></html>

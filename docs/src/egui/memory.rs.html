@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/egui-0.16.1/src/memory.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>memory.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../egui/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../egui/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../egui/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/egui-0.16.1/src/memory.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>memory.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../normalize.css"><link rel="stylesheet" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../ayu.css" disabled><link rel="stylesheet" href="../../dark.css" disabled><link rel="stylesheet" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><div class="width-limiter"><nav class="sub"><a class="sub-logo-container" href="../../egui/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -555,562 +555,562 @@
 <span id="555">555</span>
 <span id="556">556</span>
 <span id="557">557</span>
-</pre><pre class="rust"><code><span class="kw">use</span> <span class="ident">epaint::ahash::AHashSet</span>;
+</pre><pre class="rust"><code><span class="kw">use </span>epaint::ahash::AHashSet;
 
-<span class="kw">use</span> <span class="kw">crate</span>::{<span class="ident">area</span>, <span class="ident">window</span>, <span class="ident">Id</span>, <span class="ident">IdMap</span>, <span class="ident">InputState</span>, <span class="ident">LayerId</span>, <span class="ident">Pos2</span>, <span class="ident">Rect</span>, <span class="ident">Style</span>};
+<span class="kw">use crate</span>::{area, window, Id, IdMap, InputState, LayerId, Pos2, Rect, Style};
 
-<span class="comment">// ----------------------------------------------------------------------------</span>
+<span class="comment">// ----------------------------------------------------------------------------
 
-<span class="doccomment">/// The data that egui persists between frames.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// This includes window positions and sizes,</span>
-<span class="doccomment">/// how far the user has scrolled in a `ScrollArea` etc.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// If you want this to persist when closing your app you should serialize `Memory` and store it.</span>
-<span class="doccomment">/// For this you need to enable the `persistence`.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// If you want to store data for your widgets, you should look at [`Memory::data`]</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">Default</span>)]</span>
-<span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;persistence&quot;</span>, <span class="ident">derive</span>(<span class="ident">serde::Deserialize</span>, <span class="ident">serde::Serialize</span>))]</span>
-<span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;persistence&quot;</span>, <span class="ident">serde</span>(<span class="ident">default</span>))]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Memory</span> {
-    <span class="kw">pub</span> <span class="ident">options</span>: <span class="ident">Options</span>,
+</span><span class="doccomment">/// The data that egui persists between frames.
+///
+/// This includes window positions and sizes,
+/// how far the user has scrolled in a `ScrollArea` etc.
+///
+/// If you want this to persist when closing your app you should serialize `Memory` and store it.
+/// For this you need to enable the `persistence`.
+///
+/// If you want to store data for your widgets, you should look at [`Memory::data`]
+</span><span class="attribute">#[derive(Clone, Debug, Default)]
+#[cfg_attr(feature = <span class="string">&quot;persistence&quot;</span>, derive(serde::Deserialize, serde::Serialize))]
+#[cfg_attr(feature = <span class="string">&quot;persistence&quot;</span>, serde(default))]
+</span><span class="kw">pub struct </span>Memory {
+    <span class="kw">pub </span>options: Options,
 
-    <span class="doccomment">/// This map stores current states for all widgets with custom `Id`s.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// This will be saved between different program runs if you use the `persistence` feature.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// To store a state common for all your widgets (a singleton), use [`Id::null`] as the key.</span>
-    <span class="kw">pub</span> <span class="ident">data</span>: <span class="ident"><span class="kw">crate</span>::util::IdTypeMap</span>,
+    <span class="doccomment">/// This map stores current states for all widgets with custom `Id`s.
+    ///
+    /// This will be saved between different program runs if you use the `persistence` feature.
+    ///
+    /// To store a state common for all your widgets (a singleton), use [`Id::null`] as the key.
+    </span><span class="kw">pub </span>data: <span class="kw">crate</span>::util::IdTypeMap,
 
-    <span class="comment">// ------------------------------------------</span>
-    <span class="doccomment">/// Can be used to cache computations from one frame to another.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// This is for saving CPU when you have something that may take 1-100ms to compute.</span>
-    <span class="doccomment">/// Things that are very slow (&gt;100ms) should instead be done async (i.e. in another thread)</span>
-    <span class="doccomment">/// so as not to lock the UI thread.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// ```</span>
-    <span class="doccomment">/// use egui::util::cache::{ComputerMut, FrameCache};</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// #[derive(Default)]</span>
-    <span class="doccomment">/// struct CharCounter {}</span>
-    <span class="doccomment">/// impl ComputerMut&lt;&amp;str, usize&gt; for CharCounter {</span>
-    <span class="doccomment">///     fn compute(&amp;mut self, s: &amp;str) -&gt; usize {</span>
-    <span class="doccomment">///         s.chars().count() // you probably want to cache something more expensive than this</span>
-    <span class="doccomment">///     }</span>
-    <span class="doccomment">/// }</span>
-    <span class="doccomment">/// type CharCountCache&lt;&#39;a&gt; = FrameCache&lt;usize, CharCounter&gt;;</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// # let mut ctx = egui::CtxRef::default();</span>
-    <span class="doccomment">/// let mut memory = ctx.memory();</span>
-    <span class="doccomment">/// let cache = memory.caches.cache::&lt;CharCountCache&lt;&#39;_&gt;&gt;();</span>
-    <span class="doccomment">/// assert_eq!(cache.get(&quot;hello&quot;), 5);</span>
-    <span class="doccomment">/// ```</span>
-    <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;persistence&quot;</span>, <span class="ident">serde</span>(<span class="ident">skip</span>))]</span>
-    <span class="kw">pub</span> <span class="ident">caches</span>: <span class="ident"><span class="kw">crate</span>::util::cache::CacheStorage</span>,
+    <span class="comment">// ------------------------------------------
+    </span><span class="doccomment">/// Can be used to cache computations from one frame to another.
+    ///
+    /// This is for saving CPU when you have something that may take 1-100ms to compute.
+    /// Things that are very slow (&gt;100ms) should instead be done async (i.e. in another thread)
+    /// so as not to lock the UI thread.
+    ///
+    /// ```
+    /// use egui::util::cache::{ComputerMut, FrameCache};
+    ///
+    /// #[derive(Default)]
+    /// struct CharCounter {}
+    /// impl ComputerMut&lt;&amp;str, usize&gt; for CharCounter {
+    ///     fn compute(&amp;mut self, s: &amp;str) -&gt; usize {
+    ///         s.chars().count() // you probably want to cache something more expensive than this
+    ///     }
+    /// }
+    /// type CharCountCache&lt;&#39;a&gt; = FrameCache&lt;usize, CharCounter&gt;;
+    ///
+    /// # let mut ctx = egui::CtxRef::default();
+    /// let mut memory = ctx.memory();
+    /// let cache = memory.caches.cache::&lt;CharCountCache&lt;&#39;_&gt;&gt;();
+    /// assert_eq!(cache.get(&quot;hello&quot;), 5);
+    /// ```
+    </span><span class="attribute">#[cfg_attr(feature = <span class="string">&quot;persistence&quot;</span>, serde(skip))]
+    </span><span class="kw">pub </span>caches: <span class="kw">crate</span>::util::cache::CacheStorage,
 
-    <span class="comment">// ------------------------------------------</span>
-    <span class="doccomment">/// new scale that will be applied at the start of the next frame</span>
-    <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;persistence&quot;</span>, <span class="ident">serde</span>(<span class="ident">skip</span>))]</span>
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">new_pixels_per_point</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">f32</span><span class="op">&gt;</span>,
+    <span class="comment">// ------------------------------------------
+    </span><span class="doccomment">/// new scale that will be applied at the start of the next frame
+    </span><span class="attribute">#[cfg_attr(feature = <span class="string">&quot;persistence&quot;</span>, serde(skip))]
+    </span><span class="kw">pub</span>(<span class="kw">crate</span>) new_pixels_per_point: <span class="prelude-ty">Option</span>&lt;f32&gt;,
 
-    <span class="doccomment">/// new fonts that will be applied at the start of the next frame</span>
-    <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;persistence&quot;</span>, <span class="ident">serde</span>(<span class="ident">skip</span>))]</span>
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">new_font_definitions</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">epaint::text::FontDefinitions</span><span class="op">&gt;</span>,
+    <span class="doccomment">/// new fonts that will be applied at the start of the next frame
+    </span><span class="attribute">#[cfg_attr(feature = <span class="string">&quot;persistence&quot;</span>, serde(skip))]
+    </span><span class="kw">pub</span>(<span class="kw">crate</span>) new_font_definitions: <span class="prelude-ty">Option</span>&lt;epaint::text::FontDefinitions&gt;,
 
-    <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;persistence&quot;</span>, <span class="ident">serde</span>(<span class="ident">skip</span>))]</span>
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">interaction</span>: <span class="ident">Interaction</span>,
+    <span class="attribute">#[cfg_attr(feature = <span class="string">&quot;persistence&quot;</span>, serde(skip))]
+    </span><span class="kw">pub</span>(<span class="kw">crate</span>) interaction: Interaction,
 
-    <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;persistence&quot;</span>, <span class="ident">serde</span>(<span class="ident">skip</span>))]</span>
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">window_interaction</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">window::WindowInteraction</span><span class="op">&gt;</span>,
+    <span class="attribute">#[cfg_attr(feature = <span class="string">&quot;persistence&quot;</span>, serde(skip))]
+    </span><span class="kw">pub</span>(<span class="kw">crate</span>) window_interaction: <span class="prelude-ty">Option</span>&lt;window::WindowInteraction&gt;,
 
-    <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;persistence&quot;</span>, <span class="ident">serde</span>(<span class="ident">skip</span>))]</span>
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">drag_value</span>: <span class="ident"><span class="kw">crate</span>::widgets::drag_value::MonoState</span>,
+    <span class="attribute">#[cfg_attr(feature = <span class="string">&quot;persistence&quot;</span>, serde(skip))]
+    </span><span class="kw">pub</span>(<span class="kw">crate</span>) drag_value: <span class="kw">crate</span>::widgets::drag_value::MonoState,
 
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">areas</span>: <span class="ident">Areas</span>,
+    <span class="kw">pub</span>(<span class="kw">crate</span>) areas: Areas,
 
-    <span class="doccomment">/// Which popup-window is open (if any)?</span>
-    <span class="doccomment">/// Could be a combo box, color picker, menu etc.</span>
-    <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;persistence&quot;</span>, <span class="ident">serde</span>(<span class="ident">skip</span>))]</span>
-    <span class="ident">popup</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Id</span><span class="op">&gt;</span>,
+    <span class="doccomment">/// Which popup-window is open (if any)?
+    /// Could be a combo box, color picker, menu etc.
+    </span><span class="attribute">#[cfg_attr(feature = <span class="string">&quot;persistence&quot;</span>, serde(skip))]
+    </span>popup: <span class="prelude-ty">Option</span>&lt;Id&gt;,
 
-    <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;persistence&quot;</span>, <span class="ident">serde</span>(<span class="ident">skip</span>))]</span>
-    <span class="ident">everything_is_visible</span>: <span class="ident">bool</span>,
+    <span class="attribute">#[cfg_attr(feature = <span class="string">&quot;persistence&quot;</span>, serde(skip))]
+    </span>everything_is_visible: bool,
 }
 
-<span class="comment">// ----------------------------------------------------------------------------</span>
+<span class="comment">// ----------------------------------------------------------------------------
 
-<span class="doccomment">/// Some global options that you can read and write.</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">Default</span>)]</span>
-<span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;serde&quot;</span>, <span class="ident">derive</span>(<span class="ident">serde::Deserialize</span>, <span class="ident">serde::Serialize</span>))]</span>
-<span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;serde&quot;</span>, <span class="ident">serde</span>(<span class="ident">default</span>))]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Options</span> {
-    <span class="doccomment">/// The default style for new `Ui`:s.</span>
-    <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;serde&quot;</span>, <span class="ident">serde</span>(<span class="ident">skip</span>))]</span>
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">style</span>: <span class="ident">std::sync::Arc</span><span class="op">&lt;</span><span class="ident">Style</span><span class="op">&gt;</span>,
+</span><span class="doccomment">/// Some global options that you can read and write.
+</span><span class="attribute">#[derive(Clone, Debug, Default)]
+#[cfg_attr(feature = <span class="string">&quot;serde&quot;</span>, derive(serde::Deserialize, serde::Serialize))]
+#[cfg_attr(feature = <span class="string">&quot;serde&quot;</span>, serde(default))]
+</span><span class="kw">pub struct </span>Options {
+    <span class="doccomment">/// The default style for new `Ui`:s.
+    </span><span class="attribute">#[cfg_attr(feature = <span class="string">&quot;serde&quot;</span>, serde(skip))]
+    </span><span class="kw">pub</span>(<span class="kw">crate</span>) style: std::sync::Arc&lt;Style&gt;,
 
-    <span class="doccomment">/// Controls the tessellator.</span>
-    <span class="kw">pub</span> <span class="ident">tessellation_options</span>: <span class="ident">epaint::TessellationOptions</span>,
+    <span class="doccomment">/// Controls the tessellator.
+    </span><span class="kw">pub </span>tessellation_options: epaint::TessellationOptions,
 
-    <span class="doccomment">/// This does not at all change the behavior of egui,</span>
-    <span class="doccomment">/// but is a signal to any backend that we want the [`crate::Output::events`] read out loud.</span>
-    <span class="doccomment">/// Screen readers is an experimental feature of egui, and not supported on all platforms.</span>
-    <span class="kw">pub</span> <span class="ident">screen_reader</span>: <span class="ident">bool</span>,
+    <span class="doccomment">/// This does not at all change the behavior of egui,
+    /// but is a signal to any backend that we want the [`crate::Output::events`] read out loud.
+    /// Screen readers is an experimental feature of egui, and not supported on all platforms.
+    </span><span class="kw">pub </span>screen_reader: bool,
 }
 
-<span class="comment">// ----------------------------------------------------------------------------</span>
+<span class="comment">// ----------------------------------------------------------------------------
 
-<span class="doccomment">/// Say there is a button in a scroll area.</span>
-<span class="doccomment">/// If the user clicks the button, the button should click.</span>
-<span class="doccomment">/// If the user drags the button we should scroll the scroll area.</span>
-<span class="doccomment">/// So what we do is that when the mouse is pressed we register both the button</span>
-<span class="doccomment">/// and the scroll area (as `click_id`/`drag_id`).</span>
-<span class="doccomment">/// If the user releases the button without moving the mouse we register it as a click on `click_id`.</span>
-<span class="doccomment">/// If the cursor moves too much we clear the `click_id` and start passing move events to `drag_id`.</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">Default</span>)]</span>
-<span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">struct</span> <span class="ident">Interaction</span> {
-    <span class="doccomment">/// A widget interested in clicks that has a mouse press on it.</span>
-    <span class="kw">pub</span> <span class="ident">click_id</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Id</span><span class="op">&gt;</span>,
+</span><span class="doccomment">/// Say there is a button in a scroll area.
+/// If the user clicks the button, the button should click.
+/// If the user drags the button we should scroll the scroll area.
+/// So what we do is that when the mouse is pressed we register both the button
+/// and the scroll area (as `click_id`/`drag_id`).
+/// If the user releases the button without moving the mouse we register it as a click on `click_id`.
+/// If the cursor moves too much we clear the `click_id` and start passing move events to `drag_id`.
+</span><span class="attribute">#[derive(Clone, Debug, Default)]
+</span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">struct </span>Interaction {
+    <span class="doccomment">/// A widget interested in clicks that has a mouse press on it.
+    </span><span class="kw">pub </span>click_id: <span class="prelude-ty">Option</span>&lt;Id&gt;,
 
-    <span class="doccomment">/// A widget interested in drags that has a mouse press on it.</span>
-    <span class="kw">pub</span> <span class="ident">drag_id</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Id</span><span class="op">&gt;</span>,
+    <span class="doccomment">/// A widget interested in drags that has a mouse press on it.
+    </span><span class="kw">pub </span>drag_id: <span class="prelude-ty">Option</span>&lt;Id&gt;,
 
-    <span class="kw">pub</span> <span class="ident">focus</span>: <span class="ident">Focus</span>,
+    <span class="kw">pub </span>focus: Focus,
 
-    <span class="doccomment">/// HACK: windows have low priority on dragging.</span>
-    <span class="doccomment">/// This is so that if you drag a slider in a window,</span>
-    <span class="doccomment">/// the slider will steal the drag away from the window.</span>
-    <span class="doccomment">/// This is needed because we do window interaction first (to prevent frame delay),</span>
-    <span class="doccomment">/// and then do content layout.</span>
-    <span class="kw">pub</span> <span class="ident">drag_is_window</span>: <span class="ident">bool</span>,
+    <span class="doccomment">/// HACK: windows have low priority on dragging.
+    /// This is so that if you drag a slider in a window,
+    /// the slider will steal the drag away from the window.
+    /// This is needed because we do window interaction first (to prevent frame delay),
+    /// and then do content layout.
+    </span><span class="kw">pub </span>drag_is_window: bool,
 
-    <span class="doccomment">/// Any interest in catching clicks this frame?</span>
-    <span class="doccomment">/// Cleared to false at start of each frame.</span>
-    <span class="kw">pub</span> <span class="ident">click_interest</span>: <span class="ident">bool</span>,
+    <span class="doccomment">/// Any interest in catching clicks this frame?
+    /// Cleared to false at start of each frame.
+    </span><span class="kw">pub </span>click_interest: bool,
 
-    <span class="doccomment">/// Any interest in catching clicks this frame?</span>
-    <span class="doccomment">/// Cleared to false at start of each frame.</span>
-    <span class="kw">pub</span> <span class="ident">drag_interest</span>: <span class="ident">bool</span>,
+    <span class="doccomment">/// Any interest in catching clicks this frame?
+    /// Cleared to false at start of each frame.
+    </span><span class="kw">pub </span>drag_interest: bool,
 }
 
-<span class="doccomment">/// Keeps tracks of what widget has keyboard focus</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">Default</span>)]</span>
-<span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">struct</span> <span class="ident">Focus</span> {
-    <span class="doccomment">/// The widget with keyboard focus (i.e. a text input field).</span>
-    <span class="ident">id</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Id</span><span class="op">&gt;</span>,
+<span class="doccomment">/// Keeps tracks of what widget has keyboard focus
+</span><span class="attribute">#[derive(Clone, Debug, Default)]
+</span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">struct </span>Focus {
+    <span class="doccomment">/// The widget with keyboard focus (i.e. a text input field).
+    </span>id: <span class="prelude-ty">Option</span>&lt;Id&gt;,
 
-    <span class="doccomment">/// What had keyboard focus previous frame?</span>
-    <span class="ident">id_previous_frame</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Id</span><span class="op">&gt;</span>,
+    <span class="doccomment">/// What had keyboard focus previous frame?
+    </span>id_previous_frame: <span class="prelude-ty">Option</span>&lt;Id&gt;,
 
-    <span class="doccomment">/// Give focus to this widget next frame</span>
-    <span class="ident">id_next_frame</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Id</span><span class="op">&gt;</span>,
+    <span class="doccomment">/// Give focus to this widget next frame
+    </span>id_next_frame: <span class="prelude-ty">Option</span>&lt;Id&gt;,
 
-    <span class="doccomment">/// If set, the next widget that is interested in focus will automatically get it.</span>
-    <span class="doccomment">/// Probably because the user pressed Tab.</span>
-    <span class="ident">give_to_next</span>: <span class="ident">bool</span>,
+    <span class="doccomment">/// If set, the next widget that is interested in focus will automatically get it.
+    /// Probably because the user pressed Tab.
+    </span>give_to_next: bool,
 
-    <span class="doccomment">/// The last widget interested in focus.</span>
-    <span class="ident">last_interested</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Id</span><span class="op">&gt;</span>,
+    <span class="doccomment">/// The last widget interested in focus.
+    </span>last_interested: <span class="prelude-ty">Option</span>&lt;Id&gt;,
 
-    <span class="doccomment">/// If `true`, pressing tab will NOT move focus away from the current widget.</span>
-    <span class="ident">is_focus_locked</span>: <span class="ident">bool</span>,
+    <span class="doccomment">/// If `true`, pressing tab will NOT move focus away from the current widget.
+    </span>is_focus_locked: bool,
 
-    <span class="doccomment">/// Set at the beginning of the frame, set to `false` when &quot;used&quot;.</span>
-    <span class="ident">pressed_tab</span>: <span class="ident">bool</span>,
+    <span class="doccomment">/// Set at the beginning of the frame, set to `false` when &quot;used&quot;.
+    </span>pressed_tab: bool,
 
-    <span class="doccomment">/// Set at the beginning of the frame, set to `false` when &quot;used&quot;.</span>
-    <span class="ident">pressed_shift_tab</span>: <span class="ident">bool</span>,
+    <span class="doccomment">/// Set at the beginning of the frame, set to `false` when &quot;used&quot;.
+    </span>pressed_shift_tab: bool,
 }
 
-<span class="kw">impl</span> <span class="ident">Interaction</span> {
-    <span class="doccomment">/// Are we currently clicking or dragging an egui widget?</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_using_pointer</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span> {
-        <span class="self">self</span>.<span class="ident">click_id</span>.<span class="ident">is_some</span>() <span class="op">|</span><span class="op">|</span> <span class="self">self</span>.<span class="ident">drag_id</span>.<span class="ident">is_some</span>()
+<span class="kw">impl </span>Interaction {
+    <span class="doccomment">/// Are we currently clicking or dragging an egui widget?
+    </span><span class="kw">pub fn </span>is_using_pointer(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; bool {
+        <span class="self">self</span>.click_id.is_some() || <span class="self">self</span>.drag_id.is_some()
     }
 
-    <span class="kw">fn</span> <span class="ident">begin_frame</span>(
-        <span class="kw-2">&amp;mut</span> <span class="self">self</span>,
-        <span class="ident">prev_input</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="kw">crate</span>::input_state::InputState</span>,
-        <span class="ident">new_input</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="kw">crate</span>::data::input::RawInput</span>,
+    <span class="kw">fn </span>begin_frame(
+        <span class="kw-2">&amp;mut </span><span class="self">self</span>,
+        prev_input: <span class="kw-2">&amp;</span><span class="kw">crate</span>::input_state::InputState,
+        new_input: <span class="kw-2">&amp;</span><span class="kw">crate</span>::data::input::RawInput,
     ) {
-        <span class="self">self</span>.<span class="ident">click_interest</span> <span class="op">=</span> <span class="bool-val">false</span>;
-        <span class="self">self</span>.<span class="ident">drag_interest</span> <span class="op">=</span> <span class="bool-val">false</span>;
+        <span class="self">self</span>.click_interest = <span class="bool-val">false</span>;
+        <span class="self">self</span>.drag_interest = <span class="bool-val">false</span>;
 
-        <span class="kw">if</span> <span class="op">!</span><span class="ident">prev_input</span>.<span class="ident">pointer</span>.<span class="ident">could_any_button_be_click</span>() {
-            <span class="self">self</span>.<span class="ident">click_id</span> <span class="op">=</span> <span class="prelude-val">None</span>;
+        <span class="kw">if </span>!prev_input.pointer.could_any_button_be_click() {
+            <span class="self">self</span>.click_id = <span class="prelude-val">None</span>;
         }
 
-        <span class="kw">if</span> <span class="op">!</span><span class="ident">prev_input</span>.<span class="ident">pointer</span>.<span class="ident">any_down</span>() <span class="op">|</span><span class="op">|</span> <span class="ident">prev_input</span>.<span class="ident">pointer</span>.<span class="ident">latest_pos</span>().<span class="ident">is_none</span>() {
-            <span class="comment">// pointer button was not down last frame</span>
-            <span class="self">self</span>.<span class="ident">click_id</span> <span class="op">=</span> <span class="prelude-val">None</span>;
-            <span class="self">self</span>.<span class="ident">drag_id</span> <span class="op">=</span> <span class="prelude-val">None</span>;
+        <span class="kw">if </span>!prev_input.pointer.any_down() || prev_input.pointer.latest_pos().is_none() {
+            <span class="comment">// pointer button was not down last frame
+            </span><span class="self">self</span>.click_id = <span class="prelude-val">None</span>;
+            <span class="self">self</span>.drag_id = <span class="prelude-val">None</span>;
         }
 
-        <span class="self">self</span>.<span class="ident">focus</span>.<span class="ident">begin_frame</span>(<span class="ident">new_input</span>);
+        <span class="self">self</span>.focus.begin_frame(new_input);
     }
 }
 
-<span class="kw">impl</span> <span class="ident">Focus</span> {
-    <span class="doccomment">/// Which widget currently has keyboard focus?</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">focused</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Id</span><span class="op">&gt;</span> {
-        <span class="self">self</span>.<span class="ident">id</span>
+<span class="kw">impl </span>Focus {
+    <span class="doccomment">/// Which widget currently has keyboard focus?
+    </span><span class="kw">pub fn </span>focused(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;Id&gt; {
+        <span class="self">self</span>.id
     }
 
-    <span class="kw">fn</span> <span class="ident">begin_frame</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">new_input</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="kw">crate</span>::data::input::RawInput</span>) {
-        <span class="self">self</span>.<span class="ident">id_previous_frame</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">id</span>;
-        <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">id</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">id_next_frame</span>.<span class="ident">take</span>() {
-            <span class="self">self</span>.<span class="ident">id</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">id</span>);
+    <span class="kw">fn </span>begin_frame(<span class="kw-2">&amp;mut </span><span class="self">self</span>, new_input: <span class="kw-2">&amp;</span><span class="kw">crate</span>::data::input::RawInput) {
+        <span class="self">self</span>.id_previous_frame = <span class="self">self</span>.id;
+        <span class="kw">if let </span><span class="prelude-val">Some</span>(id) = <span class="self">self</span>.id_next_frame.take() {
+            <span class="self">self</span>.id = <span class="prelude-val">Some</span>(id);
         }
 
-        <span class="self">self</span>.<span class="ident">pressed_tab</span> <span class="op">=</span> <span class="bool-val">false</span>;
-        <span class="self">self</span>.<span class="ident">pressed_shift_tab</span> <span class="op">=</span> <span class="bool-val">false</span>;
-        <span class="kw">for</span> <span class="ident">event</span> <span class="kw">in</span> <span class="kw-2">&amp;</span><span class="ident">new_input</span>.<span class="ident">events</span> {
-            <span class="kw">if</span> <span class="macro">matches!</span>(
-                <span class="ident">event</span>,
-                <span class="ident"><span class="kw">crate</span>::Event::Key</span> {
-                    <span class="ident">key</span>: <span class="ident"><span class="kw">crate</span>::Key::Escape</span>,
-                    <span class="ident">pressed</span>: <span class="bool-val">true</span>,
-                    <span class="ident">modifiers</span>: <span class="kw">_</span>,
+        <span class="self">self</span>.pressed_tab = <span class="bool-val">false</span>;
+        <span class="self">self</span>.pressed_shift_tab = <span class="bool-val">false</span>;
+        <span class="kw">for </span>event <span class="kw">in </span><span class="kw-2">&amp;</span>new_input.events {
+            <span class="kw">if </span><span class="macro">matches!</span>(
+                event,
+                <span class="kw">crate</span>::Event::Key {
+                    key: <span class="kw">crate</span>::Key::Escape,
+                    pressed: <span class="bool-val">true</span>,
+                    modifiers: <span class="kw">_</span>,
                 }
             ) {
-                <span class="self">self</span>.<span class="ident">id</span> <span class="op">=</span> <span class="prelude-val">None</span>;
-                <span class="self">self</span>.<span class="ident">is_focus_locked</span> <span class="op">=</span> <span class="bool-val">false</span>;
+                <span class="self">self</span>.id = <span class="prelude-val">None</span>;
+                <span class="self">self</span>.is_focus_locked = <span class="bool-val">false</span>;
                 <span class="kw">break</span>;
             }
 
-            <span class="kw">if</span> <span class="kw">let</span> <span class="ident"><span class="kw">crate</span>::Event::Key</span> {
-                <span class="ident">key</span>: <span class="ident"><span class="kw">crate</span>::Key::Tab</span>,
-                <span class="ident">pressed</span>: <span class="bool-val">true</span>,
-                <span class="ident">modifiers</span>,
-            } <span class="op">=</span> <span class="ident">event</span>
+            <span class="kw">if let </span><span class="kw">crate</span>::Event::Key {
+                key: <span class="kw">crate</span>::Key::Tab,
+                pressed: <span class="bool-val">true</span>,
+                modifiers,
+            } = event
             {
-                <span class="kw">if</span> <span class="op">!</span><span class="self">self</span>.<span class="ident">is_focus_locked</span> {
-                    <span class="kw">if</span> <span class="ident">modifiers</span>.<span class="ident">shift</span> {
-                        <span class="self">self</span>.<span class="ident">pressed_shift_tab</span> <span class="op">=</span> <span class="bool-val">true</span>;
-                    } <span class="kw">else</span> {
-                        <span class="self">self</span>.<span class="ident">pressed_tab</span> <span class="op">=</span> <span class="bool-val">true</span>;
+                <span class="kw">if </span>!<span class="self">self</span>.is_focus_locked {
+                    <span class="kw">if </span>modifiers.shift {
+                        <span class="self">self</span>.pressed_shift_tab = <span class="bool-val">true</span>;
+                    } <span class="kw">else </span>{
+                        <span class="self">self</span>.pressed_tab = <span class="bool-val">true</span>;
                     }
                 }
             }
         }
     }
 
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">end_frame</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">used_ids</span>: <span class="kw-2">&amp;</span><span class="ident">IdMap</span><span class="op">&lt;</span><span class="ident">Rect</span><span class="op">&gt;</span>) {
-        <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">id</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">id</span> {
-            <span class="comment">// Allow calling `request_focus` one frame and not using it until next frame</span>
-            <span class="kw">let</span> <span class="ident">recently_gained_focus</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">id_previous_frame</span> <span class="op">!</span><span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">id</span>);
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>end_frame(<span class="kw-2">&amp;mut </span><span class="self">self</span>, used_ids: <span class="kw-2">&amp;</span>IdMap&lt;Rect&gt;) {
+        <span class="kw">if let </span><span class="prelude-val">Some</span>(id) = <span class="self">self</span>.id {
+            <span class="comment">// Allow calling `request_focus` one frame and not using it until next frame
+            </span><span class="kw">let </span>recently_gained_focus = <span class="self">self</span>.id_previous_frame != <span class="prelude-val">Some</span>(id);
 
-            <span class="kw">if</span> <span class="op">!</span><span class="ident">recently_gained_focus</span> <span class="op">&amp;&amp;</span> <span class="op">!</span><span class="ident">used_ids</span>.<span class="ident">contains_key</span>(<span class="kw-2">&amp;</span><span class="ident">id</span>) {
-                <span class="comment">// Dead-mans-switch: the widget with focus has disappeared!</span>
-                <span class="self">self</span>.<span class="ident">id</span> <span class="op">=</span> <span class="prelude-val">None</span>;
+            <span class="kw">if </span>!recently_gained_focus &amp;&amp; !used_ids.contains_key(<span class="kw-2">&amp;</span>id) {
+                <span class="comment">// Dead-mans-switch: the widget with focus has disappeared!
+                </span><span class="self">self</span>.id = <span class="prelude-val">None</span>;
             }
         }
     }
 
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">had_focus_last_frame</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">id</span>: <span class="ident">Id</span>) -&gt; <span class="ident">bool</span> {
-        <span class="self">self</span>.<span class="ident">id_previous_frame</span> <span class="op">==</span> <span class="prelude-val">Some</span>(<span class="ident">id</span>)
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>had_focus_last_frame(<span class="kw-2">&amp;</span><span class="self">self</span>, id: Id) -&gt; bool {
+        <span class="self">self</span>.id_previous_frame == <span class="prelude-val">Some</span>(id)
     }
 
-    <span class="kw">fn</span> <span class="ident">interested_in_focus</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">id</span>: <span class="ident">Id</span>) {
-        <span class="kw">if</span> <span class="self">self</span>.<span class="ident">give_to_next</span> <span class="op">&amp;&amp;</span> <span class="op">!</span><span class="self">self</span>.<span class="ident">had_focus_last_frame</span>(<span class="ident">id</span>) {
-            <span class="self">self</span>.<span class="ident">id</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">id</span>);
-            <span class="self">self</span>.<span class="ident">give_to_next</span> <span class="op">=</span> <span class="bool-val">false</span>;
-        } <span class="kw">else</span> <span class="kw">if</span> <span class="self">self</span>.<span class="ident">id</span> <span class="op">==</span> <span class="prelude-val">Some</span>(<span class="ident">id</span>) {
-            <span class="kw">if</span> <span class="self">self</span>.<span class="ident">pressed_tab</span> <span class="op">&amp;&amp;</span> <span class="op">!</span><span class="self">self</span>.<span class="ident">is_focus_locked</span> {
-                <span class="self">self</span>.<span class="ident">id</span> <span class="op">=</span> <span class="prelude-val">None</span>;
-                <span class="self">self</span>.<span class="ident">give_to_next</span> <span class="op">=</span> <span class="bool-val">true</span>;
-                <span class="self">self</span>.<span class="ident">pressed_tab</span> <span class="op">=</span> <span class="bool-val">false</span>;
-            } <span class="kw">else</span> <span class="kw">if</span> <span class="self">self</span>.<span class="ident">pressed_shift_tab</span> <span class="op">&amp;&amp;</span> <span class="op">!</span><span class="self">self</span>.<span class="ident">is_focus_locked</span> {
-                <span class="self">self</span>.<span class="ident">id_next_frame</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">last_interested</span>; <span class="comment">// frame-delay so gained_focus works</span>
-                <span class="self">self</span>.<span class="ident">pressed_shift_tab</span> <span class="op">=</span> <span class="bool-val">false</span>;
+    <span class="kw">fn </span>interested_in_focus(<span class="kw-2">&amp;mut </span><span class="self">self</span>, id: Id) {
+        <span class="kw">if </span><span class="self">self</span>.give_to_next &amp;&amp; !<span class="self">self</span>.had_focus_last_frame(id) {
+            <span class="self">self</span>.id = <span class="prelude-val">Some</span>(id);
+            <span class="self">self</span>.give_to_next = <span class="bool-val">false</span>;
+        } <span class="kw">else if </span><span class="self">self</span>.id == <span class="prelude-val">Some</span>(id) {
+            <span class="kw">if </span><span class="self">self</span>.pressed_tab &amp;&amp; !<span class="self">self</span>.is_focus_locked {
+                <span class="self">self</span>.id = <span class="prelude-val">None</span>;
+                <span class="self">self</span>.give_to_next = <span class="bool-val">true</span>;
+                <span class="self">self</span>.pressed_tab = <span class="bool-val">false</span>;
+            } <span class="kw">else if </span><span class="self">self</span>.pressed_shift_tab &amp;&amp; !<span class="self">self</span>.is_focus_locked {
+                <span class="self">self</span>.id_next_frame = <span class="self">self</span>.last_interested; <span class="comment">// frame-delay so gained_focus works
+                </span><span class="self">self</span>.pressed_shift_tab = <span class="bool-val">false</span>;
             }
-        } <span class="kw">else</span> <span class="kw">if</span> <span class="self">self</span>.<span class="ident">pressed_tab</span> <span class="op">&amp;&amp;</span> <span class="self">self</span>.<span class="ident">id</span> <span class="op">==</span> <span class="prelude-val">None</span> <span class="op">&amp;&amp;</span> <span class="op">!</span><span class="self">self</span>.<span class="ident">give_to_next</span> {
-            <span class="comment">// nothing has focus and the user pressed tab - give focus to the first widgets that wants it:</span>
-            <span class="self">self</span>.<span class="ident">id</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">id</span>);
+        } <span class="kw">else if </span><span class="self">self</span>.pressed_tab &amp;&amp; <span class="self">self</span>.id == <span class="prelude-val">None </span>&amp;&amp; !<span class="self">self</span>.give_to_next {
+            <span class="comment">// nothing has focus and the user pressed tab - give focus to the first widgets that wants it:
+            </span><span class="self">self</span>.id = <span class="prelude-val">Some</span>(id);
         }
 
-        <span class="self">self</span>.<span class="ident">last_interested</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">id</span>);
+        <span class="self">self</span>.last_interested = <span class="prelude-val">Some</span>(id);
     }
 }
 
-<span class="kw">impl</span> <span class="ident">Memory</span> {
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">begin_frame</span>(
-        <span class="kw-2">&amp;mut</span> <span class="self">self</span>,
-        <span class="ident">prev_input</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="kw">crate</span>::input_state::InputState</span>,
-        <span class="ident">new_input</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="kw">crate</span>::data::input::RawInput</span>,
+<span class="kw">impl </span>Memory {
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>begin_frame(
+        <span class="kw-2">&amp;mut </span><span class="self">self</span>,
+        prev_input: <span class="kw-2">&amp;</span><span class="kw">crate</span>::input_state::InputState,
+        new_input: <span class="kw-2">&amp;</span><span class="kw">crate</span>::data::input::RawInput,
     ) {
-        <span class="self">self</span>.<span class="ident">interaction</span>.<span class="ident">begin_frame</span>(<span class="ident">prev_input</span>, <span class="ident">new_input</span>);
+        <span class="self">self</span>.interaction.begin_frame(prev_input, new_input);
 
-        <span class="kw">if</span> <span class="op">!</span><span class="ident">prev_input</span>.<span class="ident">pointer</span>.<span class="ident">any_down</span>() {
-            <span class="self">self</span>.<span class="ident">window_interaction</span> <span class="op">=</span> <span class="prelude-val">None</span>;
+        <span class="kw">if </span>!prev_input.pointer.any_down() {
+            <span class="self">self</span>.window_interaction = <span class="prelude-val">None</span>;
         }
     }
 
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">end_frame</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">input</span>: <span class="kw-2">&amp;</span><span class="ident">InputState</span>, <span class="ident">used_ids</span>: <span class="kw-2">&amp;</span><span class="ident">IdMap</span><span class="op">&lt;</span><span class="ident">Rect</span><span class="op">&gt;</span>) {
-        <span class="self">self</span>.<span class="ident">caches</span>.<span class="ident">update</span>();
-        <span class="self">self</span>.<span class="ident">areas</span>.<span class="ident">end_frame</span>();
-        <span class="self">self</span>.<span class="ident">interaction</span>.<span class="ident">focus</span>.<span class="ident">end_frame</span>(<span class="ident">used_ids</span>);
-        <span class="self">self</span>.<span class="ident">drag_value</span>.<span class="ident">end_frame</span>(<span class="ident">input</span>);
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>end_frame(<span class="kw-2">&amp;mut </span><span class="self">self</span>, input: <span class="kw-2">&amp;</span>InputState, used_ids: <span class="kw-2">&amp;</span>IdMap&lt;Rect&gt;) {
+        <span class="self">self</span>.caches.update();
+        <span class="self">self</span>.areas.end_frame();
+        <span class="self">self</span>.interaction.focus.end_frame(used_ids);
+        <span class="self">self</span>.drag_value.end_frame(input);
     }
 
-    <span class="doccomment">/// Top-most layer at the given position.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">layer_id_at</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">pos</span>: <span class="ident">Pos2</span>, <span class="ident">resize_interact_radius_side</span>: <span class="ident">f32</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">LayerId</span><span class="op">&gt;</span> {
-        <span class="self">self</span>.<span class="ident">areas</span>.<span class="ident">layer_id_at</span>(<span class="ident">pos</span>, <span class="ident">resize_interact_radius_side</span>)
+    <span class="doccomment">/// Top-most layer at the given position.
+    </span><span class="kw">pub fn </span>layer_id_at(<span class="kw-2">&amp;</span><span class="self">self</span>, pos: Pos2, resize_interact_radius_side: f32) -&gt; <span class="prelude-ty">Option</span>&lt;LayerId&gt; {
+        <span class="self">self</span>.areas.layer_id_at(pos, resize_interact_radius_side)
     }
 
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">had_focus_last_frame</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">id</span>: <span class="ident">Id</span>) -&gt; <span class="ident">bool</span> {
-        <span class="self">self</span>.<span class="ident">interaction</span>.<span class="ident">focus</span>.<span class="ident">id_previous_frame</span> <span class="op">==</span> <span class="prelude-val">Some</span>(<span class="ident">id</span>)
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>had_focus_last_frame(<span class="kw-2">&amp;</span><span class="self">self</span>, id: Id) -&gt; bool {
+        <span class="self">self</span>.interaction.focus.id_previous_frame == <span class="prelude-val">Some</span>(id)
     }
 
-    <span class="doccomment">/// True if the given widget had keyboard focus last frame, but not this one.</span>
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">lost_focus</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">id</span>: <span class="ident">Id</span>) -&gt; <span class="ident">bool</span> {
-        <span class="self">self</span>.<span class="ident">had_focus_last_frame</span>(<span class="ident">id</span>) <span class="op">&amp;&amp;</span> <span class="op">!</span><span class="self">self</span>.<span class="ident">has_focus</span>(<span class="ident">id</span>)
+    <span class="doccomment">/// True if the given widget had keyboard focus last frame, but not this one.
+    </span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>lost_focus(<span class="kw-2">&amp;</span><span class="self">self</span>, id: Id) -&gt; bool {
+        <span class="self">self</span>.had_focus_last_frame(id) &amp;&amp; !<span class="self">self</span>.has_focus(id)
     }
 
-    <span class="doccomment">/// True if the given widget has keyboard focus this frame, but didn&#39;t last frame.</span>
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">gained_focus</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">id</span>: <span class="ident">Id</span>) -&gt; <span class="ident">bool</span> {
-        <span class="op">!</span><span class="self">self</span>.<span class="ident">had_focus_last_frame</span>(<span class="ident">id</span>) <span class="op">&amp;&amp;</span> <span class="self">self</span>.<span class="ident">has_focus</span>(<span class="ident">id</span>)
+    <span class="doccomment">/// True if the given widget has keyboard focus this frame, but didn&#39;t last frame.
+    </span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>gained_focus(<span class="kw-2">&amp;</span><span class="self">self</span>, id: Id) -&gt; bool {
+        !<span class="self">self</span>.had_focus_last_frame(id) &amp;&amp; <span class="self">self</span>.has_focus(id)
     }
 
-    <span class="doccomment">/// Does this widget have keyboard focus?</span>
-    <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">has_focus</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">id</span>: <span class="ident">Id</span>) -&gt; <span class="ident">bool</span> {
-        <span class="self">self</span>.<span class="ident">interaction</span>.<span class="ident">focus</span>.<span class="ident">id</span> <span class="op">==</span> <span class="prelude-val">Some</span>(<span class="ident">id</span>)
+    <span class="doccomment">/// Does this widget have keyboard focus?
+    </span><span class="attribute">#[inline(always)]
+    </span><span class="kw">pub fn </span>has_focus(<span class="kw-2">&amp;</span><span class="self">self</span>, id: Id) -&gt; bool {
+        <span class="self">self</span>.interaction.focus.id == <span class="prelude-val">Some</span>(id)
     }
 
-    <span class="doccomment">/// Which widget has keyboard focus?</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">focus</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Id</span><span class="op">&gt;</span> {
-        <span class="self">self</span>.<span class="ident">interaction</span>.<span class="ident">focus</span>.<span class="ident">id</span>
+    <span class="doccomment">/// Which widget has keyboard focus?
+    </span><span class="kw">pub fn </span>focus(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;Id&gt; {
+        <span class="self">self</span>.interaction.focus.id
     }
 
-    <span class="doccomment">/// Prevent keyboard focus from moving away from this widget even if users presses the tab key.</span>
-    <span class="doccomment">/// You must first give focus to the widget before calling this.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">lock_focus</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">id</span>: <span class="ident">Id</span>, <span class="ident">lock_focus</span>: <span class="ident">bool</span>) {
-        <span class="kw">if</span> <span class="self">self</span>.<span class="ident">had_focus_last_frame</span>(<span class="ident">id</span>) <span class="op">&amp;&amp;</span> <span class="self">self</span>.<span class="ident">has_focus</span>(<span class="ident">id</span>) {
-            <span class="self">self</span>.<span class="ident">interaction</span>.<span class="ident">focus</span>.<span class="ident">is_focus_locked</span> <span class="op">=</span> <span class="ident">lock_focus</span>;
+    <span class="doccomment">/// Prevent keyboard focus from moving away from this widget even if users presses the tab key.
+    /// You must first give focus to the widget before calling this.
+    </span><span class="kw">pub fn </span>lock_focus(<span class="kw-2">&amp;mut </span><span class="self">self</span>, id: Id, lock_focus: bool) {
+        <span class="kw">if </span><span class="self">self</span>.had_focus_last_frame(id) &amp;&amp; <span class="self">self</span>.has_focus(id) {
+            <span class="self">self</span>.interaction.focus.is_focus_locked = lock_focus;
         }
     }
 
-    <span class="doccomment">/// Is the keyboard focus locked on this widget? If so the focus won&#39;t move even if the user presses the tab key.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">has_lock_focus</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">id</span>: <span class="ident">Id</span>) -&gt; <span class="ident">bool</span> {
-        <span class="kw">if</span> <span class="self">self</span>.<span class="ident">had_focus_last_frame</span>(<span class="ident">id</span>) <span class="op">&amp;&amp;</span> <span class="self">self</span>.<span class="ident">has_focus</span>(<span class="ident">id</span>) {
-            <span class="self">self</span>.<span class="ident">interaction</span>.<span class="ident">focus</span>.<span class="ident">is_focus_locked</span>
-        } <span class="kw">else</span> {
-            <span class="bool-val">false</span>
+    <span class="doccomment">/// Is the keyboard focus locked on this widget? If so the focus won&#39;t move even if the user presses the tab key.
+    </span><span class="kw">pub fn </span>has_lock_focus(<span class="kw-2">&amp;mut </span><span class="self">self</span>, id: Id) -&gt; bool {
+        <span class="kw">if </span><span class="self">self</span>.had_focus_last_frame(id) &amp;&amp; <span class="self">self</span>.has_focus(id) {
+            <span class="self">self</span>.interaction.focus.is_focus_locked
+        } <span class="kw">else </span>{
+            <span class="bool-val">false
+        </span>}
+    }
+
+    <span class="doccomment">/// Give keyboard focus to a specific widget.
+    /// See also [`crate::Response::request_focus`].
+    </span><span class="attribute">#[inline(always)]
+    </span><span class="kw">pub fn </span>request_focus(<span class="kw-2">&amp;mut </span><span class="self">self</span>, id: Id) {
+        <span class="self">self</span>.interaction.focus.id = <span class="prelude-val">Some</span>(id);
+        <span class="self">self</span>.interaction.focus.is_focus_locked = <span class="bool-val">false</span>;
+    }
+
+    <span class="doccomment">/// Surrender keyboard focus for a specific widget.
+    /// See also [`crate::Response::surrender_focus`].
+    </span><span class="attribute">#[inline(always)]
+    </span><span class="kw">pub fn </span>surrender_focus(<span class="kw-2">&amp;mut </span><span class="self">self</span>, id: Id) {
+        <span class="kw">if </span><span class="self">self</span>.interaction.focus.id == <span class="prelude-val">Some</span>(id) {
+            <span class="self">self</span>.interaction.focus.id = <span class="prelude-val">None</span>;
+            <span class="self">self</span>.interaction.focus.is_focus_locked = <span class="bool-val">false</span>;
         }
     }
 
-    <span class="doccomment">/// Give keyboard focus to a specific widget.</span>
-    <span class="doccomment">/// See also [`crate::Response::request_focus`].</span>
-    <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">request_focus</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">id</span>: <span class="ident">Id</span>) {
-        <span class="self">self</span>.<span class="ident">interaction</span>.<span class="ident">focus</span>.<span class="ident">id</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">id</span>);
-        <span class="self">self</span>.<span class="ident">interaction</span>.<span class="ident">focus</span>.<span class="ident">is_focus_locked</span> <span class="op">=</span> <span class="bool-val">false</span>;
+    <span class="doccomment">/// Register this widget as being interested in getting keyboard focus.
+    /// This will allow the user to select it with tab and shift-tab.
+    </span><span class="attribute">#[inline(always)]
+    </span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>interested_in_focus(<span class="kw-2">&amp;mut </span><span class="self">self</span>, id: Id) {
+        <span class="self">self</span>.interaction.focus.interested_in_focus(id);
     }
 
-    <span class="doccomment">/// Surrender keyboard focus for a specific widget.</span>
-    <span class="doccomment">/// See also [`crate::Response::surrender_focus`].</span>
-    <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">surrender_focus</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">id</span>: <span class="ident">Id</span>) {
-        <span class="kw">if</span> <span class="self">self</span>.<span class="ident">interaction</span>.<span class="ident">focus</span>.<span class="ident">id</span> <span class="op">==</span> <span class="prelude-val">Some</span>(<span class="ident">id</span>) {
-            <span class="self">self</span>.<span class="ident">interaction</span>.<span class="ident">focus</span>.<span class="ident">id</span> <span class="op">=</span> <span class="prelude-val">None</span>;
-            <span class="self">self</span>.<span class="ident">interaction</span>.<span class="ident">focus</span>.<span class="ident">is_focus_locked</span> <span class="op">=</span> <span class="bool-val">false</span>;
-        }
+    <span class="doccomment">/// Stop editing of active `TextEdit` (if any).
+    </span><span class="attribute">#[inline(always)]
+    </span><span class="kw">pub fn </span>stop_text_input(<span class="kw-2">&amp;mut </span><span class="self">self</span>) {
+        <span class="self">self</span>.interaction.focus.id = <span class="prelude-val">None</span>;
     }
 
-    <span class="doccomment">/// Register this widget as being interested in getting keyboard focus.</span>
-    <span class="doccomment">/// This will allow the user to select it with tab and shift-tab.</span>
-    <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">interested_in_focus</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">id</span>: <span class="ident">Id</span>) {
-        <span class="self">self</span>.<span class="ident">interaction</span>.<span class="ident">focus</span>.<span class="ident">interested_in_focus</span>(<span class="ident">id</span>);
+    <span class="attribute">#[inline(always)]
+    </span><span class="kw">pub fn </span>is_anything_being_dragged(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; bool {
+        <span class="self">self</span>.interaction.drag_id.is_some()
     }
 
-    <span class="doccomment">/// Stop editing of active `TextEdit` (if any).</span>
-    <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">stop_text_input</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>) {
-        <span class="self">self</span>.<span class="ident">interaction</span>.<span class="ident">focus</span>.<span class="ident">id</span> <span class="op">=</span> <span class="prelude-val">None</span>;
+    <span class="attribute">#[inline(always)]
+    </span><span class="kw">pub fn </span>is_being_dragged(<span class="kw-2">&amp;</span><span class="self">self</span>, id: Id) -&gt; bool {
+        <span class="self">self</span>.interaction.drag_id == <span class="prelude-val">Some</span>(id)
     }
 
-    <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_anything_being_dragged</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span> {
-        <span class="self">self</span>.<span class="ident">interaction</span>.<span class="ident">drag_id</span>.<span class="ident">is_some</span>()
-    }
-
-    <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_being_dragged</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">id</span>: <span class="ident">Id</span>) -&gt; <span class="ident">bool</span> {
-        <span class="self">self</span>.<span class="ident">interaction</span>.<span class="ident">drag_id</span> <span class="op">==</span> <span class="prelude-val">Some</span>(<span class="ident">id</span>)
-    }
-
-    <span class="doccomment">/// Forget window positions, sizes etc.</span>
-    <span class="doccomment">/// Can be used to auto-layout windows.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">reset_areas</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>) {
-        <span class="self">self</span>.<span class="ident">areas</span> <span class="op">=</span> <span class="ident">Default::default</span>();
+    <span class="doccomment">/// Forget window positions, sizes etc.
+    /// Can be used to auto-layout windows.
+    </span><span class="kw">pub fn </span>reset_areas(<span class="kw-2">&amp;mut </span><span class="self">self</span>) {
+        <span class="self">self</span>.areas = Default::default();
     }
 }
 
-<span class="doccomment">/// ## Popups</span>
-<span class="doccomment">/// Popups are things like combo-boxes, color pickers, menus etc.</span>
-<span class="doccomment">/// Only one can be be open at a time.</span>
-<span class="kw">impl</span> <span class="ident">Memory</span> {
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_popup_open</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">popup_id</span>: <span class="ident">Id</span>) -&gt; <span class="ident">bool</span> {
-        <span class="self">self</span>.<span class="ident">popup</span> <span class="op">==</span> <span class="prelude-val">Some</span>(<span class="ident">popup_id</span>) <span class="op">|</span><span class="op">|</span> <span class="self">self</span>.<span class="ident">everything_is_visible</span>()
+<span class="doccomment">/// ## Popups
+/// Popups are things like combo-boxes, color pickers, menus etc.
+/// Only one can be be open at a time.
+</span><span class="kw">impl </span>Memory {
+    <span class="kw">pub fn </span>is_popup_open(<span class="kw-2">&amp;mut </span><span class="self">self</span>, popup_id: Id) -&gt; bool {
+        <span class="self">self</span>.popup == <span class="prelude-val">Some</span>(popup_id) || <span class="self">self</span>.everything_is_visible()
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">open_popup</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">popup_id</span>: <span class="ident">Id</span>) {
-        <span class="self">self</span>.<span class="ident">popup</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">popup_id</span>);
+    <span class="kw">pub fn </span>open_popup(<span class="kw-2">&amp;mut </span><span class="self">self</span>, popup_id: Id) {
+        <span class="self">self</span>.popup = <span class="prelude-val">Some</span>(popup_id);
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">close_popup</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>) {
-        <span class="self">self</span>.<span class="ident">popup</span> <span class="op">=</span> <span class="prelude-val">None</span>;
+    <span class="kw">pub fn </span>close_popup(<span class="kw-2">&amp;mut </span><span class="self">self</span>) {
+        <span class="self">self</span>.popup = <span class="prelude-val">None</span>;
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">toggle_popup</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">popup_id</span>: <span class="ident">Id</span>) {
-        <span class="kw">if</span> <span class="self">self</span>.<span class="ident">is_popup_open</span>(<span class="ident">popup_id</span>) {
-            <span class="self">self</span>.<span class="ident">close_popup</span>();
-        } <span class="kw">else</span> {
-            <span class="self">self</span>.<span class="ident">open_popup</span>(<span class="ident">popup_id</span>);
+    <span class="kw">pub fn </span>toggle_popup(<span class="kw-2">&amp;mut </span><span class="self">self</span>, popup_id: Id) {
+        <span class="kw">if </span><span class="self">self</span>.is_popup_open(popup_id) {
+            <span class="self">self</span>.close_popup();
+        } <span class="kw">else </span>{
+            <span class="self">self</span>.open_popup(popup_id);
         }
     }
 
-    <span class="doccomment">/// If true, all windows, menus, tooltips etc are to be visible at once.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// This is useful for testing, benchmarking, pre-caching, etc.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// Experimental feature!</span>
-    <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">everything_is_visible</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span> {
-        <span class="self">self</span>.<span class="ident">everything_is_visible</span>
+    <span class="doccomment">/// If true, all windows, menus, tooltips etc are to be visible at once.
+    ///
+    /// This is useful for testing, benchmarking, pre-caching, etc.
+    ///
+    /// Experimental feature!
+    </span><span class="attribute">#[inline(always)]
+    </span><span class="kw">pub fn </span>everything_is_visible(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; bool {
+        <span class="self">self</span>.everything_is_visible
     }
 
-    <span class="doccomment">/// If true, all windows, menus, tooltips etc are to be visible at once.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// This is useful for testing, benchmarking, pre-caching, etc.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// Experimental feature!</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_everything_is_visible</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">value</span>: <span class="ident">bool</span>) {
-        <span class="self">self</span>.<span class="ident">everything_is_visible</span> <span class="op">=</span> <span class="ident">value</span>;
+    <span class="doccomment">/// If true, all windows, menus, tooltips etc are to be visible at once.
+    ///
+    /// This is useful for testing, benchmarking, pre-caching, etc.
+    ///
+    /// Experimental feature!
+    </span><span class="kw">pub fn </span>set_everything_is_visible(<span class="kw-2">&amp;mut </span><span class="self">self</span>, value: bool) {
+        <span class="self">self</span>.everything_is_visible = value;
     }
 }
 
-<span class="comment">// ----------------------------------------------------------------------------</span>
+<span class="comment">// ----------------------------------------------------------------------------
 
-<span class="doccomment">/// Keeps track of `Area`s, which are free-floating `Ui`s.</span>
-<span class="doccomment">/// These `Area`s can be in any `Order`.</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">Default</span>)]</span>
-<span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;serde&quot;</span>, <span class="ident">derive</span>(<span class="ident">serde::Deserialize</span>, <span class="ident">serde::Serialize</span>))]</span>
-<span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;serde&quot;</span>, <span class="ident">serde</span>(<span class="ident">default</span>))]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Areas</span> {
-    <span class="ident">areas</span>: <span class="ident">IdMap</span><span class="op">&lt;</span><span class="ident">area::State</span><span class="op">&gt;</span>,
-    <span class="doccomment">/// Back-to-front. Top is last.</span>
-    <span class="ident">order</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">LayerId</span><span class="op">&gt;</span>,
-    <span class="ident">visible_last_frame</span>: <span class="ident">AHashSet</span><span class="op">&lt;</span><span class="ident">LayerId</span><span class="op">&gt;</span>,
-    <span class="ident">visible_current_frame</span>: <span class="ident">AHashSet</span><span class="op">&lt;</span><span class="ident">LayerId</span><span class="op">&gt;</span>,
+</span><span class="doccomment">/// Keeps track of `Area`s, which are free-floating `Ui`s.
+/// These `Area`s can be in any `Order`.
+</span><span class="attribute">#[derive(Clone, Debug, Default)]
+#[cfg_attr(feature = <span class="string">&quot;serde&quot;</span>, derive(serde::Deserialize, serde::Serialize))]
+#[cfg_attr(feature = <span class="string">&quot;serde&quot;</span>, serde(default))]
+</span><span class="kw">pub struct </span>Areas {
+    areas: IdMap&lt;area::State&gt;,
+    <span class="doccomment">/// Back-to-front. Top is last.
+    </span>order: Vec&lt;LayerId&gt;,
+    visible_last_frame: AHashSet&lt;LayerId&gt;,
+    visible_current_frame: AHashSet&lt;LayerId&gt;,
 
-    <span class="doccomment">/// When an area want to be on top, it is put in here.</span>
-    <span class="doccomment">/// At the end of the frame, this is used to reorder the layers.</span>
-    <span class="doccomment">/// This means if several layers want to be on top, they will keep their relative order.</span>
-    <span class="doccomment">/// So if you close three windows and then reopen them all in one frame,</span>
-    <span class="doccomment">/// they will all be sent to the top, but keep their previous internal order.</span>
-    <span class="ident">wants_to_be_on_top</span>: <span class="ident">AHashSet</span><span class="op">&lt;</span><span class="ident">LayerId</span><span class="op">&gt;</span>,
+    <span class="doccomment">/// When an area want to be on top, it is put in here.
+    /// At the end of the frame, this is used to reorder the layers.
+    /// This means if several layers want to be on top, they will keep their relative order.
+    /// So if you close three windows and then reopen them all in one frame,
+    /// they will all be sent to the top, but keep their previous internal order.
+    </span>wants_to_be_on_top: AHashSet&lt;LayerId&gt;,
 }
 
-<span class="kw">impl</span> <span class="ident">Areas</span> {
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">count</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">usize</span> {
-        <span class="self">self</span>.<span class="ident">areas</span>.<span class="ident">len</span>()
+<span class="kw">impl </span>Areas {
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>count(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; usize {
+        <span class="self">self</span>.areas.len()
     }
 
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">get</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">id</span>: <span class="ident">Id</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">area::State</span><span class="op">&gt;</span> {
-        <span class="self">self</span>.<span class="ident">areas</span>.<span class="ident">get</span>(<span class="kw-2">&amp;</span><span class="ident">id</span>)
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>get(<span class="kw-2">&amp;</span><span class="self">self</span>, id: Id) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span>area::State&gt; {
+        <span class="self">self</span>.areas.get(<span class="kw-2">&amp;</span>id)
     }
 
-    <span class="doccomment">/// Back-to-front. Top is last.</span>
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">order</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span>[<span class="ident">LayerId</span>] {
-        <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">order</span>
+    <span class="doccomment">/// Back-to-front. Top is last.
+    </span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>order(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span>[LayerId] {
+        <span class="kw-2">&amp;</span><span class="self">self</span>.order
     }
 
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">set_state</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">layer_id</span>: <span class="ident">LayerId</span>, <span class="ident">state</span>: <span class="ident">area::State</span>) {
-        <span class="self">self</span>.<span class="ident">visible_current_frame</span>.<span class="ident">insert</span>(<span class="ident">layer_id</span>);
-        <span class="self">self</span>.<span class="ident">areas</span>.<span class="ident">insert</span>(<span class="ident">layer_id</span>.<span class="ident">id</span>, <span class="ident">state</span>);
-        <span class="kw">if</span> <span class="op">!</span><span class="self">self</span>.<span class="ident">order</span>.<span class="ident">iter</span>().<span class="ident">any</span>(<span class="op">|</span><span class="ident">x</span><span class="op">|</span> <span class="kw-2">*</span><span class="ident">x</span> <span class="op">==</span> <span class="ident">layer_id</span>) {
-            <span class="self">self</span>.<span class="ident">order</span>.<span class="ident">push</span>(<span class="ident">layer_id</span>);
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>set_state(<span class="kw-2">&amp;mut </span><span class="self">self</span>, layer_id: LayerId, state: area::State) {
+        <span class="self">self</span>.visible_current_frame.insert(layer_id);
+        <span class="self">self</span>.areas.insert(layer_id.id, state);
+        <span class="kw">if </span>!<span class="self">self</span>.order.iter().any(|x| <span class="kw-2">*</span>x == layer_id) {
+            <span class="self">self</span>.order.push(layer_id);
         }
     }
 
-    <span class="doccomment">/// Top-most layer at the given position.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">layer_id_at</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">pos</span>: <span class="ident">Pos2</span>, <span class="ident">resize_interact_radius_side</span>: <span class="ident">f32</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">LayerId</span><span class="op">&gt;</span> {
-        <span class="kw">for</span> <span class="ident">layer</span> <span class="kw">in</span> <span class="self">self</span>.<span class="ident">order</span>.<span class="ident">iter</span>().<span class="ident">rev</span>() {
-            <span class="kw">if</span> <span class="self">self</span>.<span class="ident">is_visible</span>(<span class="ident">layer</span>) {
-                <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">state</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">areas</span>.<span class="ident">get</span>(<span class="kw-2">&amp;</span><span class="ident">layer</span>.<span class="ident">id</span>) {
-                    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">rect</span> <span class="op">=</span> <span class="ident">state</span>.<span class="ident">rect</span>();
-                    <span class="kw">if</span> <span class="ident">state</span>.<span class="ident">interactable</span> {
-                        <span class="comment">// Allow us to resize by dragging just outside the window:</span>
-                        <span class="ident">rect</span> <span class="op">=</span> <span class="ident">rect</span>.<span class="ident">expand</span>(<span class="ident">resize_interact_radius_side</span>);
+    <span class="doccomment">/// Top-most layer at the given position.
+    </span><span class="kw">pub fn </span>layer_id_at(<span class="kw-2">&amp;</span><span class="self">self</span>, pos: Pos2, resize_interact_radius_side: f32) -&gt; <span class="prelude-ty">Option</span>&lt;LayerId&gt; {
+        <span class="kw">for </span>layer <span class="kw">in </span><span class="self">self</span>.order.iter().rev() {
+            <span class="kw">if </span><span class="self">self</span>.is_visible(layer) {
+                <span class="kw">if let </span><span class="prelude-val">Some</span>(state) = <span class="self">self</span>.areas.get(<span class="kw-2">&amp;</span>layer.id) {
+                    <span class="kw">let </span><span class="kw-2">mut </span>rect = state.rect();
+                    <span class="kw">if </span>state.interactable {
+                        <span class="comment">// Allow us to resize by dragging just outside the window:
+                        </span>rect = rect.expand(resize_interact_radius_side);
                     }
-                    <span class="kw">if</span> <span class="ident">rect</span>.<span class="ident">contains</span>(<span class="ident">pos</span>) {
-                        <span class="kw">return</span> <span class="prelude-val">Some</span>(<span class="kw-2">*</span><span class="ident">layer</span>);
+                    <span class="kw">if </span>rect.contains(pos) {
+                        <span class="kw">return </span><span class="prelude-val">Some</span>(<span class="kw-2">*</span>layer);
                     }
                 }
             }
         }
-        <span class="prelude-val">None</span>
+        <span class="prelude-val">None
+    </span>}
+
+    <span class="kw">pub fn </span>visible_last_frame(<span class="kw-2">&amp;</span><span class="self">self</span>, layer_id: <span class="kw-2">&amp;</span>LayerId) -&gt; bool {
+        <span class="self">self</span>.visible_last_frame.contains(layer_id)
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">visible_last_frame</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">layer_id</span>: <span class="kw-2">&amp;</span><span class="ident">LayerId</span>) -&gt; <span class="ident">bool</span> {
-        <span class="self">self</span>.<span class="ident">visible_last_frame</span>.<span class="ident">contains</span>(<span class="ident">layer_id</span>)
+    <span class="kw">pub fn </span>is_visible(<span class="kw-2">&amp;</span><span class="self">self</span>, layer_id: <span class="kw-2">&amp;</span>LayerId) -&gt; bool {
+        <span class="self">self</span>.visible_last_frame.contains(layer_id) || <span class="self">self</span>.visible_current_frame.contains(layer_id)
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_visible</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">layer_id</span>: <span class="kw-2">&amp;</span><span class="ident">LayerId</span>) -&gt; <span class="ident">bool</span> {
-        <span class="self">self</span>.<span class="ident">visible_last_frame</span>.<span class="ident">contains</span>(<span class="ident">layer_id</span>) <span class="op">|</span><span class="op">|</span> <span class="self">self</span>.<span class="ident">visible_current_frame</span>.<span class="ident">contains</span>(<span class="ident">layer_id</span>)
+    <span class="kw">pub fn </span>visible_layer_ids(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; AHashSet&lt;LayerId&gt; {
+        <span class="self">self</span>.visible_last_frame
+            .iter()
+            .cloned()
+            .chain(<span class="self">self</span>.visible_current_frame.iter().cloned())
+            .collect()
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">visible_layer_ids</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">AHashSet</span><span class="op">&lt;</span><span class="ident">LayerId</span><span class="op">&gt;</span> {
-        <span class="self">self</span>.<span class="ident">visible_last_frame</span>
-            .<span class="ident">iter</span>()
-            .<span class="ident">cloned</span>()
-            .<span class="ident">chain</span>(<span class="self">self</span>.<span class="ident">visible_current_frame</span>.<span class="ident">iter</span>().<span class="ident">cloned</span>())
-            .<span class="ident">collect</span>()
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>visible_windows(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; Vec&lt;<span class="kw-2">&amp;</span>area::State&gt; {
+        <span class="self">self</span>.visible_layer_ids()
+            .iter()
+            .filter(|layer| layer.order == <span class="kw">crate</span>::Order::Middle)
+            .filter_map(|layer| <span class="self">self</span>.get(layer.id))
+            .collect()
     }
 
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">visible_windows</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">Vec</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">area::State</span><span class="op">&gt;</span> {
-        <span class="self">self</span>.<span class="ident">visible_layer_ids</span>()
-            .<span class="ident">iter</span>()
-            .<span class="ident">filter</span>(<span class="op">|</span><span class="ident">layer</span><span class="op">|</span> <span class="ident">layer</span>.<span class="ident">order</span> <span class="op">==</span> <span class="ident"><span class="kw">crate</span>::Order::Middle</span>)
-            .<span class="ident">filter_map</span>(<span class="op">|</span><span class="ident">layer</span><span class="op">|</span> <span class="self">self</span>.<span class="ident">get</span>(<span class="ident">layer</span>.<span class="ident">id</span>))
-            .<span class="ident">collect</span>()
-    }
+    <span class="kw">pub fn </span>move_to_top(<span class="kw-2">&amp;mut </span><span class="self">self</span>, layer_id: LayerId) {
+        <span class="self">self</span>.visible_current_frame.insert(layer_id);
+        <span class="self">self</span>.wants_to_be_on_top.insert(layer_id);
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">move_to_top</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">layer_id</span>: <span class="ident">LayerId</span>) {
-        <span class="self">self</span>.<span class="ident">visible_current_frame</span>.<span class="ident">insert</span>(<span class="ident">layer_id</span>);
-        <span class="self">self</span>.<span class="ident">wants_to_be_on_top</span>.<span class="ident">insert</span>(<span class="ident">layer_id</span>);
-
-        <span class="kw">if</span> <span class="op">!</span><span class="self">self</span>.<span class="ident">order</span>.<span class="ident">iter</span>().<span class="ident">any</span>(<span class="op">|</span><span class="ident">x</span><span class="op">|</span> <span class="kw-2">*</span><span class="ident">x</span> <span class="op">==</span> <span class="ident">layer_id</span>) {
-            <span class="self">self</span>.<span class="ident">order</span>.<span class="ident">push</span>(<span class="ident">layer_id</span>);
+        <span class="kw">if </span>!<span class="self">self</span>.order.iter().any(|x| <span class="kw-2">*</span>x == layer_id) {
+            <span class="self">self</span>.order.push(layer_id);
         }
     }
 
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">end_frame</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>) {
-        <span class="kw">let</span> <span class="self">Self</span> {
-            <span class="ident">visible_last_frame</span>,
-            <span class="ident">visible_current_frame</span>,
-            <span class="ident">order</span>,
-            <span class="ident">wants_to_be_on_top</span>,
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>end_frame(<span class="kw-2">&amp;mut </span><span class="self">self</span>) {
+        <span class="kw">let </span><span class="self">Self </span>{
+            visible_last_frame,
+            visible_current_frame,
+            order,
+            wants_to_be_on_top,
             ..
-        } <span class="op">=</span> <span class="self">self</span>;
+        } = <span class="self">self</span>;
 
-        <span class="kw-2">*</span><span class="ident">visible_last_frame</span> <span class="op">=</span> <span class="ident">std::mem::take</span>(<span class="ident">visible_current_frame</span>);
-        <span class="ident">order</span>.<span class="ident">sort_by_key</span>(<span class="op">|</span><span class="ident">layer</span><span class="op">|</span> (<span class="ident">layer</span>.<span class="ident">order</span>, <span class="ident">wants_to_be_on_top</span>.<span class="ident">contains</span>(<span class="ident">layer</span>)));
-        <span class="ident">wants_to_be_on_top</span>.<span class="ident">clear</span>();
+        <span class="kw-2">*</span>visible_last_frame = std::mem::take(visible_current_frame);
+        order.sort_by_key(|layer| (layer.order, wants_to_be_on_top.contains(layer)));
+        wants_to_be_on_top.clear();
     }
 }
 
-<span class="comment">// ----------------------------------------------------------------------------</span>
+<span class="comment">// ----------------------------------------------------------------------------
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">test</span>)]</span>
-<span class="attribute">#[<span class="ident">test</span>]</span>
-<span class="kw">fn</span> <span class="ident">memory_impl_send_sync</span>() {
-    <span class="kw">fn</span> <span class="ident">assert_send_sync</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">Send</span> <span class="op">+</span> <span class="ident">Sync</span><span class="op">&gt;</span>() {}
-    <span class="ident">assert_send_sync</span>::<span class="op">&lt;</span><span class="ident">Memory</span><span class="op">&gt;</span>();
+</span><span class="attribute">#[cfg(test)]
+#[test]
+</span><span class="kw">fn </span>memory_impl_send_sync() {
+    <span class="kw">fn </span>assert_send_sync&lt;T: Send + Sync&gt;() {}
+    assert_send_sync::&lt;Memory&gt;();
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="egui" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0 (a55dd71d5 2022-09-19)" ></div></body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="egui" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.66.1 (90743e729 2023-01-10)" ></div></body></html>

@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/epaint-0.16.0/src/text/text_layout.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>text_layout.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../storage.js"></script><script defer src="../../../source-script.js"></script><script defer src="../../../source-files.js"></script><script defer src="../../../main.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../../epaint/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../../epaint/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../../epaint/index.html"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/epaint-0.16.0/src/text/text_layout.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>text_layout.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../../normalize.css"><link rel="stylesheet" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../../ayu.css" disabled><link rel="stylesheet" href="../../../dark.css" disabled><link rel="stylesheet" href="../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../storage.js"></script><script defer src="../../../source-script.js"></script><script defer src="../../../source-files.js"></script><script defer src="../../../main.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><div class="width-limiter"><nav class="sub"><a class="sub-logo-container" href="../../../epaint/index.html"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../wheel.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -644,651 +644,651 @@
 <span id="644">644</span>
 <span id="645">645</span>
 <span id="646">646</span>
-</pre><pre class="rust"><code><span class="kw">use</span> <span class="ident">std::ops::RangeInclusive</span>;
-<span class="kw">use</span> <span class="ident">std::sync::Arc</span>;
+</pre><pre class="rust"><code><span class="kw">use </span>std::ops::RangeInclusive;
+<span class="kw">use </span>std::sync::Arc;
 
-<span class="kw">use</span> <span class="kw">super</span>::{<span class="ident">Fonts</span>, <span class="ident">Galley</span>, <span class="ident">Glyph</span>, <span class="ident">LayoutJob</span>, <span class="ident">LayoutSection</span>, <span class="ident">Row</span>, <span class="ident">RowVisuals</span>};
-<span class="kw">use</span> <span class="kw">crate</span>::{<span class="ident">Color32</span>, <span class="ident">Mesh</span>, <span class="ident">Stroke</span>, <span class="ident">Vertex</span>};
-<span class="kw">use</span> <span class="ident">emath</span>::<span class="kw-2">*</span>;
+<span class="kw">use super</span>::{Fonts, Galley, Glyph, LayoutJob, LayoutSection, Row, RowVisuals};
+<span class="kw">use crate</span>::{Color32, Mesh, Stroke, Vertex};
+<span class="kw">use </span>emath::<span class="kw-2">*</span>;
 
-<span class="doccomment">/// Temporary storage before line-wrapping.</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Default</span>, <span class="ident">Clone</span>)]</span>
-<span class="kw">struct</span> <span class="ident">Paragraph</span> {
-    <span class="doccomment">/// Start of the next glyph to be added.</span>
-    <span class="kw">pub</span> <span class="ident">cursor_x</span>: <span class="ident">f32</span>,
-    <span class="kw">pub</span> <span class="ident">glyphs</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Glyph</span><span class="op">&gt;</span>,
-    <span class="doccomment">/// In case of an empty paragraph (&quot;\n&quot;), use this as height.</span>
-    <span class="kw">pub</span> <span class="ident">empty_paragraph_height</span>: <span class="ident">f32</span>,
+<span class="doccomment">/// Temporary storage before line-wrapping.
+</span><span class="attribute">#[derive(Default, Clone)]
+</span><span class="kw">struct </span>Paragraph {
+    <span class="doccomment">/// Start of the next glyph to be added.
+    </span><span class="kw">pub </span>cursor_x: f32,
+    <span class="kw">pub </span>glyphs: Vec&lt;Glyph&gt;,
+    <span class="doccomment">/// In case of an empty paragraph (&quot;\n&quot;), use this as height.
+    </span><span class="kw">pub </span>empty_paragraph_height: f32,
 }
 
-<span class="doccomment">/// Layout text into a [`Galley`].</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// In most cases you should use [`Fonts::layout_job`] instead</span>
-<span class="doccomment">/// since that memoizes the input, making subsequent layouting of the same text much faster.</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">layout</span>(<span class="ident">fonts</span>: <span class="kw-2">&amp;</span><span class="ident">Fonts</span>, <span class="ident">job</span>: <span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">LayoutJob</span><span class="op">&gt;</span>) -&gt; <span class="ident">Galley</span> {
-    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">paragraphs</span> <span class="op">=</span> <span class="macro">vec!</span>[<span class="ident">Paragraph::default</span>()];
-    <span class="kw">for</span> (<span class="ident">section_index</span>, <span class="ident">section</span>) <span class="kw">in</span> <span class="ident">job</span>.<span class="ident">sections</span>.<span class="ident">iter</span>().<span class="ident">enumerate</span>() {
-        <span class="ident">layout_section</span>(<span class="ident">fonts</span>, <span class="kw-2">&amp;</span><span class="ident">job</span>, <span class="ident">section_index</span> <span class="kw">as</span> <span class="ident">u32</span>, <span class="ident">section</span>, <span class="kw-2">&amp;mut</span> <span class="ident">paragraphs</span>);
+<span class="doccomment">/// Layout text into a [`Galley`].
+///
+/// In most cases you should use [`Fonts::layout_job`] instead
+/// since that memoizes the input, making subsequent layouting of the same text much faster.
+</span><span class="kw">pub fn </span>layout(fonts: <span class="kw-2">&amp;</span>Fonts, job: Arc&lt;LayoutJob&gt;) -&gt; Galley {
+    <span class="kw">let </span><span class="kw-2">mut </span>paragraphs = <span class="macro">vec!</span>[Paragraph::default()];
+    <span class="kw">for </span>(section_index, section) <span class="kw">in </span>job.sections.iter().enumerate() {
+        layout_section(fonts, <span class="kw-2">&amp;</span>job, section_index <span class="kw">as </span>u32, section, <span class="kw-2">&amp;mut </span>paragraphs);
     }
 
-    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">rows</span> <span class="op">=</span> <span class="ident">rows_from_paragraphs</span>(<span class="ident">paragraphs</span>, <span class="ident">job</span>.<span class="ident">wrap_width</span>);
+    <span class="kw">let </span><span class="kw-2">mut </span>rows = rows_from_paragraphs(paragraphs, job.wrap_width);
 
-    <span class="kw">let</span> <span class="ident">justify</span> <span class="op">=</span> <span class="ident">job</span>.<span class="ident">justify</span> <span class="op">&amp;&amp;</span> <span class="ident">job</span>.<span class="ident">wrap_width</span>.<span class="ident">is_finite</span>();
+    <span class="kw">let </span>justify = job.justify &amp;&amp; job.wrap_width.is_finite();
 
-    <span class="kw">if</span> <span class="ident">justify</span> <span class="op">|</span><span class="op">|</span> <span class="ident">job</span>.<span class="ident">halign</span> <span class="op">!</span><span class="op">=</span> <span class="ident">Align::LEFT</span> {
-        <span class="kw">let</span> <span class="ident">num_rows</span> <span class="op">=</span> <span class="ident">rows</span>.<span class="ident">len</span>();
-        <span class="kw">for</span> (<span class="ident">i</span>, <span class="ident">row</span>) <span class="kw">in</span> <span class="ident">rows</span>.<span class="ident">iter_mut</span>().<span class="ident">enumerate</span>() {
-            <span class="kw">let</span> <span class="ident">is_last_row</span> <span class="op">=</span> <span class="ident">i</span> <span class="op">+</span> <span class="number">1</span> <span class="op">==</span> <span class="ident">num_rows</span>;
-            <span class="kw">let</span> <span class="ident">justify_row</span> <span class="op">=</span> <span class="ident">justify</span> <span class="op">&amp;&amp;</span> <span class="op">!</span><span class="ident">row</span>.<span class="ident">ends_with_newline</span> <span class="op">&amp;&amp;</span> <span class="op">!</span><span class="ident">is_last_row</span>;
-            <span class="ident">halign_and_jusitfy_row</span>(<span class="ident">fonts</span>, <span class="ident">row</span>, <span class="ident">job</span>.<span class="ident">halign</span>, <span class="ident">job</span>.<span class="ident">wrap_width</span>, <span class="ident">justify_row</span>);
+    <span class="kw">if </span>justify || job.halign != Align::LEFT {
+        <span class="kw">let </span>num_rows = rows.len();
+        <span class="kw">for </span>(i, row) <span class="kw">in </span>rows.iter_mut().enumerate() {
+            <span class="kw">let </span>is_last_row = i + <span class="number">1 </span>== num_rows;
+            <span class="kw">let </span>justify_row = justify &amp;&amp; !row.ends_with_newline &amp;&amp; !is_last_row;
+            halign_and_jusitfy_row(fonts, row, job.halign, job.wrap_width, justify_row);
         }
     }
 
-    <span class="ident">galley_from_rows</span>(<span class="ident">fonts</span>, <span class="ident">job</span>, <span class="ident">rows</span>)
+    galley_from_rows(fonts, job, rows)
 }
 
-<span class="kw">fn</span> <span class="ident">layout_section</span>(
-    <span class="ident">fonts</span>: <span class="kw-2">&amp;</span><span class="ident">Fonts</span>,
-    <span class="ident">job</span>: <span class="kw-2">&amp;</span><span class="ident">LayoutJob</span>,
-    <span class="ident">section_index</span>: <span class="ident">u32</span>,
-    <span class="ident">section</span>: <span class="kw-2">&amp;</span><span class="ident">LayoutSection</span>,
-    <span class="ident">out_paragraphs</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Paragraph</span><span class="op">&gt;</span>,
+<span class="kw">fn </span>layout_section(
+    fonts: <span class="kw-2">&amp;</span>Fonts,
+    job: <span class="kw-2">&amp;</span>LayoutJob,
+    section_index: u32,
+    section: <span class="kw-2">&amp;</span>LayoutSection,
+    out_paragraphs: <span class="kw-2">&amp;mut </span>Vec&lt;Paragraph&gt;,
 ) {
-    <span class="kw">let</span> <span class="ident">LayoutSection</span> {
-        <span class="ident">leading_space</span>,
-        <span class="ident">byte_range</span>,
-        <span class="ident">format</span>,
-    } <span class="op">=</span> <span class="ident">section</span>;
-    <span class="kw">let</span> <span class="ident">font</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">fonts</span>[<span class="ident">format</span>.<span class="ident">style</span>];
-    <span class="kw">let</span> <span class="ident">font_height</span> <span class="op">=</span> <span class="ident">font</span>.<span class="ident">row_height</span>();
+    <span class="kw">let </span>LayoutSection {
+        leading_space,
+        byte_range,
+        format,
+    } = section;
+    <span class="kw">let </span>font = <span class="kw-2">&amp;</span>fonts[format.style];
+    <span class="kw">let </span>font_height = font.row_height();
 
-    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">paragraph</span> <span class="op">=</span> <span class="ident">out_paragraphs</span>.<span class="ident">last_mut</span>().<span class="ident">unwrap</span>();
-    <span class="kw">if</span> <span class="ident">paragraph</span>.<span class="ident">glyphs</span>.<span class="ident">is_empty</span>() {
-        <span class="ident">paragraph</span>.<span class="ident">empty_paragraph_height</span> <span class="op">=</span> <span class="ident">font_height</span>; <span class="comment">// TODO: replace this hack with actually including `\n` in the glyphs?</span>
-    }
+    <span class="kw">let </span><span class="kw-2">mut </span>paragraph = out_paragraphs.last_mut().unwrap();
+    <span class="kw">if </span>paragraph.glyphs.is_empty() {
+        paragraph.empty_paragraph_height = font_height; <span class="comment">// TODO: replace this hack with actually including `\n` in the glyphs?
+    </span>}
 
-    <span class="ident">paragraph</span>.<span class="ident">cursor_x</span> <span class="op">+</span><span class="op">=</span> <span class="ident">leading_space</span>;
+    paragraph.cursor_x += leading_space;
 
-    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">last_glyph_id</span> <span class="op">=</span> <span class="prelude-val">None</span>;
+    <span class="kw">let </span><span class="kw-2">mut </span>last_glyph_id = <span class="prelude-val">None</span>;
 
-    <span class="kw">for</span> <span class="ident">chr</span> <span class="kw">in</span> <span class="ident">job</span>.<span class="ident">text</span>[<span class="ident">byte_range</span>.<span class="ident">clone</span>()].<span class="ident">chars</span>() {
-        <span class="kw">if</span> <span class="ident">job</span>.<span class="ident">break_on_newline</span> <span class="op">&amp;&amp;</span> <span class="ident">chr</span> <span class="op">==</span> <span class="string">&#39;\n&#39;</span> {
-            <span class="ident">out_paragraphs</span>.<span class="ident">push</span>(<span class="ident">Paragraph::default</span>());
-            <span class="ident">paragraph</span> <span class="op">=</span> <span class="ident">out_paragraphs</span>.<span class="ident">last_mut</span>().<span class="ident">unwrap</span>();
-            <span class="ident">paragraph</span>.<span class="ident">empty_paragraph_height</span> <span class="op">=</span> <span class="ident">font_height</span>; <span class="comment">// TODO: replace this hack with actually including `\n` in the glyphs?</span>
-        } <span class="kw">else</span> {
-            <span class="kw">let</span> (<span class="ident">font_impl</span>, <span class="ident">glyph_info</span>) <span class="op">=</span> <span class="ident">font</span>.<span class="ident">glyph_info_and_font_impl</span>(<span class="ident">chr</span>);
-            <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">font_impl</span>) <span class="op">=</span> <span class="ident">font_impl</span> {
-                <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">last_glyph_id</span>) <span class="op">=</span> <span class="ident">last_glyph_id</span> {
-                    <span class="ident">paragraph</span>.<span class="ident">cursor_x</span> <span class="op">+</span><span class="op">=</span> <span class="ident">font_impl</span>.<span class="ident">pair_kerning</span>(<span class="ident">last_glyph_id</span>, <span class="ident">glyph_info</span>.<span class="ident">id</span>);
+    <span class="kw">for </span>chr <span class="kw">in </span>job.text[byte_range.clone()].chars() {
+        <span class="kw">if </span>job.break_on_newline &amp;&amp; chr == <span class="string">&#39;\n&#39; </span>{
+            out_paragraphs.push(Paragraph::default());
+            paragraph = out_paragraphs.last_mut().unwrap();
+            paragraph.empty_paragraph_height = font_height; <span class="comment">// TODO: replace this hack with actually including `\n` in the glyphs?
+        </span>} <span class="kw">else </span>{
+            <span class="kw">let </span>(font_impl, glyph_info) = font.glyph_info_and_font_impl(chr);
+            <span class="kw">if let </span><span class="prelude-val">Some</span>(font_impl) = font_impl {
+                <span class="kw">if let </span><span class="prelude-val">Some</span>(last_glyph_id) = last_glyph_id {
+                    paragraph.cursor_x += font_impl.pair_kerning(last_glyph_id, glyph_info.id);
                 }
             }
 
-            <span class="ident">paragraph</span>.<span class="ident">glyphs</span>.<span class="ident">push</span>(<span class="ident">Glyph</span> {
-                <span class="ident">chr</span>,
-                <span class="ident">pos</span>: <span class="ident">pos2</span>(<span class="ident">paragraph</span>.<span class="ident">cursor_x</span>, <span class="ident">f32::NAN</span>),
-                <span class="ident">size</span>: <span class="ident">vec2</span>(<span class="ident">glyph_info</span>.<span class="ident">advance_width</span>, <span class="ident">font_height</span>),
-                <span class="ident">uv_rect</span>: <span class="ident">glyph_info</span>.<span class="ident">uv_rect</span>,
-                <span class="ident">section_index</span>,
+            paragraph.glyphs.push(Glyph {
+                chr,
+                pos: pos2(paragraph.cursor_x, f32::NAN),
+                size: vec2(glyph_info.advance_width, font_height),
+                uv_rect: glyph_info.uv_rect,
+                section_index,
             });
 
-            <span class="ident">paragraph</span>.<span class="ident">cursor_x</span> <span class="op">+</span><span class="op">=</span> <span class="ident">glyph_info</span>.<span class="ident">advance_width</span>;
-            <span class="ident">paragraph</span>.<span class="ident">cursor_x</span> <span class="op">=</span> <span class="ident">font</span>.<span class="ident">round_to_pixel</span>(<span class="ident">paragraph</span>.<span class="ident">cursor_x</span>);
-            <span class="ident">last_glyph_id</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">glyph_info</span>.<span class="ident">id</span>);
+            paragraph.cursor_x += glyph_info.advance_width;
+            paragraph.cursor_x = font.round_to_pixel(paragraph.cursor_x);
+            last_glyph_id = <span class="prelude-val">Some</span>(glyph_info.id);
         }
     }
 }
 
-<span class="doccomment">/// We ignore y at this stage</span>
-<span class="kw">fn</span> <span class="ident">rect_from_x_range</span>(<span class="ident">x_range</span>: <span class="ident">RangeInclusive</span><span class="op">&lt;</span><span class="ident">f32</span><span class="op">&gt;</span>) -&gt; <span class="ident">Rect</span> {
-    <span class="ident">Rect::from_x_y_ranges</span>(<span class="ident">x_range</span>, <span class="number">0.0</span>..<span class="op">=</span><span class="number">0.0</span>)
+<span class="doccomment">/// We ignore y at this stage
+</span><span class="kw">fn </span>rect_from_x_range(x_range: RangeInclusive&lt;f32&gt;) -&gt; Rect {
+    Rect::from_x_y_ranges(x_range, <span class="number">0.0</span>..=<span class="number">0.0</span>)
 }
 
-<span class="kw">fn</span> <span class="ident">rows_from_paragraphs</span>(<span class="ident">paragraphs</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Paragraph</span><span class="op">&gt;</span>, <span class="ident">wrap_width</span>: <span class="ident">f32</span>) -&gt; <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Row</span><span class="op">&gt;</span> {
-    <span class="kw">let</span> <span class="ident">num_paragraphs</span> <span class="op">=</span> <span class="ident">paragraphs</span>.<span class="ident">len</span>();
+<span class="kw">fn </span>rows_from_paragraphs(paragraphs: Vec&lt;Paragraph&gt;, wrap_width: f32) -&gt; Vec&lt;Row&gt; {
+    <span class="kw">let </span>num_paragraphs = paragraphs.len();
 
-    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">rows</span> <span class="op">=</span> <span class="macro">vec!</span>[];
+    <span class="kw">let </span><span class="kw-2">mut </span>rows = <span class="macro">vec!</span>[];
 
-    <span class="kw">for</span> (<span class="ident">i</span>, <span class="ident">paragraph</span>) <span class="kw">in</span> <span class="ident">paragraphs</span>.<span class="ident">into_iter</span>().<span class="ident">enumerate</span>() {
-        <span class="kw">let</span> <span class="ident">is_last_paragraph</span> <span class="op">=</span> (<span class="ident">i</span> <span class="op">+</span> <span class="number">1</span>) <span class="op">==</span> <span class="ident">num_paragraphs</span>;
+    <span class="kw">for </span>(i, paragraph) <span class="kw">in </span>paragraphs.into_iter().enumerate() {
+        <span class="kw">let </span>is_last_paragraph = (i + <span class="number">1</span>) == num_paragraphs;
 
-        <span class="kw">if</span> <span class="ident">paragraph</span>.<span class="ident">glyphs</span>.<span class="ident">is_empty</span>() {
-            <span class="ident">rows</span>.<span class="ident">push</span>(<span class="ident">Row</span> {
-                <span class="ident">glyphs</span>: <span class="macro">vec!</span>[],
-                <span class="ident">visuals</span>: <span class="ident">Default::default</span>(),
-                <span class="ident">rect</span>: <span class="ident">Rect::from_min_size</span>(
-                    <span class="ident">pos2</span>(<span class="ident">paragraph</span>.<span class="ident">cursor_x</span>, <span class="number">0.0</span>),
-                    <span class="ident">vec2</span>(<span class="number">0.0</span>, <span class="ident">paragraph</span>.<span class="ident">empty_paragraph_height</span>),
+        <span class="kw">if </span>paragraph.glyphs.is_empty() {
+            rows.push(Row {
+                glyphs: <span class="macro">vec!</span>[],
+                visuals: Default::default(),
+                rect: Rect::from_min_size(
+                    pos2(paragraph.cursor_x, <span class="number">0.0</span>),
+                    vec2(<span class="number">0.0</span>, paragraph.empty_paragraph_height),
                 ),
-                <span class="ident">ends_with_newline</span>: <span class="op">!</span><span class="ident">is_last_paragraph</span>,
+                ends_with_newline: !is_last_paragraph,
             });
-        } <span class="kw">else</span> {
-            <span class="kw">let</span> <span class="ident">paragraph_max_x</span> <span class="op">=</span> <span class="ident">paragraph</span>.<span class="ident">glyphs</span>.<span class="ident">last</span>().<span class="ident">unwrap</span>().<span class="ident">max_x</span>();
-            <span class="kw">if</span> <span class="ident">paragraph_max_x</span> <span class="op">&lt;</span><span class="op">=</span> <span class="ident">wrap_width</span> {
-                <span class="comment">// early-out optimization</span>
-                <span class="kw">let</span> <span class="ident">paragraph_min_x</span> <span class="op">=</span> <span class="ident">paragraph</span>.<span class="ident">glyphs</span>[<span class="number">0</span>].<span class="ident">pos</span>.<span class="ident">x</span>;
-                <span class="ident">rows</span>.<span class="ident">push</span>(<span class="ident">Row</span> {
-                    <span class="ident">glyphs</span>: <span class="ident">paragraph</span>.<span class="ident">glyphs</span>,
-                    <span class="ident">visuals</span>: <span class="ident">Default::default</span>(),
-                    <span class="ident">rect</span>: <span class="ident">rect_from_x_range</span>(<span class="ident">paragraph_min_x</span>..<span class="op">=</span><span class="ident">paragraph_max_x</span>),
-                    <span class="ident">ends_with_newline</span>: <span class="op">!</span><span class="ident">is_last_paragraph</span>,
+        } <span class="kw">else </span>{
+            <span class="kw">let </span>paragraph_max_x = paragraph.glyphs.last().unwrap().max_x();
+            <span class="kw">if </span>paragraph_max_x &lt;= wrap_width {
+                <span class="comment">// early-out optimization
+                </span><span class="kw">let </span>paragraph_min_x = paragraph.glyphs[<span class="number">0</span>].pos.x;
+                rows.push(Row {
+                    glyphs: paragraph.glyphs,
+                    visuals: Default::default(),
+                    rect: rect_from_x_range(paragraph_min_x..=paragraph_max_x),
+                    ends_with_newline: !is_last_paragraph,
                 });
-            } <span class="kw">else</span> {
-                <span class="ident">line_break</span>(<span class="kw-2">&amp;</span><span class="ident">paragraph</span>, <span class="ident">wrap_width</span>, <span class="kw-2">&amp;mut</span> <span class="ident">rows</span>);
-                <span class="ident">rows</span>.<span class="ident">last_mut</span>().<span class="ident">unwrap</span>().<span class="ident">ends_with_newline</span> <span class="op">=</span> <span class="op">!</span><span class="ident">is_last_paragraph</span>;
+            } <span class="kw">else </span>{
+                line_break(<span class="kw-2">&amp;</span>paragraph, wrap_width, <span class="kw-2">&amp;mut </span>rows);
+                rows.last_mut().unwrap().ends_with_newline = !is_last_paragraph;
             }
         }
     }
 
-    <span class="ident">rows</span>
+    rows
 }
 
-<span class="kw">fn</span> <span class="ident">line_break</span>(<span class="ident">paragraph</span>: <span class="kw-2">&amp;</span><span class="ident">Paragraph</span>, <span class="ident">wrap_width</span>: <span class="ident">f32</span>, <span class="ident">out_rows</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Row</span><span class="op">&gt;</span>) {
-    <span class="comment">// Keeps track of good places to insert row break if we exceed `wrap_width`.</span>
-    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">row_break_candidates</span> <span class="op">=</span> <span class="ident">RowBreakCandidates::default</span>();
+<span class="kw">fn </span>line_break(paragraph: <span class="kw-2">&amp;</span>Paragraph, wrap_width: f32, out_rows: <span class="kw-2">&amp;mut </span>Vec&lt;Row&gt;) {
+    <span class="comment">// Keeps track of good places to insert row break if we exceed `wrap_width`.
+    </span><span class="kw">let </span><span class="kw-2">mut </span>row_break_candidates = RowBreakCandidates::default();
 
-    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">first_row_indentation</span> <span class="op">=</span> <span class="ident">paragraph</span>.<span class="ident">glyphs</span>[<span class="number">0</span>].<span class="ident">pos</span>.<span class="ident">x</span>;
-    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">row_start_x</span> <span class="op">=</span> <span class="number">0.0</span>;
-    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">row_start_idx</span> <span class="op">=</span> <span class="number">0</span>;
+    <span class="kw">let </span><span class="kw-2">mut </span>first_row_indentation = paragraph.glyphs[<span class="number">0</span>].pos.x;
+    <span class="kw">let </span><span class="kw-2">mut </span>row_start_x = <span class="number">0.0</span>;
+    <span class="kw">let </span><span class="kw-2">mut </span>row_start_idx = <span class="number">0</span>;
 
-    <span class="kw">for</span> (<span class="ident">i</span>, <span class="ident">glyph</span>) <span class="kw">in</span> <span class="ident">paragraph</span>.<span class="ident">glyphs</span>.<span class="ident">iter</span>().<span class="ident">enumerate</span>() {
-        <span class="kw">let</span> <span class="ident">potential_row_width</span> <span class="op">=</span> <span class="ident">glyph</span>.<span class="ident">max_x</span>() <span class="op">-</span> <span class="ident">row_start_x</span>;
+    <span class="kw">for </span>(i, glyph) <span class="kw">in </span>paragraph.glyphs.iter().enumerate() {
+        <span class="kw">let </span>potential_row_width = glyph.max_x() - row_start_x;
 
-        <span class="kw">if</span> <span class="ident">potential_row_width</span> <span class="op">&gt;</span> <span class="ident">wrap_width</span> {
-            <span class="kw">if</span> <span class="ident">first_row_indentation</span> <span class="op">&gt;</span> <span class="number">0.0</span> <span class="op">&amp;&amp;</span> <span class="op">!</span><span class="ident">row_break_candidates</span>.<span class="ident">has_word_boundary</span>() {
-                <span class="comment">// Allow the first row to be completely empty, because we know there will be more space on the next row:</span>
-                <span class="comment">// TODO: this records the height of this first row as zero, though that is probably fine since first_row_indentation usually comes with a first_row_min_height.</span>
-                <span class="ident">out_rows</span>.<span class="ident">push</span>(<span class="ident">Row</span> {
-                    <span class="ident">glyphs</span>: <span class="macro">vec!</span>[],
-                    <span class="ident">visuals</span>: <span class="ident">Default::default</span>(),
-                    <span class="ident">rect</span>: <span class="ident">rect_from_x_range</span>(<span class="ident">first_row_indentation</span>..<span class="op">=</span><span class="ident">first_row_indentation</span>),
-                    <span class="ident">ends_with_newline</span>: <span class="bool-val">false</span>,
+        <span class="kw">if </span>potential_row_width &gt; wrap_width {
+            <span class="kw">if </span>first_row_indentation &gt; <span class="number">0.0 </span>&amp;&amp; !row_break_candidates.has_word_boundary() {
+                <span class="comment">// Allow the first row to be completely empty, because we know there will be more space on the next row:
+                // TODO: this records the height of this first row as zero, though that is probably fine since first_row_indentation usually comes with a first_row_min_height.
+                </span>out_rows.push(Row {
+                    glyphs: <span class="macro">vec!</span>[],
+                    visuals: Default::default(),
+                    rect: rect_from_x_range(first_row_indentation..=first_row_indentation),
+                    ends_with_newline: <span class="bool-val">false</span>,
                 });
-                <span class="ident">row_start_x</span> <span class="op">+</span><span class="op">=</span> <span class="ident">first_row_indentation</span>;
-                <span class="ident">first_row_indentation</span> <span class="op">=</span> <span class="number">0.0</span>;
-            } <span class="kw">else</span> <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">last_kept_index</span>) <span class="op">=</span> <span class="ident">row_break_candidates</span>.<span class="ident">get</span>() {
-                <span class="kw">let</span> <span class="ident">glyphs</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Glyph</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">paragraph</span>.<span class="ident">glyphs</span>[<span class="ident">row_start_idx</span>..<span class="op">=</span><span class="ident">last_kept_index</span>]
-                    .<span class="ident">iter</span>()
-                    .<span class="ident">copied</span>()
-                    .<span class="ident">map</span>(<span class="op">|</span><span class="kw-2">mut</span> <span class="ident">glyph</span><span class="op">|</span> {
-                        <span class="ident">glyph</span>.<span class="ident">pos</span>.<span class="ident">x</span> <span class="op">-</span><span class="op">=</span> <span class="ident">row_start_x</span>;
-                        <span class="ident">glyph</span>
+                row_start_x += first_row_indentation;
+                first_row_indentation = <span class="number">0.0</span>;
+            } <span class="kw">else if let </span><span class="prelude-val">Some</span>(last_kept_index) = row_break_candidates.get() {
+                <span class="kw">let </span>glyphs: Vec&lt;Glyph&gt; = paragraph.glyphs[row_start_idx..=last_kept_index]
+                    .iter()
+                    .copied()
+                    .map(|<span class="kw-2">mut </span>glyph| {
+                        glyph.pos.x -= row_start_x;
+                        glyph
                     })
-                    .<span class="ident">collect</span>();
+                    .collect();
 
-                <span class="kw">let</span> <span class="ident">paragraph_min_x</span> <span class="op">=</span> <span class="ident">glyphs</span>[<span class="number">0</span>].<span class="ident">pos</span>.<span class="ident">x</span>;
-                <span class="kw">let</span> <span class="ident">paragraph_max_x</span> <span class="op">=</span> <span class="ident">glyphs</span>.<span class="ident">last</span>().<span class="ident">unwrap</span>().<span class="ident">max_x</span>();
+                <span class="kw">let </span>paragraph_min_x = glyphs[<span class="number">0</span>].pos.x;
+                <span class="kw">let </span>paragraph_max_x = glyphs.last().unwrap().max_x();
 
-                <span class="ident">out_rows</span>.<span class="ident">push</span>(<span class="ident">Row</span> {
-                    <span class="ident">glyphs</span>,
-                    <span class="ident">visuals</span>: <span class="ident">Default::default</span>(),
-                    <span class="ident">rect</span>: <span class="ident">rect_from_x_range</span>(<span class="ident">paragraph_min_x</span>..<span class="op">=</span><span class="ident">paragraph_max_x</span>),
-                    <span class="ident">ends_with_newline</span>: <span class="bool-val">false</span>,
+                out_rows.push(Row {
+                    glyphs,
+                    visuals: Default::default(),
+                    rect: rect_from_x_range(paragraph_min_x..=paragraph_max_x),
+                    ends_with_newline: <span class="bool-val">false</span>,
                 });
 
-                <span class="ident">row_start_idx</span> <span class="op">=</span> <span class="ident">last_kept_index</span> <span class="op">+</span> <span class="number">1</span>;
-                <span class="ident">row_start_x</span> <span class="op">=</span> <span class="ident">paragraph</span>.<span class="ident">glyphs</span>[<span class="ident">row_start_idx</span>].<span class="ident">pos</span>.<span class="ident">x</span>;
-                <span class="ident">row_break_candidates</span> <span class="op">=</span> <span class="ident">Default::default</span>();
-            } <span class="kw">else</span> {
-                <span class="comment">// Found no place to break, so we have to overrun wrap_width.</span>
-            }
+                row_start_idx = last_kept_index + <span class="number">1</span>;
+                row_start_x = paragraph.glyphs[row_start_idx].pos.x;
+                row_break_candidates = Default::default();
+            } <span class="kw">else </span>{
+                <span class="comment">// Found no place to break, so we have to overrun wrap_width.
+            </span>}
         }
 
-        <span class="ident">row_break_candidates</span>.<span class="ident">add</span>(<span class="ident">i</span>, <span class="ident">glyph</span>.<span class="ident">chr</span>);
+        row_break_candidates.add(i, glyph.chr);
     }
 
-    <span class="kw">if</span> <span class="ident">row_start_idx</span> <span class="op">&lt;</span> <span class="ident">paragraph</span>.<span class="ident">glyphs</span>.<span class="ident">len</span>() {
-        <span class="kw">let</span> <span class="ident">glyphs</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Glyph</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">paragraph</span>.<span class="ident">glyphs</span>[<span class="ident">row_start_idx</span>..]
-            .<span class="ident">iter</span>()
-            .<span class="ident">copied</span>()
-            .<span class="ident">map</span>(<span class="op">|</span><span class="kw-2">mut</span> <span class="ident">glyph</span><span class="op">|</span> {
-                <span class="ident">glyph</span>.<span class="ident">pos</span>.<span class="ident">x</span> <span class="op">-</span><span class="op">=</span> <span class="ident">row_start_x</span>;
-                <span class="ident">glyph</span>
+    <span class="kw">if </span>row_start_idx &lt; paragraph.glyphs.len() {
+        <span class="kw">let </span>glyphs: Vec&lt;Glyph&gt; = paragraph.glyphs[row_start_idx..]
+            .iter()
+            .copied()
+            .map(|<span class="kw-2">mut </span>glyph| {
+                glyph.pos.x -= row_start_x;
+                glyph
             })
-            .<span class="ident">collect</span>();
+            .collect();
 
-        <span class="kw">let</span> <span class="ident">paragraph_min_x</span> <span class="op">=</span> <span class="ident">glyphs</span>[<span class="number">0</span>].<span class="ident">pos</span>.<span class="ident">x</span>;
-        <span class="kw">let</span> <span class="ident">paragraph_max_x</span> <span class="op">=</span> <span class="ident">glyphs</span>.<span class="ident">last</span>().<span class="ident">unwrap</span>().<span class="ident">max_x</span>();
+        <span class="kw">let </span>paragraph_min_x = glyphs[<span class="number">0</span>].pos.x;
+        <span class="kw">let </span>paragraph_max_x = glyphs.last().unwrap().max_x();
 
-        <span class="ident">out_rows</span>.<span class="ident">push</span>(<span class="ident">Row</span> {
-            <span class="ident">glyphs</span>,
-            <span class="ident">visuals</span>: <span class="ident">Default::default</span>(),
-            <span class="ident">rect</span>: <span class="ident">rect_from_x_range</span>(<span class="ident">paragraph_min_x</span>..<span class="op">=</span><span class="ident">paragraph_max_x</span>),
-            <span class="ident">ends_with_newline</span>: <span class="bool-val">false</span>,
+        out_rows.push(Row {
+            glyphs,
+            visuals: Default::default(),
+            rect: rect_from_x_range(paragraph_min_x..=paragraph_max_x),
+            ends_with_newline: <span class="bool-val">false</span>,
         });
     }
 }
 
-<span class="kw">fn</span> <span class="ident">halign_and_jusitfy_row</span>(
-    <span class="ident">fonts</span>: <span class="kw-2">&amp;</span><span class="ident">Fonts</span>,
-    <span class="ident">row</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Row</span>,
-    <span class="ident">halign</span>: <span class="ident">Align</span>,
-    <span class="ident">wrap_width</span>: <span class="ident">f32</span>,
-    <span class="ident">justify</span>: <span class="ident">bool</span>,
+<span class="kw">fn </span>halign_and_jusitfy_row(
+    fonts: <span class="kw-2">&amp;</span>Fonts,
+    row: <span class="kw-2">&amp;mut </span>Row,
+    halign: Align,
+    wrap_width: f32,
+    justify: bool,
 ) {
-    <span class="kw">if</span> <span class="ident">row</span>.<span class="ident">glyphs</span>.<span class="ident">is_empty</span>() {
+    <span class="kw">if </span>row.glyphs.is_empty() {
         <span class="kw">return</span>;
     }
 
-    <span class="kw">let</span> <span class="ident">num_leading_spaces</span> <span class="op">=</span> <span class="ident">row</span>
-        .<span class="ident">glyphs</span>
-        .<span class="ident">iter</span>()
-        .<span class="ident">take_while</span>(<span class="op">|</span><span class="ident">glyph</span><span class="op">|</span> <span class="ident">glyph</span>.<span class="ident">chr</span>.<span class="ident">is_whitespace</span>())
-        .<span class="ident">count</span>();
+    <span class="kw">let </span>num_leading_spaces = row
+        .glyphs
+        .iter()
+        .take_while(|glyph| glyph.chr.is_whitespace())
+        .count();
 
-    <span class="kw">let</span> <span class="ident">glyph_range</span> <span class="op">=</span> <span class="kw">if</span> <span class="ident">num_leading_spaces</span> <span class="op">==</span> <span class="ident">row</span>.<span class="ident">glyphs</span>.<span class="ident">len</span>() {
-        <span class="comment">// There is only whitespace</span>
-        (<span class="number">0</span>, <span class="ident">row</span>.<span class="ident">glyphs</span>.<span class="ident">len</span>())
-    } <span class="kw">else</span> {
-        <span class="kw">let</span> <span class="ident">num_trailing_spaces</span> <span class="op">=</span> <span class="ident">row</span>
-            .<span class="ident">glyphs</span>
-            .<span class="ident">iter</span>()
-            .<span class="ident">rev</span>()
-            .<span class="ident">take_while</span>(<span class="op">|</span><span class="ident">glyph</span><span class="op">|</span> <span class="ident">glyph</span>.<span class="ident">chr</span>.<span class="ident">is_whitespace</span>())
-            .<span class="ident">count</span>();
+    <span class="kw">let </span>glyph_range = <span class="kw">if </span>num_leading_spaces == row.glyphs.len() {
+        <span class="comment">// There is only whitespace
+        </span>(<span class="number">0</span>, row.glyphs.len())
+    } <span class="kw">else </span>{
+        <span class="kw">let </span>num_trailing_spaces = row
+            .glyphs
+            .iter()
+            .rev()
+            .take_while(|glyph| glyph.chr.is_whitespace())
+            .count();
 
-        (<span class="ident">num_leading_spaces</span>, <span class="ident">row</span>.<span class="ident">glyphs</span>.<span class="ident">len</span>() <span class="op">-</span> <span class="ident">num_trailing_spaces</span>)
+        (num_leading_spaces, row.glyphs.len() - num_trailing_spaces)
     };
-    <span class="kw">let</span> <span class="ident">num_glyphs_in_range</span> <span class="op">=</span> <span class="ident">glyph_range</span>.<span class="number">1</span> <span class="op">-</span> <span class="ident">glyph_range</span>.<span class="number">0</span>;
-    <span class="macro">assert!</span>(<span class="ident">num_glyphs_in_range</span> <span class="op">&gt;</span> <span class="number">0</span>);
+    <span class="kw">let </span>num_glyphs_in_range = glyph_range.<span class="number">1 </span>- glyph_range.<span class="number">0</span>;
+    <span class="macro">assert!</span>(num_glyphs_in_range &gt; <span class="number">0</span>);
 
-    <span class="kw">let</span> <span class="ident">original_min_x</span> <span class="op">=</span> <span class="ident">row</span>.<span class="ident">glyphs</span>[<span class="ident">glyph_range</span>.<span class="number">0</span>].<span class="ident">logical_rect</span>().<span class="ident">min</span>.<span class="ident">x</span>;
-    <span class="kw">let</span> <span class="ident">original_max_x</span> <span class="op">=</span> <span class="ident">row</span>.<span class="ident">glyphs</span>[<span class="ident">glyph_range</span>.<span class="number">1</span> <span class="op">-</span> <span class="number">1</span>].<span class="ident">logical_rect</span>().<span class="ident">max</span>.<span class="ident">x</span>;
-    <span class="kw">let</span> <span class="ident">original_width</span> <span class="op">=</span> <span class="ident">original_max_x</span> <span class="op">-</span> <span class="ident">original_min_x</span>;
+    <span class="kw">let </span>original_min_x = row.glyphs[glyph_range.<span class="number">0</span>].logical_rect().min.x;
+    <span class="kw">let </span>original_max_x = row.glyphs[glyph_range.<span class="number">1 </span>- <span class="number">1</span>].logical_rect().max.x;
+    <span class="kw">let </span>original_width = original_max_x - original_min_x;
 
-    <span class="kw">let</span> <span class="ident">target_width</span> <span class="op">=</span> <span class="kw">if</span> <span class="ident">justify</span> <span class="op">&amp;&amp;</span> <span class="ident">num_glyphs_in_range</span> <span class="op">&gt;</span> <span class="number">1</span> {
-        <span class="ident">wrap_width</span>
-    } <span class="kw">else</span> {
-        <span class="ident">original_width</span>
-    };
-
-    <span class="kw">let</span> (<span class="ident">target_min_x</span>, <span class="ident">target_max_x</span>) <span class="op">=</span> <span class="kw">match</span> <span class="ident">halign</span> {
-        <span class="ident">Align::LEFT</span> =&gt; (<span class="number">0.0</span>, <span class="ident">target_width</span>),
-        <span class="ident">Align::Center</span> =&gt; (<span class="op">-</span><span class="ident">target_width</span> <span class="op">/</span> <span class="number">2.0</span>, <span class="ident">target_width</span> <span class="op">/</span> <span class="number">2.0</span>),
-        <span class="ident">Align::RIGHT</span> =&gt; (<span class="op">-</span><span class="ident">target_width</span>, <span class="number">0.0</span>),
+    <span class="kw">let </span>target_width = <span class="kw">if </span>justify &amp;&amp; num_glyphs_in_range &gt; <span class="number">1 </span>{
+        wrap_width
+    } <span class="kw">else </span>{
+        original_width
     };
 
-    <span class="kw">let</span> <span class="ident">num_spaces_in_range</span> <span class="op">=</span> <span class="ident">row</span>.<span class="ident">glyphs</span>[<span class="ident">glyph_range</span>.<span class="number">0</span>..<span class="ident">glyph_range</span>.<span class="number">1</span>]
-        .<span class="ident">iter</span>()
-        .<span class="ident">filter</span>(<span class="op">|</span><span class="ident">glyph</span><span class="op">|</span> <span class="ident">glyph</span>.<span class="ident">chr</span>.<span class="ident">is_whitespace</span>())
-        .<span class="ident">count</span>();
-
-    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">extra_x_per_glyph</span> <span class="op">=</span> <span class="kw">if</span> <span class="ident">num_glyphs_in_range</span> <span class="op">==</span> <span class="number">1</span> {
-        <span class="number">0.0</span>
-    } <span class="kw">else</span> {
-        (<span class="ident">target_width</span> <span class="op">-</span> <span class="ident">original_width</span>) <span class="op">/</span> (<span class="ident">num_glyphs_in_range</span> <span class="kw">as</span> <span class="ident">f32</span> <span class="op">-</span> <span class="number">1.0</span>)
+    <span class="kw">let </span>(target_min_x, target_max_x) = <span class="kw">match </span>halign {
+        Align::LEFT =&gt; (<span class="number">0.0</span>, target_width),
+        Align::Center =&gt; (-target_width / <span class="number">2.0</span>, target_width / <span class="number">2.0</span>),
+        Align::RIGHT =&gt; (-target_width, <span class="number">0.0</span>),
     };
-    <span class="ident">extra_x_per_glyph</span> <span class="op">=</span> <span class="ident">extra_x_per_glyph</span>.<span class="ident">at_least</span>(<span class="number">0.0</span>); <span class="comment">// Don&#39;t contract</span>
 
-    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">extra_x_per_space</span> <span class="op">=</span> <span class="number">0.0</span>;
-    <span class="kw">if</span> <span class="number">0</span> <span class="op">&lt;</span> <span class="ident">num_spaces_in_range</span> <span class="op">&amp;&amp;</span> <span class="ident">num_spaces_in_range</span> <span class="op">&lt;</span> <span class="ident">num_glyphs_in_range</span> {
-        <span class="comment">// Add an integral number of pixels between each glyph,</span>
-        <span class="comment">// and add the balance to the spaces:</span>
+    <span class="kw">let </span>num_spaces_in_range = row.glyphs[glyph_range.<span class="number">0</span>..glyph_range.<span class="number">1</span>]
+        .iter()
+        .filter(|glyph| glyph.chr.is_whitespace())
+        .count();
 
-        <span class="ident">extra_x_per_glyph</span> <span class="op">=</span> <span class="ident">fonts</span>.<span class="ident">floor_to_pixel</span>(<span class="ident">extra_x_per_glyph</span>);
+    <span class="kw">let </span><span class="kw-2">mut </span>extra_x_per_glyph = <span class="kw">if </span>num_glyphs_in_range == <span class="number">1 </span>{
+        <span class="number">0.0
+    </span>} <span class="kw">else </span>{
+        (target_width - original_width) / (num_glyphs_in_range <span class="kw">as </span>f32 - <span class="number">1.0</span>)
+    };
+    extra_x_per_glyph = extra_x_per_glyph.at_least(<span class="number">0.0</span>); <span class="comment">// Don&#39;t contract
 
-        <span class="ident">extra_x_per_space</span> <span class="op">=</span> (<span class="ident">target_width</span>
-            <span class="op">-</span> <span class="ident">original_width</span>
-            <span class="op">-</span> <span class="ident">extra_x_per_glyph</span> <span class="op">*</span> (<span class="ident">num_glyphs_in_range</span> <span class="kw">as</span> <span class="ident">f32</span> <span class="op">-</span> <span class="number">1.0</span>))
-            <span class="op">/</span> (<span class="ident">num_spaces_in_range</span> <span class="kw">as</span> <span class="ident">f32</span>);
+    </span><span class="kw">let </span><span class="kw-2">mut </span>extra_x_per_space = <span class="number">0.0</span>;
+    <span class="kw">if </span><span class="number">0 </span>&lt; num_spaces_in_range &amp;&amp; num_spaces_in_range &lt; num_glyphs_in_range {
+        <span class="comment">// Add an integral number of pixels between each glyph,
+        // and add the balance to the spaces:
+
+        </span>extra_x_per_glyph = fonts.floor_to_pixel(extra_x_per_glyph);
+
+        extra_x_per_space = (target_width
+            - original_width
+            - extra_x_per_glyph * (num_glyphs_in_range <span class="kw">as </span>f32 - <span class="number">1.0</span>))
+            / (num_spaces_in_range <span class="kw">as </span>f32);
     }
 
-    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">translate_x</span> <span class="op">=</span> <span class="ident">target_min_x</span> <span class="op">-</span> <span class="ident">original_min_x</span> <span class="op">-</span> <span class="ident">extra_x_per_glyph</span> <span class="op">*</span> <span class="ident">glyph_range</span>.<span class="number">0</span> <span class="kw">as</span> <span class="ident">f32</span>;
+    <span class="kw">let </span><span class="kw-2">mut </span>translate_x = target_min_x - original_min_x - extra_x_per_glyph * glyph_range.<span class="number">0 </span><span class="kw">as </span>f32;
 
-    <span class="kw">for</span> <span class="ident">glyph</span> <span class="kw">in</span> <span class="kw-2">&amp;mut</span> <span class="ident">row</span>.<span class="ident">glyphs</span> {
-        <span class="ident">glyph</span>.<span class="ident">pos</span>.<span class="ident">x</span> <span class="op">+</span><span class="op">=</span> <span class="ident">translate_x</span>;
-        <span class="ident">glyph</span>.<span class="ident">pos</span>.<span class="ident">x</span> <span class="op">=</span> <span class="ident">fonts</span>.<span class="ident">round_to_pixel</span>(<span class="ident">glyph</span>.<span class="ident">pos</span>.<span class="ident">x</span>);
-        <span class="ident">translate_x</span> <span class="op">+</span><span class="op">=</span> <span class="ident">extra_x_per_glyph</span>;
-        <span class="kw">if</span> <span class="ident">glyph</span>.<span class="ident">chr</span>.<span class="ident">is_whitespace</span>() {
-            <span class="ident">translate_x</span> <span class="op">+</span><span class="op">=</span> <span class="ident">extra_x_per_space</span>;
+    <span class="kw">for </span>glyph <span class="kw">in </span><span class="kw-2">&amp;mut </span>row.glyphs {
+        glyph.pos.x += translate_x;
+        glyph.pos.x = fonts.round_to_pixel(glyph.pos.x);
+        translate_x += extra_x_per_glyph;
+        <span class="kw">if </span>glyph.chr.is_whitespace() {
+            translate_x += extra_x_per_space;
         }
     }
 
-    <span class="comment">// Note we ignore the leading/trailing whitespace here!</span>
-    <span class="ident">row</span>.<span class="ident">rect</span>.<span class="ident">min</span>.<span class="ident">x</span> <span class="op">=</span> <span class="ident">target_min_x</span>;
-    <span class="ident">row</span>.<span class="ident">rect</span>.<span class="ident">max</span>.<span class="ident">x</span> <span class="op">=</span> <span class="ident">target_max_x</span>;
+    <span class="comment">// Note we ignore the leading/trailing whitespace here!
+    </span>row.rect.min.x = target_min_x;
+    row.rect.max.x = target_max_x;
 }
 
-<span class="doccomment">/// Calculate the Y positions and tessellate the text.</span>
-<span class="kw">fn</span> <span class="ident">galley_from_rows</span>(<span class="ident">fonts</span>: <span class="kw-2">&amp;</span><span class="ident">Fonts</span>, <span class="ident">job</span>: <span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">LayoutJob</span><span class="op">&gt;</span>, <span class="kw-2">mut</span> <span class="ident">rows</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Row</span><span class="op">&gt;</span>) -&gt; <span class="ident">Galley</span> {
-    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">first_row_min_height</span> <span class="op">=</span> <span class="ident">job</span>.<span class="ident">first_row_min_height</span>;
-    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">cursor_y</span> <span class="op">=</span> <span class="number">0.0</span>;
-    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">min_x</span>: <span class="ident">f32</span> <span class="op">=</span> <span class="number">0.0</span>;
-    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">max_x</span>: <span class="ident">f32</span> <span class="op">=</span> <span class="number">0.0</span>;
-    <span class="kw">for</span> <span class="ident">row</span> <span class="kw">in</span> <span class="kw-2">&amp;mut</span> <span class="ident">rows</span> {
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">row_height</span> <span class="op">=</span> <span class="ident">first_row_min_height</span>.<span class="ident">max</span>(<span class="ident">row</span>.<span class="ident">rect</span>.<span class="ident">height</span>());
-        <span class="ident">first_row_min_height</span> <span class="op">=</span> <span class="number">0.0</span>;
-        <span class="kw">for</span> <span class="ident">glyph</span> <span class="kw">in</span> <span class="kw-2">&amp;</span><span class="ident">row</span>.<span class="ident">glyphs</span> {
-            <span class="ident">row_height</span> <span class="op">=</span> <span class="ident">row_height</span>.<span class="ident">max</span>(<span class="ident">glyph</span>.<span class="ident">size</span>.<span class="ident">y</span>);
+<span class="doccomment">/// Calculate the Y positions and tessellate the text.
+</span><span class="kw">fn </span>galley_from_rows(fonts: <span class="kw-2">&amp;</span>Fonts, job: Arc&lt;LayoutJob&gt;, <span class="kw-2">mut </span>rows: Vec&lt;Row&gt;) -&gt; Galley {
+    <span class="kw">let </span><span class="kw-2">mut </span>first_row_min_height = job.first_row_min_height;
+    <span class="kw">let </span><span class="kw-2">mut </span>cursor_y = <span class="number">0.0</span>;
+    <span class="kw">let </span><span class="kw-2">mut </span>min_x: f32 = <span class="number">0.0</span>;
+    <span class="kw">let </span><span class="kw-2">mut </span>max_x: f32 = <span class="number">0.0</span>;
+    <span class="kw">for </span>row <span class="kw">in </span><span class="kw-2">&amp;mut </span>rows {
+        <span class="kw">let </span><span class="kw-2">mut </span>row_height = first_row_min_height.max(row.rect.height());
+        first_row_min_height = <span class="number">0.0</span>;
+        <span class="kw">for </span>glyph <span class="kw">in </span><span class="kw-2">&amp;</span>row.glyphs {
+            row_height = row_height.max(glyph.size.y);
         }
-        <span class="ident">row_height</span> <span class="op">=</span> <span class="ident">fonts</span>.<span class="ident">round_to_pixel</span>(<span class="ident">row_height</span>);
+        row_height = fonts.round_to_pixel(row_height);
 
-        <span class="comment">// Now positions each glyph:</span>
-        <span class="kw">for</span> <span class="ident">glyph</span> <span class="kw">in</span> <span class="kw-2">&amp;mut</span> <span class="ident">row</span>.<span class="ident">glyphs</span> {
-            <span class="kw">let</span> <span class="ident">format</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">job</span>.<span class="ident">sections</span>[<span class="ident">glyph</span>.<span class="ident">section_index</span> <span class="kw">as</span> <span class="ident">usize</span>].<span class="ident">format</span>;
-            <span class="ident">glyph</span>.<span class="ident">pos</span>.<span class="ident">y</span> <span class="op">=</span> <span class="ident">cursor_y</span> <span class="op">+</span> <span class="ident">format</span>.<span class="ident">valign</span>.<span class="ident">to_factor</span>() <span class="op">*</span> (<span class="ident">row_height</span> <span class="op">-</span> <span class="ident">glyph</span>.<span class="ident">size</span>.<span class="ident">y</span>);
-            <span class="ident">glyph</span>.<span class="ident">pos</span>.<span class="ident">y</span> <span class="op">=</span> <span class="ident">fonts</span>.<span class="ident">round_to_pixel</span>(<span class="ident">glyph</span>.<span class="ident">pos</span>.<span class="ident">y</span>);
+        <span class="comment">// Now positions each glyph:
+        </span><span class="kw">for </span>glyph <span class="kw">in </span><span class="kw-2">&amp;mut </span>row.glyphs {
+            <span class="kw">let </span>format = <span class="kw-2">&amp;</span>job.sections[glyph.section_index <span class="kw">as </span>usize].format;
+            glyph.pos.y = cursor_y + format.valign.to_factor() * (row_height - glyph.size.y);
+            glyph.pos.y = fonts.round_to_pixel(glyph.pos.y);
         }
 
-        <span class="ident">row</span>.<span class="ident">rect</span>.<span class="ident">min</span>.<span class="ident">y</span> <span class="op">=</span> <span class="ident">cursor_y</span>;
-        <span class="ident">row</span>.<span class="ident">rect</span>.<span class="ident">max</span>.<span class="ident">y</span> <span class="op">=</span> <span class="ident">cursor_y</span> <span class="op">+</span> <span class="ident">row_height</span>;
+        row.rect.min.y = cursor_y;
+        row.rect.max.y = cursor_y + row_height;
 
-        <span class="ident">min_x</span> <span class="op">=</span> <span class="ident">min_x</span>.<span class="ident">min</span>(<span class="ident">row</span>.<span class="ident">rect</span>.<span class="ident">min</span>.<span class="ident">x</span>);
-        <span class="ident">max_x</span> <span class="op">=</span> <span class="ident">max_x</span>.<span class="ident">max</span>(<span class="ident">row</span>.<span class="ident">rect</span>.<span class="ident">max</span>.<span class="ident">x</span>);
-        <span class="ident">cursor_y</span> <span class="op">+</span><span class="op">=</span> <span class="ident">row_height</span>;
-        <span class="ident">cursor_y</span> <span class="op">=</span> <span class="ident">fonts</span>.<span class="ident">round_to_pixel</span>(<span class="ident">cursor_y</span>);
+        min_x = min_x.min(row.rect.min.x);
+        max_x = max_x.max(row.rect.max.x);
+        cursor_y += row_height;
+        cursor_y = fonts.round_to_pixel(cursor_y);
     }
 
-    <span class="kw">let</span> <span class="ident">format_summary</span> <span class="op">=</span> <span class="ident">format_summary</span>(<span class="kw-2">&amp;</span><span class="ident">job</span>);
+    <span class="kw">let </span>format_summary = format_summary(<span class="kw-2">&amp;</span>job);
 
-    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">mesh_bounds</span> <span class="op">=</span> <span class="ident">Rect::NOTHING</span>;
-    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">num_vertices</span> <span class="op">=</span> <span class="number">0</span>;
-    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">num_indices</span> <span class="op">=</span> <span class="number">0</span>;
+    <span class="kw">let </span><span class="kw-2">mut </span>mesh_bounds = Rect::NOTHING;
+    <span class="kw">let </span><span class="kw-2">mut </span>num_vertices = <span class="number">0</span>;
+    <span class="kw">let </span><span class="kw-2">mut </span>num_indices = <span class="number">0</span>;
 
-    <span class="kw">for</span> <span class="ident">row</span> <span class="kw">in</span> <span class="kw-2">&amp;mut</span> <span class="ident">rows</span> {
-        <span class="ident">row</span>.<span class="ident">visuals</span> <span class="op">=</span> <span class="ident">tessellate_row</span>(<span class="ident">fonts</span>, <span class="kw-2">&amp;</span><span class="ident">job</span>, <span class="kw-2">&amp;</span><span class="ident">format_summary</span>, <span class="ident">row</span>);
-        <span class="ident">mesh_bounds</span> <span class="op">=</span> <span class="ident">mesh_bounds</span>.<span class="ident">union</span>(<span class="ident">row</span>.<span class="ident">visuals</span>.<span class="ident">mesh_bounds</span>);
-        <span class="ident">num_vertices</span> <span class="op">+</span><span class="op">=</span> <span class="ident">row</span>.<span class="ident">visuals</span>.<span class="ident">mesh</span>.<span class="ident">vertices</span>.<span class="ident">len</span>();
-        <span class="ident">num_indices</span> <span class="op">+</span><span class="op">=</span> <span class="ident">row</span>.<span class="ident">visuals</span>.<span class="ident">mesh</span>.<span class="ident">indices</span>.<span class="ident">len</span>();
+    <span class="kw">for </span>row <span class="kw">in </span><span class="kw-2">&amp;mut </span>rows {
+        row.visuals = tessellate_row(fonts, <span class="kw-2">&amp;</span>job, <span class="kw-2">&amp;</span>format_summary, row);
+        mesh_bounds = mesh_bounds.union(row.visuals.mesh_bounds);
+        num_vertices += row.visuals.mesh.vertices.len();
+        num_indices += row.visuals.mesh.indices.len();
     }
 
-    <span class="kw">let</span> <span class="ident">rect</span> <span class="op">=</span> <span class="ident">Rect::from_min_max</span>(<span class="ident">pos2</span>(<span class="ident">min_x</span>, <span class="number">0.0</span>), <span class="ident">pos2</span>(<span class="ident">max_x</span>, <span class="ident">cursor_y</span>));
+    <span class="kw">let </span>rect = Rect::from_min_max(pos2(min_x, <span class="number">0.0</span>), pos2(max_x, cursor_y));
 
-    <span class="ident">Galley</span> {
-        <span class="ident">job</span>,
-        <span class="ident">rows</span>,
-        <span class="ident">rect</span>,
-        <span class="ident">mesh_bounds</span>,
-        <span class="ident">num_vertices</span>,
-        <span class="ident">num_indices</span>,
+    Galley {
+        job,
+        rows,
+        rect,
+        mesh_bounds,
+        num_vertices,
+        num_indices,
     }
 }
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Default</span>)]</span>
-<span class="kw">struct</span> <span class="ident">FormatSummary</span> {
-    <span class="ident">any_background</span>: <span class="ident">bool</span>,
-    <span class="ident">any_underline</span>: <span class="ident">bool</span>,
-    <span class="ident">any_strikethrough</span>: <span class="ident">bool</span>,
+<span class="attribute">#[derive(Default)]
+</span><span class="kw">struct </span>FormatSummary {
+    any_background: bool,
+    any_underline: bool,
+    any_strikethrough: bool,
 }
 
-<span class="kw">fn</span> <span class="ident">format_summary</span>(<span class="ident">job</span>: <span class="kw-2">&amp;</span><span class="ident">LayoutJob</span>) -&gt; <span class="ident">FormatSummary</span> {
-    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">format_summary</span> <span class="op">=</span> <span class="ident">FormatSummary::default</span>();
-    <span class="kw">for</span> <span class="ident">section</span> <span class="kw">in</span> <span class="kw-2">&amp;</span><span class="ident">job</span>.<span class="ident">sections</span> {
-        <span class="ident">format_summary</span>.<span class="ident">any_background</span> <span class="op">|</span><span class="op">=</span> <span class="ident">section</span>.<span class="ident">format</span>.<span class="ident">background</span> <span class="op">!</span><span class="op">=</span> <span class="ident">Color32::TRANSPARENT</span>;
-        <span class="ident">format_summary</span>.<span class="ident">any_underline</span> <span class="op">|</span><span class="op">=</span> <span class="ident">section</span>.<span class="ident">format</span>.<span class="ident">underline</span> <span class="op">!</span><span class="op">=</span> <span class="ident">Stroke::none</span>();
-        <span class="ident">format_summary</span>.<span class="ident">any_strikethrough</span> <span class="op">|</span><span class="op">=</span> <span class="ident">section</span>.<span class="ident">format</span>.<span class="ident">strikethrough</span> <span class="op">!</span><span class="op">=</span> <span class="ident">Stroke::none</span>();
+<span class="kw">fn </span>format_summary(job: <span class="kw-2">&amp;</span>LayoutJob) -&gt; FormatSummary {
+    <span class="kw">let </span><span class="kw-2">mut </span>format_summary = FormatSummary::default();
+    <span class="kw">for </span>section <span class="kw">in </span><span class="kw-2">&amp;</span>job.sections {
+        format_summary.any_background |= section.format.background != Color32::TRANSPARENT;
+        format_summary.any_underline |= section.format.underline != Stroke::none();
+        format_summary.any_strikethrough |= section.format.strikethrough != Stroke::none();
     }
-    <span class="ident">format_summary</span>
+    format_summary
 }
 
-<span class="kw">fn</span> <span class="ident">tessellate_row</span>(
-    <span class="ident">fonts</span>: <span class="kw-2">&amp;</span><span class="ident">Fonts</span>,
-    <span class="ident">job</span>: <span class="kw-2">&amp;</span><span class="ident">LayoutJob</span>,
-    <span class="ident">format_summary</span>: <span class="kw-2">&amp;</span><span class="ident">FormatSummary</span>,
-    <span class="ident">row</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Row</span>,
-) -&gt; <span class="ident">RowVisuals</span> {
-    <span class="kw">if</span> <span class="ident">row</span>.<span class="ident">glyphs</span>.<span class="ident">is_empty</span>() {
-        <span class="kw">return</span> <span class="ident">Default::default</span>();
+<span class="kw">fn </span>tessellate_row(
+    fonts: <span class="kw-2">&amp;</span>Fonts,
+    job: <span class="kw-2">&amp;</span>LayoutJob,
+    format_summary: <span class="kw-2">&amp;</span>FormatSummary,
+    row: <span class="kw-2">&amp;mut </span>Row,
+) -&gt; RowVisuals {
+    <span class="kw">if </span>row.glyphs.is_empty() {
+        <span class="kw">return </span>Default::default();
     }
 
-    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">mesh</span> <span class="op">=</span> <span class="ident">Mesh::default</span>();
+    <span class="kw">let </span><span class="kw-2">mut </span>mesh = Mesh::default();
 
-    <span class="ident">mesh</span>.<span class="ident">reserve_triangles</span>(<span class="ident">row</span>.<span class="ident">glyphs</span>.<span class="ident">len</span>() <span class="op">*</span> <span class="number">2</span>);
-    <span class="ident">mesh</span>.<span class="ident">reserve_vertices</span>(<span class="ident">row</span>.<span class="ident">glyphs</span>.<span class="ident">len</span>() <span class="op">*</span> <span class="number">4</span>);
+    mesh.reserve_triangles(row.glyphs.len() * <span class="number">2</span>);
+    mesh.reserve_vertices(row.glyphs.len() * <span class="number">4</span>);
 
-    <span class="kw">if</span> <span class="ident">format_summary</span>.<span class="ident">any_background</span> {
-        <span class="ident">add_row_backgrounds</span>(<span class="ident">job</span>, <span class="ident">row</span>, <span class="kw-2">&amp;mut</span> <span class="ident">mesh</span>);
+    <span class="kw">if </span>format_summary.any_background {
+        add_row_backgrounds(job, row, <span class="kw-2">&amp;mut </span>mesh);
     }
 
-    <span class="kw">let</span> <span class="ident">glyph_vertex_start</span> <span class="op">=</span> <span class="ident">mesh</span>.<span class="ident">vertices</span>.<span class="ident">len</span>();
-    <span class="ident">tessellate_glyphs</span>(<span class="ident">fonts</span>, <span class="ident">job</span>, <span class="ident">row</span>, <span class="kw-2">&amp;mut</span> <span class="ident">mesh</span>);
-    <span class="kw">let</span> <span class="ident">glyph_vertex_end</span> <span class="op">=</span> <span class="ident">mesh</span>.<span class="ident">vertices</span>.<span class="ident">len</span>();
+    <span class="kw">let </span>glyph_vertex_start = mesh.vertices.len();
+    tessellate_glyphs(fonts, job, row, <span class="kw-2">&amp;mut </span>mesh);
+    <span class="kw">let </span>glyph_vertex_end = mesh.vertices.len();
 
-    <span class="kw">if</span> <span class="ident">format_summary</span>.<span class="ident">any_underline</span> {
-        <span class="ident">add_row_hline</span>(<span class="ident">fonts</span>, <span class="ident">row</span>, <span class="kw-2">&amp;mut</span> <span class="ident">mesh</span>, <span class="op">|</span><span class="ident">glyph</span><span class="op">|</span> {
-            <span class="kw">let</span> <span class="ident">format</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">job</span>.<span class="ident">sections</span>[<span class="ident">glyph</span>.<span class="ident">section_index</span> <span class="kw">as</span> <span class="ident">usize</span>].<span class="ident">format</span>;
-            <span class="kw">let</span> <span class="ident">stroke</span> <span class="op">=</span> <span class="ident">format</span>.<span class="ident">underline</span>;
-            <span class="kw">let</span> <span class="ident">y</span> <span class="op">=</span> <span class="ident">glyph</span>.<span class="ident">logical_rect</span>().<span class="ident">bottom</span>();
-            (<span class="ident">stroke</span>, <span class="ident">y</span>)
+    <span class="kw">if </span>format_summary.any_underline {
+        add_row_hline(fonts, row, <span class="kw-2">&amp;mut </span>mesh, |glyph| {
+            <span class="kw">let </span>format = <span class="kw-2">&amp;</span>job.sections[glyph.section_index <span class="kw">as </span>usize].format;
+            <span class="kw">let </span>stroke = format.underline;
+            <span class="kw">let </span>y = glyph.logical_rect().bottom();
+            (stroke, y)
         });
     }
 
-    <span class="kw">if</span> <span class="ident">format_summary</span>.<span class="ident">any_strikethrough</span> {
-        <span class="ident">add_row_hline</span>(<span class="ident">fonts</span>, <span class="ident">row</span>, <span class="kw-2">&amp;mut</span> <span class="ident">mesh</span>, <span class="op">|</span><span class="ident">glyph</span><span class="op">|</span> {
-            <span class="kw">let</span> <span class="ident">format</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">job</span>.<span class="ident">sections</span>[<span class="ident">glyph</span>.<span class="ident">section_index</span> <span class="kw">as</span> <span class="ident">usize</span>].<span class="ident">format</span>;
-            <span class="kw">let</span> <span class="ident">stroke</span> <span class="op">=</span> <span class="ident">format</span>.<span class="ident">strikethrough</span>;
-            <span class="kw">let</span> <span class="ident">y</span> <span class="op">=</span> <span class="ident">glyph</span>.<span class="ident">logical_rect</span>().<span class="ident">center</span>().<span class="ident">y</span>;
-            (<span class="ident">stroke</span>, <span class="ident">y</span>)
+    <span class="kw">if </span>format_summary.any_strikethrough {
+        add_row_hline(fonts, row, <span class="kw-2">&amp;mut </span>mesh, |glyph| {
+            <span class="kw">let </span>format = <span class="kw-2">&amp;</span>job.sections[glyph.section_index <span class="kw">as </span>usize].format;
+            <span class="kw">let </span>stroke = format.strikethrough;
+            <span class="kw">let </span>y = glyph.logical_rect().center().y;
+            (stroke, y)
         });
     }
 
-    <span class="kw">let</span> <span class="ident">mesh_bounds</span> <span class="op">=</span> <span class="ident">mesh</span>.<span class="ident">calc_bounds</span>();
+    <span class="kw">let </span>mesh_bounds = mesh.calc_bounds();
 
-    <span class="ident">RowVisuals</span> {
-        <span class="ident">mesh</span>,
-        <span class="ident">mesh_bounds</span>,
-        <span class="ident">glyph_vertex_range</span>: <span class="ident">glyph_vertex_start</span>..<span class="ident">glyph_vertex_end</span>,
+    RowVisuals {
+        mesh,
+        mesh_bounds,
+        glyph_vertex_range: glyph_vertex_start..glyph_vertex_end,
     }
 }
 
-<span class="doccomment">/// Create background for glyphs that have them.</span>
-<span class="doccomment">/// Creates as few rectangular regions as possible.</span>
-<span class="kw">fn</span> <span class="ident">add_row_backgrounds</span>(<span class="ident">job</span>: <span class="kw-2">&amp;</span><span class="ident">LayoutJob</span>, <span class="ident">row</span>: <span class="kw-2">&amp;</span><span class="ident">Row</span>, <span class="ident">mesh</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Mesh</span>) {
-    <span class="kw">if</span> <span class="ident">row</span>.<span class="ident">glyphs</span>.<span class="ident">is_empty</span>() {
+<span class="doccomment">/// Create background for glyphs that have them.
+/// Creates as few rectangular regions as possible.
+</span><span class="kw">fn </span>add_row_backgrounds(job: <span class="kw-2">&amp;</span>LayoutJob, row: <span class="kw-2">&amp;</span>Row, mesh: <span class="kw-2">&amp;mut </span>Mesh) {
+    <span class="kw">if </span>row.glyphs.is_empty() {
         <span class="kw">return</span>;
     }
 
-    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">end_run</span> <span class="op">=</span> <span class="op">|</span><span class="ident">start</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span>(<span class="ident">Color32</span>, <span class="ident">Rect</span>)<span class="op">&gt;</span>, <span class="ident">stop_x</span>: <span class="ident">f32</span><span class="op">|</span> {
-        <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>((<span class="ident">color</span>, <span class="ident">start_rect</span>)) <span class="op">=</span> <span class="ident">start</span> {
-            <span class="kw">let</span> <span class="ident">rect</span> <span class="op">=</span> <span class="ident">Rect::from_min_max</span>(<span class="ident">start_rect</span>.<span class="ident">left_top</span>(), <span class="ident">pos2</span>(<span class="ident">stop_x</span>, <span class="ident">start_rect</span>.<span class="ident">bottom</span>()));
-            <span class="kw">let</span> <span class="ident">rect</span> <span class="op">=</span> <span class="ident">rect</span>.<span class="ident">expand</span>(<span class="number">1.0</span>); <span class="comment">// looks better</span>
-            <span class="ident">mesh</span>.<span class="ident">add_colored_rect</span>(<span class="ident">rect</span>, <span class="ident">color</span>);
+    <span class="kw">let </span><span class="kw-2">mut </span>end_run = |start: <span class="prelude-ty">Option</span>&lt;(Color32, Rect)&gt;, stop_x: f32| {
+        <span class="kw">if let </span><span class="prelude-val">Some</span>((color, start_rect)) = start {
+            <span class="kw">let </span>rect = Rect::from_min_max(start_rect.left_top(), pos2(stop_x, start_rect.bottom()));
+            <span class="kw">let </span>rect = rect.expand(<span class="number">1.0</span>); <span class="comment">// looks better
+            </span>mesh.add_colored_rect(rect, color);
         }
     };
 
-    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">run_start</span> <span class="op">=</span> <span class="prelude-val">None</span>;
-    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">last_rect</span> <span class="op">=</span> <span class="ident">Rect::NAN</span>;
+    <span class="kw">let </span><span class="kw-2">mut </span>run_start = <span class="prelude-val">None</span>;
+    <span class="kw">let </span><span class="kw-2">mut </span>last_rect = Rect::NAN;
 
-    <span class="kw">for</span> <span class="ident">glyph</span> <span class="kw">in</span> <span class="kw-2">&amp;</span><span class="ident">row</span>.<span class="ident">glyphs</span> {
-        <span class="kw">let</span> <span class="ident">format</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">job</span>.<span class="ident">sections</span>[<span class="ident">glyph</span>.<span class="ident">section_index</span> <span class="kw">as</span> <span class="ident">usize</span>].<span class="ident">format</span>;
-        <span class="kw">let</span> <span class="ident">color</span> <span class="op">=</span> <span class="ident">format</span>.<span class="ident">background</span>;
-        <span class="kw">let</span> <span class="ident">rect</span> <span class="op">=</span> <span class="ident">glyph</span>.<span class="ident">logical_rect</span>();
+    <span class="kw">for </span>glyph <span class="kw">in </span><span class="kw-2">&amp;</span>row.glyphs {
+        <span class="kw">let </span>format = <span class="kw-2">&amp;</span>job.sections[glyph.section_index <span class="kw">as </span>usize].format;
+        <span class="kw">let </span>color = format.background;
+        <span class="kw">let </span>rect = glyph.logical_rect();
 
-        <span class="kw">if</span> <span class="ident">color</span> <span class="op">==</span> <span class="ident">Color32::TRANSPARENT</span> {
-            <span class="ident">end_run</span>(<span class="ident">run_start</span>.<span class="ident">take</span>(), <span class="ident">last_rect</span>.<span class="ident">right</span>());
-        } <span class="kw">else</span> <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>((<span class="ident">existing_color</span>, <span class="ident">start</span>)) <span class="op">=</span> <span class="ident">run_start</span> {
-            <span class="kw">if</span> <span class="ident">existing_color</span> <span class="op">==</span> <span class="ident">color</span>
-                <span class="op">&amp;&amp;</span> <span class="ident">start</span>.<span class="ident">top</span>() <span class="op">==</span> <span class="ident">rect</span>.<span class="ident">top</span>()
-                <span class="op">&amp;&amp;</span> <span class="ident">start</span>.<span class="ident">bottom</span>() <span class="op">==</span> <span class="ident">rect</span>.<span class="ident">bottom</span>()
+        <span class="kw">if </span>color == Color32::TRANSPARENT {
+            end_run(run_start.take(), last_rect.right());
+        } <span class="kw">else if let </span><span class="prelude-val">Some</span>((existing_color, start)) = run_start {
+            <span class="kw">if </span>existing_color == color
+                &amp;&amp; start.top() == rect.top()
+                &amp;&amp; start.bottom() == rect.bottom()
             {
-                <span class="comment">// continue the same background rectangle</span>
-            } <span class="kw">else</span> {
-                <span class="ident">end_run</span>(<span class="ident">run_start</span>.<span class="ident">take</span>(), <span class="ident">last_rect</span>.<span class="ident">right</span>());
-                <span class="ident">run_start</span> <span class="op">=</span> <span class="prelude-val">Some</span>((<span class="ident">color</span>, <span class="ident">rect</span>));
+                <span class="comment">// continue the same background rectangle
+            </span>} <span class="kw">else </span>{
+                end_run(run_start.take(), last_rect.right());
+                run_start = <span class="prelude-val">Some</span>((color, rect));
             }
-        } <span class="kw">else</span> {
-            <span class="ident">run_start</span> <span class="op">=</span> <span class="prelude-val">Some</span>((<span class="ident">color</span>, <span class="ident">rect</span>));
+        } <span class="kw">else </span>{
+            run_start = <span class="prelude-val">Some</span>((color, rect));
         }
 
-        <span class="ident">last_rect</span> <span class="op">=</span> <span class="ident">rect</span>;
+        last_rect = rect;
     }
 
-    <span class="ident">end_run</span>(<span class="ident">run_start</span>.<span class="ident">take</span>(), <span class="ident">last_rect</span>.<span class="ident">right</span>());
+    end_run(run_start.take(), last_rect.right());
 }
 
-<span class="kw">fn</span> <span class="ident">tessellate_glyphs</span>(<span class="ident">fonts</span>: <span class="kw-2">&amp;</span><span class="ident">Fonts</span>, <span class="ident">job</span>: <span class="kw-2">&amp;</span><span class="ident">LayoutJob</span>, <span class="ident">row</span>: <span class="kw-2">&amp;</span><span class="ident">Row</span>, <span class="ident">mesh</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Mesh</span>) {
-    <span class="kw">for</span> <span class="ident">glyph</span> <span class="kw">in</span> <span class="kw-2">&amp;</span><span class="ident">row</span>.<span class="ident">glyphs</span> {
-        <span class="kw">let</span> <span class="ident">uv_rect</span> <span class="op">=</span> <span class="ident">glyph</span>.<span class="ident">uv_rect</span>;
-        <span class="kw">if</span> <span class="op">!</span><span class="ident">uv_rect</span>.<span class="ident">is_nothing</span>() {
-            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">left_top</span> <span class="op">=</span> <span class="ident">glyph</span>.<span class="ident">pos</span> <span class="op">+</span> <span class="ident">uv_rect</span>.<span class="ident">offset</span>;
-            <span class="ident">left_top</span>.<span class="ident">x</span> <span class="op">=</span> <span class="ident">fonts</span>.<span class="ident">round_to_pixel</span>(<span class="ident">left_top</span>.<span class="ident">x</span>);
-            <span class="ident">left_top</span>.<span class="ident">y</span> <span class="op">=</span> <span class="ident">fonts</span>.<span class="ident">round_to_pixel</span>(<span class="ident">left_top</span>.<span class="ident">y</span>);
+<span class="kw">fn </span>tessellate_glyphs(fonts: <span class="kw-2">&amp;</span>Fonts, job: <span class="kw-2">&amp;</span>LayoutJob, row: <span class="kw-2">&amp;</span>Row, mesh: <span class="kw-2">&amp;mut </span>Mesh) {
+    <span class="kw">for </span>glyph <span class="kw">in </span><span class="kw-2">&amp;</span>row.glyphs {
+        <span class="kw">let </span>uv_rect = glyph.uv_rect;
+        <span class="kw">if </span>!uv_rect.is_nothing() {
+            <span class="kw">let </span><span class="kw-2">mut </span>left_top = glyph.pos + uv_rect.offset;
+            left_top.x = fonts.round_to_pixel(left_top.x);
+            left_top.y = fonts.round_to_pixel(left_top.y);
 
-            <span class="kw">let</span> <span class="ident">rect</span> <span class="op">=</span> <span class="ident">Rect::from_min_max</span>(<span class="ident">left_top</span>, <span class="ident">left_top</span> <span class="op">+</span> <span class="ident">uv_rect</span>.<span class="ident">size</span>);
-            <span class="kw">let</span> <span class="ident">uv</span> <span class="op">=</span> <span class="ident">Rect::from_min_max</span>(
-                <span class="ident">pos2</span>(<span class="ident">uv_rect</span>.<span class="ident">min</span>[<span class="number">0</span>] <span class="kw">as</span> <span class="ident">f32</span>, <span class="ident">uv_rect</span>.<span class="ident">min</span>[<span class="number">1</span>] <span class="kw">as</span> <span class="ident">f32</span>),
-                <span class="ident">pos2</span>(<span class="ident">uv_rect</span>.<span class="ident">max</span>[<span class="number">0</span>] <span class="kw">as</span> <span class="ident">f32</span>, <span class="ident">uv_rect</span>.<span class="ident">max</span>[<span class="number">1</span>] <span class="kw">as</span> <span class="ident">f32</span>),
+            <span class="kw">let </span>rect = Rect::from_min_max(left_top, left_top + uv_rect.size);
+            <span class="kw">let </span>uv = Rect::from_min_max(
+                pos2(uv_rect.min[<span class="number">0</span>] <span class="kw">as </span>f32, uv_rect.min[<span class="number">1</span>] <span class="kw">as </span>f32),
+                pos2(uv_rect.max[<span class="number">0</span>] <span class="kw">as </span>f32, uv_rect.max[<span class="number">1</span>] <span class="kw">as </span>f32),
             );
 
-            <span class="kw">let</span> <span class="ident">format</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">job</span>.<span class="ident">sections</span>[<span class="ident">glyph</span>.<span class="ident">section_index</span> <span class="kw">as</span> <span class="ident">usize</span>].<span class="ident">format</span>;
+            <span class="kw">let </span>format = <span class="kw-2">&amp;</span>job.sections[glyph.section_index <span class="kw">as </span>usize].format;
 
-            <span class="kw">let</span> <span class="ident">color</span> <span class="op">=</span> <span class="ident">format</span>.<span class="ident">color</span>;
+            <span class="kw">let </span>color = format.color;
 
-            <span class="kw">if</span> <span class="ident">format</span>.<span class="ident">italics</span> {
-                <span class="kw">let</span> <span class="ident">idx</span> <span class="op">=</span> <span class="ident">mesh</span>.<span class="ident">vertices</span>.<span class="ident">len</span>() <span class="kw">as</span> <span class="ident">u32</span>;
-                <span class="ident">mesh</span>.<span class="ident">add_triangle</span>(<span class="ident">idx</span>, <span class="ident">idx</span> <span class="op">+</span> <span class="number">1</span>, <span class="ident">idx</span> <span class="op">+</span> <span class="number">2</span>);
-                <span class="ident">mesh</span>.<span class="ident">add_triangle</span>(<span class="ident">idx</span> <span class="op">+</span> <span class="number">2</span>, <span class="ident">idx</span> <span class="op">+</span> <span class="number">1</span>, <span class="ident">idx</span> <span class="op">+</span> <span class="number">3</span>);
+            <span class="kw">if </span>format.italics {
+                <span class="kw">let </span>idx = mesh.vertices.len() <span class="kw">as </span>u32;
+                mesh.add_triangle(idx, idx + <span class="number">1</span>, idx + <span class="number">2</span>);
+                mesh.add_triangle(idx + <span class="number">2</span>, idx + <span class="number">1</span>, idx + <span class="number">3</span>);
 
-                <span class="kw">let</span> <span class="ident">top_offset</span> <span class="op">=</span> <span class="ident">rect</span>.<span class="ident">height</span>() <span class="op">*</span> <span class="number">0.25</span> <span class="op">*</span> <span class="ident">Vec2::X</span>;
+                <span class="kw">let </span>top_offset = rect.height() * <span class="number">0.25 </span>* Vec2::X;
 
-                <span class="ident">mesh</span>.<span class="ident">vertices</span>.<span class="ident">push</span>(<span class="ident">Vertex</span> {
-                    <span class="ident">pos</span>: <span class="ident">rect</span>.<span class="ident">left_top</span>() <span class="op">+</span> <span class="ident">top_offset</span>,
-                    <span class="ident">uv</span>: <span class="ident">uv</span>.<span class="ident">left_top</span>(),
-                    <span class="ident">color</span>,
+                mesh.vertices.push(Vertex {
+                    pos: rect.left_top() + top_offset,
+                    uv: uv.left_top(),
+                    color,
                 });
-                <span class="ident">mesh</span>.<span class="ident">vertices</span>.<span class="ident">push</span>(<span class="ident">Vertex</span> {
-                    <span class="ident">pos</span>: <span class="ident">rect</span>.<span class="ident">right_top</span>() <span class="op">+</span> <span class="ident">top_offset</span>,
-                    <span class="ident">uv</span>: <span class="ident">uv</span>.<span class="ident">right_top</span>(),
-                    <span class="ident">color</span>,
+                mesh.vertices.push(Vertex {
+                    pos: rect.right_top() + top_offset,
+                    uv: uv.right_top(),
+                    color,
                 });
-                <span class="ident">mesh</span>.<span class="ident">vertices</span>.<span class="ident">push</span>(<span class="ident">Vertex</span> {
-                    <span class="ident">pos</span>: <span class="ident">rect</span>.<span class="ident">left_bottom</span>(),
-                    <span class="ident">uv</span>: <span class="ident">uv</span>.<span class="ident">left_bottom</span>(),
-                    <span class="ident">color</span>,
+                mesh.vertices.push(Vertex {
+                    pos: rect.left_bottom(),
+                    uv: uv.left_bottom(),
+                    color,
                 });
-                <span class="ident">mesh</span>.<span class="ident">vertices</span>.<span class="ident">push</span>(<span class="ident">Vertex</span> {
-                    <span class="ident">pos</span>: <span class="ident">rect</span>.<span class="ident">right_bottom</span>(),
-                    <span class="ident">uv</span>: <span class="ident">uv</span>.<span class="ident">right_bottom</span>(),
-                    <span class="ident">color</span>,
+                mesh.vertices.push(Vertex {
+                    pos: rect.right_bottom(),
+                    uv: uv.right_bottom(),
+                    color,
                 });
-            } <span class="kw">else</span> {
-                <span class="ident">mesh</span>.<span class="ident">add_rect_with_uv</span>(<span class="ident">rect</span>, <span class="ident">uv</span>, <span class="ident">color</span>);
+            } <span class="kw">else </span>{
+                mesh.add_rect_with_uv(rect, uv, color);
             }
         }
     }
 }
 
-<span class="doccomment">/// Add a horizontal line over a row of glyphs with a stroke and y decided by a callback.</span>
-<span class="kw">fn</span> <span class="ident">add_row_hline</span>(
-    <span class="ident">fonts</span>: <span class="kw-2">&amp;</span><span class="ident">Fonts</span>,
-    <span class="ident">row</span>: <span class="kw-2">&amp;</span><span class="ident">Row</span>,
-    <span class="ident">mesh</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Mesh</span>,
-    <span class="ident">stroke_and_y</span>: <span class="kw">impl</span> <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">Glyph</span>) -&gt; (<span class="ident">Stroke</span>, <span class="ident">f32</span>),
+<span class="doccomment">/// Add a horizontal line over a row of glyphs with a stroke and y decided by a callback.
+</span><span class="kw">fn </span>add_row_hline(
+    fonts: <span class="kw-2">&amp;</span>Fonts,
+    row: <span class="kw-2">&amp;</span>Row,
+    mesh: <span class="kw-2">&amp;mut </span>Mesh,
+    stroke_and_y: <span class="kw">impl </span>Fn(<span class="kw-2">&amp;</span>Glyph) -&gt; (Stroke, f32),
 ) {
-    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">end_line</span> <span class="op">=</span> <span class="op">|</span><span class="ident">start</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span>(<span class="ident">Stroke</span>, <span class="ident">Pos2</span>)<span class="op">&gt;</span>, <span class="ident">stop_x</span>: <span class="ident">f32</span><span class="op">|</span> {
-        <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>((<span class="ident">stroke</span>, <span class="ident">start</span>)) <span class="op">=</span> <span class="ident">start</span> {
-            <span class="ident">add_hline</span>(<span class="ident">fonts</span>, [<span class="ident">start</span>, <span class="ident">pos2</span>(<span class="ident">stop_x</span>, <span class="ident">start</span>.<span class="ident">y</span>)], <span class="ident">stroke</span>, <span class="ident">mesh</span>);
+    <span class="kw">let </span><span class="kw-2">mut </span>end_line = |start: <span class="prelude-ty">Option</span>&lt;(Stroke, Pos2)&gt;, stop_x: f32| {
+        <span class="kw">if let </span><span class="prelude-val">Some</span>((stroke, start)) = start {
+            add_hline(fonts, [start, pos2(stop_x, start.y)], stroke, mesh);
         }
     };
 
-    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">line_start</span> <span class="op">=</span> <span class="prelude-val">None</span>;
-    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">last_right_x</span> <span class="op">=</span> <span class="ident">f32::NAN</span>;
+    <span class="kw">let </span><span class="kw-2">mut </span>line_start = <span class="prelude-val">None</span>;
+    <span class="kw">let </span><span class="kw-2">mut </span>last_right_x = f32::NAN;
 
-    <span class="kw">for</span> <span class="ident">glyph</span> <span class="kw">in</span> <span class="kw-2">&amp;</span><span class="ident">row</span>.<span class="ident">glyphs</span> {
-        <span class="kw">let</span> (<span class="ident">stroke</span>, <span class="ident">y</span>) <span class="op">=</span> <span class="ident">stroke_and_y</span>(<span class="ident">glyph</span>);
+    <span class="kw">for </span>glyph <span class="kw">in </span><span class="kw-2">&amp;</span>row.glyphs {
+        <span class="kw">let </span>(stroke, y) = stroke_and_y(glyph);
 
-        <span class="kw">if</span> <span class="ident">stroke</span> <span class="op">==</span> <span class="ident">Stroke::none</span>() {
-            <span class="ident">end_line</span>(<span class="ident">line_start</span>.<span class="ident">take</span>(), <span class="ident">last_right_x</span>);
-        } <span class="kw">else</span> <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>((<span class="ident">existing_stroke</span>, <span class="ident">start</span>)) <span class="op">=</span> <span class="ident">line_start</span> {
-            <span class="kw">if</span> <span class="ident">existing_stroke</span> <span class="op">==</span> <span class="ident">stroke</span> <span class="op">&amp;&amp;</span> <span class="ident">start</span>.<span class="ident">y</span> <span class="op">==</span> <span class="ident">y</span> {
-                <span class="comment">// continue the same line</span>
-            } <span class="kw">else</span> {
-                <span class="ident">end_line</span>(<span class="ident">line_start</span>.<span class="ident">take</span>(), <span class="ident">last_right_x</span>);
-                <span class="ident">line_start</span> <span class="op">=</span> <span class="prelude-val">Some</span>((<span class="ident">stroke</span>, <span class="ident">pos2</span>(<span class="ident">glyph</span>.<span class="ident">pos</span>.<span class="ident">x</span>, <span class="ident">y</span>)));
+        <span class="kw">if </span>stroke == Stroke::none() {
+            end_line(line_start.take(), last_right_x);
+        } <span class="kw">else if let </span><span class="prelude-val">Some</span>((existing_stroke, start)) = line_start {
+            <span class="kw">if </span>existing_stroke == stroke &amp;&amp; start.y == y {
+                <span class="comment">// continue the same line
+            </span>} <span class="kw">else </span>{
+                end_line(line_start.take(), last_right_x);
+                line_start = <span class="prelude-val">Some</span>((stroke, pos2(glyph.pos.x, y)));
             }
-        } <span class="kw">else</span> {
-            <span class="ident">line_start</span> <span class="op">=</span> <span class="prelude-val">Some</span>((<span class="ident">stroke</span>, <span class="ident">pos2</span>(<span class="ident">glyph</span>.<span class="ident">pos</span>.<span class="ident">x</span>, <span class="ident">y</span>)));
+        } <span class="kw">else </span>{
+            line_start = <span class="prelude-val">Some</span>((stroke, pos2(glyph.pos.x, y)));
         }
 
-        <span class="ident">last_right_x</span> <span class="op">=</span> <span class="ident">glyph</span>.<span class="ident">max_x</span>();
+        last_right_x = glyph.max_x();
     }
 
-    <span class="ident">end_line</span>(<span class="ident">line_start</span>.<span class="ident">take</span>(), <span class="ident">last_right_x</span>);
+    end_line(line_start.take(), last_right_x);
 }
 
-<span class="kw">fn</span> <span class="ident">add_hline</span>(<span class="ident">fonts</span>: <span class="kw-2">&amp;</span><span class="ident">Fonts</span>, [<span class="ident">start</span>, <span class="ident">stop</span>]: [<span class="ident">Pos2</span>; <span class="number">2</span>], <span class="ident">stroke</span>: <span class="ident">Stroke</span>, <span class="ident">mesh</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Mesh</span>) {
-    <span class="kw">let</span> <span class="ident">antialiased</span> <span class="op">=</span> <span class="bool-val">true</span>;
+<span class="kw">fn </span>add_hline(fonts: <span class="kw-2">&amp;</span>Fonts, [start, stop]: [Pos2; <span class="number">2</span>], stroke: Stroke, mesh: <span class="kw-2">&amp;mut </span>Mesh) {
+    <span class="kw">let </span>antialiased = <span class="bool-val">true</span>;
 
-    <span class="kw">if</span> <span class="ident">antialiased</span> {
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">path</span> <span class="op">=</span> <span class="ident"><span class="kw">crate</span>::tessellator::Path::default</span>(); <span class="comment">// TODO: reuse this to avoid re-allocations.</span>
-        <span class="ident">path</span>.<span class="ident">add_line_segment</span>([<span class="ident">start</span>, <span class="ident">stop</span>]);
-        <span class="kw">let</span> <span class="ident">options</span> <span class="op">=</span> <span class="ident"><span class="kw">crate</span>::tessellator::TessellationOptions::from_pixels_per_point</span>(
-            <span class="ident">fonts</span>.<span class="ident">pixels_per_point</span>(),
+    <span class="kw">if </span>antialiased {
+        <span class="kw">let </span><span class="kw-2">mut </span>path = <span class="kw">crate</span>::tessellator::Path::default(); <span class="comment">// TODO: reuse this to avoid re-allocations.
+        </span>path.add_line_segment([start, stop]);
+        <span class="kw">let </span>options = <span class="kw">crate</span>::tessellator::TessellationOptions::from_pixels_per_point(
+            fonts.pixels_per_point(),
         );
-        <span class="ident">path</span>.<span class="ident">stroke_open</span>(<span class="ident">stroke</span>, <span class="kw-2">&amp;</span><span class="ident">options</span>, <span class="ident">mesh</span>);
-    } <span class="kw">else</span> {
-        <span class="comment">// Thin lines often lost, so this is a bad idea</span>
+        path.stroke_open(stroke, <span class="kw-2">&amp;</span>options, mesh);
+    } <span class="kw">else </span>{
+        <span class="comment">// Thin lines often lost, so this is a bad idea
 
-        <span class="macro">assert_eq!</span>(<span class="ident">start</span>.<span class="ident">y</span>, <span class="ident">stop</span>.<span class="ident">y</span>);
+        </span><span class="macro">assert_eq!</span>(start.y, stop.y);
 
-        <span class="kw">let</span> <span class="ident">min_y</span> <span class="op">=</span> <span class="ident">fonts</span>.<span class="ident">round_to_pixel</span>(<span class="ident">start</span>.<span class="ident">y</span> <span class="op">-</span> <span class="number">0.5</span> <span class="op">*</span> <span class="ident">stroke</span>.<span class="ident">width</span>);
-        <span class="kw">let</span> <span class="ident">max_y</span> <span class="op">=</span> <span class="ident">fonts</span>.<span class="ident">round_to_pixel</span>(<span class="ident">min_y</span> <span class="op">+</span> <span class="ident">stroke</span>.<span class="ident">width</span>);
+        <span class="kw">let </span>min_y = fonts.round_to_pixel(start.y - <span class="number">0.5 </span>* stroke.width);
+        <span class="kw">let </span>max_y = fonts.round_to_pixel(min_y + stroke.width);
 
-        <span class="kw">let</span> <span class="ident">rect</span> <span class="op">=</span> <span class="ident">Rect::from_min_max</span>(
-            <span class="ident">pos2</span>(<span class="ident">fonts</span>.<span class="ident">round_to_pixel</span>(<span class="ident">start</span>.<span class="ident">x</span>), <span class="ident">min_y</span>),
-            <span class="ident">pos2</span>(<span class="ident">fonts</span>.<span class="ident">round_to_pixel</span>(<span class="ident">stop</span>.<span class="ident">x</span>), <span class="ident">max_y</span>),
+        <span class="kw">let </span>rect = Rect::from_min_max(
+            pos2(fonts.round_to_pixel(start.x), min_y),
+            pos2(fonts.round_to_pixel(stop.x), max_y),
         );
 
-        <span class="ident">mesh</span>.<span class="ident">add_colored_rect</span>(<span class="ident">rect</span>, <span class="ident">stroke</span>.<span class="ident">color</span>);
+        mesh.add_colored_rect(rect, stroke.color);
     }
 }
 
-<span class="comment">// ----------------------------------------------------------------------------</span>
+<span class="comment">// ----------------------------------------------------------------------------
 
-<span class="doccomment">/// Keeps track of good places to break a long row of text.</span>
-<span class="doccomment">/// Will focus primarily on spaces, secondarily on things like `-`</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">Default</span>)]</span>
-<span class="kw">struct</span> <span class="ident">RowBreakCandidates</span> {
-    <span class="doccomment">/// Breaking at ` ` or other whitespace</span>
-    <span class="doccomment">/// is always the primary candidate.</span>
-    <span class="ident">space</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">usize</span><span class="op">&gt;</span>,
-    <span class="doccomment">/// Logograms (single character representing a whole word) are good candidates for line break.</span>
-    <span class="ident">logogram</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">usize</span><span class="op">&gt;</span>,
-    <span class="doccomment">/// Breaking at a dash is a super-</span>
-    <span class="doccomment">/// good idea.</span>
-    <span class="ident">dash</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">usize</span><span class="op">&gt;</span>,
-    <span class="doccomment">/// This is nicer for things like URLs, e.g. www.</span>
-    <span class="doccomment">/// example.com.</span>
-    <span class="ident">punctuation</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">usize</span><span class="op">&gt;</span>,
-    <span class="doccomment">/// Breaking after just random character is some</span>
-    <span class="doccomment">/// times necessary.</span>
-    <span class="ident">any</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">usize</span><span class="op">&gt;</span>,
+</span><span class="doccomment">/// Keeps track of good places to break a long row of text.
+/// Will focus primarily on spaces, secondarily on things like `-`
+</span><span class="attribute">#[derive(Clone, Copy, Default)]
+</span><span class="kw">struct </span>RowBreakCandidates {
+    <span class="doccomment">/// Breaking at ` ` or other whitespace
+    /// is always the primary candidate.
+    </span>space: <span class="prelude-ty">Option</span>&lt;usize&gt;,
+    <span class="doccomment">/// Logograms (single character representing a whole word) are good candidates for line break.
+    </span>logogram: <span class="prelude-ty">Option</span>&lt;usize&gt;,
+    <span class="doccomment">/// Breaking at a dash is a super-
+    /// good idea.
+    </span>dash: <span class="prelude-ty">Option</span>&lt;usize&gt;,
+    <span class="doccomment">/// This is nicer for things like URLs, e.g. www.
+    /// example.com.
+    </span>punctuation: <span class="prelude-ty">Option</span>&lt;usize&gt;,
+    <span class="doccomment">/// Breaking after just random character is some
+    /// times necessary.
+    </span>any: <span class="prelude-ty">Option</span>&lt;usize&gt;,
 }
 
-<span class="kw">impl</span> <span class="ident">RowBreakCandidates</span> {
-    <span class="kw">fn</span> <span class="ident">add</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">index</span>: <span class="ident">usize</span>, <span class="ident">chr</span>: <span class="ident">char</span>) {
-        <span class="kw">const</span> <span class="ident">NON_BREAKING_SPACE</span>: <span class="ident">char</span> <span class="op">=</span> <span class="string">&#39;\u{A0}&#39;</span>;
-        <span class="kw">if</span> <span class="ident">chr</span>.<span class="ident">is_whitespace</span>() <span class="op">&amp;&amp;</span> <span class="ident">chr</span> <span class="op">!</span><span class="op">=</span> <span class="ident">NON_BREAKING_SPACE</span> {
-            <span class="self">self</span>.<span class="ident">space</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">index</span>);
-        } <span class="kw">else</span> <span class="kw">if</span> <span class="ident">is_chinese</span>(<span class="ident">chr</span>) {
-            <span class="self">self</span>.<span class="ident">logogram</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">index</span>);
-        } <span class="kw">else</span> <span class="kw">if</span> <span class="ident">chr</span> <span class="op">==</span> <span class="string">&#39;-&#39;</span> {
-            <span class="self">self</span>.<span class="ident">dash</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">index</span>);
-        } <span class="kw">else</span> <span class="kw">if</span> <span class="ident">chr</span>.<span class="ident">is_ascii_punctuation</span>() {
-            <span class="self">self</span>.<span class="ident">punctuation</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">index</span>);
-        } <span class="kw">else</span> {
-            <span class="self">self</span>.<span class="ident">any</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">index</span>);
+<span class="kw">impl </span>RowBreakCandidates {
+    <span class="kw">fn </span>add(<span class="kw-2">&amp;mut </span><span class="self">self</span>, index: usize, chr: char) {
+        <span class="kw">const </span>NON_BREAKING_SPACE: char = <span class="string">&#39;\u{A0}&#39;</span>;
+        <span class="kw">if </span>chr.is_whitespace() &amp;&amp; chr != NON_BREAKING_SPACE {
+            <span class="self">self</span>.space = <span class="prelude-val">Some</span>(index);
+        } <span class="kw">else if </span>is_chinese(chr) {
+            <span class="self">self</span>.logogram = <span class="prelude-val">Some</span>(index);
+        } <span class="kw">else if </span>chr == <span class="string">&#39;-&#39; </span>{
+            <span class="self">self</span>.dash = <span class="prelude-val">Some</span>(index);
+        } <span class="kw">else if </span>chr.is_ascii_punctuation() {
+            <span class="self">self</span>.punctuation = <span class="prelude-val">Some</span>(index);
+        } <span class="kw">else </span>{
+            <span class="self">self</span>.any = <span class="prelude-val">Some</span>(index);
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">has_word_boundary</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span> {
-        <span class="self">self</span>.<span class="ident">space</span>.<span class="ident">is_some</span>() <span class="op">|</span><span class="op">|</span> <span class="self">self</span>.<span class="ident">logogram</span>.<span class="ident">is_some</span>()
+    <span class="kw">fn </span>has_word_boundary(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; bool {
+        <span class="self">self</span>.space.is_some() || <span class="self">self</span>.logogram.is_some()
     }
 
-    <span class="kw">fn</span> <span class="ident">get</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">usize</span><span class="op">&gt;</span> {
-        <span class="self">self</span>.<span class="ident">space</span>
-            .<span class="ident">or</span>(<span class="self">self</span>.<span class="ident">logogram</span>)
-            .<span class="ident">or</span>(<span class="self">self</span>.<span class="ident">dash</span>)
-            .<span class="ident">or</span>(<span class="self">self</span>.<span class="ident">punctuation</span>)
-            .<span class="ident">or</span>(<span class="self">self</span>.<span class="ident">any</span>)
+    <span class="kw">fn </span>get(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;usize&gt; {
+        <span class="self">self</span>.space
+            .or(<span class="self">self</span>.logogram)
+            .or(<span class="self">self</span>.dash)
+            .or(<span class="self">self</span>.punctuation)
+            .or(<span class="self">self</span>.any)
     }
 }
 
-<span class="attribute">#[<span class="ident">inline</span>]</span>
-<span class="kw">fn</span> <span class="ident">is_chinese</span>(<span class="ident">c</span>: <span class="ident">char</span>) -&gt; <span class="ident">bool</span> {
-    (<span class="string">&#39;\u{4E00}&#39;</span> <span class="op">&lt;</span><span class="op">=</span> <span class="ident">c</span> <span class="op">&amp;&amp;</span> <span class="ident">c</span> <span class="op">&lt;</span><span class="op">=</span> <span class="string">&#39;\u{9FFF}&#39;</span>)
-        <span class="op">|</span><span class="op">|</span> (<span class="string">&#39;\u{3400}&#39;</span> <span class="op">&lt;</span><span class="op">=</span> <span class="ident">c</span> <span class="op">&amp;&amp;</span> <span class="ident">c</span> <span class="op">&lt;</span><span class="op">=</span> <span class="string">&#39;\u{4DBF}&#39;</span>)
-        <span class="op">|</span><span class="op">|</span> (<span class="string">&#39;\u{2B740}&#39;</span> <span class="op">&lt;</span><span class="op">=</span> <span class="ident">c</span> <span class="op">&amp;&amp;</span> <span class="ident">c</span> <span class="op">&lt;</span><span class="op">=</span> <span class="string">&#39;\u{2B81F}&#39;</span>)
+<span class="attribute">#[inline]
+</span><span class="kw">fn </span>is_chinese(c: char) -&gt; bool {
+    (<span class="string">&#39;\u{4E00}&#39; </span>&lt;= c &amp;&amp; c &lt;= <span class="string">&#39;\u{9FFF}&#39;</span>)
+        || (<span class="string">&#39;\u{3400}&#39; </span>&lt;= c &amp;&amp; c &lt;= <span class="string">&#39;\u{4DBF}&#39;</span>)
+        || (<span class="string">&#39;\u{2B740}&#39; </span>&lt;= c &amp;&amp; c &lt;= <span class="string">&#39;\u{2B81F}&#39;</span>)
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="epaint" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0 (a55dd71d5 2022-09-19)" ></div></body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="epaint" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.66.1 (90743e729 2023-01-10)" ></div></body></html>

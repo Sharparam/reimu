@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/egui-0.16.1/src/widgets/color_picker.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>color_picker.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../storage.js"></script><script defer src="../../../source-script.js"></script><script defer src="../../../source-files.js"></script><script defer src="../../../main.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../../egui/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../../egui/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../../egui/index.html"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/egui-0.16.1/src/widgets/color_picker.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>color_picker.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../../normalize.css"><link rel="stylesheet" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../../ayu.css" disabled><link rel="stylesheet" href="../../../dark.css" disabled><link rel="stylesheet" href="../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../storage.js"></script><script defer src="../../../source-script.js"></script><script defer src="../../../source-files.js"></script><script defer src="../../../main.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><div class="width-limiter"><nav class="sub"><a class="sub-logo-container" href="../../../egui/index.html"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../wheel.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -429,436 +429,436 @@
 <span id="429">429</span>
 <span id="430">430</span>
 <span id="431">431</span>
-</pre><pre class="rust"><code><span class="doccomment">//! Color picker widgets.</span>
+</pre><pre class="rust"><code><span class="doccomment">//! Color picker widgets.
 
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::util::fixed_cache::FixedCache</span>;
-<span class="kw">use</span> <span class="kw">crate</span>::<span class="kw-2">*</span>;
-<span class="kw">use</span> <span class="ident">epaint</span>::{<span class="ident">color</span>::<span class="kw-2">*</span>, <span class="kw-2">*</span>};
+</span><span class="kw">use </span><span class="kw">crate</span>::util::fixed_cache::FixedCache;
+<span class="kw">use crate</span>::<span class="kw-2">*</span>;
+<span class="kw">use </span>epaint::{color::<span class="kw-2">*</span>, <span class="kw-2">*</span>};
 
-<span class="kw">fn</span> <span class="ident">contrast_color</span>(<span class="ident">color</span>: <span class="kw">impl</span> <span class="ident">Into</span><span class="op">&lt;</span><span class="ident">Rgba</span><span class="op">&gt;</span>) -&gt; <span class="ident">Color32</span> {
-    <span class="kw">if</span> <span class="ident">color</span>.<span class="ident">into</span>().<span class="ident">intensity</span>() <span class="op">&lt;</span> <span class="number">0.5</span> {
-        <span class="ident">Color32::WHITE</span>
-    } <span class="kw">else</span> {
-        <span class="ident">Color32::BLACK</span>
+<span class="kw">fn </span>contrast_color(color: <span class="kw">impl </span>Into&lt;Rgba&gt;) -&gt; Color32 {
+    <span class="kw">if </span>color.into().intensity() &lt; <span class="number">0.5 </span>{
+        Color32::WHITE
+    } <span class="kw">else </span>{
+        Color32::BLACK
     }
 }
 
-<span class="doccomment">/// Number of vertices per dimension in the color sliders.</span>
-<span class="doccomment">/// We need at least 6 for hues, and more for smooth 2D areas.</span>
-<span class="doccomment">/// Should always be a multiple of 6 to hit the peak hues in HSV/HSL (every 60°).</span>
-<span class="kw">const</span> <span class="ident">N</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="number">6</span> <span class="op">*</span> <span class="number">6</span>;
+<span class="doccomment">/// Number of vertices per dimension in the color sliders.
+/// We need at least 6 for hues, and more for smooth 2D areas.
+/// Should always be a multiple of 6 to hit the peak hues in HSV/HSL (every 60°).
+</span><span class="kw">const </span>N: u32 = <span class="number">6 </span>* <span class="number">6</span>;
 
-<span class="kw">fn</span> <span class="ident">background_checkers</span>(<span class="ident">painter</span>: <span class="kw-2">&amp;</span><span class="ident">Painter</span>, <span class="ident">rect</span>: <span class="ident">Rect</span>) {
-    <span class="kw">let</span> <span class="ident">rect</span> <span class="op">=</span> <span class="ident">rect</span>.<span class="ident">shrink</span>(<span class="number">0.5</span>); <span class="comment">// Small hack to avoid the checkers from peeking through the sides</span>
-    <span class="kw">if</span> <span class="op">!</span><span class="ident">rect</span>.<span class="ident">is_positive</span>() {
+<span class="kw">fn </span>background_checkers(painter: <span class="kw-2">&amp;</span>Painter, rect: Rect) {
+    <span class="kw">let </span>rect = rect.shrink(<span class="number">0.5</span>); <span class="comment">// Small hack to avoid the checkers from peeking through the sides
+    </span><span class="kw">if </span>!rect.is_positive() {
         <span class="kw">return</span>;
     }
 
-    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">top_color</span> <span class="op">=</span> <span class="ident">Color32::from_gray</span>(<span class="number">128</span>);
-    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">bottom_color</span> <span class="op">=</span> <span class="ident">Color32::from_gray</span>(<span class="number">32</span>);
-    <span class="kw">let</span> <span class="ident">checker_size</span> <span class="op">=</span> <span class="ident">Vec2::splat</span>(<span class="ident">rect</span>.<span class="ident">height</span>() <span class="op">/</span> <span class="number">2.0</span>);
-    <span class="kw">let</span> <span class="ident">n</span> <span class="op">=</span> (<span class="ident">rect</span>.<span class="ident">width</span>() <span class="op">/</span> <span class="ident">checker_size</span>.<span class="ident">x</span>).<span class="ident">round</span>() <span class="kw">as</span> <span class="ident">u32</span>;
+    <span class="kw">let </span><span class="kw-2">mut </span>top_color = Color32::from_gray(<span class="number">128</span>);
+    <span class="kw">let </span><span class="kw-2">mut </span>bottom_color = Color32::from_gray(<span class="number">32</span>);
+    <span class="kw">let </span>checker_size = Vec2::splat(rect.height() / <span class="number">2.0</span>);
+    <span class="kw">let </span>n = (rect.width() / checker_size.x).round() <span class="kw">as </span>u32;
 
-    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">mesh</span> <span class="op">=</span> <span class="ident">Mesh::default</span>();
-    <span class="kw">for</span> <span class="ident">i</span> <span class="kw">in</span> <span class="number">0</span>..<span class="ident">n</span> {
-        <span class="kw">let</span> <span class="ident">x</span> <span class="op">=</span> <span class="ident">lerp</span>(<span class="ident">rect</span>.<span class="ident">left</span>()..<span class="op">=</span><span class="ident">rect</span>.<span class="ident">right</span>(), <span class="ident">i</span> <span class="kw">as</span> <span class="ident">f32</span> <span class="op">/</span> (<span class="ident">n</span> <span class="kw">as</span> <span class="ident">f32</span>));
-        <span class="ident">mesh</span>.<span class="ident">add_colored_rect</span>(
-            <span class="ident">Rect::from_min_size</span>(<span class="ident">pos2</span>(<span class="ident">x</span>, <span class="ident">rect</span>.<span class="ident">top</span>()), <span class="ident">checker_size</span>),
-            <span class="ident">top_color</span>,
+    <span class="kw">let </span><span class="kw-2">mut </span>mesh = Mesh::default();
+    <span class="kw">for </span>i <span class="kw">in </span><span class="number">0</span>..n {
+        <span class="kw">let </span>x = lerp(rect.left()..=rect.right(), i <span class="kw">as </span>f32 / (n <span class="kw">as </span>f32));
+        mesh.add_colored_rect(
+            Rect::from_min_size(pos2(x, rect.top()), checker_size),
+            top_color,
         );
-        <span class="ident">mesh</span>.<span class="ident">add_colored_rect</span>(
-            <span class="ident">Rect::from_min_size</span>(<span class="ident">pos2</span>(<span class="ident">x</span>, <span class="ident">rect</span>.<span class="ident">center</span>().<span class="ident">y</span>), <span class="ident">checker_size</span>),
-            <span class="ident">bottom_color</span>,
+        mesh.add_colored_rect(
+            Rect::from_min_size(pos2(x, rect.center().y), checker_size),
+            bottom_color,
         );
-        <span class="ident">std::mem::swap</span>(<span class="kw-2">&amp;mut</span> <span class="ident">top_color</span>, <span class="kw-2">&amp;mut</span> <span class="ident">bottom_color</span>);
+        std::mem::swap(<span class="kw-2">&amp;mut </span>top_color, <span class="kw-2">&amp;mut </span>bottom_color);
     }
-    <span class="ident">painter</span>.<span class="ident">add</span>(<span class="ident">Shape::mesh</span>(<span class="ident">mesh</span>));
+    painter.add(Shape::mesh(mesh));
 }
 
-<span class="doccomment">/// Show a color with background checkers to demonstrate transparency (if any).</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">show_color</span>(<span class="ident">ui</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Ui</span>, <span class="ident">color</span>: <span class="kw">impl</span> <span class="ident">Into</span><span class="op">&lt;</span><span class="ident">Hsva</span><span class="op">&gt;</span>, <span class="ident">desired_size</span>: <span class="ident">Vec2</span>) -&gt; <span class="ident">Response</span> {
-    <span class="ident">show_hsva</span>(<span class="ident">ui</span>, <span class="ident">color</span>.<span class="ident">into</span>(), <span class="ident">desired_size</span>)
+<span class="doccomment">/// Show a color with background checkers to demonstrate transparency (if any).
+</span><span class="kw">pub fn </span>show_color(ui: <span class="kw-2">&amp;mut </span>Ui, color: <span class="kw">impl </span>Into&lt;Hsva&gt;, desired_size: Vec2) -&gt; Response {
+    show_hsva(ui, color.into(), desired_size)
 }
 
-<span class="kw">fn</span> <span class="ident">show_hsva</span>(<span class="ident">ui</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Ui</span>, <span class="ident">color</span>: <span class="ident">Hsva</span>, <span class="ident">desired_size</span>: <span class="ident">Vec2</span>) -&gt; <span class="ident">Response</span> {
-    <span class="kw">let</span> (<span class="ident">rect</span>, <span class="ident">response</span>) <span class="op">=</span> <span class="ident">ui</span>.<span class="ident">allocate_at_least</span>(<span class="ident">desired_size</span>, <span class="ident">Sense::hover</span>());
-    <span class="kw">if</span> <span class="ident">ui</span>.<span class="ident">is_rect_visible</span>(<span class="ident">rect</span>) {
-        <span class="ident">background_checkers</span>(<span class="ident">ui</span>.<span class="ident">painter</span>(), <span class="ident">rect</span>);
-        <span class="kw">if</span> <span class="bool-val">true</span> {
-            <span class="kw">let</span> <span class="ident">left</span> <span class="op">=</span> <span class="ident">Rect::from_min_max</span>(<span class="ident">rect</span>.<span class="ident">left_top</span>(), <span class="ident">rect</span>.<span class="ident">center_bottom</span>());
-            <span class="kw">let</span> <span class="ident">right</span> <span class="op">=</span> <span class="ident">Rect::from_min_max</span>(<span class="ident">rect</span>.<span class="ident">center_top</span>(), <span class="ident">rect</span>.<span class="ident">right_bottom</span>());
-            <span class="ident">ui</span>.<span class="ident">painter</span>().<span class="ident">rect_filled</span>(<span class="ident">left</span>, <span class="number">0.0</span>, <span class="ident">color</span>);
-            <span class="ident">ui</span>.<span class="ident">painter</span>().<span class="ident">rect_filled</span>(<span class="ident">right</span>, <span class="number">0.0</span>, <span class="ident">color</span>.<span class="ident">to_opaque</span>());
-        } <span class="kw">else</span> {
-            <span class="ident">ui</span>.<span class="ident">painter</span>().<span class="ident">add</span>(<span class="ident">RectShape</span> {
-                <span class="ident">rect</span>,
-                <span class="ident">corner_radius</span>: <span class="number">2.0</span>,
-                <span class="ident">fill</span>: <span class="ident">color</span>.<span class="ident">into</span>(),
-                <span class="ident">stroke</span>: <span class="ident">Stroke::new</span>(<span class="number">3.0</span>, <span class="ident">color</span>.<span class="ident">to_opaque</span>()),
+<span class="kw">fn </span>show_hsva(ui: <span class="kw-2">&amp;mut </span>Ui, color: Hsva, desired_size: Vec2) -&gt; Response {
+    <span class="kw">let </span>(rect, response) = ui.allocate_at_least(desired_size, Sense::hover());
+    <span class="kw">if </span>ui.is_rect_visible(rect) {
+        background_checkers(ui.painter(), rect);
+        <span class="kw">if </span><span class="bool-val">true </span>{
+            <span class="kw">let </span>left = Rect::from_min_max(rect.left_top(), rect.center_bottom());
+            <span class="kw">let </span>right = Rect::from_min_max(rect.center_top(), rect.right_bottom());
+            ui.painter().rect_filled(left, <span class="number">0.0</span>, color);
+            ui.painter().rect_filled(right, <span class="number">0.0</span>, color.to_opaque());
+        } <span class="kw">else </span>{
+            ui.painter().add(RectShape {
+                rect,
+                corner_radius: <span class="number">2.0</span>,
+                fill: color.into(),
+                stroke: Stroke::new(<span class="number">3.0</span>, color.to_opaque()),
             });
         }
     }
-    <span class="ident">response</span>
+    response
 }
 
-<span class="kw">fn</span> <span class="ident">color_button</span>(<span class="ident">ui</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Ui</span>, <span class="ident">color</span>: <span class="ident">Color32</span>, <span class="ident">open</span>: <span class="ident">bool</span>) -&gt; <span class="ident">Response</span> {
-    <span class="kw">let</span> <span class="ident">size</span> <span class="op">=</span> <span class="ident">ui</span>.<span class="ident">spacing</span>().<span class="ident">interact_size</span>;
-    <span class="kw">let</span> (<span class="ident">rect</span>, <span class="ident">response</span>) <span class="op">=</span> <span class="ident">ui</span>.<span class="ident">allocate_exact_size</span>(<span class="ident">size</span>, <span class="ident">Sense::click</span>());
-    <span class="ident">response</span>.<span class="ident">widget_info</span>(<span class="op">|</span><span class="op">|</span> <span class="ident">WidgetInfo::new</span>(<span class="ident">WidgetType::ColorButton</span>));
+<span class="kw">fn </span>color_button(ui: <span class="kw-2">&amp;mut </span>Ui, color: Color32, open: bool) -&gt; Response {
+    <span class="kw">let </span>size = ui.spacing().interact_size;
+    <span class="kw">let </span>(rect, response) = ui.allocate_exact_size(size, Sense::click());
+    response.widget_info(|| WidgetInfo::new(WidgetType::ColorButton));
 
-    <span class="kw">if</span> <span class="ident">ui</span>.<span class="ident">is_rect_visible</span>(<span class="ident">rect</span>) {
-        <span class="kw">let</span> <span class="ident">visuals</span> <span class="op">=</span> <span class="kw">if</span> <span class="ident">open</span> {
-            <span class="kw-2">&amp;</span><span class="ident">ui</span>.<span class="ident">visuals</span>().<span class="ident">widgets</span>.<span class="ident">open</span>
-        } <span class="kw">else</span> {
-            <span class="ident">ui</span>.<span class="ident">style</span>().<span class="ident">interact</span>(<span class="kw-2">&amp;</span><span class="ident">response</span>)
+    <span class="kw">if </span>ui.is_rect_visible(rect) {
+        <span class="kw">let </span>visuals = <span class="kw">if </span>open {
+            <span class="kw-2">&amp;</span>ui.visuals().widgets.open
+        } <span class="kw">else </span>{
+            ui.style().interact(<span class="kw-2">&amp;</span>response)
         };
-        <span class="kw">let</span> <span class="ident">rect</span> <span class="op">=</span> <span class="ident">rect</span>.<span class="ident">expand</span>(<span class="ident">visuals</span>.<span class="ident">expansion</span>);
+        <span class="kw">let </span>rect = rect.expand(visuals.expansion);
 
-        <span class="ident">background_checkers</span>(<span class="ident">ui</span>.<span class="ident">painter</span>(), <span class="ident">rect</span>);
+        background_checkers(ui.painter(), rect);
 
-        <span class="kw">let</span> <span class="ident">left_half</span> <span class="op">=</span> <span class="ident">Rect::from_min_max</span>(<span class="ident">rect</span>.<span class="ident">left_top</span>(), <span class="ident">rect</span>.<span class="ident">center_bottom</span>());
-        <span class="kw">let</span> <span class="ident">right_half</span> <span class="op">=</span> <span class="ident">Rect::from_min_max</span>(<span class="ident">rect</span>.<span class="ident">center_top</span>(), <span class="ident">rect</span>.<span class="ident">right_bottom</span>());
-        <span class="ident">ui</span>.<span class="ident">painter</span>().<span class="ident">rect_filled</span>(<span class="ident">left_half</span>, <span class="number">0.0</span>, <span class="ident">color</span>);
-        <span class="ident">ui</span>.<span class="ident">painter</span>().<span class="ident">rect_filled</span>(<span class="ident">right_half</span>, <span class="number">0.0</span>, <span class="ident">color</span>.<span class="ident">to_opaque</span>());
+        <span class="kw">let </span>left_half = Rect::from_min_max(rect.left_top(), rect.center_bottom());
+        <span class="kw">let </span>right_half = Rect::from_min_max(rect.center_top(), rect.right_bottom());
+        ui.painter().rect_filled(left_half, <span class="number">0.0</span>, color);
+        ui.painter().rect_filled(right_half, <span class="number">0.0</span>, color.to_opaque());
 
-        <span class="kw">let</span> <span class="ident">corner_radius</span> <span class="op">=</span> <span class="ident">visuals</span>.<span class="ident">corner_radius</span>.<span class="ident">at_most</span>(<span class="number">2.0</span>);
-        <span class="ident">ui</span>.<span class="ident">painter</span>()
-            .<span class="ident">rect_stroke</span>(<span class="ident">rect</span>, <span class="ident">corner_radius</span>, (<span class="number">2.0</span>, <span class="ident">visuals</span>.<span class="ident">bg_fill</span>)); <span class="comment">// fill is intentional, because default style has no border</span>
-    }
+        <span class="kw">let </span>corner_radius = visuals.corner_radius.at_most(<span class="number">2.0</span>);
+        ui.painter()
+            .rect_stroke(rect, corner_radius, (<span class="number">2.0</span>, visuals.bg_fill)); <span class="comment">// fill is intentional, because default style has no border
+    </span>}
 
-    <span class="ident">response</span>
+    response
 }
 
-<span class="kw">fn</span> <span class="ident">color_slider_1d</span>(<span class="ident">ui</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Ui</span>, <span class="ident">value</span>: <span class="kw-2">&amp;mut</span> <span class="ident">f32</span>, <span class="ident">color_at</span>: <span class="kw">impl</span> <span class="ident">Fn</span>(<span class="ident">f32</span>) -&gt; <span class="ident">Color32</span>) -&gt; <span class="ident">Response</span> {
-    <span class="attribute">#![<span class="ident">allow</span>(<span class="ident">clippy::identity_op</span>)]</span>
+<span class="kw">fn </span>color_slider_1d(ui: <span class="kw-2">&amp;mut </span>Ui, value: <span class="kw-2">&amp;mut </span>f32, color_at: <span class="kw">impl </span>Fn(f32) -&gt; Color32) -&gt; Response {
+    <span class="attribute">#![allow(clippy::identity_op)]
 
-    <span class="kw">let</span> <span class="ident">desired_size</span> <span class="op">=</span> <span class="ident">vec2</span>(<span class="ident">ui</span>.<span class="ident">spacing</span>().<span class="ident">slider_width</span>, <span class="ident">ui</span>.<span class="ident">spacing</span>().<span class="ident">interact_size</span>.<span class="ident">y</span>);
-    <span class="kw">let</span> (<span class="ident">rect</span>, <span class="ident">response</span>) <span class="op">=</span> <span class="ident">ui</span>.<span class="ident">allocate_at_least</span>(<span class="ident">desired_size</span>, <span class="ident">Sense::click_and_drag</span>());
+    </span><span class="kw">let </span>desired_size = vec2(ui.spacing().slider_width, ui.spacing().interact_size.y);
+    <span class="kw">let </span>(rect, response) = ui.allocate_at_least(desired_size, Sense::click_and_drag());
 
-    <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">mpos</span>) <span class="op">=</span> <span class="ident">response</span>.<span class="ident">interact_pointer_pos</span>() {
-        <span class="kw-2">*</span><span class="ident">value</span> <span class="op">=</span> <span class="ident">remap_clamp</span>(<span class="ident">mpos</span>.<span class="ident">x</span>, <span class="ident">rect</span>.<span class="ident">left</span>()..<span class="op">=</span><span class="ident">rect</span>.<span class="ident">right</span>(), <span class="number">0.0</span>..<span class="op">=</span><span class="number">1.0</span>);
+    <span class="kw">if let </span><span class="prelude-val">Some</span>(mpos) = response.interact_pointer_pos() {
+        <span class="kw-2">*</span>value = remap_clamp(mpos.x, rect.left()..=rect.right(), <span class="number">0.0</span>..=<span class="number">1.0</span>);
     }
 
-    <span class="kw">if</span> <span class="ident">ui</span>.<span class="ident">is_rect_visible</span>(<span class="ident">rect</span>) {
-        <span class="kw">let</span> <span class="ident">visuals</span> <span class="op">=</span> <span class="ident">ui</span>.<span class="ident">style</span>().<span class="ident">interact</span>(<span class="kw-2">&amp;</span><span class="ident">response</span>);
+    <span class="kw">if </span>ui.is_rect_visible(rect) {
+        <span class="kw">let </span>visuals = ui.style().interact(<span class="kw-2">&amp;</span>response);
 
-        <span class="ident">background_checkers</span>(<span class="ident">ui</span>.<span class="ident">painter</span>(), <span class="ident">rect</span>); <span class="comment">// for alpha:</span>
+        background_checkers(ui.painter(), rect); <span class="comment">// for alpha:
 
-        {
-            <span class="comment">// fill color:</span>
-            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">mesh</span> <span class="op">=</span> <span class="ident">Mesh::default</span>();
-            <span class="kw">for</span> <span class="ident">i</span> <span class="kw">in</span> <span class="number">0</span>..<span class="op">=</span><span class="ident">N</span> {
-                <span class="kw">let</span> <span class="ident">t</span> <span class="op">=</span> <span class="ident">i</span> <span class="kw">as</span> <span class="ident">f32</span> <span class="op">/</span> (<span class="ident">N</span> <span class="kw">as</span> <span class="ident">f32</span>);
-                <span class="kw">let</span> <span class="ident">color</span> <span class="op">=</span> <span class="ident">color_at</span>(<span class="ident">t</span>);
-                <span class="kw">let</span> <span class="ident">x</span> <span class="op">=</span> <span class="ident">lerp</span>(<span class="ident">rect</span>.<span class="ident">left</span>()..<span class="op">=</span><span class="ident">rect</span>.<span class="ident">right</span>(), <span class="ident">t</span>);
-                <span class="ident">mesh</span>.<span class="ident">colored_vertex</span>(<span class="ident">pos2</span>(<span class="ident">x</span>, <span class="ident">rect</span>.<span class="ident">top</span>()), <span class="ident">color</span>);
-                <span class="ident">mesh</span>.<span class="ident">colored_vertex</span>(<span class="ident">pos2</span>(<span class="ident">x</span>, <span class="ident">rect</span>.<span class="ident">bottom</span>()), <span class="ident">color</span>);
-                <span class="kw">if</span> <span class="ident">i</span> <span class="op">&lt;</span> <span class="ident">N</span> {
-                    <span class="ident">mesh</span>.<span class="ident">add_triangle</span>(<span class="number">2</span> <span class="op">*</span> <span class="ident">i</span> <span class="op">+</span> <span class="number">0</span>, <span class="number">2</span> <span class="op">*</span> <span class="ident">i</span> <span class="op">+</span> <span class="number">1</span>, <span class="number">2</span> <span class="op">*</span> <span class="ident">i</span> <span class="op">+</span> <span class="number">2</span>);
-                    <span class="ident">mesh</span>.<span class="ident">add_triangle</span>(<span class="number">2</span> <span class="op">*</span> <span class="ident">i</span> <span class="op">+</span> <span class="number">1</span>, <span class="number">2</span> <span class="op">*</span> <span class="ident">i</span> <span class="op">+</span> <span class="number">2</span>, <span class="number">2</span> <span class="op">*</span> <span class="ident">i</span> <span class="op">+</span> <span class="number">3</span>);
+        </span>{
+            <span class="comment">// fill color:
+            </span><span class="kw">let </span><span class="kw-2">mut </span>mesh = Mesh::default();
+            <span class="kw">for </span>i <span class="kw">in </span><span class="number">0</span>..=N {
+                <span class="kw">let </span>t = i <span class="kw">as </span>f32 / (N <span class="kw">as </span>f32);
+                <span class="kw">let </span>color = color_at(t);
+                <span class="kw">let </span>x = lerp(rect.left()..=rect.right(), t);
+                mesh.colored_vertex(pos2(x, rect.top()), color);
+                mesh.colored_vertex(pos2(x, rect.bottom()), color);
+                <span class="kw">if </span>i &lt; N {
+                    mesh.add_triangle(<span class="number">2 </span>* i + <span class="number">0</span>, <span class="number">2 </span>* i + <span class="number">1</span>, <span class="number">2 </span>* i + <span class="number">2</span>);
+                    mesh.add_triangle(<span class="number">2 </span>* i + <span class="number">1</span>, <span class="number">2 </span>* i + <span class="number">2</span>, <span class="number">2 </span>* i + <span class="number">3</span>);
                 }
             }
-            <span class="ident">ui</span>.<span class="ident">painter</span>().<span class="ident">add</span>(<span class="ident">Shape::mesh</span>(<span class="ident">mesh</span>));
+            ui.painter().add(Shape::mesh(mesh));
         }
 
-        <span class="ident">ui</span>.<span class="ident">painter</span>().<span class="ident">rect_stroke</span>(<span class="ident">rect</span>, <span class="number">0.0</span>, <span class="ident">visuals</span>.<span class="ident">bg_stroke</span>); <span class="comment">// outline</span>
+        ui.painter().rect_stroke(rect, <span class="number">0.0</span>, visuals.bg_stroke); <span class="comment">// outline
 
-        {
-            <span class="comment">// Show where the slider is at:</span>
-            <span class="kw">let</span> <span class="ident">x</span> <span class="op">=</span> <span class="ident">lerp</span>(<span class="ident">rect</span>.<span class="ident">left</span>()..<span class="op">=</span><span class="ident">rect</span>.<span class="ident">right</span>(), <span class="kw-2">*</span><span class="ident">value</span>);
-            <span class="kw">let</span> <span class="ident">r</span> <span class="op">=</span> <span class="ident">rect</span>.<span class="ident">height</span>() <span class="op">/</span> <span class="number">4.0</span>;
-            <span class="kw">let</span> <span class="ident">picked_color</span> <span class="op">=</span> <span class="ident">color_at</span>(<span class="kw-2">*</span><span class="ident">value</span>);
-            <span class="ident">ui</span>.<span class="ident">painter</span>().<span class="ident">add</span>(<span class="ident">Shape::convex_polygon</span>(
+        </span>{
+            <span class="comment">// Show where the slider is at:
+            </span><span class="kw">let </span>x = lerp(rect.left()..=rect.right(), <span class="kw-2">*</span>value);
+            <span class="kw">let </span>r = rect.height() / <span class="number">4.0</span>;
+            <span class="kw">let </span>picked_color = color_at(<span class="kw-2">*</span>value);
+            ui.painter().add(Shape::convex_polygon(
                 <span class="macro">vec!</span>[
-                    <span class="ident">pos2</span>(<span class="ident">x</span> <span class="op">-</span> <span class="ident">r</span>, <span class="ident">rect</span>.<span class="ident">bottom</span>()),
-                    <span class="ident">pos2</span>(<span class="ident">x</span> <span class="op">+</span> <span class="ident">r</span>, <span class="ident">rect</span>.<span class="ident">bottom</span>()),
-                    <span class="ident">pos2</span>(<span class="ident">x</span>, <span class="ident">rect</span>.<span class="ident">center</span>().<span class="ident">y</span>),
+                    pos2(x - r, rect.bottom()),
+                    pos2(x + r, rect.bottom()),
+                    pos2(x, rect.center().y),
                 ],
-                <span class="ident">picked_color</span>,
-                <span class="ident">Stroke::new</span>(<span class="ident">visuals</span>.<span class="ident">fg_stroke</span>.<span class="ident">width</span>, <span class="ident">contrast_color</span>(<span class="ident">picked_color</span>)),
+                picked_color,
+                Stroke::new(visuals.fg_stroke.width, contrast_color(picked_color)),
             ));
         }
     }
 
-    <span class="ident">response</span>
+    response
 }
 
-<span class="kw">fn</span> <span class="ident">color_slider_2d</span>(
-    <span class="ident">ui</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Ui</span>,
-    <span class="ident">x_value</span>: <span class="kw-2">&amp;mut</span> <span class="ident">f32</span>,
-    <span class="ident">y_value</span>: <span class="kw-2">&amp;mut</span> <span class="ident">f32</span>,
-    <span class="ident">color_at</span>: <span class="kw">impl</span> <span class="ident">Fn</span>(<span class="ident">f32</span>, <span class="ident">f32</span>) -&gt; <span class="ident">Color32</span>,
-) -&gt; <span class="ident">Response</span> {
-    <span class="kw">let</span> <span class="ident">desired_size</span> <span class="op">=</span> <span class="ident">Vec2::splat</span>(<span class="ident">ui</span>.<span class="ident">spacing</span>().<span class="ident">slider_width</span>);
-    <span class="kw">let</span> (<span class="ident">rect</span>, <span class="ident">response</span>) <span class="op">=</span> <span class="ident">ui</span>.<span class="ident">allocate_at_least</span>(<span class="ident">desired_size</span>, <span class="ident">Sense::click_and_drag</span>());
+<span class="kw">fn </span>color_slider_2d(
+    ui: <span class="kw-2">&amp;mut </span>Ui,
+    x_value: <span class="kw-2">&amp;mut </span>f32,
+    y_value: <span class="kw-2">&amp;mut </span>f32,
+    color_at: <span class="kw">impl </span>Fn(f32, f32) -&gt; Color32,
+) -&gt; Response {
+    <span class="kw">let </span>desired_size = Vec2::splat(ui.spacing().slider_width);
+    <span class="kw">let </span>(rect, response) = ui.allocate_at_least(desired_size, Sense::click_and_drag());
 
-    <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">mpos</span>) <span class="op">=</span> <span class="ident">response</span>.<span class="ident">interact_pointer_pos</span>() {
-        <span class="kw-2">*</span><span class="ident">x_value</span> <span class="op">=</span> <span class="ident">remap_clamp</span>(<span class="ident">mpos</span>.<span class="ident">x</span>, <span class="ident">rect</span>.<span class="ident">left</span>()..<span class="op">=</span><span class="ident">rect</span>.<span class="ident">right</span>(), <span class="number">0.0</span>..<span class="op">=</span><span class="number">1.0</span>);
-        <span class="kw-2">*</span><span class="ident">y_value</span> <span class="op">=</span> <span class="ident">remap_clamp</span>(<span class="ident">mpos</span>.<span class="ident">y</span>, <span class="ident">rect</span>.<span class="ident">bottom</span>()..<span class="op">=</span><span class="ident">rect</span>.<span class="ident">top</span>(), <span class="number">0.0</span>..<span class="op">=</span><span class="number">1.0</span>);
+    <span class="kw">if let </span><span class="prelude-val">Some</span>(mpos) = response.interact_pointer_pos() {
+        <span class="kw-2">*</span>x_value = remap_clamp(mpos.x, rect.left()..=rect.right(), <span class="number">0.0</span>..=<span class="number">1.0</span>);
+        <span class="kw-2">*</span>y_value = remap_clamp(mpos.y, rect.bottom()..=rect.top(), <span class="number">0.0</span>..=<span class="number">1.0</span>);
     }
 
-    <span class="kw">if</span> <span class="ident">ui</span>.<span class="ident">is_rect_visible</span>(<span class="ident">rect</span>) {
-        <span class="kw">let</span> <span class="ident">visuals</span> <span class="op">=</span> <span class="ident">ui</span>.<span class="ident">style</span>().<span class="ident">interact</span>(<span class="kw-2">&amp;</span><span class="ident">response</span>);
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">mesh</span> <span class="op">=</span> <span class="ident">Mesh::default</span>();
+    <span class="kw">if </span>ui.is_rect_visible(rect) {
+        <span class="kw">let </span>visuals = ui.style().interact(<span class="kw-2">&amp;</span>response);
+        <span class="kw">let </span><span class="kw-2">mut </span>mesh = Mesh::default();
 
-        <span class="kw">for</span> <span class="ident">xi</span> <span class="kw">in</span> <span class="number">0</span>..<span class="op">=</span><span class="ident">N</span> {
-            <span class="kw">for</span> <span class="ident">yi</span> <span class="kw">in</span> <span class="number">0</span>..<span class="op">=</span><span class="ident">N</span> {
-                <span class="kw">let</span> <span class="ident">xt</span> <span class="op">=</span> <span class="ident">xi</span> <span class="kw">as</span> <span class="ident">f32</span> <span class="op">/</span> (<span class="ident">N</span> <span class="kw">as</span> <span class="ident">f32</span>);
-                <span class="kw">let</span> <span class="ident">yt</span> <span class="op">=</span> <span class="ident">yi</span> <span class="kw">as</span> <span class="ident">f32</span> <span class="op">/</span> (<span class="ident">N</span> <span class="kw">as</span> <span class="ident">f32</span>);
-                <span class="kw">let</span> <span class="ident">color</span> <span class="op">=</span> <span class="ident">color_at</span>(<span class="ident">xt</span>, <span class="ident">yt</span>);
-                <span class="kw">let</span> <span class="ident">x</span> <span class="op">=</span> <span class="ident">lerp</span>(<span class="ident">rect</span>.<span class="ident">left</span>()..<span class="op">=</span><span class="ident">rect</span>.<span class="ident">right</span>(), <span class="ident">xt</span>);
-                <span class="kw">let</span> <span class="ident">y</span> <span class="op">=</span> <span class="ident">lerp</span>(<span class="ident">rect</span>.<span class="ident">bottom</span>()..<span class="op">=</span><span class="ident">rect</span>.<span class="ident">top</span>(), <span class="ident">yt</span>);
-                <span class="ident">mesh</span>.<span class="ident">colored_vertex</span>(<span class="ident">pos2</span>(<span class="ident">x</span>, <span class="ident">y</span>), <span class="ident">color</span>);
+        <span class="kw">for </span>xi <span class="kw">in </span><span class="number">0</span>..=N {
+            <span class="kw">for </span>yi <span class="kw">in </span><span class="number">0</span>..=N {
+                <span class="kw">let </span>xt = xi <span class="kw">as </span>f32 / (N <span class="kw">as </span>f32);
+                <span class="kw">let </span>yt = yi <span class="kw">as </span>f32 / (N <span class="kw">as </span>f32);
+                <span class="kw">let </span>color = color_at(xt, yt);
+                <span class="kw">let </span>x = lerp(rect.left()..=rect.right(), xt);
+                <span class="kw">let </span>y = lerp(rect.bottom()..=rect.top(), yt);
+                mesh.colored_vertex(pos2(x, y), color);
 
-                <span class="kw">if</span> <span class="ident">xi</span> <span class="op">&lt;</span> <span class="ident">N</span> <span class="op">&amp;&amp;</span> <span class="ident">yi</span> <span class="op">&lt;</span> <span class="ident">N</span> {
-                    <span class="kw">let</span> <span class="ident">x_offset</span> <span class="op">=</span> <span class="number">1</span>;
-                    <span class="kw">let</span> <span class="ident">y_offset</span> <span class="op">=</span> <span class="ident">N</span> <span class="op">+</span> <span class="number">1</span>;
-                    <span class="kw">let</span> <span class="ident">tl</span> <span class="op">=</span> <span class="ident">yi</span> <span class="op">*</span> <span class="ident">y_offset</span> <span class="op">+</span> <span class="ident">xi</span>;
-                    <span class="ident">mesh</span>.<span class="ident">add_triangle</span>(<span class="ident">tl</span>, <span class="ident">tl</span> <span class="op">+</span> <span class="ident">x_offset</span>, <span class="ident">tl</span> <span class="op">+</span> <span class="ident">y_offset</span>);
-                    <span class="ident">mesh</span>.<span class="ident">add_triangle</span>(<span class="ident">tl</span> <span class="op">+</span> <span class="ident">x_offset</span>, <span class="ident">tl</span> <span class="op">+</span> <span class="ident">y_offset</span>, <span class="ident">tl</span> <span class="op">+</span> <span class="ident">y_offset</span> <span class="op">+</span> <span class="ident">x_offset</span>);
+                <span class="kw">if </span>xi &lt; N &amp;&amp; yi &lt; N {
+                    <span class="kw">let </span>x_offset = <span class="number">1</span>;
+                    <span class="kw">let </span>y_offset = N + <span class="number">1</span>;
+                    <span class="kw">let </span>tl = yi * y_offset + xi;
+                    mesh.add_triangle(tl, tl + x_offset, tl + y_offset);
+                    mesh.add_triangle(tl + x_offset, tl + y_offset, tl + y_offset + x_offset);
                 }
             }
         }
-        <span class="ident">ui</span>.<span class="ident">painter</span>().<span class="ident">add</span>(<span class="ident">Shape::mesh</span>(<span class="ident">mesh</span>)); <span class="comment">// fill</span>
+        ui.painter().add(Shape::mesh(mesh)); <span class="comment">// fill
 
-        <span class="ident">ui</span>.<span class="ident">painter</span>().<span class="ident">rect_stroke</span>(<span class="ident">rect</span>, <span class="number">0.0</span>, <span class="ident">visuals</span>.<span class="ident">bg_stroke</span>); <span class="comment">// outline</span>
+        </span>ui.painter().rect_stroke(rect, <span class="number">0.0</span>, visuals.bg_stroke); <span class="comment">// outline
 
-        <span class="comment">// Show where the slider is at:</span>
-        <span class="kw">let</span> <span class="ident">x</span> <span class="op">=</span> <span class="ident">lerp</span>(<span class="ident">rect</span>.<span class="ident">left</span>()..<span class="op">=</span><span class="ident">rect</span>.<span class="ident">right</span>(), <span class="kw-2">*</span><span class="ident">x_value</span>);
-        <span class="kw">let</span> <span class="ident">y</span> <span class="op">=</span> <span class="ident">lerp</span>(<span class="ident">rect</span>.<span class="ident">bottom</span>()..<span class="op">=</span><span class="ident">rect</span>.<span class="ident">top</span>(), <span class="kw-2">*</span><span class="ident">y_value</span>);
-        <span class="kw">let</span> <span class="ident">picked_color</span> <span class="op">=</span> <span class="ident">color_at</span>(<span class="kw-2">*</span><span class="ident">x_value</span>, <span class="kw-2">*</span><span class="ident">y_value</span>);
-        <span class="ident">ui</span>.<span class="ident">painter</span>().<span class="ident">add</span>(<span class="ident">epaint::CircleShape</span> {
-            <span class="ident">center</span>: <span class="ident">pos2</span>(<span class="ident">x</span>, <span class="ident">y</span>),
-            <span class="ident">radius</span>: <span class="ident">rect</span>.<span class="ident">width</span>() <span class="op">/</span> <span class="number">12.0</span>,
-            <span class="ident">fill</span>: <span class="ident">picked_color</span>,
-            <span class="ident">stroke</span>: <span class="ident">Stroke::new</span>(<span class="ident">visuals</span>.<span class="ident">fg_stroke</span>.<span class="ident">width</span>, <span class="ident">contrast_color</span>(<span class="ident">picked_color</span>)),
+        // Show where the slider is at:
+        </span><span class="kw">let </span>x = lerp(rect.left()..=rect.right(), <span class="kw-2">*</span>x_value);
+        <span class="kw">let </span>y = lerp(rect.bottom()..=rect.top(), <span class="kw-2">*</span>y_value);
+        <span class="kw">let </span>picked_color = color_at(<span class="kw-2">*</span>x_value, <span class="kw-2">*</span>y_value);
+        ui.painter().add(epaint::CircleShape {
+            center: pos2(x, y),
+            radius: rect.width() / <span class="number">12.0</span>,
+            fill: picked_color,
+            stroke: Stroke::new(visuals.fg_stroke.width, contrast_color(picked_color)),
         });
     }
 
-    <span class="ident">response</span>
+    response
 }
 
-<span class="doccomment">/// What options to show for alpha</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">PartialEq</span>)]</span>
-<span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">Alpha</span> {
-    <span class="comment">// Set alpha to 1.0, and show no option for it.</span>
-    <span class="ident">Opaque</span>,
-    <span class="comment">// Only show normal blend options for it.</span>
-    <span class="ident">OnlyBlend</span>,
-    <span class="comment">// Show both blend and additive options.</span>
-    <span class="ident">BlendOrAdditive</span>,
+<span class="doccomment">/// What options to show for alpha
+</span><span class="attribute">#[derive(Clone, Copy, PartialEq)]
+</span><span class="kw">pub enum </span>Alpha {
+    <span class="comment">// Set alpha to 1.0, and show no option for it.
+    </span>Opaque,
+    <span class="comment">// Only show normal blend options for it.
+    </span>OnlyBlend,
+    <span class="comment">// Show both blend and additive options.
+    </span>BlendOrAdditive,
 }
 
-<span class="kw">fn</span> <span class="ident">color_text_ui</span>(<span class="ident">ui</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Ui</span>, <span class="ident">color</span>: <span class="kw">impl</span> <span class="ident">Into</span><span class="op">&lt;</span><span class="ident">Color32</span><span class="op">&gt;</span>, <span class="ident">alpha</span>: <span class="ident">Alpha</span>) {
-    <span class="kw">let</span> <span class="ident">color</span> <span class="op">=</span> <span class="ident">color</span>.<span class="ident">into</span>();
-    <span class="ident">ui</span>.<span class="ident">horizontal</span>(<span class="op">|</span><span class="ident">ui</span><span class="op">|</span> {
-        <span class="kw">let</span> [<span class="ident">r</span>, <span class="ident">g</span>, <span class="ident">b</span>, <span class="ident">a</span>] <span class="op">=</span> <span class="ident">color</span>.<span class="ident">to_array</span>();
+<span class="kw">fn </span>color_text_ui(ui: <span class="kw-2">&amp;mut </span>Ui, color: <span class="kw">impl </span>Into&lt;Color32&gt;, alpha: Alpha) {
+    <span class="kw">let </span>color = color.into();
+    ui.horizontal(|ui| {
+        <span class="kw">let </span>[r, g, b, a] = color.to_array();
 
-        <span class="kw">if</span> <span class="ident">ui</span>.<span class="ident">button</span>(<span class="string">&quot;📋&quot;</span>).<span class="ident">on_hover_text</span>(<span class="string">&quot;Click to copy&quot;</span>).<span class="ident">clicked</span>() {
-            <span class="kw">if</span> <span class="ident">alpha</span> <span class="op">==</span> <span class="ident">Alpha::Opaque</span> {
-                <span class="ident">ui</span>.<span class="ident">output</span>().<span class="ident">copied_text</span> <span class="op">=</span> <span class="macro">format!</span>(<span class="string">&quot;{}, {}, {}&quot;</span>, <span class="ident">r</span>, <span class="ident">g</span>, <span class="ident">b</span>);
-            } <span class="kw">else</span> {
-                <span class="ident">ui</span>.<span class="ident">output</span>().<span class="ident">copied_text</span> <span class="op">=</span> <span class="macro">format!</span>(<span class="string">&quot;{}, {}, {}, {}&quot;</span>, <span class="ident">r</span>, <span class="ident">g</span>, <span class="ident">b</span>, <span class="ident">a</span>);
+        <span class="kw">if </span>ui.button(<span class="string">&quot;📋&quot;</span>).on_hover_text(<span class="string">&quot;Click to copy&quot;</span>).clicked() {
+            <span class="kw">if </span>alpha == Alpha::Opaque {
+                ui.output().copied_text = <span class="macro">format!</span>(<span class="string">&quot;{}, {}, {}&quot;</span>, r, g, b);
+            } <span class="kw">else </span>{
+                ui.output().copied_text = <span class="macro">format!</span>(<span class="string">&quot;{}, {}, {}, {}&quot;</span>, r, g, b, a);
             }
         }
 
-        <span class="kw">if</span> <span class="ident">alpha</span> <span class="op">==</span> <span class="ident">Alpha::Opaque</span> {
-            <span class="ident">ui</span>.<span class="ident">label</span>(<span class="macro">format!</span>(<span class="string">&quot;rgb({}, {}, {})&quot;</span>, <span class="ident">r</span>, <span class="ident">g</span>, <span class="ident">b</span>))
-                .<span class="ident">on_hover_text</span>(<span class="string">&quot;Red Green Blue&quot;</span>);
-        } <span class="kw">else</span> {
-            <span class="ident">ui</span>.<span class="ident">label</span>(<span class="macro">format!</span>(<span class="string">&quot;rgba({}, {}, {}, {})&quot;</span>, <span class="ident">r</span>, <span class="ident">g</span>, <span class="ident">b</span>, <span class="ident">a</span>))
-                .<span class="ident">on_hover_text</span>(<span class="string">&quot;Red Green Blue with premultiplied Alpha&quot;</span>);
+        <span class="kw">if </span>alpha == Alpha::Opaque {
+            ui.label(<span class="macro">format!</span>(<span class="string">&quot;rgb({}, {}, {})&quot;</span>, r, g, b))
+                .on_hover_text(<span class="string">&quot;Red Green Blue&quot;</span>);
+        } <span class="kw">else </span>{
+            ui.label(<span class="macro">format!</span>(<span class="string">&quot;rgba({}, {}, {}, {})&quot;</span>, r, g, b, a))
+                .on_hover_text(<span class="string">&quot;Red Green Blue with premultiplied Alpha&quot;</span>);
         }
     });
 }
 
-<span class="kw">fn</span> <span class="ident">color_picker_hsvag_2d</span>(<span class="ident">ui</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Ui</span>, <span class="ident">hsva</span>: <span class="kw-2">&amp;mut</span> <span class="ident">HsvaGamma</span>, <span class="ident">alpha</span>: <span class="ident">Alpha</span>) {
-    <span class="kw">let</span> <span class="ident">current_color_size</span> <span class="op">=</span> <span class="ident">vec2</span>(<span class="ident">ui</span>.<span class="ident">spacing</span>().<span class="ident">slider_width</span>, <span class="ident">ui</span>.<span class="ident">spacing</span>().<span class="ident">interact_size</span>.<span class="ident">y</span>);
-    <span class="ident">show_color</span>(<span class="ident">ui</span>, <span class="kw-2">*</span><span class="ident">hsva</span>, <span class="ident">current_color_size</span>).<span class="ident">on_hover_text</span>(<span class="string">&quot;Selected color&quot;</span>);
+<span class="kw">fn </span>color_picker_hsvag_2d(ui: <span class="kw-2">&amp;mut </span>Ui, hsva: <span class="kw-2">&amp;mut </span>HsvaGamma, alpha: Alpha) {
+    <span class="kw">let </span>current_color_size = vec2(ui.spacing().slider_width, ui.spacing().interact_size.y);
+    show_color(ui, <span class="kw-2">*</span>hsva, current_color_size).on_hover_text(<span class="string">&quot;Selected color&quot;</span>);
 
-    <span class="ident">color_text_ui</span>(<span class="ident">ui</span>, <span class="kw-2">*</span><span class="ident">hsva</span>, <span class="ident">alpha</span>);
+    color_text_ui(ui, <span class="kw-2">*</span>hsva, alpha);
 
-    <span class="kw">if</span> <span class="ident">alpha</span> <span class="op">==</span> <span class="ident">Alpha::BlendOrAdditive</span> {
-        <span class="comment">// We signal additive blending by storing a negative alpha (a bit ironic).</span>
-        <span class="kw">let</span> <span class="ident">a</span> <span class="op">=</span> <span class="kw-2">&amp;mut</span> <span class="ident">hsva</span>.<span class="ident">a</span>;
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">additive</span> <span class="op">=</span> <span class="kw-2">*</span><span class="ident">a</span> <span class="op">&lt;</span> <span class="number">0.0</span>;
-        <span class="ident">ui</span>.<span class="ident">horizontal</span>(<span class="op">|</span><span class="ident">ui</span><span class="op">|</span> {
-            <span class="ident">ui</span>.<span class="ident">label</span>(<span class="string">&quot;Blending:&quot;</span>);
-            <span class="ident">ui</span>.<span class="ident">radio_value</span>(<span class="kw-2">&amp;mut</span> <span class="ident">additive</span>, <span class="bool-val">false</span>, <span class="string">&quot;Normal&quot;</span>);
-            <span class="ident">ui</span>.<span class="ident">radio_value</span>(<span class="kw-2">&amp;mut</span> <span class="ident">additive</span>, <span class="bool-val">true</span>, <span class="string">&quot;Additive&quot;</span>);
+    <span class="kw">if </span>alpha == Alpha::BlendOrAdditive {
+        <span class="comment">// We signal additive blending by storing a negative alpha (a bit ironic).
+        </span><span class="kw">let </span>a = <span class="kw-2">&amp;mut </span>hsva.a;
+        <span class="kw">let </span><span class="kw-2">mut </span>additive = <span class="kw-2">*</span>a &lt; <span class="number">0.0</span>;
+        ui.horizontal(|ui| {
+            ui.label(<span class="string">&quot;Blending:&quot;</span>);
+            ui.radio_value(<span class="kw-2">&amp;mut </span>additive, <span class="bool-val">false</span>, <span class="string">&quot;Normal&quot;</span>);
+            ui.radio_value(<span class="kw-2">&amp;mut </span>additive, <span class="bool-val">true</span>, <span class="string">&quot;Additive&quot;</span>);
 
-            <span class="kw">if</span> <span class="ident">additive</span> {
-                <span class="kw-2">*</span><span class="ident">a</span> <span class="op">=</span> <span class="op">-</span><span class="ident">a</span>.<span class="ident">abs</span>();
+            <span class="kw">if </span>additive {
+                <span class="kw-2">*</span>a = -a.abs();
             }
 
-            <span class="kw">if</span> <span class="op">!</span><span class="ident">additive</span> {
-                <span class="kw-2">*</span><span class="ident">a</span> <span class="op">=</span> <span class="ident">a</span>.<span class="ident">abs</span>();
+            <span class="kw">if </span>!additive {
+                <span class="kw-2">*</span>a = a.abs();
             }
         });
     }
-    <span class="kw">let</span> <span class="ident">additive</span> <span class="op">=</span> <span class="ident">hsva</span>.<span class="ident">a</span> <span class="op">&lt;</span> <span class="number">0.0</span>;
+    <span class="kw">let </span>additive = hsva.a &lt; <span class="number">0.0</span>;
 
-    <span class="kw">let</span> <span class="ident">opaque</span> <span class="op">=</span> <span class="ident">HsvaGamma</span> { <span class="ident">a</span>: <span class="number">1.0</span>, ..<span class="kw-2">*</span><span class="ident">hsva</span> };
+    <span class="kw">let </span>opaque = HsvaGamma { a: <span class="number">1.0</span>, ..<span class="kw-2">*</span>hsva };
 
-    <span class="kw">if</span> <span class="ident">alpha</span> <span class="op">==</span> <span class="ident">Alpha::Opaque</span> {
-        <span class="ident">hsva</span>.<span class="ident">a</span> <span class="op">=</span> <span class="number">1.0</span>;
-    } <span class="kw">else</span> {
-        <span class="kw">let</span> <span class="ident">a</span> <span class="op">=</span> <span class="kw-2">&amp;mut</span> <span class="ident">hsva</span>.<span class="ident">a</span>;
+    <span class="kw">if </span>alpha == Alpha::Opaque {
+        hsva.a = <span class="number">1.0</span>;
+    } <span class="kw">else </span>{
+        <span class="kw">let </span>a = <span class="kw-2">&amp;mut </span>hsva.a;
 
-        <span class="kw">if</span> <span class="ident">alpha</span> <span class="op">==</span> <span class="ident">Alpha::OnlyBlend</span> {
-            <span class="kw">if</span> <span class="kw-2">*</span><span class="ident">a</span> <span class="op">&lt;</span> <span class="number">0.0</span> {
-                <span class="kw-2">*</span><span class="ident">a</span> <span class="op">=</span> <span class="number">0.5</span>; <span class="comment">// was additive, but isn&#39;t allowed to be</span>
-            }
-            <span class="ident">color_slider_1d</span>(<span class="ident">ui</span>, <span class="ident">a</span>, <span class="op">|</span><span class="ident">a</span><span class="op">|</span> <span class="ident">HsvaGamma</span> { <span class="ident">a</span>, ..<span class="ident">opaque</span> }.<span class="ident">into</span>()).<span class="ident">on_hover_text</span>(<span class="string">&quot;Alpha&quot;</span>);
-        } <span class="kw">else</span> <span class="kw">if</span> <span class="op">!</span><span class="ident">additive</span> {
-            <span class="ident">color_slider_1d</span>(<span class="ident">ui</span>, <span class="ident">a</span>, <span class="op">|</span><span class="ident">a</span><span class="op">|</span> <span class="ident">HsvaGamma</span> { <span class="ident">a</span>, ..<span class="ident">opaque</span> }.<span class="ident">into</span>()).<span class="ident">on_hover_text</span>(<span class="string">&quot;Alpha&quot;</span>);
+        <span class="kw">if </span>alpha == Alpha::OnlyBlend {
+            <span class="kw">if </span><span class="kw-2">*</span>a &lt; <span class="number">0.0 </span>{
+                <span class="kw-2">*</span>a = <span class="number">0.5</span>; <span class="comment">// was additive, but isn&#39;t allowed to be
+            </span>}
+            color_slider_1d(ui, a, |a| HsvaGamma { a, ..opaque }.into()).on_hover_text(<span class="string">&quot;Alpha&quot;</span>);
+        } <span class="kw">else if </span>!additive {
+            color_slider_1d(ui, a, |a| HsvaGamma { a, ..opaque }.into()).on_hover_text(<span class="string">&quot;Alpha&quot;</span>);
         }
     }
 
-    <span class="kw">let</span> <span class="ident">HsvaGamma</span> { <span class="ident">h</span>, <span class="ident">s</span>, <span class="ident">v</span>, <span class="ident">a</span>: <span class="kw">_</span> } <span class="op">=</span> <span class="ident">hsva</span>;
+    <span class="kw">let </span>HsvaGamma { h, s, v, a: <span class="kw">_ </span>} = hsva;
 
-    <span class="ident">color_slider_1d</span>(<span class="ident">ui</span>, <span class="ident">h</span>, <span class="op">|</span><span class="ident">h</span><span class="op">|</span> {
-        <span class="ident">HsvaGamma</span> {
-            <span class="ident">h</span>,
-            <span class="ident">s</span>: <span class="number">1.0</span>,
-            <span class="ident">v</span>: <span class="number">1.0</span>,
-            <span class="ident">a</span>: <span class="number">1.0</span>,
+    color_slider_1d(ui, h, |h| {
+        HsvaGamma {
+            h,
+            s: <span class="number">1.0</span>,
+            v: <span class="number">1.0</span>,
+            a: <span class="number">1.0</span>,
         }
-        .<span class="ident">into</span>()
+        .into()
     })
-    .<span class="ident">on_hover_text</span>(<span class="string">&quot;Hue&quot;</span>);
+    .on_hover_text(<span class="string">&quot;Hue&quot;</span>);
 
-    <span class="kw">if</span> <span class="bool-val">false</span> {
-        <span class="ident">color_slider_1d</span>(<span class="ident">ui</span>, <span class="ident">s</span>, <span class="op">|</span><span class="ident">s</span><span class="op">|</span> <span class="ident">HsvaGamma</span> { <span class="ident">s</span>, ..<span class="ident">opaque</span> }.<span class="ident">into</span>()).<span class="ident">on_hover_text</span>(<span class="string">&quot;Saturation&quot;</span>);
+    <span class="kw">if </span><span class="bool-val">false </span>{
+        color_slider_1d(ui, s, |s| HsvaGamma { s, ..opaque }.into()).on_hover_text(<span class="string">&quot;Saturation&quot;</span>);
     }
 
-    <span class="kw">if</span> <span class="bool-val">false</span> {
-        <span class="ident">color_slider_1d</span>(<span class="ident">ui</span>, <span class="ident">v</span>, <span class="op">|</span><span class="ident">v</span><span class="op">|</span> <span class="ident">HsvaGamma</span> { <span class="ident">v</span>, ..<span class="ident">opaque</span> }.<span class="ident">into</span>()).<span class="ident">on_hover_text</span>(<span class="string">&quot;Value&quot;</span>);
+    <span class="kw">if </span><span class="bool-val">false </span>{
+        color_slider_1d(ui, v, |v| HsvaGamma { v, ..opaque }.into()).on_hover_text(<span class="string">&quot;Value&quot;</span>);
     }
 
-    <span class="ident">color_slider_2d</span>(<span class="ident">ui</span>, <span class="ident">v</span>, <span class="ident">s</span>, <span class="op">|</span><span class="ident">v</span>, <span class="ident">s</span><span class="op">|</span> <span class="ident">HsvaGamma</span> { <span class="ident">s</span>, <span class="ident">v</span>, ..<span class="ident">opaque</span> }.<span class="ident">into</span>());
+    color_slider_2d(ui, v, s, |v, s| HsvaGamma { s, v, ..opaque }.into());
 }
 
-<span class="doccomment">/// Returns `true` on change.</span>
-<span class="kw">fn</span> <span class="ident">color_picker_hsva_2d</span>(<span class="ident">ui</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Ui</span>, <span class="ident">hsva</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Hsva</span>, <span class="ident">alpha</span>: <span class="ident">Alpha</span>) -&gt; <span class="ident">bool</span> {
-    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">hsvag</span> <span class="op">=</span> <span class="ident">HsvaGamma::from</span>(<span class="kw-2">*</span><span class="ident">hsva</span>);
-    <span class="ident">ui</span>.<span class="ident">vertical</span>(<span class="op">|</span><span class="ident">ui</span><span class="op">|</span> {
-        <span class="ident">color_picker_hsvag_2d</span>(<span class="ident">ui</span>, <span class="kw-2">&amp;mut</span> <span class="ident">hsvag</span>, <span class="ident">alpha</span>);
+<span class="doccomment">/// Returns `true` on change.
+</span><span class="kw">fn </span>color_picker_hsva_2d(ui: <span class="kw-2">&amp;mut </span>Ui, hsva: <span class="kw-2">&amp;mut </span>Hsva, alpha: Alpha) -&gt; bool {
+    <span class="kw">let </span><span class="kw-2">mut </span>hsvag = HsvaGamma::from(<span class="kw-2">*</span>hsva);
+    ui.vertical(|ui| {
+        color_picker_hsvag_2d(ui, <span class="kw-2">&amp;mut </span>hsvag, alpha);
     });
-    <span class="kw">let</span> <span class="ident">new_hasva</span> <span class="op">=</span> <span class="ident">Hsva::from</span>(<span class="ident">hsvag</span>);
-    <span class="kw">if</span> <span class="kw-2">*</span><span class="ident">hsva</span> <span class="op">==</span> <span class="ident">new_hasva</span> {
-        <span class="bool-val">false</span>
-    } <span class="kw">else</span> {
-        <span class="kw-2">*</span><span class="ident">hsva</span> <span class="op">=</span> <span class="ident">new_hasva</span>;
-        <span class="bool-val">true</span>
-    }
+    <span class="kw">let </span>new_hasva = Hsva::from(hsvag);
+    <span class="kw">if </span><span class="kw-2">*</span>hsva == new_hasva {
+        <span class="bool-val">false
+    </span>} <span class="kw">else </span>{
+        <span class="kw-2">*</span>hsva = new_hasva;
+        <span class="bool-val">true
+    </span>}
 }
 
-<span class="doccomment">/// Shows a color picker where the user can change the given color.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// Returns `true` on change.</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">color_picker_color32</span>(<span class="ident">ui</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Ui</span>, <span class="ident">srgba</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Color32</span>, <span class="ident">alpha</span>: <span class="ident">Alpha</span>) -&gt; <span class="ident">bool</span> {
-    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">hsva</span> <span class="op">=</span> <span class="ident">color_cache_get</span>(<span class="ident">ui</span>.<span class="ident">ctx</span>(), <span class="kw-2">*</span><span class="ident">srgba</span>);
-    <span class="kw">let</span> <span class="ident">changed</span> <span class="op">=</span> <span class="ident">color_picker_hsva_2d</span>(<span class="ident">ui</span>, <span class="kw-2">&amp;mut</span> <span class="ident">hsva</span>, <span class="ident">alpha</span>);
-    <span class="kw-2">*</span><span class="ident">srgba</span> <span class="op">=</span> <span class="ident">Color32::from</span>(<span class="ident">hsva</span>);
-    <span class="ident">color_cache_set</span>(<span class="ident">ui</span>.<span class="ident">ctx</span>(), <span class="kw-2">*</span><span class="ident">srgba</span>, <span class="ident">hsva</span>);
-    <span class="ident">changed</span>
+<span class="doccomment">/// Shows a color picker where the user can change the given color.
+///
+/// Returns `true` on change.
+</span><span class="kw">pub fn </span>color_picker_color32(ui: <span class="kw-2">&amp;mut </span>Ui, srgba: <span class="kw-2">&amp;mut </span>Color32, alpha: Alpha) -&gt; bool {
+    <span class="kw">let </span><span class="kw-2">mut </span>hsva = color_cache_get(ui.ctx(), <span class="kw-2">*</span>srgba);
+    <span class="kw">let </span>changed = color_picker_hsva_2d(ui, <span class="kw-2">&amp;mut </span>hsva, alpha);
+    <span class="kw-2">*</span>srgba = Color32::from(hsva);
+    color_cache_set(ui.ctx(), <span class="kw-2">*</span>srgba, hsva);
+    changed
 }
 
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">color_edit_button_hsva</span>(<span class="ident">ui</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Ui</span>, <span class="ident">hsva</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Hsva</span>, <span class="ident">alpha</span>: <span class="ident">Alpha</span>) -&gt; <span class="ident">Response</span> {
-    <span class="kw">let</span> <span class="ident">pupup_id</span> <span class="op">=</span> <span class="ident">ui</span>.<span class="ident">auto_id_with</span>(<span class="string">&quot;popup&quot;</span>);
-    <span class="kw">let</span> <span class="ident">open</span> <span class="op">=</span> <span class="ident">ui</span>.<span class="ident">memory</span>().<span class="ident">is_popup_open</span>(<span class="ident">pupup_id</span>);
-    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">button_response</span> <span class="op">=</span> <span class="ident">color_button</span>(<span class="ident">ui</span>, (<span class="kw-2">*</span><span class="ident">hsva</span>).<span class="ident">into</span>(), <span class="ident">open</span>);
-    <span class="kw">if</span> <span class="ident">ui</span>.<span class="ident">style</span>().<span class="ident">explanation_tooltips</span> {
-        <span class="ident">button_response</span> <span class="op">=</span> <span class="ident">button_response</span>.<span class="ident">on_hover_text</span>(<span class="string">&quot;Click to edit color&quot;</span>);
+<span class="kw">pub fn </span>color_edit_button_hsva(ui: <span class="kw-2">&amp;mut </span>Ui, hsva: <span class="kw-2">&amp;mut </span>Hsva, alpha: Alpha) -&gt; Response {
+    <span class="kw">let </span>pupup_id = ui.auto_id_with(<span class="string">&quot;popup&quot;</span>);
+    <span class="kw">let </span>open = ui.memory().is_popup_open(pupup_id);
+    <span class="kw">let </span><span class="kw-2">mut </span>button_response = color_button(ui, (<span class="kw-2">*</span>hsva).into(), open);
+    <span class="kw">if </span>ui.style().explanation_tooltips {
+        button_response = button_response.on_hover_text(<span class="string">&quot;Click to edit color&quot;</span>);
     }
 
-    <span class="kw">if</span> <span class="ident">button_response</span>.<span class="ident">clicked</span>() {
-        <span class="ident">ui</span>.<span class="ident">memory</span>().<span class="ident">toggle_popup</span>(<span class="ident">pupup_id</span>);
+    <span class="kw">if </span>button_response.clicked() {
+        ui.memory().toggle_popup(pupup_id);
     }
-    <span class="comment">// TODO: make it easier to show a temporary popup that closes when you click outside it</span>
-    <span class="kw">if</span> <span class="ident">ui</span>.<span class="ident">memory</span>().<span class="ident">is_popup_open</span>(<span class="ident">pupup_id</span>) {
-        <span class="kw">let</span> <span class="ident">area_response</span> <span class="op">=</span> <span class="ident">Area::new</span>(<span class="ident">pupup_id</span>)
-            .<span class="ident">order</span>(<span class="ident">Order::Foreground</span>)
-            .<span class="ident">default_pos</span>(<span class="ident">button_response</span>.<span class="ident">rect</span>.<span class="ident">max</span>)
-            .<span class="ident">show</span>(<span class="ident">ui</span>.<span class="ident">ctx</span>(), <span class="op">|</span><span class="ident">ui</span><span class="op">|</span> {
-                <span class="ident">ui</span>.<span class="ident">spacing_mut</span>().<span class="ident">slider_width</span> <span class="op">=</span> <span class="number">210.0</span>;
-                <span class="ident">Frame::popup</span>(<span class="ident">ui</span>.<span class="ident">style</span>()).<span class="ident">show</span>(<span class="ident">ui</span>, <span class="op">|</span><span class="ident">ui</span><span class="op">|</span> {
-                    <span class="kw">if</span> <span class="ident">color_picker_hsva_2d</span>(<span class="ident">ui</span>, <span class="ident">hsva</span>, <span class="ident">alpha</span>) {
-                        <span class="ident">button_response</span>.<span class="ident">mark_changed</span>();
+    <span class="comment">// TODO: make it easier to show a temporary popup that closes when you click outside it
+    </span><span class="kw">if </span>ui.memory().is_popup_open(pupup_id) {
+        <span class="kw">let </span>area_response = Area::new(pupup_id)
+            .order(Order::Foreground)
+            .default_pos(button_response.rect.max)
+            .show(ui.ctx(), |ui| {
+                ui.spacing_mut().slider_width = <span class="number">210.0</span>;
+                Frame::popup(ui.style()).show(ui, |ui| {
+                    <span class="kw">if </span>color_picker_hsva_2d(ui, hsva, alpha) {
+                        button_response.mark_changed();
                     }
                 });
             })
-            .<span class="ident">response</span>;
+            .response;
 
-        <span class="kw">if</span> <span class="op">!</span><span class="ident">button_response</span>.<span class="ident">clicked</span>()
-            <span class="op">&amp;&amp;</span> (<span class="ident">ui</span>.<span class="ident">input</span>().<span class="ident">key_pressed</span>(<span class="ident">Key::Escape</span>) <span class="op">|</span><span class="op">|</span> <span class="ident">area_response</span>.<span class="ident">clicked_elsewhere</span>())
+        <span class="kw">if </span>!button_response.clicked()
+            &amp;&amp; (ui.input().key_pressed(Key::Escape) || area_response.clicked_elsewhere())
         {
-            <span class="ident">ui</span>.<span class="ident">memory</span>().<span class="ident">close_popup</span>();
+            ui.memory().close_popup();
         }
     }
 
-    <span class="ident">button_response</span>
+    button_response
 }
 
-<span class="doccomment">/// Shows a button with the given color.</span>
-<span class="doccomment">/// If the user clicks the button, a full color picker is shown.</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">color_edit_button_srgba</span>(<span class="ident">ui</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Ui</span>, <span class="ident">srgba</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Color32</span>, <span class="ident">alpha</span>: <span class="ident">Alpha</span>) -&gt; <span class="ident">Response</span> {
-    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">hsva</span> <span class="op">=</span> <span class="ident">color_cache_get</span>(<span class="ident">ui</span>.<span class="ident">ctx</span>(), <span class="kw-2">*</span><span class="ident">srgba</span>);
-    <span class="kw">let</span> <span class="ident">response</span> <span class="op">=</span> <span class="ident">color_edit_button_hsva</span>(<span class="ident">ui</span>, <span class="kw-2">&amp;mut</span> <span class="ident">hsva</span>, <span class="ident">alpha</span>);
-    <span class="kw-2">*</span><span class="ident">srgba</span> <span class="op">=</span> <span class="ident">Color32::from</span>(<span class="ident">hsva</span>);
-    <span class="ident">color_cache_set</span>(<span class="ident">ui</span>.<span class="ident">ctx</span>(), <span class="kw-2">*</span><span class="ident">srgba</span>, <span class="ident">hsva</span>);
-    <span class="ident">response</span>
+<span class="doccomment">/// Shows a button with the given color.
+/// If the user clicks the button, a full color picker is shown.
+</span><span class="kw">pub fn </span>color_edit_button_srgba(ui: <span class="kw-2">&amp;mut </span>Ui, srgba: <span class="kw-2">&amp;mut </span>Color32, alpha: Alpha) -&gt; Response {
+    <span class="kw">let </span><span class="kw-2">mut </span>hsva = color_cache_get(ui.ctx(), <span class="kw-2">*</span>srgba);
+    <span class="kw">let </span>response = color_edit_button_hsva(ui, <span class="kw-2">&amp;mut </span>hsva, alpha);
+    <span class="kw-2">*</span>srgba = Color32::from(hsva);
+    color_cache_set(ui.ctx(), <span class="kw-2">*</span>srgba, hsva);
+    response
 }
 
-<span class="doccomment">/// Shows a button with the given color.</span>
-<span class="doccomment">/// If the user clicks the button, a full color picker is shown.</span>
-<span class="doccomment">/// The given color is in `sRGB` space.</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">color_edit_button_srgb</span>(<span class="ident">ui</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Ui</span>, <span class="ident">srgb</span>: <span class="kw-2">&amp;mut</span> [<span class="ident">u8</span>; <span class="number">3</span>]) -&gt; <span class="ident">Response</span> {
-    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">srgba</span> <span class="op">=</span> <span class="ident">Color32::from_rgb</span>(<span class="ident">srgb</span>[<span class="number">0</span>], <span class="ident">srgb</span>[<span class="number">1</span>], <span class="ident">srgb</span>[<span class="number">2</span>]);
-    <span class="kw">let</span> <span class="ident">response</span> <span class="op">=</span> <span class="ident">color_edit_button_srgba</span>(<span class="ident">ui</span>, <span class="kw-2">&amp;mut</span> <span class="ident">srgba</span>, <span class="ident">Alpha::Opaque</span>);
-    <span class="ident">srgb</span>[<span class="number">0</span>] <span class="op">=</span> <span class="ident">srgba</span>[<span class="number">0</span>];
-    <span class="ident">srgb</span>[<span class="number">1</span>] <span class="op">=</span> <span class="ident">srgba</span>[<span class="number">1</span>];
-    <span class="ident">srgb</span>[<span class="number">2</span>] <span class="op">=</span> <span class="ident">srgba</span>[<span class="number">2</span>];
-    <span class="ident">response</span>
+<span class="doccomment">/// Shows a button with the given color.
+/// If the user clicks the button, a full color picker is shown.
+/// The given color is in `sRGB` space.
+</span><span class="kw">pub fn </span>color_edit_button_srgb(ui: <span class="kw-2">&amp;mut </span>Ui, srgb: <span class="kw-2">&amp;mut </span>[u8; <span class="number">3</span>]) -&gt; Response {
+    <span class="kw">let </span><span class="kw-2">mut </span>srgba = Color32::from_rgb(srgb[<span class="number">0</span>], srgb[<span class="number">1</span>], srgb[<span class="number">2</span>]);
+    <span class="kw">let </span>response = color_edit_button_srgba(ui, <span class="kw-2">&amp;mut </span>srgba, Alpha::Opaque);
+    srgb[<span class="number">0</span>] = srgba[<span class="number">0</span>];
+    srgb[<span class="number">1</span>] = srgba[<span class="number">1</span>];
+    srgb[<span class="number">2</span>] = srgba[<span class="number">2</span>];
+    response
 }
 
-<span class="doccomment">/// Shows a button with the given color.</span>
-<span class="doccomment">/// If the user clicks the button, a full color picker is shown.</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">color_edit_button_rgba</span>(<span class="ident">ui</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Ui</span>, <span class="ident">rgba</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Rgba</span>, <span class="ident">alpha</span>: <span class="ident">Alpha</span>) -&gt; <span class="ident">Response</span> {
-    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">hsva</span> <span class="op">=</span> <span class="ident">color_cache_get</span>(<span class="ident">ui</span>.<span class="ident">ctx</span>(), <span class="kw-2">*</span><span class="ident">rgba</span>);
-    <span class="kw">let</span> <span class="ident">response</span> <span class="op">=</span> <span class="ident">color_edit_button_hsva</span>(<span class="ident">ui</span>, <span class="kw-2">&amp;mut</span> <span class="ident">hsva</span>, <span class="ident">alpha</span>);
-    <span class="kw-2">*</span><span class="ident">rgba</span> <span class="op">=</span> <span class="ident">Rgba::from</span>(<span class="ident">hsva</span>);
-    <span class="ident">color_cache_set</span>(<span class="ident">ui</span>.<span class="ident">ctx</span>(), <span class="kw-2">*</span><span class="ident">rgba</span>, <span class="ident">hsva</span>);
-    <span class="ident">response</span>
+<span class="doccomment">/// Shows a button with the given color.
+/// If the user clicks the button, a full color picker is shown.
+</span><span class="kw">pub fn </span>color_edit_button_rgba(ui: <span class="kw-2">&amp;mut </span>Ui, rgba: <span class="kw-2">&amp;mut </span>Rgba, alpha: Alpha) -&gt; Response {
+    <span class="kw">let </span><span class="kw-2">mut </span>hsva = color_cache_get(ui.ctx(), <span class="kw-2">*</span>rgba);
+    <span class="kw">let </span>response = color_edit_button_hsva(ui, <span class="kw-2">&amp;mut </span>hsva, alpha);
+    <span class="kw-2">*</span>rgba = Rgba::from(hsva);
+    color_cache_set(ui.ctx(), <span class="kw-2">*</span>rgba, hsva);
+    response
 }
 
-<span class="doccomment">/// Shows a button with the given color.</span>
-<span class="doccomment">/// If the user clicks the button, a full color picker is shown.</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">color_edit_button_rgb</span>(<span class="ident">ui</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Ui</span>, <span class="ident">rgb</span>: <span class="kw-2">&amp;mut</span> [<span class="ident">f32</span>; <span class="number">3</span>]) -&gt; <span class="ident">Response</span> {
-    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">rgba</span> <span class="op">=</span> <span class="ident">Rgba::from_rgb</span>(<span class="ident">rgb</span>[<span class="number">0</span>], <span class="ident">rgb</span>[<span class="number">1</span>], <span class="ident">rgb</span>[<span class="number">2</span>]);
-    <span class="kw">let</span> <span class="ident">response</span> <span class="op">=</span> <span class="ident">color_edit_button_rgba</span>(<span class="ident">ui</span>, <span class="kw-2">&amp;mut</span> <span class="ident">rgba</span>, <span class="ident">Alpha::Opaque</span>);
-    <span class="ident">rgb</span>[<span class="number">0</span>] <span class="op">=</span> <span class="ident">rgba</span>[<span class="number">0</span>];
-    <span class="ident">rgb</span>[<span class="number">1</span>] <span class="op">=</span> <span class="ident">rgba</span>[<span class="number">1</span>];
-    <span class="ident">rgb</span>[<span class="number">2</span>] <span class="op">=</span> <span class="ident">rgba</span>[<span class="number">2</span>];
-    <span class="ident">response</span>
+<span class="doccomment">/// Shows a button with the given color.
+/// If the user clicks the button, a full color picker is shown.
+</span><span class="kw">pub fn </span>color_edit_button_rgb(ui: <span class="kw-2">&amp;mut </span>Ui, rgb: <span class="kw-2">&amp;mut </span>[f32; <span class="number">3</span>]) -&gt; Response {
+    <span class="kw">let </span><span class="kw-2">mut </span>rgba = Rgba::from_rgb(rgb[<span class="number">0</span>], rgb[<span class="number">1</span>], rgb[<span class="number">2</span>]);
+    <span class="kw">let </span>response = color_edit_button_rgba(ui, <span class="kw-2">&amp;mut </span>rgba, Alpha::Opaque);
+    rgb[<span class="number">0</span>] = rgba[<span class="number">0</span>];
+    rgb[<span class="number">1</span>] = rgba[<span class="number">1</span>];
+    rgb[<span class="number">2</span>] = rgba[<span class="number">2</span>];
+    response
 }
 
-<span class="comment">// To ensure we keep hue slider when `srgba` is gray we store the full `Hsva` in a cache:</span>
-<span class="kw">fn</span> <span class="ident">color_cache_get</span>(<span class="ident">ctx</span>: <span class="kw-2">&amp;</span><span class="ident">Context</span>, <span class="ident">rgba</span>: <span class="kw">impl</span> <span class="ident">Into</span><span class="op">&lt;</span><span class="ident">Rgba</span><span class="op">&gt;</span>) -&gt; <span class="ident">Hsva</span> {
-    <span class="kw">let</span> <span class="ident">rgba</span> <span class="op">=</span> <span class="ident">rgba</span>.<span class="ident">into</span>();
-    <span class="ident">use_color_cache</span>(<span class="ident">ctx</span>, <span class="op">|</span><span class="ident">cc</span><span class="op">|</span> <span class="ident">cc</span>.<span class="ident">get</span>(<span class="kw-2">&amp;</span><span class="ident">rgba</span>).<span class="ident">cloned</span>()).<span class="ident">unwrap_or_else</span>(<span class="op">|</span><span class="op">|</span> <span class="ident">Hsva::from</span>(<span class="ident">rgba</span>))
+<span class="comment">// To ensure we keep hue slider when `srgba` is gray we store the full `Hsva` in a cache:
+</span><span class="kw">fn </span>color_cache_get(ctx: <span class="kw-2">&amp;</span>Context, rgba: <span class="kw">impl </span>Into&lt;Rgba&gt;) -&gt; Hsva {
+    <span class="kw">let </span>rgba = rgba.into();
+    use_color_cache(ctx, |cc| cc.get(<span class="kw-2">&amp;</span>rgba).cloned()).unwrap_or_else(|| Hsva::from(rgba))
 }
 
-<span class="comment">// To ensure we keep hue slider when `srgba` is gray we store the full `Hsva` in a cache:</span>
-<span class="kw">fn</span> <span class="ident">color_cache_set</span>(<span class="ident">ctx</span>: <span class="kw-2">&amp;</span><span class="ident">Context</span>, <span class="ident">rgba</span>: <span class="kw">impl</span> <span class="ident">Into</span><span class="op">&lt;</span><span class="ident">Rgba</span><span class="op">&gt;</span>, <span class="ident">hsva</span>: <span class="ident">Hsva</span>) {
-    <span class="kw">let</span> <span class="ident">rgba</span> <span class="op">=</span> <span class="ident">rgba</span>.<span class="ident">into</span>();
-    <span class="ident">use_color_cache</span>(<span class="ident">ctx</span>, <span class="op">|</span><span class="ident">cc</span><span class="op">|</span> <span class="ident">cc</span>.<span class="ident">set</span>(<span class="ident">rgba</span>, <span class="ident">hsva</span>));
+<span class="comment">// To ensure we keep hue slider when `srgba` is gray we store the full `Hsva` in a cache:
+</span><span class="kw">fn </span>color_cache_set(ctx: <span class="kw-2">&amp;</span>Context, rgba: <span class="kw">impl </span>Into&lt;Rgba&gt;, hsva: Hsva) {
+    <span class="kw">let </span>rgba = rgba.into();
+    use_color_cache(ctx, |cc| cc.set(rgba, hsva));
 }
 
-<span class="comment">// To ensure we keep hue slider when `srgba` is gray we store the full `Hsva` in a cache:</span>
-<span class="kw">fn</span> <span class="ident">use_color_cache</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span>(<span class="ident">ctx</span>: <span class="kw-2">&amp;</span><span class="ident">Context</span>, <span class="ident">f</span>: <span class="kw">impl</span> <span class="ident">FnOnce</span>(<span class="kw-2">&amp;mut</span> <span class="ident">FixedCache</span><span class="op">&lt;</span><span class="ident">Rgba</span>, <span class="ident">Hsva</span><span class="op">&gt;</span>) -&gt; <span class="ident">R</span>) -&gt; <span class="ident">R</span> {
-    <span class="ident">f</span>(<span class="ident">ctx</span>.<span class="ident">memory</span>().<span class="ident">data</span>.<span class="ident">get_temp_mut_or_default</span>(<span class="ident">Id::null</span>()))
+<span class="comment">// To ensure we keep hue slider when `srgba` is gray we store the full `Hsva` in a cache:
+</span><span class="kw">fn </span>use_color_cache&lt;R&gt;(ctx: <span class="kw-2">&amp;</span>Context, f: <span class="kw">impl </span>FnOnce(<span class="kw-2">&amp;mut </span>FixedCache&lt;Rgba, Hsva&gt;) -&gt; R) -&gt; R {
+    f(ctx.memory().data.get_temp_mut_or_default(Id::null()))
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="egui" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0 (a55dd71d5 2022-09-19)" ></div></body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="egui" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.66.1 (90743e729 2023-01-10)" ></div></body></html>

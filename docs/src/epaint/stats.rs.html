@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/epaint-0.16.0/src/stats.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>stats.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../epaint/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../epaint/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../epaint/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/epaint-0.16.0/src/stats.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>stats.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../normalize.css"><link rel="stylesheet" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../ayu.css" disabled><link rel="stylesheet" href="../../dark.css" disabled><link rel="stylesheet" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><div class="width-limiter"><nav class="sub"><a class="sub-logo-container" href="../../epaint/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -237,244 +237,244 @@
 <span id="237">237</span>
 <span id="238">238</span>
 <span id="239">239</span>
-</pre><pre class="rust"><code><span class="doccomment">//! Collect statistics about what is being painted.</span>
+</pre><pre class="rust"><code><span class="doccomment">//! Collect statistics about what is being painted.
 
-<span class="kw">use</span> <span class="kw">crate</span>::<span class="kw-2">*</span>;
+</span><span class="kw">use crate</span>::<span class="kw-2">*</span>;
 
-<span class="doccomment">/// Size of the elements in a vector/array.</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">PartialEq</span>)]</span>
-<span class="kw">enum</span> <span class="ident">ElementSize</span> {
-    <span class="ident">Unknown</span>,
-    <span class="ident">Homogeneous</span>(<span class="ident">usize</span>),
-    <span class="ident">Heterogenous</span>,
+<span class="doccomment">/// Size of the elements in a vector/array.
+</span><span class="attribute">#[derive(Clone, Copy, PartialEq)]
+</span><span class="kw">enum </span>ElementSize {
+    Unknown,
+    Homogeneous(usize),
+    Heterogenous,
 }
 
-<span class="kw">impl</span> <span class="ident">Default</span> <span class="kw">for</span> <span class="ident">ElementSize</span> {
-    <span class="kw">fn</span> <span class="ident">default</span>() -&gt; <span class="self">Self</span> {
-        <span class="ident"><span class="self">Self</span>::Unknown</span>
+<span class="kw">impl </span>Default <span class="kw">for </span>ElementSize {
+    <span class="kw">fn </span>default() -&gt; <span class="self">Self </span>{
+        <span class="self">Self</span>::Unknown
     }
 }
 
-<span class="doccomment">/// Aggregate information about a bunch of allocations.</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">Default</span>, <span class="ident">PartialEq</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">AllocInfo</span> {
-    <span class="ident">element_size</span>: <span class="ident">ElementSize</span>,
-    <span class="ident">num_allocs</span>: <span class="ident">usize</span>,
-    <span class="ident">num_elements</span>: <span class="ident">usize</span>,
-    <span class="ident">num_bytes</span>: <span class="ident">usize</span>,
+<span class="doccomment">/// Aggregate information about a bunch of allocations.
+</span><span class="attribute">#[derive(Clone, Copy, Default, PartialEq)]
+</span><span class="kw">pub struct </span>AllocInfo {
+    element_size: ElementSize,
+    num_allocs: usize,
+    num_elements: usize,
+    num_bytes: usize,
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> <span class="ident">From</span><span class="op">&lt;</span><span class="kw-2">&amp;</span>[<span class="ident">T</span>]<span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">AllocInfo</span> {
-    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">slice</span>: <span class="kw-2">&amp;</span>[<span class="ident">T</span>]) -&gt; <span class="self">Self</span> {
-        <span class="ident"><span class="self">Self</span>::from_slice</span>(<span class="ident">slice</span>)
+<span class="kw">impl</span>&lt;T&gt; From&lt;<span class="kw-2">&amp;</span>[T]&gt; <span class="kw">for </span>AllocInfo {
+    <span class="kw">fn </span>from(slice: <span class="kw-2">&amp;</span>[T]) -&gt; <span class="self">Self </span>{
+        <span class="self">Self</span>::from_slice(slice)
     }
 }
 
-<span class="kw">impl</span> <span class="ident">std::ops::Add</span> <span class="kw">for</span> <span class="ident">AllocInfo</span> {
-    <span class="kw">type</span> <span class="ident">Output</span> <span class="op">=</span> <span class="ident">AllocInfo</span>;
-    <span class="kw">fn</span> <span class="ident">add</span>(<span class="self">self</span>, <span class="ident">rhs</span>: <span class="ident">AllocInfo</span>) -&gt; <span class="ident">AllocInfo</span> {
-        <span class="kw">use</span> <span class="ident">ElementSize</span>::{<span class="ident">Heterogenous</span>, <span class="ident">Homogeneous</span>, <span class="ident">Unknown</span>};
-        <span class="kw">let</span> <span class="ident">element_size</span> <span class="op">=</span> <span class="kw">match</span> (<span class="self">self</span>.<span class="ident">element_size</span>, <span class="ident">rhs</span>.<span class="ident">element_size</span>) {
-            (<span class="ident">Heterogenous</span>, <span class="kw">_</span>) <span class="op">|</span> (<span class="kw">_</span>, <span class="ident">Heterogenous</span>) =&gt; <span class="ident">Heterogenous</span>,
-            (<span class="ident">Unknown</span>, <span class="ident">other</span>) <span class="op">|</span> (<span class="ident">other</span>, <span class="ident">Unknown</span>) =&gt; <span class="ident">other</span>,
-            (<span class="ident">Homogeneous</span>(<span class="ident">lhs</span>), <span class="ident">Homogeneous</span>(<span class="ident">rhs</span>)) <span class="kw">if</span> <span class="ident">lhs</span> <span class="op">==</span> <span class="ident">rhs</span> =&gt; <span class="ident">Homogeneous</span>(<span class="ident">lhs</span>),
-            <span class="kw">_</span> =&gt; <span class="ident">Heterogenous</span>,
+<span class="kw">impl </span>std::ops::Add <span class="kw">for </span>AllocInfo {
+    <span class="kw">type </span>Output = AllocInfo;
+    <span class="kw">fn </span>add(<span class="self">self</span>, rhs: AllocInfo) -&gt; AllocInfo {
+        <span class="kw">use </span>ElementSize::{Heterogenous, Homogeneous, Unknown};
+        <span class="kw">let </span>element_size = <span class="kw">match </span>(<span class="self">self</span>.element_size, rhs.element_size) {
+            (Heterogenous, <span class="kw">_</span>) | (<span class="kw">_</span>, Heterogenous) =&gt; Heterogenous,
+            (Unknown, other) | (other, Unknown) =&gt; other,
+            (Homogeneous(lhs), Homogeneous(rhs)) <span class="kw">if </span>lhs == rhs =&gt; Homogeneous(lhs),
+            <span class="kw">_ </span>=&gt; Heterogenous,
         };
 
-        <span class="ident">AllocInfo</span> {
-            <span class="ident">element_size</span>,
-            <span class="ident">num_allocs</span>: <span class="self">self</span>.<span class="ident">num_allocs</span> <span class="op">+</span> <span class="ident">rhs</span>.<span class="ident">num_allocs</span>,
-            <span class="ident">num_elements</span>: <span class="self">self</span>.<span class="ident">num_elements</span> <span class="op">+</span> <span class="ident">rhs</span>.<span class="ident">num_elements</span>,
-            <span class="ident">num_bytes</span>: <span class="self">self</span>.<span class="ident">num_bytes</span> <span class="op">+</span> <span class="ident">rhs</span>.<span class="ident">num_bytes</span>,
+        AllocInfo {
+            element_size,
+            num_allocs: <span class="self">self</span>.num_allocs + rhs.num_allocs,
+            num_elements: <span class="self">self</span>.num_elements + rhs.num_elements,
+            num_bytes: <span class="self">self</span>.num_bytes + rhs.num_bytes,
         }
     }
 }
 
-<span class="kw">impl</span> <span class="ident">std::ops::AddAssign</span> <span class="kw">for</span> <span class="ident">AllocInfo</span> {
-    <span class="kw">fn</span> <span class="ident">add_assign</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">rhs</span>: <span class="ident">AllocInfo</span>) {
-        <span class="kw-2">*</span><span class="self">self</span> <span class="op">=</span> <span class="kw-2">*</span><span class="self">self</span> <span class="op">+</span> <span class="ident">rhs</span>;
+<span class="kw">impl </span>std::ops::AddAssign <span class="kw">for </span>AllocInfo {
+    <span class="kw">fn </span>add_assign(<span class="kw-2">&amp;mut </span><span class="self">self</span>, rhs: AllocInfo) {
+        <span class="kw-2">*</span><span class="self">self </span>= <span class="kw-2">*</span><span class="self">self </span>+ rhs;
     }
 }
 
-<span class="kw">impl</span> <span class="ident">std::iter::Sum</span> <span class="kw">for</span> <span class="ident">AllocInfo</span> {
-    <span class="kw">fn</span> <span class="ident">sum</span><span class="op">&lt;</span><span class="ident">I</span><span class="op">&gt;</span>(<span class="ident">iter</span>: <span class="ident">I</span>) -&gt; <span class="self">Self</span>
-    <span class="kw">where</span>
-        <span class="ident">I</span>: <span class="ident">Iterator</span><span class="op">&lt;</span><span class="ident">Item</span> <span class="op">=</span> <span class="self">Self</span><span class="op">&gt;</span>,
+<span class="kw">impl </span>std::iter::Sum <span class="kw">for </span>AllocInfo {
+    <span class="kw">fn </span>sum&lt;I&gt;(iter: I) -&gt; <span class="self">Self
+    </span><span class="kw">where
+        </span>I: Iterator&lt;Item = <span class="self">Self</span>&gt;,
     {
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">sum</span> <span class="op">=</span> <span class="ident"><span class="self">Self</span>::default</span>();
-        <span class="kw">for</span> <span class="ident">value</span> <span class="kw">in</span> <span class="ident">iter</span> {
-            <span class="ident">sum</span> <span class="op">+</span><span class="op">=</span> <span class="ident">value</span>;
+        <span class="kw">let </span><span class="kw-2">mut </span>sum = <span class="self">Self</span>::default();
+        <span class="kw">for </span>value <span class="kw">in </span>iter {
+            sum += value;
         }
-        <span class="ident">sum</span>
+        sum
     }
 }
 
-<span class="kw">impl</span> <span class="ident">AllocInfo</span> {
-    <span class="comment">// pub fn from_shape(shape: &amp;Shape) -&gt; Self {</span>
-    <span class="comment">//     match shape {</span>
-    <span class="comment">//         Shape::Noop</span>
-    <span class="comment">//         Shape::Vec(shapes) =&gt; Self::from_shapes(shapes)</span>
-    <span class="comment">//         | Shape::Circle { .. }</span>
-    <span class="comment">//         | Shape::LineSegment { .. }</span>
-    <span class="comment">//         | Shape::Rect { .. } =&gt; Self::default(),</span>
-    <span class="comment">//         Shape::Path { points, .. } =&gt; Self::from_slice(points),</span>
-    <span class="comment">//         Shape::Text { galley, .. } =&gt; Self::from_galley(galley),</span>
-    <span class="comment">//         Shape::Mesh(mesh) =&gt; Self::from_mesh(mesh),</span>
-    <span class="comment">//     }</span>
-    <span class="comment">// }</span>
+<span class="kw">impl </span>AllocInfo {
+    <span class="comment">// pub fn from_shape(shape: &amp;Shape) -&gt; Self {
+    //     match shape {
+    //         Shape::Noop
+    //         Shape::Vec(shapes) =&gt; Self::from_shapes(shapes)
+    //         | Shape::Circle { .. }
+    //         | Shape::LineSegment { .. }
+    //         | Shape::Rect { .. } =&gt; Self::default(),
+    //         Shape::Path { points, .. } =&gt; Self::from_slice(points),
+    //         Shape::Text { galley, .. } =&gt; Self::from_galley(galley),
+    //         Shape::Mesh(mesh) =&gt; Self::from_mesh(mesh),
+    //     }
+    // }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">from_galley</span>(<span class="ident">galley</span>: <span class="kw-2">&amp;</span><span class="ident">Galley</span>) -&gt; <span class="self">Self</span> {
-        <span class="ident"><span class="self">Self</span>::from_slice</span>(<span class="ident">galley</span>.<span class="ident">text</span>().<span class="ident">as_bytes</span>())
-            <span class="op">+</span> <span class="ident"><span class="self">Self</span>::from_slice</span>(<span class="kw-2">&amp;</span><span class="ident">galley</span>.<span class="ident">rows</span>)
-            <span class="op">+</span> <span class="ident">galley</span>.<span class="ident">rows</span>.<span class="ident">iter</span>().<span class="ident">map</span>(<span class="ident"><span class="self">Self</span>::from_galley_row</span>).<span class="ident">sum</span>()
+    </span><span class="kw">pub fn </span>from_galley(galley: <span class="kw-2">&amp;</span>Galley) -&gt; <span class="self">Self </span>{
+        <span class="self">Self</span>::from_slice(galley.text().as_bytes())
+            + <span class="self">Self</span>::from_slice(<span class="kw-2">&amp;</span>galley.rows)
+            + galley.rows.iter().map(<span class="self">Self</span>::from_galley_row).sum()
     }
 
-    <span class="kw">fn</span> <span class="ident">from_galley_row</span>(<span class="ident">row</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="kw">crate</span>::text::Row</span>) -&gt; <span class="self">Self</span> {
-        <span class="ident"><span class="self">Self</span>::from_mesh</span>(<span class="kw-2">&amp;</span><span class="ident">row</span>.<span class="ident">visuals</span>.<span class="ident">mesh</span>) <span class="op">+</span> <span class="ident"><span class="self">Self</span>::from_slice</span>(<span class="kw-2">&amp;</span><span class="ident">row</span>.<span class="ident">glyphs</span>)
+    <span class="kw">fn </span>from_galley_row(row: <span class="kw-2">&amp;</span><span class="kw">crate</span>::text::Row) -&gt; <span class="self">Self </span>{
+        <span class="self">Self</span>::from_mesh(<span class="kw-2">&amp;</span>row.visuals.mesh) + <span class="self">Self</span>::from_slice(<span class="kw-2">&amp;</span>row.glyphs)
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">from_mesh</span>(<span class="ident">mesh</span>: <span class="kw-2">&amp;</span><span class="ident">Mesh</span>) -&gt; <span class="self">Self</span> {
-        <span class="ident"><span class="self">Self</span>::from_slice</span>(<span class="kw-2">&amp;</span><span class="ident">mesh</span>.<span class="ident">indices</span>) <span class="op">+</span> <span class="ident"><span class="self">Self</span>::from_slice</span>(<span class="kw-2">&amp;</span><span class="ident">mesh</span>.<span class="ident">vertices</span>)
+    <span class="kw">pub fn </span>from_mesh(mesh: <span class="kw-2">&amp;</span>Mesh) -&gt; <span class="self">Self </span>{
+        <span class="self">Self</span>::from_slice(<span class="kw-2">&amp;</span>mesh.indices) + <span class="self">Self</span>::from_slice(<span class="kw-2">&amp;</span>mesh.vertices)
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">from_slice</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>(<span class="ident">slice</span>: <span class="kw-2">&amp;</span>[<span class="ident">T</span>]) -&gt; <span class="self">Self</span> {
-        <span class="kw">use</span> <span class="ident">std::mem::size_of</span>;
-        <span class="kw">let</span> <span class="ident">element_size</span> <span class="op">=</span> <span class="ident">size_of</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>();
-        <span class="self">Self</span> {
-            <span class="ident">element_size</span>: <span class="ident">ElementSize::Homogeneous</span>(<span class="ident">element_size</span>),
-            <span class="ident">num_allocs</span>: <span class="number">1</span>,
-            <span class="ident">num_elements</span>: <span class="ident">slice</span>.<span class="ident">len</span>(),
-            <span class="ident">num_bytes</span>: <span class="ident">slice</span>.<span class="ident">len</span>() <span class="op">*</span> <span class="ident">element_size</span>,
+    <span class="kw">pub fn </span>from_slice&lt;T&gt;(slice: <span class="kw-2">&amp;</span>[T]) -&gt; <span class="self">Self </span>{
+        <span class="kw">use </span>std::mem::size_of;
+        <span class="kw">let </span>element_size = size_of::&lt;T&gt;();
+        <span class="self">Self </span>{
+            element_size: ElementSize::Homogeneous(element_size),
+            num_allocs: <span class="number">1</span>,
+            num_elements: slice.len(),
+            num_bytes: slice.len() * element_size,
         }
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">num_elements</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">usize</span> {
-        <span class="macro">assert!</span>(<span class="self">self</span>.<span class="ident">element_size</span> <span class="op">!</span><span class="op">=</span> <span class="ident">ElementSize::Heterogenous</span>);
-        <span class="self">self</span>.<span class="ident">num_elements</span>
+    <span class="kw">pub fn </span>num_elements(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; usize {
+        <span class="macro">assert!</span>(<span class="self">self</span>.element_size != ElementSize::Heterogenous);
+        <span class="self">self</span>.num_elements
     }
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">num_allocs</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">usize</span> {
-        <span class="self">self</span>.<span class="ident">num_allocs</span>
+    <span class="kw">pub fn </span>num_allocs(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; usize {
+        <span class="self">self</span>.num_allocs
     }
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">num_bytes</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">usize</span> {
-        <span class="self">self</span>.<span class="ident">num_bytes</span>
-    }
-
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">megabytes</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">String</span> {
-        <span class="ident">megabytes</span>(<span class="self">self</span>.<span class="ident">num_bytes</span>())
+    <span class="kw">pub fn </span>num_bytes(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; usize {
+        <span class="self">self</span>.num_bytes
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">format</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">what</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) -&gt; <span class="ident">String</span> {
-        <span class="kw">if</span> <span class="self">self</span>.<span class="ident">num_allocs</span>() <span class="op">==</span> <span class="number">0</span> {
-            <span class="macro">format!</span>(<span class="string">&quot;{:6} {:14}&quot;</span>, <span class="number">0</span>, <span class="ident">what</span>)
-        } <span class="kw">else</span> <span class="kw">if</span> <span class="self">self</span>.<span class="ident">num_allocs</span>() <span class="op">==</span> <span class="number">1</span> {
+    <span class="kw">pub fn </span>megabytes(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; String {
+        megabytes(<span class="self">self</span>.num_bytes())
+    }
+
+    <span class="kw">pub fn </span>format(<span class="kw-2">&amp;</span><span class="self">self</span>, what: <span class="kw-2">&amp;</span>str) -&gt; String {
+        <span class="kw">if </span><span class="self">self</span>.num_allocs() == <span class="number">0 </span>{
+            <span class="macro">format!</span>(<span class="string">&quot;{:6} {:14}&quot;</span>, <span class="number">0</span>, what)
+        } <span class="kw">else if </span><span class="self">self</span>.num_allocs() == <span class="number">1 </span>{
             <span class="macro">format!</span>(
                 <span class="string">&quot;{:6} {:14}  {}       1 allocation&quot;</span>,
-                <span class="self">self</span>.<span class="ident">num_elements</span>,
-                <span class="ident">what</span>,
-                <span class="self">self</span>.<span class="ident">megabytes</span>()
+                <span class="self">self</span>.num_elements,
+                what,
+                <span class="self">self</span>.megabytes()
             )
-        } <span class="kw">else</span> <span class="kw">if</span> <span class="self">self</span>.<span class="ident">element_size</span> <span class="op">!</span><span class="op">=</span> <span class="ident">ElementSize::Heterogenous</span> {
+        } <span class="kw">else if </span><span class="self">self</span>.element_size != ElementSize::Heterogenous {
             <span class="macro">format!</span>(
                 <span class="string">&quot;{:6} {:14}  {}     {:3} allocations&quot;</span>,
-                <span class="self">self</span>.<span class="ident">num_elements</span>(),
-                <span class="ident">what</span>,
-                <span class="self">self</span>.<span class="ident">megabytes</span>(),
-                <span class="self">self</span>.<span class="ident">num_allocs</span>()
+                <span class="self">self</span>.num_elements(),
+                what,
+                <span class="self">self</span>.megabytes(),
+                <span class="self">self</span>.num_allocs()
             )
-        } <span class="kw">else</span> {
+        } <span class="kw">else </span>{
             <span class="macro">format!</span>(
                 <span class="string">&quot;{:6} {:14}  {}     {:3} allocations&quot;</span>,
                 <span class="string">&quot;&quot;</span>,
-                <span class="ident">what</span>,
-                <span class="self">self</span>.<span class="ident">megabytes</span>(),
-                <span class="self">self</span>.<span class="ident">num_allocs</span>()
+                what,
+                <span class="self">self</span>.megabytes(),
+                <span class="self">self</span>.num_allocs()
             )
         }
     }
 }
 
-<span class="doccomment">/// Collected allocation statistics for shapes and meshes.</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">Default</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">PaintStats</span> {
-    <span class="kw">pub</span> <span class="ident">shapes</span>: <span class="ident">AllocInfo</span>,
-    <span class="kw">pub</span> <span class="ident">shape_text</span>: <span class="ident">AllocInfo</span>,
-    <span class="kw">pub</span> <span class="ident">shape_path</span>: <span class="ident">AllocInfo</span>,
-    <span class="kw">pub</span> <span class="ident">shape_mesh</span>: <span class="ident">AllocInfo</span>,
-    <span class="kw">pub</span> <span class="ident">shape_vec</span>: <span class="ident">AllocInfo</span>,
+<span class="doccomment">/// Collected allocation statistics for shapes and meshes.
+</span><span class="attribute">#[derive(Clone, Copy, Default)]
+</span><span class="kw">pub struct </span>PaintStats {
+    <span class="kw">pub </span>shapes: AllocInfo,
+    <span class="kw">pub </span>shape_text: AllocInfo,
+    <span class="kw">pub </span>shape_path: AllocInfo,
+    <span class="kw">pub </span>shape_mesh: AllocInfo,
+    <span class="kw">pub </span>shape_vec: AllocInfo,
 
-    <span class="kw">pub</span> <span class="ident">text_shape_vertices</span>: <span class="ident">AllocInfo</span>,
-    <span class="kw">pub</span> <span class="ident">text_shape_indices</span>: <span class="ident">AllocInfo</span>,
+    <span class="kw">pub </span>text_shape_vertices: AllocInfo,
+    <span class="kw">pub </span>text_shape_indices: AllocInfo,
 
-    <span class="doccomment">/// Number of separate clip rectangles</span>
-    <span class="kw">pub</span> <span class="ident">clipped_meshes</span>: <span class="ident">AllocInfo</span>,
-    <span class="kw">pub</span> <span class="ident">vertices</span>: <span class="ident">AllocInfo</span>,
-    <span class="kw">pub</span> <span class="ident">indices</span>: <span class="ident">AllocInfo</span>,
+    <span class="doccomment">/// Number of separate clip rectangles
+    </span><span class="kw">pub </span>clipped_meshes: AllocInfo,
+    <span class="kw">pub </span>vertices: AllocInfo,
+    <span class="kw">pub </span>indices: AllocInfo,
 }
 
-<span class="kw">impl</span> <span class="ident">PaintStats</span> {
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">from_shapes</span>(<span class="ident">shapes</span>: <span class="kw-2">&amp;</span>[<span class="ident">ClippedShape</span>]) -&gt; <span class="self">Self</span> {
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">stats</span> <span class="op">=</span> <span class="ident"><span class="self">Self</span>::default</span>();
-        <span class="ident">stats</span>.<span class="ident">shape_path</span>.<span class="ident">element_size</span> <span class="op">=</span> <span class="ident">ElementSize::Heterogenous</span>; <span class="comment">// nicer display later</span>
-        <span class="ident">stats</span>.<span class="ident">shape_vec</span>.<span class="ident">element_size</span> <span class="op">=</span> <span class="ident">ElementSize::Heterogenous</span>; <span class="comment">// nicer display later</span>
+<span class="kw">impl </span>PaintStats {
+    <span class="kw">pub fn </span>from_shapes(shapes: <span class="kw-2">&amp;</span>[ClippedShape]) -&gt; <span class="self">Self </span>{
+        <span class="kw">let </span><span class="kw-2">mut </span>stats = <span class="self">Self</span>::default();
+        stats.shape_path.element_size = ElementSize::Heterogenous; <span class="comment">// nicer display later
+        </span>stats.shape_vec.element_size = ElementSize::Heterogenous; <span class="comment">// nicer display later
 
-        <span class="ident">stats</span>.<span class="ident">shapes</span> <span class="op">=</span> <span class="ident">AllocInfo::from_slice</span>(<span class="ident">shapes</span>);
-        <span class="kw">for</span> <span class="ident">ClippedShape</span>(<span class="kw">_</span>, <span class="ident">shape</span>) <span class="kw">in</span> <span class="ident">shapes</span> {
-            <span class="ident">stats</span>.<span class="ident">add</span>(<span class="ident">shape</span>);
+        </span>stats.shapes = AllocInfo::from_slice(shapes);
+        <span class="kw">for </span>ClippedShape(<span class="kw">_</span>, shape) <span class="kw">in </span>shapes {
+            stats.add(shape);
         }
-        <span class="ident">stats</span>
+        stats
     }
 
-    <span class="kw">fn</span> <span class="ident">add</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">shape</span>: <span class="kw-2">&amp;</span><span class="ident">Shape</span>) {
-        <span class="kw">match</span> <span class="ident">shape</span> {
-            <span class="ident">Shape::Vec</span>(<span class="ident">shapes</span>) =&gt; {
-                <span class="comment">// self += PaintStats::from_shapes(&amp;shapes); // TODO</span>
-                <span class="self">self</span>.<span class="ident">shapes</span> <span class="op">+</span><span class="op">=</span> <span class="ident">AllocInfo::from_slice</span>(<span class="ident">shapes</span>);
-                <span class="self">self</span>.<span class="ident">shape_vec</span> <span class="op">+</span><span class="op">=</span> <span class="ident">AllocInfo::from_slice</span>(<span class="ident">shapes</span>);
-                <span class="kw">for</span> <span class="ident">shape</span> <span class="kw">in</span> <span class="ident">shapes</span> {
-                    <span class="self">self</span>.<span class="ident">add</span>(<span class="ident">shape</span>);
+    <span class="kw">fn </span>add(<span class="kw-2">&amp;mut </span><span class="self">self</span>, shape: <span class="kw-2">&amp;</span>Shape) {
+        <span class="kw">match </span>shape {
+            Shape::Vec(shapes) =&gt; {
+                <span class="comment">// self += PaintStats::from_shapes(&amp;shapes); // TODO
+                </span><span class="self">self</span>.shapes += AllocInfo::from_slice(shapes);
+                <span class="self">self</span>.shape_vec += AllocInfo::from_slice(shapes);
+                <span class="kw">for </span>shape <span class="kw">in </span>shapes {
+                    <span class="self">self</span>.add(shape);
                 }
             }
-            <span class="ident">Shape::Noop</span> <span class="op">|</span> <span class="ident">Shape::Circle</span> { .. } <span class="op">|</span> <span class="ident">Shape::LineSegment</span> { .. } <span class="op">|</span> <span class="ident">Shape::Rect</span> { .. } =&gt; {
+            Shape::Noop | Shape::Circle { .. } | Shape::LineSegment { .. } | Shape::Rect { .. } =&gt; {
             }
-            <span class="ident">Shape::Path</span>(<span class="ident">path_shape</span>) =&gt; {
-                <span class="self">self</span>.<span class="ident">shape_path</span> <span class="op">+</span><span class="op">=</span> <span class="ident">AllocInfo::from_slice</span>(<span class="kw-2">&amp;</span><span class="ident">path_shape</span>.<span class="ident">points</span>);
+            Shape::Path(path_shape) =&gt; {
+                <span class="self">self</span>.shape_path += AllocInfo::from_slice(<span class="kw-2">&amp;</span>path_shape.points);
             }
-            <span class="ident">Shape::Text</span>(<span class="ident">text_shape</span>) =&gt; {
-                <span class="self">self</span>.<span class="ident">shape_text</span> <span class="op">+</span><span class="op">=</span> <span class="ident">AllocInfo::from_galley</span>(<span class="kw-2">&amp;</span><span class="ident">text_shape</span>.<span class="ident">galley</span>);
+            Shape::Text(text_shape) =&gt; {
+                <span class="self">self</span>.shape_text += AllocInfo::from_galley(<span class="kw-2">&amp;</span>text_shape.galley);
 
-                <span class="kw">for</span> <span class="ident">row</span> <span class="kw">in</span> <span class="kw-2">&amp;</span><span class="ident">text_shape</span>.<span class="ident">galley</span>.<span class="ident">rows</span> {
-                    <span class="self">self</span>.<span class="ident">text_shape_indices</span> <span class="op">+</span><span class="op">=</span> <span class="ident">AllocInfo::from_slice</span>(<span class="kw-2">&amp;</span><span class="ident">row</span>.<span class="ident">visuals</span>.<span class="ident">mesh</span>.<span class="ident">indices</span>);
-                    <span class="self">self</span>.<span class="ident">text_shape_vertices</span> <span class="op">+</span><span class="op">=</span> <span class="ident">AllocInfo::from_slice</span>(<span class="kw-2">&amp;</span><span class="ident">row</span>.<span class="ident">visuals</span>.<span class="ident">mesh</span>.<span class="ident">vertices</span>);
+                <span class="kw">for </span>row <span class="kw">in </span><span class="kw-2">&amp;</span>text_shape.galley.rows {
+                    <span class="self">self</span>.text_shape_indices += AllocInfo::from_slice(<span class="kw-2">&amp;</span>row.visuals.mesh.indices);
+                    <span class="self">self</span>.text_shape_vertices += AllocInfo::from_slice(<span class="kw-2">&amp;</span>row.visuals.mesh.vertices);
                 }
             }
-            <span class="ident">Shape::Mesh</span>(<span class="ident">mesh</span>) =&gt; {
-                <span class="self">self</span>.<span class="ident">shape_mesh</span> <span class="op">+</span><span class="op">=</span> <span class="ident">AllocInfo::from_mesh</span>(<span class="ident">mesh</span>);
+            Shape::Mesh(mesh) =&gt; {
+                <span class="self">self</span>.shape_mesh += AllocInfo::from_mesh(mesh);
             }
         }
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">with_clipped_meshes</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">clipped_meshes</span>: <span class="kw-2">&amp;</span>[<span class="ident"><span class="kw">crate</span>::ClippedMesh</span>]) -&gt; <span class="self">Self</span> {
-        <span class="self">self</span>.<span class="ident">clipped_meshes</span> <span class="op">+</span><span class="op">=</span> <span class="ident">AllocInfo::from_slice</span>(<span class="ident">clipped_meshes</span>);
-        <span class="kw">for</span> <span class="ident">ClippedMesh</span>(<span class="kw">_</span>, <span class="ident">indices</span>) <span class="kw">in</span> <span class="ident">clipped_meshes</span> {
-            <span class="self">self</span>.<span class="ident">vertices</span> <span class="op">+</span><span class="op">=</span> <span class="ident">AllocInfo::from_slice</span>(<span class="kw-2">&amp;</span><span class="ident">indices</span>.<span class="ident">vertices</span>);
-            <span class="self">self</span>.<span class="ident">indices</span> <span class="op">+</span><span class="op">=</span> <span class="ident">AllocInfo::from_slice</span>(<span class="kw-2">&amp;</span><span class="ident">indices</span>.<span class="ident">indices</span>);
+    <span class="kw">pub fn </span>with_clipped_meshes(<span class="kw-2">mut </span><span class="self">self</span>, clipped_meshes: <span class="kw-2">&amp;</span>[<span class="kw">crate</span>::ClippedMesh]) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.clipped_meshes += AllocInfo::from_slice(clipped_meshes);
+        <span class="kw">for </span>ClippedMesh(<span class="kw">_</span>, indices) <span class="kw">in </span>clipped_meshes {
+            <span class="self">self</span>.vertices += AllocInfo::from_slice(<span class="kw-2">&amp;</span>indices.vertices);
+            <span class="self">self</span>.indices += AllocInfo::from_slice(<span class="kw-2">&amp;</span>indices.indices);
         }
-        <span class="self">self</span>
-    }
+        <span class="self">self
+    </span>}
 
-    <span class="comment">// pub fn total(&amp;self) -&gt; AllocInfo {</span>
-    <span class="comment">//     self.shapes</span>
-    <span class="comment">//         + self.shape_text</span>
-    <span class="comment">//         + self.shape_path</span>
-    <span class="comment">//         + self.shape_mesh</span>
-    <span class="comment">//         + self.clipped_meshes</span>
-    <span class="comment">//         + self.vertices</span>
-    <span class="comment">//         + self.indices</span>
-    <span class="comment">// }</span>
-}
+    <span class="comment">// pub fn total(&amp;self) -&gt; AllocInfo {
+    //     self.shapes
+    //         + self.shape_text
+    //         + self.shape_path
+    //         + self.shape_mesh
+    //         + self.clipped_meshes
+    //         + self.vertices
+    //         + self.indices
+    // }
+</span>}
 
-<span class="kw">fn</span> <span class="ident">megabytes</span>(<span class="ident">size</span>: <span class="ident">usize</span>) -&gt; <span class="ident">String</span> {
-    <span class="macro">format!</span>(<span class="string">&quot;{:.2} MB&quot;</span>, <span class="ident">size</span> <span class="kw">as</span> <span class="ident">f64</span> <span class="op">/</span> <span class="number">1e6</span>)
+<span class="kw">fn </span>megabytes(size: usize) -&gt; String {
+    <span class="macro">format!</span>(<span class="string">&quot;{:.2} MB&quot;</span>, size <span class="kw">as </span>f64 / <span class="number">1e6</span>)
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="epaint" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0 (a55dd71d5 2022-09-19)" ></div></body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="epaint" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.66.1 (90743e729 2023-01-10)" ></div></body></html>

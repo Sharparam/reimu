@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/epaint-0.16.0/src/mesh.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>mesh.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../epaint/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../epaint/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../epaint/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/epaint-0.16.0/src/mesh.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>mesh.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../normalize.css"><link rel="stylesheet" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../ayu.css" disabled><link rel="stylesheet" href="../../dark.css" disabled><link rel="stylesheet" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><div class="width-limiter"><nav class="sub"><a class="sub-logo-container" href="../../epaint/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -272,279 +272,279 @@
 <span id="272">272</span>
 <span id="273">273</span>
 <span id="274">274</span>
-</pre><pre class="rust"><code><span class="kw">use</span> <span class="kw">crate</span>::<span class="kw-2">*</span>;
-<span class="kw">use</span> <span class="ident">emath</span>::<span class="kw-2">*</span>;
+</pre><pre class="rust"><code><span class="kw">use crate</span>::<span class="kw-2">*</span>;
+<span class="kw">use </span>emath::<span class="kw-2">*</span>;
 
-<span class="doccomment">/// The 2D vertex type.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// Should be friendly to send to GPU as is.</span>
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">Debug</span>, <span class="ident">Default</span>, <span class="ident">PartialEq</span>)]</span>
-<span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;serde&quot;</span>, <span class="ident">derive</span>(<span class="ident">serde::Deserialize</span>, <span class="ident">serde::Serialize</span>))]</span>
-<span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;bytemuck&quot;</span>, <span class="ident">derive</span>(<span class="ident">bytemuck::Pod</span>, <span class="ident">bytemuck::Zeroable</span>))]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Vertex</span> {
-    <span class="doccomment">/// Logical pixel coordinates (points).</span>
-    <span class="doccomment">/// (0,0) is the top left corner of the screen.</span>
-    <span class="kw">pub</span> <span class="ident">pos</span>: <span class="ident">Pos2</span>, <span class="comment">// 64 bit</span>
+<span class="doccomment">/// The 2D vertex type.
+///
+/// Should be friendly to send to GPU as is.
+</span><span class="attribute">#[repr(C)]
+#[derive(Clone, Copy, Debug, Default, PartialEq)]
+#[cfg_attr(feature = <span class="string">&quot;serde&quot;</span>, derive(serde::Deserialize, serde::Serialize))]
+#[cfg_attr(feature = <span class="string">&quot;bytemuck&quot;</span>, derive(bytemuck::Pod, bytemuck::Zeroable))]
+</span><span class="kw">pub struct </span>Vertex {
+    <span class="doccomment">/// Logical pixel coordinates (points).
+    /// (0,0) is the top left corner of the screen.
+    </span><span class="kw">pub </span>pos: Pos2, <span class="comment">// 64 bit
 
-    <span class="doccomment">/// Normalized texture coordinates.</span>
-    <span class="doccomment">/// (0, 0) is the top left corner of the texture.</span>
-    <span class="doccomment">/// (1, 1) is the bottom right corner of the texture.</span>
-    <span class="kw">pub</span> <span class="ident">uv</span>: <span class="ident">Pos2</span>, <span class="comment">// 64 bit</span>
+    </span><span class="doccomment">/// Normalized texture coordinates.
+    /// (0, 0) is the top left corner of the texture.
+    /// (1, 1) is the bottom right corner of the texture.
+    </span><span class="kw">pub </span>uv: Pos2, <span class="comment">// 64 bit
 
-    <span class="doccomment">/// sRGBA with premultiplied alpha</span>
-    <span class="kw">pub</span> <span class="ident">color</span>: <span class="ident">Color32</span>, <span class="comment">// 32 bit</span>
-}
+    </span><span class="doccomment">/// sRGBA with premultiplied alpha
+    </span><span class="kw">pub </span>color: Color32, <span class="comment">// 32 bit
+</span>}
 
-<span class="doccomment">/// Textured triangles in two dimensions.</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">Default</span>, <span class="ident">PartialEq</span>)]</span>
-<span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;serde&quot;</span>, <span class="ident">derive</span>(<span class="ident">serde::Deserialize</span>, <span class="ident">serde::Serialize</span>))]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Mesh</span> {
-    <span class="doccomment">/// Draw as triangles (i.e. the length is always multiple of three).</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// If you only support 16-bit indices you can use [`Mesh::split_to_u16`].</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// egui is NOT consistent with what winding order it uses, so turn off backface culling.</span>
-    <span class="kw">pub</span> <span class="ident">indices</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u32</span><span class="op">&gt;</span>,
+<span class="doccomment">/// Textured triangles in two dimensions.
+</span><span class="attribute">#[derive(Clone, Debug, Default, PartialEq)]
+#[cfg_attr(feature = <span class="string">&quot;serde&quot;</span>, derive(serde::Deserialize, serde::Serialize))]
+</span><span class="kw">pub struct </span>Mesh {
+    <span class="doccomment">/// Draw as triangles (i.e. the length is always multiple of three).
+    ///
+    /// If you only support 16-bit indices you can use [`Mesh::split_to_u16`].
+    ///
+    /// egui is NOT consistent with what winding order it uses, so turn off backface culling.
+    </span><span class="kw">pub </span>indices: Vec&lt;u32&gt;,
 
-    <span class="doccomment">/// The vertex data indexed by `indices`.</span>
-    <span class="kw">pub</span> <span class="ident">vertices</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Vertex</span><span class="op">&gt;</span>,
+    <span class="doccomment">/// The vertex data indexed by `indices`.
+    </span><span class="kw">pub </span>vertices: Vec&lt;Vertex&gt;,
 
-    <span class="doccomment">/// The texture to use when drawing these triangles.</span>
-    <span class="kw">pub</span> <span class="ident">texture_id</span>: <span class="ident">TextureId</span>,
-    <span class="comment">// TODO: bounding rectangle</span>
-}
+    <span class="doccomment">/// The texture to use when drawing these triangles.
+    </span><span class="kw">pub </span>texture_id: TextureId,
+    <span class="comment">// TODO: bounding rectangle
+</span>}
 
-<span class="kw">impl</span> <span class="ident">Mesh</span> {
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">with_texture</span>(<span class="ident">texture_id</span>: <span class="ident">TextureId</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">Self</span> {
-            <span class="ident">texture_id</span>,
-            ..<span class="ident">Default::default</span>()
+<span class="kw">impl </span>Mesh {
+    <span class="kw">pub fn </span>with_texture(texture_id: TextureId) -&gt; <span class="self">Self </span>{
+        <span class="self">Self </span>{
+            texture_id,
+            ..Default::default()
         }
     }
 
-    <span class="doccomment">/// Restore to default state, but without freeing memory.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">clear</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>) {
-        <span class="self">self</span>.<span class="ident">indices</span>.<span class="ident">clear</span>();
-        <span class="self">self</span>.<span class="ident">vertices</span>.<span class="ident">clear</span>();
-        <span class="self">self</span>.<span class="ident">vertices</span> <span class="op">=</span> <span class="ident">Default::default</span>();
+    <span class="doccomment">/// Restore to default state, but without freeing memory.
+    </span><span class="kw">pub fn </span>clear(<span class="kw-2">&amp;mut </span><span class="self">self</span>) {
+        <span class="self">self</span>.indices.clear();
+        <span class="self">self</span>.vertices.clear();
+        <span class="self">self</span>.vertices = Default::default();
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">bytes_used</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">usize</span> {
-        <span class="ident">std::mem::size_of</span>::<span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>()
-            <span class="op">+</span> <span class="self">self</span>.<span class="ident">vertices</span>.<span class="ident">len</span>() <span class="op">*</span> <span class="ident">std::mem::size_of</span>::<span class="op">&lt;</span><span class="ident">Vertex</span><span class="op">&gt;</span>()
-            <span class="op">+</span> <span class="self">self</span>.<span class="ident">indices</span>.<span class="ident">len</span>() <span class="op">*</span> <span class="ident">std::mem::size_of</span>::<span class="op">&lt;</span><span class="ident">u32</span><span class="op">&gt;</span>()
+    <span class="kw">pub fn </span>bytes_used(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; usize {
+        std::mem::size_of::&lt;<span class="self">Self</span>&gt;()
+            + <span class="self">self</span>.vertices.len() * std::mem::size_of::&lt;Vertex&gt;()
+            + <span class="self">self</span>.indices.len() * std::mem::size_of::&lt;u32&gt;()
     }
 
-    <span class="doccomment">/// Are all indices within the bounds of the contained vertices?</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_valid</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span> {
-        <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Ok</span>(<span class="ident">n</span>) <span class="op">=</span> <span class="ident">u32::try_from</span>(<span class="self">self</span>.<span class="ident">vertices</span>.<span class="ident">len</span>()) {
-            <span class="self">self</span>.<span class="ident">indices</span>.<span class="ident">iter</span>().<span class="ident">all</span>(<span class="op">|</span><span class="kw-2">&amp;</span><span class="ident">i</span><span class="op">|</span> <span class="ident">i</span> <span class="op">&lt;</span> <span class="ident">n</span>)
-        } <span class="kw">else</span> {
-            <span class="bool-val">false</span>
+    <span class="doccomment">/// Are all indices within the bounds of the contained vertices?
+    </span><span class="kw">pub fn </span>is_valid(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; bool {
+        <span class="kw">if let </span><span class="prelude-val">Ok</span>(n) = u32::try_from(<span class="self">self</span>.vertices.len()) {
+            <span class="self">self</span>.indices.iter().all(|<span class="kw-2">&amp;</span>i| i &lt; n)
+        } <span class="kw">else </span>{
+            <span class="bool-val">false
+        </span>}
+    }
+
+    <span class="kw">pub fn </span>is_empty(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; bool {
+        <span class="self">self</span>.indices.is_empty() &amp;&amp; <span class="self">self</span>.vertices.is_empty()
+    }
+
+    <span class="doccomment">/// Calculate a bounding rectangle.
+    </span><span class="kw">pub fn </span>calc_bounds(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; Rect {
+        <span class="kw">let </span><span class="kw-2">mut </span>bounds = Rect::NOTHING;
+        <span class="kw">for </span>v <span class="kw">in </span><span class="kw-2">&amp;</span><span class="self">self</span>.vertices {
+            bounds.extend_with(v.pos);
         }
+        bounds
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_empty</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span> {
-        <span class="self">self</span>.<span class="ident">indices</span>.<span class="ident">is_empty</span>() <span class="op">&amp;&amp;</span> <span class="self">self</span>.<span class="ident">vertices</span>.<span class="ident">is_empty</span>()
-    }
+    <span class="doccomment">/// Append all the indices and vertices of `other` to `self`.
+    </span><span class="kw">pub fn </span>append(<span class="kw-2">&amp;mut </span><span class="self">self</span>, other: Mesh) {
+        <span class="macro">crate::epaint_assert!</span>(other.is_valid());
 
-    <span class="doccomment">/// Calculate a bounding rectangle.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">calc_bounds</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">Rect</span> {
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">bounds</span> <span class="op">=</span> <span class="ident">Rect::NOTHING</span>;
-        <span class="kw">for</span> <span class="ident">v</span> <span class="kw">in</span> <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">vertices</span> {
-            <span class="ident">bounds</span>.<span class="ident">extend_with</span>(<span class="ident">v</span>.<span class="ident">pos</span>);
-        }
-        <span class="ident">bounds</span>
-    }
-
-    <span class="doccomment">/// Append all the indices and vertices of `other` to `self`.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">append</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">other</span>: <span class="ident">Mesh</span>) {
-        <span class="macro">crate::epaint_assert!</span>(<span class="ident">other</span>.<span class="ident">is_valid</span>());
-
-        <span class="kw">if</span> <span class="self">self</span>.<span class="ident">is_empty</span>() {
-            <span class="kw-2">*</span><span class="self">self</span> <span class="op">=</span> <span class="ident">other</span>;
-        } <span class="kw">else</span> {
+        <span class="kw">if </span><span class="self">self</span>.is_empty() {
+            <span class="kw-2">*</span><span class="self">self </span>= other;
+        } <span class="kw">else </span>{
             <span class="macro">assert_eq!</span>(
-                <span class="self">self</span>.<span class="ident">texture_id</span>, <span class="ident">other</span>.<span class="ident">texture_id</span>,
-                <span class="string">&quot;Can&#39;t merge Mesh using different textures&quot;</span>
-            );
+                <span class="self">self</span>.texture_id, other.texture_id,
+                <span class="string">&quot;Can&#39;t merge Mesh using different textures&quot;
+            </span>);
 
-            <span class="kw">let</span> <span class="ident">index_offset</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">vertices</span>.<span class="ident">len</span>() <span class="kw">as</span> <span class="ident">u32</span>;
-            <span class="self">self</span>.<span class="ident">indices</span>
-                .<span class="ident">extend</span>(<span class="ident">other</span>.<span class="ident">indices</span>.<span class="ident">iter</span>().<span class="ident">map</span>(<span class="op">|</span><span class="ident">index</span><span class="op">|</span> <span class="ident">index</span> <span class="op">+</span> <span class="ident">index_offset</span>));
-            <span class="self">self</span>.<span class="ident">vertices</span>.<span class="ident">extend</span>(<span class="ident">other</span>.<span class="ident">vertices</span>.<span class="ident">iter</span>());
+            <span class="kw">let </span>index_offset = <span class="self">self</span>.vertices.len() <span class="kw">as </span>u32;
+            <span class="self">self</span>.indices
+                .extend(other.indices.iter().map(|index| index + index_offset));
+            <span class="self">self</span>.vertices.extend(other.vertices.iter());
         }
     }
 
-    <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">colored_vertex</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">pos</span>: <span class="ident">Pos2</span>, <span class="ident">color</span>: <span class="ident">Color32</span>) {
-        <span class="macro">crate::epaint_assert!</span>(<span class="self">self</span>.<span class="ident">texture_id</span> <span class="op">==</span> <span class="ident">TextureId::Egui</span>);
-        <span class="self">self</span>.<span class="ident">vertices</span>.<span class="ident">push</span>(<span class="ident">Vertex</span> {
-            <span class="ident">pos</span>,
-            <span class="ident">uv</span>: <span class="ident">WHITE_UV</span>,
-            <span class="ident">color</span>,
+    <span class="attribute">#[inline(always)]
+    </span><span class="kw">pub fn </span>colored_vertex(<span class="kw-2">&amp;mut </span><span class="self">self</span>, pos: Pos2, color: Color32) {
+        <span class="macro">crate::epaint_assert!</span>(<span class="self">self</span>.texture_id == TextureId::Egui);
+        <span class="self">self</span>.vertices.push(Vertex {
+            pos,
+            uv: WHITE_UV,
+            color,
         });
     }
 
-    <span class="doccomment">/// Add a triangle.</span>
-    <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">add_triangle</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">a</span>: <span class="ident">u32</span>, <span class="ident">b</span>: <span class="ident">u32</span>, <span class="ident">c</span>: <span class="ident">u32</span>) {
-        <span class="self">self</span>.<span class="ident">indices</span>.<span class="ident">push</span>(<span class="ident">a</span>);
-        <span class="self">self</span>.<span class="ident">indices</span>.<span class="ident">push</span>(<span class="ident">b</span>);
-        <span class="self">self</span>.<span class="ident">indices</span>.<span class="ident">push</span>(<span class="ident">c</span>);
+    <span class="doccomment">/// Add a triangle.
+    </span><span class="attribute">#[inline(always)]
+    </span><span class="kw">pub fn </span>add_triangle(<span class="kw-2">&amp;mut </span><span class="self">self</span>, a: u32, b: u32, c: u32) {
+        <span class="self">self</span>.indices.push(a);
+        <span class="self">self</span>.indices.push(b);
+        <span class="self">self</span>.indices.push(c);
     }
 
-    <span class="doccomment">/// Make room for this many additional triangles (will reserve 3x as many indices).</span>
-    <span class="doccomment">/// See also `reserve_vertices`.</span>
-    <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">reserve_triangles</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">additional_triangles</span>: <span class="ident">usize</span>) {
-        <span class="self">self</span>.<span class="ident">indices</span>.<span class="ident">reserve</span>(<span class="number">3</span> <span class="op">*</span> <span class="ident">additional_triangles</span>);
+    <span class="doccomment">/// Make room for this many additional triangles (will reserve 3x as many indices).
+    /// See also `reserve_vertices`.
+    </span><span class="attribute">#[inline(always)]
+    </span><span class="kw">pub fn </span>reserve_triangles(<span class="kw-2">&amp;mut </span><span class="self">self</span>, additional_triangles: usize) {
+        <span class="self">self</span>.indices.reserve(<span class="number">3 </span>* additional_triangles);
     }
 
-    <span class="doccomment">/// Make room for this many additional vertices.</span>
-    <span class="doccomment">/// See also `reserve_triangles`.</span>
-    <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">reserve_vertices</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">additional</span>: <span class="ident">usize</span>) {
-        <span class="self">self</span>.<span class="ident">vertices</span>.<span class="ident">reserve</span>(<span class="ident">additional</span>);
+    <span class="doccomment">/// Make room for this many additional vertices.
+    /// See also `reserve_triangles`.
+    </span><span class="attribute">#[inline(always)]
+    </span><span class="kw">pub fn </span>reserve_vertices(<span class="kw-2">&amp;mut </span><span class="self">self</span>, additional: usize) {
+        <span class="self">self</span>.vertices.reserve(additional);
     }
 
-    <span class="doccomment">/// Rectangle with a texture and color.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">add_rect_with_uv</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">rect</span>: <span class="ident">Rect</span>, <span class="ident">uv</span>: <span class="ident">Rect</span>, <span class="ident">color</span>: <span class="ident">Color32</span>) {
-        <span class="attribute">#![<span class="ident">allow</span>(<span class="ident">clippy::identity_op</span>)]</span>
+    <span class="doccomment">/// Rectangle with a texture and color.
+    </span><span class="kw">pub fn </span>add_rect_with_uv(<span class="kw-2">&amp;mut </span><span class="self">self</span>, rect: Rect, uv: Rect, color: Color32) {
+        <span class="attribute">#![allow(clippy::identity_op)]
 
-        <span class="kw">let</span> <span class="ident">idx</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">vertices</span>.<span class="ident">len</span>() <span class="kw">as</span> <span class="ident">u32</span>;
-        <span class="self">self</span>.<span class="ident">add_triangle</span>(<span class="ident">idx</span> <span class="op">+</span> <span class="number">0</span>, <span class="ident">idx</span> <span class="op">+</span> <span class="number">1</span>, <span class="ident">idx</span> <span class="op">+</span> <span class="number">2</span>);
-        <span class="self">self</span>.<span class="ident">add_triangle</span>(<span class="ident">idx</span> <span class="op">+</span> <span class="number">2</span>, <span class="ident">idx</span> <span class="op">+</span> <span class="number">1</span>, <span class="ident">idx</span> <span class="op">+</span> <span class="number">3</span>);
+        </span><span class="kw">let </span>idx = <span class="self">self</span>.vertices.len() <span class="kw">as </span>u32;
+        <span class="self">self</span>.add_triangle(idx + <span class="number">0</span>, idx + <span class="number">1</span>, idx + <span class="number">2</span>);
+        <span class="self">self</span>.add_triangle(idx + <span class="number">2</span>, idx + <span class="number">1</span>, idx + <span class="number">3</span>);
 
-        <span class="self">self</span>.<span class="ident">vertices</span>.<span class="ident">push</span>(<span class="ident">Vertex</span> {
-            <span class="ident">pos</span>: <span class="ident">rect</span>.<span class="ident">left_top</span>(),
-            <span class="ident">uv</span>: <span class="ident">uv</span>.<span class="ident">left_top</span>(),
-            <span class="ident">color</span>,
+        <span class="self">self</span>.vertices.push(Vertex {
+            pos: rect.left_top(),
+            uv: uv.left_top(),
+            color,
         });
-        <span class="self">self</span>.<span class="ident">vertices</span>.<span class="ident">push</span>(<span class="ident">Vertex</span> {
-            <span class="ident">pos</span>: <span class="ident">rect</span>.<span class="ident">right_top</span>(),
-            <span class="ident">uv</span>: <span class="ident">uv</span>.<span class="ident">right_top</span>(),
-            <span class="ident">color</span>,
+        <span class="self">self</span>.vertices.push(Vertex {
+            pos: rect.right_top(),
+            uv: uv.right_top(),
+            color,
         });
-        <span class="self">self</span>.<span class="ident">vertices</span>.<span class="ident">push</span>(<span class="ident">Vertex</span> {
-            <span class="ident">pos</span>: <span class="ident">rect</span>.<span class="ident">left_bottom</span>(),
-            <span class="ident">uv</span>: <span class="ident">uv</span>.<span class="ident">left_bottom</span>(),
-            <span class="ident">color</span>,
+        <span class="self">self</span>.vertices.push(Vertex {
+            pos: rect.left_bottom(),
+            uv: uv.left_bottom(),
+            color,
         });
-        <span class="self">self</span>.<span class="ident">vertices</span>.<span class="ident">push</span>(<span class="ident">Vertex</span> {
-            <span class="ident">pos</span>: <span class="ident">rect</span>.<span class="ident">right_bottom</span>(),
-            <span class="ident">uv</span>: <span class="ident">uv</span>.<span class="ident">right_bottom</span>(),
-            <span class="ident">color</span>,
+        <span class="self">self</span>.vertices.push(Vertex {
+            pos: rect.right_bottom(),
+            uv: uv.right_bottom(),
+            color,
         });
     }
 
-    <span class="doccomment">/// Uniformly colored rectangle.</span>
-    <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">add_colored_rect</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">rect</span>: <span class="ident">Rect</span>, <span class="ident">color</span>: <span class="ident">Color32</span>) {
-        <span class="macro">crate::epaint_assert!</span>(<span class="self">self</span>.<span class="ident">texture_id</span> <span class="op">==</span> <span class="ident">TextureId::Egui</span>);
-        <span class="self">self</span>.<span class="ident">add_rect_with_uv</span>(<span class="ident">rect</span>, [<span class="ident">WHITE_UV</span>, <span class="ident">WHITE_UV</span>].<span class="ident">into</span>(), <span class="ident">color</span>);
+    <span class="doccomment">/// Uniformly colored rectangle.
+    </span><span class="attribute">#[inline(always)]
+    </span><span class="kw">pub fn </span>add_colored_rect(<span class="kw-2">&amp;mut </span><span class="self">self</span>, rect: Rect, color: Color32) {
+        <span class="macro">crate::epaint_assert!</span>(<span class="self">self</span>.texture_id == TextureId::Egui);
+        <span class="self">self</span>.add_rect_with_uv(rect, [WHITE_UV, WHITE_UV].into(), color);
     }
 
-    <span class="doccomment">/// This is for platforms that only support 16-bit index buffers.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// Splits this mesh into many smaller meshes (if needed)</span>
-    <span class="doccomment">/// where the smaller meshes have 16-bit indices.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">split_to_u16</span>(<span class="self">self</span>) -&gt; <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Mesh16</span><span class="op">&gt;</span> {
-        <span class="macro">crate::epaint_assert!</span>(<span class="self">self</span>.<span class="ident">is_valid</span>());
+    <span class="doccomment">/// This is for platforms that only support 16-bit index buffers.
+    ///
+    /// Splits this mesh into many smaller meshes (if needed)
+    /// where the smaller meshes have 16-bit indices.
+    </span><span class="kw">pub fn </span>split_to_u16(<span class="self">self</span>) -&gt; Vec&lt;Mesh16&gt; {
+        <span class="macro">crate::epaint_assert!</span>(<span class="self">self</span>.is_valid());
 
-        <span class="kw">const</span> <span class="ident">MAX_SIZE</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">16</span>;
+        <span class="kw">const </span>MAX_SIZE: u32 = <span class="number">1 </span>&lt;&lt; <span class="number">16</span>;
 
-        <span class="kw">if</span> <span class="self">self</span>.<span class="ident">vertices</span>.<span class="ident">len</span>() <span class="op">&lt;</span> <span class="ident">MAX_SIZE</span> <span class="kw">as</span> <span class="ident">usize</span> {
-            <span class="comment">// Common-case optimization:</span>
-            <span class="kw">return</span> <span class="macro">vec!</span>[<span class="ident">Mesh16</span> {
-                <span class="ident">indices</span>: <span class="self">self</span>.<span class="ident">indices</span>.<span class="ident">iter</span>().<span class="ident">map</span>(<span class="op">|</span><span class="kw-2">&amp;</span><span class="ident">i</span><span class="op">|</span> <span class="ident">i</span> <span class="kw">as</span> <span class="ident">u16</span>).<span class="ident">collect</span>(),
-                <span class="ident">vertices</span>: <span class="self">self</span>.<span class="ident">vertices</span>,
-                <span class="ident">texture_id</span>: <span class="self">self</span>.<span class="ident">texture_id</span>,
+        <span class="kw">if </span><span class="self">self</span>.vertices.len() &lt; MAX_SIZE <span class="kw">as </span>usize {
+            <span class="comment">// Common-case optimization:
+            </span><span class="kw">return </span><span class="macro">vec!</span>[Mesh16 {
+                indices: <span class="self">self</span>.indices.iter().map(|<span class="kw-2">&amp;</span>i| i <span class="kw">as </span>u16).collect(),
+                vertices: <span class="self">self</span>.vertices,
+                texture_id: <span class="self">self</span>.texture_id,
             }];
         }
 
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">output</span> <span class="op">=</span> <span class="macro">vec!</span>[];
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">index_cursor</span> <span class="op">=</span> <span class="number">0</span>;
+        <span class="kw">let </span><span class="kw-2">mut </span>output = <span class="macro">vec!</span>[];
+        <span class="kw">let </span><span class="kw-2">mut </span>index_cursor = <span class="number">0</span>;
 
-        <span class="kw">while</span> <span class="ident">index_cursor</span> <span class="op">&lt;</span> <span class="self">self</span>.<span class="ident">indices</span>.<span class="ident">len</span>() {
-            <span class="kw">let</span> <span class="ident">span_start</span> <span class="op">=</span> <span class="ident">index_cursor</span>;
-            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">min_vindex</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">indices</span>[<span class="ident">index_cursor</span>];
-            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">max_vindex</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">indices</span>[<span class="ident">index_cursor</span>];
+        <span class="kw">while </span>index_cursor &lt; <span class="self">self</span>.indices.len() {
+            <span class="kw">let </span>span_start = index_cursor;
+            <span class="kw">let </span><span class="kw-2">mut </span>min_vindex = <span class="self">self</span>.indices[index_cursor];
+            <span class="kw">let </span><span class="kw-2">mut </span>max_vindex = <span class="self">self</span>.indices[index_cursor];
 
-            <span class="kw">while</span> <span class="ident">index_cursor</span> <span class="op">&lt;</span> <span class="self">self</span>.<span class="ident">indices</span>.<span class="ident">len</span>() {
-                <span class="kw">let</span> (<span class="kw-2">mut</span> <span class="ident">new_min</span>, <span class="kw-2">mut</span> <span class="ident">new_max</span>) <span class="op">=</span> (<span class="ident">min_vindex</span>, <span class="ident">max_vindex</span>);
-                <span class="kw">for</span> <span class="ident">i</span> <span class="kw">in</span> <span class="number">0</span>..<span class="number">3</span> {
-                    <span class="kw">let</span> <span class="ident">idx</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">indices</span>[<span class="ident">index_cursor</span> <span class="op">+</span> <span class="ident">i</span>];
-                    <span class="ident">new_min</span> <span class="op">=</span> <span class="ident">new_min</span>.<span class="ident">min</span>(<span class="ident">idx</span>);
-                    <span class="ident">new_max</span> <span class="op">=</span> <span class="ident">new_max</span>.<span class="ident">max</span>(<span class="ident">idx</span>);
+            <span class="kw">while </span>index_cursor &lt; <span class="self">self</span>.indices.len() {
+                <span class="kw">let </span>(<span class="kw-2">mut </span>new_min, <span class="kw-2">mut </span>new_max) = (min_vindex, max_vindex);
+                <span class="kw">for </span>i <span class="kw">in </span><span class="number">0</span>..<span class="number">3 </span>{
+                    <span class="kw">let </span>idx = <span class="self">self</span>.indices[index_cursor + i];
+                    new_min = new_min.min(idx);
+                    new_max = new_max.max(idx);
                 }
 
-                <span class="kw">if</span> <span class="ident">new_max</span> <span class="op">-</span> <span class="ident">new_min</span> <span class="op">&lt;</span> <span class="ident">MAX_SIZE</span> {
-                    <span class="comment">// Triangle fits</span>
-                    <span class="ident">min_vindex</span> <span class="op">=</span> <span class="ident">new_min</span>;
-                    <span class="ident">max_vindex</span> <span class="op">=</span> <span class="ident">new_max</span>;
-                    <span class="ident">index_cursor</span> <span class="op">+</span><span class="op">=</span> <span class="number">3</span>;
-                } <span class="kw">else</span> {
+                <span class="kw">if </span>new_max - new_min &lt; MAX_SIZE {
+                    <span class="comment">// Triangle fits
+                    </span>min_vindex = new_min;
+                    max_vindex = new_max;
+                    index_cursor += <span class="number">3</span>;
+                } <span class="kw">else </span>{
                     <span class="kw">break</span>;
                 }
             }
 
             <span class="macro">assert!</span>(
-                <span class="ident">index_cursor</span> <span class="op">&gt;</span> <span class="ident">span_start</span>,
+                index_cursor &gt; span_start,
                 <span class="string">&quot;One triangle spanned more than {} vertices&quot;</span>,
-                <span class="ident">MAX_SIZE</span>
+                MAX_SIZE
             );
 
-            <span class="kw">let</span> <span class="ident">mesh</span> <span class="op">=</span> <span class="ident">Mesh16</span> {
-                <span class="ident">indices</span>: <span class="self">self</span>.<span class="ident">indices</span>[<span class="ident">span_start</span>..<span class="ident">index_cursor</span>]
-                    .<span class="ident">iter</span>()
-                    .<span class="ident">map</span>(<span class="op">|</span><span class="ident">vi</span><span class="op">|</span> <span class="ident">u16::try_from</span>(<span class="ident">vi</span> <span class="op">-</span> <span class="ident">min_vindex</span>).<span class="ident">unwrap</span>())
-                    .<span class="ident">collect</span>(),
-                <span class="ident">vertices</span>: <span class="self">self</span>.<span class="ident">vertices</span>[(<span class="ident">min_vindex</span> <span class="kw">as</span> <span class="ident">usize</span>)..<span class="op">=</span>(<span class="ident">max_vindex</span> <span class="kw">as</span> <span class="ident">usize</span>)].<span class="ident">to_vec</span>(),
-                <span class="ident">texture_id</span>: <span class="self">self</span>.<span class="ident">texture_id</span>,
+            <span class="kw">let </span>mesh = Mesh16 {
+                indices: <span class="self">self</span>.indices[span_start..index_cursor]
+                    .iter()
+                    .map(|vi| u16::try_from(vi - min_vindex).unwrap())
+                    .collect(),
+                vertices: <span class="self">self</span>.vertices[(min_vindex <span class="kw">as </span>usize)..=(max_vindex <span class="kw">as </span>usize)].to_vec(),
+                texture_id: <span class="self">self</span>.texture_id,
             };
-            <span class="macro">crate::epaint_assert!</span>(<span class="ident">mesh</span>.<span class="ident">is_valid</span>());
-            <span class="ident">output</span>.<span class="ident">push</span>(<span class="ident">mesh</span>);
+            <span class="macro">crate::epaint_assert!</span>(mesh.is_valid());
+            output.push(mesh);
         }
-        <span class="ident">output</span>
+        output
     }
 
-    <span class="doccomment">/// Translate location by this much, in-place</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">translate</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">delta</span>: <span class="ident">Vec2</span>) {
-        <span class="kw">for</span> <span class="ident">v</span> <span class="kw">in</span> <span class="kw-2">&amp;mut</span> <span class="self">self</span>.<span class="ident">vertices</span> {
-            <span class="ident">v</span>.<span class="ident">pos</span> <span class="op">+</span><span class="op">=</span> <span class="ident">delta</span>;
+    <span class="doccomment">/// Translate location by this much, in-place
+    </span><span class="kw">pub fn </span>translate(<span class="kw-2">&amp;mut </span><span class="self">self</span>, delta: Vec2) {
+        <span class="kw">for </span>v <span class="kw">in </span><span class="kw-2">&amp;mut </span><span class="self">self</span>.vertices {
+            v.pos += delta;
         }
     }
 }
 
-<span class="comment">// ----------------------------------------------------------------------------</span>
+<span class="comment">// ----------------------------------------------------------------------------
 
-<span class="doccomment">/// A version of [`Mesh`] that uses 16-bit indices.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// This is produced by [`Mesh::split_to_u16`] and is meant to be used for legacy render backends.</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Mesh16</span> {
-    <span class="doccomment">/// Draw as triangles (i.e. the length is always multiple of three).</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// egui is NOT consistent with what winding order it uses, so turn off backface culling.</span>
-    <span class="kw">pub</span> <span class="ident">indices</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u16</span><span class="op">&gt;</span>,
+</span><span class="doccomment">/// A version of [`Mesh`] that uses 16-bit indices.
+///
+/// This is produced by [`Mesh::split_to_u16`] and is meant to be used for legacy render backends.
+</span><span class="kw">pub struct </span>Mesh16 {
+    <span class="doccomment">/// Draw as triangles (i.e. the length is always multiple of three).
+    ///
+    /// egui is NOT consistent with what winding order it uses, so turn off backface culling.
+    </span><span class="kw">pub </span>indices: Vec&lt;u16&gt;,
 
-    <span class="doccomment">/// The vertex data indexed by `indices`.</span>
-    <span class="kw">pub</span> <span class="ident">vertices</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Vertex</span><span class="op">&gt;</span>,
+    <span class="doccomment">/// The vertex data indexed by `indices`.
+    </span><span class="kw">pub </span>vertices: Vec&lt;Vertex&gt;,
 
-    <span class="doccomment">/// The texture to use when drawing these triangles.</span>
-    <span class="kw">pub</span> <span class="ident">texture_id</span>: <span class="ident">TextureId</span>,
+    <span class="doccomment">/// The texture to use when drawing these triangles.
+    </span><span class="kw">pub </span>texture_id: TextureId,
 }
 
-<span class="kw">impl</span> <span class="ident">Mesh16</span> {
-    <span class="doccomment">/// Are all indices within the bounds of the contained vertices?</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_valid</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span> {
-        <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Ok</span>(<span class="ident">n</span>) <span class="op">=</span> <span class="ident">u16::try_from</span>(<span class="self">self</span>.<span class="ident">vertices</span>.<span class="ident">len</span>()) {
-            <span class="self">self</span>.<span class="ident">indices</span>.<span class="ident">iter</span>().<span class="ident">all</span>(<span class="op">|</span><span class="kw-2">&amp;</span><span class="ident">i</span><span class="op">|</span> <span class="ident">i</span> <span class="op">&lt;</span> <span class="ident">n</span>)
-        } <span class="kw">else</span> {
-            <span class="bool-val">false</span>
-        }
+<span class="kw">impl </span>Mesh16 {
+    <span class="doccomment">/// Are all indices within the bounds of the contained vertices?
+    </span><span class="kw">pub fn </span>is_valid(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; bool {
+        <span class="kw">if let </span><span class="prelude-val">Ok</span>(n) = u16::try_from(<span class="self">self</span>.vertices.len()) {
+            <span class="self">self</span>.indices.iter().all(|<span class="kw-2">&amp;</span>i| i &lt; n)
+        } <span class="kw">else </span>{
+            <span class="bool-val">false
+        </span>}
     }
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="epaint" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0 (a55dd71d5 2022-09-19)" ></div></body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="epaint" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.66.1 (90743e729 2023-01-10)" ></div></body></html>

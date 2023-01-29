@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/egui-0.16.1/src/widgets/plot/items/values.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>values.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../../../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../../../storage.js"></script><script defer src="../../../../../source-script.js"></script><script defer src="../../../../../source-files.js"></script><script defer src="../../../../../main.js"></script><noscript><link rel="stylesheet" href="../../../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../../../../egui/index.html"><div class="logo-container"><img class="rust-logo" src="../../../../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../../../../egui/index.html"><div class="logo-container"><img class="rust-logo" src="../../../../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../../../../egui/index.html"><img class="rust-logo" src="../../../../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/egui-0.16.1/src/widgets/plot/items/values.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>values.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../../../../normalize.css"><link rel="stylesheet" href="../../../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../../../../ayu.css" disabled><link rel="stylesheet" href="../../../../../dark.css" disabled><link rel="stylesheet" href="../../../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../../../storage.js"></script><script defer src="../../../../../source-script.js"></script><script defer src="../../../../../source-files.js"></script><script defer src="../../../../../main.js"></script><noscript><link rel="stylesheet" href="../../../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><div class="width-limiter"><nav class="sub"><a class="sub-logo-container" href="../../../../../egui/index.html"><img class="rust-logo" src="../../../../../rust-logo.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../../../wheel.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -350,113 +350,113 @@
 <span id="350">350</span>
 <span id="351">351</span>
 <span id="352">352</span>
-</pre><pre class="rust"><code><span class="kw">use</span> <span class="ident">epaint</span>::{<span class="ident">Pos2</span>, <span class="ident">Shape</span>, <span class="ident">Stroke</span>, <span class="ident">Vec2</span>};
-<span class="kw">use</span> <span class="ident">std::ops</span>::{<span class="ident">Bound</span>, <span class="ident">RangeBounds</span>, <span class="ident">RangeInclusive</span>};
+</pre><pre class="rust"><code><span class="kw">use </span>epaint::{Pos2, Shape, Stroke, Vec2};
+<span class="kw">use </span>std::ops::{Bound, RangeBounds, RangeInclusive};
 
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::plot::transform::PlotBounds</span>;
+<span class="kw">use </span><span class="kw">crate</span>::plot::transform::PlotBounds;
 
-<span class="doccomment">/// A value in the value-space of the plot.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// Uses f64 for improved accuracy to enable plotting</span>
-<span class="doccomment">/// large values (e.g. unix time on x axis).</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Value</span> {
-    <span class="doccomment">/// This is often something monotonically increasing, such as time, but doesn&#39;t have to be.</span>
-    <span class="doccomment">/// Goes from left to right.</span>
-    <span class="kw">pub</span> <span class="ident">x</span>: <span class="ident">f64</span>,
-    <span class="doccomment">/// Goes from bottom to top (inverse of everything else in egui!).</span>
-    <span class="kw">pub</span> <span class="ident">y</span>: <span class="ident">f64</span>,
+<span class="doccomment">/// A value in the value-space of the plot.
+///
+/// Uses f64 for improved accuracy to enable plotting
+/// large values (e.g. unix time on x axis).
+</span><span class="attribute">#[derive(Clone, Copy, Debug, PartialEq)]
+</span><span class="kw">pub struct </span>Value {
+    <span class="doccomment">/// This is often something monotonically increasing, such as time, but doesn&#39;t have to be.
+    /// Goes from left to right.
+    </span><span class="kw">pub </span>x: f64,
+    <span class="doccomment">/// Goes from bottom to top (inverse of everything else in egui!).
+    </span><span class="kw">pub </span>y: f64,
 }
 
-<span class="kw">impl</span> <span class="ident">Value</span> {
-    <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">x</span>: <span class="kw">impl</span> <span class="ident">Into</span><span class="op">&lt;</span><span class="ident">f64</span><span class="op">&gt;</span>, <span class="ident">y</span>: <span class="kw">impl</span> <span class="ident">Into</span><span class="op">&lt;</span><span class="ident">f64</span><span class="op">&gt;</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">Self</span> {
-            <span class="ident">x</span>: <span class="ident">x</span>.<span class="ident">into</span>(),
-            <span class="ident">y</span>: <span class="ident">y</span>.<span class="ident">into</span>(),
+<span class="kw">impl </span>Value {
+    <span class="attribute">#[inline(always)]
+    </span><span class="kw">pub fn </span>new(x: <span class="kw">impl </span>Into&lt;f64&gt;, y: <span class="kw">impl </span>Into&lt;f64&gt;) -&gt; <span class="self">Self </span>{
+        <span class="self">Self </span>{
+            x: x.into(),
+            y: y.into(),
         }
     }
 
-    <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">to_pos2</span>(<span class="self">self</span>) -&gt; <span class="ident">Pos2</span> {
-        <span class="ident">Pos2::new</span>(<span class="self">self</span>.<span class="ident">x</span> <span class="kw">as</span> <span class="ident">f32</span>, <span class="self">self</span>.<span class="ident">y</span> <span class="kw">as</span> <span class="ident">f32</span>)
+    <span class="attribute">#[inline(always)]
+    </span><span class="kw">pub fn </span>to_pos2(<span class="self">self</span>) -&gt; Pos2 {
+        Pos2::new(<span class="self">self</span>.x <span class="kw">as </span>f32, <span class="self">self</span>.y <span class="kw">as </span>f32)
     }
 
-    <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">to_vec2</span>(<span class="self">self</span>) -&gt; <span class="ident">Vec2</span> {
-        <span class="ident">Vec2::new</span>(<span class="self">self</span>.<span class="ident">x</span> <span class="kw">as</span> <span class="ident">f32</span>, <span class="self">self</span>.<span class="ident">y</span> <span class="kw">as</span> <span class="ident">f32</span>)
+    <span class="attribute">#[inline(always)]
+    </span><span class="kw">pub fn </span>to_vec2(<span class="self">self</span>) -&gt; Vec2 {
+        Vec2::new(<span class="self">self</span>.x <span class="kw">as </span>f32, <span class="self">self</span>.y <span class="kw">as </span>f32)
     }
 }
 
-<span class="comment">// ----------------------------------------------------------------------------</span>
+<span class="comment">// ----------------------------------------------------------------------------
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">PartialEq</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>)]</span>
-<span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">LineStyle</span> {
-    <span class="ident">Solid</span>,
-    <span class="ident">Dotted</span> { <span class="ident">spacing</span>: <span class="ident">f32</span> },
-    <span class="ident">Dashed</span> { <span class="ident">length</span>: <span class="ident">f32</span> },
+</span><span class="attribute">#[derive(Debug, PartialEq, Clone, Copy)]
+</span><span class="kw">pub enum </span>LineStyle {
+    Solid,
+    Dotted { spacing: f32 },
+    Dashed { length: f32 },
 }
 
-<span class="kw">impl</span> <span class="ident">LineStyle</span> {
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">dashed_loose</span>() -&gt; <span class="self">Self</span> {
-        <span class="ident"><span class="self">Self</span>::Dashed</span> { <span class="ident">length</span>: <span class="number">10.0</span> }
+<span class="kw">impl </span>LineStyle {
+    <span class="kw">pub fn </span>dashed_loose() -&gt; <span class="self">Self </span>{
+        <span class="self">Self</span>::Dashed { length: <span class="number">10.0 </span>}
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">dashed_dense</span>() -&gt; <span class="self">Self</span> {
-        <span class="ident"><span class="self">Self</span>::Dashed</span> { <span class="ident">length</span>: <span class="number">5.0</span> }
+    <span class="kw">pub fn </span>dashed_dense() -&gt; <span class="self">Self </span>{
+        <span class="self">Self</span>::Dashed { length: <span class="number">5.0 </span>}
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">dotted_loose</span>() -&gt; <span class="self">Self</span> {
-        <span class="ident"><span class="self">Self</span>::Dotted</span> { <span class="ident">spacing</span>: <span class="number">10.0</span> }
+    <span class="kw">pub fn </span>dotted_loose() -&gt; <span class="self">Self </span>{
+        <span class="self">Self</span>::Dotted { spacing: <span class="number">10.0 </span>}
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">dotted_dense</span>() -&gt; <span class="self">Self</span> {
-        <span class="ident"><span class="self">Self</span>::Dotted</span> { <span class="ident">spacing</span>: <span class="number">5.0</span> }
+    <span class="kw">pub fn </span>dotted_dense() -&gt; <span class="self">Self </span>{
+        <span class="self">Self</span>::Dotted { spacing: <span class="number">5.0 </span>}
     }
 
-    <span class="kw">pub</span>(<span class="kw">super</span>) <span class="kw">fn</span> <span class="ident">style_line</span>(
+    <span class="kw">pub</span>(<span class="kw">super</span>) <span class="kw">fn </span>style_line(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
-        <span class="ident">line</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Pos2</span><span class="op">&gt;</span>,
-        <span class="kw-2">mut</span> <span class="ident">stroke</span>: <span class="ident">Stroke</span>,
-        <span class="ident">highlight</span>: <span class="ident">bool</span>,
-        <span class="ident">shapes</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Shape</span><span class="op">&gt;</span>,
+        line: Vec&lt;Pos2&gt;,
+        <span class="kw-2">mut </span>stroke: Stroke,
+        highlight: bool,
+        shapes: <span class="kw-2">&amp;mut </span>Vec&lt;Shape&gt;,
     ) {
-        <span class="kw">match</span> <span class="ident">line</span>.<span class="ident">len</span>() {
-            <span class="number">0</span> =&gt; {}
-            <span class="number">1</span> =&gt; {
-                <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">radius</span> <span class="op">=</span> <span class="ident">stroke</span>.<span class="ident">width</span> <span class="op">/</span> <span class="number">2.0</span>;
-                <span class="kw">if</span> <span class="ident">highlight</span> {
-                    <span class="ident">radius</span> <span class="kw-2">*</span><span class="op">=</span> <span class="number">2f32</span>.<span class="ident">sqrt</span>();
+        <span class="kw">match </span>line.len() {
+            <span class="number">0 </span>=&gt; {}
+            <span class="number">1 </span>=&gt; {
+                <span class="kw">let </span><span class="kw-2">mut </span>radius = stroke.width / <span class="number">2.0</span>;
+                <span class="kw">if </span>highlight {
+                    radius <span class="kw-2">*</span>= <span class="number">2f32</span>.sqrt();
                 }
-                <span class="ident">shapes</span>.<span class="ident">push</span>(<span class="ident">Shape::circle_filled</span>(<span class="ident">line</span>[<span class="number">0</span>], <span class="ident">radius</span>, <span class="ident">stroke</span>.<span class="ident">color</span>));
+                shapes.push(Shape::circle_filled(line[<span class="number">0</span>], radius, stroke.color));
             }
-            <span class="kw">_</span> =&gt; {
-                <span class="kw">match</span> <span class="self">self</span> {
-                    <span class="ident">LineStyle::Solid</span> =&gt; {
-                        <span class="kw">if</span> <span class="ident">highlight</span> {
-                            <span class="ident">stroke</span>.<span class="ident">width</span> <span class="kw-2">*</span><span class="op">=</span> <span class="number">2.0</span>;
+            <span class="kw">_ </span>=&gt; {
+                <span class="kw">match </span><span class="self">self </span>{
+                    LineStyle::Solid =&gt; {
+                        <span class="kw">if </span>highlight {
+                            stroke.width <span class="kw-2">*</span>= <span class="number">2.0</span>;
                         }
-                        <span class="ident">shapes</span>.<span class="ident">push</span>(<span class="ident">Shape::line</span>(<span class="ident">line</span>, <span class="ident">stroke</span>));
+                        shapes.push(Shape::line(line, stroke));
                     }
-                    <span class="ident">LineStyle::Dotted</span> { <span class="ident">spacing</span> } =&gt; {
-                        <span class="comment">// Take the stroke width for the radius even though it&#39;s not &quot;correct&quot;, otherwise</span>
-                        <span class="comment">// the dots would become too small.</span>
-                        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">radius</span> <span class="op">=</span> <span class="ident">stroke</span>.<span class="ident">width</span>;
-                        <span class="kw">if</span> <span class="ident">highlight</span> {
-                            <span class="ident">radius</span> <span class="kw-2">*</span><span class="op">=</span> <span class="number">2f32</span>.<span class="ident">sqrt</span>();
+                    LineStyle::Dotted { spacing } =&gt; {
+                        <span class="comment">// Take the stroke width for the radius even though it&#39;s not &quot;correct&quot;, otherwise
+                        // the dots would become too small.
+                        </span><span class="kw">let </span><span class="kw-2">mut </span>radius = stroke.width;
+                        <span class="kw">if </span>highlight {
+                            radius <span class="kw-2">*</span>= <span class="number">2f32</span>.sqrt();
                         }
-                        <span class="ident">shapes</span>.<span class="ident">extend</span>(<span class="ident">Shape::dotted_line</span>(<span class="kw-2">&amp;</span><span class="ident">line</span>, <span class="ident">stroke</span>.<span class="ident">color</span>, <span class="kw-2">*</span><span class="ident">spacing</span>, <span class="ident">radius</span>));
+                        shapes.extend(Shape::dotted_line(<span class="kw-2">&amp;</span>line, stroke.color, <span class="kw-2">*</span>spacing, radius));
                     }
-                    <span class="ident">LineStyle::Dashed</span> { <span class="ident">length</span> } =&gt; {
-                        <span class="kw">if</span> <span class="ident">highlight</span> {
-                            <span class="ident">stroke</span>.<span class="ident">width</span> <span class="kw-2">*</span><span class="op">=</span> <span class="number">2.0</span>;
+                    LineStyle::Dashed { length } =&gt; {
+                        <span class="kw">if </span>highlight {
+                            stroke.width <span class="kw-2">*</span>= <span class="number">2.0</span>;
                         }
-                        <span class="kw">let</span> <span class="ident">golden_ratio</span> <span class="op">=</span> (<span class="number">5.0_f32</span>.<span class="ident">sqrt</span>() <span class="op">-</span> <span class="number">1.0</span>) <span class="op">/</span> <span class="number">2.0</span>; <span class="comment">// 0.61803398875</span>
-                        <span class="ident">shapes</span>.<span class="ident">extend</span>(<span class="ident">Shape::dashed_line</span>(
-                            <span class="kw-2">&amp;</span><span class="ident">line</span>,
-                            <span class="ident">stroke</span>,
-                            <span class="kw-2">*</span><span class="ident">length</span>,
-                            <span class="ident">length</span> <span class="op">*</span> <span class="ident">golden_ratio</span>,
+                        <span class="kw">let </span>golden_ratio = (<span class="number">5.0_f32</span>.sqrt() - <span class="number">1.0</span>) / <span class="number">2.0</span>; <span class="comment">// 0.61803398875
+                        </span>shapes.extend(Shape::dashed_line(
+                            <span class="kw-2">&amp;</span>line,
+                            stroke,
+                            <span class="kw-2">*</span>length,
+                            length * golden_ratio,
                         ));
                     }
                 }
@@ -465,242 +465,242 @@
     }
 }
 
-<span class="kw">impl</span> <span class="ident">ToString</span> <span class="kw">for</span> <span class="ident">LineStyle</span> {
-    <span class="kw">fn</span> <span class="ident">to_string</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">String</span> {
-        <span class="kw">match</span> <span class="self">self</span> {
-            <span class="ident">LineStyle::Solid</span> =&gt; <span class="string">&quot;Solid&quot;</span>.<span class="ident">into</span>(),
-            <span class="ident">LineStyle::Dotted</span> { <span class="ident">spacing</span> } =&gt; <span class="macro">format!</span>(<span class="string">&quot;Dotted{}Px&quot;</span>, <span class="ident">spacing</span>),
-            <span class="ident">LineStyle::Dashed</span> { <span class="ident">length</span> } =&gt; <span class="macro">format!</span>(<span class="string">&quot;Dashed{}Px&quot;</span>, <span class="ident">length</span>),
+<span class="kw">impl </span>ToString <span class="kw">for </span>LineStyle {
+    <span class="kw">fn </span>to_string(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; String {
+        <span class="kw">match </span><span class="self">self </span>{
+            LineStyle::Solid =&gt; <span class="string">&quot;Solid&quot;</span>.into(),
+            LineStyle::Dotted { spacing } =&gt; <span class="macro">format!</span>(<span class="string">&quot;Dotted{}Px&quot;</span>, spacing),
+            LineStyle::Dashed { length } =&gt; <span class="macro">format!</span>(<span class="string">&quot;Dashed{}Px&quot;</span>, length),
         }
     }
 }
 
-<span class="comment">// ----------------------------------------------------------------------------</span>
+<span class="comment">// ----------------------------------------------------------------------------
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>)]</span>
-<span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">Orientation</span> {
-    <span class="ident">Horizontal</span>,
-    <span class="ident">Vertical</span>,
+</span><span class="attribute">#[derive(Copy, Clone, Debug, PartialEq, Eq)]
+</span><span class="kw">pub enum </span>Orientation {
+    Horizontal,
+    Vertical,
 }
 
-<span class="kw">impl</span> <span class="ident">Default</span> <span class="kw">for</span> <span class="ident">Orientation</span> {
-    <span class="kw">fn</span> <span class="ident">default</span>() -&gt; <span class="self">Self</span> {
-        <span class="ident"><span class="self">Self</span>::Vertical</span>
+<span class="kw">impl </span>Default <span class="kw">for </span>Orientation {
+    <span class="kw">fn </span>default() -&gt; <span class="self">Self </span>{
+        <span class="self">Self</span>::Vertical
     }
 }
 
-<span class="comment">// ----------------------------------------------------------------------------</span>
+<span class="comment">// ----------------------------------------------------------------------------
 
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Values</span> {
-    <span class="kw">pub</span>(<span class="kw">super</span>) <span class="ident">values</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Value</span><span class="op">&gt;</span>,
-    <span class="ident">generator</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">ExplicitGenerator</span><span class="op">&gt;</span>,
+</span><span class="kw">pub struct </span>Values {
+    <span class="kw">pub</span>(<span class="kw">super</span>) values: Vec&lt;Value&gt;,
+    generator: <span class="prelude-ty">Option</span>&lt;ExplicitGenerator&gt;,
 }
 
-<span class="kw">impl</span> <span class="ident">Default</span> <span class="kw">for</span> <span class="ident">Values</span> {
-    <span class="kw">fn</span> <span class="ident">default</span>() -&gt; <span class="self">Self</span> {
-        <span class="self">Self</span> {
-            <span class="ident">values</span>: <span class="ident">Vec::new</span>(),
-            <span class="ident">generator</span>: <span class="prelude-val">None</span>,
+<span class="kw">impl </span>Default <span class="kw">for </span>Values {
+    <span class="kw">fn </span>default() -&gt; <span class="self">Self </span>{
+        <span class="self">Self </span>{
+            values: Vec::new(),
+            generator: <span class="prelude-val">None</span>,
         }
     }
 }
 
-<span class="kw">impl</span> <span class="ident">Values</span> {
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">from_values</span>(<span class="ident">values</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Value</span><span class="op">&gt;</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">Self</span> {
-            <span class="ident">values</span>,
-            <span class="ident">generator</span>: <span class="prelude-val">None</span>,
+<span class="kw">impl </span>Values {
+    <span class="kw">pub fn </span>from_values(values: Vec&lt;Value&gt;) -&gt; <span class="self">Self </span>{
+        <span class="self">Self </span>{
+            values,
+            generator: <span class="prelude-val">None</span>,
         }
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">from_values_iter</span>(<span class="ident">iter</span>: <span class="kw">impl</span> <span class="ident">Iterator</span><span class="op">&lt;</span><span class="ident">Item</span> <span class="op">=</span> <span class="ident">Value</span><span class="op">&gt;</span>) -&gt; <span class="self">Self</span> {
-        <span class="ident"><span class="self">Self</span>::from_values</span>(<span class="ident">iter</span>.<span class="ident">collect</span>())
+    <span class="kw">pub fn </span>from_values_iter(iter: <span class="kw">impl </span>Iterator&lt;Item = Value&gt;) -&gt; <span class="self">Self </span>{
+        <span class="self">Self</span>::from_values(iter.collect())
     }
 
-    <span class="doccomment">/// Draw a line based on a function `y=f(x)`, a range (which can be infinite) for x and the number of points.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">from_explicit_callback</span>(
-        <span class="ident">function</span>: <span class="kw">impl</span> <span class="ident">Fn</span>(<span class="ident">f64</span>) -&gt; <span class="ident">f64</span> <span class="op">+</span> <span class="lifetime">&#39;static</span>,
-        <span class="ident">x_range</span>: <span class="kw">impl</span> <span class="ident">RangeBounds</span><span class="op">&lt;</span><span class="ident">f64</span><span class="op">&gt;</span>,
-        <span class="ident">points</span>: <span class="ident">usize</span>,
-    ) -&gt; <span class="self">Self</span> {
-        <span class="kw">let</span> <span class="ident">start</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">x_range</span>.<span class="ident">start_bound</span>() {
-            <span class="ident">Bound::Included</span>(<span class="ident">x</span>) <span class="op">|</span> <span class="ident">Bound::Excluded</span>(<span class="ident">x</span>) =&gt; <span class="kw-2">*</span><span class="ident">x</span>,
-            <span class="ident">Bound::Unbounded</span> =&gt; <span class="ident">f64::NEG_INFINITY</span>,
+    <span class="doccomment">/// Draw a line based on a function `y=f(x)`, a range (which can be infinite) for x and the number of points.
+    </span><span class="kw">pub fn </span>from_explicit_callback(
+        function: <span class="kw">impl </span>Fn(f64) -&gt; f64 + <span class="lifetime">&#39;static</span>,
+        x_range: <span class="kw">impl </span>RangeBounds&lt;f64&gt;,
+        points: usize,
+    ) -&gt; <span class="self">Self </span>{
+        <span class="kw">let </span>start = <span class="kw">match </span>x_range.start_bound() {
+            Bound::Included(x) | Bound::Excluded(x) =&gt; <span class="kw-2">*</span>x,
+            Bound::Unbounded =&gt; f64::NEG_INFINITY,
         };
-        <span class="kw">let</span> <span class="ident">end</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">x_range</span>.<span class="ident">end_bound</span>() {
-            <span class="ident">Bound::Included</span>(<span class="ident">x</span>) <span class="op">|</span> <span class="ident">Bound::Excluded</span>(<span class="ident">x</span>) =&gt; <span class="kw-2">*</span><span class="ident">x</span>,
-            <span class="ident">Bound::Unbounded</span> =&gt; <span class="ident">f64::INFINITY</span>,
+        <span class="kw">let </span>end = <span class="kw">match </span>x_range.end_bound() {
+            Bound::Included(x) | Bound::Excluded(x) =&gt; <span class="kw-2">*</span>x,
+            Bound::Unbounded =&gt; f64::INFINITY,
         };
-        <span class="kw">let</span> <span class="ident">x_range</span> <span class="op">=</span> <span class="ident">start</span>..<span class="op">=</span><span class="ident">end</span>;
+        <span class="kw">let </span>x_range = start..=end;
 
-        <span class="kw">let</span> <span class="ident">generator</span> <span class="op">=</span> <span class="ident">ExplicitGenerator</span> {
-            <span class="ident">function</span>: <span class="ident">Box::new</span>(<span class="ident">function</span>),
-            <span class="ident">x_range</span>,
-            <span class="ident">points</span>,
+        <span class="kw">let </span>generator = ExplicitGenerator {
+            function: Box::new(function),
+            x_range,
+            points,
         };
 
-        <span class="self">Self</span> {
-            <span class="ident">values</span>: <span class="ident">Vec::new</span>(),
-            <span class="ident">generator</span>: <span class="prelude-val">Some</span>(<span class="ident">generator</span>),
+        <span class="self">Self </span>{
+            values: Vec::new(),
+            generator: <span class="prelude-val">Some</span>(generator),
         }
     }
 
-    <span class="doccomment">/// Draw a line based on a function `(x,y)=f(t)`, a range for t and the number of points.</span>
-    <span class="doccomment">/// The range may be specified as start..end or as start..=end.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">from_parametric_callback</span>(
-        <span class="ident">function</span>: <span class="kw">impl</span> <span class="ident">Fn</span>(<span class="ident">f64</span>) -&gt; (<span class="ident">f64</span>, <span class="ident">f64</span>),
-        <span class="ident">t_range</span>: <span class="kw">impl</span> <span class="ident">RangeBounds</span><span class="op">&lt;</span><span class="ident">f64</span><span class="op">&gt;</span>,
-        <span class="ident">points</span>: <span class="ident">usize</span>,
-    ) -&gt; <span class="self">Self</span> {
-        <span class="kw">let</span> <span class="ident">start</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">t_range</span>.<span class="ident">start_bound</span>() {
-            <span class="ident">Bound::Included</span>(<span class="ident">x</span>) =&gt; <span class="ident">x</span>,
-            <span class="ident">Bound::Excluded</span>(<span class="kw">_</span>) =&gt; <span class="macro">unreachable!</span>(),
-            <span class="ident">Bound::Unbounded</span> =&gt; <span class="macro">panic!</span>(<span class="string">&quot;The range for parametric functions must be bounded!&quot;</span>),
+    <span class="doccomment">/// Draw a line based on a function `(x,y)=f(t)`, a range for t and the number of points.
+    /// The range may be specified as start..end or as start..=end.
+    </span><span class="kw">pub fn </span>from_parametric_callback(
+        function: <span class="kw">impl </span>Fn(f64) -&gt; (f64, f64),
+        t_range: <span class="kw">impl </span>RangeBounds&lt;f64&gt;,
+        points: usize,
+    ) -&gt; <span class="self">Self </span>{
+        <span class="kw">let </span>start = <span class="kw">match </span>t_range.start_bound() {
+            Bound::Included(x) =&gt; x,
+            Bound::Excluded(<span class="kw">_</span>) =&gt; <span class="macro">unreachable!</span>(),
+            Bound::Unbounded =&gt; <span class="macro">panic!</span>(<span class="string">&quot;The range for parametric functions must be bounded!&quot;</span>),
         };
-        <span class="kw">let</span> <span class="ident">end</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">t_range</span>.<span class="ident">end_bound</span>() {
-            <span class="ident">Bound::Included</span>(<span class="ident">x</span>) <span class="op">|</span> <span class="ident">Bound::Excluded</span>(<span class="ident">x</span>) =&gt; <span class="ident">x</span>,
-            <span class="ident">Bound::Unbounded</span> =&gt; <span class="macro">panic!</span>(<span class="string">&quot;The range for parametric functions must be bounded!&quot;</span>),
+        <span class="kw">let </span>end = <span class="kw">match </span>t_range.end_bound() {
+            Bound::Included(x) | Bound::Excluded(x) =&gt; x,
+            Bound::Unbounded =&gt; <span class="macro">panic!</span>(<span class="string">&quot;The range for parametric functions must be bounded!&quot;</span>),
         };
-        <span class="kw">let</span> <span class="ident">last_point_included</span> <span class="op">=</span> <span class="macro">matches!</span>(<span class="ident">t_range</span>.<span class="ident">end_bound</span>(), <span class="ident">Bound::Included</span>(<span class="kw">_</span>));
-        <span class="kw">let</span> <span class="ident">increment</span> <span class="op">=</span> <span class="kw">if</span> <span class="ident">last_point_included</span> {
-            (<span class="ident">end</span> <span class="op">-</span> <span class="ident">start</span>) <span class="op">/</span> (<span class="ident">points</span> <span class="op">-</span> <span class="number">1</span>) <span class="kw">as</span> <span class="ident">f64</span>
-        } <span class="kw">else</span> {
-            (<span class="ident">end</span> <span class="op">-</span> <span class="ident">start</span>) <span class="op">/</span> <span class="ident">points</span> <span class="kw">as</span> <span class="ident">f64</span>
+        <span class="kw">let </span>last_point_included = <span class="macro">matches!</span>(t_range.end_bound(), Bound::Included(<span class="kw">_</span>));
+        <span class="kw">let </span>increment = <span class="kw">if </span>last_point_included {
+            (end - start) / (points - <span class="number">1</span>) <span class="kw">as </span>f64
+        } <span class="kw">else </span>{
+            (end - start) / points <span class="kw">as </span>f64
         };
-        <span class="kw">let</span> <span class="ident">values</span> <span class="op">=</span> (<span class="number">0</span>..<span class="ident">points</span>).<span class="ident">map</span>(<span class="op">|</span><span class="ident">i</span><span class="op">|</span> {
-            <span class="kw">let</span> <span class="ident">t</span> <span class="op">=</span> <span class="ident">start</span> <span class="op">+</span> <span class="ident">i</span> <span class="kw">as</span> <span class="ident">f64</span> <span class="op">*</span> <span class="ident">increment</span>;
-            <span class="kw">let</span> (<span class="ident">x</span>, <span class="ident">y</span>) <span class="op">=</span> <span class="ident">function</span>(<span class="ident">t</span>);
-            <span class="ident">Value</span> { <span class="ident">x</span>, <span class="ident">y</span> }
+        <span class="kw">let </span>values = (<span class="number">0</span>..points).map(|i| {
+            <span class="kw">let </span>t = start + i <span class="kw">as </span>f64 * increment;
+            <span class="kw">let </span>(x, y) = function(t);
+            Value { x, y }
         });
-        <span class="ident"><span class="self">Self</span>::from_values_iter</span>(<span class="ident">values</span>)
+        <span class="self">Self</span>::from_values_iter(values)
     }
 
-    <span class="doccomment">/// From a series of y-values.</span>
-    <span class="doccomment">/// The x-values will be the indices of these values</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">from_ys_f32</span>(<span class="ident">ys</span>: <span class="kw-2">&amp;</span>[<span class="ident">f32</span>]) -&gt; <span class="self">Self</span> {
-        <span class="kw">let</span> <span class="ident">values</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Value</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">ys</span>
-            .<span class="ident">iter</span>()
-            .<span class="ident">enumerate</span>()
-            .<span class="ident">map</span>(<span class="op">|</span>(<span class="ident">i</span>, <span class="kw-2">&amp;</span><span class="ident">y</span>)<span class="op">|</span> <span class="ident">Value</span> {
-                <span class="ident">x</span>: <span class="ident">i</span> <span class="kw">as</span> <span class="ident">f64</span>,
-                <span class="ident">y</span>: <span class="ident">y</span> <span class="kw">as</span> <span class="ident">f64</span>,
+    <span class="doccomment">/// From a series of y-values.
+    /// The x-values will be the indices of these values
+    </span><span class="kw">pub fn </span>from_ys_f32(ys: <span class="kw-2">&amp;</span>[f32]) -&gt; <span class="self">Self </span>{
+        <span class="kw">let </span>values: Vec&lt;Value&gt; = ys
+            .iter()
+            .enumerate()
+            .map(|(i, <span class="kw-2">&amp;</span>y)| Value {
+                x: i <span class="kw">as </span>f64,
+                y: y <span class="kw">as </span>f64,
             })
-            .<span class="ident">collect</span>();
-        <span class="ident"><span class="self">Self</span>::from_values</span>(<span class="ident">values</span>)
+            .collect();
+        <span class="self">Self</span>::from_values(values)
     }
 
-    <span class="doccomment">/// Returns true if there are no data points available and there is no function to generate any.</span>
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">is_empty</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span> {
-        <span class="self">self</span>.<span class="ident">generator</span>.<span class="ident">is_none</span>() <span class="op">&amp;&amp;</span> <span class="self">self</span>.<span class="ident">values</span>.<span class="ident">is_empty</span>()
+    <span class="doccomment">/// Returns true if there are no data points available and there is no function to generate any.
+    </span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>is_empty(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; bool {
+        <span class="self">self</span>.generator.is_none() &amp;&amp; <span class="self">self</span>.values.is_empty()
     }
 
-    <span class="doccomment">/// If initialized with a generator function, this will generate `n` evenly spaced points in the</span>
-    <span class="doccomment">/// given range.</span>
-    <span class="kw">pub</span>(<span class="kw">super</span>) <span class="kw">fn</span> <span class="ident">generate_points</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">x_range</span>: <span class="ident">RangeInclusive</span><span class="op">&lt;</span><span class="ident">f64</span><span class="op">&gt;</span>) {
-        <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">generator</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">generator</span>.<span class="ident">take</span>() {
-            <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">intersection</span>) <span class="op">=</span> <span class="ident"><span class="self">Self</span>::range_intersection</span>(<span class="kw-2">&amp;</span><span class="ident">x_range</span>, <span class="kw-2">&amp;</span><span class="ident">generator</span>.<span class="ident">x_range</span>) {
-                <span class="kw">let</span> <span class="ident">increment</span> <span class="op">=</span>
-                    (<span class="ident">intersection</span>.<span class="ident">end</span>() <span class="op">-</span> <span class="ident">intersection</span>.<span class="ident">start</span>()) <span class="op">/</span> (<span class="ident">generator</span>.<span class="ident">points</span> <span class="op">-</span> <span class="number">1</span>) <span class="kw">as</span> <span class="ident">f64</span>;
-                <span class="self">self</span>.<span class="ident">values</span> <span class="op">=</span> (<span class="number">0</span>..<span class="ident">generator</span>.<span class="ident">points</span>)
-                    .<span class="ident">map</span>(<span class="op">|</span><span class="ident">i</span><span class="op">|</span> {
-                        <span class="kw">let</span> <span class="ident">x</span> <span class="op">=</span> <span class="ident">intersection</span>.<span class="ident">start</span>() <span class="op">+</span> <span class="ident">i</span> <span class="kw">as</span> <span class="ident">f64</span> <span class="op">*</span> <span class="ident">increment</span>;
-                        <span class="kw">let</span> <span class="ident">y</span> <span class="op">=</span> (<span class="ident">generator</span>.<span class="ident">function</span>)(<span class="ident">x</span>);
-                        <span class="ident">Value</span> { <span class="ident">x</span>, <span class="ident">y</span> }
+    <span class="doccomment">/// If initialized with a generator function, this will generate `n` evenly spaced points in the
+    /// given range.
+    </span><span class="kw">pub</span>(<span class="kw">super</span>) <span class="kw">fn </span>generate_points(<span class="kw-2">&amp;mut </span><span class="self">self</span>, x_range: RangeInclusive&lt;f64&gt;) {
+        <span class="kw">if let </span><span class="prelude-val">Some</span>(generator) = <span class="self">self</span>.generator.take() {
+            <span class="kw">if let </span><span class="prelude-val">Some</span>(intersection) = <span class="self">Self</span>::range_intersection(<span class="kw-2">&amp;</span>x_range, <span class="kw-2">&amp;</span>generator.x_range) {
+                <span class="kw">let </span>increment =
+                    (intersection.end() - intersection.start()) / (generator.points - <span class="number">1</span>) <span class="kw">as </span>f64;
+                <span class="self">self</span>.values = (<span class="number">0</span>..generator.points)
+                    .map(|i| {
+                        <span class="kw">let </span>x = intersection.start() + i <span class="kw">as </span>f64 * increment;
+                        <span class="kw">let </span>y = (generator.function)(x);
+                        Value { x, y }
                     })
-                    .<span class="ident">collect</span>();
+                    .collect();
             }
         }
     }
 
-    <span class="doccomment">/// Returns the intersection of two ranges if they intersect.</span>
-    <span class="kw">fn</span> <span class="ident">range_intersection</span>(
-        <span class="ident">range1</span>: <span class="kw-2">&amp;</span><span class="ident">RangeInclusive</span><span class="op">&lt;</span><span class="ident">f64</span><span class="op">&gt;</span>,
-        <span class="ident">range2</span>: <span class="kw-2">&amp;</span><span class="ident">RangeInclusive</span><span class="op">&lt;</span><span class="ident">f64</span><span class="op">&gt;</span>,
-    ) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">RangeInclusive</span><span class="op">&lt;</span><span class="ident">f64</span><span class="op">&gt;</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="ident">start</span> <span class="op">=</span> <span class="ident">range1</span>.<span class="ident">start</span>().<span class="ident">max</span>(<span class="kw-2">*</span><span class="ident">range2</span>.<span class="ident">start</span>());
-        <span class="kw">let</span> <span class="ident">end</span> <span class="op">=</span> <span class="ident">range1</span>.<span class="ident">end</span>().<span class="ident">min</span>(<span class="kw-2">*</span><span class="ident">range2</span>.<span class="ident">end</span>());
-        (<span class="ident">start</span> <span class="op">&lt;</span> <span class="ident">end</span>).<span class="ident">then</span>(<span class="op">|</span><span class="op">|</span> <span class="ident">start</span>..<span class="op">=</span><span class="ident">end</span>)
+    <span class="doccomment">/// Returns the intersection of two ranges if they intersect.
+    </span><span class="kw">fn </span>range_intersection(
+        range1: <span class="kw-2">&amp;</span>RangeInclusive&lt;f64&gt;,
+        range2: <span class="kw-2">&amp;</span>RangeInclusive&lt;f64&gt;,
+    ) -&gt; <span class="prelude-ty">Option</span>&lt;RangeInclusive&lt;f64&gt;&gt; {
+        <span class="kw">let </span>start = range1.start().max(<span class="kw-2">*</span>range2.start());
+        <span class="kw">let </span>end = range1.end().min(<span class="kw-2">*</span>range2.end());
+        (start &lt; end).then(|| start..=end)
     }
 
-    <span class="kw">pub</span>(<span class="kw">super</span>) <span class="kw">fn</span> <span class="ident">get_bounds</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">PlotBounds</span> {
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">bounds</span> <span class="op">=</span> <span class="ident">PlotBounds::NOTHING</span>;
-        <span class="self">self</span>.<span class="ident">values</span>
-            .<span class="ident">iter</span>()
-            .<span class="ident">for_each</span>(<span class="op">|</span><span class="ident">value</span><span class="op">|</span> <span class="ident">bounds</span>.<span class="ident">extend_with</span>(<span class="ident">value</span>));
-        <span class="ident">bounds</span>
+    <span class="kw">pub</span>(<span class="kw">super</span>) <span class="kw">fn </span>get_bounds(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; PlotBounds {
+        <span class="kw">let </span><span class="kw-2">mut </span>bounds = PlotBounds::NOTHING;
+        <span class="self">self</span>.values
+            .iter()
+            .for_each(|value| bounds.extend_with(value));
+        bounds
     }
 }
 
-<span class="comment">// ----------------------------------------------------------------------------</span>
+<span class="comment">// ----------------------------------------------------------------------------
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>)]</span>
-<span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">MarkerShape</span> {
-    <span class="ident">Circle</span>,
-    <span class="ident">Diamond</span>,
-    <span class="ident">Square</span>,
-    <span class="ident">Cross</span>,
-    <span class="ident">Plus</span>,
-    <span class="ident">Up</span>,
-    <span class="ident">Down</span>,
-    <span class="ident">Left</span>,
-    <span class="ident">Right</span>,
-    <span class="ident">Asterisk</span>,
+</span><span class="attribute">#[derive(Debug, PartialEq, Eq, Clone, Copy)]
+</span><span class="kw">pub enum </span>MarkerShape {
+    Circle,
+    Diamond,
+    Square,
+    Cross,
+    Plus,
+    Up,
+    Down,
+    Left,
+    Right,
+    Asterisk,
 }
 
-<span class="kw">impl</span> <span class="ident">MarkerShape</span> {
-    <span class="doccomment">/// Get a vector containing all marker shapes.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">all</span>() -&gt; <span class="kw">impl</span> <span class="ident">Iterator</span><span class="op">&lt;</span><span class="ident">Item</span> <span class="op">=</span> <span class="ident">MarkerShape</span><span class="op">&gt;</span> {
+<span class="kw">impl </span>MarkerShape {
+    <span class="doccomment">/// Get a vector containing all marker shapes.
+    </span><span class="kw">pub fn </span>all() -&gt; <span class="kw">impl </span>Iterator&lt;Item = MarkerShape&gt; {
         [
-            <span class="ident"><span class="self">Self</span>::Circle</span>,
-            <span class="ident"><span class="self">Self</span>::Diamond</span>,
-            <span class="ident"><span class="self">Self</span>::Square</span>,
-            <span class="ident"><span class="self">Self</span>::Cross</span>,
-            <span class="ident"><span class="self">Self</span>::Plus</span>,
-            <span class="ident"><span class="self">Self</span>::Up</span>,
-            <span class="ident"><span class="self">Self</span>::Down</span>,
-            <span class="ident"><span class="self">Self</span>::Left</span>,
-            <span class="ident"><span class="self">Self</span>::Right</span>,
-            <span class="ident"><span class="self">Self</span>::Asterisk</span>,
+            <span class="self">Self</span>::Circle,
+            <span class="self">Self</span>::Diamond,
+            <span class="self">Self</span>::Square,
+            <span class="self">Self</span>::Cross,
+            <span class="self">Self</span>::Plus,
+            <span class="self">Self</span>::Up,
+            <span class="self">Self</span>::Down,
+            <span class="self">Self</span>::Left,
+            <span class="self">Self</span>::Right,
+            <span class="self">Self</span>::Asterisk,
         ]
-        .<span class="ident">iter</span>()
-        .<span class="ident">copied</span>()
+        .iter()
+        .copied()
     }
 }
 
-<span class="comment">// ----------------------------------------------------------------------------</span>
+<span class="comment">// ----------------------------------------------------------------------------
 
-<span class="doccomment">/// Query the values of the plot, for geometric relations like closest checks</span>
-<span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">enum</span> <span class="ident">PlotGeometry</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="doccomment">/// No geometry based on single elements (examples: text, image, horizontal/vertical line)</span>
-    <span class="prelude-val">None</span>,
+</span><span class="doccomment">/// Query the values of the plot, for geometric relations like closest checks
+</span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">enum </span>PlotGeometry&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="doccomment">/// No geometry based on single elements (examples: text, image, horizontal/vertical line)
+    </span><span class="prelude-val">None</span>,
 
-    <span class="doccomment">/// Point values (X-Y graphs)</span>
-    <span class="ident">Points</span>(<span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">Value</span>]),
+    <span class="doccomment">/// Point values (X-Y graphs)
+    </span>Points(<span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[Value]),
 
-    <span class="doccomment">/// Rectangles (examples: boxes or bars)</span>
-    <span class="comment">// Has currently no data, as it would require copying rects or iterating a list of pointers.</span>
-    <span class="comment">// Instead, geometry-based functions are directly implemented in the respective PlotItem impl.</span>
-    <span class="ident">Rects</span>,
+    <span class="doccomment">/// Rectangles (examples: boxes or bars)
+    </span><span class="comment">// Has currently no data, as it would require copying rects or iterating a list of pointers.
+    // Instead, geometry-based functions are directly implemented in the respective PlotItem impl.
+    </span>Rects,
 }
 
-<span class="comment">// ----------------------------------------------------------------------------</span>
+<span class="comment">// ----------------------------------------------------------------------------
 
-<span class="doccomment">/// Describes a function y = f(x) with an optional range for x and a number of points.</span>
-<span class="kw">struct</span> <span class="ident">ExplicitGenerator</span> {
-    <span class="ident">function</span>: <span class="ident">Box</span><span class="op">&lt;</span><span class="kw">dyn</span> <span class="ident">Fn</span>(<span class="ident">f64</span>) -&gt; <span class="ident">f64</span><span class="op">&gt;</span>,
-    <span class="ident">x_range</span>: <span class="ident">RangeInclusive</span><span class="op">&lt;</span><span class="ident">f64</span><span class="op">&gt;</span>,
-    <span class="ident">points</span>: <span class="ident">usize</span>,
+</span><span class="doccomment">/// Describes a function y = f(x) with an optional range for x and a number of points.
+</span><span class="kw">struct </span>ExplicitGenerator {
+    function: Box&lt;<span class="kw">dyn </span>Fn(f64) -&gt; f64&gt;,
+    x_range: RangeInclusive&lt;f64&gt;,
+    points: usize,
 }
 
-<span class="comment">// ----------------------------------------------------------------------------</span>
+<span class="comment">// ----------------------------------------------------------------------------
 
-<span class="doccomment">/// Result of [`PlotItem::find_closest()`] search, identifies an element inside the item for immediate use</span>
-<span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">struct</span> <span class="ident">ClosestElem</span> {
-    <span class="doccomment">/// Position of hovered-over value (or bar/box-plot/...) in PlotItem</span>
-    <span class="kw">pub</span> <span class="ident">index</span>: <span class="ident">usize</span>,
+</span><span class="doccomment">/// Result of [`PlotItem::find_closest()`] search, identifies an element inside the item for immediate use
+</span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">struct </span>ClosestElem {
+    <span class="doccomment">/// Position of hovered-over value (or bar/box-plot/...) in PlotItem
+    </span><span class="kw">pub </span>index: usize,
 
-    <span class="doccomment">/// Squared distance from the mouse cursor (needed to compare against other PlotItems, which might be nearer)</span>
-    <span class="kw">pub</span> <span class="ident">dist_sq</span>: <span class="ident">f32</span>,
+    <span class="doccomment">/// Squared distance from the mouse cursor (needed to compare against other PlotItems, which might be nearer)
+    </span><span class="kw">pub </span>dist_sq: f32,
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../../../../" data-current-crate="egui" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0 (a55dd71d5 2022-09-19)" ></div></body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../../../../" data-current-crate="egui" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.66.1 (90743e729 2023-01-10)" ></div></body></html>

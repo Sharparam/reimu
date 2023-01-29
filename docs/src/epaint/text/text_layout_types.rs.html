@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/epaint-0.16.0/src/text/text_layout_types.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>text_layout_types.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../storage.js"></script><script defer src="../../../source-script.js"></script><script defer src="../../../source-files.js"></script><script defer src="../../../main.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../../epaint/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../../epaint/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../../epaint/index.html"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/epaint-0.16.0/src/text/text_layout_types.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>text_layout_types.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../../normalize.css"><link rel="stylesheet" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../../ayu.css" disabled><link rel="stylesheet" href="../../../dark.css" disabled><link rel="stylesheet" href="../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../storage.js"></script><script defer src="../../../source-script.js"></script><script defer src="../../../source-files.js"></script><script defer src="../../../main.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><div class="width-limiter"><nav class="sub"><a class="sub-logo-container" href="../../../epaint/index.html"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../wheel.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -844,851 +844,851 @@
 <span id="844">844</span>
 <span id="845">845</span>
 <span id="846">846</span>
-</pre><pre class="rust"><code><span class="attribute">#![<span class="ident">allow</span>(<span class="ident">clippy::derive_hash_xor_eq</span>)]</span> <span class="comment">// We need to impl Hash for f32, but we don&#39;t implement Eq, which is fine</span>
+</pre><pre class="rust"><code><span class="attribute">#![allow(clippy::derive_hash_xor_eq)] </span><span class="comment">// We need to impl Hash for f32, but we don&#39;t implement Eq, which is fine
 
-<span class="kw">use</span> <span class="ident">std::ops::Range</span>;
-<span class="kw">use</span> <span class="ident">std::sync::Arc</span>;
+</span><span class="kw">use </span>std::ops::Range;
+<span class="kw">use </span>std::sync::Arc;
 
-<span class="kw">use</span> <span class="kw">super</span>::{<span class="ident">cursor</span>::<span class="kw-2">*</span>, <span class="ident">font::UvRect</span>};
-<span class="kw">use</span> <span class="kw">crate</span>::{<span class="ident">Color32</span>, <span class="ident">Mesh</span>, <span class="ident">Stroke</span>, <span class="ident">TextStyle</span>};
-<span class="kw">use</span> <span class="ident">emath</span>::<span class="kw-2">*</span>;
+<span class="kw">use super</span>::{cursor::<span class="kw-2">*</span>, font::UvRect};
+<span class="kw">use crate</span>::{Color32, Mesh, Stroke, TextStyle};
+<span class="kw">use </span>emath::<span class="kw-2">*</span>;
 
-<span class="doccomment">/// Describes the task of laying out text.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// This supports mixing different fonts, color and formats (underline etc).</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// Pass this to [`crate::Fonts::layout_job`] or [`crate::text::layout`].</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// ## Example:</span>
-<span class="doccomment">/// ```</span>
-<span class="doccomment">/// use epaint::{Color32, text::{LayoutJob, TextFormat}, TextStyle};</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// let mut job = LayoutJob::default();</span>
-<span class="doccomment">/// job.append(</span>
-<span class="doccomment">///     &quot;Hello &quot;,</span>
-<span class="doccomment">///     0.0,</span>
-<span class="doccomment">///     TextFormat {</span>
-<span class="doccomment">///         style: TextStyle::Body,</span>
-<span class="doccomment">///         color: Color32::WHITE,</span>
-<span class="doccomment">///         ..Default::default()</span>
-<span class="doccomment">///     },</span>
-<span class="doccomment">/// );</span>
-<span class="doccomment">/// job.append(</span>
-<span class="doccomment">///     &quot;World!&quot;,</span>
-<span class="doccomment">///     0.0,</span>
-<span class="doccomment">///     TextFormat {</span>
-<span class="doccomment">///         style: TextStyle::Monospace,</span>
-<span class="doccomment">///         color: Color32::BLACK,</span>
-<span class="doccomment">///         ..Default::default()</span>
-<span class="doccomment">///     },</span>
-<span class="doccomment">/// );</span>
-<span class="doccomment">/// ```</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// As you can see, constructing a `LayoutJob` is currently a lot of work.</span>
-<span class="doccomment">/// It would be nice to have a helper macro for it!</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>)]</span>
-<span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;serde&quot;</span>, <span class="ident">derive</span>(<span class="ident">serde::Deserialize</span>, <span class="ident">serde::Serialize</span>))]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">LayoutJob</span> {
-    <span class="doccomment">/// The complete text of this job, referenced by `LayoutSection`.</span>
-    <span class="kw">pub</span> <span class="ident">text</span>: <span class="ident">String</span>,
+<span class="doccomment">/// Describes the task of laying out text.
+///
+/// This supports mixing different fonts, color and formats (underline etc).
+///
+/// Pass this to [`crate::Fonts::layout_job`] or [`crate::text::layout`].
+///
+/// ## Example:
+/// ```
+/// use epaint::{Color32, text::{LayoutJob, TextFormat}, TextStyle};
+///
+/// let mut job = LayoutJob::default();
+/// job.append(
+///     &quot;Hello &quot;,
+///     0.0,
+///     TextFormat {
+///         style: TextStyle::Body,
+///         color: Color32::WHITE,
+///         ..Default::default()
+///     },
+/// );
+/// job.append(
+///     &quot;World!&quot;,
+///     0.0,
+///     TextFormat {
+///         style: TextStyle::Monospace,
+///         color: Color32::BLACK,
+///         ..Default::default()
+///     },
+/// );
+/// ```
+///
+/// As you can see, constructing a `LayoutJob` is currently a lot of work.
+/// It would be nice to have a helper macro for it!
+</span><span class="attribute">#[derive(Clone, Debug, PartialEq)]
+#[cfg_attr(feature = <span class="string">&quot;serde&quot;</span>, derive(serde::Deserialize, serde::Serialize))]
+</span><span class="kw">pub struct </span>LayoutJob {
+    <span class="doccomment">/// The complete text of this job, referenced by `LayoutSection`.
+    </span><span class="kw">pub </span>text: String,
 
-    <span class="doccomment">/// The different section, which can have different fonts, colors, etc.</span>
-    <span class="kw">pub</span> <span class="ident">sections</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">LayoutSection</span><span class="op">&gt;</span>,
+    <span class="doccomment">/// The different section, which can have different fonts, colors, etc.
+    </span><span class="kw">pub </span>sections: Vec&lt;LayoutSection&gt;,
 
-    <span class="doccomment">/// Try to break text so that no row is wider than this.</span>
-    <span class="doccomment">/// Set to [`f32::INFINITY`] to turn off wrapping.</span>
-    <span class="doccomment">/// Note that `\n` always produces a new line.</span>
-    <span class="kw">pub</span> <span class="ident">wrap_width</span>: <span class="ident">f32</span>,
+    <span class="doccomment">/// Try to break text so that no row is wider than this.
+    /// Set to [`f32::INFINITY`] to turn off wrapping.
+    /// Note that `\n` always produces a new line.
+    </span><span class="kw">pub </span>wrap_width: f32,
 
-    <span class="doccomment">/// The first row must be at least this high.</span>
-    <span class="doccomment">/// This is in case we lay out text that is the continuation</span>
-    <span class="doccomment">/// of some earlier text (sharing the same row),</span>
-    <span class="doccomment">/// in which case this will be the height of the earlier text.</span>
-    <span class="doccomment">/// In other cases, set this to `0.0`.</span>
-    <span class="kw">pub</span> <span class="ident">first_row_min_height</span>: <span class="ident">f32</span>,
+    <span class="doccomment">/// The first row must be at least this high.
+    /// This is in case we lay out text that is the continuation
+    /// of some earlier text (sharing the same row),
+    /// in which case this will be the height of the earlier text.
+    /// In other cases, set this to `0.0`.
+    </span><span class="kw">pub </span>first_row_min_height: f32,
 
-    <span class="doccomment">/// If `false`, all newlines characters will be ignored</span>
-    <span class="doccomment">/// and show up as the replacement character.</span>
-    <span class="doccomment">/// Default: `true`.</span>
-    <span class="kw">pub</span> <span class="ident">break_on_newline</span>: <span class="ident">bool</span>,
+    <span class="doccomment">/// If `false`, all newlines characters will be ignored
+    /// and show up as the replacement character.
+    /// Default: `true`.
+    </span><span class="kw">pub </span>break_on_newline: bool,
 
-    <span class="doccomment">/// How to horizontally align the text (`Align::LEFT`, `Align::Center`, `Align::RIGHT`).</span>
-    <span class="kw">pub</span> <span class="ident">halign</span>: <span class="ident">Align</span>,
+    <span class="doccomment">/// How to horizontally align the text (`Align::LEFT`, `Align::Center`, `Align::RIGHT`).
+    </span><span class="kw">pub </span>halign: Align,
 
-    <span class="doccomment">/// Justify text so that word-wrapped rows fill the whole [`Self::wrap_width`]</span>
-    <span class="kw">pub</span> <span class="ident">justify</span>: <span class="ident">bool</span>,
+    <span class="doccomment">/// Justify text so that word-wrapped rows fill the whole [`Self::wrap_width`]
+    </span><span class="kw">pub </span>justify: bool,
 }
 
-<span class="kw">impl</span> <span class="ident">Default</span> <span class="kw">for</span> <span class="ident">LayoutJob</span> {
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">default</span>() -&gt; <span class="self">Self</span> {
-        <span class="self">Self</span> {
-            <span class="ident">text</span>: <span class="ident">Default::default</span>(),
-            <span class="ident">sections</span>: <span class="ident">Default::default</span>(),
-            <span class="ident">wrap_width</span>: <span class="ident">f32::INFINITY</span>,
-            <span class="ident">first_row_min_height</span>: <span class="number">0.0</span>,
-            <span class="ident">break_on_newline</span>: <span class="bool-val">true</span>,
-            <span class="ident">halign</span>: <span class="ident">Align::LEFT</span>,
-            <span class="ident">justify</span>: <span class="bool-val">false</span>,
+<span class="kw">impl </span>Default <span class="kw">for </span>LayoutJob {
+    <span class="attribute">#[inline]
+    </span><span class="kw">fn </span>default() -&gt; <span class="self">Self </span>{
+        <span class="self">Self </span>{
+            text: Default::default(),
+            sections: Default::default(),
+            wrap_width: f32::INFINITY,
+            first_row_min_height: <span class="number">0.0</span>,
+            break_on_newline: <span class="bool-val">true</span>,
+            halign: Align::LEFT,
+            justify: <span class="bool-val">false</span>,
         }
     }
 }
 
-<span class="kw">impl</span> <span class="ident">LayoutJob</span> {
-    <span class="doccomment">/// Break on `\n` and at the given wrap width.</span>
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">simple</span>(<span class="ident">text</span>: <span class="ident">String</span>, <span class="ident">text_style</span>: <span class="ident">TextStyle</span>, <span class="ident">color</span>: <span class="ident">Color32</span>, <span class="ident">wrap_width</span>: <span class="ident">f32</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">Self</span> {
-            <span class="ident">sections</span>: <span class="macro">vec!</span>[<span class="ident">LayoutSection</span> {
-                <span class="ident">leading_space</span>: <span class="number">0.0</span>,
-                <span class="ident">byte_range</span>: <span class="number">0</span>..<span class="ident">text</span>.<span class="ident">len</span>(),
-                <span class="ident">format</span>: <span class="ident">TextFormat::simple</span>(<span class="ident">text_style</span>, <span class="ident">color</span>),
+<span class="kw">impl </span>LayoutJob {
+    <span class="doccomment">/// Break on `\n` and at the given wrap width.
+    </span><span class="attribute">#[inline]
+    </span><span class="kw">pub fn </span>simple(text: String, text_style: TextStyle, color: Color32, wrap_width: f32) -&gt; <span class="self">Self </span>{
+        <span class="self">Self </span>{
+            sections: <span class="macro">vec!</span>[LayoutSection {
+                leading_space: <span class="number">0.0</span>,
+                byte_range: <span class="number">0</span>..text.len(),
+                format: TextFormat::simple(text_style, color),
             }],
-            <span class="ident">text</span>,
-            <span class="ident">wrap_width</span>,
-            <span class="ident">break_on_newline</span>: <span class="bool-val">true</span>,
-            ..<span class="ident">Default::default</span>()
+            text,
+            wrap_width,
+            break_on_newline: <span class="bool-val">true</span>,
+            ..Default::default()
         }
     }
 
-    <span class="doccomment">/// Does not break on `\n`, but shows the replacement character instead.</span>
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">simple_singleline</span>(<span class="ident">text</span>: <span class="ident">String</span>, <span class="ident">text_style</span>: <span class="ident">TextStyle</span>, <span class="ident">color</span>: <span class="ident">Color32</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">Self</span> {
-            <span class="ident">sections</span>: <span class="macro">vec!</span>[<span class="ident">LayoutSection</span> {
-                <span class="ident">leading_space</span>: <span class="number">0.0</span>,
-                <span class="ident">byte_range</span>: <span class="number">0</span>..<span class="ident">text</span>.<span class="ident">len</span>(),
-                <span class="ident">format</span>: <span class="ident">TextFormat::simple</span>(<span class="ident">text_style</span>, <span class="ident">color</span>),
+    <span class="doccomment">/// Does not break on `\n`, but shows the replacement character instead.
+    </span><span class="attribute">#[inline]
+    </span><span class="kw">pub fn </span>simple_singleline(text: String, text_style: TextStyle, color: Color32) -&gt; <span class="self">Self </span>{
+        <span class="self">Self </span>{
+            sections: <span class="macro">vec!</span>[LayoutSection {
+                leading_space: <span class="number">0.0</span>,
+                byte_range: <span class="number">0</span>..text.len(),
+                format: TextFormat::simple(text_style, color),
             }],
-            <span class="ident">text</span>,
-            <span class="ident">wrap_width</span>: <span class="ident">f32::INFINITY</span>,
-            <span class="ident">break_on_newline</span>: <span class="bool-val">false</span>,
-            ..<span class="ident">Default::default</span>()
+            text,
+            wrap_width: f32::INFINITY,
+            break_on_newline: <span class="bool-val">false</span>,
+            ..Default::default()
         }
     }
 
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">single_section</span>(<span class="ident">text</span>: <span class="ident">String</span>, <span class="ident">format</span>: <span class="ident">TextFormat</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">Self</span> {
-            <span class="ident">sections</span>: <span class="macro">vec!</span>[<span class="ident">LayoutSection</span> {
-                <span class="ident">leading_space</span>: <span class="number">0.0</span>,
-                <span class="ident">byte_range</span>: <span class="number">0</span>..<span class="ident">text</span>.<span class="ident">len</span>(),
-                <span class="ident">format</span>,
+    <span class="attribute">#[inline]
+    </span><span class="kw">pub fn </span>single_section(text: String, format: TextFormat) -&gt; <span class="self">Self </span>{
+        <span class="self">Self </span>{
+            sections: <span class="macro">vec!</span>[LayoutSection {
+                leading_space: <span class="number">0.0</span>,
+                byte_range: <span class="number">0</span>..text.len(),
+                format,
             }],
-            <span class="ident">text</span>,
-            <span class="ident">wrap_width</span>: <span class="ident">f32::INFINITY</span>,
-            <span class="ident">break_on_newline</span>: <span class="bool-val">true</span>,
-            ..<span class="ident">Default::default</span>()
+            text,
+            wrap_width: f32::INFINITY,
+            break_on_newline: <span class="bool-val">true</span>,
+            ..Default::default()
         }
     }
 
-    <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_empty</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span> {
-        <span class="self">self</span>.<span class="ident">sections</span>.<span class="ident">is_empty</span>()
+    <span class="attribute">#[inline(always)]
+    </span><span class="kw">pub fn </span>is_empty(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; bool {
+        <span class="self">self</span>.sections.is_empty()
     }
 
-    <span class="doccomment">/// Helper for adding a new section when building a `LayoutJob`.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">append</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">text</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>, <span class="ident">leading_space</span>: <span class="ident">f32</span>, <span class="ident">format</span>: <span class="ident">TextFormat</span>) {
-        <span class="kw">let</span> <span class="ident">start</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">text</span>.<span class="ident">len</span>();
-        <span class="self">self</span>.<span class="ident">text</span> <span class="op">+</span><span class="op">=</span> <span class="ident">text</span>;
-        <span class="kw">let</span> <span class="ident">byte_range</span> <span class="op">=</span> <span class="ident">start</span>..<span class="self">self</span>.<span class="ident">text</span>.<span class="ident">len</span>();
-        <span class="self">self</span>.<span class="ident">sections</span>.<span class="ident">push</span>(<span class="ident">LayoutSection</span> {
-            <span class="ident">leading_space</span>,
-            <span class="ident">byte_range</span>,
-            <span class="ident">format</span>,
+    <span class="doccomment">/// Helper for adding a new section when building a `LayoutJob`.
+    </span><span class="kw">pub fn </span>append(<span class="kw-2">&amp;mut </span><span class="self">self</span>, text: <span class="kw-2">&amp;</span>str, leading_space: f32, format: TextFormat) {
+        <span class="kw">let </span>start = <span class="self">self</span>.text.len();
+        <span class="self">self</span>.text += text;
+        <span class="kw">let </span>byte_range = start..<span class="self">self</span>.text.len();
+        <span class="self">self</span>.sections.push(LayoutSection {
+            leading_space,
+            byte_range,
+            format,
         });
     }
 
-    <span class="doccomment">/// The height of the tallest used font in the job.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">font_height</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">fonts</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="kw">crate</span>::Fonts</span>) -&gt; <span class="ident">f32</span> {
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">max_height</span> <span class="op">=</span> <span class="number">0.0_f32</span>;
-        <span class="kw">for</span> <span class="ident">section</span> <span class="kw">in</span> <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">sections</span> {
-            <span class="ident">max_height</span> <span class="op">=</span> <span class="ident">max_height</span>.<span class="ident">max</span>(<span class="ident">fonts</span>.<span class="ident">row_height</span>(<span class="ident">section</span>.<span class="ident">format</span>.<span class="ident">style</span>));
+    <span class="doccomment">/// The height of the tallest used font in the job.
+    </span><span class="kw">pub fn </span>font_height(<span class="kw-2">&amp;</span><span class="self">self</span>, fonts: <span class="kw-2">&amp;</span><span class="kw">crate</span>::Fonts) -&gt; f32 {
+        <span class="kw">let </span><span class="kw-2">mut </span>max_height = <span class="number">0.0_f32</span>;
+        <span class="kw">for </span>section <span class="kw">in </span><span class="kw-2">&amp;</span><span class="self">self</span>.sections {
+            max_height = max_height.max(fonts.row_height(section.format.style));
         }
-        <span class="ident">max_height</span>
+        max_height
     }
 }
 
-<span class="kw">impl</span> <span class="ident">std::hash::Hash</span> <span class="kw">for</span> <span class="ident">LayoutJob</span> {
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">hash</span><span class="op">&lt;</span><span class="ident">H</span>: <span class="ident">std::hash::Hasher</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">state</span>: <span class="kw-2">&amp;mut</span> <span class="ident">H</span>) {
-        <span class="kw">let</span> <span class="self">Self</span> {
-            <span class="ident">text</span>,
-            <span class="ident">sections</span>,
-            <span class="ident">wrap_width</span>,
-            <span class="ident">first_row_min_height</span>,
-            <span class="ident">break_on_newline</span>,
-            <span class="ident">halign</span>,
-            <span class="ident">justify</span>,
-        } <span class="op">=</span> <span class="self">self</span>;
+<span class="kw">impl </span>std::hash::Hash <span class="kw">for </span>LayoutJob {
+    <span class="attribute">#[inline]
+    </span><span class="kw">fn </span>hash&lt;H: std::hash::Hasher&gt;(<span class="kw-2">&amp;</span><span class="self">self</span>, state: <span class="kw-2">&amp;mut </span>H) {
+        <span class="kw">let </span><span class="self">Self </span>{
+            text,
+            sections,
+            wrap_width,
+            first_row_min_height,
+            break_on_newline,
+            halign,
+            justify,
+        } = <span class="self">self</span>;
 
-        <span class="ident">text</span>.<span class="ident">hash</span>(<span class="ident">state</span>);
-        <span class="ident">sections</span>.<span class="ident">hash</span>(<span class="ident">state</span>);
-        <span class="ident"><span class="kw">crate</span>::f32_hash</span>(<span class="ident">state</span>, <span class="kw-2">*</span><span class="ident">wrap_width</span>);
-        <span class="ident"><span class="kw">crate</span>::f32_hash</span>(<span class="ident">state</span>, <span class="kw-2">*</span><span class="ident">first_row_min_height</span>);
-        <span class="ident">break_on_newline</span>.<span class="ident">hash</span>(<span class="ident">state</span>);
-        <span class="ident">halign</span>.<span class="ident">hash</span>(<span class="ident">state</span>);
-        <span class="ident">justify</span>.<span class="ident">hash</span>(<span class="ident">state</span>);
+        text.hash(state);
+        sections.hash(state);
+        <span class="kw">crate</span>::f32_hash(state, <span class="kw-2">*</span>wrap_width);
+        <span class="kw">crate</span>::f32_hash(state, <span class="kw-2">*</span>first_row_min_height);
+        break_on_newline.hash(state);
+        halign.hash(state);
+        justify.hash(state);
     }
 }
 
-<span class="comment">// ----------------------------------------------------------------------------</span>
+<span class="comment">// ----------------------------------------------------------------------------
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>)]</span>
-<span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;serde&quot;</span>, <span class="ident">derive</span>(<span class="ident">serde::Deserialize</span>, <span class="ident">serde::Serialize</span>))]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">LayoutSection</span> {
-    <span class="doccomment">/// Can be used for first row indentation.</span>
-    <span class="kw">pub</span> <span class="ident">leading_space</span>: <span class="ident">f32</span>,
-    <span class="doccomment">/// Range into the galley text</span>
-    <span class="kw">pub</span> <span class="ident">byte_range</span>: <span class="ident">Range</span><span class="op">&lt;</span><span class="ident">usize</span><span class="op">&gt;</span>,
-    <span class="kw">pub</span> <span class="ident">format</span>: <span class="ident">TextFormat</span>,
+</span><span class="attribute">#[derive(Clone, Debug, PartialEq)]
+#[cfg_attr(feature = <span class="string">&quot;serde&quot;</span>, derive(serde::Deserialize, serde::Serialize))]
+</span><span class="kw">pub struct </span>LayoutSection {
+    <span class="doccomment">/// Can be used for first row indentation.
+    </span><span class="kw">pub </span>leading_space: f32,
+    <span class="doccomment">/// Range into the galley text
+    </span><span class="kw">pub </span>byte_range: Range&lt;usize&gt;,
+    <span class="kw">pub </span>format: TextFormat,
 }
 
-<span class="kw">impl</span> <span class="ident">std::hash::Hash</span> <span class="kw">for</span> <span class="ident">LayoutSection</span> {
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">hash</span><span class="op">&lt;</span><span class="ident">H</span>: <span class="ident">std::hash::Hasher</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">state</span>: <span class="kw-2">&amp;mut</span> <span class="ident">H</span>) {
-        <span class="kw">let</span> <span class="self">Self</span> {
-            <span class="ident">leading_space</span>,
-            <span class="ident">byte_range</span>,
-            <span class="ident">format</span>,
-        } <span class="op">=</span> <span class="self">self</span>;
-        <span class="ident"><span class="kw">crate</span>::f32_hash</span>(<span class="ident">state</span>, <span class="kw-2">*</span><span class="ident">leading_space</span>);
-        <span class="ident">byte_range</span>.<span class="ident">hash</span>(<span class="ident">state</span>);
-        <span class="ident">format</span>.<span class="ident">hash</span>(<span class="ident">state</span>);
+<span class="kw">impl </span>std::hash::Hash <span class="kw">for </span>LayoutSection {
+    <span class="attribute">#[inline]
+    </span><span class="kw">fn </span>hash&lt;H: std::hash::Hasher&gt;(<span class="kw-2">&amp;</span><span class="self">self</span>, state: <span class="kw-2">&amp;mut </span>H) {
+        <span class="kw">let </span><span class="self">Self </span>{
+            leading_space,
+            byte_range,
+            format,
+        } = <span class="self">self</span>;
+        <span class="kw">crate</span>::f32_hash(state, <span class="kw-2">*</span>leading_space);
+        byte_range.hash(state);
+        format.hash(state);
     }
 }
 
-<span class="comment">// ----------------------------------------------------------------------------</span>
+<span class="comment">// ----------------------------------------------------------------------------
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">Hash</span>, <span class="ident">PartialEq</span>)]</span>
-<span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;serde&quot;</span>, <span class="ident">derive</span>(<span class="ident">serde::Deserialize</span>, <span class="ident">serde::Serialize</span>))]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">TextFormat</span> {
-    <span class="kw">pub</span> <span class="ident">style</span>: <span class="ident">TextStyle</span>,
-    <span class="doccomment">/// Text color</span>
-    <span class="kw">pub</span> <span class="ident">color</span>: <span class="ident">Color32</span>,
-    <span class="kw">pub</span> <span class="ident">background</span>: <span class="ident">Color32</span>,
-    <span class="kw">pub</span> <span class="ident">italics</span>: <span class="ident">bool</span>,
-    <span class="kw">pub</span> <span class="ident">underline</span>: <span class="ident">Stroke</span>,
-    <span class="kw">pub</span> <span class="ident">strikethrough</span>: <span class="ident">Stroke</span>,
-    <span class="doccomment">/// If you use a small font and [`Align::TOP`] you</span>
-    <span class="doccomment">/// can get the effect of raised text.</span>
-    <span class="kw">pub</span> <span class="ident">valign</span>: <span class="ident">Align</span>,
-    <span class="comment">// TODO: lowered</span>
-}
+</span><span class="attribute">#[derive(Copy, Clone, Debug, Hash, PartialEq)]
+#[cfg_attr(feature = <span class="string">&quot;serde&quot;</span>, derive(serde::Deserialize, serde::Serialize))]
+</span><span class="kw">pub struct </span>TextFormat {
+    <span class="kw">pub </span>style: TextStyle,
+    <span class="doccomment">/// Text color
+    </span><span class="kw">pub </span>color: Color32,
+    <span class="kw">pub </span>background: Color32,
+    <span class="kw">pub </span>italics: bool,
+    <span class="kw">pub </span>underline: Stroke,
+    <span class="kw">pub </span>strikethrough: Stroke,
+    <span class="doccomment">/// If you use a small font and [`Align::TOP`] you
+    /// can get the effect of raised text.
+    </span><span class="kw">pub </span>valign: Align,
+    <span class="comment">// TODO: lowered
+</span>}
 
-<span class="kw">impl</span> <span class="ident">Default</span> <span class="kw">for</span> <span class="ident">TextFormat</span> {
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">default</span>() -&gt; <span class="self">Self</span> {
-        <span class="self">Self</span> {
-            <span class="ident">style</span>: <span class="ident">TextStyle::Body</span>,
-            <span class="ident">color</span>: <span class="ident">Color32::GRAY</span>,
-            <span class="ident">background</span>: <span class="ident">Color32::TRANSPARENT</span>,
-            <span class="ident">italics</span>: <span class="bool-val">false</span>,
-            <span class="ident">underline</span>: <span class="ident">Stroke::none</span>(),
-            <span class="ident">strikethrough</span>: <span class="ident">Stroke::none</span>(),
-            <span class="ident">valign</span>: <span class="ident">Align::BOTTOM</span>,
-        }
-    }
-}
-
-<span class="kw">impl</span> <span class="ident">TextFormat</span> {
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">simple</span>(<span class="ident">style</span>: <span class="ident">TextStyle</span>, <span class="ident">color</span>: <span class="ident">Color32</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">Self</span> {
-            <span class="ident">style</span>,
-            <span class="ident">color</span>,
-            ..<span class="ident">Default::default</span>()
+<span class="kw">impl </span>Default <span class="kw">for </span>TextFormat {
+    <span class="attribute">#[inline]
+    </span><span class="kw">fn </span>default() -&gt; <span class="self">Self </span>{
+        <span class="self">Self </span>{
+            style: TextStyle::Body,
+            color: Color32::GRAY,
+            background: Color32::TRANSPARENT,
+            italics: <span class="bool-val">false</span>,
+            underline: Stroke::none(),
+            strikethrough: Stroke::none(),
+            valign: Align::BOTTOM,
         }
     }
 }
 
-<span class="comment">// ----------------------------------------------------------------------------</span>
-
-<span class="doccomment">/// Text that has been layed out, ready for painting.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// You can create a [`Galley`] using [`crate::Fonts::layout_job`];</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Galley</span> {
-    <span class="doccomment">/// The job that this galley is the result of.</span>
-    <span class="doccomment">/// Contains the original string and style sections.</span>
-    <span class="kw">pub</span> <span class="ident">job</span>: <span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">LayoutJob</span><span class="op">&gt;</span>,
-
-    <span class="doccomment">/// Rows of text, from top to bottom.</span>
-    <span class="doccomment">/// The number of characters in all rows sum up to `job.text.chars().count()`.</span>
-    <span class="doccomment">/// Note that each paragraph (pieces of text separated with `\n`)</span>
-    <span class="doccomment">/// can be split up into multiple rows.</span>
-    <span class="kw">pub</span> <span class="ident">rows</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Row</span><span class="op">&gt;</span>,
-
-    <span class="doccomment">/// Bounding rect.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// `rect.top()` is always 0.0.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// With [`LayoutJob::halign`]:</span>
-    <span class="doccomment">/// * [`Align::LEFT`]: rect.left() == 0.0</span>
-    <span class="doccomment">/// * [`Align::Center`]: rect.center() == 0.0</span>
-    <span class="doccomment">/// * [`Align::RIGHT`]: rect.right() == 0.0</span>
-    <span class="kw">pub</span> <span class="ident">rect</span>: <span class="ident">Rect</span>,
-
-    <span class="doccomment">/// Tight bounding box around all the meshes in all the rows.</span>
-    <span class="doccomment">/// Can be used for culling.</span>
-    <span class="kw">pub</span> <span class="ident">mesh_bounds</span>: <span class="ident">Rect</span>,
-
-    <span class="doccomment">/// Total number of vertices in all the row meshes.</span>
-    <span class="kw">pub</span> <span class="ident">num_vertices</span>: <span class="ident">usize</span>,
-
-    <span class="doccomment">/// Total number of indices in all the row meshes.</span>
-    <span class="kw">pub</span> <span class="ident">num_indices</span>: <span class="ident">usize</span>,
-}
-
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Row</span> {
-    <span class="doccomment">/// One for each `char`.</span>
-    <span class="kw">pub</span> <span class="ident">glyphs</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Glyph</span><span class="op">&gt;</span>,
-
-    <span class="doccomment">/// Logical bounding rectangle based on font heights etc.</span>
-    <span class="doccomment">/// Use this when drawing a selection or similar!</span>
-    <span class="doccomment">/// Includes leading and trailing whitespace.</span>
-    <span class="kw">pub</span> <span class="ident">rect</span>: <span class="ident">Rect</span>,
-
-    <span class="doccomment">/// The mesh, ready to be rendered.</span>
-    <span class="kw">pub</span> <span class="ident">visuals</span>: <span class="ident">RowVisuals</span>,
-
-    <span class="doccomment">/// If true, this `Row` came from a paragraph ending with a `\n`.</span>
-    <span class="doccomment">/// The `\n` itself is omitted from [`Self::glyphs`].</span>
-    <span class="doccomment">/// A `\n` in the input text always creates a new `Row` below it,</span>
-    <span class="doccomment">/// so that text that ends with `\n` has an empty `Row` last.</span>
-    <span class="doccomment">/// This also implies that the last `Row` in a `Galley` always has `ends_with_newline == false`.</span>
-    <span class="kw">pub</span> <span class="ident">ends_with_newline</span>: <span class="ident">bool</span>,
-}
-
-<span class="doccomment">/// The tessellated output of a row.</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">RowVisuals</span> {
-    <span class="doccomment">/// The tessellated text, using non-normalized (texel) UV coordinates.</span>
-    <span class="doccomment">/// That is, you need to divide the uv coordinates by the texture size.</span>
-    <span class="kw">pub</span> <span class="ident">mesh</span>: <span class="ident">Mesh</span>,
-
-    <span class="doccomment">/// Bounds of the mesh, and can be used for culling.</span>
-    <span class="doccomment">/// Does NOT include leading or trailing whitespace glyphs!!</span>
-    <span class="kw">pub</span> <span class="ident">mesh_bounds</span>: <span class="ident">Rect</span>,
-
-    <span class="doccomment">/// The range of vertices in the mesh the contain glyphs.</span>
-    <span class="doccomment">/// Before comes backgrounds (if any), and after any underlines and strikethrough.</span>
-    <span class="kw">pub</span> <span class="ident">glyph_vertex_range</span>: <span class="ident">Range</span><span class="op">&lt;</span><span class="ident">usize</span><span class="op">&gt;</span>,
-}
-
-<span class="kw">impl</span> <span class="ident">Default</span> <span class="kw">for</span> <span class="ident">RowVisuals</span> {
-    <span class="kw">fn</span> <span class="ident">default</span>() -&gt; <span class="self">Self</span> {
-        <span class="self">Self</span> {
-            <span class="ident">mesh</span>: <span class="ident">Default::default</span>(),
-            <span class="ident">mesh_bounds</span>: <span class="ident">Rect::NOTHING</span>,
-            <span class="ident">glyph_vertex_range</span>: <span class="number">0</span>..<span class="number">0</span>,
+<span class="kw">impl </span>TextFormat {
+    <span class="attribute">#[inline]
+    </span><span class="kw">pub fn </span>simple(style: TextStyle, color: Color32) -&gt; <span class="self">Self </span>{
+        <span class="self">Self </span>{
+            style,
+            color,
+            ..Default::default()
         }
     }
 }
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Glyph</span> {
-    <span class="kw">pub</span> <span class="ident">chr</span>: <span class="ident">char</span>,
-    <span class="doccomment">/// Relative to the galley position.</span>
-    <span class="doccomment">/// Logical position: pos.y is the same for all chars of the same [`TextFormat`].</span>
-    <span class="kw">pub</span> <span class="ident">pos</span>: <span class="ident">Pos2</span>,
-    <span class="doccomment">/// Advance width and font row height.</span>
-    <span class="kw">pub</span> <span class="ident">size</span>: <span class="ident">Vec2</span>,
-    <span class="doccomment">/// Position of the glyph in the font texture.</span>
-    <span class="kw">pub</span> <span class="ident">uv_rect</span>: <span class="ident">UvRect</span>,
-    <span class="doccomment">/// Index into [`LayoutJob::sections`]. Decides color etc.</span>
-    <span class="kw">pub</span> <span class="ident">section_index</span>: <span class="ident">u32</span>,
+<span class="comment">// ----------------------------------------------------------------------------
+
+</span><span class="doccomment">/// Text that has been layed out, ready for painting.
+///
+/// You can create a [`Galley`] using [`crate::Fonts::layout_job`];
+</span><span class="attribute">#[derive(Clone, Debug, PartialEq)]
+</span><span class="kw">pub struct </span>Galley {
+    <span class="doccomment">/// The job that this galley is the result of.
+    /// Contains the original string and style sections.
+    </span><span class="kw">pub </span>job: Arc&lt;LayoutJob&gt;,
+
+    <span class="doccomment">/// Rows of text, from top to bottom.
+    /// The number of characters in all rows sum up to `job.text.chars().count()`.
+    /// Note that each paragraph (pieces of text separated with `\n`)
+    /// can be split up into multiple rows.
+    </span><span class="kw">pub </span>rows: Vec&lt;Row&gt;,
+
+    <span class="doccomment">/// Bounding rect.
+    ///
+    /// `rect.top()` is always 0.0.
+    ///
+    /// With [`LayoutJob::halign`]:
+    /// * [`Align::LEFT`]: rect.left() == 0.0
+    /// * [`Align::Center`]: rect.center() == 0.0
+    /// * [`Align::RIGHT`]: rect.right() == 0.0
+    </span><span class="kw">pub </span>rect: Rect,
+
+    <span class="doccomment">/// Tight bounding box around all the meshes in all the rows.
+    /// Can be used for culling.
+    </span><span class="kw">pub </span>mesh_bounds: Rect,
+
+    <span class="doccomment">/// Total number of vertices in all the row meshes.
+    </span><span class="kw">pub </span>num_vertices: usize,
+
+    <span class="doccomment">/// Total number of indices in all the row meshes.
+    </span><span class="kw">pub </span>num_indices: usize,
 }
 
-<span class="kw">impl</span> <span class="ident">Glyph</span> {
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">max_x</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">f32</span> {
-        <span class="self">self</span>.<span class="ident">pos</span>.<span class="ident">x</span> <span class="op">+</span> <span class="self">self</span>.<span class="ident">size</span>.<span class="ident">x</span>
-    }
+<span class="attribute">#[derive(Clone, Debug, PartialEq)]
+</span><span class="kw">pub struct </span>Row {
+    <span class="doccomment">/// One for each `char`.
+    </span><span class="kw">pub </span>glyphs: Vec&lt;Glyph&gt;,
 
-    <span class="doccomment">/// Same y range for all characters with the same [`TextFormat`].</span>
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">logical_rect</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">Rect</span> {
-        <span class="ident">Rect::from_min_size</span>(<span class="self">self</span>.<span class="ident">pos</span>, <span class="self">self</span>.<span class="ident">size</span>)
+    <span class="doccomment">/// Logical bounding rectangle based on font heights etc.
+    /// Use this when drawing a selection or similar!
+    /// Includes leading and trailing whitespace.
+    </span><span class="kw">pub </span>rect: Rect,
+
+    <span class="doccomment">/// The mesh, ready to be rendered.
+    </span><span class="kw">pub </span>visuals: RowVisuals,
+
+    <span class="doccomment">/// If true, this `Row` came from a paragraph ending with a `\n`.
+    /// The `\n` itself is omitted from [`Self::glyphs`].
+    /// A `\n` in the input text always creates a new `Row` below it,
+    /// so that text that ends with `\n` has an empty `Row` last.
+    /// This also implies that the last `Row` in a `Galley` always has `ends_with_newline == false`.
+    </span><span class="kw">pub </span>ends_with_newline: bool,
+}
+
+<span class="doccomment">/// The tessellated output of a row.
+</span><span class="attribute">#[derive(Clone, Debug, PartialEq)]
+</span><span class="kw">pub struct </span>RowVisuals {
+    <span class="doccomment">/// The tessellated text, using non-normalized (texel) UV coordinates.
+    /// That is, you need to divide the uv coordinates by the texture size.
+    </span><span class="kw">pub </span>mesh: Mesh,
+
+    <span class="doccomment">/// Bounds of the mesh, and can be used for culling.
+    /// Does NOT include leading or trailing whitespace glyphs!!
+    </span><span class="kw">pub </span>mesh_bounds: Rect,
+
+    <span class="doccomment">/// The range of vertices in the mesh the contain glyphs.
+    /// Before comes backgrounds (if any), and after any underlines and strikethrough.
+    </span><span class="kw">pub </span>glyph_vertex_range: Range&lt;usize&gt;,
+}
+
+<span class="kw">impl </span>Default <span class="kw">for </span>RowVisuals {
+    <span class="kw">fn </span>default() -&gt; <span class="self">Self </span>{
+        <span class="self">Self </span>{
+            mesh: Default::default(),
+            mesh_bounds: Rect::NOTHING,
+            glyph_vertex_range: <span class="number">0</span>..<span class="number">0</span>,
+        }
     }
 }
 
-<span class="comment">// ----------------------------------------------------------------------------</span>
+<span class="attribute">#[derive(Copy, Clone, Debug, PartialEq)]
+</span><span class="kw">pub struct </span>Glyph {
+    <span class="kw">pub </span>chr: char,
+    <span class="doccomment">/// Relative to the galley position.
+    /// Logical position: pos.y is the same for all chars of the same [`TextFormat`].
+    </span><span class="kw">pub </span>pos: Pos2,
+    <span class="doccomment">/// Advance width and font row height.
+    </span><span class="kw">pub </span>size: Vec2,
+    <span class="doccomment">/// Position of the glyph in the font texture.
+    </span><span class="kw">pub </span>uv_rect: UvRect,
+    <span class="doccomment">/// Index into [`LayoutJob::sections`]. Decides color etc.
+    </span><span class="kw">pub </span>section_index: u32,
+}
 
-<span class="kw">impl</span> <span class="ident">Row</span> {
-    <span class="doccomment">/// Excludes the implicit `\n` after the `Row`, if any.</span>
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">char_count_excluding_newline</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">usize</span> {
-        <span class="self">self</span>.<span class="ident">glyphs</span>.<span class="ident">len</span>()
+<span class="kw">impl </span>Glyph {
+    <span class="kw">pub fn </span>max_x(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; f32 {
+        <span class="self">self</span>.pos.x + <span class="self">self</span>.size.x
     }
 
-    <span class="doccomment">/// Includes the implicit `\n` after the `Row`, if any.</span>
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">char_count_including_newline</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">usize</span> {
-        <span class="self">self</span>.<span class="ident">glyphs</span>.<span class="ident">len</span>() <span class="op">+</span> (<span class="self">self</span>.<span class="ident">ends_with_newline</span> <span class="kw">as</span> <span class="ident">usize</span>)
+    <span class="doccomment">/// Same y range for all characters with the same [`TextFormat`].
+    </span><span class="attribute">#[inline]
+    </span><span class="kw">pub fn </span>logical_rect(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; Rect {
+        Rect::from_min_size(<span class="self">self</span>.pos, <span class="self">self</span>.size)
+    }
+}
+
+<span class="comment">// ----------------------------------------------------------------------------
+
+</span><span class="kw">impl </span>Row {
+    <span class="doccomment">/// Excludes the implicit `\n` after the `Row`, if any.
+    </span><span class="attribute">#[inline]
+    </span><span class="kw">pub fn </span>char_count_excluding_newline(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; usize {
+        <span class="self">self</span>.glyphs.len()
     }
 
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">min_y</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">f32</span> {
-        <span class="self">self</span>.<span class="ident">rect</span>.<span class="ident">top</span>()
+    <span class="doccomment">/// Includes the implicit `\n` after the `Row`, if any.
+    </span><span class="attribute">#[inline]
+    </span><span class="kw">pub fn </span>char_count_including_newline(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; usize {
+        <span class="self">self</span>.glyphs.len() + (<span class="self">self</span>.ends_with_newline <span class="kw">as </span>usize)
     }
 
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">max_y</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">f32</span> {
-        <span class="self">self</span>.<span class="ident">rect</span>.<span class="ident">bottom</span>()
+    <span class="attribute">#[inline]
+    </span><span class="kw">pub fn </span>min_y(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; f32 {
+        <span class="self">self</span>.rect.top()
     }
 
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">height</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">f32</span> {
-        <span class="self">self</span>.<span class="ident">rect</span>.<span class="ident">height</span>()
+    <span class="attribute">#[inline]
+    </span><span class="kw">pub fn </span>max_y(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; f32 {
+        <span class="self">self</span>.rect.bottom()
     }
 
-    <span class="doccomment">/// Closest char at the desired x coordinate.</span>
-    <span class="doccomment">/// Returns something in the range `[0, char_count_excluding_newline()]`.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">char_at</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">desired_x</span>: <span class="ident">f32</span>) -&gt; <span class="ident">usize</span> {
-        <span class="kw">for</span> (<span class="ident">i</span>, <span class="ident">glyph</span>) <span class="kw">in</span> <span class="self">self</span>.<span class="ident">glyphs</span>.<span class="ident">iter</span>().<span class="ident">enumerate</span>() {
-            <span class="kw">if</span> <span class="ident">desired_x</span> <span class="op">&lt;</span> <span class="ident">glyph</span>.<span class="ident">logical_rect</span>().<span class="ident">center</span>().<span class="ident">x</span> {
-                <span class="kw">return</span> <span class="ident">i</span>;
+    <span class="attribute">#[inline]
+    </span><span class="kw">pub fn </span>height(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; f32 {
+        <span class="self">self</span>.rect.height()
+    }
+
+    <span class="doccomment">/// Closest char at the desired x coordinate.
+    /// Returns something in the range `[0, char_count_excluding_newline()]`.
+    </span><span class="kw">pub fn </span>char_at(<span class="kw-2">&amp;</span><span class="self">self</span>, desired_x: f32) -&gt; usize {
+        <span class="kw">for </span>(i, glyph) <span class="kw">in </span><span class="self">self</span>.glyphs.iter().enumerate() {
+            <span class="kw">if </span>desired_x &lt; glyph.logical_rect().center().x {
+                <span class="kw">return </span>i;
             }
         }
-        <span class="self">self</span>.<span class="ident">char_count_excluding_newline</span>()
+        <span class="self">self</span>.char_count_excluding_newline()
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">x_offset</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">column</span>: <span class="ident">usize</span>) -&gt; <span class="ident">f32</span> {
-        <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">glyph</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">glyphs</span>.<span class="ident">get</span>(<span class="ident">column</span>) {
-            <span class="ident">glyph</span>.<span class="ident">pos</span>.<span class="ident">x</span>
-        } <span class="kw">else</span> {
-            <span class="self">self</span>.<span class="ident">rect</span>.<span class="ident">right</span>()
+    <span class="kw">pub fn </span>x_offset(<span class="kw-2">&amp;</span><span class="self">self</span>, column: usize) -&gt; f32 {
+        <span class="kw">if let </span><span class="prelude-val">Some</span>(glyph) = <span class="self">self</span>.glyphs.get(column) {
+            glyph.pos.x
+        } <span class="kw">else </span>{
+            <span class="self">self</span>.rect.right()
         }
     }
 }
 
-<span class="kw">impl</span> <span class="ident">Galley</span> {
-    <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_empty</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span> {
-        <span class="self">self</span>.<span class="ident">job</span>.<span class="ident">is_empty</span>()
+<span class="kw">impl </span>Galley {
+    <span class="attribute">#[inline(always)]
+    </span><span class="kw">pub fn </span>is_empty(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; bool {
+        <span class="self">self</span>.job.is_empty()
     }
 
-    <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">text</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span><span class="ident">str</span> {
-        <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">job</span>.<span class="ident">text</span>
+    <span class="attribute">#[inline(always)]
+    </span><span class="kw">pub fn </span>text(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span>str {
+        <span class="kw-2">&amp;</span><span class="self">self</span>.job.text
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">size</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">Vec2</span> {
-        <span class="self">self</span>.<span class="ident">rect</span>.<span class="ident">size</span>()
+    <span class="kw">pub fn </span>size(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; Vec2 {
+        <span class="self">self</span>.rect.size()
     }
 }
 
-<span class="comment">// ----------------------------------------------------------------------------</span>
+<span class="comment">// ----------------------------------------------------------------------------
 
-<span class="doccomment">/// ## Physical positions</span>
-<span class="kw">impl</span> <span class="ident">Galley</span> {
-    <span class="doccomment">/// Zero-width rect past the last character.</span>
-    <span class="kw">fn</span> <span class="ident">end_pos</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">Rect</span> {
-        <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">row</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">rows</span>.<span class="ident">last</span>() {
-            <span class="kw">let</span> <span class="ident">x</span> <span class="op">=</span> <span class="ident">row</span>.<span class="ident">rect</span>.<span class="ident">right</span>();
-            <span class="ident">Rect::from_min_max</span>(<span class="ident">pos2</span>(<span class="ident">x</span>, <span class="ident">row</span>.<span class="ident">min_y</span>()), <span class="ident">pos2</span>(<span class="ident">x</span>, <span class="ident">row</span>.<span class="ident">max_y</span>()))
-        } <span class="kw">else</span> {
-            <span class="comment">// Empty galley</span>
-            <span class="ident">Rect::from_min_max</span>(<span class="ident">pos2</span>(<span class="number">0.0</span>, <span class="number">0.0</span>), <span class="ident">pos2</span>(<span class="number">0.0</span>, <span class="number">0.0</span>))
+</span><span class="doccomment">/// ## Physical positions
+</span><span class="kw">impl </span>Galley {
+    <span class="doccomment">/// Zero-width rect past the last character.
+    </span><span class="kw">fn </span>end_pos(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; Rect {
+        <span class="kw">if let </span><span class="prelude-val">Some</span>(row) = <span class="self">self</span>.rows.last() {
+            <span class="kw">let </span>x = row.rect.right();
+            Rect::from_min_max(pos2(x, row.min_y()), pos2(x, row.max_y()))
+        } <span class="kw">else </span>{
+            <span class="comment">// Empty galley
+            </span>Rect::from_min_max(pos2(<span class="number">0.0</span>, <span class="number">0.0</span>), pos2(<span class="number">0.0</span>, <span class="number">0.0</span>))
         }
     }
 
-    <span class="doccomment">/// Returns a 0-width Rect.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">pos_from_pcursor</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">pcursor</span>: <span class="ident">PCursor</span>) -&gt; <span class="ident">Rect</span> {
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">it</span> <span class="op">=</span> <span class="ident">PCursor::default</span>();
+    <span class="doccomment">/// Returns a 0-width Rect.
+    </span><span class="kw">pub fn </span>pos_from_pcursor(<span class="kw-2">&amp;</span><span class="self">self</span>, pcursor: PCursor) -&gt; Rect {
+        <span class="kw">let </span><span class="kw-2">mut </span>it = PCursor::default();
 
-        <span class="kw">for</span> <span class="ident">row</span> <span class="kw">in</span> <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">rows</span> {
-            <span class="kw">if</span> <span class="ident">it</span>.<span class="ident">paragraph</span> <span class="op">==</span> <span class="ident">pcursor</span>.<span class="ident">paragraph</span> {
-                <span class="comment">// Right paragraph, but is it the right row in the paragraph?</span>
+        <span class="kw">for </span>row <span class="kw">in </span><span class="kw-2">&amp;</span><span class="self">self</span>.rows {
+            <span class="kw">if </span>it.paragraph == pcursor.paragraph {
+                <span class="comment">// Right paragraph, but is it the right row in the paragraph?
 
-                <span class="kw">if</span> <span class="ident">it</span>.<span class="ident">offset</span> <span class="op">&lt;</span><span class="op">=</span> <span class="ident">pcursor</span>.<span class="ident">offset</span>
-                    <span class="op">&amp;&amp;</span> (<span class="ident">pcursor</span>.<span class="ident">offset</span> <span class="op">&lt;</span><span class="op">=</span> <span class="ident">it</span>.<span class="ident">offset</span> <span class="op">+</span> <span class="ident">row</span>.<span class="ident">char_count_excluding_newline</span>()
-                        <span class="op">|</span><span class="op">|</span> <span class="ident">row</span>.<span class="ident">ends_with_newline</span>)
+                </span><span class="kw">if </span>it.offset &lt;= pcursor.offset
+                    &amp;&amp; (pcursor.offset &lt;= it.offset + row.char_count_excluding_newline()
+                        || row.ends_with_newline)
                 {
-                    <span class="kw">let</span> <span class="ident">column</span> <span class="op">=</span> <span class="ident">pcursor</span>.<span class="ident">offset</span> <span class="op">-</span> <span class="ident">it</span>.<span class="ident">offset</span>;
+                    <span class="kw">let </span>column = pcursor.offset - it.offset;
 
-                    <span class="kw">let</span> <span class="ident">select_next_row_instead</span> <span class="op">=</span> <span class="ident">pcursor</span>.<span class="ident">prefer_next_row</span>
-                        <span class="op">&amp;&amp;</span> <span class="op">!</span><span class="ident">row</span>.<span class="ident">ends_with_newline</span>
-                        <span class="op">&amp;&amp;</span> <span class="ident">column</span> <span class="op">&gt;</span><span class="op">=</span> <span class="ident">row</span>.<span class="ident">char_count_excluding_newline</span>();
-                    <span class="kw">if</span> <span class="op">!</span><span class="ident">select_next_row_instead</span> {
-                        <span class="kw">let</span> <span class="ident">x</span> <span class="op">=</span> <span class="ident">row</span>.<span class="ident">x_offset</span>(<span class="ident">column</span>);
-                        <span class="kw">return</span> <span class="ident">Rect::from_min_max</span>(<span class="ident">pos2</span>(<span class="ident">x</span>, <span class="ident">row</span>.<span class="ident">min_y</span>()), <span class="ident">pos2</span>(<span class="ident">x</span>, <span class="ident">row</span>.<span class="ident">max_y</span>()));
+                    <span class="kw">let </span>select_next_row_instead = pcursor.prefer_next_row
+                        &amp;&amp; !row.ends_with_newline
+                        &amp;&amp; column &gt;= row.char_count_excluding_newline();
+                    <span class="kw">if </span>!select_next_row_instead {
+                        <span class="kw">let </span>x = row.x_offset(column);
+                        <span class="kw">return </span>Rect::from_min_max(pos2(x, row.min_y()), pos2(x, row.max_y()));
                     }
                 }
             }
 
-            <span class="kw">if</span> <span class="ident">row</span>.<span class="ident">ends_with_newline</span> {
-                <span class="ident">it</span>.<span class="ident">paragraph</span> <span class="op">+</span><span class="op">=</span> <span class="number">1</span>;
-                <span class="ident">it</span>.<span class="ident">offset</span> <span class="op">=</span> <span class="number">0</span>;
-            } <span class="kw">else</span> {
-                <span class="ident">it</span>.<span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="ident">row</span>.<span class="ident">char_count_including_newline</span>();
+            <span class="kw">if </span>row.ends_with_newline {
+                it.paragraph += <span class="number">1</span>;
+                it.offset = <span class="number">0</span>;
+            } <span class="kw">else </span>{
+                it.offset += row.char_count_including_newline();
             }
         }
 
-        <span class="self">self</span>.<span class="ident">end_pos</span>()
+        <span class="self">self</span>.end_pos()
     }
 
-    <span class="doccomment">/// Returns a 0-width Rect.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">pos_from_cursor</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">cursor</span>: <span class="kw-2">&amp;</span><span class="ident">Cursor</span>) -&gt; <span class="ident">Rect</span> {
-        <span class="self">self</span>.<span class="ident">pos_from_pcursor</span>(<span class="ident">cursor</span>.<span class="ident">pcursor</span>) <span class="comment">// pcursor is what TextEdit stores</span>
-    }
+    <span class="doccomment">/// Returns a 0-width Rect.
+    </span><span class="kw">pub fn </span>pos_from_cursor(<span class="kw-2">&amp;</span><span class="self">self</span>, cursor: <span class="kw-2">&amp;</span>Cursor) -&gt; Rect {
+        <span class="self">self</span>.pos_from_pcursor(cursor.pcursor) <span class="comment">// pcursor is what TextEdit stores
+    </span>}
 
-    <span class="doccomment">/// Cursor at the given position within the galley</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">cursor_from_pos</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">pos</span>: <span class="ident">Vec2</span>) -&gt; <span class="ident">Cursor</span> {
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">best_y_dist</span> <span class="op">=</span> <span class="ident">f32::INFINITY</span>;
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">cursor</span> <span class="op">=</span> <span class="ident">Cursor::default</span>();
+    <span class="doccomment">/// Cursor at the given position within the galley
+    </span><span class="kw">pub fn </span>cursor_from_pos(<span class="kw-2">&amp;</span><span class="self">self</span>, pos: Vec2) -&gt; Cursor {
+        <span class="kw">let </span><span class="kw-2">mut </span>best_y_dist = f32::INFINITY;
+        <span class="kw">let </span><span class="kw-2">mut </span>cursor = Cursor::default();
 
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">ccursor_index</span> <span class="op">=</span> <span class="number">0</span>;
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">pcursor_it</span> <span class="op">=</span> <span class="ident">PCursor::default</span>();
+        <span class="kw">let </span><span class="kw-2">mut </span>ccursor_index = <span class="number">0</span>;
+        <span class="kw">let </span><span class="kw-2">mut </span>pcursor_it = PCursor::default();
 
-        <span class="kw">for</span> (<span class="ident">row_nr</span>, <span class="ident">row</span>) <span class="kw">in</span> <span class="self">self</span>.<span class="ident">rows</span>.<span class="ident">iter</span>().<span class="ident">enumerate</span>() {
-            <span class="kw">let</span> <span class="ident">is_pos_within_row</span> <span class="op">=</span> <span class="ident">pos</span>.<span class="ident">y</span> <span class="op">&gt;</span><span class="op">=</span> <span class="ident">row</span>.<span class="ident">min_y</span>() <span class="op">&amp;&amp;</span> <span class="ident">pos</span>.<span class="ident">y</span> <span class="op">&lt;</span><span class="op">=</span> <span class="ident">row</span>.<span class="ident">max_y</span>();
-            <span class="kw">let</span> <span class="ident">y_dist</span> <span class="op">=</span> (<span class="ident">row</span>.<span class="ident">min_y</span>() <span class="op">-</span> <span class="ident">pos</span>.<span class="ident">y</span>).<span class="ident">abs</span>().<span class="ident">min</span>((<span class="ident">row</span>.<span class="ident">max_y</span>() <span class="op">-</span> <span class="ident">pos</span>.<span class="ident">y</span>).<span class="ident">abs</span>());
-            <span class="kw">if</span> <span class="ident">is_pos_within_row</span> <span class="op">|</span><span class="op">|</span> <span class="ident">y_dist</span> <span class="op">&lt;</span> <span class="ident">best_y_dist</span> {
-                <span class="ident">best_y_dist</span> <span class="op">=</span> <span class="ident">y_dist</span>;
-                <span class="kw">let</span> <span class="ident">column</span> <span class="op">=</span> <span class="ident">row</span>.<span class="ident">char_at</span>(<span class="ident">pos</span>.<span class="ident">x</span>);
-                <span class="kw">let</span> <span class="ident">prefer_next_row</span> <span class="op">=</span> <span class="ident">column</span> <span class="op">&lt;</span> <span class="ident">row</span>.<span class="ident">char_count_excluding_newline</span>();
-                <span class="ident">cursor</span> <span class="op">=</span> <span class="ident">Cursor</span> {
-                    <span class="ident">ccursor</span>: <span class="ident">CCursor</span> {
-                        <span class="ident">index</span>: <span class="ident">ccursor_index</span> <span class="op">+</span> <span class="ident">column</span>,
-                        <span class="ident">prefer_next_row</span>,
+        <span class="kw">for </span>(row_nr, row) <span class="kw">in </span><span class="self">self</span>.rows.iter().enumerate() {
+            <span class="kw">let </span>is_pos_within_row = pos.y &gt;= row.min_y() &amp;&amp; pos.y &lt;= row.max_y();
+            <span class="kw">let </span>y_dist = (row.min_y() - pos.y).abs().min((row.max_y() - pos.y).abs());
+            <span class="kw">if </span>is_pos_within_row || y_dist &lt; best_y_dist {
+                best_y_dist = y_dist;
+                <span class="kw">let </span>column = row.char_at(pos.x);
+                <span class="kw">let </span>prefer_next_row = column &lt; row.char_count_excluding_newline();
+                cursor = Cursor {
+                    ccursor: CCursor {
+                        index: ccursor_index + column,
+                        prefer_next_row,
                     },
-                    <span class="ident">rcursor</span>: <span class="ident">RCursor</span> {
-                        <span class="ident">row</span>: <span class="ident">row_nr</span>,
-                        <span class="ident">column</span>,
+                    rcursor: RCursor {
+                        row: row_nr,
+                        column,
                     },
-                    <span class="ident">pcursor</span>: <span class="ident">PCursor</span> {
-                        <span class="ident">paragraph</span>: <span class="ident">pcursor_it</span>.<span class="ident">paragraph</span>,
-                        <span class="ident">offset</span>: <span class="ident">pcursor_it</span>.<span class="ident">offset</span> <span class="op">+</span> <span class="ident">column</span>,
-                        <span class="ident">prefer_next_row</span>,
+                    pcursor: PCursor {
+                        paragraph: pcursor_it.paragraph,
+                        offset: pcursor_it.offset + column,
+                        prefer_next_row,
                     },
                 };
 
-                <span class="kw">if</span> <span class="ident">is_pos_within_row</span> {
-                    <span class="kw">return</span> <span class="ident">cursor</span>;
+                <span class="kw">if </span>is_pos_within_row {
+                    <span class="kw">return </span>cursor;
                 }
             }
-            <span class="ident">ccursor_index</span> <span class="op">+</span><span class="op">=</span> <span class="ident">row</span>.<span class="ident">char_count_including_newline</span>();
-            <span class="kw">if</span> <span class="ident">row</span>.<span class="ident">ends_with_newline</span> {
-                <span class="ident">pcursor_it</span>.<span class="ident">paragraph</span> <span class="op">+</span><span class="op">=</span> <span class="number">1</span>;
-                <span class="ident">pcursor_it</span>.<span class="ident">offset</span> <span class="op">=</span> <span class="number">0</span>;
-            } <span class="kw">else</span> {
-                <span class="ident">pcursor_it</span>.<span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="ident">row</span>.<span class="ident">char_count_including_newline</span>();
+            ccursor_index += row.char_count_including_newline();
+            <span class="kw">if </span>row.ends_with_newline {
+                pcursor_it.paragraph += <span class="number">1</span>;
+                pcursor_it.offset = <span class="number">0</span>;
+            } <span class="kw">else </span>{
+                pcursor_it.offset += row.char_count_including_newline();
             }
         }
-        <span class="ident">cursor</span>
+        cursor
     }
 }
 
-<span class="doccomment">/// ## Cursor positions</span>
-<span class="kw">impl</span> <span class="ident">Galley</span> {
-    <span class="doccomment">/// Cursor to one-past last character.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">end</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">Cursor</span> {
-        <span class="kw">if</span> <span class="self">self</span>.<span class="ident">rows</span>.<span class="ident">is_empty</span>() {
-            <span class="kw">return</span> <span class="ident">Default::default</span>();
+<span class="doccomment">/// ## Cursor positions
+</span><span class="kw">impl </span>Galley {
+    <span class="doccomment">/// Cursor to one-past last character.
+    </span><span class="kw">pub fn </span>end(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; Cursor {
+        <span class="kw">if </span><span class="self">self</span>.rows.is_empty() {
+            <span class="kw">return </span>Default::default();
         }
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">ccursor</span> <span class="op">=</span> <span class="ident">CCursor</span> {
-            <span class="ident">index</span>: <span class="number">0</span>,
-            <span class="ident">prefer_next_row</span>: <span class="bool-val">true</span>,
+        <span class="kw">let </span><span class="kw-2">mut </span>ccursor = CCursor {
+            index: <span class="number">0</span>,
+            prefer_next_row: <span class="bool-val">true</span>,
         };
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">pcursor</span> <span class="op">=</span> <span class="ident">PCursor</span> {
-            <span class="ident">paragraph</span>: <span class="number">0</span>,
-            <span class="ident">offset</span>: <span class="number">0</span>,
-            <span class="ident">prefer_next_row</span>: <span class="bool-val">true</span>,
+        <span class="kw">let </span><span class="kw-2">mut </span>pcursor = PCursor {
+            paragraph: <span class="number">0</span>,
+            offset: <span class="number">0</span>,
+            prefer_next_row: <span class="bool-val">true</span>,
         };
-        <span class="kw">for</span> <span class="ident">row</span> <span class="kw">in</span> <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">rows</span> {
-            <span class="kw">let</span> <span class="ident">row_char_count</span> <span class="op">=</span> <span class="ident">row</span>.<span class="ident">char_count_including_newline</span>();
-            <span class="ident">ccursor</span>.<span class="ident">index</span> <span class="op">+</span><span class="op">=</span> <span class="ident">row_char_count</span>;
-            <span class="kw">if</span> <span class="ident">row</span>.<span class="ident">ends_with_newline</span> {
-                <span class="ident">pcursor</span>.<span class="ident">paragraph</span> <span class="op">+</span><span class="op">=</span> <span class="number">1</span>;
-                <span class="ident">pcursor</span>.<span class="ident">offset</span> <span class="op">=</span> <span class="number">0</span>;
-            } <span class="kw">else</span> {
-                <span class="ident">pcursor</span>.<span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="ident">row_char_count</span>;
+        <span class="kw">for </span>row <span class="kw">in </span><span class="kw-2">&amp;</span><span class="self">self</span>.rows {
+            <span class="kw">let </span>row_char_count = row.char_count_including_newline();
+            ccursor.index += row_char_count;
+            <span class="kw">if </span>row.ends_with_newline {
+                pcursor.paragraph += <span class="number">1</span>;
+                pcursor.offset = <span class="number">0</span>;
+            } <span class="kw">else </span>{
+                pcursor.offset += row_char_count;
             }
         }
-        <span class="ident">Cursor</span> {
-            <span class="ident">ccursor</span>,
-            <span class="ident">rcursor</span>: <span class="self">self</span>.<span class="ident">end_rcursor</span>(),
-            <span class="ident">pcursor</span>,
+        Cursor {
+            ccursor,
+            rcursor: <span class="self">self</span>.end_rcursor(),
+            pcursor,
         }
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">end_rcursor</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">RCursor</span> {
-        <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">last_row</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">rows</span>.<span class="ident">last</span>() {
-            <span class="macro">crate::epaint_assert!</span>(<span class="op">!</span><span class="ident">last_row</span>.<span class="ident">ends_with_newline</span>);
-            <span class="ident">RCursor</span> {
-                <span class="ident">row</span>: <span class="self">self</span>.<span class="ident">rows</span>.<span class="ident">len</span>() <span class="op">-</span> <span class="number">1</span>,
-                <span class="ident">column</span>: <span class="ident">last_row</span>.<span class="ident">char_count_excluding_newline</span>(),
+    <span class="kw">pub fn </span>end_rcursor(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; RCursor {
+        <span class="kw">if let </span><span class="prelude-val">Some</span>(last_row) = <span class="self">self</span>.rows.last() {
+            <span class="macro">crate::epaint_assert!</span>(!last_row.ends_with_newline);
+            RCursor {
+                row: <span class="self">self</span>.rows.len() - <span class="number">1</span>,
+                column: last_row.char_count_excluding_newline(),
             }
-        } <span class="kw">else</span> {
-            <span class="ident">Default::default</span>()
+        } <span class="kw">else </span>{
+            Default::default()
         }
     }
 }
 
-<span class="doccomment">/// ## Cursor conversions</span>
-<span class="kw">impl</span> <span class="ident">Galley</span> {
-    <span class="comment">// The returned cursor is clamped.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">from_ccursor</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">ccursor</span>: <span class="ident">CCursor</span>) -&gt; <span class="ident">Cursor</span> {
-        <span class="kw">let</span> <span class="ident">prefer_next_row</span> <span class="op">=</span> <span class="ident">ccursor</span>.<span class="ident">prefer_next_row</span>;
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">ccursor_it</span> <span class="op">=</span> <span class="ident">CCursor</span> {
-            <span class="ident">index</span>: <span class="number">0</span>,
-            <span class="ident">prefer_next_row</span>,
+<span class="doccomment">/// ## Cursor conversions
+</span><span class="kw">impl </span>Galley {
+    <span class="comment">// The returned cursor is clamped.
+    </span><span class="kw">pub fn </span>from_ccursor(<span class="kw-2">&amp;</span><span class="self">self</span>, ccursor: CCursor) -&gt; Cursor {
+        <span class="kw">let </span>prefer_next_row = ccursor.prefer_next_row;
+        <span class="kw">let </span><span class="kw-2">mut </span>ccursor_it = CCursor {
+            index: <span class="number">0</span>,
+            prefer_next_row,
         };
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">pcursor_it</span> <span class="op">=</span> <span class="ident">PCursor</span> {
-            <span class="ident">paragraph</span>: <span class="number">0</span>,
-            <span class="ident">offset</span>: <span class="number">0</span>,
-            <span class="ident">prefer_next_row</span>,
+        <span class="kw">let </span><span class="kw-2">mut </span>pcursor_it = PCursor {
+            paragraph: <span class="number">0</span>,
+            offset: <span class="number">0</span>,
+            prefer_next_row,
         };
 
-        <span class="kw">for</span> (<span class="ident">row_nr</span>, <span class="ident">row</span>) <span class="kw">in</span> <span class="self">self</span>.<span class="ident">rows</span>.<span class="ident">iter</span>().<span class="ident">enumerate</span>() {
-            <span class="kw">let</span> <span class="ident">row_char_count</span> <span class="op">=</span> <span class="ident">row</span>.<span class="ident">char_count_excluding_newline</span>();
+        <span class="kw">for </span>(row_nr, row) <span class="kw">in </span><span class="self">self</span>.rows.iter().enumerate() {
+            <span class="kw">let </span>row_char_count = row.char_count_excluding_newline();
 
-            <span class="kw">if</span> <span class="ident">ccursor_it</span>.<span class="ident">index</span> <span class="op">&lt;</span><span class="op">=</span> <span class="ident">ccursor</span>.<span class="ident">index</span>
-                <span class="op">&amp;&amp;</span> <span class="ident">ccursor</span>.<span class="ident">index</span> <span class="op">&lt;</span><span class="op">=</span> <span class="ident">ccursor_it</span>.<span class="ident">index</span> <span class="op">+</span> <span class="ident">row_char_count</span>
+            <span class="kw">if </span>ccursor_it.index &lt;= ccursor.index
+                &amp;&amp; ccursor.index &lt;= ccursor_it.index + row_char_count
             {
-                <span class="kw">let</span> <span class="ident">column</span> <span class="op">=</span> <span class="ident">ccursor</span>.<span class="ident">index</span> <span class="op">-</span> <span class="ident">ccursor_it</span>.<span class="ident">index</span>;
+                <span class="kw">let </span>column = ccursor.index - ccursor_it.index;
 
-                <span class="kw">let</span> <span class="ident">select_next_row_instead</span> <span class="op">=</span> <span class="ident">prefer_next_row</span>
-                    <span class="op">&amp;&amp;</span> <span class="op">!</span><span class="ident">row</span>.<span class="ident">ends_with_newline</span>
-                    <span class="op">&amp;&amp;</span> <span class="ident">column</span> <span class="op">&gt;</span><span class="op">=</span> <span class="ident">row</span>.<span class="ident">char_count_excluding_newline</span>();
-                <span class="kw">if</span> <span class="op">!</span><span class="ident">select_next_row_instead</span> {
-                    <span class="ident">pcursor_it</span>.<span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="ident">column</span>;
-                    <span class="kw">return</span> <span class="ident">Cursor</span> {
-                        <span class="ident">ccursor</span>,
-                        <span class="ident">rcursor</span>: <span class="ident">RCursor</span> {
-                            <span class="ident">row</span>: <span class="ident">row_nr</span>,
-                            <span class="ident">column</span>,
+                <span class="kw">let </span>select_next_row_instead = prefer_next_row
+                    &amp;&amp; !row.ends_with_newline
+                    &amp;&amp; column &gt;= row.char_count_excluding_newline();
+                <span class="kw">if </span>!select_next_row_instead {
+                    pcursor_it.offset += column;
+                    <span class="kw">return </span>Cursor {
+                        ccursor,
+                        rcursor: RCursor {
+                            row: row_nr,
+                            column,
                         },
-                        <span class="ident">pcursor</span>: <span class="ident">pcursor_it</span>,
+                        pcursor: pcursor_it,
                     };
                 }
             }
-            <span class="ident">ccursor_it</span>.<span class="ident">index</span> <span class="op">+</span><span class="op">=</span> <span class="ident">row</span>.<span class="ident">char_count_including_newline</span>();
-            <span class="kw">if</span> <span class="ident">row</span>.<span class="ident">ends_with_newline</span> {
-                <span class="ident">pcursor_it</span>.<span class="ident">paragraph</span> <span class="op">+</span><span class="op">=</span> <span class="number">1</span>;
-                <span class="ident">pcursor_it</span>.<span class="ident">offset</span> <span class="op">=</span> <span class="number">0</span>;
-            } <span class="kw">else</span> {
-                <span class="ident">pcursor_it</span>.<span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="ident">row</span>.<span class="ident">char_count_including_newline</span>();
+            ccursor_it.index += row.char_count_including_newline();
+            <span class="kw">if </span>row.ends_with_newline {
+                pcursor_it.paragraph += <span class="number">1</span>;
+                pcursor_it.offset = <span class="number">0</span>;
+            } <span class="kw">else </span>{
+                pcursor_it.offset += row.char_count_including_newline();
             }
         }
-        <span class="macro">crate::epaint_assert!</span>(<span class="ident">ccursor_it</span> <span class="op">==</span> <span class="self">self</span>.<span class="ident">end</span>().<span class="ident">ccursor</span>);
-        <span class="ident">Cursor</span> {
-            <span class="ident">ccursor</span>: <span class="ident">ccursor_it</span>, <span class="comment">// clamp</span>
-            <span class="ident">rcursor</span>: <span class="self">self</span>.<span class="ident">end_rcursor</span>(),
-            <span class="ident">pcursor</span>: <span class="ident">pcursor_it</span>,
+        <span class="macro">crate::epaint_assert!</span>(ccursor_it == <span class="self">self</span>.end().ccursor);
+        Cursor {
+            ccursor: ccursor_it, <span class="comment">// clamp
+            </span>rcursor: <span class="self">self</span>.end_rcursor(),
+            pcursor: pcursor_it,
         }
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">from_rcursor</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">rcursor</span>: <span class="ident">RCursor</span>) -&gt; <span class="ident">Cursor</span> {
-        <span class="kw">if</span> <span class="ident">rcursor</span>.<span class="ident">row</span> <span class="op">&gt;</span><span class="op">=</span> <span class="self">self</span>.<span class="ident">rows</span>.<span class="ident">len</span>() {
-            <span class="kw">return</span> <span class="self">self</span>.<span class="ident">end</span>();
+    <span class="kw">pub fn </span>from_rcursor(<span class="kw-2">&amp;</span><span class="self">self</span>, rcursor: RCursor) -&gt; Cursor {
+        <span class="kw">if </span>rcursor.row &gt;= <span class="self">self</span>.rows.len() {
+            <span class="kw">return </span><span class="self">self</span>.end();
         }
 
-        <span class="kw">let</span> <span class="ident">prefer_next_row</span> <span class="op">=</span>
-            <span class="ident">rcursor</span>.<span class="ident">column</span> <span class="op">&lt;</span> <span class="self">self</span>.<span class="ident">rows</span>[<span class="ident">rcursor</span>.<span class="ident">row</span>].<span class="ident">char_count_excluding_newline</span>();
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">ccursor_it</span> <span class="op">=</span> <span class="ident">CCursor</span> {
-            <span class="ident">index</span>: <span class="number">0</span>,
-            <span class="ident">prefer_next_row</span>,
+        <span class="kw">let </span>prefer_next_row =
+            rcursor.column &lt; <span class="self">self</span>.rows[rcursor.row].char_count_excluding_newline();
+        <span class="kw">let </span><span class="kw-2">mut </span>ccursor_it = CCursor {
+            index: <span class="number">0</span>,
+            prefer_next_row,
         };
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">pcursor_it</span> <span class="op">=</span> <span class="ident">PCursor</span> {
-            <span class="ident">paragraph</span>: <span class="number">0</span>,
-            <span class="ident">offset</span>: <span class="number">0</span>,
-            <span class="ident">prefer_next_row</span>,
+        <span class="kw">let </span><span class="kw-2">mut </span>pcursor_it = PCursor {
+            paragraph: <span class="number">0</span>,
+            offset: <span class="number">0</span>,
+            prefer_next_row,
         };
 
-        <span class="kw">for</span> (<span class="ident">row_nr</span>, <span class="ident">row</span>) <span class="kw">in</span> <span class="self">self</span>.<span class="ident">rows</span>.<span class="ident">iter</span>().<span class="ident">enumerate</span>() {
-            <span class="kw">if</span> <span class="ident">row_nr</span> <span class="op">==</span> <span class="ident">rcursor</span>.<span class="ident">row</span> {
-                <span class="ident">ccursor_it</span>.<span class="ident">index</span> <span class="op">+</span><span class="op">=</span> <span class="ident">rcursor</span>.<span class="ident">column</span>.<span class="ident">at_most</span>(<span class="ident">row</span>.<span class="ident">char_count_excluding_newline</span>());
+        <span class="kw">for </span>(row_nr, row) <span class="kw">in </span><span class="self">self</span>.rows.iter().enumerate() {
+            <span class="kw">if </span>row_nr == rcursor.row {
+                ccursor_it.index += rcursor.column.at_most(row.char_count_excluding_newline());
 
-                <span class="kw">if</span> <span class="ident">row</span>.<span class="ident">ends_with_newline</span> {
-                    <span class="comment">// Allow offset to go beyond the end of the paragraph</span>
-                    <span class="ident">pcursor_it</span>.<span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="ident">rcursor</span>.<span class="ident">column</span>;
-                } <span class="kw">else</span> {
-                    <span class="ident">pcursor_it</span>.<span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="ident">rcursor</span>.<span class="ident">column</span>.<span class="ident">at_most</span>(<span class="ident">row</span>.<span class="ident">char_count_excluding_newline</span>());
+                <span class="kw">if </span>row.ends_with_newline {
+                    <span class="comment">// Allow offset to go beyond the end of the paragraph
+                    </span>pcursor_it.offset += rcursor.column;
+                } <span class="kw">else </span>{
+                    pcursor_it.offset += rcursor.column.at_most(row.char_count_excluding_newline());
                 }
-                <span class="kw">return</span> <span class="ident">Cursor</span> {
-                    <span class="ident">ccursor</span>: <span class="ident">ccursor_it</span>,
-                    <span class="ident">rcursor</span>,
-                    <span class="ident">pcursor</span>: <span class="ident">pcursor_it</span>,
+                <span class="kw">return </span>Cursor {
+                    ccursor: ccursor_it,
+                    rcursor,
+                    pcursor: pcursor_it,
                 };
             }
-            <span class="ident">ccursor_it</span>.<span class="ident">index</span> <span class="op">+</span><span class="op">=</span> <span class="ident">row</span>.<span class="ident">char_count_including_newline</span>();
-            <span class="kw">if</span> <span class="ident">row</span>.<span class="ident">ends_with_newline</span> {
-                <span class="ident">pcursor_it</span>.<span class="ident">paragraph</span> <span class="op">+</span><span class="op">=</span> <span class="number">1</span>;
-                <span class="ident">pcursor_it</span>.<span class="ident">offset</span> <span class="op">=</span> <span class="number">0</span>;
-            } <span class="kw">else</span> {
-                <span class="ident">pcursor_it</span>.<span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="ident">row</span>.<span class="ident">char_count_including_newline</span>();
+            ccursor_it.index += row.char_count_including_newline();
+            <span class="kw">if </span>row.ends_with_newline {
+                pcursor_it.paragraph += <span class="number">1</span>;
+                pcursor_it.offset = <span class="number">0</span>;
+            } <span class="kw">else </span>{
+                pcursor_it.offset += row.char_count_including_newline();
             }
         }
-        <span class="ident">Cursor</span> {
-            <span class="ident">ccursor</span>: <span class="ident">ccursor_it</span>,
-            <span class="ident">rcursor</span>: <span class="self">self</span>.<span class="ident">end_rcursor</span>(),
-            <span class="ident">pcursor</span>: <span class="ident">pcursor_it</span>,
+        Cursor {
+            ccursor: ccursor_it,
+            rcursor: <span class="self">self</span>.end_rcursor(),
+            pcursor: pcursor_it,
         }
     }
 
-    <span class="comment">// TODO: return identical cursor, or clamp?</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">from_pcursor</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">pcursor</span>: <span class="ident">PCursor</span>) -&gt; <span class="ident">Cursor</span> {
-        <span class="kw">let</span> <span class="ident">prefer_next_row</span> <span class="op">=</span> <span class="ident">pcursor</span>.<span class="ident">prefer_next_row</span>;
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">ccursor_it</span> <span class="op">=</span> <span class="ident">CCursor</span> {
-            <span class="ident">index</span>: <span class="number">0</span>,
-            <span class="ident">prefer_next_row</span>,
+    <span class="comment">// TODO: return identical cursor, or clamp?
+    </span><span class="kw">pub fn </span>from_pcursor(<span class="kw-2">&amp;</span><span class="self">self</span>, pcursor: PCursor) -&gt; Cursor {
+        <span class="kw">let </span>prefer_next_row = pcursor.prefer_next_row;
+        <span class="kw">let </span><span class="kw-2">mut </span>ccursor_it = CCursor {
+            index: <span class="number">0</span>,
+            prefer_next_row,
         };
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">pcursor_it</span> <span class="op">=</span> <span class="ident">PCursor</span> {
-            <span class="ident">paragraph</span>: <span class="number">0</span>,
-            <span class="ident">offset</span>: <span class="number">0</span>,
-            <span class="ident">prefer_next_row</span>,
+        <span class="kw">let </span><span class="kw-2">mut </span>pcursor_it = PCursor {
+            paragraph: <span class="number">0</span>,
+            offset: <span class="number">0</span>,
+            prefer_next_row,
         };
 
-        <span class="kw">for</span> (<span class="ident">row_nr</span>, <span class="ident">row</span>) <span class="kw">in</span> <span class="self">self</span>.<span class="ident">rows</span>.<span class="ident">iter</span>().<span class="ident">enumerate</span>() {
-            <span class="kw">if</span> <span class="ident">pcursor_it</span>.<span class="ident">paragraph</span> <span class="op">==</span> <span class="ident">pcursor</span>.<span class="ident">paragraph</span> {
-                <span class="comment">// Right paragraph, but is it the right row in the paragraph?</span>
+        <span class="kw">for </span>(row_nr, row) <span class="kw">in </span><span class="self">self</span>.rows.iter().enumerate() {
+            <span class="kw">if </span>pcursor_it.paragraph == pcursor.paragraph {
+                <span class="comment">// Right paragraph, but is it the right row in the paragraph?
 
-                <span class="kw">if</span> <span class="ident">pcursor_it</span>.<span class="ident">offset</span> <span class="op">&lt;</span><span class="op">=</span> <span class="ident">pcursor</span>.<span class="ident">offset</span>
-                    <span class="op">&amp;&amp;</span> (<span class="ident">pcursor</span>.<span class="ident">offset</span> <span class="op">&lt;</span><span class="op">=</span> <span class="ident">pcursor_it</span>.<span class="ident">offset</span> <span class="op">+</span> <span class="ident">row</span>.<span class="ident">char_count_excluding_newline</span>()
-                        <span class="op">|</span><span class="op">|</span> <span class="ident">row</span>.<span class="ident">ends_with_newline</span>)
+                </span><span class="kw">if </span>pcursor_it.offset &lt;= pcursor.offset
+                    &amp;&amp; (pcursor.offset &lt;= pcursor_it.offset + row.char_count_excluding_newline()
+                        || row.ends_with_newline)
                 {
-                    <span class="kw">let</span> <span class="ident">column</span> <span class="op">=</span> <span class="ident">pcursor</span>.<span class="ident">offset</span> <span class="op">-</span> <span class="ident">pcursor_it</span>.<span class="ident">offset</span>;
+                    <span class="kw">let </span>column = pcursor.offset - pcursor_it.offset;
 
-                    <span class="kw">let</span> <span class="ident">select_next_row_instead</span> <span class="op">=</span> <span class="ident">pcursor</span>.<span class="ident">prefer_next_row</span>
-                        <span class="op">&amp;&amp;</span> <span class="op">!</span><span class="ident">row</span>.<span class="ident">ends_with_newline</span>
-                        <span class="op">&amp;&amp;</span> <span class="ident">column</span> <span class="op">&gt;</span><span class="op">=</span> <span class="ident">row</span>.<span class="ident">char_count_excluding_newline</span>();
+                    <span class="kw">let </span>select_next_row_instead = pcursor.prefer_next_row
+                        &amp;&amp; !row.ends_with_newline
+                        &amp;&amp; column &gt;= row.char_count_excluding_newline();
 
-                    <span class="kw">if</span> <span class="op">!</span><span class="ident">select_next_row_instead</span> {
-                        <span class="ident">ccursor_it</span>.<span class="ident">index</span> <span class="op">+</span><span class="op">=</span> <span class="ident">column</span>.<span class="ident">at_most</span>(<span class="ident">row</span>.<span class="ident">char_count_excluding_newline</span>());
+                    <span class="kw">if </span>!select_next_row_instead {
+                        ccursor_it.index += column.at_most(row.char_count_excluding_newline());
 
-                        <span class="kw">return</span> <span class="ident">Cursor</span> {
-                            <span class="ident">ccursor</span>: <span class="ident">ccursor_it</span>,
-                            <span class="ident">rcursor</span>: <span class="ident">RCursor</span> {
-                                <span class="ident">row</span>: <span class="ident">row_nr</span>,
-                                <span class="ident">column</span>,
+                        <span class="kw">return </span>Cursor {
+                            ccursor: ccursor_it,
+                            rcursor: RCursor {
+                                row: row_nr,
+                                column,
                             },
-                            <span class="ident">pcursor</span>,
+                            pcursor,
                         };
                     }
                 }
             }
 
-            <span class="ident">ccursor_it</span>.<span class="ident">index</span> <span class="op">+</span><span class="op">=</span> <span class="ident">row</span>.<span class="ident">char_count_including_newline</span>();
-            <span class="kw">if</span> <span class="ident">row</span>.<span class="ident">ends_with_newline</span> {
-                <span class="ident">pcursor_it</span>.<span class="ident">paragraph</span> <span class="op">+</span><span class="op">=</span> <span class="number">1</span>;
-                <span class="ident">pcursor_it</span>.<span class="ident">offset</span> <span class="op">=</span> <span class="number">0</span>;
-            } <span class="kw">else</span> {
-                <span class="ident">pcursor_it</span>.<span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="ident">row</span>.<span class="ident">char_count_including_newline</span>();
+            ccursor_it.index += row.char_count_including_newline();
+            <span class="kw">if </span>row.ends_with_newline {
+                pcursor_it.paragraph += <span class="number">1</span>;
+                pcursor_it.offset = <span class="number">0</span>;
+            } <span class="kw">else </span>{
+                pcursor_it.offset += row.char_count_including_newline();
             }
         }
-        <span class="ident">Cursor</span> {
-            <span class="ident">ccursor</span>: <span class="ident">ccursor_it</span>,
-            <span class="ident">rcursor</span>: <span class="self">self</span>.<span class="ident">end_rcursor</span>(),
-            <span class="ident">pcursor</span>,
+        Cursor {
+            ccursor: ccursor_it,
+            rcursor: <span class="self">self</span>.end_rcursor(),
+            pcursor,
         }
     }
 }
 
-<span class="doccomment">/// ## Cursor positions</span>
-<span class="kw">impl</span> <span class="ident">Galley</span> {
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">cursor_left_one_character</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">cursor</span>: <span class="kw-2">&amp;</span><span class="ident">Cursor</span>) -&gt; <span class="ident">Cursor</span> {
-        <span class="kw">if</span> <span class="ident">cursor</span>.<span class="ident">ccursor</span>.<span class="ident">index</span> <span class="op">==</span> <span class="number">0</span> {
-            <span class="ident">Default::default</span>()
-        } <span class="kw">else</span> {
-            <span class="kw">let</span> <span class="ident">ccursor</span> <span class="op">=</span> <span class="ident">CCursor</span> {
-                <span class="ident">index</span>: <span class="ident">cursor</span>.<span class="ident">ccursor</span>.<span class="ident">index</span>,
-                <span class="ident">prefer_next_row</span>: <span class="bool-val">true</span>, <span class="comment">// default to this when navigating. It is more often useful to put cursor at the begging of a row than at the end.</span>
-            };
-            <span class="self">self</span>.<span class="ident">from_ccursor</span>(<span class="ident">ccursor</span> <span class="op">-</span> <span class="number">1</span>)
+<span class="doccomment">/// ## Cursor positions
+</span><span class="kw">impl </span>Galley {
+    <span class="kw">pub fn </span>cursor_left_one_character(<span class="kw-2">&amp;</span><span class="self">self</span>, cursor: <span class="kw-2">&amp;</span>Cursor) -&gt; Cursor {
+        <span class="kw">if </span>cursor.ccursor.index == <span class="number">0 </span>{
+            Default::default()
+        } <span class="kw">else </span>{
+            <span class="kw">let </span>ccursor = CCursor {
+                index: cursor.ccursor.index,
+                prefer_next_row: <span class="bool-val">true</span>, <span class="comment">// default to this when navigating. It is more often useful to put cursor at the begging of a row than at the end.
+            </span>};
+            <span class="self">self</span>.from_ccursor(ccursor - <span class="number">1</span>)
         }
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">cursor_right_one_character</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">cursor</span>: <span class="kw-2">&amp;</span><span class="ident">Cursor</span>) -&gt; <span class="ident">Cursor</span> {
-        <span class="kw">let</span> <span class="ident">ccursor</span> <span class="op">=</span> <span class="ident">CCursor</span> {
-            <span class="ident">index</span>: <span class="ident">cursor</span>.<span class="ident">ccursor</span>.<span class="ident">index</span>,
-            <span class="ident">prefer_next_row</span>: <span class="bool-val">true</span>, <span class="comment">// default to this when navigating. It is more often useful to put cursor at the begging of a row than at the end.</span>
-        };
-        <span class="self">self</span>.<span class="ident">from_ccursor</span>(<span class="ident">ccursor</span> <span class="op">+</span> <span class="number">1</span>)
+    <span class="kw">pub fn </span>cursor_right_one_character(<span class="kw-2">&amp;</span><span class="self">self</span>, cursor: <span class="kw-2">&amp;</span>Cursor) -&gt; Cursor {
+        <span class="kw">let </span>ccursor = CCursor {
+            index: cursor.ccursor.index,
+            prefer_next_row: <span class="bool-val">true</span>, <span class="comment">// default to this when navigating. It is more often useful to put cursor at the begging of a row than at the end.
+        </span>};
+        <span class="self">self</span>.from_ccursor(ccursor + <span class="number">1</span>)
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">cursor_up_one_row</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">cursor</span>: <span class="kw-2">&amp;</span><span class="ident">Cursor</span>) -&gt; <span class="ident">Cursor</span> {
-        <span class="kw">if</span> <span class="ident">cursor</span>.<span class="ident">rcursor</span>.<span class="ident">row</span> <span class="op">==</span> <span class="number">0</span> {
-            <span class="ident">Cursor::default</span>()
-        } <span class="kw">else</span> {
-            <span class="kw">let</span> <span class="ident">new_row</span> <span class="op">=</span> <span class="ident">cursor</span>.<span class="ident">rcursor</span>.<span class="ident">row</span> <span class="op">-</span> <span class="number">1</span>;
+    <span class="kw">pub fn </span>cursor_up_one_row(<span class="kw-2">&amp;</span><span class="self">self</span>, cursor: <span class="kw-2">&amp;</span>Cursor) -&gt; Cursor {
+        <span class="kw">if </span>cursor.rcursor.row == <span class="number">0 </span>{
+            Cursor::default()
+        } <span class="kw">else </span>{
+            <span class="kw">let </span>new_row = cursor.rcursor.row - <span class="number">1</span>;
 
-            <span class="kw">let</span> <span class="ident">cursor_is_beyond_end_of_current_row</span> <span class="op">=</span> <span class="ident">cursor</span>.<span class="ident">rcursor</span>.<span class="ident">column</span>
-                <span class="op">&gt;</span><span class="op">=</span> <span class="self">self</span>.<span class="ident">rows</span>[<span class="ident">cursor</span>.<span class="ident">rcursor</span>.<span class="ident">row</span>].<span class="ident">char_count_excluding_newline</span>();
+            <span class="kw">let </span>cursor_is_beyond_end_of_current_row = cursor.rcursor.column
+                &gt;= <span class="self">self</span>.rows[cursor.rcursor.row].char_count_excluding_newline();
 
-            <span class="kw">let</span> <span class="ident">new_rcursor</span> <span class="op">=</span> <span class="kw">if</span> <span class="ident">cursor_is_beyond_end_of_current_row</span> {
-                <span class="comment">// keep same column</span>
-                <span class="ident">RCursor</span> {
-                    <span class="ident">row</span>: <span class="ident">new_row</span>,
-                    <span class="ident">column</span>: <span class="ident">cursor</span>.<span class="ident">rcursor</span>.<span class="ident">column</span>,
+            <span class="kw">let </span>new_rcursor = <span class="kw">if </span>cursor_is_beyond_end_of_current_row {
+                <span class="comment">// keep same column
+                </span>RCursor {
+                    row: new_row,
+                    column: cursor.rcursor.column,
                 }
-            } <span class="kw">else</span> {
-                <span class="comment">// keep same X coord</span>
-                <span class="kw">let</span> <span class="ident">x</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">pos_from_cursor</span>(<span class="ident">cursor</span>).<span class="ident">center</span>().<span class="ident">x</span>;
-                <span class="kw">let</span> <span class="ident">column</span> <span class="op">=</span> <span class="kw">if</span> <span class="ident">x</span> <span class="op">&gt;</span> <span class="self">self</span>.<span class="ident">rows</span>[<span class="ident">new_row</span>].<span class="ident">rect</span>.<span class="ident">right</span>() {
-                    <span class="comment">// beyond the end of this row - keep same colum</span>
-                    <span class="ident">cursor</span>.<span class="ident">rcursor</span>.<span class="ident">column</span>
-                } <span class="kw">else</span> {
-                    <span class="self">self</span>.<span class="ident">rows</span>[<span class="ident">new_row</span>].<span class="ident">char_at</span>(<span class="ident">x</span>)
+            } <span class="kw">else </span>{
+                <span class="comment">// keep same X coord
+                </span><span class="kw">let </span>x = <span class="self">self</span>.pos_from_cursor(cursor).center().x;
+                <span class="kw">let </span>column = <span class="kw">if </span>x &gt; <span class="self">self</span>.rows[new_row].rect.right() {
+                    <span class="comment">// beyond the end of this row - keep same colum
+                    </span>cursor.rcursor.column
+                } <span class="kw">else </span>{
+                    <span class="self">self</span>.rows[new_row].char_at(x)
                 };
-                <span class="ident">RCursor</span> {
-                    <span class="ident">row</span>: <span class="ident">new_row</span>,
-                    <span class="ident">column</span>,
+                RCursor {
+                    row: new_row,
+                    column,
                 }
             };
-            <span class="self">self</span>.<span class="ident">from_rcursor</span>(<span class="ident">new_rcursor</span>)
+            <span class="self">self</span>.from_rcursor(new_rcursor)
         }
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">cursor_down_one_row</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">cursor</span>: <span class="kw-2">&amp;</span><span class="ident">Cursor</span>) -&gt; <span class="ident">Cursor</span> {
-        <span class="kw">if</span> <span class="ident">cursor</span>.<span class="ident">rcursor</span>.<span class="ident">row</span> <span class="op">+</span> <span class="number">1</span> <span class="op">&lt;</span> <span class="self">self</span>.<span class="ident">rows</span>.<span class="ident">len</span>() {
-            <span class="kw">let</span> <span class="ident">new_row</span> <span class="op">=</span> <span class="ident">cursor</span>.<span class="ident">rcursor</span>.<span class="ident">row</span> <span class="op">+</span> <span class="number">1</span>;
+    <span class="kw">pub fn </span>cursor_down_one_row(<span class="kw-2">&amp;</span><span class="self">self</span>, cursor: <span class="kw-2">&amp;</span>Cursor) -&gt; Cursor {
+        <span class="kw">if </span>cursor.rcursor.row + <span class="number">1 </span>&lt; <span class="self">self</span>.rows.len() {
+            <span class="kw">let </span>new_row = cursor.rcursor.row + <span class="number">1</span>;
 
-            <span class="kw">let</span> <span class="ident">cursor_is_beyond_end_of_current_row</span> <span class="op">=</span> <span class="ident">cursor</span>.<span class="ident">rcursor</span>.<span class="ident">column</span>
-                <span class="op">&gt;</span><span class="op">=</span> <span class="self">self</span>.<span class="ident">rows</span>[<span class="ident">cursor</span>.<span class="ident">rcursor</span>.<span class="ident">row</span>].<span class="ident">char_count_excluding_newline</span>();
+            <span class="kw">let </span>cursor_is_beyond_end_of_current_row = cursor.rcursor.column
+                &gt;= <span class="self">self</span>.rows[cursor.rcursor.row].char_count_excluding_newline();
 
-            <span class="kw">let</span> <span class="ident">new_rcursor</span> <span class="op">=</span> <span class="kw">if</span> <span class="ident">cursor_is_beyond_end_of_current_row</span> {
-                <span class="comment">// keep same column</span>
-                <span class="ident">RCursor</span> {
-                    <span class="ident">row</span>: <span class="ident">new_row</span>,
-                    <span class="ident">column</span>: <span class="ident">cursor</span>.<span class="ident">rcursor</span>.<span class="ident">column</span>,
+            <span class="kw">let </span>new_rcursor = <span class="kw">if </span>cursor_is_beyond_end_of_current_row {
+                <span class="comment">// keep same column
+                </span>RCursor {
+                    row: new_row,
+                    column: cursor.rcursor.column,
                 }
-            } <span class="kw">else</span> {
-                <span class="comment">// keep same X coord</span>
-                <span class="kw">let</span> <span class="ident">x</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">pos_from_cursor</span>(<span class="ident">cursor</span>).<span class="ident">center</span>().<span class="ident">x</span>;
-                <span class="kw">let</span> <span class="ident">column</span> <span class="op">=</span> <span class="kw">if</span> <span class="ident">x</span> <span class="op">&gt;</span> <span class="self">self</span>.<span class="ident">rows</span>[<span class="ident">new_row</span>].<span class="ident">rect</span>.<span class="ident">right</span>() {
-                    <span class="comment">// beyond the end of the next row - keep same column</span>
-                    <span class="ident">cursor</span>.<span class="ident">rcursor</span>.<span class="ident">column</span>
-                } <span class="kw">else</span> {
-                    <span class="self">self</span>.<span class="ident">rows</span>[<span class="ident">new_row</span>].<span class="ident">char_at</span>(<span class="ident">x</span>)
+            } <span class="kw">else </span>{
+                <span class="comment">// keep same X coord
+                </span><span class="kw">let </span>x = <span class="self">self</span>.pos_from_cursor(cursor).center().x;
+                <span class="kw">let </span>column = <span class="kw">if </span>x &gt; <span class="self">self</span>.rows[new_row].rect.right() {
+                    <span class="comment">// beyond the end of the next row - keep same column
+                    </span>cursor.rcursor.column
+                } <span class="kw">else </span>{
+                    <span class="self">self</span>.rows[new_row].char_at(x)
                 };
-                <span class="ident">RCursor</span> {
-                    <span class="ident">row</span>: <span class="ident">new_row</span>,
-                    <span class="ident">column</span>,
+                RCursor {
+                    row: new_row,
+                    column,
                 }
             };
 
-            <span class="self">self</span>.<span class="ident">from_rcursor</span>(<span class="ident">new_rcursor</span>)
-        } <span class="kw">else</span> {
-            <span class="self">self</span>.<span class="ident">end</span>()
+            <span class="self">self</span>.from_rcursor(new_rcursor)
+        } <span class="kw">else </span>{
+            <span class="self">self</span>.end()
         }
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">cursor_begin_of_row</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">cursor</span>: <span class="kw-2">&amp;</span><span class="ident">Cursor</span>) -&gt; <span class="ident">Cursor</span> {
-        <span class="self">self</span>.<span class="ident">from_rcursor</span>(<span class="ident">RCursor</span> {
-            <span class="ident">row</span>: <span class="ident">cursor</span>.<span class="ident">rcursor</span>.<span class="ident">row</span>,
-            <span class="ident">column</span>: <span class="number">0</span>,
+    <span class="kw">pub fn </span>cursor_begin_of_row(<span class="kw-2">&amp;</span><span class="self">self</span>, cursor: <span class="kw-2">&amp;</span>Cursor) -&gt; Cursor {
+        <span class="self">self</span>.from_rcursor(RCursor {
+            row: cursor.rcursor.row,
+            column: <span class="number">0</span>,
         })
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">cursor_end_of_row</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">cursor</span>: <span class="kw-2">&amp;</span><span class="ident">Cursor</span>) -&gt; <span class="ident">Cursor</span> {
-        <span class="self">self</span>.<span class="ident">from_rcursor</span>(<span class="ident">RCursor</span> {
-            <span class="ident">row</span>: <span class="ident">cursor</span>.<span class="ident">rcursor</span>.<span class="ident">row</span>,
-            <span class="ident">column</span>: <span class="self">self</span>.<span class="ident">rows</span>[<span class="ident">cursor</span>.<span class="ident">rcursor</span>.<span class="ident">row</span>].<span class="ident">char_count_excluding_newline</span>(),
+    <span class="kw">pub fn </span>cursor_end_of_row(<span class="kw-2">&amp;</span><span class="self">self</span>, cursor: <span class="kw-2">&amp;</span>Cursor) -&gt; Cursor {
+        <span class="self">self</span>.from_rcursor(RCursor {
+            row: cursor.rcursor.row,
+            column: <span class="self">self</span>.rows[cursor.rcursor.row].char_count_excluding_newline(),
         })
     }
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="epaint" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0 (a55dd71d5 2022-09-19)" ></div></body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="epaint" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.66.1 (90743e729 2023-01-10)" ></div></body></html>

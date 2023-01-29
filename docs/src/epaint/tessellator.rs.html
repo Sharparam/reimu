@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/epaint-0.16.0/src/tessellator.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>tessellator.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../epaint/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../epaint/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../epaint/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/epaint-0.16.0/src/tessellator.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>tessellator.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../normalize.css"><link rel="stylesheet" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../ayu.css" disabled><link rel="stylesheet" href="../../dark.css" disabled><link rel="stylesheet" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><div class="width-limiter"><nav class="sub"><a class="sub-logo-container" href="../../epaint/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -945,438 +945,438 @@
 <span id="945">945</span>
 <span id="946">946</span>
 <span id="947">947</span>
-</pre><pre class="rust"><code><span class="doccomment">//! Converts graphics primitives into textured triangles.</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! This module converts lines, circles, text and more represented by [`Shape`]</span>
-<span class="doccomment">//! into textured triangles represented by [`Mesh`].</span>
+</pre><pre class="rust"><code><span class="doccomment">//! Converts graphics primitives into textured triangles.
+//!
+//! This module converts lines, circles, text and more represented by [`Shape`]
+//! into textured triangles represented by [`Mesh`].
 
-<span class="attribute">#![<span class="ident">allow</span>(<span class="ident">clippy::identity_op</span>)]</span>
+</span><span class="attribute">#![allow(clippy::identity_op)]
 
-<span class="kw">use</span> <span class="kw">crate</span>::<span class="kw-2">*</span>;
-<span class="kw">use</span> <span class="ident">emath</span>::<span class="kw-2">*</span>;
-<span class="kw">use</span> <span class="ident">std::f32::consts::TAU</span>;
+</span><span class="kw">use crate</span>::<span class="kw-2">*</span>;
+<span class="kw">use </span>emath::<span class="kw-2">*</span>;
+<span class="kw">use </span>std::f32::consts::TAU;
 
-<span class="comment">// ----------------------------------------------------------------------------</span>
+<span class="comment">// ----------------------------------------------------------------------------
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">Default</span>)]</span>
-<span class="kw">struct</span> <span class="ident">PathPoint</span> {
-    <span class="ident">pos</span>: <span class="ident">Pos2</span>,
+</span><span class="attribute">#[derive(Clone, Debug, Default)]
+</span><span class="kw">struct </span>PathPoint {
+    pos: Pos2,
 
-    <span class="doccomment">/// For filled paths the normal is used for anti-aliasing (both strokes and filled areas).</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// For strokes the normal is also used for giving thickness to the path</span>
-    <span class="doccomment">/// (i.e. in what direction to expand).</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// The normal could be estimated by differences between successive points,</span>
-    <span class="doccomment">/// but that would be less accurate (and in some cases slower).</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// Normals are normally unit-length.</span>
-    <span class="ident">normal</span>: <span class="ident">Vec2</span>,
+    <span class="doccomment">/// For filled paths the normal is used for anti-aliasing (both strokes and filled areas).
+    ///
+    /// For strokes the normal is also used for giving thickness to the path
+    /// (i.e. in what direction to expand).
+    ///
+    /// The normal could be estimated by differences between successive points,
+    /// but that would be less accurate (and in some cases slower).
+    ///
+    /// Normals are normally unit-length.
+    </span>normal: Vec2,
 }
 
-<span class="doccomment">/// A connected line (without thickness or gaps) which can be tessellated</span>
-<span class="doccomment">/// to either to a stroke (with thickness) or a filled convex area.</span>
-<span class="doccomment">/// Used as a scratch-pad during tessellation.</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">Default</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Path</span>(<span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">PathPoint</span><span class="op">&gt;</span>);
+<span class="doccomment">/// A connected line (without thickness or gaps) which can be tessellated
+/// to either to a stroke (with thickness) or a filled convex area.
+/// Used as a scratch-pad during tessellation.
+</span><span class="attribute">#[derive(Clone, Debug, Default)]
+</span><span class="kw">pub struct </span>Path(Vec&lt;PathPoint&gt;);
 
-<span class="kw">impl</span> <span class="ident">Path</span> {
-    <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">clear</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>) {
-        <span class="self">self</span>.<span class="number">0</span>.<span class="ident">clear</span>();
+<span class="kw">impl </span>Path {
+    <span class="attribute">#[inline(always)]
+    </span><span class="kw">pub fn </span>clear(<span class="kw-2">&amp;mut </span><span class="self">self</span>) {
+        <span class="self">self</span>.<span class="number">0</span>.clear();
     }
 
-    <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">reserve</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">additional</span>: <span class="ident">usize</span>) {
-        <span class="self">self</span>.<span class="number">0</span>.<span class="ident">reserve</span>(<span class="ident">additional</span>);
+    <span class="attribute">#[inline(always)]
+    </span><span class="kw">pub fn </span>reserve(<span class="kw-2">&amp;mut </span><span class="self">self</span>, additional: usize) {
+        <span class="self">self</span>.<span class="number">0</span>.reserve(additional);
     }
 
-    <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">add_point</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">pos</span>: <span class="ident">Pos2</span>, <span class="ident">normal</span>: <span class="ident">Vec2</span>) {
-        <span class="self">self</span>.<span class="number">0</span>.<span class="ident">push</span>(<span class="ident">PathPoint</span> { <span class="ident">pos</span>, <span class="ident">normal</span> });
+    <span class="attribute">#[inline(always)]
+    </span><span class="kw">pub fn </span>add_point(<span class="kw-2">&amp;mut </span><span class="self">self</span>, pos: Pos2, normal: Vec2) {
+        <span class="self">self</span>.<span class="number">0</span>.push(PathPoint { pos, normal });
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">add_circle</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">center</span>: <span class="ident">Pos2</span>, <span class="ident">radius</span>: <span class="ident">f32</span>) {
-        <span class="kw">let</span> <span class="ident">n</span> <span class="op">=</span> (<span class="ident">radius</span> <span class="op">*</span> <span class="number">4.0</span>).<span class="ident">round</span>() <span class="kw">as</span> <span class="ident">i32</span>; <span class="comment">// TODO: tweak a bit more</span>
-        <span class="kw">let</span> <span class="ident">n</span> <span class="op">=</span> <span class="ident">n</span>.<span class="ident">clamp</span>(<span class="number">4</span>, <span class="number">64</span>);
-        <span class="self">self</span>.<span class="ident">reserve</span>(<span class="ident">n</span> <span class="kw">as</span> <span class="ident">usize</span>);
-        <span class="kw">for</span> <span class="ident">i</span> <span class="kw">in</span> <span class="number">0</span>..<span class="ident">n</span> {
-            <span class="kw">let</span> <span class="ident">angle</span> <span class="op">=</span> <span class="ident">remap</span>(<span class="ident">i</span> <span class="kw">as</span> <span class="ident">f32</span>, <span class="number">0.0</span>..<span class="op">=</span><span class="ident">n</span> <span class="kw">as</span> <span class="ident">f32</span>, <span class="number">0.0</span>..<span class="op">=</span><span class="ident">TAU</span>);
-            <span class="kw">let</span> <span class="ident">normal</span> <span class="op">=</span> <span class="ident">vec2</span>(<span class="ident">angle</span>.<span class="ident">cos</span>(), <span class="ident">angle</span>.<span class="ident">sin</span>());
-            <span class="self">self</span>.<span class="ident">add_point</span>(<span class="ident">center</span> <span class="op">+</span> <span class="ident">radius</span> <span class="op">*</span> <span class="ident">normal</span>, <span class="ident">normal</span>);
+    <span class="kw">pub fn </span>add_circle(<span class="kw-2">&amp;mut </span><span class="self">self</span>, center: Pos2, radius: f32) {
+        <span class="kw">let </span>n = (radius * <span class="number">4.0</span>).round() <span class="kw">as </span>i32; <span class="comment">// TODO: tweak a bit more
+        </span><span class="kw">let </span>n = n.clamp(<span class="number">4</span>, <span class="number">64</span>);
+        <span class="self">self</span>.reserve(n <span class="kw">as </span>usize);
+        <span class="kw">for </span>i <span class="kw">in </span><span class="number">0</span>..n {
+            <span class="kw">let </span>angle = remap(i <span class="kw">as </span>f32, <span class="number">0.0</span>..=n <span class="kw">as </span>f32, <span class="number">0.0</span>..=TAU);
+            <span class="kw">let </span>normal = vec2(angle.cos(), angle.sin());
+            <span class="self">self</span>.add_point(center + radius * normal, normal);
         }
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">add_line_segment</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">points</span>: [<span class="ident">Pos2</span>; <span class="number">2</span>]) {
-        <span class="self">self</span>.<span class="ident">reserve</span>(<span class="number">2</span>);
-        <span class="kw">let</span> <span class="ident">normal</span> <span class="op">=</span> (<span class="ident">points</span>[<span class="number">1</span>] <span class="op">-</span> <span class="ident">points</span>[<span class="number">0</span>]).<span class="ident">normalized</span>().<span class="ident">rot90</span>();
-        <span class="self">self</span>.<span class="ident">add_point</span>(<span class="ident">points</span>[<span class="number">0</span>], <span class="ident">normal</span>);
-        <span class="self">self</span>.<span class="ident">add_point</span>(<span class="ident">points</span>[<span class="number">1</span>], <span class="ident">normal</span>);
+    <span class="kw">pub fn </span>add_line_segment(<span class="kw-2">&amp;mut </span><span class="self">self</span>, points: [Pos2; <span class="number">2</span>]) {
+        <span class="self">self</span>.reserve(<span class="number">2</span>);
+        <span class="kw">let </span>normal = (points[<span class="number">1</span>] - points[<span class="number">0</span>]).normalized().rot90();
+        <span class="self">self</span>.add_point(points[<span class="number">0</span>], normal);
+        <span class="self">self</span>.add_point(points[<span class="number">1</span>], normal);
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">add_open_points</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">points</span>: <span class="kw-2">&amp;</span>[<span class="ident">Pos2</span>]) {
-        <span class="kw">let</span> <span class="ident">n</span> <span class="op">=</span> <span class="ident">points</span>.<span class="ident">len</span>();
-        <span class="macro">assert!</span>(<span class="ident">n</span> <span class="op">&gt;</span><span class="op">=</span> <span class="number">2</span>);
+    <span class="kw">pub fn </span>add_open_points(<span class="kw-2">&amp;mut </span><span class="self">self</span>, points: <span class="kw-2">&amp;</span>[Pos2]) {
+        <span class="kw">let </span>n = points.len();
+        <span class="macro">assert!</span>(n &gt;= <span class="number">2</span>);
 
-        <span class="kw">if</span> <span class="ident">n</span> <span class="op">==</span> <span class="number">2</span> {
-            <span class="comment">// Common case optimization:</span>
-            <span class="self">self</span>.<span class="ident">add_line_segment</span>([<span class="ident">points</span>[<span class="number">0</span>], <span class="ident">points</span>[<span class="number">1</span>]]);
-        } <span class="kw">else</span> {
-            <span class="self">self</span>.<span class="ident">reserve</span>(<span class="ident">n</span>);
-            <span class="self">self</span>.<span class="ident">add_point</span>(<span class="ident">points</span>[<span class="number">0</span>], (<span class="ident">points</span>[<span class="number">1</span>] <span class="op">-</span> <span class="ident">points</span>[<span class="number">0</span>]).<span class="ident">normalized</span>().<span class="ident">rot90</span>());
-            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">n0</span> <span class="op">=</span> (<span class="ident">points</span>[<span class="number">1</span>] <span class="op">-</span> <span class="ident">points</span>[<span class="number">0</span>]).<span class="ident">normalized</span>().<span class="ident">rot90</span>();
-            <span class="kw">for</span> <span class="ident">i</span> <span class="kw">in</span> <span class="number">1</span>..<span class="ident">n</span> <span class="op">-</span> <span class="number">1</span> {
-                <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">n1</span> <span class="op">=</span> (<span class="ident">points</span>[<span class="ident">i</span> <span class="op">+</span> <span class="number">1</span>] <span class="op">-</span> <span class="ident">points</span>[<span class="ident">i</span>]).<span class="ident">normalized</span>().<span class="ident">rot90</span>();
+        <span class="kw">if </span>n == <span class="number">2 </span>{
+            <span class="comment">// Common case optimization:
+            </span><span class="self">self</span>.add_line_segment([points[<span class="number">0</span>], points[<span class="number">1</span>]]);
+        } <span class="kw">else </span>{
+            <span class="self">self</span>.reserve(n);
+            <span class="self">self</span>.add_point(points[<span class="number">0</span>], (points[<span class="number">1</span>] - points[<span class="number">0</span>]).normalized().rot90());
+            <span class="kw">let </span><span class="kw-2">mut </span>n0 = (points[<span class="number">1</span>] - points[<span class="number">0</span>]).normalized().rot90();
+            <span class="kw">for </span>i <span class="kw">in </span><span class="number">1</span>..n - <span class="number">1 </span>{
+                <span class="kw">let </span><span class="kw-2">mut </span>n1 = (points[i + <span class="number">1</span>] - points[i]).normalized().rot90();
 
-                <span class="comment">// Handle duplicated points (but not triplicated…):</span>
-                <span class="kw">if</span> <span class="ident">n0</span> <span class="op">==</span> <span class="ident">Vec2::ZERO</span> {
-                    <span class="ident">n0</span> <span class="op">=</span> <span class="ident">n1</span>;
-                } <span class="kw">else</span> <span class="kw">if</span> <span class="ident">n1</span> <span class="op">==</span> <span class="ident">Vec2::ZERO</span> {
-                    <span class="ident">n1</span> <span class="op">=</span> <span class="ident">n0</span>;
+                <span class="comment">// Handle duplicated points (but not triplicated…):
+                </span><span class="kw">if </span>n0 == Vec2::ZERO {
+                    n0 = n1;
+                } <span class="kw">else if </span>n1 == Vec2::ZERO {
+                    n1 = n0;
                 }
 
-                <span class="kw">let</span> <span class="ident">normal</span> <span class="op">=</span> (<span class="ident">n0</span> <span class="op">+</span> <span class="ident">n1</span>) <span class="op">/</span> <span class="number">2.0</span>;
-                <span class="kw">let</span> <span class="ident">length_sq</span> <span class="op">=</span> <span class="ident">normal</span>.<span class="ident">length_sq</span>();
-                <span class="kw">let</span> <span class="ident">right_angle_length_sq</span> <span class="op">=</span> <span class="number">0.5</span>;
-                <span class="kw">let</span> <span class="ident">sharper_than_a_right_angle</span> <span class="op">=</span> <span class="ident">length_sq</span> <span class="op">&lt;</span> <span class="ident">right_angle_length_sq</span>;
-                <span class="kw">if</span> <span class="ident">sharper_than_a_right_angle</span> {
-                    <span class="comment">// cut off the sharp corner</span>
-                    <span class="kw">let</span> <span class="ident">center_normal</span> <span class="op">=</span> <span class="ident">normal</span>.<span class="ident">normalized</span>();
-                    <span class="kw">let</span> <span class="ident">n0c</span> <span class="op">=</span> (<span class="ident">n0</span> <span class="op">+</span> <span class="ident">center_normal</span>) <span class="op">/</span> <span class="number">2.0</span>;
-                    <span class="kw">let</span> <span class="ident">n1c</span> <span class="op">=</span> (<span class="ident">n1</span> <span class="op">+</span> <span class="ident">center_normal</span>) <span class="op">/</span> <span class="number">2.0</span>;
-                    <span class="self">self</span>.<span class="ident">add_point</span>(<span class="ident">points</span>[<span class="ident">i</span>], <span class="ident">n0c</span> <span class="op">/</span> <span class="ident">n0c</span>.<span class="ident">length_sq</span>());
-                    <span class="self">self</span>.<span class="ident">add_point</span>(<span class="ident">points</span>[<span class="ident">i</span>], <span class="ident">n1c</span> <span class="op">/</span> <span class="ident">n1c</span>.<span class="ident">length_sq</span>());
-                } <span class="kw">else</span> {
-                    <span class="comment">// miter join</span>
-                    <span class="self">self</span>.<span class="ident">add_point</span>(<span class="ident">points</span>[<span class="ident">i</span>], <span class="ident">normal</span> <span class="op">/</span> <span class="ident">length_sq</span>);
+                <span class="kw">let </span>normal = (n0 + n1) / <span class="number">2.0</span>;
+                <span class="kw">let </span>length_sq = normal.length_sq();
+                <span class="kw">let </span>right_angle_length_sq = <span class="number">0.5</span>;
+                <span class="kw">let </span>sharper_than_a_right_angle = length_sq &lt; right_angle_length_sq;
+                <span class="kw">if </span>sharper_than_a_right_angle {
+                    <span class="comment">// cut off the sharp corner
+                    </span><span class="kw">let </span>center_normal = normal.normalized();
+                    <span class="kw">let </span>n0c = (n0 + center_normal) / <span class="number">2.0</span>;
+                    <span class="kw">let </span>n1c = (n1 + center_normal) / <span class="number">2.0</span>;
+                    <span class="self">self</span>.add_point(points[i], n0c / n0c.length_sq());
+                    <span class="self">self</span>.add_point(points[i], n1c / n1c.length_sq());
+                } <span class="kw">else </span>{
+                    <span class="comment">// miter join
+                    </span><span class="self">self</span>.add_point(points[i], normal / length_sq);
                 }
 
-                <span class="ident">n0</span> <span class="op">=</span> <span class="ident">n1</span>;
+                n0 = n1;
             }
-            <span class="self">self</span>.<span class="ident">add_point</span>(
-                <span class="ident">points</span>[<span class="ident">n</span> <span class="op">-</span> <span class="number">1</span>],
-                (<span class="ident">points</span>[<span class="ident">n</span> <span class="op">-</span> <span class="number">1</span>] <span class="op">-</span> <span class="ident">points</span>[<span class="ident">n</span> <span class="op">-</span> <span class="number">2</span>]).<span class="ident">normalized</span>().<span class="ident">rot90</span>(),
+            <span class="self">self</span>.add_point(
+                points[n - <span class="number">1</span>],
+                (points[n - <span class="number">1</span>] - points[n - <span class="number">2</span>]).normalized().rot90(),
             );
         }
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">add_line_loop</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">points</span>: <span class="kw-2">&amp;</span>[<span class="ident">Pos2</span>]) {
-        <span class="kw">let</span> <span class="ident">n</span> <span class="op">=</span> <span class="ident">points</span>.<span class="ident">len</span>();
-        <span class="macro">assert!</span>(<span class="ident">n</span> <span class="op">&gt;</span><span class="op">=</span> <span class="number">2</span>);
-        <span class="self">self</span>.<span class="ident">reserve</span>(<span class="ident">n</span>);
+    <span class="kw">pub fn </span>add_line_loop(<span class="kw-2">&amp;mut </span><span class="self">self</span>, points: <span class="kw-2">&amp;</span>[Pos2]) {
+        <span class="kw">let </span>n = points.len();
+        <span class="macro">assert!</span>(n &gt;= <span class="number">2</span>);
+        <span class="self">self</span>.reserve(n);
 
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">n0</span> <span class="op">=</span> (<span class="ident">points</span>[<span class="number">0</span>] <span class="op">-</span> <span class="ident">points</span>[<span class="ident">n</span> <span class="op">-</span> <span class="number">1</span>]).<span class="ident">normalized</span>().<span class="ident">rot90</span>();
+        <span class="kw">let </span><span class="kw-2">mut </span>n0 = (points[<span class="number">0</span>] - points[n - <span class="number">1</span>]).normalized().rot90();
 
-        <span class="kw">for</span> <span class="ident">i</span> <span class="kw">in</span> <span class="number">0</span>..<span class="ident">n</span> {
-            <span class="kw">let</span> <span class="ident">next_i</span> <span class="op">=</span> <span class="kw">if</span> <span class="ident">i</span> <span class="op">+</span> <span class="number">1</span> <span class="op">==</span> <span class="ident">n</span> { <span class="number">0</span> } <span class="kw">else</span> { <span class="ident">i</span> <span class="op">+</span> <span class="number">1</span> };
-            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">n1</span> <span class="op">=</span> (<span class="ident">points</span>[<span class="ident">next_i</span>] <span class="op">-</span> <span class="ident">points</span>[<span class="ident">i</span>]).<span class="ident">normalized</span>().<span class="ident">rot90</span>();
+        <span class="kw">for </span>i <span class="kw">in </span><span class="number">0</span>..n {
+            <span class="kw">let </span>next_i = <span class="kw">if </span>i + <span class="number">1 </span>== n { <span class="number">0 </span>} <span class="kw">else </span>{ i + <span class="number">1 </span>};
+            <span class="kw">let </span><span class="kw-2">mut </span>n1 = (points[next_i] - points[i]).normalized().rot90();
 
-            <span class="comment">// Handle duplicated points (but not triplicated…):</span>
-            <span class="kw">if</span> <span class="ident">n0</span> <span class="op">==</span> <span class="ident">Vec2::ZERO</span> {
-                <span class="ident">n0</span> <span class="op">=</span> <span class="ident">n1</span>;
-            } <span class="kw">else</span> <span class="kw">if</span> <span class="ident">n1</span> <span class="op">==</span> <span class="ident">Vec2::ZERO</span> {
-                <span class="ident">n1</span> <span class="op">=</span> <span class="ident">n0</span>;
+            <span class="comment">// Handle duplicated points (but not triplicated…):
+            </span><span class="kw">if </span>n0 == Vec2::ZERO {
+                n0 = n1;
+            } <span class="kw">else if </span>n1 == Vec2::ZERO {
+                n1 = n0;
             }
 
-            <span class="kw">let</span> <span class="ident">normal</span> <span class="op">=</span> (<span class="ident">n0</span> <span class="op">+</span> <span class="ident">n1</span>) <span class="op">/</span> <span class="number">2.0</span>;
-            <span class="kw">let</span> <span class="ident">length_sq</span> <span class="op">=</span> <span class="ident">normal</span>.<span class="ident">length_sq</span>();
-            <span class="kw">let</span> <span class="ident">right_angle_length_sq</span> <span class="op">=</span> <span class="number">0.5</span>;
-            <span class="kw">let</span> <span class="ident">sharper_than_a_right_angle</span> <span class="op">=</span> <span class="ident">length_sq</span> <span class="op">&lt;</span> <span class="ident">right_angle_length_sq</span>;
-            <span class="kw">if</span> <span class="ident">sharper_than_a_right_angle</span> {
-                <span class="comment">// cut off the sharp corner</span>
-                <span class="kw">let</span> <span class="ident">center_normal</span> <span class="op">=</span> <span class="ident">normal</span>.<span class="ident">normalized</span>();
-                <span class="kw">let</span> <span class="ident">n0c</span> <span class="op">=</span> (<span class="ident">n0</span> <span class="op">+</span> <span class="ident">center_normal</span>) <span class="op">/</span> <span class="number">2.0</span>;
-                <span class="kw">let</span> <span class="ident">n1c</span> <span class="op">=</span> (<span class="ident">n1</span> <span class="op">+</span> <span class="ident">center_normal</span>) <span class="op">/</span> <span class="number">2.0</span>;
-                <span class="self">self</span>.<span class="ident">add_point</span>(<span class="ident">points</span>[<span class="ident">i</span>], <span class="ident">n0c</span> <span class="op">/</span> <span class="ident">n0c</span>.<span class="ident">length_sq</span>());
-                <span class="self">self</span>.<span class="ident">add_point</span>(<span class="ident">points</span>[<span class="ident">i</span>], <span class="ident">n1c</span> <span class="op">/</span> <span class="ident">n1c</span>.<span class="ident">length_sq</span>());
-            } <span class="kw">else</span> {
-                <span class="comment">// miter join</span>
-                <span class="self">self</span>.<span class="ident">add_point</span>(<span class="ident">points</span>[<span class="ident">i</span>], <span class="ident">normal</span> <span class="op">/</span> <span class="ident">length_sq</span>);
+            <span class="kw">let </span>normal = (n0 + n1) / <span class="number">2.0</span>;
+            <span class="kw">let </span>length_sq = normal.length_sq();
+            <span class="kw">let </span>right_angle_length_sq = <span class="number">0.5</span>;
+            <span class="kw">let </span>sharper_than_a_right_angle = length_sq &lt; right_angle_length_sq;
+            <span class="kw">if </span>sharper_than_a_right_angle {
+                <span class="comment">// cut off the sharp corner
+                </span><span class="kw">let </span>center_normal = normal.normalized();
+                <span class="kw">let </span>n0c = (n0 + center_normal) / <span class="number">2.0</span>;
+                <span class="kw">let </span>n1c = (n1 + center_normal) / <span class="number">2.0</span>;
+                <span class="self">self</span>.add_point(points[i], n0c / n0c.length_sq());
+                <span class="self">self</span>.add_point(points[i], n1c / n1c.length_sq());
+            } <span class="kw">else </span>{
+                <span class="comment">// miter join
+                </span><span class="self">self</span>.add_point(points[i], normal / length_sq);
             }
 
-            <span class="ident">n0</span> <span class="op">=</span> <span class="ident">n1</span>;
+            n0 = n1;
         }
     }
 
-    <span class="doccomment">/// Open-ended.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">stroke_open</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">stroke</span>: <span class="ident">Stroke</span>, <span class="ident">options</span>: <span class="kw-2">&amp;</span><span class="ident">TessellationOptions</span>, <span class="ident">out</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Mesh</span>) {
-        <span class="ident">stroke_path</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="number">0</span>, <span class="ident">PathType::Open</span>, <span class="ident">stroke</span>, <span class="ident">options</span>, <span class="ident">out</span>);
+    <span class="doccomment">/// Open-ended.
+    </span><span class="kw">pub fn </span>stroke_open(<span class="kw-2">&amp;</span><span class="self">self</span>, stroke: Stroke, options: <span class="kw-2">&amp;</span>TessellationOptions, out: <span class="kw-2">&amp;mut </span>Mesh) {
+        stroke_path(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="number">0</span>, PathType::Open, stroke, options, out);
     }
 
-    <span class="doccomment">/// A closed path (returning to the first point).</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">stroke_closed</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">stroke</span>: <span class="ident">Stroke</span>, <span class="ident">options</span>: <span class="kw-2">&amp;</span><span class="ident">TessellationOptions</span>, <span class="ident">out</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Mesh</span>) {
-        <span class="ident">stroke_path</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="number">0</span>, <span class="ident">PathType::Closed</span>, <span class="ident">stroke</span>, <span class="ident">options</span>, <span class="ident">out</span>);
+    <span class="doccomment">/// A closed path (returning to the first point).
+    </span><span class="kw">pub fn </span>stroke_closed(<span class="kw-2">&amp;</span><span class="self">self</span>, stroke: Stroke, options: <span class="kw-2">&amp;</span>TessellationOptions, out: <span class="kw-2">&amp;mut </span>Mesh) {
+        stroke_path(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="number">0</span>, PathType::Closed, stroke, options, out);
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">stroke</span>(
+    <span class="kw">pub fn </span>stroke(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
-        <span class="ident">path_type</span>: <span class="ident">PathType</span>,
-        <span class="ident">stroke</span>: <span class="ident">Stroke</span>,
-        <span class="ident">options</span>: <span class="kw-2">&amp;</span><span class="ident">TessellationOptions</span>,
-        <span class="ident">out</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Mesh</span>,
+        path_type: PathType,
+        stroke: Stroke,
+        options: <span class="kw-2">&amp;</span>TessellationOptions,
+        out: <span class="kw-2">&amp;mut </span>Mesh,
     ) {
-        <span class="ident">stroke_path</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="number">0</span>, <span class="ident">path_type</span>, <span class="ident">stroke</span>, <span class="ident">options</span>, <span class="ident">out</span>);
+        stroke_path(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="number">0</span>, path_type, stroke, options, out);
     }
 
-    <span class="doccomment">/// The path is taken to be closed (i.e. returning to the start again).</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">fill</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">color</span>: <span class="ident">Color32</span>, <span class="ident">options</span>: <span class="kw-2">&amp;</span><span class="ident">TessellationOptions</span>, <span class="ident">out</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Mesh</span>) {
-        <span class="ident">fill_closed_path</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="number">0</span>, <span class="ident">color</span>, <span class="ident">options</span>, <span class="ident">out</span>);
+    <span class="doccomment">/// The path is taken to be closed (i.e. returning to the start again).
+    </span><span class="kw">pub fn </span>fill(<span class="kw-2">&amp;</span><span class="self">self</span>, color: Color32, options: <span class="kw-2">&amp;</span>TessellationOptions, out: <span class="kw-2">&amp;mut </span>Mesh) {
+        fill_closed_path(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="number">0</span>, color, options, out);
     }
 }
 
-<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">path</span> {
-    <span class="doccomment">//! Helpers for constructing paths</span>
-    <span class="kw">use</span> <span class="kw">super</span>::<span class="kw-2">*</span>;
+<span class="kw">pub mod </span>path {
+    <span class="doccomment">//! Helpers for constructing paths
+    </span><span class="kw">use super</span>::<span class="kw-2">*</span>;
 
-    <span class="doccomment">/// overwrites existing points</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">rounded_rectangle</span>(<span class="ident">path</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Pos2</span><span class="op">&gt;</span>, <span class="ident">rect</span>: <span class="ident">Rect</span>, <span class="ident">corner_radius</span>: <span class="ident">f32</span>) {
-        <span class="ident">path</span>.<span class="ident">clear</span>();
+    <span class="doccomment">/// overwrites existing points
+    </span><span class="kw">pub fn </span>rounded_rectangle(path: <span class="kw-2">&amp;mut </span>Vec&lt;Pos2&gt;, rect: Rect, corner_radius: f32) {
+        path.clear();
 
-        <span class="kw">let</span> <span class="ident">min</span> <span class="op">=</span> <span class="ident">rect</span>.<span class="ident">min</span>;
-        <span class="kw">let</span> <span class="ident">max</span> <span class="op">=</span> <span class="ident">rect</span>.<span class="ident">max</span>;
+        <span class="kw">let </span>min = rect.min;
+        <span class="kw">let </span>max = rect.max;
 
-        <span class="kw">let</span> <span class="ident">cr</span> <span class="op">=</span> <span class="ident">corner_radius</span>
-            .<span class="ident">min</span>(<span class="ident">rect</span>.<span class="ident">width</span>() <span class="op">*</span> <span class="number">0.5</span>)
-            .<span class="ident">min</span>(<span class="ident">rect</span>.<span class="ident">height</span>() <span class="op">*</span> <span class="number">0.5</span>);
+        <span class="kw">let </span>cr = corner_radius
+            .min(rect.width() * <span class="number">0.5</span>)
+            .min(rect.height() * <span class="number">0.5</span>);
 
-        <span class="kw">if</span> <span class="ident">cr</span> <span class="op">&lt;</span><span class="op">=</span> <span class="number">0.0</span> {
-            <span class="kw">let</span> <span class="ident">min</span> <span class="op">=</span> <span class="ident">rect</span>.<span class="ident">min</span>;
-            <span class="kw">let</span> <span class="ident">max</span> <span class="op">=</span> <span class="ident">rect</span>.<span class="ident">max</span>;
-            <span class="ident">path</span>.<span class="ident">reserve</span>(<span class="number">4</span>);
-            <span class="ident">path</span>.<span class="ident">push</span>(<span class="ident">pos2</span>(<span class="ident">min</span>.<span class="ident">x</span>, <span class="ident">min</span>.<span class="ident">y</span>));
-            <span class="ident">path</span>.<span class="ident">push</span>(<span class="ident">pos2</span>(<span class="ident">max</span>.<span class="ident">x</span>, <span class="ident">min</span>.<span class="ident">y</span>));
-            <span class="ident">path</span>.<span class="ident">push</span>(<span class="ident">pos2</span>(<span class="ident">max</span>.<span class="ident">x</span>, <span class="ident">max</span>.<span class="ident">y</span>));
-            <span class="ident">path</span>.<span class="ident">push</span>(<span class="ident">pos2</span>(<span class="ident">min</span>.<span class="ident">x</span>, <span class="ident">max</span>.<span class="ident">y</span>));
-        } <span class="kw">else</span> {
-            <span class="ident">add_circle_quadrant</span>(<span class="ident">path</span>, <span class="ident">pos2</span>(<span class="ident">max</span>.<span class="ident">x</span> <span class="op">-</span> <span class="ident">cr</span>, <span class="ident">max</span>.<span class="ident">y</span> <span class="op">-</span> <span class="ident">cr</span>), <span class="ident">cr</span>, <span class="number">0.0</span>);
-            <span class="ident">add_circle_quadrant</span>(<span class="ident">path</span>, <span class="ident">pos2</span>(<span class="ident">min</span>.<span class="ident">x</span> <span class="op">+</span> <span class="ident">cr</span>, <span class="ident">max</span>.<span class="ident">y</span> <span class="op">-</span> <span class="ident">cr</span>), <span class="ident">cr</span>, <span class="number">1.0</span>);
-            <span class="ident">add_circle_quadrant</span>(<span class="ident">path</span>, <span class="ident">pos2</span>(<span class="ident">min</span>.<span class="ident">x</span> <span class="op">+</span> <span class="ident">cr</span>, <span class="ident">min</span>.<span class="ident">y</span> <span class="op">+</span> <span class="ident">cr</span>), <span class="ident">cr</span>, <span class="number">2.0</span>);
-            <span class="ident">add_circle_quadrant</span>(<span class="ident">path</span>, <span class="ident">pos2</span>(<span class="ident">max</span>.<span class="ident">x</span> <span class="op">-</span> <span class="ident">cr</span>, <span class="ident">min</span>.<span class="ident">y</span> <span class="op">+</span> <span class="ident">cr</span>), <span class="ident">cr</span>, <span class="number">3.0</span>);
+        <span class="kw">if </span>cr &lt;= <span class="number">0.0 </span>{
+            <span class="kw">let </span>min = rect.min;
+            <span class="kw">let </span>max = rect.max;
+            path.reserve(<span class="number">4</span>);
+            path.push(pos2(min.x, min.y));
+            path.push(pos2(max.x, min.y));
+            path.push(pos2(max.x, max.y));
+            path.push(pos2(min.x, max.y));
+        } <span class="kw">else </span>{
+            add_circle_quadrant(path, pos2(max.x - cr, max.y - cr), cr, <span class="number">0.0</span>);
+            add_circle_quadrant(path, pos2(min.x + cr, max.y - cr), cr, <span class="number">1.0</span>);
+            add_circle_quadrant(path, pos2(min.x + cr, min.y + cr), cr, <span class="number">2.0</span>);
+            add_circle_quadrant(path, pos2(max.x - cr, min.y + cr), cr, <span class="number">3.0</span>);
         }
     }
 
-    <span class="doccomment">/// Add one quadrant of a circle</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// * quadrant 0: right bottom</span>
-    <span class="doccomment">/// * quadrant 1: left bottom</span>
-    <span class="doccomment">/// * quadrant 2: left top</span>
-    <span class="doccomment">/// * quadrant 3: right top</span>
-    <span class="comment">//</span>
-    <span class="comment">// Derivation:</span>
-    <span class="comment">//</span>
-    <span class="comment">// * angle 0 * TAU / 4 = right</span>
-    <span class="comment">//   - quadrant 0: right bottom</span>
-    <span class="comment">// * angle 1 * TAU / 4 = bottom</span>
-    <span class="comment">//   - quadrant 1: left bottom</span>
-    <span class="comment">// * angle 2 * TAU / 4 = left</span>
-    <span class="comment">//   - quadrant 2: left top</span>
-    <span class="comment">// * angle 3 * TAU / 4 = top</span>
-    <span class="comment">//   - quadrant 3: right top</span>
-    <span class="comment">// * angle 4 * TAU / 4 = right</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">add_circle_quadrant</span>(<span class="ident">path</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Pos2</span><span class="op">&gt;</span>, <span class="ident">center</span>: <span class="ident">Pos2</span>, <span class="ident">radius</span>: <span class="ident">f32</span>, <span class="ident">quadrant</span>: <span class="ident">f32</span>) {
-        <span class="comment">// TODO: optimize with precalculated vertices for some radii ranges</span>
+    <span class="doccomment">/// Add one quadrant of a circle
+    ///
+    /// * quadrant 0: right bottom
+    /// * quadrant 1: left bottom
+    /// * quadrant 2: left top
+    /// * quadrant 3: right top
+    </span><span class="comment">//
+    // Derivation:
+    //
+    // * angle 0 * TAU / 4 = right
+    //   - quadrant 0: right bottom
+    // * angle 1 * TAU / 4 = bottom
+    //   - quadrant 1: left bottom
+    // * angle 2 * TAU / 4 = left
+    //   - quadrant 2: left top
+    // * angle 3 * TAU / 4 = top
+    //   - quadrant 3: right top
+    // * angle 4 * TAU / 4 = right
+    </span><span class="kw">pub fn </span>add_circle_quadrant(path: <span class="kw-2">&amp;mut </span>Vec&lt;Pos2&gt;, center: Pos2, radius: f32, quadrant: f32) {
+        <span class="comment">// TODO: optimize with precalculated vertices for some radii ranges
 
-        <span class="kw">let</span> <span class="ident">n</span> <span class="op">=</span> (<span class="ident">radius</span> <span class="op">*</span> <span class="number">0.75</span>).<span class="ident">round</span>() <span class="kw">as</span> <span class="ident">i32</span>; <span class="comment">// TODO: tweak a bit more</span>
-        <span class="kw">let</span> <span class="ident">n</span> <span class="op">=</span> <span class="ident">n</span>.<span class="ident">clamp</span>(<span class="number">2</span>, <span class="number">32</span>);
-        <span class="kw">const</span> <span class="ident">RIGHT_ANGLE</span>: <span class="ident">f32</span> <span class="op">=</span> <span class="ident">TAU</span> <span class="op">/</span> <span class="number">4.0</span>;
-        <span class="ident">path</span>.<span class="ident">reserve</span>(<span class="ident">n</span> <span class="kw">as</span> <span class="ident">usize</span> <span class="op">+</span> <span class="number">1</span>);
-        <span class="kw">for</span> <span class="ident">i</span> <span class="kw">in</span> <span class="number">0</span>..<span class="op">=</span><span class="ident">n</span> {
-            <span class="kw">let</span> <span class="ident">angle</span> <span class="op">=</span> <span class="ident">remap</span>(
-                <span class="ident">i</span> <span class="kw">as</span> <span class="ident">f32</span>,
-                <span class="number">0.0</span>..<span class="op">=</span><span class="ident">n</span> <span class="kw">as</span> <span class="ident">f32</span>,
-                <span class="ident">quadrant</span> <span class="op">*</span> <span class="ident">RIGHT_ANGLE</span>..<span class="op">=</span>(<span class="ident">quadrant</span> <span class="op">+</span> <span class="number">1.0</span>) <span class="op">*</span> <span class="ident">RIGHT_ANGLE</span>,
+        </span><span class="kw">let </span>n = (radius * <span class="number">0.75</span>).round() <span class="kw">as </span>i32; <span class="comment">// TODO: tweak a bit more
+        </span><span class="kw">let </span>n = n.clamp(<span class="number">2</span>, <span class="number">32</span>);
+        <span class="kw">const </span>RIGHT_ANGLE: f32 = TAU / <span class="number">4.0</span>;
+        path.reserve(n <span class="kw">as </span>usize + <span class="number">1</span>);
+        <span class="kw">for </span>i <span class="kw">in </span><span class="number">0</span>..=n {
+            <span class="kw">let </span>angle = remap(
+                i <span class="kw">as </span>f32,
+                <span class="number">0.0</span>..=n <span class="kw">as </span>f32,
+                quadrant * RIGHT_ANGLE..=(quadrant + <span class="number">1.0</span>) * RIGHT_ANGLE,
             );
-            <span class="ident">path</span>.<span class="ident">push</span>(<span class="ident">center</span> <span class="op">+</span> <span class="ident">radius</span> <span class="op">*</span> <span class="ident">Vec2::angled</span>(<span class="ident">angle</span>));
+            path.push(center + radius * Vec2::angled(angle));
         }
     }
 }
 
-<span class="comment">// ----------------------------------------------------------------------------</span>
+<span class="comment">// ----------------------------------------------------------------------------
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">PartialEq</span>)]</span>
-<span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">PathType</span> {
-    <span class="ident">Open</span>,
-    <span class="ident">Closed</span>,
+</span><span class="attribute">#[derive(Clone, Copy, PartialEq)]
+</span><span class="kw">pub enum </span>PathType {
+    Open,
+    Closed,
 }
 
-<span class="doccomment">/// Tessellation quality options</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>)]</span>
-<span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;serde&quot;</span>, <span class="ident">derive</span>(<span class="ident">serde::Deserialize</span>, <span class="ident">serde::Serialize</span>))]</span>
-<span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;serde&quot;</span>, <span class="ident">serde</span>(<span class="ident">default</span>))]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">TessellationOptions</span> {
-    <span class="doccomment">/// Size of a point in pixels (DPI scaling), e.g. 2.0. Used to snap text to pixel boundaries.</span>
-    <span class="kw">pub</span> <span class="ident">pixels_per_point</span>: <span class="ident">f32</span>,
+<span class="doccomment">/// Tessellation quality options
+</span><span class="attribute">#[derive(Clone, Copy, Debug, PartialEq)]
+#[cfg_attr(feature = <span class="string">&quot;serde&quot;</span>, derive(serde::Deserialize, serde::Serialize))]
+#[cfg_attr(feature = <span class="string">&quot;serde&quot;</span>, serde(default))]
+</span><span class="kw">pub struct </span>TessellationOptions {
+    <span class="doccomment">/// Size of a point in pixels (DPI scaling), e.g. 2.0. Used to snap text to pixel boundaries.
+    </span><span class="kw">pub </span>pixels_per_point: f32,
 
-    <span class="doccomment">/// The size of a pixel (in points), used for anti-aliasing (smoothing of edges).</span>
-    <span class="doccomment">/// This is normally the inverse of [`Self::pixels_per_point`],</span>
-    <span class="doccomment">/// but you can make it larger if you want more blurry edges.</span>
-    <span class="kw">pub</span> <span class="ident">aa_size</span>: <span class="ident">f32</span>,
+    <span class="doccomment">/// The size of a pixel (in points), used for anti-aliasing (smoothing of edges).
+    /// This is normally the inverse of [`Self::pixels_per_point`],
+    /// but you can make it larger if you want more blurry edges.
+    </span><span class="kw">pub </span>aa_size: f32,
 
-    <span class="doccomment">/// Anti-aliasing makes shapes appear smoother, but requires more triangles and is therefore slower.</span>
-    <span class="doccomment">/// This setting does not affect text.</span>
-    <span class="doccomment">/// Default: `true`.</span>
-    <span class="kw">pub</span> <span class="ident">anti_alias</span>: <span class="ident">bool</span>,
+    <span class="doccomment">/// Anti-aliasing makes shapes appear smoother, but requires more triangles and is therefore slower.
+    /// This setting does not affect text.
+    /// Default: `true`.
+    </span><span class="kw">pub </span>anti_alias: bool,
 
-    <span class="doccomment">/// If `true` (default) cull certain primitives before tessellating them.</span>
-    <span class="doccomment">/// This likely makes</span>
-    <span class="kw">pub</span> <span class="ident">coarse_tessellation_culling</span>: <span class="ident">bool</span>,
+    <span class="doccomment">/// If `true` (default) cull certain primitives before tessellating them.
+    /// This likely makes
+    </span><span class="kw">pub </span>coarse_tessellation_culling: bool,
 
-    <span class="doccomment">/// If `true` (default) align text to mesh grid.</span>
-    <span class="doccomment">/// This makes the text sharper on most platforms.</span>
-    <span class="kw">pub</span> <span class="ident">round_text_to_pixels</span>: <span class="ident">bool</span>,
+    <span class="doccomment">/// If `true` (default) align text to mesh grid.
+    /// This makes the text sharper on most platforms.
+    </span><span class="kw">pub </span>round_text_to_pixels: bool,
 
-    <span class="doccomment">/// Output the clip rectangles to be painted.</span>
-    <span class="kw">pub</span> <span class="ident">debug_paint_clip_rects</span>: <span class="ident">bool</span>,
+    <span class="doccomment">/// Output the clip rectangles to be painted.
+    </span><span class="kw">pub </span>debug_paint_clip_rects: bool,
 
-    <span class="doccomment">/// Output the text-containing rectangles.</span>
-    <span class="kw">pub</span> <span class="ident">debug_paint_text_rects</span>: <span class="ident">bool</span>,
+    <span class="doccomment">/// Output the text-containing rectangles.
+    </span><span class="kw">pub </span>debug_paint_text_rects: bool,
 
-    <span class="doccomment">/// If true, no clipping will be done.</span>
-    <span class="kw">pub</span> <span class="ident">debug_ignore_clip_rects</span>: <span class="ident">bool</span>,
+    <span class="doccomment">/// If true, no clipping will be done.
+    </span><span class="kw">pub </span>debug_ignore_clip_rects: bool,
 }
 
-<span class="kw">impl</span> <span class="ident">Default</span> <span class="kw">for</span> <span class="ident">TessellationOptions</span> {
-    <span class="kw">fn</span> <span class="ident">default</span>() -&gt; <span class="self">Self</span> {
-        <span class="self">Self</span> {
-            <span class="ident">pixels_per_point</span>: <span class="number">1.0</span>,
-            <span class="ident">aa_size</span>: <span class="number">1.0</span>,
-            <span class="ident">anti_alias</span>: <span class="bool-val">true</span>,
-            <span class="ident">coarse_tessellation_culling</span>: <span class="bool-val">true</span>,
-            <span class="ident">round_text_to_pixels</span>: <span class="bool-val">true</span>,
-            <span class="ident">debug_paint_text_rects</span>: <span class="bool-val">false</span>,
-            <span class="ident">debug_paint_clip_rects</span>: <span class="bool-val">false</span>,
-            <span class="ident">debug_ignore_clip_rects</span>: <span class="bool-val">false</span>,
+<span class="kw">impl </span>Default <span class="kw">for </span>TessellationOptions {
+    <span class="kw">fn </span>default() -&gt; <span class="self">Self </span>{
+        <span class="self">Self </span>{
+            pixels_per_point: <span class="number">1.0</span>,
+            aa_size: <span class="number">1.0</span>,
+            anti_alias: <span class="bool-val">true</span>,
+            coarse_tessellation_culling: <span class="bool-val">true</span>,
+            round_text_to_pixels: <span class="bool-val">true</span>,
+            debug_paint_text_rects: <span class="bool-val">false</span>,
+            debug_paint_clip_rects: <span class="bool-val">false</span>,
+            debug_ignore_clip_rects: <span class="bool-val">false</span>,
         }
     }
 }
 
-<span class="kw">impl</span> <span class="ident">TessellationOptions</span> {
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">from_pixels_per_point</span>(<span class="ident">pixels_per_point</span>: <span class="ident">f32</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">Self</span> {
-            <span class="ident">pixels_per_point</span>,
-            <span class="ident">aa_size</span>: <span class="number">1.0</span> <span class="op">/</span> <span class="ident">pixels_per_point</span>,
-            ..<span class="ident">Default::default</span>()
+<span class="kw">impl </span>TessellationOptions {
+    <span class="kw">pub fn </span>from_pixels_per_point(pixels_per_point: f32) -&gt; <span class="self">Self </span>{
+        <span class="self">Self </span>{
+            pixels_per_point,
+            aa_size: <span class="number">1.0 </span>/ pixels_per_point,
+            ..Default::default()
         }
     }
 }
 
-<span class="kw">impl</span> <span class="ident">TessellationOptions</span> {
-    <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">round_to_pixel</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">point</span>: <span class="ident">f32</span>) -&gt; <span class="ident">f32</span> {
-        <span class="kw">if</span> <span class="self">self</span>.<span class="ident">round_text_to_pixels</span> {
-            (<span class="ident">point</span> <span class="op">*</span> <span class="self">self</span>.<span class="ident">pixels_per_point</span>).<span class="ident">round</span>() <span class="op">/</span> <span class="self">self</span>.<span class="ident">pixels_per_point</span>
-        } <span class="kw">else</span> {
-            <span class="ident">point</span>
+<span class="kw">impl </span>TessellationOptions {
+    <span class="attribute">#[inline(always)]
+    </span><span class="kw">pub fn </span>round_to_pixel(<span class="kw-2">&amp;</span><span class="self">self</span>, point: f32) -&gt; f32 {
+        <span class="kw">if </span><span class="self">self</span>.round_text_to_pixels {
+            (point * <span class="self">self</span>.pixels_per_point).round() / <span class="self">self</span>.pixels_per_point
+        } <span class="kw">else </span>{
+            point
         }
     }
 }
 
-<span class="doccomment">/// Tessellate the given convex area into a polygon.</span>
-<span class="kw">fn</span> <span class="ident">fill_closed_path</span>(
-    <span class="ident">path</span>: <span class="kw-2">&amp;</span>[<span class="ident">PathPoint</span>],
-    <span class="ident">color</span>: <span class="ident">Color32</span>,
-    <span class="ident">options</span>: <span class="kw-2">&amp;</span><span class="ident">TessellationOptions</span>,
-    <span class="ident">out</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Mesh</span>,
+<span class="doccomment">/// Tessellate the given convex area into a polygon.
+</span><span class="kw">fn </span>fill_closed_path(
+    path: <span class="kw-2">&amp;</span>[PathPoint],
+    color: Color32,
+    options: <span class="kw-2">&amp;</span>TessellationOptions,
+    out: <span class="kw-2">&amp;mut </span>Mesh,
 ) {
-    <span class="kw">if</span> <span class="ident">color</span> <span class="op">==</span> <span class="ident">Color32::TRANSPARENT</span> {
+    <span class="kw">if </span>color == Color32::TRANSPARENT {
         <span class="kw">return</span>;
     }
 
-    <span class="kw">let</span> <span class="ident">n</span> <span class="op">=</span> <span class="ident">path</span>.<span class="ident">len</span>() <span class="kw">as</span> <span class="ident">u32</span>;
-    <span class="kw">if</span> <span class="ident">options</span>.<span class="ident">anti_alias</span> {
-        <span class="ident">out</span>.<span class="ident">reserve_triangles</span>(<span class="number">3</span> <span class="op">*</span> <span class="ident">n</span> <span class="kw">as</span> <span class="ident">usize</span>);
-        <span class="ident">out</span>.<span class="ident">reserve_vertices</span>(<span class="number">2</span> <span class="op">*</span> <span class="ident">n</span> <span class="kw">as</span> <span class="ident">usize</span>);
-        <span class="kw">let</span> <span class="ident">color_outer</span> <span class="op">=</span> <span class="ident">Color32::TRANSPARENT</span>;
-        <span class="kw">let</span> <span class="ident">idx_inner</span> <span class="op">=</span> <span class="ident">out</span>.<span class="ident">vertices</span>.<span class="ident">len</span>() <span class="kw">as</span> <span class="ident">u32</span>;
-        <span class="kw">let</span> <span class="ident">idx_outer</span> <span class="op">=</span> <span class="ident">idx_inner</span> <span class="op">+</span> <span class="number">1</span>;
-        <span class="kw">for</span> <span class="ident">i</span> <span class="kw">in</span> <span class="number">2</span>..<span class="ident">n</span> {
-            <span class="ident">out</span>.<span class="ident">add_triangle</span>(<span class="ident">idx_inner</span> <span class="op">+</span> <span class="number">2</span> <span class="op">*</span> (<span class="ident">i</span> <span class="op">-</span> <span class="number">1</span>), <span class="ident">idx_inner</span>, <span class="ident">idx_inner</span> <span class="op">+</span> <span class="number">2</span> <span class="op">*</span> <span class="ident">i</span>);
+    <span class="kw">let </span>n = path.len() <span class="kw">as </span>u32;
+    <span class="kw">if </span>options.anti_alias {
+        out.reserve_triangles(<span class="number">3 </span>* n <span class="kw">as </span>usize);
+        out.reserve_vertices(<span class="number">2 </span>* n <span class="kw">as </span>usize);
+        <span class="kw">let </span>color_outer = Color32::TRANSPARENT;
+        <span class="kw">let </span>idx_inner = out.vertices.len() <span class="kw">as </span>u32;
+        <span class="kw">let </span>idx_outer = idx_inner + <span class="number">1</span>;
+        <span class="kw">for </span>i <span class="kw">in </span><span class="number">2</span>..n {
+            out.add_triangle(idx_inner + <span class="number">2 </span>* (i - <span class="number">1</span>), idx_inner, idx_inner + <span class="number">2 </span>* i);
         }
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">i0</span> <span class="op">=</span> <span class="ident">n</span> <span class="op">-</span> <span class="number">1</span>;
-        <span class="kw">for</span> <span class="ident">i1</span> <span class="kw">in</span> <span class="number">0</span>..<span class="ident">n</span> {
-            <span class="kw">let</span> <span class="ident">p1</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">path</span>[<span class="ident">i1</span> <span class="kw">as</span> <span class="ident">usize</span>];
-            <span class="kw">let</span> <span class="ident">dm</span> <span class="op">=</span> <span class="number">0.5</span> <span class="op">*</span> <span class="ident">options</span>.<span class="ident">aa_size</span> <span class="op">*</span> <span class="ident">p1</span>.<span class="ident">normal</span>;
-            <span class="ident">out</span>.<span class="ident">colored_vertex</span>(<span class="ident">p1</span>.<span class="ident">pos</span> <span class="op">-</span> <span class="ident">dm</span>, <span class="ident">color</span>);
-            <span class="ident">out</span>.<span class="ident">colored_vertex</span>(<span class="ident">p1</span>.<span class="ident">pos</span> <span class="op">+</span> <span class="ident">dm</span>, <span class="ident">color_outer</span>);
-            <span class="ident">out</span>.<span class="ident">add_triangle</span>(<span class="ident">idx_inner</span> <span class="op">+</span> <span class="ident">i1</span> <span class="op">*</span> <span class="number">2</span>, <span class="ident">idx_inner</span> <span class="op">+</span> <span class="ident">i0</span> <span class="op">*</span> <span class="number">2</span>, <span class="ident">idx_outer</span> <span class="op">+</span> <span class="number">2</span> <span class="op">*</span> <span class="ident">i0</span>);
-            <span class="ident">out</span>.<span class="ident">add_triangle</span>(<span class="ident">idx_outer</span> <span class="op">+</span> <span class="ident">i0</span> <span class="op">*</span> <span class="number">2</span>, <span class="ident">idx_outer</span> <span class="op">+</span> <span class="ident">i1</span> <span class="op">*</span> <span class="number">2</span>, <span class="ident">idx_inner</span> <span class="op">+</span> <span class="number">2</span> <span class="op">*</span> <span class="ident">i1</span>);
-            <span class="ident">i0</span> <span class="op">=</span> <span class="ident">i1</span>;
+        <span class="kw">let </span><span class="kw-2">mut </span>i0 = n - <span class="number">1</span>;
+        <span class="kw">for </span>i1 <span class="kw">in </span><span class="number">0</span>..n {
+            <span class="kw">let </span>p1 = <span class="kw-2">&amp;</span>path[i1 <span class="kw">as </span>usize];
+            <span class="kw">let </span>dm = <span class="number">0.5 </span>* options.aa_size * p1.normal;
+            out.colored_vertex(p1.pos - dm, color);
+            out.colored_vertex(p1.pos + dm, color_outer);
+            out.add_triangle(idx_inner + i1 * <span class="number">2</span>, idx_inner + i0 * <span class="number">2</span>, idx_outer + <span class="number">2 </span>* i0);
+            out.add_triangle(idx_outer + i0 * <span class="number">2</span>, idx_outer + i1 * <span class="number">2</span>, idx_inner + <span class="number">2 </span>* i1);
+            i0 = i1;
         }
-    } <span class="kw">else</span> {
-        <span class="ident">out</span>.<span class="ident">reserve_triangles</span>(<span class="ident">n</span> <span class="kw">as</span> <span class="ident">usize</span>);
-        <span class="kw">let</span> <span class="ident">idx</span> <span class="op">=</span> <span class="ident">out</span>.<span class="ident">vertices</span>.<span class="ident">len</span>() <span class="kw">as</span> <span class="ident">u32</span>;
-        <span class="ident">out</span>.<span class="ident">vertices</span>.<span class="ident">extend</span>(<span class="ident">path</span>.<span class="ident">iter</span>().<span class="ident">map</span>(<span class="op">|</span><span class="ident">p</span><span class="op">|</span> <span class="ident">Vertex</span> {
-            <span class="ident">pos</span>: <span class="ident">p</span>.<span class="ident">pos</span>,
-            <span class="ident">uv</span>: <span class="ident">WHITE_UV</span>,
-            <span class="ident">color</span>,
+    } <span class="kw">else </span>{
+        out.reserve_triangles(n <span class="kw">as </span>usize);
+        <span class="kw">let </span>idx = out.vertices.len() <span class="kw">as </span>u32;
+        out.vertices.extend(path.iter().map(|p| Vertex {
+            pos: p.pos,
+            uv: WHITE_UV,
+            color,
         }));
-        <span class="kw">for</span> <span class="ident">i</span> <span class="kw">in</span> <span class="number">2</span>..<span class="ident">n</span> {
-            <span class="ident">out</span>.<span class="ident">add_triangle</span>(<span class="ident">idx</span>, <span class="ident">idx</span> <span class="op">+</span> <span class="ident">i</span> <span class="op">-</span> <span class="number">1</span>, <span class="ident">idx</span> <span class="op">+</span> <span class="ident">i</span>);
+        <span class="kw">for </span>i <span class="kw">in </span><span class="number">2</span>..n {
+            out.add_triangle(idx, idx + i - <span class="number">1</span>, idx + i);
         }
     }
 }
 
-<span class="doccomment">/// Tessellate the given path as a stroke with thickness.</span>
-<span class="kw">fn</span> <span class="ident">stroke_path</span>(
-    <span class="ident">path</span>: <span class="kw-2">&amp;</span>[<span class="ident">PathPoint</span>],
-    <span class="ident">path_type</span>: <span class="ident">PathType</span>,
-    <span class="ident">stroke</span>: <span class="ident">Stroke</span>,
-    <span class="ident">options</span>: <span class="kw-2">&amp;</span><span class="ident">TessellationOptions</span>,
-    <span class="ident">out</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Mesh</span>,
+<span class="doccomment">/// Tessellate the given path as a stroke with thickness.
+</span><span class="kw">fn </span>stroke_path(
+    path: <span class="kw-2">&amp;</span>[PathPoint],
+    path_type: PathType,
+    stroke: Stroke,
+    options: <span class="kw-2">&amp;</span>TessellationOptions,
+    out: <span class="kw-2">&amp;mut </span>Mesh,
 ) {
-    <span class="kw">let</span> <span class="ident">n</span> <span class="op">=</span> <span class="ident">path</span>.<span class="ident">len</span>() <span class="kw">as</span> <span class="ident">u32</span>;
+    <span class="kw">let </span>n = path.len() <span class="kw">as </span>u32;
 
-    <span class="kw">if</span> <span class="ident">stroke</span>.<span class="ident">width</span> <span class="op">&lt;</span><span class="op">=</span> <span class="number">0.0</span> <span class="op">|</span><span class="op">|</span> <span class="ident">stroke</span>.<span class="ident">color</span> <span class="op">==</span> <span class="ident">Color32::TRANSPARENT</span> <span class="op">|</span><span class="op">|</span> <span class="ident">n</span> <span class="op">&lt;</span> <span class="number">2</span> {
+    <span class="kw">if </span>stroke.width &lt;= <span class="number">0.0 </span>|| stroke.color == Color32::TRANSPARENT || n &lt; <span class="number">2 </span>{
         <span class="kw">return</span>;
     }
 
-    <span class="kw">let</span> <span class="ident">idx</span> <span class="op">=</span> <span class="ident">out</span>.<span class="ident">vertices</span>.<span class="ident">len</span>() <span class="kw">as</span> <span class="ident">u32</span>;
+    <span class="kw">let </span>idx = out.vertices.len() <span class="kw">as </span>u32;
 
-    <span class="kw">if</span> <span class="ident">options</span>.<span class="ident">anti_alias</span> {
-        <span class="kw">let</span> <span class="ident">color_inner</span> <span class="op">=</span> <span class="ident">stroke</span>.<span class="ident">color</span>;
-        <span class="kw">let</span> <span class="ident">color_outer</span> <span class="op">=</span> <span class="ident">Color32::TRANSPARENT</span>;
+    <span class="kw">if </span>options.anti_alias {
+        <span class="kw">let </span>color_inner = stroke.color;
+        <span class="kw">let </span>color_outer = Color32::TRANSPARENT;
 
-        <span class="kw">let</span> <span class="ident">thin_line</span> <span class="op">=</span> <span class="ident">stroke</span>.<span class="ident">width</span> <span class="op">&lt;</span><span class="op">=</span> <span class="ident">options</span>.<span class="ident">aa_size</span>;
-        <span class="kw">if</span> <span class="ident">thin_line</span> {
+        <span class="kw">let </span>thin_line = stroke.width &lt;= options.aa_size;
+        <span class="kw">if </span>thin_line {
             <span class="comment">/*
             We paint the line using three edges: outer, inner, outer.
 
             .       o   i   o      outer, inner, outer
             .       |---|          aa_size (pixel width)
-            */</span>
+            */
 
-            <span class="comment">// Fade out as it gets thinner:</span>
-            <span class="kw">let</span> <span class="ident">color_inner</span> <span class="op">=</span> <span class="ident">mul_color</span>(<span class="ident">color_inner</span>, <span class="ident">stroke</span>.<span class="ident">width</span> <span class="op">/</span> <span class="ident">options</span>.<span class="ident">aa_size</span>);
-            <span class="kw">if</span> <span class="ident">color_inner</span> <span class="op">==</span> <span class="ident">Color32::TRANSPARENT</span> {
+            // Fade out as it gets thinner:
+            </span><span class="kw">let </span>color_inner = mul_color(color_inner, stroke.width / options.aa_size);
+            <span class="kw">if </span>color_inner == Color32::TRANSPARENT {
                 <span class="kw">return</span>;
             }
 
-            <span class="ident">out</span>.<span class="ident">reserve_triangles</span>(<span class="number">4</span> <span class="op">*</span> <span class="ident">n</span> <span class="kw">as</span> <span class="ident">usize</span>);
-            <span class="ident">out</span>.<span class="ident">reserve_vertices</span>(<span class="number">3</span> <span class="op">*</span> <span class="ident">n</span> <span class="kw">as</span> <span class="ident">usize</span>);
+            out.reserve_triangles(<span class="number">4 </span>* n <span class="kw">as </span>usize);
+            out.reserve_vertices(<span class="number">3 </span>* n <span class="kw">as </span>usize);
 
-            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">i0</span> <span class="op">=</span> <span class="ident">n</span> <span class="op">-</span> <span class="number">1</span>;
-            <span class="kw">for</span> <span class="ident">i1</span> <span class="kw">in</span> <span class="number">0</span>..<span class="ident">n</span> {
-                <span class="kw">let</span> <span class="ident">connect_with_previous</span> <span class="op">=</span> <span class="ident">path_type</span> <span class="op">==</span> <span class="ident">PathType::Closed</span> <span class="op">|</span><span class="op">|</span> <span class="ident">i1</span> <span class="op">&gt;</span> <span class="number">0</span>;
-                <span class="kw">let</span> <span class="ident">p1</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">path</span>[<span class="ident">i1</span> <span class="kw">as</span> <span class="ident">usize</span>];
-                <span class="kw">let</span> <span class="ident">p</span> <span class="op">=</span> <span class="ident">p1</span>.<span class="ident">pos</span>;
-                <span class="kw">let</span> <span class="ident">n</span> <span class="op">=</span> <span class="ident">p1</span>.<span class="ident">normal</span>;
-                <span class="ident">out</span>.<span class="ident">colored_vertex</span>(<span class="ident">p</span> <span class="op">+</span> <span class="ident">n</span> <span class="op">*</span> <span class="ident">options</span>.<span class="ident">aa_size</span>, <span class="ident">color_outer</span>);
-                <span class="ident">out</span>.<span class="ident">colored_vertex</span>(<span class="ident">p</span>, <span class="ident">color_inner</span>);
-                <span class="ident">out</span>.<span class="ident">colored_vertex</span>(<span class="ident">p</span> <span class="op">-</span> <span class="ident">n</span> <span class="op">*</span> <span class="ident">options</span>.<span class="ident">aa_size</span>, <span class="ident">color_outer</span>);
+            <span class="kw">let </span><span class="kw-2">mut </span>i0 = n - <span class="number">1</span>;
+            <span class="kw">for </span>i1 <span class="kw">in </span><span class="number">0</span>..n {
+                <span class="kw">let </span>connect_with_previous = path_type == PathType::Closed || i1 &gt; <span class="number">0</span>;
+                <span class="kw">let </span>p1 = <span class="kw-2">&amp;</span>path[i1 <span class="kw">as </span>usize];
+                <span class="kw">let </span>p = p1.pos;
+                <span class="kw">let </span>n = p1.normal;
+                out.colored_vertex(p + n * options.aa_size, color_outer);
+                out.colored_vertex(p, color_inner);
+                out.colored_vertex(p - n * options.aa_size, color_outer);
 
-                <span class="kw">if</span> <span class="ident">connect_with_previous</span> {
-                    <span class="ident">out</span>.<span class="ident">add_triangle</span>(<span class="ident">idx</span> <span class="op">+</span> <span class="number">3</span> <span class="op">*</span> <span class="ident">i0</span> <span class="op">+</span> <span class="number">0</span>, <span class="ident">idx</span> <span class="op">+</span> <span class="number">3</span> <span class="op">*</span> <span class="ident">i0</span> <span class="op">+</span> <span class="number">1</span>, <span class="ident">idx</span> <span class="op">+</span> <span class="number">3</span> <span class="op">*</span> <span class="ident">i1</span> <span class="op">+</span> <span class="number">0</span>);
-                    <span class="ident">out</span>.<span class="ident">add_triangle</span>(<span class="ident">idx</span> <span class="op">+</span> <span class="number">3</span> <span class="op">*</span> <span class="ident">i0</span> <span class="op">+</span> <span class="number">1</span>, <span class="ident">idx</span> <span class="op">+</span> <span class="number">3</span> <span class="op">*</span> <span class="ident">i1</span> <span class="op">+</span> <span class="number">0</span>, <span class="ident">idx</span> <span class="op">+</span> <span class="number">3</span> <span class="op">*</span> <span class="ident">i1</span> <span class="op">+</span> <span class="number">1</span>);
+                <span class="kw">if </span>connect_with_previous {
+                    out.add_triangle(idx + <span class="number">3 </span>* i0 + <span class="number">0</span>, idx + <span class="number">3 </span>* i0 + <span class="number">1</span>, idx + <span class="number">3 </span>* i1 + <span class="number">0</span>);
+                    out.add_triangle(idx + <span class="number">3 </span>* i0 + <span class="number">1</span>, idx + <span class="number">3 </span>* i1 + <span class="number">0</span>, idx + <span class="number">3 </span>* i1 + <span class="number">1</span>);
 
-                    <span class="ident">out</span>.<span class="ident">add_triangle</span>(<span class="ident">idx</span> <span class="op">+</span> <span class="number">3</span> <span class="op">*</span> <span class="ident">i0</span> <span class="op">+</span> <span class="number">1</span>, <span class="ident">idx</span> <span class="op">+</span> <span class="number">3</span> <span class="op">*</span> <span class="ident">i0</span> <span class="op">+</span> <span class="number">2</span>, <span class="ident">idx</span> <span class="op">+</span> <span class="number">3</span> <span class="op">*</span> <span class="ident">i1</span> <span class="op">+</span> <span class="number">1</span>);
-                    <span class="ident">out</span>.<span class="ident">add_triangle</span>(<span class="ident">idx</span> <span class="op">+</span> <span class="number">3</span> <span class="op">*</span> <span class="ident">i0</span> <span class="op">+</span> <span class="number">2</span>, <span class="ident">idx</span> <span class="op">+</span> <span class="number">3</span> <span class="op">*</span> <span class="ident">i1</span> <span class="op">+</span> <span class="number">1</span>, <span class="ident">idx</span> <span class="op">+</span> <span class="number">3</span> <span class="op">*</span> <span class="ident">i1</span> <span class="op">+</span> <span class="number">2</span>);
+                    out.add_triangle(idx + <span class="number">3 </span>* i0 + <span class="number">1</span>, idx + <span class="number">3 </span>* i0 + <span class="number">2</span>, idx + <span class="number">3 </span>* i1 + <span class="number">1</span>);
+                    out.add_triangle(idx + <span class="number">3 </span>* i0 + <span class="number">2</span>, idx + <span class="number">3 </span>* i1 + <span class="number">1</span>, idx + <span class="number">3 </span>* i1 + <span class="number">2</span>);
                 }
-                <span class="ident">i0</span> <span class="op">=</span> <span class="ident">i1</span>;
+                i0 = i1;
             }
-        } <span class="kw">else</span> {
-            <span class="comment">// thick anti-aliased line</span>
+        } <span class="kw">else </span>{
+            <span class="comment">// thick anti-aliased line
 
-            <span class="comment">/*
+            /*
             We paint the line using four edges: outer, inner, inner, outer
 
             .       o   i     p    i   o   outer, inner, point, inner, outer
@@ -1384,513 +1384,513 @@
             .         |--------------|     width
             .       |---------|            outer_rad
             .           |-----|            inner_rad
-            */</span>
+            */
 
-            <span class="kw">let</span> <span class="ident">inner_rad</span> <span class="op">=</span> <span class="number">0.5</span> <span class="op">*</span> (<span class="ident">stroke</span>.<span class="ident">width</span> <span class="op">-</span> <span class="ident">options</span>.<span class="ident">aa_size</span>);
-            <span class="kw">let</span> <span class="ident">outer_rad</span> <span class="op">=</span> <span class="number">0.5</span> <span class="op">*</span> (<span class="ident">stroke</span>.<span class="ident">width</span> <span class="op">+</span> <span class="ident">options</span>.<span class="ident">aa_size</span>);
+            </span><span class="kw">let </span>inner_rad = <span class="number">0.5 </span>* (stroke.width - options.aa_size);
+            <span class="kw">let </span>outer_rad = <span class="number">0.5 </span>* (stroke.width + options.aa_size);
 
-            <span class="kw">match</span> <span class="ident">path_type</span> {
-                <span class="ident">PathType::Closed</span> =&gt; {
-                    <span class="ident">out</span>.<span class="ident">reserve_triangles</span>(<span class="number">6</span> <span class="op">*</span> <span class="ident">n</span> <span class="kw">as</span> <span class="ident">usize</span>);
-                    <span class="ident">out</span>.<span class="ident">reserve_vertices</span>(<span class="number">4</span> <span class="op">*</span> <span class="ident">n</span> <span class="kw">as</span> <span class="ident">usize</span>);
+            <span class="kw">match </span>path_type {
+                PathType::Closed =&gt; {
+                    out.reserve_triangles(<span class="number">6 </span>* n <span class="kw">as </span>usize);
+                    out.reserve_vertices(<span class="number">4 </span>* n <span class="kw">as </span>usize);
 
-                    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">i0</span> <span class="op">=</span> <span class="ident">n</span> <span class="op">-</span> <span class="number">1</span>;
-                    <span class="kw">for</span> <span class="ident">i1</span> <span class="kw">in</span> <span class="number">0</span>..<span class="ident">n</span> {
-                        <span class="kw">let</span> <span class="ident">p1</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">path</span>[<span class="ident">i1</span> <span class="kw">as</span> <span class="ident">usize</span>];
-                        <span class="kw">let</span> <span class="ident">p</span> <span class="op">=</span> <span class="ident">p1</span>.<span class="ident">pos</span>;
-                        <span class="kw">let</span> <span class="ident">n</span> <span class="op">=</span> <span class="ident">p1</span>.<span class="ident">normal</span>;
-                        <span class="ident">out</span>.<span class="ident">colored_vertex</span>(<span class="ident">p</span> <span class="op">+</span> <span class="ident">n</span> <span class="op">*</span> <span class="ident">outer_rad</span>, <span class="ident">color_outer</span>);
-                        <span class="ident">out</span>.<span class="ident">colored_vertex</span>(<span class="ident">p</span> <span class="op">+</span> <span class="ident">n</span> <span class="op">*</span> <span class="ident">inner_rad</span>, <span class="ident">color_inner</span>);
-                        <span class="ident">out</span>.<span class="ident">colored_vertex</span>(<span class="ident">p</span> <span class="op">-</span> <span class="ident">n</span> <span class="op">*</span> <span class="ident">inner_rad</span>, <span class="ident">color_inner</span>);
-                        <span class="ident">out</span>.<span class="ident">colored_vertex</span>(<span class="ident">p</span> <span class="op">-</span> <span class="ident">n</span> <span class="op">*</span> <span class="ident">outer_rad</span>, <span class="ident">color_outer</span>);
+                    <span class="kw">let </span><span class="kw-2">mut </span>i0 = n - <span class="number">1</span>;
+                    <span class="kw">for </span>i1 <span class="kw">in </span><span class="number">0</span>..n {
+                        <span class="kw">let </span>p1 = <span class="kw-2">&amp;</span>path[i1 <span class="kw">as </span>usize];
+                        <span class="kw">let </span>p = p1.pos;
+                        <span class="kw">let </span>n = p1.normal;
+                        out.colored_vertex(p + n * outer_rad, color_outer);
+                        out.colored_vertex(p + n * inner_rad, color_inner);
+                        out.colored_vertex(p - n * inner_rad, color_inner);
+                        out.colored_vertex(p - n * outer_rad, color_outer);
 
-                        <span class="ident">out</span>.<span class="ident">add_triangle</span>(<span class="ident">idx</span> <span class="op">+</span> <span class="number">4</span> <span class="op">*</span> <span class="ident">i0</span> <span class="op">+</span> <span class="number">0</span>, <span class="ident">idx</span> <span class="op">+</span> <span class="number">4</span> <span class="op">*</span> <span class="ident">i0</span> <span class="op">+</span> <span class="number">1</span>, <span class="ident">idx</span> <span class="op">+</span> <span class="number">4</span> <span class="op">*</span> <span class="ident">i1</span> <span class="op">+</span> <span class="number">0</span>);
-                        <span class="ident">out</span>.<span class="ident">add_triangle</span>(<span class="ident">idx</span> <span class="op">+</span> <span class="number">4</span> <span class="op">*</span> <span class="ident">i0</span> <span class="op">+</span> <span class="number">1</span>, <span class="ident">idx</span> <span class="op">+</span> <span class="number">4</span> <span class="op">*</span> <span class="ident">i1</span> <span class="op">+</span> <span class="number">0</span>, <span class="ident">idx</span> <span class="op">+</span> <span class="number">4</span> <span class="op">*</span> <span class="ident">i1</span> <span class="op">+</span> <span class="number">1</span>);
+                        out.add_triangle(idx + <span class="number">4 </span>* i0 + <span class="number">0</span>, idx + <span class="number">4 </span>* i0 + <span class="number">1</span>, idx + <span class="number">4 </span>* i1 + <span class="number">0</span>);
+                        out.add_triangle(idx + <span class="number">4 </span>* i0 + <span class="number">1</span>, idx + <span class="number">4 </span>* i1 + <span class="number">0</span>, idx + <span class="number">4 </span>* i1 + <span class="number">1</span>);
 
-                        <span class="ident">out</span>.<span class="ident">add_triangle</span>(<span class="ident">idx</span> <span class="op">+</span> <span class="number">4</span> <span class="op">*</span> <span class="ident">i0</span> <span class="op">+</span> <span class="number">1</span>, <span class="ident">idx</span> <span class="op">+</span> <span class="number">4</span> <span class="op">*</span> <span class="ident">i0</span> <span class="op">+</span> <span class="number">2</span>, <span class="ident">idx</span> <span class="op">+</span> <span class="number">4</span> <span class="op">*</span> <span class="ident">i1</span> <span class="op">+</span> <span class="number">1</span>);
-                        <span class="ident">out</span>.<span class="ident">add_triangle</span>(<span class="ident">idx</span> <span class="op">+</span> <span class="number">4</span> <span class="op">*</span> <span class="ident">i0</span> <span class="op">+</span> <span class="number">2</span>, <span class="ident">idx</span> <span class="op">+</span> <span class="number">4</span> <span class="op">*</span> <span class="ident">i1</span> <span class="op">+</span> <span class="number">1</span>, <span class="ident">idx</span> <span class="op">+</span> <span class="number">4</span> <span class="op">*</span> <span class="ident">i1</span> <span class="op">+</span> <span class="number">2</span>);
+                        out.add_triangle(idx + <span class="number">4 </span>* i0 + <span class="number">1</span>, idx + <span class="number">4 </span>* i0 + <span class="number">2</span>, idx + <span class="number">4 </span>* i1 + <span class="number">1</span>);
+                        out.add_triangle(idx + <span class="number">4 </span>* i0 + <span class="number">2</span>, idx + <span class="number">4 </span>* i1 + <span class="number">1</span>, idx + <span class="number">4 </span>* i1 + <span class="number">2</span>);
 
-                        <span class="ident">out</span>.<span class="ident">add_triangle</span>(<span class="ident">idx</span> <span class="op">+</span> <span class="number">4</span> <span class="op">*</span> <span class="ident">i0</span> <span class="op">+</span> <span class="number">2</span>, <span class="ident">idx</span> <span class="op">+</span> <span class="number">4</span> <span class="op">*</span> <span class="ident">i0</span> <span class="op">+</span> <span class="number">3</span>, <span class="ident">idx</span> <span class="op">+</span> <span class="number">4</span> <span class="op">*</span> <span class="ident">i1</span> <span class="op">+</span> <span class="number">2</span>);
-                        <span class="ident">out</span>.<span class="ident">add_triangle</span>(<span class="ident">idx</span> <span class="op">+</span> <span class="number">4</span> <span class="op">*</span> <span class="ident">i0</span> <span class="op">+</span> <span class="number">3</span>, <span class="ident">idx</span> <span class="op">+</span> <span class="number">4</span> <span class="op">*</span> <span class="ident">i1</span> <span class="op">+</span> <span class="number">2</span>, <span class="ident">idx</span> <span class="op">+</span> <span class="number">4</span> <span class="op">*</span> <span class="ident">i1</span> <span class="op">+</span> <span class="number">3</span>);
+                        out.add_triangle(idx + <span class="number">4 </span>* i0 + <span class="number">2</span>, idx + <span class="number">4 </span>* i0 + <span class="number">3</span>, idx + <span class="number">4 </span>* i1 + <span class="number">2</span>);
+                        out.add_triangle(idx + <span class="number">4 </span>* i0 + <span class="number">3</span>, idx + <span class="number">4 </span>* i1 + <span class="number">2</span>, idx + <span class="number">4 </span>* i1 + <span class="number">3</span>);
 
-                        <span class="ident">i0</span> <span class="op">=</span> <span class="ident">i1</span>;
+                        i0 = i1;
                     }
                 }
-                <span class="ident">PathType::Open</span> =&gt; {
-                    <span class="comment">// Anti-alias the ends by extruding the outer edge and adding</span>
-                    <span class="comment">// two more triangles to each end:</span>
+                PathType::Open =&gt; {
+                    <span class="comment">// Anti-alias the ends by extruding the outer edge and adding
+                    // two more triangles to each end:
 
-                    <span class="comment">//   | aa |       | aa |</span>
-                    <span class="comment">//    _________________   ___</span>
-                    <span class="comment">//   | \    added    / |  aa_size</span>
-                    <span class="comment">//   |   \ ___p___ /   |  ___</span>
-                    <span class="comment">//   |    |       |    |</span>
-                    <span class="comment">//   |    |  opa  |    |</span>
-                    <span class="comment">//   |    |  que  |    |</span>
-                    <span class="comment">//   |    |       |    |</span>
+                    //   | aa |       | aa |
+                    //    _________________   ___
+                    //   | \    added    / |  aa_size
+                    //   |   \ ___p___ /   |  ___
+                    //   |    |       |    |
+                    //   |    |  opa  |    |
+                    //   |    |  que  |    |
+                    //   |    |       |    |
 
-                    <span class="comment">// (in the future it would be great with an option to add a circular end instead)</span>
+                    // (in the future it would be great with an option to add a circular end instead)
 
-                    <span class="ident">out</span>.<span class="ident">reserve_triangles</span>(<span class="number">6</span> <span class="op">*</span> <span class="ident">n</span> <span class="kw">as</span> <span class="ident">usize</span> <span class="op">+</span> <span class="number">4</span>);
-                    <span class="ident">out</span>.<span class="ident">reserve_vertices</span>(<span class="number">4</span> <span class="op">*</span> <span class="ident">n</span> <span class="kw">as</span> <span class="ident">usize</span>);
-
-                    {
-                        <span class="kw">let</span> <span class="ident">end</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">path</span>[<span class="number">0</span>];
-                        <span class="kw">let</span> <span class="ident">p</span> <span class="op">=</span> <span class="ident">end</span>.<span class="ident">pos</span>;
-                        <span class="kw">let</span> <span class="ident">n</span> <span class="op">=</span> <span class="ident">end</span>.<span class="ident">normal</span>;
-                        <span class="kw">let</span> <span class="ident">back_extrude</span> <span class="op">=</span> <span class="ident">n</span>.<span class="ident">rot90</span>() <span class="op">*</span> <span class="ident">options</span>.<span class="ident">aa_size</span>;
-                        <span class="ident">out</span>.<span class="ident">colored_vertex</span>(<span class="ident">p</span> <span class="op">+</span> <span class="ident">n</span> <span class="op">*</span> <span class="ident">outer_rad</span> <span class="op">+</span> <span class="ident">back_extrude</span>, <span class="ident">color_outer</span>);
-                        <span class="ident">out</span>.<span class="ident">colored_vertex</span>(<span class="ident">p</span> <span class="op">+</span> <span class="ident">n</span> <span class="op">*</span> <span class="ident">inner_rad</span>, <span class="ident">color_inner</span>);
-                        <span class="ident">out</span>.<span class="ident">colored_vertex</span>(<span class="ident">p</span> <span class="op">-</span> <span class="ident">n</span> <span class="op">*</span> <span class="ident">inner_rad</span>, <span class="ident">color_inner</span>);
-                        <span class="ident">out</span>.<span class="ident">colored_vertex</span>(<span class="ident">p</span> <span class="op">-</span> <span class="ident">n</span> <span class="op">*</span> <span class="ident">outer_rad</span> <span class="op">+</span> <span class="ident">back_extrude</span>, <span class="ident">color_outer</span>);
-
-                        <span class="ident">out</span>.<span class="ident">add_triangle</span>(<span class="ident">idx</span> <span class="op">+</span> <span class="number">0</span>, <span class="ident">idx</span> <span class="op">+</span> <span class="number">1</span>, <span class="ident">idx</span> <span class="op">+</span> <span class="number">2</span>);
-                        <span class="ident">out</span>.<span class="ident">add_triangle</span>(<span class="ident">idx</span> <span class="op">+</span> <span class="number">0</span>, <span class="ident">idx</span> <span class="op">+</span> <span class="number">2</span>, <span class="ident">idx</span> <span class="op">+</span> <span class="number">3</span>);
-                    }
-
-                    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">i0</span> <span class="op">=</span> <span class="number">0</span>;
-                    <span class="kw">for</span> <span class="ident">i1</span> <span class="kw">in</span> <span class="number">1</span>..<span class="ident">n</span> <span class="op">-</span> <span class="number">1</span> {
-                        <span class="kw">let</span> <span class="ident">point</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">path</span>[<span class="ident">i1</span> <span class="kw">as</span> <span class="ident">usize</span>];
-                        <span class="kw">let</span> <span class="ident">p</span> <span class="op">=</span> <span class="ident">point</span>.<span class="ident">pos</span>;
-                        <span class="kw">let</span> <span class="ident">n</span> <span class="op">=</span> <span class="ident">point</span>.<span class="ident">normal</span>;
-                        <span class="ident">out</span>.<span class="ident">colored_vertex</span>(<span class="ident">p</span> <span class="op">+</span> <span class="ident">n</span> <span class="op">*</span> <span class="ident">outer_rad</span>, <span class="ident">color_outer</span>);
-                        <span class="ident">out</span>.<span class="ident">colored_vertex</span>(<span class="ident">p</span> <span class="op">+</span> <span class="ident">n</span> <span class="op">*</span> <span class="ident">inner_rad</span>, <span class="ident">color_inner</span>);
-                        <span class="ident">out</span>.<span class="ident">colored_vertex</span>(<span class="ident">p</span> <span class="op">-</span> <span class="ident">n</span> <span class="op">*</span> <span class="ident">inner_rad</span>, <span class="ident">color_inner</span>);
-                        <span class="ident">out</span>.<span class="ident">colored_vertex</span>(<span class="ident">p</span> <span class="op">-</span> <span class="ident">n</span> <span class="op">*</span> <span class="ident">outer_rad</span>, <span class="ident">color_outer</span>);
-
-                        <span class="ident">out</span>.<span class="ident">add_triangle</span>(<span class="ident">idx</span> <span class="op">+</span> <span class="number">4</span> <span class="op">*</span> <span class="ident">i0</span> <span class="op">+</span> <span class="number">0</span>, <span class="ident">idx</span> <span class="op">+</span> <span class="number">4</span> <span class="op">*</span> <span class="ident">i0</span> <span class="op">+</span> <span class="number">1</span>, <span class="ident">idx</span> <span class="op">+</span> <span class="number">4</span> <span class="op">*</span> <span class="ident">i1</span> <span class="op">+</span> <span class="number">0</span>);
-                        <span class="ident">out</span>.<span class="ident">add_triangle</span>(<span class="ident">idx</span> <span class="op">+</span> <span class="number">4</span> <span class="op">*</span> <span class="ident">i0</span> <span class="op">+</span> <span class="number">1</span>, <span class="ident">idx</span> <span class="op">+</span> <span class="number">4</span> <span class="op">*</span> <span class="ident">i1</span> <span class="op">+</span> <span class="number">0</span>, <span class="ident">idx</span> <span class="op">+</span> <span class="number">4</span> <span class="op">*</span> <span class="ident">i1</span> <span class="op">+</span> <span class="number">1</span>);
-
-                        <span class="ident">out</span>.<span class="ident">add_triangle</span>(<span class="ident">idx</span> <span class="op">+</span> <span class="number">4</span> <span class="op">*</span> <span class="ident">i0</span> <span class="op">+</span> <span class="number">1</span>, <span class="ident">idx</span> <span class="op">+</span> <span class="number">4</span> <span class="op">*</span> <span class="ident">i0</span> <span class="op">+</span> <span class="number">2</span>, <span class="ident">idx</span> <span class="op">+</span> <span class="number">4</span> <span class="op">*</span> <span class="ident">i1</span> <span class="op">+</span> <span class="number">1</span>);
-                        <span class="ident">out</span>.<span class="ident">add_triangle</span>(<span class="ident">idx</span> <span class="op">+</span> <span class="number">4</span> <span class="op">*</span> <span class="ident">i0</span> <span class="op">+</span> <span class="number">2</span>, <span class="ident">idx</span> <span class="op">+</span> <span class="number">4</span> <span class="op">*</span> <span class="ident">i1</span> <span class="op">+</span> <span class="number">1</span>, <span class="ident">idx</span> <span class="op">+</span> <span class="number">4</span> <span class="op">*</span> <span class="ident">i1</span> <span class="op">+</span> <span class="number">2</span>);
-
-                        <span class="ident">out</span>.<span class="ident">add_triangle</span>(<span class="ident">idx</span> <span class="op">+</span> <span class="number">4</span> <span class="op">*</span> <span class="ident">i0</span> <span class="op">+</span> <span class="number">2</span>, <span class="ident">idx</span> <span class="op">+</span> <span class="number">4</span> <span class="op">*</span> <span class="ident">i0</span> <span class="op">+</span> <span class="number">3</span>, <span class="ident">idx</span> <span class="op">+</span> <span class="number">4</span> <span class="op">*</span> <span class="ident">i1</span> <span class="op">+</span> <span class="number">2</span>);
-                        <span class="ident">out</span>.<span class="ident">add_triangle</span>(<span class="ident">idx</span> <span class="op">+</span> <span class="number">4</span> <span class="op">*</span> <span class="ident">i0</span> <span class="op">+</span> <span class="number">3</span>, <span class="ident">idx</span> <span class="op">+</span> <span class="number">4</span> <span class="op">*</span> <span class="ident">i1</span> <span class="op">+</span> <span class="number">2</span>, <span class="ident">idx</span> <span class="op">+</span> <span class="number">4</span> <span class="op">*</span> <span class="ident">i1</span> <span class="op">+</span> <span class="number">3</span>);
-
-                        <span class="ident">i0</span> <span class="op">=</span> <span class="ident">i1</span>;
-                    }
+                    </span>out.reserve_triangles(<span class="number">6 </span>* n <span class="kw">as </span>usize + <span class="number">4</span>);
+                    out.reserve_vertices(<span class="number">4 </span>* n <span class="kw">as </span>usize);
 
                     {
-                        <span class="kw">let</span> <span class="ident">i1</span> <span class="op">=</span> <span class="ident">n</span> <span class="op">-</span> <span class="number">1</span>;
-                        <span class="kw">let</span> <span class="ident">end</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">path</span>[<span class="ident">i1</span> <span class="kw">as</span> <span class="ident">usize</span>];
-                        <span class="kw">let</span> <span class="ident">p</span> <span class="op">=</span> <span class="ident">end</span>.<span class="ident">pos</span>;
-                        <span class="kw">let</span> <span class="ident">n</span> <span class="op">=</span> <span class="ident">end</span>.<span class="ident">normal</span>;
-                        <span class="kw">let</span> <span class="ident">back_extrude</span> <span class="op">=</span> <span class="op">-</span><span class="ident">n</span>.<span class="ident">rot90</span>() <span class="op">*</span> <span class="ident">options</span>.<span class="ident">aa_size</span>;
-                        <span class="ident">out</span>.<span class="ident">colored_vertex</span>(<span class="ident">p</span> <span class="op">+</span> <span class="ident">n</span> <span class="op">*</span> <span class="ident">outer_rad</span> <span class="op">+</span> <span class="ident">back_extrude</span>, <span class="ident">color_outer</span>);
-                        <span class="ident">out</span>.<span class="ident">colored_vertex</span>(<span class="ident">p</span> <span class="op">+</span> <span class="ident">n</span> <span class="op">*</span> <span class="ident">inner_rad</span>, <span class="ident">color_inner</span>);
-                        <span class="ident">out</span>.<span class="ident">colored_vertex</span>(<span class="ident">p</span> <span class="op">-</span> <span class="ident">n</span> <span class="op">*</span> <span class="ident">inner_rad</span>, <span class="ident">color_inner</span>);
-                        <span class="ident">out</span>.<span class="ident">colored_vertex</span>(<span class="ident">p</span> <span class="op">-</span> <span class="ident">n</span> <span class="op">*</span> <span class="ident">outer_rad</span> <span class="op">+</span> <span class="ident">back_extrude</span>, <span class="ident">color_outer</span>);
+                        <span class="kw">let </span>end = <span class="kw-2">&amp;</span>path[<span class="number">0</span>];
+                        <span class="kw">let </span>p = end.pos;
+                        <span class="kw">let </span>n = end.normal;
+                        <span class="kw">let </span>back_extrude = n.rot90() * options.aa_size;
+                        out.colored_vertex(p + n * outer_rad + back_extrude, color_outer);
+                        out.colored_vertex(p + n * inner_rad, color_inner);
+                        out.colored_vertex(p - n * inner_rad, color_inner);
+                        out.colored_vertex(p - n * outer_rad + back_extrude, color_outer);
 
-                        <span class="ident">out</span>.<span class="ident">add_triangle</span>(<span class="ident">idx</span> <span class="op">+</span> <span class="number">4</span> <span class="op">*</span> <span class="ident">i0</span> <span class="op">+</span> <span class="number">0</span>, <span class="ident">idx</span> <span class="op">+</span> <span class="number">4</span> <span class="op">*</span> <span class="ident">i0</span> <span class="op">+</span> <span class="number">1</span>, <span class="ident">idx</span> <span class="op">+</span> <span class="number">4</span> <span class="op">*</span> <span class="ident">i1</span> <span class="op">+</span> <span class="number">0</span>);
-                        <span class="ident">out</span>.<span class="ident">add_triangle</span>(<span class="ident">idx</span> <span class="op">+</span> <span class="number">4</span> <span class="op">*</span> <span class="ident">i0</span> <span class="op">+</span> <span class="number">1</span>, <span class="ident">idx</span> <span class="op">+</span> <span class="number">4</span> <span class="op">*</span> <span class="ident">i1</span> <span class="op">+</span> <span class="number">0</span>, <span class="ident">idx</span> <span class="op">+</span> <span class="number">4</span> <span class="op">*</span> <span class="ident">i1</span> <span class="op">+</span> <span class="number">1</span>);
+                        out.add_triangle(idx + <span class="number">0</span>, idx + <span class="number">1</span>, idx + <span class="number">2</span>);
+                        out.add_triangle(idx + <span class="number">0</span>, idx + <span class="number">2</span>, idx + <span class="number">3</span>);
+                    }
 
-                        <span class="ident">out</span>.<span class="ident">add_triangle</span>(<span class="ident">idx</span> <span class="op">+</span> <span class="number">4</span> <span class="op">*</span> <span class="ident">i0</span> <span class="op">+</span> <span class="number">1</span>, <span class="ident">idx</span> <span class="op">+</span> <span class="number">4</span> <span class="op">*</span> <span class="ident">i0</span> <span class="op">+</span> <span class="number">2</span>, <span class="ident">idx</span> <span class="op">+</span> <span class="number">4</span> <span class="op">*</span> <span class="ident">i1</span> <span class="op">+</span> <span class="number">1</span>);
-                        <span class="ident">out</span>.<span class="ident">add_triangle</span>(<span class="ident">idx</span> <span class="op">+</span> <span class="number">4</span> <span class="op">*</span> <span class="ident">i0</span> <span class="op">+</span> <span class="number">2</span>, <span class="ident">idx</span> <span class="op">+</span> <span class="number">4</span> <span class="op">*</span> <span class="ident">i1</span> <span class="op">+</span> <span class="number">1</span>, <span class="ident">idx</span> <span class="op">+</span> <span class="number">4</span> <span class="op">*</span> <span class="ident">i1</span> <span class="op">+</span> <span class="number">2</span>);
+                    <span class="kw">let </span><span class="kw-2">mut </span>i0 = <span class="number">0</span>;
+                    <span class="kw">for </span>i1 <span class="kw">in </span><span class="number">1</span>..n - <span class="number">1 </span>{
+                        <span class="kw">let </span>point = <span class="kw-2">&amp;</span>path[i1 <span class="kw">as </span>usize];
+                        <span class="kw">let </span>p = point.pos;
+                        <span class="kw">let </span>n = point.normal;
+                        out.colored_vertex(p + n * outer_rad, color_outer);
+                        out.colored_vertex(p + n * inner_rad, color_inner);
+                        out.colored_vertex(p - n * inner_rad, color_inner);
+                        out.colored_vertex(p - n * outer_rad, color_outer);
 
-                        <span class="ident">out</span>.<span class="ident">add_triangle</span>(<span class="ident">idx</span> <span class="op">+</span> <span class="number">4</span> <span class="op">*</span> <span class="ident">i0</span> <span class="op">+</span> <span class="number">2</span>, <span class="ident">idx</span> <span class="op">+</span> <span class="number">4</span> <span class="op">*</span> <span class="ident">i0</span> <span class="op">+</span> <span class="number">3</span>, <span class="ident">idx</span> <span class="op">+</span> <span class="number">4</span> <span class="op">*</span> <span class="ident">i1</span> <span class="op">+</span> <span class="number">2</span>);
-                        <span class="ident">out</span>.<span class="ident">add_triangle</span>(<span class="ident">idx</span> <span class="op">+</span> <span class="number">4</span> <span class="op">*</span> <span class="ident">i0</span> <span class="op">+</span> <span class="number">3</span>, <span class="ident">idx</span> <span class="op">+</span> <span class="number">4</span> <span class="op">*</span> <span class="ident">i1</span> <span class="op">+</span> <span class="number">2</span>, <span class="ident">idx</span> <span class="op">+</span> <span class="number">4</span> <span class="op">*</span> <span class="ident">i1</span> <span class="op">+</span> <span class="number">3</span>);
+                        out.add_triangle(idx + <span class="number">4 </span>* i0 + <span class="number">0</span>, idx + <span class="number">4 </span>* i0 + <span class="number">1</span>, idx + <span class="number">4 </span>* i1 + <span class="number">0</span>);
+                        out.add_triangle(idx + <span class="number">4 </span>* i0 + <span class="number">1</span>, idx + <span class="number">4 </span>* i1 + <span class="number">0</span>, idx + <span class="number">4 </span>* i1 + <span class="number">1</span>);
 
-                        <span class="comment">// The extension:</span>
-                        <span class="ident">out</span>.<span class="ident">add_triangle</span>(<span class="ident">idx</span> <span class="op">+</span> <span class="number">4</span> <span class="op">*</span> <span class="ident">i1</span> <span class="op">+</span> <span class="number">0</span>, <span class="ident">idx</span> <span class="op">+</span> <span class="number">4</span> <span class="op">*</span> <span class="ident">i1</span> <span class="op">+</span> <span class="number">1</span>, <span class="ident">idx</span> <span class="op">+</span> <span class="number">4</span> <span class="op">*</span> <span class="ident">i1</span> <span class="op">+</span> <span class="number">2</span>);
-                        <span class="ident">out</span>.<span class="ident">add_triangle</span>(<span class="ident">idx</span> <span class="op">+</span> <span class="number">4</span> <span class="op">*</span> <span class="ident">i1</span> <span class="op">+</span> <span class="number">0</span>, <span class="ident">idx</span> <span class="op">+</span> <span class="number">4</span> <span class="op">*</span> <span class="ident">i1</span> <span class="op">+</span> <span class="number">2</span>, <span class="ident">idx</span> <span class="op">+</span> <span class="number">4</span> <span class="op">*</span> <span class="ident">i1</span> <span class="op">+</span> <span class="number">3</span>);
+                        out.add_triangle(idx + <span class="number">4 </span>* i0 + <span class="number">1</span>, idx + <span class="number">4 </span>* i0 + <span class="number">2</span>, idx + <span class="number">4 </span>* i1 + <span class="number">1</span>);
+                        out.add_triangle(idx + <span class="number">4 </span>* i0 + <span class="number">2</span>, idx + <span class="number">4 </span>* i1 + <span class="number">1</span>, idx + <span class="number">4 </span>* i1 + <span class="number">2</span>);
+
+                        out.add_triangle(idx + <span class="number">4 </span>* i0 + <span class="number">2</span>, idx + <span class="number">4 </span>* i0 + <span class="number">3</span>, idx + <span class="number">4 </span>* i1 + <span class="number">2</span>);
+                        out.add_triangle(idx + <span class="number">4 </span>* i0 + <span class="number">3</span>, idx + <span class="number">4 </span>* i1 + <span class="number">2</span>, idx + <span class="number">4 </span>* i1 + <span class="number">3</span>);
+
+                        i0 = i1;
+                    }
+
+                    {
+                        <span class="kw">let </span>i1 = n - <span class="number">1</span>;
+                        <span class="kw">let </span>end = <span class="kw-2">&amp;</span>path[i1 <span class="kw">as </span>usize];
+                        <span class="kw">let </span>p = end.pos;
+                        <span class="kw">let </span>n = end.normal;
+                        <span class="kw">let </span>back_extrude = -n.rot90() * options.aa_size;
+                        out.colored_vertex(p + n * outer_rad + back_extrude, color_outer);
+                        out.colored_vertex(p + n * inner_rad, color_inner);
+                        out.colored_vertex(p - n * inner_rad, color_inner);
+                        out.colored_vertex(p - n * outer_rad + back_extrude, color_outer);
+
+                        out.add_triangle(idx + <span class="number">4 </span>* i0 + <span class="number">0</span>, idx + <span class="number">4 </span>* i0 + <span class="number">1</span>, idx + <span class="number">4 </span>* i1 + <span class="number">0</span>);
+                        out.add_triangle(idx + <span class="number">4 </span>* i0 + <span class="number">1</span>, idx + <span class="number">4 </span>* i1 + <span class="number">0</span>, idx + <span class="number">4 </span>* i1 + <span class="number">1</span>);
+
+                        out.add_triangle(idx + <span class="number">4 </span>* i0 + <span class="number">1</span>, idx + <span class="number">4 </span>* i0 + <span class="number">2</span>, idx + <span class="number">4 </span>* i1 + <span class="number">1</span>);
+                        out.add_triangle(idx + <span class="number">4 </span>* i0 + <span class="number">2</span>, idx + <span class="number">4 </span>* i1 + <span class="number">1</span>, idx + <span class="number">4 </span>* i1 + <span class="number">2</span>);
+
+                        out.add_triangle(idx + <span class="number">4 </span>* i0 + <span class="number">2</span>, idx + <span class="number">4 </span>* i0 + <span class="number">3</span>, idx + <span class="number">4 </span>* i1 + <span class="number">2</span>);
+                        out.add_triangle(idx + <span class="number">4 </span>* i0 + <span class="number">3</span>, idx + <span class="number">4 </span>* i1 + <span class="number">2</span>, idx + <span class="number">4 </span>* i1 + <span class="number">3</span>);
+
+                        <span class="comment">// The extension:
+                        </span>out.add_triangle(idx + <span class="number">4 </span>* i1 + <span class="number">0</span>, idx + <span class="number">4 </span>* i1 + <span class="number">1</span>, idx + <span class="number">4 </span>* i1 + <span class="number">2</span>);
+                        out.add_triangle(idx + <span class="number">4 </span>* i1 + <span class="number">0</span>, idx + <span class="number">4 </span>* i1 + <span class="number">2</span>, idx + <span class="number">4 </span>* i1 + <span class="number">3</span>);
                     }
                 }
             }
         }
-    } <span class="kw">else</span> {
-        <span class="comment">// not anti-aliased:</span>
-        <span class="ident">out</span>.<span class="ident">reserve_triangles</span>(<span class="number">2</span> <span class="op">*</span> <span class="ident">n</span> <span class="kw">as</span> <span class="ident">usize</span>);
-        <span class="ident">out</span>.<span class="ident">reserve_vertices</span>(<span class="number">2</span> <span class="op">*</span> <span class="ident">n</span> <span class="kw">as</span> <span class="ident">usize</span>);
+    } <span class="kw">else </span>{
+        <span class="comment">// not anti-aliased:
+        </span>out.reserve_triangles(<span class="number">2 </span>* n <span class="kw">as </span>usize);
+        out.reserve_vertices(<span class="number">2 </span>* n <span class="kw">as </span>usize);
 
-        <span class="kw">let</span> <span class="ident">last_index</span> <span class="op">=</span> <span class="kw">if</span> <span class="ident">path_type</span> <span class="op">==</span> <span class="ident">PathType::Closed</span> {
-            <span class="ident">n</span>
-        } <span class="kw">else</span> {
-            <span class="ident">n</span> <span class="op">-</span> <span class="number">1</span>
-        };
-        <span class="kw">for</span> <span class="ident">i</span> <span class="kw">in</span> <span class="number">0</span>..<span class="ident">last_index</span> {
-            <span class="ident">out</span>.<span class="ident">add_triangle</span>(
-                <span class="ident">idx</span> <span class="op">+</span> (<span class="number">2</span> <span class="op">*</span> <span class="ident">i</span> <span class="op">+</span> <span class="number">0</span>) <span class="op">%</span> (<span class="number">2</span> <span class="op">*</span> <span class="ident">n</span>),
-                <span class="ident">idx</span> <span class="op">+</span> (<span class="number">2</span> <span class="op">*</span> <span class="ident">i</span> <span class="op">+</span> <span class="number">1</span>) <span class="op">%</span> (<span class="number">2</span> <span class="op">*</span> <span class="ident">n</span>),
-                <span class="ident">idx</span> <span class="op">+</span> (<span class="number">2</span> <span class="op">*</span> <span class="ident">i</span> <span class="op">+</span> <span class="number">2</span>) <span class="op">%</span> (<span class="number">2</span> <span class="op">*</span> <span class="ident">n</span>),
+        <span class="kw">let </span>last_index = <span class="kw">if </span>path_type == PathType::Closed {
+            n
+        } <span class="kw">else </span>{
+            n - <span class="number">1
+        </span>};
+        <span class="kw">for </span>i <span class="kw">in </span><span class="number">0</span>..last_index {
+            out.add_triangle(
+                idx + (<span class="number">2 </span>* i + <span class="number">0</span>) % (<span class="number">2 </span>* n),
+                idx + (<span class="number">2 </span>* i + <span class="number">1</span>) % (<span class="number">2 </span>* n),
+                idx + (<span class="number">2 </span>* i + <span class="number">2</span>) % (<span class="number">2 </span>* n),
             );
-            <span class="ident">out</span>.<span class="ident">add_triangle</span>(
-                <span class="ident">idx</span> <span class="op">+</span> (<span class="number">2</span> <span class="op">*</span> <span class="ident">i</span> <span class="op">+</span> <span class="number">2</span>) <span class="op">%</span> (<span class="number">2</span> <span class="op">*</span> <span class="ident">n</span>),
-                <span class="ident">idx</span> <span class="op">+</span> (<span class="number">2</span> <span class="op">*</span> <span class="ident">i</span> <span class="op">+</span> <span class="number">1</span>) <span class="op">%</span> (<span class="number">2</span> <span class="op">*</span> <span class="ident">n</span>),
-                <span class="ident">idx</span> <span class="op">+</span> (<span class="number">2</span> <span class="op">*</span> <span class="ident">i</span> <span class="op">+</span> <span class="number">3</span>) <span class="op">%</span> (<span class="number">2</span> <span class="op">*</span> <span class="ident">n</span>),
+            out.add_triangle(
+                idx + (<span class="number">2 </span>* i + <span class="number">2</span>) % (<span class="number">2 </span>* n),
+                idx + (<span class="number">2 </span>* i + <span class="number">1</span>) % (<span class="number">2 </span>* n),
+                idx + (<span class="number">2 </span>* i + <span class="number">3</span>) % (<span class="number">2 </span>* n),
             );
         }
 
-        <span class="kw">let</span> <span class="ident">thin_line</span> <span class="op">=</span> <span class="ident">stroke</span>.<span class="ident">width</span> <span class="op">&lt;</span><span class="op">=</span> <span class="ident">options</span>.<span class="ident">aa_size</span>;
-        <span class="kw">if</span> <span class="ident">thin_line</span> {
-            <span class="comment">// Fade out thin lines rather than making them thinner</span>
-            <span class="kw">let</span> <span class="ident">radius</span> <span class="op">=</span> <span class="ident">options</span>.<span class="ident">aa_size</span> <span class="op">/</span> <span class="number">2.0</span>;
-            <span class="kw">let</span> <span class="ident">color</span> <span class="op">=</span> <span class="ident">mul_color</span>(<span class="ident">stroke</span>.<span class="ident">color</span>, <span class="ident">stroke</span>.<span class="ident">width</span> <span class="op">/</span> <span class="ident">options</span>.<span class="ident">aa_size</span>);
-            <span class="kw">if</span> <span class="ident">color</span> <span class="op">==</span> <span class="ident">Color32::TRANSPARENT</span> {
+        <span class="kw">let </span>thin_line = stroke.width &lt;= options.aa_size;
+        <span class="kw">if </span>thin_line {
+            <span class="comment">// Fade out thin lines rather than making them thinner
+            </span><span class="kw">let </span>radius = options.aa_size / <span class="number">2.0</span>;
+            <span class="kw">let </span>color = mul_color(stroke.color, stroke.width / options.aa_size);
+            <span class="kw">if </span>color == Color32::TRANSPARENT {
                 <span class="kw">return</span>;
             }
-            <span class="kw">for</span> <span class="ident">p</span> <span class="kw">in</span> <span class="ident">path</span> {
-                <span class="ident">out</span>.<span class="ident">colored_vertex</span>(<span class="ident">p</span>.<span class="ident">pos</span> <span class="op">+</span> <span class="ident">radius</span> <span class="op">*</span> <span class="ident">p</span>.<span class="ident">normal</span>, <span class="ident">color</span>);
-                <span class="ident">out</span>.<span class="ident">colored_vertex</span>(<span class="ident">p</span>.<span class="ident">pos</span> <span class="op">-</span> <span class="ident">radius</span> <span class="op">*</span> <span class="ident">p</span>.<span class="ident">normal</span>, <span class="ident">color</span>);
+            <span class="kw">for </span>p <span class="kw">in </span>path {
+                out.colored_vertex(p.pos + radius * p.normal, color);
+                out.colored_vertex(p.pos - radius * p.normal, color);
             }
-        } <span class="kw">else</span> {
-            <span class="kw">let</span> <span class="ident">radius</span> <span class="op">=</span> <span class="ident">stroke</span>.<span class="ident">width</span> <span class="op">/</span> <span class="number">2.0</span>;
-            <span class="kw">for</span> <span class="ident">p</span> <span class="kw">in</span> <span class="ident">path</span> {
-                <span class="ident">out</span>.<span class="ident">colored_vertex</span>(<span class="ident">p</span>.<span class="ident">pos</span> <span class="op">+</span> <span class="ident">radius</span> <span class="op">*</span> <span class="ident">p</span>.<span class="ident">normal</span>, <span class="ident">stroke</span>.<span class="ident">color</span>);
-                <span class="ident">out</span>.<span class="ident">colored_vertex</span>(<span class="ident">p</span>.<span class="ident">pos</span> <span class="op">-</span> <span class="ident">radius</span> <span class="op">*</span> <span class="ident">p</span>.<span class="ident">normal</span>, <span class="ident">stroke</span>.<span class="ident">color</span>);
+        } <span class="kw">else </span>{
+            <span class="kw">let </span>radius = stroke.width / <span class="number">2.0</span>;
+            <span class="kw">for </span>p <span class="kw">in </span>path {
+                out.colored_vertex(p.pos + radius * p.normal, stroke.color);
+                out.colored_vertex(p.pos - radius * p.normal, stroke.color);
             }
         }
     }
 }
 
-<span class="kw">fn</span> <span class="ident">mul_color</span>(<span class="ident">color</span>: <span class="ident">Color32</span>, <span class="ident">factor</span>: <span class="ident">f32</span>) -&gt; <span class="ident">Color32</span> {
-    <span class="macro">crate::epaint_assert!</span>(<span class="number">0.0</span> <span class="op">&lt;</span><span class="op">=</span> <span class="ident">factor</span> <span class="op">&amp;&amp;</span> <span class="ident">factor</span> <span class="op">&lt;</span><span class="op">=</span> <span class="number">1.0</span>);
-    <span class="comment">// As an unfortunate side-effect of using premultiplied alpha</span>
-    <span class="comment">// we need a somewhat expensive conversion to linear space and back.</span>
-    <span class="ident">color</span>.<span class="ident">linear_multiply</span>(<span class="ident">factor</span>)
+<span class="kw">fn </span>mul_color(color: Color32, factor: f32) -&gt; Color32 {
+    <span class="macro">crate::epaint_assert!</span>(<span class="number">0.0 </span>&lt;= factor &amp;&amp; factor &lt;= <span class="number">1.0</span>);
+    <span class="comment">// As an unfortunate side-effect of using premultiplied alpha
+    // we need a somewhat expensive conversion to linear space and back.
+    </span>color.linear_multiply(factor)
 }
 
-<span class="comment">// ----------------------------------------------------------------------------</span>
+<span class="comment">// ----------------------------------------------------------------------------
 
-<span class="doccomment">/// Converts [`Shape`]s into triangles ([`Mesh`]).</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// For performance reasons it is smart to reuse the same `Tessellator`.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// Se also [`tessellate_shapes`], a convenient wrapper around [`Tessellator`].</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Tessellator</span> {
-    <span class="ident">options</span>: <span class="ident">TessellationOptions</span>,
-    <span class="doccomment">/// Only used for culling</span>
-    <span class="ident">clip_rect</span>: <span class="ident">Rect</span>,
-    <span class="ident">scratchpad_points</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Pos2</span><span class="op">&gt;</span>,
-    <span class="ident">scratchpad_path</span>: <span class="ident">Path</span>,
+</span><span class="doccomment">/// Converts [`Shape`]s into triangles ([`Mesh`]).
+///
+/// For performance reasons it is smart to reuse the same `Tessellator`.
+///
+/// Se also [`tessellate_shapes`], a convenient wrapper around [`Tessellator`].
+</span><span class="kw">pub struct </span>Tessellator {
+    options: TessellationOptions,
+    <span class="doccomment">/// Only used for culling
+    </span>clip_rect: Rect,
+    scratchpad_points: Vec&lt;Pos2&gt;,
+    scratchpad_path: Path,
 }
 
-<span class="kw">impl</span> <span class="ident">Tessellator</span> {
-    <span class="doccomment">/// Create a new [`Tessellator`].</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">from_options</span>(<span class="ident">options</span>: <span class="ident">TessellationOptions</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">Self</span> {
-            <span class="ident">options</span>,
-            <span class="ident">clip_rect</span>: <span class="ident">Rect::EVERYTHING</span>,
-            <span class="ident">scratchpad_points</span>: <span class="ident">Default::default</span>(),
-            <span class="ident">scratchpad_path</span>: <span class="ident">Default::default</span>(),
+<span class="kw">impl </span>Tessellator {
+    <span class="doccomment">/// Create a new [`Tessellator`].
+    </span><span class="kw">pub fn </span>from_options(options: TessellationOptions) -&gt; <span class="self">Self </span>{
+        <span class="self">Self </span>{
+            options,
+            clip_rect: Rect::EVERYTHING,
+            scratchpad_points: Default::default(),
+            scratchpad_path: Default::default(),
         }
     }
 
-    <span class="doccomment">/// Tessellate a single [`Shape`] into a [`Mesh`].</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// * `tex_size`: size of the font texture (required to normalize glyph uv rectangles).</span>
-    <span class="doccomment">/// * `shape`: the shape to tessellate.</span>
-    <span class="doccomment">/// * `out`: triangles are appended to this.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">tessellate_shape</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">tex_size</span>: [<span class="ident">usize</span>; <span class="number">2</span>], <span class="ident">shape</span>: <span class="ident">Shape</span>, <span class="ident">out</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Mesh</span>) {
-        <span class="kw">let</span> <span class="ident">clip_rect</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">clip_rect</span>;
-        <span class="kw">let</span> <span class="ident">options</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">options</span>;
+    <span class="doccomment">/// Tessellate a single [`Shape`] into a [`Mesh`].
+    ///
+    /// * `tex_size`: size of the font texture (required to normalize glyph uv rectangles).
+    /// * `shape`: the shape to tessellate.
+    /// * `out`: triangles are appended to this.
+    </span><span class="kw">pub fn </span>tessellate_shape(<span class="kw-2">&amp;mut </span><span class="self">self</span>, tex_size: [usize; <span class="number">2</span>], shape: Shape, out: <span class="kw-2">&amp;mut </span>Mesh) {
+        <span class="kw">let </span>clip_rect = <span class="self">self</span>.clip_rect;
+        <span class="kw">let </span>options = <span class="kw-2">&amp;</span><span class="self">self</span>.options;
 
-        <span class="kw">match</span> <span class="ident">shape</span> {
-            <span class="ident">Shape::Noop</span> =&gt; {}
-            <span class="ident">Shape::Vec</span>(<span class="ident">vec</span>) =&gt; {
-                <span class="kw">for</span> <span class="ident">shape</span> <span class="kw">in</span> <span class="ident">vec</span> {
-                    <span class="self">self</span>.<span class="ident">tessellate_shape</span>(<span class="ident">tex_size</span>, <span class="ident">shape</span>, <span class="ident">out</span>);
+        <span class="kw">match </span>shape {
+            Shape::Noop =&gt; {}
+            Shape::Vec(vec) =&gt; {
+                <span class="kw">for </span>shape <span class="kw">in </span>vec {
+                    <span class="self">self</span>.tessellate_shape(tex_size, shape, out);
                 }
             }
-            <span class="ident">Shape::Circle</span>(<span class="ident">CircleShape</span> {
-                <span class="ident">center</span>,
-                <span class="ident">radius</span>,
-                <span class="ident">fill</span>,
-                <span class="ident">stroke</span>,
+            Shape::Circle(CircleShape {
+                center,
+                radius,
+                fill,
+                stroke,
             }) =&gt; {
-                <span class="kw">if</span> <span class="ident">radius</span> <span class="op">&lt;</span><span class="op">=</span> <span class="number">0.0</span> {
+                <span class="kw">if </span>radius &lt;= <span class="number">0.0 </span>{
                     <span class="kw">return</span>;
                 }
 
-                <span class="kw">if</span> <span class="ident">options</span>.<span class="ident">coarse_tessellation_culling</span>
-                    <span class="op">&amp;&amp;</span> <span class="op">!</span><span class="ident">clip_rect</span>.<span class="ident">expand</span>(<span class="ident">radius</span> <span class="op">+</span> <span class="ident">stroke</span>.<span class="ident">width</span>).<span class="ident">contains</span>(<span class="ident">center</span>)
+                <span class="kw">if </span>options.coarse_tessellation_culling
+                    &amp;&amp; !clip_rect.expand(radius + stroke.width).contains(center)
                 {
                     <span class="kw">return</span>;
                 }
 
-                <span class="self">self</span>.<span class="ident">scratchpad_path</span>.<span class="ident">clear</span>();
-                <span class="self">self</span>.<span class="ident">scratchpad_path</span>.<span class="ident">add_circle</span>(<span class="ident">center</span>, <span class="ident">radius</span>);
-                <span class="self">self</span>.<span class="ident">scratchpad_path</span>.<span class="ident">fill</span>(<span class="ident">fill</span>, <span class="ident">options</span>, <span class="ident">out</span>);
-                <span class="self">self</span>.<span class="ident">scratchpad_path</span>.<span class="ident">stroke_closed</span>(<span class="ident">stroke</span>, <span class="ident">options</span>, <span class="ident">out</span>);
+                <span class="self">self</span>.scratchpad_path.clear();
+                <span class="self">self</span>.scratchpad_path.add_circle(center, radius);
+                <span class="self">self</span>.scratchpad_path.fill(fill, options, out);
+                <span class="self">self</span>.scratchpad_path.stroke_closed(stroke, options, out);
             }
-            <span class="ident">Shape::Mesh</span>(<span class="ident">mesh</span>) =&gt; {
-                <span class="kw">if</span> <span class="op">!</span><span class="ident">mesh</span>.<span class="ident">is_valid</span>() {
+            Shape::Mesh(mesh) =&gt; {
+                <span class="kw">if </span>!mesh.is_valid() {
                     <span class="macro">crate::epaint_assert!</span>(<span class="bool-val">false</span>, <span class="string">&quot;Invalid Mesh in Shape::Mesh&quot;</span>);
                     <span class="kw">return</span>;
                 }
 
-                <span class="kw">if</span> <span class="ident">options</span>.<span class="ident">coarse_tessellation_culling</span> <span class="op">&amp;&amp;</span> <span class="op">!</span><span class="ident">clip_rect</span>.<span class="ident">intersects</span>(<span class="ident">mesh</span>.<span class="ident">calc_bounds</span>())
+                <span class="kw">if </span>options.coarse_tessellation_culling &amp;&amp; !clip_rect.intersects(mesh.calc_bounds())
                 {
                     <span class="kw">return</span>;
                 }
 
-                <span class="ident">out</span>.<span class="ident">append</span>(<span class="ident">mesh</span>);
+                out.append(mesh);
             }
-            <span class="ident">Shape::LineSegment</span> { <span class="ident">points</span>, <span class="ident">stroke</span> } =&gt; {
-                <span class="kw">if</span> <span class="ident">stroke</span>.<span class="ident">is_empty</span>() {
+            Shape::LineSegment { points, stroke } =&gt; {
+                <span class="kw">if </span>stroke.is_empty() {
                     <span class="kw">return</span>;
                 }
 
-                <span class="kw">if</span> <span class="ident">options</span>.<span class="ident">coarse_tessellation_culling</span>
-                    <span class="op">&amp;&amp;</span> <span class="op">!</span><span class="ident">clip_rect</span>
-                        .<span class="ident">intersects</span>(<span class="ident">Rect::from_two_pos</span>(<span class="ident">points</span>[<span class="number">0</span>], <span class="ident">points</span>[<span class="number">1</span>]).<span class="ident">expand</span>(<span class="ident">stroke</span>.<span class="ident">width</span>))
+                <span class="kw">if </span>options.coarse_tessellation_culling
+                    &amp;&amp; !clip_rect
+                        .intersects(Rect::from_two_pos(points[<span class="number">0</span>], points[<span class="number">1</span>]).expand(stroke.width))
                 {
                     <span class="kw">return</span>;
                 }
 
-                <span class="self">self</span>.<span class="ident">scratchpad_path</span>.<span class="ident">clear</span>();
-                <span class="self">self</span>.<span class="ident">scratchpad_path</span>.<span class="ident">add_line_segment</span>(<span class="ident">points</span>);
-                <span class="self">self</span>.<span class="ident">scratchpad_path</span>.<span class="ident">stroke_open</span>(<span class="ident">stroke</span>, <span class="ident">options</span>, <span class="ident">out</span>);
+                <span class="self">self</span>.scratchpad_path.clear();
+                <span class="self">self</span>.scratchpad_path.add_line_segment(points);
+                <span class="self">self</span>.scratchpad_path.stroke_open(stroke, options, out);
             }
-            <span class="ident">Shape::Path</span>(<span class="ident">path_shape</span>) =&gt; {
-                <span class="self">self</span>.<span class="ident">tessellate_path</span>(<span class="ident">path_shape</span>, <span class="ident">out</span>);
+            Shape::Path(path_shape) =&gt; {
+                <span class="self">self</span>.tessellate_path(path_shape, out);
             }
-            <span class="ident">Shape::Rect</span>(<span class="ident">rect_shape</span>) =&gt; {
-                <span class="self">self</span>.<span class="ident">tessellate_rect</span>(<span class="kw-2">&amp;</span><span class="ident">rect_shape</span>, <span class="ident">out</span>);
+            Shape::Rect(rect_shape) =&gt; {
+                <span class="self">self</span>.tessellate_rect(<span class="kw-2">&amp;</span>rect_shape, out);
             }
-            <span class="ident">Shape::Text</span>(<span class="ident">text_shape</span>) =&gt; {
-                <span class="kw">if</span> <span class="ident">options</span>.<span class="ident">debug_paint_text_rects</span> {
-                    <span class="kw">let</span> <span class="ident">rect</span> <span class="op">=</span> <span class="ident">text_shape</span>.<span class="ident">galley</span>.<span class="ident">rect</span>.<span class="ident">translate</span>(<span class="ident">text_shape</span>.<span class="ident">pos</span>.<span class="ident">to_vec2</span>());
-                    <span class="self">self</span>.<span class="ident">tessellate_rect</span>(
-                        <span class="kw-2">&amp;</span><span class="ident">RectShape::stroke</span>(<span class="ident">rect</span>.<span class="ident">expand</span>(<span class="number">0.5</span>), <span class="number">2.0</span>, (<span class="number">0.5</span>, <span class="ident">Color32::GREEN</span>)),
-                        <span class="ident">out</span>,
+            Shape::Text(text_shape) =&gt; {
+                <span class="kw">if </span>options.debug_paint_text_rects {
+                    <span class="kw">let </span>rect = text_shape.galley.rect.translate(text_shape.pos.to_vec2());
+                    <span class="self">self</span>.tessellate_rect(
+                        <span class="kw-2">&amp;</span>RectShape::stroke(rect.expand(<span class="number">0.5</span>), <span class="number">2.0</span>, (<span class="number">0.5</span>, Color32::GREEN)),
+                        out,
                     );
                 }
-                <span class="self">self</span>.<span class="ident">tessellate_text</span>(<span class="ident">tex_size</span>, <span class="ident">text_shape</span>, <span class="ident">out</span>);
+                <span class="self">self</span>.tessellate_text(tex_size, text_shape, out);
             }
         }
     }
 
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">tessellate_path</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">path_shape</span>: <span class="ident">PathShape</span>, <span class="ident">out</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Mesh</span>) {
-        <span class="kw">if</span> <span class="ident">path_shape</span>.<span class="ident">points</span>.<span class="ident">len</span>() <span class="op">&lt;</span> <span class="number">2</span> {
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>tessellate_path(<span class="kw-2">&amp;mut </span><span class="self">self</span>, path_shape: PathShape, out: <span class="kw-2">&amp;mut </span>Mesh) {
+        <span class="kw">if </span>path_shape.points.len() &lt; <span class="number">2 </span>{
             <span class="kw">return</span>;
         }
 
-        <span class="kw">if</span> <span class="self">self</span>.<span class="ident">options</span>.<span class="ident">coarse_tessellation_culling</span>
-            <span class="op">&amp;&amp;</span> <span class="op">!</span><span class="ident">path_shape</span>.<span class="ident">bounding_rect</span>().<span class="ident">intersects</span>(<span class="self">self</span>.<span class="ident">clip_rect</span>)
+        <span class="kw">if </span><span class="self">self</span>.options.coarse_tessellation_culling
+            &amp;&amp; !path_shape.bounding_rect().intersects(<span class="self">self</span>.clip_rect)
         {
             <span class="kw">return</span>;
         }
 
-        <span class="kw">let</span> <span class="ident">PathShape</span> {
-            <span class="ident">points</span>,
-            <span class="ident">closed</span>,
-            <span class="ident">fill</span>,
-            <span class="ident">stroke</span>,
-        } <span class="op">=</span> <span class="ident">path_shape</span>;
+        <span class="kw">let </span>PathShape {
+            points,
+            closed,
+            fill,
+            stroke,
+        } = path_shape;
 
-        <span class="self">self</span>.<span class="ident">scratchpad_path</span>.<span class="ident">clear</span>();
-        <span class="kw">if</span> <span class="ident">closed</span> {
-            <span class="self">self</span>.<span class="ident">scratchpad_path</span>.<span class="ident">add_line_loop</span>(<span class="kw-2">&amp;</span><span class="ident">points</span>);
-        } <span class="kw">else</span> {
-            <span class="self">self</span>.<span class="ident">scratchpad_path</span>.<span class="ident">add_open_points</span>(<span class="kw-2">&amp;</span><span class="ident">points</span>);
+        <span class="self">self</span>.scratchpad_path.clear();
+        <span class="kw">if </span>closed {
+            <span class="self">self</span>.scratchpad_path.add_line_loop(<span class="kw-2">&amp;</span>points);
+        } <span class="kw">else </span>{
+            <span class="self">self</span>.scratchpad_path.add_open_points(<span class="kw-2">&amp;</span>points);
         }
 
-        <span class="kw">if</span> <span class="ident">fill</span> <span class="op">!</span><span class="op">=</span> <span class="ident">Color32::TRANSPARENT</span> {
+        <span class="kw">if </span>fill != Color32::TRANSPARENT {
             <span class="macro">crate::epaint_assert!</span>(
-                <span class="ident">closed</span>,
-                <span class="string">&quot;You asked to fill a path that is not closed. That makes no sense.&quot;</span>
-            );
-            <span class="self">self</span>.<span class="ident">scratchpad_path</span>.<span class="ident">fill</span>(<span class="ident">fill</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">options</span>, <span class="ident">out</span>);
+                closed,
+                <span class="string">&quot;You asked to fill a path that is not closed. That makes no sense.&quot;
+            </span>);
+            <span class="self">self</span>.scratchpad_path.fill(fill, <span class="kw-2">&amp;</span><span class="self">self</span>.options, out);
         }
-        <span class="kw">let</span> <span class="ident">typ</span> <span class="op">=</span> <span class="kw">if</span> <span class="ident">closed</span> {
-            <span class="ident">PathType::Closed</span>
-        } <span class="kw">else</span> {
-            <span class="ident">PathType::Open</span>
+        <span class="kw">let </span>typ = <span class="kw">if </span>closed {
+            PathType::Closed
+        } <span class="kw">else </span>{
+            PathType::Open
         };
-        <span class="self">self</span>.<span class="ident">scratchpad_path</span>.<span class="ident">stroke</span>(<span class="ident">typ</span>, <span class="ident">stroke</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">options</span>, <span class="ident">out</span>);
+        <span class="self">self</span>.scratchpad_path.stroke(typ, stroke, <span class="kw-2">&amp;</span><span class="self">self</span>.options, out);
     }
 
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">tessellate_rect</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">rect</span>: <span class="kw-2">&amp;</span><span class="ident">RectShape</span>, <span class="ident">out</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Mesh</span>) {
-        <span class="kw">let</span> <span class="ident">RectShape</span> {
-            <span class="kw-2">mut</span> <span class="ident">rect</span>,
-            <span class="ident">corner_radius</span>,
-            <span class="ident">fill</span>,
-            <span class="ident">stroke</span>,
-        } <span class="op">=</span> <span class="kw-2">*</span><span class="ident">rect</span>;
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>tessellate_rect(<span class="kw-2">&amp;mut </span><span class="self">self</span>, rect: <span class="kw-2">&amp;</span>RectShape, out: <span class="kw-2">&amp;mut </span>Mesh) {
+        <span class="kw">let </span>RectShape {
+            <span class="kw-2">mut </span>rect,
+            corner_radius,
+            fill,
+            stroke,
+        } = <span class="kw-2">*</span>rect;
 
-        <span class="kw">if</span> <span class="self">self</span>.<span class="ident">options</span>.<span class="ident">coarse_tessellation_culling</span>
-            <span class="op">&amp;&amp;</span> <span class="op">!</span><span class="ident">rect</span>.<span class="ident">expand</span>(<span class="ident">stroke</span>.<span class="ident">width</span>).<span class="ident">intersects</span>(<span class="self">self</span>.<span class="ident">clip_rect</span>)
+        <span class="kw">if </span><span class="self">self</span>.options.coarse_tessellation_culling
+            &amp;&amp; !rect.expand(stroke.width).intersects(<span class="self">self</span>.clip_rect)
         {
             <span class="kw">return</span>;
         }
-        <span class="kw">if</span> <span class="ident">rect</span>.<span class="ident">is_negative</span>() {
+        <span class="kw">if </span>rect.is_negative() {
             <span class="kw">return</span>;
         }
 
-        <span class="comment">// It is common to (sometimes accidentally) create an infinitely sized rectangle.</span>
-        <span class="comment">// Make sure we can handle that:</span>
-        <span class="ident">rect</span>.<span class="ident">min</span> <span class="op">=</span> <span class="ident">rect</span>.<span class="ident">min</span>.<span class="ident">at_least</span>(<span class="ident">pos2</span>(<span class="op">-</span><span class="number">1e7</span>, <span class="op">-</span><span class="number">1e7</span>));
-        <span class="ident">rect</span>.<span class="ident">max</span> <span class="op">=</span> <span class="ident">rect</span>.<span class="ident">max</span>.<span class="ident">at_most</span>(<span class="ident">pos2</span>(<span class="number">1e7</span>, <span class="number">1e7</span>));
+        <span class="comment">// It is common to (sometimes accidentally) create an infinitely sized rectangle.
+        // Make sure we can handle that:
+        </span>rect.min = rect.min.at_least(pos2(-<span class="number">1e7</span>, -<span class="number">1e7</span>));
+        rect.max = rect.max.at_most(pos2(<span class="number">1e7</span>, <span class="number">1e7</span>));
 
-        <span class="kw">let</span> <span class="ident">path</span> <span class="op">=</span> <span class="kw-2">&amp;mut</span> <span class="self">self</span>.<span class="ident">scratchpad_path</span>;
-        <span class="ident">path</span>.<span class="ident">clear</span>();
-        <span class="ident">path::rounded_rectangle</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>.<span class="ident">scratchpad_points</span>, <span class="ident">rect</span>, <span class="ident">corner_radius</span>);
-        <span class="ident">path</span>.<span class="ident">add_line_loop</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">scratchpad_points</span>);
-        <span class="ident">path</span>.<span class="ident">fill</span>(<span class="ident">fill</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">options</span>, <span class="ident">out</span>);
-        <span class="ident">path</span>.<span class="ident">stroke_closed</span>(<span class="ident">stroke</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">options</span>, <span class="ident">out</span>);
+        <span class="kw">let </span>path = <span class="kw-2">&amp;mut </span><span class="self">self</span>.scratchpad_path;
+        path.clear();
+        path::rounded_rectangle(<span class="kw-2">&amp;mut </span><span class="self">self</span>.scratchpad_points, rect, corner_radius);
+        path.add_line_loop(<span class="kw-2">&amp;</span><span class="self">self</span>.scratchpad_points);
+        path.fill(fill, <span class="kw-2">&amp;</span><span class="self">self</span>.options, out);
+        path.stroke_closed(stroke, <span class="kw-2">&amp;</span><span class="self">self</span>.options, out);
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">tessellate_text</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">tex_size</span>: [<span class="ident">usize</span>; <span class="number">2</span>], <span class="ident">text_shape</span>: <span class="ident">TextShape</span>, <span class="ident">out</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Mesh</span>) {
-        <span class="kw">let</span> <span class="ident">TextShape</span> {
-            <span class="ident">pos</span>: <span class="ident">galley_pos</span>,
-            <span class="ident">galley</span>,
-            <span class="ident">underline</span>,
-            <span class="ident">override_text_color</span>,
-            <span class="ident">angle</span>,
-        } <span class="op">=</span> <span class="ident">text_shape</span>;
+    <span class="kw">pub fn </span>tessellate_text(<span class="kw-2">&amp;mut </span><span class="self">self</span>, tex_size: [usize; <span class="number">2</span>], text_shape: TextShape, out: <span class="kw-2">&amp;mut </span>Mesh) {
+        <span class="kw">let </span>TextShape {
+            pos: galley_pos,
+            galley,
+            underline,
+            override_text_color,
+            angle,
+        } = text_shape;
 
-        <span class="kw">if</span> <span class="ident">galley</span>.<span class="ident">is_empty</span>() {
+        <span class="kw">if </span>galley.is_empty() {
             <span class="kw">return</span>;
         }
 
-        <span class="ident">out</span>.<span class="ident">vertices</span>.<span class="ident">reserve</span>(<span class="ident">galley</span>.<span class="ident">num_vertices</span>);
-        <span class="ident">out</span>.<span class="ident">indices</span>.<span class="ident">reserve</span>(<span class="ident">galley</span>.<span class="ident">num_indices</span>);
+        out.vertices.reserve(galley.num_vertices);
+        out.indices.reserve(galley.num_indices);
 
-        <span class="comment">// The contents of the galley is already snapped to pixel coordinates,</span>
-        <span class="comment">// but we need to make sure the galley ends up on the start of a physical pixel:</span>
-        <span class="kw">let</span> <span class="ident">galley_pos</span> <span class="op">=</span> <span class="ident">pos2</span>(
-            <span class="self">self</span>.<span class="ident">options</span>.<span class="ident">round_to_pixel</span>(<span class="ident">galley_pos</span>.<span class="ident">x</span>),
-            <span class="self">self</span>.<span class="ident">options</span>.<span class="ident">round_to_pixel</span>(<span class="ident">galley_pos</span>.<span class="ident">y</span>),
+        <span class="comment">// The contents of the galley is already snapped to pixel coordinates,
+        // but we need to make sure the galley ends up on the start of a physical pixel:
+        </span><span class="kw">let </span>galley_pos = pos2(
+            <span class="self">self</span>.options.round_to_pixel(galley_pos.x),
+            <span class="self">self</span>.options.round_to_pixel(galley_pos.y),
         );
 
-        <span class="kw">let</span> <span class="ident">uv_normalizer</span> <span class="op">=</span> <span class="ident">vec2</span>(<span class="number">1.0</span> <span class="op">/</span> <span class="ident">tex_size</span>[<span class="number">0</span>] <span class="kw">as</span> <span class="ident">f32</span>, <span class="number">1.0</span> <span class="op">/</span> <span class="ident">tex_size</span>[<span class="number">1</span>] <span class="kw">as</span> <span class="ident">f32</span>);
+        <span class="kw">let </span>uv_normalizer = vec2(<span class="number">1.0 </span>/ tex_size[<span class="number">0</span>] <span class="kw">as </span>f32, <span class="number">1.0 </span>/ tex_size[<span class="number">1</span>] <span class="kw">as </span>f32);
 
-        <span class="kw">let</span> <span class="ident">rotator</span> <span class="op">=</span> <span class="ident">Rot2::from_angle</span>(<span class="ident">angle</span>);
+        <span class="kw">let </span>rotator = Rot2::from_angle(angle);
 
-        <span class="kw">for</span> <span class="ident">row</span> <span class="kw">in</span> <span class="kw-2">&amp;</span><span class="ident">galley</span>.<span class="ident">rows</span> {
-            <span class="kw">if</span> <span class="ident">row</span>.<span class="ident">visuals</span>.<span class="ident">mesh</span>.<span class="ident">is_empty</span>() {
+        <span class="kw">for </span>row <span class="kw">in </span><span class="kw-2">&amp;</span>galley.rows {
+            <span class="kw">if </span>row.visuals.mesh.is_empty() {
                 <span class="kw">continue</span>;
             }
 
-            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">row_rect</span> <span class="op">=</span> <span class="ident">row</span>.<span class="ident">visuals</span>.<span class="ident">mesh_bounds</span>;
-            <span class="kw">if</span> <span class="ident">angle</span> <span class="op">!</span><span class="op">=</span> <span class="number">0.0</span> {
-                <span class="ident">row_rect</span> <span class="op">=</span> <span class="ident">row_rect</span>.<span class="ident">rotate_bb</span>(<span class="ident">rotator</span>);
+            <span class="kw">let </span><span class="kw-2">mut </span>row_rect = row.visuals.mesh_bounds;
+            <span class="kw">if </span>angle != <span class="number">0.0 </span>{
+                row_rect = row_rect.rotate_bb(rotator);
             }
-            <span class="ident">row_rect</span> <span class="op">=</span> <span class="ident">row_rect</span>.<span class="ident">translate</span>(<span class="ident">galley_pos</span>.<span class="ident">to_vec2</span>());
+            row_rect = row_rect.translate(galley_pos.to_vec2());
 
-            <span class="kw">if</span> <span class="self">self</span>.<span class="ident">options</span>.<span class="ident">coarse_tessellation_culling</span> <span class="op">&amp;&amp;</span> <span class="op">!</span><span class="self">self</span>.<span class="ident">clip_rect</span>.<span class="ident">intersects</span>(<span class="ident">row_rect</span>) {
-                <span class="comment">// culling individual lines of text is important, since a single `Shape::Text`</span>
-                <span class="comment">// can span hundreds of lines.</span>
-                <span class="kw">continue</span>;
+            <span class="kw">if </span><span class="self">self</span>.options.coarse_tessellation_culling &amp;&amp; !<span class="self">self</span>.clip_rect.intersects(row_rect) {
+                <span class="comment">// culling individual lines of text is important, since a single `Shape::Text`
+                // can span hundreds of lines.
+                </span><span class="kw">continue</span>;
             }
 
-            <span class="kw">let</span> <span class="ident">index_offset</span> <span class="op">=</span> <span class="ident">out</span>.<span class="ident">vertices</span>.<span class="ident">len</span>() <span class="kw">as</span> <span class="ident">u32</span>;
+            <span class="kw">let </span>index_offset = out.vertices.len() <span class="kw">as </span>u32;
 
-            <span class="ident">out</span>.<span class="ident">indices</span>.<span class="ident">extend</span>(
-                <span class="ident">row</span>.<span class="ident">visuals</span>
-                    .<span class="ident">mesh</span>
-                    .<span class="ident">indices</span>
-                    .<span class="ident">iter</span>()
-                    .<span class="ident">map</span>(<span class="op">|</span><span class="ident">index</span><span class="op">|</span> <span class="ident">index</span> <span class="op">+</span> <span class="ident">index_offset</span>),
+            out.indices.extend(
+                row.visuals
+                    .mesh
+                    .indices
+                    .iter()
+                    .map(|index| index + index_offset),
             );
 
-            <span class="ident">out</span>.<span class="ident">vertices</span>.<span class="ident">extend</span>(
-                <span class="ident">row</span>.<span class="ident">visuals</span>
-                    .<span class="ident">mesh</span>
-                    .<span class="ident">vertices</span>
-                    .<span class="ident">iter</span>()
-                    .<span class="ident">enumerate</span>()
-                    .<span class="ident">map</span>(<span class="op">|</span>(<span class="ident">i</span>, <span class="ident">vertex</span>)<span class="op">|</span> {
-                        <span class="kw">let</span> <span class="ident">Vertex</span> { <span class="ident">pos</span>, <span class="ident">uv</span>, <span class="kw-2">mut</span> <span class="ident">color</span> } <span class="op">=</span> <span class="kw-2">*</span><span class="ident">vertex</span>;
+            out.vertices.extend(
+                row.visuals
+                    .mesh
+                    .vertices
+                    .iter()
+                    .enumerate()
+                    .map(|(i, vertex)| {
+                        <span class="kw">let </span>Vertex { pos, uv, <span class="kw-2">mut </span>color } = <span class="kw-2">*</span>vertex;
 
-                        <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">override_text_color</span>) <span class="op">=</span> <span class="ident">override_text_color</span> {
-                            <span class="kw">if</span> <span class="ident">row</span>.<span class="ident">visuals</span>.<span class="ident">glyph_vertex_range</span>.<span class="ident">contains</span>(<span class="kw-2">&amp;</span><span class="ident">i</span>) {
-                                <span class="ident">color</span> <span class="op">=</span> <span class="ident">override_text_color</span>;
+                        <span class="kw">if let </span><span class="prelude-val">Some</span>(override_text_color) = override_text_color {
+                            <span class="kw">if </span>row.visuals.glyph_vertex_range.contains(<span class="kw-2">&amp;</span>i) {
+                                color = override_text_color;
                             }
                         }
 
-                        <span class="kw">let</span> <span class="ident">offset</span> <span class="op">=</span> <span class="kw">if</span> <span class="ident">angle</span> <span class="op">==</span> <span class="number">0.0</span> {
-                            <span class="ident">pos</span>.<span class="ident">to_vec2</span>()
-                        } <span class="kw">else</span> {
-                            <span class="ident">rotator</span> <span class="op">*</span> <span class="ident">pos</span>.<span class="ident">to_vec2</span>()
+                        <span class="kw">let </span>offset = <span class="kw">if </span>angle == <span class="number">0.0 </span>{
+                            pos.to_vec2()
+                        } <span class="kw">else </span>{
+                            rotator * pos.to_vec2()
                         };
 
-                        <span class="ident">Vertex</span> {
-                            <span class="ident">pos</span>: <span class="ident">galley_pos</span> <span class="op">+</span> <span class="ident">offset</span>,
-                            <span class="ident">uv</span>: (<span class="ident">uv</span>.<span class="ident">to_vec2</span>() <span class="op">*</span> <span class="ident">uv_normalizer</span>).<span class="ident">to_pos2</span>(),
-                            <span class="ident">color</span>,
+                        Vertex {
+                            pos: galley_pos + offset,
+                            uv: (uv.to_vec2() * uv_normalizer).to_pos2(),
+                            color,
                         }
                     }),
             );
 
-            <span class="kw">if</span> <span class="ident">underline</span> <span class="op">!</span><span class="op">=</span> <span class="ident">Stroke::none</span>() {
-                <span class="self">self</span>.<span class="ident">scratchpad_path</span>.<span class="ident">clear</span>();
-                <span class="self">self</span>.<span class="ident">scratchpad_path</span>
-                    .<span class="ident">add_line_segment</span>([<span class="ident">row_rect</span>.<span class="ident">left_bottom</span>(), <span class="ident">row_rect</span>.<span class="ident">right_bottom</span>()]);
-                <span class="self">self</span>.<span class="ident">scratchpad_path</span>
-                    .<span class="ident">stroke_open</span>(<span class="ident">underline</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">options</span>, <span class="ident">out</span>);
+            <span class="kw">if </span>underline != Stroke::none() {
+                <span class="self">self</span>.scratchpad_path.clear();
+                <span class="self">self</span>.scratchpad_path
+                    .add_line_segment([row_rect.left_bottom(), row_rect.right_bottom()]);
+                <span class="self">self</span>.scratchpad_path
+                    .stroke_open(underline, <span class="kw-2">&amp;</span><span class="self">self</span>.options, out);
             }
         }
     }
 }
 
-<span class="doccomment">/// Turns [`Shape`]:s into sets of triangles.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// The given shapes will tessellated in the same order as they are given.</span>
-<span class="doccomment">/// They will be batched together by clip rectangle.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// * `shapes`: what to tessellate</span>
-<span class="doccomment">/// * `options`: tessellation quality</span>
-<span class="doccomment">/// * `tex_size`: size of the font texture (required to normalize glyph uv rectangles)</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// The implementation uses a [`Tessellator`].</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// ## Returns</span>
-<span class="doccomment">/// A list of clip rectangles with matching [`Mesh`].</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">tessellate_shapes</span>(
-    <span class="ident">shapes</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">ClippedShape</span><span class="op">&gt;</span>,
-    <span class="ident">options</span>: <span class="ident">TessellationOptions</span>,
-    <span class="ident">tex_size</span>: [<span class="ident">usize</span>; <span class="number">2</span>],
-) -&gt; <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">ClippedMesh</span><span class="op">&gt;</span> {
-    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">tessellator</span> <span class="op">=</span> <span class="ident">Tessellator::from_options</span>(<span class="ident">options</span>);
+<span class="doccomment">/// Turns [`Shape`]:s into sets of triangles.
+///
+/// The given shapes will tessellated in the same order as they are given.
+/// They will be batched together by clip rectangle.
+///
+/// * `shapes`: what to tessellate
+/// * `options`: tessellation quality
+/// * `tex_size`: size of the font texture (required to normalize glyph uv rectangles)
+///
+/// The implementation uses a [`Tessellator`].
+///
+/// ## Returns
+/// A list of clip rectangles with matching [`Mesh`].
+</span><span class="kw">pub fn </span>tessellate_shapes(
+    shapes: Vec&lt;ClippedShape&gt;,
+    options: TessellationOptions,
+    tex_size: [usize; <span class="number">2</span>],
+) -&gt; Vec&lt;ClippedMesh&gt; {
+    <span class="kw">let </span><span class="kw-2">mut </span>tessellator = Tessellator::from_options(options);
 
-    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">clipped_meshes</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">ClippedMesh</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">Vec::default</span>();
+    <span class="kw">let </span><span class="kw-2">mut </span>clipped_meshes: Vec&lt;ClippedMesh&gt; = Vec::default();
 
-    <span class="kw">for</span> <span class="ident">ClippedShape</span>(<span class="ident">clip_rect</span>, <span class="ident">shape</span>) <span class="kw">in</span> <span class="ident">shapes</span> {
-        <span class="kw">if</span> <span class="op">!</span><span class="ident">clip_rect</span>.<span class="ident">is_positive</span>() {
-            <span class="kw">continue</span>; <span class="comment">// skip empty clip rectangles</span>
-        }
+    <span class="kw">for </span>ClippedShape(clip_rect, shape) <span class="kw">in </span>shapes {
+        <span class="kw">if </span>!clip_rect.is_positive() {
+            <span class="kw">continue</span>; <span class="comment">// skip empty clip rectangles
+        </span>}
 
-        <span class="kw">let</span> <span class="ident">start_new_mesh</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">clipped_meshes</span>.<span class="ident">last</span>() {
-            <span class="prelude-val">None</span> =&gt; <span class="bool-val">true</span>,
-            <span class="prelude-val">Some</span>(<span class="ident">cm</span>) =&gt; <span class="ident">cm</span>.<span class="number">0</span> <span class="op">!</span><span class="op">=</span> <span class="ident">clip_rect</span> <span class="op">|</span><span class="op">|</span> <span class="ident">cm</span>.<span class="number">1</span>.<span class="ident">texture_id</span> <span class="op">!</span><span class="op">=</span> <span class="ident">shape</span>.<span class="ident">texture_id</span>(),
+        <span class="kw">let </span>start_new_mesh = <span class="kw">match </span>clipped_meshes.last() {
+            <span class="prelude-val">None </span>=&gt; <span class="bool-val">true</span>,
+            <span class="prelude-val">Some</span>(cm) =&gt; cm.<span class="number">0 </span>!= clip_rect || cm.<span class="number">1</span>.texture_id != shape.texture_id(),
         };
 
-        <span class="kw">if</span> <span class="ident">start_new_mesh</span> {
-            <span class="ident">clipped_meshes</span>.<span class="ident">push</span>(<span class="ident">ClippedMesh</span>(<span class="ident">clip_rect</span>, <span class="ident">Mesh::default</span>()));
+        <span class="kw">if </span>start_new_mesh {
+            clipped_meshes.push(ClippedMesh(clip_rect, Mesh::default()));
         }
 
-        <span class="kw">let</span> <span class="ident">out</span> <span class="op">=</span> <span class="kw-2">&amp;mut</span> <span class="ident">clipped_meshes</span>.<span class="ident">last_mut</span>().<span class="ident">unwrap</span>().<span class="number">1</span>;
-        <span class="ident">tessellator</span>.<span class="ident">clip_rect</span> <span class="op">=</span> <span class="ident">clip_rect</span>;
-        <span class="ident">tessellator</span>.<span class="ident">tessellate_shape</span>(<span class="ident">tex_size</span>, <span class="ident">shape</span>, <span class="ident">out</span>);
+        <span class="kw">let </span>out = <span class="kw-2">&amp;mut </span>clipped_meshes.last_mut().unwrap().<span class="number">1</span>;
+        tessellator.clip_rect = clip_rect;
+        tessellator.tessellate_shape(tex_size, shape, out);
     }
 
-    <span class="kw">if</span> <span class="ident">options</span>.<span class="ident">debug_paint_clip_rects</span> {
-        <span class="kw">for</span> <span class="ident">ClippedMesh</span>(<span class="ident">clip_rect</span>, <span class="ident">mesh</span>) <span class="kw">in</span> <span class="kw-2">&amp;mut</span> <span class="ident">clipped_meshes</span> {
-            <span class="ident">tessellator</span>.<span class="ident">clip_rect</span> <span class="op">=</span> <span class="ident">Rect::EVERYTHING</span>;
-            <span class="ident">tessellator</span>.<span class="ident">tessellate_shape</span>(
-                <span class="ident">tex_size</span>,
-                <span class="ident">Shape::rect_stroke</span>(
-                    <span class="kw-2">*</span><span class="ident">clip_rect</span>,
+    <span class="kw">if </span>options.debug_paint_clip_rects {
+        <span class="kw">for </span>ClippedMesh(clip_rect, mesh) <span class="kw">in </span><span class="kw-2">&amp;mut </span>clipped_meshes {
+            tessellator.clip_rect = Rect::EVERYTHING;
+            tessellator.tessellate_shape(
+                tex_size,
+                Shape::rect_stroke(
+                    <span class="kw-2">*</span>clip_rect,
                     <span class="number">0.0</span>,
-                    <span class="ident">Stroke::new</span>(<span class="number">2.0</span>, <span class="ident">Color32::from_rgb</span>(<span class="number">150</span>, <span class="number">255</span>, <span class="number">150</span>)),
+                    Stroke::new(<span class="number">2.0</span>, Color32::from_rgb(<span class="number">150</span>, <span class="number">255</span>, <span class="number">150</span>)),
                 ),
-                <span class="ident">mesh</span>,
+                mesh,
             );
         }
     }
 
-    <span class="kw">if</span> <span class="ident">options</span>.<span class="ident">debug_ignore_clip_rects</span> {
-        <span class="kw">for</span> <span class="ident">ClippedMesh</span>(<span class="ident">clip_rect</span>, <span class="kw">_</span>) <span class="kw">in</span> <span class="kw-2">&amp;mut</span> <span class="ident">clipped_meshes</span> {
-            <span class="kw-2">*</span><span class="ident">clip_rect</span> <span class="op">=</span> <span class="ident">Rect::EVERYTHING</span>;
+    <span class="kw">if </span>options.debug_ignore_clip_rects {
+        <span class="kw">for </span>ClippedMesh(clip_rect, <span class="kw">_</span>) <span class="kw">in </span><span class="kw-2">&amp;mut </span>clipped_meshes {
+            <span class="kw-2">*</span>clip_rect = Rect::EVERYTHING;
         }
     }
 
-    <span class="kw">for</span> <span class="ident">ClippedMesh</span>(<span class="kw">_</span>, <span class="ident">mesh</span>) <span class="kw">in</span> <span class="kw-2">&amp;</span><span class="ident">clipped_meshes</span> {
-        <span class="macro">crate::epaint_assert!</span>(<span class="ident">mesh</span>.<span class="ident">is_valid</span>(), <span class="string">&quot;Tessellator generated invalid Mesh&quot;</span>);
+    <span class="kw">for </span>ClippedMesh(<span class="kw">_</span>, mesh) <span class="kw">in </span><span class="kw-2">&amp;</span>clipped_meshes {
+        <span class="macro">crate::epaint_assert!</span>(mesh.is_valid(), <span class="string">&quot;Tessellator generated invalid Mesh&quot;</span>);
     }
 
-    <span class="ident">clipped_meshes</span>
+    clipped_meshes
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="epaint" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0 (a55dd71d5 2022-09-19)" ></div></body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="epaint" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.66.1 (90743e729 2023-01-10)" ></div></body></html>

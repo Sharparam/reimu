@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/egui-0.16.1/src/layout.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>layout.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../egui/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../egui/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../egui/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/egui-0.16.1/src/layout.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>layout.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../normalize.css"><link rel="stylesheet" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../ayu.css" disabled><link rel="stylesheet" href="../../dark.css" disabled><link rel="stylesheet" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><div class="width-limiter"><nav class="sub"><a class="sub-logo-container" href="../../egui/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -803,810 +803,810 @@
 <span id="803">803</span>
 <span id="804">804</span>
 <span id="805">805</span>
-</pre><pre class="rust"><code><span class="kw">use</span> <span class="kw">crate</span>::{<span class="ident">egui_assert</span>, <span class="ident">emath</span>::<span class="kw-2">*</span>, <span class="ident">Align</span>};
-<span class="kw">use</span> <span class="ident">std::f32::INFINITY</span>;
+</pre><pre class="rust"><code><span class="kw">use crate</span>::{egui_assert, emath::<span class="kw-2">*</span>, Align};
+<span class="kw">use </span>std::f32::INFINITY;
 
-<span class="comment">// ----------------------------------------------------------------------------</span>
+<span class="comment">// ----------------------------------------------------------------------------
 
-<span class="doccomment">/// This describes the bounds and existing contents of an [`Ui`][`crate::Ui`].</span>
-<span class="doccomment">/// It is what is used and updated by [`Layout`] when adding new widgets.</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">Debug</span>)]</span>
-<span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">struct</span> <span class="ident">Region</span> {
-    <span class="doccomment">/// This is the minimal size of the `Ui`.</span>
-    <span class="doccomment">/// When adding new widgets, this will generally expand.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// Always finite.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// The bounding box of all child widgets, but not necessarily a tight bounding box</span>
-    <span class="doccomment">/// since `Ui` can start with a non-zero min_rect size.</span>
-    <span class="kw">pub</span> <span class="ident">min_rect</span>: <span class="ident">Rect</span>,
+</span><span class="doccomment">/// This describes the bounds and existing contents of an [`Ui`][`crate::Ui`].
+/// It is what is used and updated by [`Layout`] when adding new widgets.
+</span><span class="attribute">#[derive(Clone, Copy, Debug)]
+</span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">struct </span>Region {
+    <span class="doccomment">/// This is the minimal size of the `Ui`.
+    /// When adding new widgets, this will generally expand.
+    ///
+    /// Always finite.
+    ///
+    /// The bounding box of all child widgets, but not necessarily a tight bounding box
+    /// since `Ui` can start with a non-zero min_rect size.
+    </span><span class="kw">pub </span>min_rect: Rect,
 
-    <span class="doccomment">/// The maximum size of this `Ui`. This is a *soft max*</span>
-    <span class="doccomment">/// meaning new widgets will *try* not to expand beyond it,</span>
-    <span class="doccomment">/// but if they have to, they will.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// Text will wrap at `max_rect.right()`.</span>
-    <span class="doccomment">/// Some widgets (like separator lines) will try to fill the full `max_rect` width of the ui.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// `max_rect` will always be at least the size of `min_rect`.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// If the `max_rect` size is zero, it is a signal that child widgets should be as small as possible.</span>
-    <span class="doccomment">/// If the `max_rect` size is infinite, it is a signal that child widgets should take up as much room as they want.</span>
-    <span class="kw">pub</span> <span class="ident">max_rect</span>: <span class="ident">Rect</span>,
+    <span class="doccomment">/// The maximum size of this `Ui`. This is a *soft max*
+    /// meaning new widgets will *try* not to expand beyond it,
+    /// but if they have to, they will.
+    ///
+    /// Text will wrap at `max_rect.right()`.
+    /// Some widgets (like separator lines) will try to fill the full `max_rect` width of the ui.
+    ///
+    /// `max_rect` will always be at least the size of `min_rect`.
+    ///
+    /// If the `max_rect` size is zero, it is a signal that child widgets should be as small as possible.
+    /// If the `max_rect` size is infinite, it is a signal that child widgets should take up as much room as they want.
+    </span><span class="kw">pub </span>max_rect: Rect,
 
-    <span class="doccomment">/// Where the next widget will be put.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// One side of this will always be infinite: the direction in which new widgets will be added.</span>
-    <span class="doccomment">/// The opposing side is what is incremented.</span>
-    <span class="doccomment">/// The crossing sides are initialized to `max_rect`.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// So one can think of `cursor` as a constraint on the available region.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// If something has already been added, this will point to `style.spacing.item_spacing` beyond the latest child.</span>
-    <span class="doccomment">/// The cursor can thus be `style.spacing.item_spacing` pixels outside of the min_rect.</span>
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">cursor</span>: <span class="ident">Rect</span>,
+    <span class="doccomment">/// Where the next widget will be put.
+    ///
+    /// One side of this will always be infinite: the direction in which new widgets will be added.
+    /// The opposing side is what is incremented.
+    /// The crossing sides are initialized to `max_rect`.
+    ///
+    /// So one can think of `cursor` as a constraint on the available region.
+    ///
+    /// If something has already been added, this will point to `style.spacing.item_spacing` beyond the latest child.
+    /// The cursor can thus be `style.spacing.item_spacing` pixels outside of the min_rect.
+    </span><span class="kw">pub</span>(<span class="kw">crate</span>) cursor: Rect,
 }
 
-<span class="kw">impl</span> <span class="ident">Region</span> {
-    <span class="doccomment">/// Expand the `min_rect` and `max_rect` of this ui to include a child at the given rect.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">expand_to_include_rect</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">rect</span>: <span class="ident">Rect</span>) {
-        <span class="self">self</span>.<span class="ident">min_rect</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">min_rect</span>.<span class="ident">union</span>(<span class="ident">rect</span>);
-        <span class="self">self</span>.<span class="ident">max_rect</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">max_rect</span>.<span class="ident">union</span>(<span class="ident">rect</span>);
+<span class="kw">impl </span>Region {
+    <span class="doccomment">/// Expand the `min_rect` and `max_rect` of this ui to include a child at the given rect.
+    </span><span class="kw">pub fn </span>expand_to_include_rect(<span class="kw-2">&amp;mut </span><span class="self">self</span>, rect: Rect) {
+        <span class="self">self</span>.min_rect = <span class="self">self</span>.min_rect.union(rect);
+        <span class="self">self</span>.max_rect = <span class="self">self</span>.max_rect.union(rect);
     }
 
-    <span class="doccomment">/// Ensure we are big enough to contain the given X-coordinate.</span>
-    <span class="doccomment">/// This is sometimes useful to expand an ui to stretch to a certain place.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">expand_to_include_x</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">x</span>: <span class="ident">f32</span>) {
-        <span class="self">self</span>.<span class="ident">min_rect</span>.<span class="ident">extend_with_x</span>(<span class="ident">x</span>);
-        <span class="self">self</span>.<span class="ident">max_rect</span>.<span class="ident">extend_with_x</span>(<span class="ident">x</span>);
-        <span class="self">self</span>.<span class="ident">cursor</span>.<span class="ident">extend_with_x</span>(<span class="ident">x</span>);
+    <span class="doccomment">/// Ensure we are big enough to contain the given X-coordinate.
+    /// This is sometimes useful to expand an ui to stretch to a certain place.
+    </span><span class="kw">pub fn </span>expand_to_include_x(<span class="kw-2">&amp;mut </span><span class="self">self</span>, x: f32) {
+        <span class="self">self</span>.min_rect.extend_with_x(x);
+        <span class="self">self</span>.max_rect.extend_with_x(x);
+        <span class="self">self</span>.cursor.extend_with_x(x);
     }
 
-    <span class="doccomment">/// Ensure we are big enough to contain the given Y-coordinate.</span>
-    <span class="doccomment">/// This is sometimes useful to expand an ui to stretch to a certain place.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">expand_to_include_y</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">y</span>: <span class="ident">f32</span>) {
-        <span class="self">self</span>.<span class="ident">min_rect</span>.<span class="ident">extend_with_y</span>(<span class="ident">y</span>);
-        <span class="self">self</span>.<span class="ident">max_rect</span>.<span class="ident">extend_with_y</span>(<span class="ident">y</span>);
-        <span class="self">self</span>.<span class="ident">cursor</span>.<span class="ident">extend_with_y</span>(<span class="ident">y</span>);
+    <span class="doccomment">/// Ensure we are big enough to contain the given Y-coordinate.
+    /// This is sometimes useful to expand an ui to stretch to a certain place.
+    </span><span class="kw">pub fn </span>expand_to_include_y(<span class="kw-2">&amp;mut </span><span class="self">self</span>, y: f32) {
+        <span class="self">self</span>.min_rect.extend_with_y(y);
+        <span class="self">self</span>.max_rect.extend_with_y(y);
+        <span class="self">self</span>.cursor.extend_with_y(y);
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">sanity_check</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) {
-        <span class="macro">egui_assert!</span>(<span class="op">!</span><span class="self">self</span>.<span class="ident">min_rect</span>.<span class="ident">any_nan</span>());
-        <span class="macro">egui_assert!</span>(<span class="op">!</span><span class="self">self</span>.<span class="ident">max_rect</span>.<span class="ident">any_nan</span>());
-        <span class="macro">egui_assert!</span>(<span class="op">!</span><span class="self">self</span>.<span class="ident">cursor</span>.<span class="ident">any_nan</span>());
-    }
-}
-
-<span class="comment">// ----------------------------------------------------------------------------</span>
-
-<span class="doccomment">/// Layout direction, one of `LeftToRight`, `RightToLeft`, `TopDown`, `BottomUp`.</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>)]</span>
-<span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;serde&quot;</span>, <span class="ident">derive</span>(<span class="ident">serde::Deserialize</span>, <span class="ident">serde::Serialize</span>))]</span>
-<span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;serde&quot;</span>, <span class="ident">serde</span>(<span class="ident">rename_all</span> <span class="op">=</span> <span class="string">&quot;snake_case&quot;</span>))]</span>
-<span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">Direction</span> {
-    <span class="ident">LeftToRight</span>,
-    <span class="ident">RightToLeft</span>,
-    <span class="ident">TopDown</span>,
-    <span class="ident">BottomUp</span>,
-}
-
-<span class="kw">impl</span> <span class="ident">Direction</span> {
-    <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_horizontal</span>(<span class="self">self</span>) -&gt; <span class="ident">bool</span> {
-        <span class="kw">match</span> <span class="self">self</span> {
-            <span class="ident">Direction::LeftToRight</span> <span class="op">|</span> <span class="ident">Direction::RightToLeft</span> =&gt; <span class="bool-val">true</span>,
-            <span class="ident">Direction::TopDown</span> <span class="op">|</span> <span class="ident">Direction::BottomUp</span> =&gt; <span class="bool-val">false</span>,
-        }
-    }
-
-    <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_vertical</span>(<span class="self">self</span>) -&gt; <span class="ident">bool</span> {
-        <span class="kw">match</span> <span class="self">self</span> {
-            <span class="ident">Direction::LeftToRight</span> <span class="op">|</span> <span class="ident">Direction::RightToLeft</span> =&gt; <span class="bool-val">false</span>,
-            <span class="ident">Direction::TopDown</span> <span class="op">|</span> <span class="ident">Direction::BottomUp</span> =&gt; <span class="bool-val">true</span>,
-        }
+    <span class="kw">pub fn </span>sanity_check(<span class="kw-2">&amp;</span><span class="self">self</span>) {
+        <span class="macro">egui_assert!</span>(!<span class="self">self</span>.min_rect.any_nan());
+        <span class="macro">egui_assert!</span>(!<span class="self">self</span>.max_rect.any_nan());
+        <span class="macro">egui_assert!</span>(!<span class="self">self</span>.cursor.any_nan());
     }
 }
 
-<span class="comment">// ----------------------------------------------------------------------------</span>
+<span class="comment">// ----------------------------------------------------------------------------
 
-<span class="doccomment">/// The layout of a [`Ui`][`crate::Ui`], e.g. &quot;vertical &amp; centered&quot;.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// ```</span>
-<span class="doccomment">/// # egui::__run_test_ui(|ui| {</span>
-<span class="doccomment">/// ui.with_layout(egui::Layout::right_to_left(), |ui| {</span>
-<span class="doccomment">///     ui.label(&quot;world!&quot;);</span>
-<span class="doccomment">///     ui.label(&quot;Hello&quot;);</span>
-<span class="doccomment">/// });</span>
-<span class="doccomment">/// # });</span>
-<span class="doccomment">/// ```</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>)]</span>
-<span class="comment">// #[cfg_attr(feature = &quot;serde&quot;, derive(serde::Deserialize, serde::Serialize))]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Layout</span> {
-    <span class="doccomment">/// Main axis direction</span>
-    <span class="ident">main_dir</span>: <span class="ident">Direction</span>,
-
-    <span class="doccomment">/// If true, wrap around when reading the end of the main direction.</span>
-    <span class="doccomment">/// For instance, for `main_dir == Direction::LeftToRight` this will</span>
-    <span class="doccomment">/// wrap to a new row when we reach the right side of the `max_rect`.</span>
-    <span class="ident">main_wrap</span>: <span class="ident">bool</span>,
-
-    <span class="doccomment">/// How to align things on the main axis.</span>
-    <span class="ident">main_align</span>: <span class="ident">Align</span>,
-
-    <span class="doccomment">/// Justify the main axis?</span>
-    <span class="ident">main_justify</span>: <span class="ident">bool</span>,
-
-    <span class="doccomment">/// How to align things on the cross axis.</span>
-    <span class="doccomment">/// For vertical layouts: put things to left, center or right?</span>
-    <span class="doccomment">/// For horizontal layouts: put things to top, center or bottom?</span>
-    <span class="ident">cross_align</span>: <span class="ident">Align</span>,
-
-    <span class="doccomment">/// Justify the cross axis?</span>
-    <span class="doccomment">/// For vertical layouts justify mean all widgets get maximum width.</span>
-    <span class="doccomment">/// For horizontal layouts justify mean all widgets get maximum height.</span>
-    <span class="ident">cross_justify</span>: <span class="ident">bool</span>,
+</span><span class="doccomment">/// Layout direction, one of `LeftToRight`, `RightToLeft`, `TopDown`, `BottomUp`.
+</span><span class="attribute">#[derive(Clone, Copy, Debug, PartialEq)]
+#[cfg_attr(feature = <span class="string">&quot;serde&quot;</span>, derive(serde::Deserialize, serde::Serialize))]
+#[cfg_attr(feature = <span class="string">&quot;serde&quot;</span>, serde(rename_all = <span class="string">&quot;snake_case&quot;</span>))]
+</span><span class="kw">pub enum </span>Direction {
+    LeftToRight,
+    RightToLeft,
+    TopDown,
+    BottomUp,
 }
 
-<span class="kw">impl</span> <span class="ident">Default</span> <span class="kw">for</span> <span class="ident">Layout</span> {
-    <span class="kw">fn</span> <span class="ident">default</span>() -&gt; <span class="self">Self</span> {
-        <span class="comment">// TODO: Get from `Style` instead.</span>
-        <span class="ident"><span class="self">Self</span>::top_down</span>(<span class="ident">Align::LEFT</span>) <span class="comment">// This is a very euro-centric default.</span>
-    }
-}
-
-<span class="doccomment">/// ## Constructors</span>
-<span class="kw">impl</span> <span class="ident">Layout</span> {
-    <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">left_to_right</span>() -&gt; <span class="self">Self</span> {
-        <span class="self">Self</span> {
-            <span class="ident">main_dir</span>: <span class="ident">Direction::LeftToRight</span>,
-            <span class="ident">main_wrap</span>: <span class="bool-val">false</span>,
-            <span class="ident">main_align</span>: <span class="ident">Align::Center</span>, <span class="comment">// looks best to e.g. center text within a button</span>
-            <span class="ident">main_justify</span>: <span class="bool-val">false</span>,
-            <span class="ident">cross_align</span>: <span class="ident">Align::Center</span>,
-            <span class="ident">cross_justify</span>: <span class="bool-val">false</span>,
+<span class="kw">impl </span>Direction {
+    <span class="attribute">#[inline(always)]
+    </span><span class="kw">pub fn </span>is_horizontal(<span class="self">self</span>) -&gt; bool {
+        <span class="kw">match </span><span class="self">self </span>{
+            Direction::LeftToRight | Direction::RightToLeft =&gt; <span class="bool-val">true</span>,
+            Direction::TopDown | Direction::BottomUp =&gt; <span class="bool-val">false</span>,
         }
     }
 
-    <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">right_to_left</span>() -&gt; <span class="self">Self</span> {
-        <span class="self">Self</span> {
-            <span class="ident">main_dir</span>: <span class="ident">Direction::RightToLeft</span>,
-            <span class="ident">main_wrap</span>: <span class="bool-val">false</span>,
-            <span class="ident">main_align</span>: <span class="ident">Align::Center</span>, <span class="comment">// looks best to e.g. center text within a button</span>
-            <span class="ident">main_justify</span>: <span class="bool-val">false</span>,
-            <span class="ident">cross_align</span>: <span class="ident">Align::Center</span>,
-            <span class="ident">cross_justify</span>: <span class="bool-val">false</span>,
-        }
-    }
-
-    <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">top_down</span>(<span class="ident">cross_align</span>: <span class="ident">Align</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">Self</span> {
-            <span class="ident">main_dir</span>: <span class="ident">Direction::TopDown</span>,
-            <span class="ident">main_wrap</span>: <span class="bool-val">false</span>,
-            <span class="ident">main_align</span>: <span class="ident">Align::Center</span>, <span class="comment">// looks best to e.g. center text within a button</span>
-            <span class="ident">main_justify</span>: <span class="bool-val">false</span>,
-            <span class="ident">cross_align</span>,
-            <span class="ident">cross_justify</span>: <span class="bool-val">false</span>,
-        }
-    }
-
-    <span class="doccomment">/// Top-down layout justifed so that buttons etc fill the full available width.</span>
-    <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">top_down_justified</span>(<span class="ident">cross_align</span>: <span class="ident">Align</span>) -&gt; <span class="self">Self</span> {
-        <span class="ident"><span class="self">Self</span>::top_down</span>(<span class="ident">cross_align</span>).<span class="ident">with_cross_justify</span>(<span class="bool-val">true</span>)
-    }
-
-    <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">bottom_up</span>(<span class="ident">cross_align</span>: <span class="ident">Align</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">Self</span> {
-            <span class="ident">main_dir</span>: <span class="ident">Direction::BottomUp</span>,
-            <span class="ident">main_wrap</span>: <span class="bool-val">false</span>,
-            <span class="ident">main_align</span>: <span class="ident">Align::Center</span>, <span class="comment">// looks best to e.g. center text within a button</span>
-            <span class="ident">main_justify</span>: <span class="bool-val">false</span>,
-            <span class="ident">cross_align</span>,
-            <span class="ident">cross_justify</span>: <span class="bool-val">false</span>,
-        }
-    }
-
-    <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">from_main_dir_and_cross_align</span>(<span class="ident">main_dir</span>: <span class="ident">Direction</span>, <span class="ident">cross_align</span>: <span class="ident">Align</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">Self</span> {
-            <span class="ident">main_dir</span>,
-            <span class="ident">main_wrap</span>: <span class="bool-val">false</span>,
-            <span class="ident">main_align</span>: <span class="ident">Align::Center</span>, <span class="comment">// looks best to e.g. center text within a button</span>
-            <span class="ident">main_justify</span>: <span class="bool-val">false</span>,
-            <span class="ident">cross_align</span>,
-            <span class="ident">cross_justify</span>: <span class="bool-val">false</span>,
-        }
-    }
-
-    <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">centered_and_justified</span>(<span class="ident">main_dir</span>: <span class="ident">Direction</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">Self</span> {
-            <span class="ident">main_dir</span>,
-            <span class="ident">main_wrap</span>: <span class="bool-val">false</span>,
-            <span class="ident">main_align</span>: <span class="ident">Align::Center</span>,
-            <span class="ident">main_justify</span>: <span class="bool-val">true</span>,
-            <span class="ident">cross_align</span>: <span class="ident">Align::Center</span>,
-            <span class="ident">cross_justify</span>: <span class="bool-val">true</span>,
-        }
-    }
-
-    <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">with_main_wrap</span>(<span class="self">self</span>, <span class="ident">main_wrap</span>: <span class="ident">bool</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">Self</span> { <span class="ident">main_wrap</span>, ..<span class="self">self</span> }
-    }
-
-    <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">with_cross_align</span>(<span class="self">self</span>, <span class="ident">cross_align</span>: <span class="ident">Align</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">Self</span> {
-            <span class="ident">cross_align</span>,
-            ..<span class="self">self</span>
-        }
-    }
-
-    <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">with_main_justify</span>(<span class="self">self</span>, <span class="ident">main_justify</span>: <span class="ident">bool</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">Self</span> {
-            <span class="ident">main_justify</span>,
-            ..<span class="self">self</span>
-        }
-    }
-
-    <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">with_cross_justify</span>(<span class="self">self</span>, <span class="ident">cross_justify</span>: <span class="ident">bool</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">Self</span> {
-            <span class="ident">cross_justify</span>,
-            ..<span class="self">self</span>
+    <span class="attribute">#[inline(always)]
+    </span><span class="kw">pub fn </span>is_vertical(<span class="self">self</span>) -&gt; bool {
+        <span class="kw">match </span><span class="self">self </span>{
+            Direction::LeftToRight | Direction::RightToLeft =&gt; <span class="bool-val">false</span>,
+            Direction::TopDown | Direction::BottomUp =&gt; <span class="bool-val">true</span>,
         }
     }
 }
 
-<span class="doccomment">/// ## Inspectors</span>
-<span class="kw">impl</span> <span class="ident">Layout</span> {
-    <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">main_dir</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">Direction</span> {
-        <span class="self">self</span>.<span class="ident">main_dir</span>
-    }
+<span class="comment">// ----------------------------------------------------------------------------
 
-    <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">main_wrap</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span> {
-        <span class="self">self</span>.<span class="ident">main_wrap</span>
-    }
+</span><span class="doccomment">/// The layout of a [`Ui`][`crate::Ui`], e.g. &quot;vertical &amp; centered&quot;.
+///
+/// ```
+/// # egui::__run_test_ui(|ui| {
+/// ui.with_layout(egui::Layout::right_to_left(), |ui| {
+///     ui.label(&quot;world!&quot;);
+///     ui.label(&quot;Hello&quot;);
+/// });
+/// # });
+/// ```
+</span><span class="attribute">#[derive(Clone, Copy, Debug, PartialEq)]
+</span><span class="comment">// #[cfg_attr(feature = &quot;serde&quot;, derive(serde::Deserialize, serde::Serialize))]
+</span><span class="kw">pub struct </span>Layout {
+    <span class="doccomment">/// Main axis direction
+    </span>main_dir: Direction,
 
-    <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">cross_align</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">Align</span> {
-        <span class="self">self</span>.<span class="ident">cross_align</span>
-    }
+    <span class="doccomment">/// If true, wrap around when reading the end of the main direction.
+    /// For instance, for `main_dir == Direction::LeftToRight` this will
+    /// wrap to a new row when we reach the right side of the `max_rect`.
+    </span>main_wrap: bool,
 
-    <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">cross_justify</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span> {
-        <span class="self">self</span>.<span class="ident">cross_justify</span>
-    }
+    <span class="doccomment">/// How to align things on the main axis.
+    </span>main_align: Align,
 
-    <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_horizontal</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span> {
-        <span class="self">self</span>.<span class="ident">main_dir</span>().<span class="ident">is_horizontal</span>()
-    }
+    <span class="doccomment">/// Justify the main axis?
+    </span>main_justify: bool,
 
-    <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_vertical</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span> {
-        <span class="self">self</span>.<span class="ident">main_dir</span>().<span class="ident">is_vertical</span>()
-    }
+    <span class="doccomment">/// How to align things on the cross axis.
+    /// For vertical layouts: put things to left, center or right?
+    /// For horizontal layouts: put things to top, center or bottom?
+    </span>cross_align: Align,
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">prefer_right_to_left</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span> {
-        <span class="self">self</span>.<span class="ident">main_dir</span> <span class="op">==</span> <span class="ident">Direction::RightToLeft</span>
-            <span class="op">|</span><span class="op">|</span> <span class="self">self</span>.<span class="ident">main_dir</span>.<span class="ident">is_vertical</span>() <span class="op">&amp;&amp;</span> <span class="self">self</span>.<span class="ident">cross_align</span> <span class="op">==</span> <span class="ident">Align::Max</span>
-    }
+    <span class="doccomment">/// Justify the cross axis?
+    /// For vertical layouts justify mean all widgets get maximum width.
+    /// For horizontal layouts justify mean all widgets get maximum height.
+    </span>cross_justify: bool,
+}
 
-    <span class="doccomment">/// e.g. for adjusting the placement of something.</span>
-    <span class="doccomment">/// * in horizontal layout: left or right?</span>
-    <span class="doccomment">/// * in vertical layout: same as [`Self::horizontal_align`].</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">horizontal_placement</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">Align</span> {
-        <span class="kw">match</span> <span class="self">self</span>.<span class="ident">main_dir</span> {
-            <span class="ident">Direction::LeftToRight</span> =&gt; <span class="ident">Align::LEFT</span>,
-            <span class="ident">Direction::RightToLeft</span> =&gt; <span class="ident">Align::RIGHT</span>,
-            <span class="ident">Direction::TopDown</span> <span class="op">|</span> <span class="ident">Direction::BottomUp</span> =&gt; <span class="self">self</span>.<span class="ident">cross_align</span>,
+<span class="kw">impl </span>Default <span class="kw">for </span>Layout {
+    <span class="kw">fn </span>default() -&gt; <span class="self">Self </span>{
+        <span class="comment">// TODO: Get from `Style` instead.
+        </span><span class="self">Self</span>::top_down(Align::LEFT) <span class="comment">// This is a very euro-centric default.
+    </span>}
+}
+
+<span class="doccomment">/// ## Constructors
+</span><span class="kw">impl </span>Layout {
+    <span class="attribute">#[inline(always)]
+    </span><span class="kw">pub fn </span>left_to_right() -&gt; <span class="self">Self </span>{
+        <span class="self">Self </span>{
+            main_dir: Direction::LeftToRight,
+            main_wrap: <span class="bool-val">false</span>,
+            main_align: Align::Center, <span class="comment">// looks best to e.g. center text within a button
+            </span>main_justify: <span class="bool-val">false</span>,
+            cross_align: Align::Center,
+            cross_justify: <span class="bool-val">false</span>,
         }
     }
 
-    <span class="doccomment">/// e.g. for when aligning text within a button.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">horizontal_align</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">Align</span> {
-        <span class="kw">if</span> <span class="self">self</span>.<span class="ident">is_horizontal</span>() {
-            <span class="self">self</span>.<span class="ident">main_align</span>
-        } <span class="kw">else</span> {
-            <span class="self">self</span>.<span class="ident">cross_align</span>
+    <span class="attribute">#[inline(always)]
+    </span><span class="kw">pub fn </span>right_to_left() -&gt; <span class="self">Self </span>{
+        <span class="self">Self </span>{
+            main_dir: Direction::RightToLeft,
+            main_wrap: <span class="bool-val">false</span>,
+            main_align: Align::Center, <span class="comment">// looks best to e.g. center text within a button
+            </span>main_justify: <span class="bool-val">false</span>,
+            cross_align: Align::Center,
+            cross_justify: <span class="bool-val">false</span>,
         }
     }
 
-    <span class="doccomment">/// e.g. for when aligning text within a button.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">vertical_align</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">Align</span> {
-        <span class="kw">if</span> <span class="self">self</span>.<span class="ident">is_vertical</span>() {
-            <span class="self">self</span>.<span class="ident">main_align</span>
-        } <span class="kw">else</span> {
-            <span class="self">self</span>.<span class="ident">cross_align</span>
+    <span class="attribute">#[inline(always)]
+    </span><span class="kw">pub fn </span>top_down(cross_align: Align) -&gt; <span class="self">Self </span>{
+        <span class="self">Self </span>{
+            main_dir: Direction::TopDown,
+            main_wrap: <span class="bool-val">false</span>,
+            main_align: Align::Center, <span class="comment">// looks best to e.g. center text within a button
+            </span>main_justify: <span class="bool-val">false</span>,
+            cross_align,
+            cross_justify: <span class="bool-val">false</span>,
         }
     }
 
-    <span class="doccomment">/// e.g. for when aligning text within a button.</span>
-    <span class="kw">fn</span> <span class="ident">align2</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">Align2</span> {
-        <span class="ident">Align2</span>([<span class="self">self</span>.<span class="ident">horizontal_align</span>(), <span class="self">self</span>.<span class="ident">vertical_align</span>()])
+    <span class="doccomment">/// Top-down layout justifed so that buttons etc fill the full available width.
+    </span><span class="attribute">#[inline(always)]
+    </span><span class="kw">pub fn </span>top_down_justified(cross_align: Align) -&gt; <span class="self">Self </span>{
+        <span class="self">Self</span>::top_down(cross_align).with_cross_justify(<span class="bool-val">true</span>)
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">horizontal_justify</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span> {
-        <span class="kw">if</span> <span class="self">self</span>.<span class="ident">is_horizontal</span>() {
-            <span class="self">self</span>.<span class="ident">main_justify</span>
-        } <span class="kw">else</span> {
-            <span class="self">self</span>.<span class="ident">cross_justify</span>
+    <span class="attribute">#[inline(always)]
+    </span><span class="kw">pub fn </span>bottom_up(cross_align: Align) -&gt; <span class="self">Self </span>{
+        <span class="self">Self </span>{
+            main_dir: Direction::BottomUp,
+            main_wrap: <span class="bool-val">false</span>,
+            main_align: Align::Center, <span class="comment">// looks best to e.g. center text within a button
+            </span>main_justify: <span class="bool-val">false</span>,
+            cross_align,
+            cross_justify: <span class="bool-val">false</span>,
         }
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">vertical_justify</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span> {
-        <span class="kw">if</span> <span class="self">self</span>.<span class="ident">is_vertical</span>() {
-            <span class="self">self</span>.<span class="ident">main_justify</span>
-        } <span class="kw">else</span> {
-            <span class="self">self</span>.<span class="ident">cross_justify</span>
+    <span class="attribute">#[inline(always)]
+    </span><span class="kw">pub fn </span>from_main_dir_and_cross_align(main_dir: Direction, cross_align: Align) -&gt; <span class="self">Self </span>{
+        <span class="self">Self </span>{
+            main_dir,
+            main_wrap: <span class="bool-val">false</span>,
+            main_align: Align::Center, <span class="comment">// looks best to e.g. center text within a button
+            </span>main_justify: <span class="bool-val">false</span>,
+            cross_align,
+            cross_justify: <span class="bool-val">false</span>,
+        }
+    }
+
+    <span class="attribute">#[inline(always)]
+    </span><span class="kw">pub fn </span>centered_and_justified(main_dir: Direction) -&gt; <span class="self">Self </span>{
+        <span class="self">Self </span>{
+            main_dir,
+            main_wrap: <span class="bool-val">false</span>,
+            main_align: Align::Center,
+            main_justify: <span class="bool-val">true</span>,
+            cross_align: Align::Center,
+            cross_justify: <span class="bool-val">true</span>,
+        }
+    }
+
+    <span class="attribute">#[inline(always)]
+    </span><span class="kw">pub fn </span>with_main_wrap(<span class="self">self</span>, main_wrap: bool) -&gt; <span class="self">Self </span>{
+        <span class="self">Self </span>{ main_wrap, ..<span class="self">self </span>}
+    }
+
+    <span class="attribute">#[inline(always)]
+    </span><span class="kw">pub fn </span>with_cross_align(<span class="self">self</span>, cross_align: Align) -&gt; <span class="self">Self </span>{
+        <span class="self">Self </span>{
+            cross_align,
+            ..<span class="self">self
+        </span>}
+    }
+
+    <span class="attribute">#[inline(always)]
+    </span><span class="kw">pub fn </span>with_main_justify(<span class="self">self</span>, main_justify: bool) -&gt; <span class="self">Self </span>{
+        <span class="self">Self </span>{
+            main_justify,
+            ..<span class="self">self
+        </span>}
+    }
+
+    <span class="attribute">#[inline(always)]
+    </span><span class="kw">pub fn </span>with_cross_justify(<span class="self">self</span>, cross_justify: bool) -&gt; <span class="self">Self </span>{
+        <span class="self">Self </span>{
+            cross_justify,
+            ..<span class="self">self
+        </span>}
+    }
+}
+
+<span class="doccomment">/// ## Inspectors
+</span><span class="kw">impl </span>Layout {
+    <span class="attribute">#[inline(always)]
+    </span><span class="kw">pub fn </span>main_dir(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; Direction {
+        <span class="self">self</span>.main_dir
+    }
+
+    <span class="attribute">#[inline(always)]
+    </span><span class="kw">pub fn </span>main_wrap(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; bool {
+        <span class="self">self</span>.main_wrap
+    }
+
+    <span class="attribute">#[inline(always)]
+    </span><span class="kw">pub fn </span>cross_align(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; Align {
+        <span class="self">self</span>.cross_align
+    }
+
+    <span class="attribute">#[inline(always)]
+    </span><span class="kw">pub fn </span>cross_justify(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; bool {
+        <span class="self">self</span>.cross_justify
+    }
+
+    <span class="attribute">#[inline(always)]
+    </span><span class="kw">pub fn </span>is_horizontal(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; bool {
+        <span class="self">self</span>.main_dir().is_horizontal()
+    }
+
+    <span class="attribute">#[inline(always)]
+    </span><span class="kw">pub fn </span>is_vertical(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; bool {
+        <span class="self">self</span>.main_dir().is_vertical()
+    }
+
+    <span class="kw">pub fn </span>prefer_right_to_left(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; bool {
+        <span class="self">self</span>.main_dir == Direction::RightToLeft
+            || <span class="self">self</span>.main_dir.is_vertical() &amp;&amp; <span class="self">self</span>.cross_align == Align::Max
+    }
+
+    <span class="doccomment">/// e.g. for adjusting the placement of something.
+    /// * in horizontal layout: left or right?
+    /// * in vertical layout: same as [`Self::horizontal_align`].
+    </span><span class="kw">pub fn </span>horizontal_placement(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; Align {
+        <span class="kw">match </span><span class="self">self</span>.main_dir {
+            Direction::LeftToRight =&gt; Align::LEFT,
+            Direction::RightToLeft =&gt; Align::RIGHT,
+            Direction::TopDown | Direction::BottomUp =&gt; <span class="self">self</span>.cross_align,
+        }
+    }
+
+    <span class="doccomment">/// e.g. for when aligning text within a button.
+    </span><span class="kw">pub fn </span>horizontal_align(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; Align {
+        <span class="kw">if </span><span class="self">self</span>.is_horizontal() {
+            <span class="self">self</span>.main_align
+        } <span class="kw">else </span>{
+            <span class="self">self</span>.cross_align
+        }
+    }
+
+    <span class="doccomment">/// e.g. for when aligning text within a button.
+    </span><span class="kw">pub fn </span>vertical_align(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; Align {
+        <span class="kw">if </span><span class="self">self</span>.is_vertical() {
+            <span class="self">self</span>.main_align
+        } <span class="kw">else </span>{
+            <span class="self">self</span>.cross_align
+        }
+    }
+
+    <span class="doccomment">/// e.g. for when aligning text within a button.
+    </span><span class="kw">fn </span>align2(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; Align2 {
+        Align2([<span class="self">self</span>.horizontal_align(), <span class="self">self</span>.vertical_align()])
+    }
+
+    <span class="kw">pub fn </span>horizontal_justify(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; bool {
+        <span class="kw">if </span><span class="self">self</span>.is_horizontal() {
+            <span class="self">self</span>.main_justify
+        } <span class="kw">else </span>{
+            <span class="self">self</span>.cross_justify
+        }
+    }
+
+    <span class="kw">pub fn </span>vertical_justify(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; bool {
+        <span class="kw">if </span><span class="self">self</span>.is_vertical() {
+            <span class="self">self</span>.main_justify
+        } <span class="kw">else </span>{
+            <span class="self">self</span>.cross_justify
         }
     }
 }
 
-<span class="doccomment">/// ## Doing layout</span>
-<span class="kw">impl</span> <span class="ident">Layout</span> {
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">align_size_within_rect</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">size</span>: <span class="ident">Vec2</span>, <span class="ident">outer</span>: <span class="ident">Rect</span>) -&gt; <span class="ident">Rect</span> {
-        <span class="macro">egui_assert!</span>(<span class="ident">size</span>.<span class="ident">x</span> <span class="op">&gt;</span><span class="op">=</span> <span class="number">0.0</span> <span class="op">&amp;&amp;</span> <span class="ident">size</span>.<span class="ident">y</span> <span class="op">&gt;</span><span class="op">=</span> <span class="number">0.0</span>);
-        <span class="macro">egui_assert!</span>(<span class="op">!</span><span class="ident">outer</span>.<span class="ident">is_negative</span>());
-        <span class="self">self</span>.<span class="ident">align2</span>().<span class="ident">align_size_within_rect</span>(<span class="ident">size</span>, <span class="ident">outer</span>)
+<span class="doccomment">/// ## Doing layout
+</span><span class="kw">impl </span>Layout {
+    <span class="kw">pub fn </span>align_size_within_rect(<span class="kw-2">&amp;</span><span class="self">self</span>, size: Vec2, outer: Rect) -&gt; Rect {
+        <span class="macro">egui_assert!</span>(size.x &gt;= <span class="number">0.0 </span>&amp;&amp; size.y &gt;= <span class="number">0.0</span>);
+        <span class="macro">egui_assert!</span>(!outer.is_negative());
+        <span class="self">self</span>.align2().align_size_within_rect(size, outer)
     }
 
-    <span class="kw">fn</span> <span class="ident">initial_cursor</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">max_rect</span>: <span class="ident">Rect</span>) -&gt; <span class="ident">Rect</span> {
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">cursor</span> <span class="op">=</span> <span class="ident">max_rect</span>;
+    <span class="kw">fn </span>initial_cursor(<span class="kw-2">&amp;</span><span class="self">self</span>, max_rect: Rect) -&gt; Rect {
+        <span class="kw">let </span><span class="kw-2">mut </span>cursor = max_rect;
 
-        <span class="kw">match</span> <span class="self">self</span>.<span class="ident">main_dir</span> {
-            <span class="ident">Direction::LeftToRight</span> =&gt; {
-                <span class="ident">cursor</span>.<span class="ident">max</span>.<span class="ident">x</span> <span class="op">=</span> <span class="ident">INFINITY</span>;
+        <span class="kw">match </span><span class="self">self</span>.main_dir {
+            Direction::LeftToRight =&gt; {
+                cursor.max.x = INFINITY;
             }
-            <span class="ident">Direction::RightToLeft</span> =&gt; {
-                <span class="ident">cursor</span>.<span class="ident">min</span>.<span class="ident">x</span> <span class="op">=</span> <span class="op">-</span><span class="ident">INFINITY</span>;
+            Direction::RightToLeft =&gt; {
+                cursor.min.x = -INFINITY;
             }
-            <span class="ident">Direction::TopDown</span> =&gt; {
-                <span class="ident">cursor</span>.<span class="ident">max</span>.<span class="ident">y</span> <span class="op">=</span> <span class="ident">INFINITY</span>;
+            Direction::TopDown =&gt; {
+                cursor.max.y = INFINITY;
             }
-            <span class="ident">Direction::BottomUp</span> =&gt; {
-                <span class="ident">cursor</span>.<span class="ident">min</span>.<span class="ident">y</span> <span class="op">=</span> <span class="op">-</span><span class="ident">INFINITY</span>;
+            Direction::BottomUp =&gt; {
+                cursor.min.y = -INFINITY;
             }
         }
 
-        <span class="ident">cursor</span>
+        cursor
     }
 
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">region_from_max_rect</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">max_rect</span>: <span class="ident">Rect</span>) -&gt; <span class="ident">Region</span> {
-        <span class="macro">egui_assert!</span>(<span class="op">!</span><span class="ident">max_rect</span>.<span class="ident">any_nan</span>());
-        <span class="macro">egui_assert!</span>(<span class="ident">max_rect</span>.<span class="ident">is_finite</span>());
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">region</span> <span class="op">=</span> <span class="ident">Region</span> {
-            <span class="ident">min_rect</span>: <span class="ident">Rect::NOTHING</span>, <span class="comment">// temporary</span>
-            <span class="ident">max_rect</span>,
-            <span class="ident">cursor</span>: <span class="self">self</span>.<span class="ident">initial_cursor</span>(<span class="ident">max_rect</span>),
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>region_from_max_rect(<span class="kw-2">&amp;</span><span class="self">self</span>, max_rect: Rect) -&gt; Region {
+        <span class="macro">egui_assert!</span>(!max_rect.any_nan());
+        <span class="macro">egui_assert!</span>(max_rect.is_finite());
+        <span class="kw">let </span><span class="kw-2">mut </span>region = Region {
+            min_rect: Rect::NOTHING, <span class="comment">// temporary
+            </span>max_rect,
+            cursor: <span class="self">self</span>.initial_cursor(max_rect),
         };
-        <span class="kw">let</span> <span class="ident">seed</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">next_widget_position</span>(<span class="kw-2">&amp;</span><span class="ident">region</span>);
-        <span class="ident">region</span>.<span class="ident">min_rect</span> <span class="op">=</span> <span class="ident">Rect::from_center_size</span>(<span class="ident">seed</span>, <span class="ident">Vec2::ZERO</span>);
-        <span class="ident">region</span>
+        <span class="kw">let </span>seed = <span class="self">self</span>.next_widget_position(<span class="kw-2">&amp;</span>region);
+        region.min_rect = Rect::from_center_size(seed, Vec2::ZERO);
+        region
     }
 
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">available_rect_before_wrap</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">region</span>: <span class="kw-2">&amp;</span><span class="ident">Region</span>) -&gt; <span class="ident">Rect</span> {
-        <span class="self">self</span>.<span class="ident">available_from_cursor_max_rect</span>(<span class="ident">region</span>.<span class="ident">cursor</span>, <span class="ident">region</span>.<span class="ident">max_rect</span>)
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>available_rect_before_wrap(<span class="kw-2">&amp;</span><span class="self">self</span>, region: <span class="kw-2">&amp;</span>Region) -&gt; Rect {
+        <span class="self">self</span>.available_from_cursor_max_rect(region.cursor, region.max_rect)
     }
 
-    <span class="doccomment">/// Amount of space available for a widget.</span>
-    <span class="doccomment">/// For wrapping layouts, this is the maximum (after wrap).</span>
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">available_size</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">r</span>: <span class="kw-2">&amp;</span><span class="ident">Region</span>) -&gt; <span class="ident">Vec2</span> {
-        <span class="kw">if</span> <span class="self">self</span>.<span class="ident">main_wrap</span> {
-            <span class="kw">if</span> <span class="self">self</span>.<span class="ident">main_dir</span>.<span class="ident">is_horizontal</span>() {
-                <span class="ident">vec2</span>(<span class="ident">r</span>.<span class="ident">max_rect</span>.<span class="ident">width</span>(), <span class="ident">r</span>.<span class="ident">cursor</span>.<span class="ident">height</span>())
-            } <span class="kw">else</span> {
-                <span class="ident">vec2</span>(<span class="ident">r</span>.<span class="ident">cursor</span>.<span class="ident">width</span>(), <span class="ident">r</span>.<span class="ident">max_rect</span>.<span class="ident">height</span>())
+    <span class="doccomment">/// Amount of space available for a widget.
+    /// For wrapping layouts, this is the maximum (after wrap).
+    </span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>available_size(<span class="kw-2">&amp;</span><span class="self">self</span>, r: <span class="kw-2">&amp;</span>Region) -&gt; Vec2 {
+        <span class="kw">if </span><span class="self">self</span>.main_wrap {
+            <span class="kw">if </span><span class="self">self</span>.main_dir.is_horizontal() {
+                vec2(r.max_rect.width(), r.cursor.height())
+            } <span class="kw">else </span>{
+                vec2(r.cursor.width(), r.max_rect.height())
             }
-        } <span class="kw">else</span> {
-            <span class="self">self</span>.<span class="ident">available_from_cursor_max_rect</span>(<span class="ident">r</span>.<span class="ident">cursor</span>, <span class="ident">r</span>.<span class="ident">max_rect</span>)
-                .<span class="ident">size</span>()
+        } <span class="kw">else </span>{
+            <span class="self">self</span>.available_from_cursor_max_rect(r.cursor, r.max_rect)
+                .size()
         }
     }
 
-    <span class="doccomment">/// Given the cursor in the region, how much space is available</span>
-    <span class="doccomment">/// for the next widget?</span>
-    <span class="kw">fn</span> <span class="ident">available_from_cursor_max_rect</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">cursor</span>: <span class="ident">Rect</span>, <span class="ident">max_rect</span>: <span class="ident">Rect</span>) -&gt; <span class="ident">Rect</span> {
-        <span class="macro">egui_assert!</span>(<span class="op">!</span><span class="ident">cursor</span>.<span class="ident">any_nan</span>());
-        <span class="macro">egui_assert!</span>(<span class="op">!</span><span class="ident">max_rect</span>.<span class="ident">any_nan</span>());
-        <span class="macro">egui_assert!</span>(<span class="ident">max_rect</span>.<span class="ident">is_finite</span>());
+    <span class="doccomment">/// Given the cursor in the region, how much space is available
+    /// for the next widget?
+    </span><span class="kw">fn </span>available_from_cursor_max_rect(<span class="kw-2">&amp;</span><span class="self">self</span>, cursor: Rect, max_rect: Rect) -&gt; Rect {
+        <span class="macro">egui_assert!</span>(!cursor.any_nan());
+        <span class="macro">egui_assert!</span>(!max_rect.any_nan());
+        <span class="macro">egui_assert!</span>(max_rect.is_finite());
 
-        <span class="comment">// NOTE: in normal top-down layout the cursor has moved below the current max_rect,</span>
-        <span class="comment">// but the available shouldn&#39;t be negative.</span>
+        <span class="comment">// NOTE: in normal top-down layout the cursor has moved below the current max_rect,
+        // but the available shouldn&#39;t be negative.
 
-        <span class="comment">// ALSO: with wrapping layouts, cursor jumps to new row before expanding max_rect.</span>
+        // ALSO: with wrapping layouts, cursor jumps to new row before expanding max_rect.
 
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">avail</span> <span class="op">=</span> <span class="ident">max_rect</span>;
+        </span><span class="kw">let </span><span class="kw-2">mut </span>avail = max_rect;
 
-        <span class="kw">match</span> <span class="self">self</span>.<span class="ident">main_dir</span> {
-            <span class="ident">Direction::LeftToRight</span> =&gt; {
-                <span class="ident">avail</span>.<span class="ident">min</span>.<span class="ident">x</span> <span class="op">=</span> <span class="ident">cursor</span>.<span class="ident">min</span>.<span class="ident">x</span>;
-                <span class="ident">avail</span>.<span class="ident">max</span>.<span class="ident">x</span> <span class="op">=</span> <span class="ident">avail</span>.<span class="ident">max</span>.<span class="ident">x</span>.<span class="ident">max</span>(<span class="ident">cursor</span>.<span class="ident">min</span>.<span class="ident">x</span>);
-                <span class="ident">avail</span>.<span class="ident">max</span>.<span class="ident">x</span> <span class="op">=</span> <span class="ident">avail</span>.<span class="ident">max</span>.<span class="ident">x</span>.<span class="ident">max</span>(<span class="ident">avail</span>.<span class="ident">min</span>.<span class="ident">x</span>);
-                <span class="ident">avail</span>.<span class="ident">max</span>.<span class="ident">y</span> <span class="op">=</span> <span class="ident">avail</span>.<span class="ident">max</span>.<span class="ident">y</span>.<span class="ident">max</span>(<span class="ident">avail</span>.<span class="ident">min</span>.<span class="ident">y</span>);
+        <span class="kw">match </span><span class="self">self</span>.main_dir {
+            Direction::LeftToRight =&gt; {
+                avail.min.x = cursor.min.x;
+                avail.max.x = avail.max.x.max(cursor.min.x);
+                avail.max.x = avail.max.x.max(avail.min.x);
+                avail.max.y = avail.max.y.max(avail.min.y);
             }
-            <span class="ident">Direction::RightToLeft</span> =&gt; {
-                <span class="ident">avail</span>.<span class="ident">max</span>.<span class="ident">x</span> <span class="op">=</span> <span class="ident">cursor</span>.<span class="ident">max</span>.<span class="ident">x</span>;
-                <span class="ident">avail</span>.<span class="ident">min</span>.<span class="ident">x</span> <span class="op">=</span> <span class="ident">avail</span>.<span class="ident">min</span>.<span class="ident">x</span>.<span class="ident">min</span>(<span class="ident">cursor</span>.<span class="ident">max</span>.<span class="ident">x</span>);
-                <span class="ident">avail</span>.<span class="ident">min</span>.<span class="ident">x</span> <span class="op">=</span> <span class="ident">avail</span>.<span class="ident">min</span>.<span class="ident">x</span>.<span class="ident">min</span>(<span class="ident">avail</span>.<span class="ident">max</span>.<span class="ident">x</span>);
-                <span class="ident">avail</span>.<span class="ident">max</span>.<span class="ident">y</span> <span class="op">=</span> <span class="ident">avail</span>.<span class="ident">max</span>.<span class="ident">y</span>.<span class="ident">max</span>(<span class="ident">avail</span>.<span class="ident">min</span>.<span class="ident">y</span>);
+            Direction::RightToLeft =&gt; {
+                avail.max.x = cursor.max.x;
+                avail.min.x = avail.min.x.min(cursor.max.x);
+                avail.min.x = avail.min.x.min(avail.max.x);
+                avail.max.y = avail.max.y.max(avail.min.y);
             }
-            <span class="ident">Direction::TopDown</span> =&gt; {
-                <span class="ident">avail</span>.<span class="ident">min</span>.<span class="ident">y</span> <span class="op">=</span> <span class="ident">cursor</span>.<span class="ident">min</span>.<span class="ident">y</span>;
-                <span class="ident">avail</span>.<span class="ident">max</span>.<span class="ident">y</span> <span class="op">=</span> <span class="ident">avail</span>.<span class="ident">max</span>.<span class="ident">y</span>.<span class="ident">max</span>(<span class="ident">cursor</span>.<span class="ident">min</span>.<span class="ident">y</span>);
-                <span class="ident">avail</span>.<span class="ident">max</span>.<span class="ident">x</span> <span class="op">=</span> <span class="ident">avail</span>.<span class="ident">max</span>.<span class="ident">x</span>.<span class="ident">max</span>(<span class="ident">avail</span>.<span class="ident">min</span>.<span class="ident">x</span>);
-                <span class="ident">avail</span>.<span class="ident">max</span>.<span class="ident">y</span> <span class="op">=</span> <span class="ident">avail</span>.<span class="ident">max</span>.<span class="ident">y</span>.<span class="ident">max</span>(<span class="ident">avail</span>.<span class="ident">min</span>.<span class="ident">y</span>);
+            Direction::TopDown =&gt; {
+                avail.min.y = cursor.min.y;
+                avail.max.y = avail.max.y.max(cursor.min.y);
+                avail.max.x = avail.max.x.max(avail.min.x);
+                avail.max.y = avail.max.y.max(avail.min.y);
             }
-            <span class="ident">Direction::BottomUp</span> =&gt; {
-                <span class="ident">avail</span>.<span class="ident">max</span>.<span class="ident">y</span> <span class="op">=</span> <span class="ident">cursor</span>.<span class="ident">max</span>.<span class="ident">y</span>;
-                <span class="ident">avail</span>.<span class="ident">min</span>.<span class="ident">y</span> <span class="op">=</span> <span class="ident">avail</span>.<span class="ident">min</span>.<span class="ident">y</span>.<span class="ident">min</span>(<span class="ident">cursor</span>.<span class="ident">max</span>.<span class="ident">y</span>);
-                <span class="ident">avail</span>.<span class="ident">max</span>.<span class="ident">x</span> <span class="op">=</span> <span class="ident">avail</span>.<span class="ident">max</span>.<span class="ident">x</span>.<span class="ident">max</span>(<span class="ident">avail</span>.<span class="ident">min</span>.<span class="ident">x</span>);
-                <span class="ident">avail</span>.<span class="ident">min</span>.<span class="ident">y</span> <span class="op">=</span> <span class="ident">avail</span>.<span class="ident">min</span>.<span class="ident">y</span>.<span class="ident">min</span>(<span class="ident">avail</span>.<span class="ident">max</span>.<span class="ident">y</span>);
+            Direction::BottomUp =&gt; {
+                avail.max.y = cursor.max.y;
+                avail.min.y = avail.min.y.min(cursor.max.y);
+                avail.max.x = avail.max.x.max(avail.min.x);
+                avail.min.y = avail.min.y.min(avail.max.y);
             }
         }
 
-        <span class="comment">// We can use the cursor to restrict the available region.</span>
-        <span class="comment">// For instance, we use this to restrict the available space of a parent Ui</span>
-        <span class="comment">// after adding a panel to it.</span>
-        <span class="comment">// We also use it for wrapping layouts.</span>
-        <span class="ident">avail</span> <span class="op">=</span> <span class="ident">avail</span>.<span class="ident">intersect</span>(<span class="ident">cursor</span>);
+        <span class="comment">// We can use the cursor to restrict the available region.
+        // For instance, we use this to restrict the available space of a parent Ui
+        // after adding a panel to it.
+        // We also use it for wrapping layouts.
+        </span>avail = avail.intersect(cursor);
 
-        <span class="comment">// Make sure it isn&#39;t negative:</span>
-        <span class="kw">if</span> <span class="ident">avail</span>.<span class="ident">max</span>.<span class="ident">x</span> <span class="op">&lt;</span> <span class="ident">avail</span>.<span class="ident">min</span>.<span class="ident">x</span> {
-            <span class="kw">let</span> <span class="ident">x</span> <span class="op">=</span> <span class="number">0.5</span> <span class="op">*</span> (<span class="ident">avail</span>.<span class="ident">min</span>.<span class="ident">x</span> <span class="op">+</span> <span class="ident">avail</span>.<span class="ident">max</span>.<span class="ident">x</span>);
-            <span class="ident">avail</span>.<span class="ident">min</span>.<span class="ident">x</span> <span class="op">=</span> <span class="ident">x</span>;
-            <span class="ident">avail</span>.<span class="ident">max</span>.<span class="ident">x</span> <span class="op">=</span> <span class="ident">x</span>;
+        <span class="comment">// Make sure it isn&#39;t negative:
+        </span><span class="kw">if </span>avail.max.x &lt; avail.min.x {
+            <span class="kw">let </span>x = <span class="number">0.5 </span>* (avail.min.x + avail.max.x);
+            avail.min.x = x;
+            avail.max.x = x;
         }
-        <span class="kw">if</span> <span class="ident">avail</span>.<span class="ident">max</span>.<span class="ident">y</span> <span class="op">&lt;</span> <span class="ident">avail</span>.<span class="ident">min</span>.<span class="ident">y</span> {
-            <span class="kw">let</span> <span class="ident">y</span> <span class="op">=</span> <span class="number">0.5</span> <span class="op">*</span> (<span class="ident">avail</span>.<span class="ident">min</span>.<span class="ident">y</span> <span class="op">+</span> <span class="ident">avail</span>.<span class="ident">max</span>.<span class="ident">y</span>);
-            <span class="ident">avail</span>.<span class="ident">min</span>.<span class="ident">y</span> <span class="op">=</span> <span class="ident">y</span>;
-            <span class="ident">avail</span>.<span class="ident">max</span>.<span class="ident">y</span> <span class="op">=</span> <span class="ident">y</span>;
+        <span class="kw">if </span>avail.max.y &lt; avail.min.y {
+            <span class="kw">let </span>y = <span class="number">0.5 </span>* (avail.min.y + avail.max.y);
+            avail.min.y = y;
+            avail.max.y = y;
         }
 
-        <span class="macro">egui_assert!</span>(<span class="op">!</span><span class="ident">avail</span>.<span class="ident">any_nan</span>());
+        <span class="macro">egui_assert!</span>(!avail.any_nan());
 
-        <span class="ident">avail</span>
+        avail
     }
 
-    <span class="doccomment">/// Returns where to put the next widget that is of the given size.</span>
-    <span class="doccomment">/// The returned `frame_rect` `Rect` will always be justified along the cross axis.</span>
-    <span class="doccomment">/// This is what you then pass to `advance_after_rects`.</span>
-    <span class="doccomment">/// Use `justify_and_align` to get the inner `widget_rect`.</span>
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">next_frame</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">region</span>: <span class="kw-2">&amp;</span><span class="ident">Region</span>, <span class="ident">child_size</span>: <span class="ident">Vec2</span>, <span class="ident">spacing</span>: <span class="ident">Vec2</span>) -&gt; <span class="ident">Rect</span> {
-        <span class="ident">region</span>.<span class="ident">sanity_check</span>();
-        <span class="macro">egui_assert!</span>(<span class="ident">child_size</span>.<span class="ident">x</span> <span class="op">&gt;</span><span class="op">=</span> <span class="number">0.0</span> <span class="op">&amp;&amp;</span> <span class="ident">child_size</span>.<span class="ident">y</span> <span class="op">&gt;</span><span class="op">=</span> <span class="number">0.0</span>);
+    <span class="doccomment">/// Returns where to put the next widget that is of the given size.
+    /// The returned `frame_rect` `Rect` will always be justified along the cross axis.
+    /// This is what you then pass to `advance_after_rects`.
+    /// Use `justify_and_align` to get the inner `widget_rect`.
+    </span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>next_frame(<span class="kw-2">&amp;</span><span class="self">self</span>, region: <span class="kw-2">&amp;</span>Region, child_size: Vec2, spacing: Vec2) -&gt; Rect {
+        region.sanity_check();
+        <span class="macro">egui_assert!</span>(child_size.x &gt;= <span class="number">0.0 </span>&amp;&amp; child_size.y &gt;= <span class="number">0.0</span>);
 
-        <span class="kw">if</span> <span class="self">self</span>.<span class="ident">main_wrap</span> {
-            <span class="kw">let</span> <span class="ident">available_size</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">available_rect_before_wrap</span>(<span class="ident">region</span>).<span class="ident">size</span>();
+        <span class="kw">if </span><span class="self">self</span>.main_wrap {
+            <span class="kw">let </span>available_size = <span class="self">self</span>.available_rect_before_wrap(region).size();
 
-            <span class="kw">let</span> <span class="ident">Region</span> {
-                <span class="kw-2">mut</span> <span class="ident">cursor</span>,
-                <span class="kw-2">mut</span> <span class="ident">max_rect</span>,
-                <span class="ident">min_rect</span>,
-            } <span class="op">=</span> <span class="kw-2">*</span><span class="ident">region</span>;
+            <span class="kw">let </span>Region {
+                <span class="kw-2">mut </span>cursor,
+                <span class="kw-2">mut </span>max_rect,
+                min_rect,
+            } = <span class="kw-2">*</span>region;
 
-            <span class="kw">match</span> <span class="self">self</span>.<span class="ident">main_dir</span> {
-                <span class="ident">Direction::LeftToRight</span> =&gt; {
-                    <span class="kw">if</span> <span class="ident">available_size</span>.<span class="ident">x</span> <span class="op">&lt;</span> <span class="ident">child_size</span>.<span class="ident">x</span> <span class="op">&amp;&amp;</span> <span class="ident">max_rect</span>.<span class="ident">left</span>() <span class="op">&lt;</span> <span class="ident">cursor</span>.<span class="ident">left</span>() {
-                        <span class="comment">// New row</span>
-                        <span class="kw">let</span> <span class="ident">new_row_height</span> <span class="op">=</span> <span class="ident">cursor</span>.<span class="ident">height</span>().<span class="ident">max</span>(<span class="ident">child_size</span>.<span class="ident">y</span>);
-                        <span class="comment">// let new_top = cursor.bottom() + spacing.y;</span>
-                        <span class="kw">let</span> <span class="ident">new_top</span> <span class="op">=</span> <span class="ident">min_rect</span>.<span class="ident">bottom</span>() <span class="op">+</span> <span class="ident">spacing</span>.<span class="ident">y</span>; <span class="comment">// tighter packing</span>
-                        <span class="ident">cursor</span> <span class="op">=</span> <span class="ident">Rect::from_min_max</span>(
-                            <span class="ident">pos2</span>(<span class="ident">max_rect</span>.<span class="ident">left</span>(), <span class="ident">new_top</span>),
-                            <span class="ident">pos2</span>(<span class="ident">INFINITY</span>, <span class="ident">new_top</span> <span class="op">+</span> <span class="ident">new_row_height</span>),
+            <span class="kw">match </span><span class="self">self</span>.main_dir {
+                Direction::LeftToRight =&gt; {
+                    <span class="kw">if </span>available_size.x &lt; child_size.x &amp;&amp; max_rect.left() &lt; cursor.left() {
+                        <span class="comment">// New row
+                        </span><span class="kw">let </span>new_row_height = cursor.height().max(child_size.y);
+                        <span class="comment">// let new_top = cursor.bottom() + spacing.y;
+                        </span><span class="kw">let </span>new_top = min_rect.bottom() + spacing.y; <span class="comment">// tighter packing
+                        </span>cursor = Rect::from_min_max(
+                            pos2(max_rect.left(), new_top),
+                            pos2(INFINITY, new_top + new_row_height),
                         );
-                        <span class="ident">max_rect</span>.<span class="ident">max</span>.<span class="ident">y</span> <span class="op">=</span> <span class="ident">max_rect</span>.<span class="ident">max</span>.<span class="ident">y</span>.<span class="ident">max</span>(<span class="ident">cursor</span>.<span class="ident">max</span>.<span class="ident">y</span>);
+                        max_rect.max.y = max_rect.max.y.max(cursor.max.y);
                     }
                 }
-                <span class="ident">Direction::RightToLeft</span> =&gt; {
-                    <span class="kw">if</span> <span class="ident">available_size</span>.<span class="ident">x</span> <span class="op">&lt;</span> <span class="ident">child_size</span>.<span class="ident">x</span> <span class="op">&amp;&amp;</span> <span class="ident">cursor</span>.<span class="ident">right</span>() <span class="op">&lt;</span> <span class="ident">max_rect</span>.<span class="ident">right</span>() {
-                        <span class="comment">// New row</span>
-                        <span class="kw">let</span> <span class="ident">new_row_height</span> <span class="op">=</span> <span class="ident">cursor</span>.<span class="ident">height</span>().<span class="ident">max</span>(<span class="ident">child_size</span>.<span class="ident">y</span>);
-                        <span class="comment">// let new_top = cursor.bottom() + spacing.y;</span>
-                        <span class="kw">let</span> <span class="ident">new_top</span> <span class="op">=</span> <span class="ident">min_rect</span>.<span class="ident">bottom</span>() <span class="op">+</span> <span class="ident">spacing</span>.<span class="ident">y</span>; <span class="comment">// tighter packing</span>
-                        <span class="ident">cursor</span> <span class="op">=</span> <span class="ident">Rect::from_min_max</span>(
-                            <span class="ident">pos2</span>(<span class="op">-</span><span class="ident">INFINITY</span>, <span class="ident">new_top</span>),
-                            <span class="ident">pos2</span>(<span class="ident">max_rect</span>.<span class="ident">right</span>(), <span class="ident">new_top</span> <span class="op">+</span> <span class="ident">new_row_height</span>),
+                Direction::RightToLeft =&gt; {
+                    <span class="kw">if </span>available_size.x &lt; child_size.x &amp;&amp; cursor.right() &lt; max_rect.right() {
+                        <span class="comment">// New row
+                        </span><span class="kw">let </span>new_row_height = cursor.height().max(child_size.y);
+                        <span class="comment">// let new_top = cursor.bottom() + spacing.y;
+                        </span><span class="kw">let </span>new_top = min_rect.bottom() + spacing.y; <span class="comment">// tighter packing
+                        </span>cursor = Rect::from_min_max(
+                            pos2(-INFINITY, new_top),
+                            pos2(max_rect.right(), new_top + new_row_height),
                         );
-                        <span class="ident">max_rect</span>.<span class="ident">max</span>.<span class="ident">y</span> <span class="op">=</span> <span class="ident">max_rect</span>.<span class="ident">max</span>.<span class="ident">y</span>.<span class="ident">max</span>(<span class="ident">cursor</span>.<span class="ident">max</span>.<span class="ident">y</span>);
+                        max_rect.max.y = max_rect.max.y.max(cursor.max.y);
                     }
                 }
-                <span class="ident">Direction::TopDown</span> =&gt; {
-                    <span class="kw">if</span> <span class="ident">available_size</span>.<span class="ident">y</span> <span class="op">&lt;</span> <span class="ident">child_size</span>.<span class="ident">y</span> <span class="op">&amp;&amp;</span> <span class="ident">max_rect</span>.<span class="ident">top</span>() <span class="op">&lt;</span> <span class="ident">cursor</span>.<span class="ident">top</span>() {
-                        <span class="comment">// New column</span>
-                        <span class="kw">let</span> <span class="ident">new_col_width</span> <span class="op">=</span> <span class="ident">cursor</span>.<span class="ident">width</span>().<span class="ident">max</span>(<span class="ident">child_size</span>.<span class="ident">x</span>);
-                        <span class="ident">cursor</span> <span class="op">=</span> <span class="ident">Rect::from_min_max</span>(
-                            <span class="ident">pos2</span>(<span class="ident">cursor</span>.<span class="ident">right</span>() <span class="op">+</span> <span class="ident">spacing</span>.<span class="ident">x</span>, <span class="ident">max_rect</span>.<span class="ident">top</span>()),
-                            <span class="ident">pos2</span>(<span class="ident">cursor</span>.<span class="ident">right</span>() <span class="op">+</span> <span class="ident">spacing</span>.<span class="ident">x</span> <span class="op">+</span> <span class="ident">new_col_width</span>, <span class="ident">INFINITY</span>),
+                Direction::TopDown =&gt; {
+                    <span class="kw">if </span>available_size.y &lt; child_size.y &amp;&amp; max_rect.top() &lt; cursor.top() {
+                        <span class="comment">// New column
+                        </span><span class="kw">let </span>new_col_width = cursor.width().max(child_size.x);
+                        cursor = Rect::from_min_max(
+                            pos2(cursor.right() + spacing.x, max_rect.top()),
+                            pos2(cursor.right() + spacing.x + new_col_width, INFINITY),
                         );
-                        <span class="ident">max_rect</span>.<span class="ident">max</span>.<span class="ident">x</span> <span class="op">=</span> <span class="ident">max_rect</span>.<span class="ident">max</span>.<span class="ident">x</span>.<span class="ident">max</span>(<span class="ident">cursor</span>.<span class="ident">max</span>.<span class="ident">x</span>);
+                        max_rect.max.x = max_rect.max.x.max(cursor.max.x);
                     }
                 }
-                <span class="ident">Direction::BottomUp</span> =&gt; {
-                    <span class="kw">if</span> <span class="ident">available_size</span>.<span class="ident">y</span> <span class="op">&lt;</span> <span class="ident">child_size</span>.<span class="ident">y</span> <span class="op">&amp;&amp;</span> <span class="ident">cursor</span>.<span class="ident">bottom</span>() <span class="op">&lt;</span> <span class="ident">max_rect</span>.<span class="ident">bottom</span>() {
-                        <span class="comment">// New column</span>
-                        <span class="kw">let</span> <span class="ident">new_col_width</span> <span class="op">=</span> <span class="ident">cursor</span>.<span class="ident">width</span>().<span class="ident">max</span>(<span class="ident">child_size</span>.<span class="ident">x</span>);
-                        <span class="ident">cursor</span> <span class="op">=</span> <span class="ident">Rect::from_min_max</span>(
-                            <span class="ident">pos2</span>(<span class="ident">cursor</span>.<span class="ident">right</span>() <span class="op">+</span> <span class="ident">spacing</span>.<span class="ident">x</span>, <span class="op">-</span><span class="ident">INFINITY</span>),
-                            <span class="ident">pos2</span>(
-                                <span class="ident">cursor</span>.<span class="ident">right</span>() <span class="op">+</span> <span class="ident">spacing</span>.<span class="ident">x</span> <span class="op">+</span> <span class="ident">new_col_width</span>,
-                                <span class="ident">max_rect</span>.<span class="ident">bottom</span>(),
+                Direction::BottomUp =&gt; {
+                    <span class="kw">if </span>available_size.y &lt; child_size.y &amp;&amp; cursor.bottom() &lt; max_rect.bottom() {
+                        <span class="comment">// New column
+                        </span><span class="kw">let </span>new_col_width = cursor.width().max(child_size.x);
+                        cursor = Rect::from_min_max(
+                            pos2(cursor.right() + spacing.x, -INFINITY),
+                            pos2(
+                                cursor.right() + spacing.x + new_col_width,
+                                max_rect.bottom(),
                             ),
                         );
-                        <span class="ident">max_rect</span>.<span class="ident">max</span>.<span class="ident">x</span> <span class="op">=</span> <span class="ident">max_rect</span>.<span class="ident">max</span>.<span class="ident">x</span>.<span class="ident">max</span>(<span class="ident">cursor</span>.<span class="ident">max</span>.<span class="ident">x</span>);
+                        max_rect.max.x = max_rect.max.x.max(cursor.max.x);
                     }
                 }
             }
 
-            <span class="comment">// Use the new cursor:</span>
-            <span class="kw">let</span> <span class="ident">region</span> <span class="op">=</span> <span class="ident">Region</span> {
-                <span class="ident">min_rect</span>,
-                <span class="ident">max_rect</span>,
-                <span class="ident">cursor</span>,
+            <span class="comment">// Use the new cursor:
+            </span><span class="kw">let </span>region = Region {
+                min_rect,
+                max_rect,
+                cursor,
             };
 
-            <span class="self">self</span>.<span class="ident">next_frame_ignore_wrap</span>(<span class="kw-2">&amp;</span><span class="ident">region</span>, <span class="ident">child_size</span>)
-        } <span class="kw">else</span> {
-            <span class="self">self</span>.<span class="ident">next_frame_ignore_wrap</span>(<span class="ident">region</span>, <span class="ident">child_size</span>)
+            <span class="self">self</span>.next_frame_ignore_wrap(<span class="kw-2">&amp;</span>region, child_size)
+        } <span class="kw">else </span>{
+            <span class="self">self</span>.next_frame_ignore_wrap(region, child_size)
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">next_frame_ignore_wrap</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">region</span>: <span class="kw-2">&amp;</span><span class="ident">Region</span>, <span class="ident">child_size</span>: <span class="ident">Vec2</span>) -&gt; <span class="ident">Rect</span> {
-        <span class="ident">region</span>.<span class="ident">sanity_check</span>();
-        <span class="macro">egui_assert!</span>(<span class="ident">child_size</span>.<span class="ident">x</span> <span class="op">&gt;</span><span class="op">=</span> <span class="number">0.0</span> <span class="op">&amp;&amp;</span> <span class="ident">child_size</span>.<span class="ident">y</span> <span class="op">&gt;</span><span class="op">=</span> <span class="number">0.0</span>);
+    <span class="kw">fn </span>next_frame_ignore_wrap(<span class="kw-2">&amp;</span><span class="self">self</span>, region: <span class="kw-2">&amp;</span>Region, child_size: Vec2) -&gt; Rect {
+        region.sanity_check();
+        <span class="macro">egui_assert!</span>(child_size.x &gt;= <span class="number">0.0 </span>&amp;&amp; child_size.y &gt;= <span class="number">0.0</span>);
 
-        <span class="kw">let</span> <span class="ident">available_rect</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">available_rect_before_wrap</span>(<span class="ident">region</span>);
+        <span class="kw">let </span>available_rect = <span class="self">self</span>.available_rect_before_wrap(region);
 
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">frame_size</span> <span class="op">=</span> <span class="ident">child_size</span>;
+        <span class="kw">let </span><span class="kw-2">mut </span>frame_size = child_size;
 
-        <span class="kw">if</span> (<span class="self">self</span>.<span class="ident">is_vertical</span>() <span class="op">&amp;&amp;</span> <span class="self">self</span>.<span class="ident">horizontal_align</span>() <span class="op">==</span> <span class="ident">Align::Center</span>)
-            <span class="op">|</span><span class="op">|</span> <span class="self">self</span>.<span class="ident">horizontal_justify</span>()
+        <span class="kw">if </span>(<span class="self">self</span>.is_vertical() &amp;&amp; <span class="self">self</span>.horizontal_align() == Align::Center)
+            || <span class="self">self</span>.horizontal_justify()
         {
-            <span class="ident">frame_size</span>.<span class="ident">x</span> <span class="op">=</span> <span class="ident">frame_size</span>.<span class="ident">x</span>.<span class="ident">max</span>(<span class="ident">available_rect</span>.<span class="ident">width</span>()); <span class="comment">// fill full width</span>
-        }
-        <span class="kw">if</span> (<span class="self">self</span>.<span class="ident">is_horizontal</span>() <span class="op">&amp;&amp;</span> <span class="self">self</span>.<span class="ident">vertical_align</span>() <span class="op">==</span> <span class="ident">Align::Center</span>)
-            <span class="op">|</span><span class="op">|</span> <span class="self">self</span>.<span class="ident">vertical_justify</span>()
+            frame_size.x = frame_size.x.max(available_rect.width()); <span class="comment">// fill full width
+        </span>}
+        <span class="kw">if </span>(<span class="self">self</span>.is_horizontal() &amp;&amp; <span class="self">self</span>.vertical_align() == Align::Center)
+            || <span class="self">self</span>.vertical_justify()
         {
-            <span class="ident">frame_size</span>.<span class="ident">y</span> <span class="op">=</span> <span class="ident">frame_size</span>.<span class="ident">y</span>.<span class="ident">max</span>(<span class="ident">available_rect</span>.<span class="ident">height</span>()); <span class="comment">// fill full height</span>
-        }
+            frame_size.y = frame_size.y.max(available_rect.height()); <span class="comment">// fill full height
+        </span>}
 
-        <span class="kw">let</span> <span class="ident">align2</span> <span class="op">=</span> <span class="kw">match</span> <span class="self">self</span>.<span class="ident">main_dir</span> {
-            <span class="ident">Direction::LeftToRight</span> =&gt; <span class="ident">Align2</span>([<span class="ident">Align::LEFT</span>, <span class="self">self</span>.<span class="ident">vertical_align</span>()]),
-            <span class="ident">Direction::RightToLeft</span> =&gt; <span class="ident">Align2</span>([<span class="ident">Align::RIGHT</span>, <span class="self">self</span>.<span class="ident">vertical_align</span>()]),
-            <span class="ident">Direction::TopDown</span> =&gt; <span class="ident">Align2</span>([<span class="self">self</span>.<span class="ident">horizontal_align</span>(), <span class="ident">Align::TOP</span>]),
-            <span class="ident">Direction::BottomUp</span> =&gt; <span class="ident">Align2</span>([<span class="self">self</span>.<span class="ident">horizontal_align</span>(), <span class="ident">Align::BOTTOM</span>]),
+        <span class="kw">let </span>align2 = <span class="kw">match </span><span class="self">self</span>.main_dir {
+            Direction::LeftToRight =&gt; Align2([Align::LEFT, <span class="self">self</span>.vertical_align()]),
+            Direction::RightToLeft =&gt; Align2([Align::RIGHT, <span class="self">self</span>.vertical_align()]),
+            Direction::TopDown =&gt; Align2([<span class="self">self</span>.horizontal_align(), Align::TOP]),
+            Direction::BottomUp =&gt; Align2([<span class="self">self</span>.horizontal_align(), Align::BOTTOM]),
         };
 
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">frame_rect</span> <span class="op">=</span> <span class="ident">align2</span>.<span class="ident">align_size_within_rect</span>(<span class="ident">frame_size</span>, <span class="ident">available_rect</span>);
+        <span class="kw">let </span><span class="kw-2">mut </span>frame_rect = align2.align_size_within_rect(frame_size, available_rect);
 
-        <span class="kw">if</span> <span class="self">self</span>.<span class="ident">is_horizontal</span>() <span class="op">&amp;&amp;</span> <span class="ident">frame_rect</span>.<span class="ident">top</span>() <span class="op">&lt;</span> <span class="ident">region</span>.<span class="ident">cursor</span>.<span class="ident">top</span>() {
-            <span class="comment">// for horizontal layouts we always want to expand down,</span>
-            <span class="comment">// or we will overlap the row above.</span>
-            <span class="comment">// This is a bit hacky. Maybe we should do it for vertical layouts too.</span>
-            <span class="ident">frame_rect</span> <span class="op">=</span> <span class="ident">frame_rect</span>.<span class="ident">translate</span>(<span class="ident">Vec2::Y</span> <span class="op">*</span> (<span class="ident">region</span>.<span class="ident">cursor</span>.<span class="ident">top</span>() <span class="op">-</span> <span class="ident">frame_rect</span>.<span class="ident">top</span>()));
+        <span class="kw">if </span><span class="self">self</span>.is_horizontal() &amp;&amp; frame_rect.top() &lt; region.cursor.top() {
+            <span class="comment">// for horizontal layouts we always want to expand down,
+            // or we will overlap the row above.
+            // This is a bit hacky. Maybe we should do it for vertical layouts too.
+            </span>frame_rect = frame_rect.translate(Vec2::Y * (region.cursor.top() - frame_rect.top()));
         }
 
-        <span class="macro">egui_assert!</span>(<span class="op">!</span><span class="ident">frame_rect</span>.<span class="ident">any_nan</span>());
-        <span class="macro">egui_assert!</span>(<span class="op">!</span><span class="ident">frame_rect</span>.<span class="ident">is_negative</span>());
+        <span class="macro">egui_assert!</span>(!frame_rect.any_nan());
+        <span class="macro">egui_assert!</span>(!frame_rect.is_negative());
 
-        <span class="ident">frame_rect</span>
+        frame_rect
     }
 
-    <span class="doccomment">/// Apply justify (fill width/height) and/or alignment after calling `next_space`.</span>
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">justify_and_align</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">frame</span>: <span class="ident">Rect</span>, <span class="kw-2">mut</span> <span class="ident">child_size</span>: <span class="ident">Vec2</span>) -&gt; <span class="ident">Rect</span> {
-        <span class="macro">egui_assert!</span>(<span class="ident">child_size</span>.<span class="ident">x</span> <span class="op">&gt;</span><span class="op">=</span> <span class="number">0.0</span> <span class="op">&amp;&amp;</span> <span class="ident">child_size</span>.<span class="ident">y</span> <span class="op">&gt;</span><span class="op">=</span> <span class="number">0.0</span>);
-        <span class="macro">egui_assert!</span>(<span class="op">!</span><span class="ident">frame</span>.<span class="ident">is_negative</span>());
+    <span class="doccomment">/// Apply justify (fill width/height) and/or alignment after calling `next_space`.
+    </span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>justify_and_align(<span class="kw-2">&amp;</span><span class="self">self</span>, frame: Rect, <span class="kw-2">mut </span>child_size: Vec2) -&gt; Rect {
+        <span class="macro">egui_assert!</span>(child_size.x &gt;= <span class="number">0.0 </span>&amp;&amp; child_size.y &gt;= <span class="number">0.0</span>);
+        <span class="macro">egui_assert!</span>(!frame.is_negative());
 
-        <span class="kw">if</span> <span class="self">self</span>.<span class="ident">horizontal_justify</span>() {
-            <span class="ident">child_size</span>.<span class="ident">x</span> <span class="op">=</span> <span class="ident">child_size</span>.<span class="ident">x</span>.<span class="ident">at_least</span>(<span class="ident">frame</span>.<span class="ident">width</span>()); <span class="comment">// fill full width</span>
-        }
-        <span class="kw">if</span> <span class="self">self</span>.<span class="ident">vertical_justify</span>() {
-            <span class="ident">child_size</span>.<span class="ident">y</span> <span class="op">=</span> <span class="ident">child_size</span>.<span class="ident">y</span>.<span class="ident">at_least</span>(<span class="ident">frame</span>.<span class="ident">height</span>()); <span class="comment">// fill full height</span>
-        }
-        <span class="self">self</span>.<span class="ident">align_size_within_rect</span>(<span class="ident">child_size</span>, <span class="ident">frame</span>)
+        <span class="kw">if </span><span class="self">self</span>.horizontal_justify() {
+            child_size.x = child_size.x.at_least(frame.width()); <span class="comment">// fill full width
+        </span>}
+        <span class="kw">if </span><span class="self">self</span>.vertical_justify() {
+            child_size.y = child_size.y.at_least(frame.height()); <span class="comment">// fill full height
+        </span>}
+        <span class="self">self</span>.align_size_within_rect(child_size, frame)
     }
 
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">next_widget_space_ignore_wrap_justify</span>(
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>next_widget_space_ignore_wrap_justify(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
-        <span class="ident">region</span>: <span class="kw-2">&amp;</span><span class="ident">Region</span>,
-        <span class="ident">size</span>: <span class="ident">Vec2</span>,
-    ) -&gt; <span class="ident">Rect</span> {
-        <span class="kw">let</span> <span class="ident">frame</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">next_frame_ignore_wrap</span>(<span class="ident">region</span>, <span class="ident">size</span>);
-        <span class="kw">let</span> <span class="ident">rect</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">align_size_within_rect</span>(<span class="ident">size</span>, <span class="ident">frame</span>);
-        <span class="macro">egui_assert!</span>(<span class="op">!</span><span class="ident">rect</span>.<span class="ident">any_nan</span>());
-        <span class="macro">egui_assert!</span>(<span class="op">!</span><span class="ident">rect</span>.<span class="ident">is_negative</span>());
-        <span class="macro">egui_assert!</span>((<span class="ident">rect</span>.<span class="ident">width</span>() <span class="op">-</span> <span class="ident">size</span>.<span class="ident">x</span>).<span class="ident">abs</span>() <span class="op">&lt;</span> <span class="number">1.0</span> <span class="op">|</span><span class="op">|</span> <span class="ident">size</span>.<span class="ident">x</span> <span class="op">==</span> <span class="ident">f32::INFINITY</span>);
-        <span class="macro">egui_assert!</span>((<span class="ident">rect</span>.<span class="ident">height</span>() <span class="op">-</span> <span class="ident">size</span>.<span class="ident">y</span>).<span class="ident">abs</span>() <span class="op">&lt;</span> <span class="number">1.0</span> <span class="op">|</span><span class="op">|</span> <span class="ident">size</span>.<span class="ident">y</span> <span class="op">==</span> <span class="ident">f32::INFINITY</span>);
-        <span class="ident">rect</span>
+        region: <span class="kw-2">&amp;</span>Region,
+        size: Vec2,
+    ) -&gt; Rect {
+        <span class="kw">let </span>frame = <span class="self">self</span>.next_frame_ignore_wrap(region, size);
+        <span class="kw">let </span>rect = <span class="self">self</span>.align_size_within_rect(size, frame);
+        <span class="macro">egui_assert!</span>(!rect.any_nan());
+        <span class="macro">egui_assert!</span>(!rect.is_negative());
+        <span class="macro">egui_assert!</span>((rect.width() - size.x).abs() &lt; <span class="number">1.0 </span>|| size.x == f32::INFINITY);
+        <span class="macro">egui_assert!</span>((rect.height() - size.y).abs() &lt; <span class="number">1.0 </span>|| size.y == f32::INFINITY);
+        rect
     }
 
-    <span class="doccomment">/// Where would the next tiny widget be centered?</span>
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">next_widget_position</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">region</span>: <span class="kw-2">&amp;</span><span class="ident">Region</span>) -&gt; <span class="ident">Pos2</span> {
-        <span class="self">self</span>.<span class="ident">next_widget_space_ignore_wrap_justify</span>(<span class="ident">region</span>, <span class="ident">Vec2::ZERO</span>)
-            .<span class="ident">center</span>()
+    <span class="doccomment">/// Where would the next tiny widget be centered?
+    </span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>next_widget_position(<span class="kw-2">&amp;</span><span class="self">self</span>, region: <span class="kw-2">&amp;</span>Region) -&gt; Pos2 {
+        <span class="self">self</span>.next_widget_space_ignore_wrap_justify(region, Vec2::ZERO)
+            .center()
     }
 
-    <span class="doccomment">/// Advance the cursor by this many points, and allocate in region.</span>
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">advance_cursor</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">region</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Region</span>, <span class="ident">amount</span>: <span class="ident">f32</span>) {
-        <span class="kw">match</span> <span class="self">self</span>.<span class="ident">main_dir</span> {
-            <span class="ident">Direction::LeftToRight</span> =&gt; {
-                <span class="ident">region</span>.<span class="ident">cursor</span>.<span class="ident">min</span>.<span class="ident">x</span> <span class="op">+</span><span class="op">=</span> <span class="ident">amount</span>;
-                <span class="ident">region</span>.<span class="ident">expand_to_include_x</span>(<span class="ident">region</span>.<span class="ident">cursor</span>.<span class="ident">min</span>.<span class="ident">x</span>);
+    <span class="doccomment">/// Advance the cursor by this many points, and allocate in region.
+    </span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>advance_cursor(<span class="kw-2">&amp;</span><span class="self">self</span>, region: <span class="kw-2">&amp;mut </span>Region, amount: f32) {
+        <span class="kw">match </span><span class="self">self</span>.main_dir {
+            Direction::LeftToRight =&gt; {
+                region.cursor.min.x += amount;
+                region.expand_to_include_x(region.cursor.min.x);
             }
-            <span class="ident">Direction::RightToLeft</span> =&gt; {
-                <span class="ident">region</span>.<span class="ident">cursor</span>.<span class="ident">max</span>.<span class="ident">x</span> <span class="op">-</span><span class="op">=</span> <span class="ident">amount</span>;
-                <span class="ident">region</span>.<span class="ident">expand_to_include_x</span>(<span class="ident">region</span>.<span class="ident">cursor</span>.<span class="ident">max</span>.<span class="ident">x</span>);
+            Direction::RightToLeft =&gt; {
+                region.cursor.max.x -= amount;
+                region.expand_to_include_x(region.cursor.max.x);
             }
-            <span class="ident">Direction::TopDown</span> =&gt; {
-                <span class="ident">region</span>.<span class="ident">cursor</span>.<span class="ident">min</span>.<span class="ident">y</span> <span class="op">+</span><span class="op">=</span> <span class="ident">amount</span>;
-                <span class="ident">region</span>.<span class="ident">expand_to_include_y</span>(<span class="ident">region</span>.<span class="ident">cursor</span>.<span class="ident">min</span>.<span class="ident">y</span>);
+            Direction::TopDown =&gt; {
+                region.cursor.min.y += amount;
+                region.expand_to_include_y(region.cursor.min.y);
             }
-            <span class="ident">Direction::BottomUp</span> =&gt; {
-                <span class="ident">region</span>.<span class="ident">cursor</span>.<span class="ident">max</span>.<span class="ident">y</span> <span class="op">-</span><span class="op">=</span> <span class="ident">amount</span>;
-                <span class="ident">region</span>.<span class="ident">expand_to_include_y</span>(<span class="ident">region</span>.<span class="ident">cursor</span>.<span class="ident">max</span>.<span class="ident">y</span>);
+            Direction::BottomUp =&gt; {
+                region.cursor.max.y -= amount;
+                region.expand_to_include_y(region.cursor.max.y);
             }
         }
     }
 
-    <span class="doccomment">/// Advance cursor after a widget was added to a specific rectangle.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// * `frame_rect`: the frame inside which a widget was e.g. centered</span>
-    <span class="doccomment">/// * `widget_rect`: the actual rect used by the widget</span>
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">advance_after_rects</span>(
+    <span class="doccomment">/// Advance cursor after a widget was added to a specific rectangle.
+    ///
+    /// * `frame_rect`: the frame inside which a widget was e.g. centered
+    /// * `widget_rect`: the actual rect used by the widget
+    </span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>advance_after_rects(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
-        <span class="ident">cursor</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Rect</span>,
-        <span class="ident">frame_rect</span>: <span class="ident">Rect</span>,
-        <span class="ident">widget_rect</span>: <span class="ident">Rect</span>,
-        <span class="ident">item_spacing</span>: <span class="ident">Vec2</span>,
+        cursor: <span class="kw-2">&amp;mut </span>Rect,
+        frame_rect: Rect,
+        widget_rect: Rect,
+        item_spacing: Vec2,
     ) {
-        <span class="macro">egui_assert!</span>(<span class="op">!</span><span class="ident">cursor</span>.<span class="ident">any_nan</span>());
-        <span class="kw">if</span> <span class="self">self</span>.<span class="ident">main_wrap</span> {
-            <span class="kw">if</span> <span class="ident">cursor</span>.<span class="ident">intersects</span>(<span class="ident">frame_rect</span>.<span class="ident">shrink</span>(<span class="number">1.0</span>)) {
-                <span class="comment">// make row/column larger if necessary</span>
-                <span class="kw-2">*</span><span class="ident">cursor</span> <span class="op">=</span> <span class="ident">cursor</span>.<span class="ident">union</span>(<span class="ident">frame_rect</span>);
-            } <span class="kw">else</span> {
-                <span class="comment">// this is a new row or column. We temporarily use NAN for what will be filled in later.</span>
-                <span class="kw">match</span> <span class="self">self</span>.<span class="ident">main_dir</span> {
-                    <span class="ident">Direction::LeftToRight</span> =&gt; {
-                        <span class="kw-2">*</span><span class="ident">cursor</span> <span class="op">=</span> <span class="ident">Rect::from_min_max</span>(
-                            <span class="ident">pos2</span>(<span class="ident">f32::NAN</span>, <span class="ident">frame_rect</span>.<span class="ident">min</span>.<span class="ident">y</span>),
-                            <span class="ident">pos2</span>(<span class="ident">INFINITY</span>, <span class="ident">frame_rect</span>.<span class="ident">max</span>.<span class="ident">y</span>),
+        <span class="macro">egui_assert!</span>(!cursor.any_nan());
+        <span class="kw">if </span><span class="self">self</span>.main_wrap {
+            <span class="kw">if </span>cursor.intersects(frame_rect.shrink(<span class="number">1.0</span>)) {
+                <span class="comment">// make row/column larger if necessary
+                </span><span class="kw-2">*</span>cursor = cursor.union(frame_rect);
+            } <span class="kw">else </span>{
+                <span class="comment">// this is a new row or column. We temporarily use NAN for what will be filled in later.
+                </span><span class="kw">match </span><span class="self">self</span>.main_dir {
+                    Direction::LeftToRight =&gt; {
+                        <span class="kw-2">*</span>cursor = Rect::from_min_max(
+                            pos2(f32::NAN, frame_rect.min.y),
+                            pos2(INFINITY, frame_rect.max.y),
                         );
                     }
-                    <span class="ident">Direction::RightToLeft</span> =&gt; {
-                        <span class="kw-2">*</span><span class="ident">cursor</span> <span class="op">=</span> <span class="ident">Rect::from_min_max</span>(
-                            <span class="ident">pos2</span>(<span class="op">-</span><span class="ident">INFINITY</span>, <span class="ident">frame_rect</span>.<span class="ident">min</span>.<span class="ident">y</span>),
-                            <span class="ident">pos2</span>(<span class="ident">f32::NAN</span>, <span class="ident">frame_rect</span>.<span class="ident">max</span>.<span class="ident">y</span>),
+                    Direction::RightToLeft =&gt; {
+                        <span class="kw-2">*</span>cursor = Rect::from_min_max(
+                            pos2(-INFINITY, frame_rect.min.y),
+                            pos2(f32::NAN, frame_rect.max.y),
                         );
                     }
-                    <span class="ident">Direction::TopDown</span> =&gt; {
-                        <span class="kw-2">*</span><span class="ident">cursor</span> <span class="op">=</span> <span class="ident">Rect::from_min_max</span>(
-                            <span class="ident">pos2</span>(<span class="ident">frame_rect</span>.<span class="ident">min</span>.<span class="ident">x</span>, <span class="ident">f32::NAN</span>),
-                            <span class="ident">pos2</span>(<span class="ident">frame_rect</span>.<span class="ident">max</span>.<span class="ident">x</span>, <span class="ident">INFINITY</span>),
+                    Direction::TopDown =&gt; {
+                        <span class="kw-2">*</span>cursor = Rect::from_min_max(
+                            pos2(frame_rect.min.x, f32::NAN),
+                            pos2(frame_rect.max.x, INFINITY),
                         );
                     }
-                    <span class="ident">Direction::BottomUp</span> =&gt; {
-                        <span class="kw-2">*</span><span class="ident">cursor</span> <span class="op">=</span> <span class="ident">Rect::from_min_max</span>(
-                            <span class="ident">pos2</span>(<span class="ident">frame_rect</span>.<span class="ident">min</span>.<span class="ident">x</span>, <span class="op">-</span><span class="ident">INFINITY</span>),
-                            <span class="ident">pos2</span>(<span class="ident">frame_rect</span>.<span class="ident">max</span>.<span class="ident">x</span>, <span class="ident">f32::NAN</span>),
+                    Direction::BottomUp =&gt; {
+                        <span class="kw-2">*</span>cursor = Rect::from_min_max(
+                            pos2(frame_rect.min.x, -INFINITY),
+                            pos2(frame_rect.max.x, f32::NAN),
                         );
                     }
                 };
             }
-        } <span class="kw">else</span> {
-            <span class="comment">// Make sure we also expand where we consider adding things (the cursor):</span>
-            <span class="kw">if</span> <span class="self">self</span>.<span class="ident">is_horizontal</span>() {
-                <span class="ident">cursor</span>.<span class="ident">min</span>.<span class="ident">y</span> <span class="op">=</span> <span class="ident">cursor</span>.<span class="ident">min</span>.<span class="ident">y</span>.<span class="ident">min</span>(<span class="ident">frame_rect</span>.<span class="ident">min</span>.<span class="ident">y</span>);
-                <span class="ident">cursor</span>.<span class="ident">max</span>.<span class="ident">y</span> <span class="op">=</span> <span class="ident">cursor</span>.<span class="ident">max</span>.<span class="ident">y</span>.<span class="ident">max</span>(<span class="ident">frame_rect</span>.<span class="ident">max</span>.<span class="ident">y</span>);
-            } <span class="kw">else</span> {
-                <span class="ident">cursor</span>.<span class="ident">min</span>.<span class="ident">x</span> <span class="op">=</span> <span class="ident">cursor</span>.<span class="ident">min</span>.<span class="ident">x</span>.<span class="ident">min</span>(<span class="ident">frame_rect</span>.<span class="ident">min</span>.<span class="ident">x</span>);
-                <span class="ident">cursor</span>.<span class="ident">max</span>.<span class="ident">x</span> <span class="op">=</span> <span class="ident">cursor</span>.<span class="ident">max</span>.<span class="ident">x</span>.<span class="ident">max</span>(<span class="ident">frame_rect</span>.<span class="ident">max</span>.<span class="ident">x</span>);
+        } <span class="kw">else </span>{
+            <span class="comment">// Make sure we also expand where we consider adding things (the cursor):
+            </span><span class="kw">if </span><span class="self">self</span>.is_horizontal() {
+                cursor.min.y = cursor.min.y.min(frame_rect.min.y);
+                cursor.max.y = cursor.max.y.max(frame_rect.max.y);
+            } <span class="kw">else </span>{
+                cursor.min.x = cursor.min.x.min(frame_rect.min.x);
+                cursor.max.x = cursor.max.x.max(frame_rect.max.x);
             }
         }
 
-        <span class="kw">match</span> <span class="self">self</span>.<span class="ident">main_dir</span> {
-            <span class="ident">Direction::LeftToRight</span> =&gt; {
-                <span class="ident">cursor</span>.<span class="ident">min</span>.<span class="ident">x</span> <span class="op">=</span> <span class="ident">widget_rect</span>.<span class="ident">max</span>.<span class="ident">x</span> <span class="op">+</span> <span class="ident">item_spacing</span>.<span class="ident">x</span>;
+        <span class="kw">match </span><span class="self">self</span>.main_dir {
+            Direction::LeftToRight =&gt; {
+                cursor.min.x = widget_rect.max.x + item_spacing.x;
             }
-            <span class="ident">Direction::RightToLeft</span> =&gt; {
-                <span class="ident">cursor</span>.<span class="ident">max</span>.<span class="ident">x</span> <span class="op">=</span> <span class="ident">widget_rect</span>.<span class="ident">min</span>.<span class="ident">x</span> <span class="op">-</span> <span class="ident">item_spacing</span>.<span class="ident">x</span>;
+            Direction::RightToLeft =&gt; {
+                cursor.max.x = widget_rect.min.x - item_spacing.x;
             }
-            <span class="ident">Direction::TopDown</span> =&gt; {
-                <span class="ident">cursor</span>.<span class="ident">min</span>.<span class="ident">y</span> <span class="op">=</span> <span class="ident">widget_rect</span>.<span class="ident">max</span>.<span class="ident">y</span> <span class="op">+</span> <span class="ident">item_spacing</span>.<span class="ident">y</span>;
+            Direction::TopDown =&gt; {
+                cursor.min.y = widget_rect.max.y + item_spacing.y;
             }
-            <span class="ident">Direction::BottomUp</span> =&gt; {
-                <span class="ident">cursor</span>.<span class="ident">max</span>.<span class="ident">y</span> <span class="op">=</span> <span class="ident">widget_rect</span>.<span class="ident">min</span>.<span class="ident">y</span> <span class="op">-</span> <span class="ident">item_spacing</span>.<span class="ident">y</span>;
+            Direction::BottomUp =&gt; {
+                cursor.max.y = widget_rect.min.y - item_spacing.y;
             }
         };
     }
 
-    <span class="doccomment">/// Move to the next row in a wrapping layout.</span>
-    <span class="doccomment">/// Otherwise does nothing.</span>
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">end_row</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">region</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Region</span>, <span class="ident">spacing</span>: <span class="ident">Vec2</span>) {
-        <span class="kw">if</span> <span class="self">self</span>.<span class="ident">main_wrap</span> {
-            <span class="kw">match</span> <span class="self">self</span>.<span class="ident">main_dir</span> {
-                <span class="ident">Direction::LeftToRight</span> =&gt; {
-                    <span class="kw">let</span> <span class="ident">new_top</span> <span class="op">=</span> <span class="ident">region</span>.<span class="ident">cursor</span>.<span class="ident">bottom</span>() <span class="op">+</span> <span class="ident">spacing</span>.<span class="ident">y</span>;
-                    <span class="ident">region</span>.<span class="ident">cursor</span> <span class="op">=</span> <span class="ident">Rect::from_min_max</span>(
-                        <span class="ident">pos2</span>(<span class="ident">region</span>.<span class="ident">max_rect</span>.<span class="ident">left</span>(), <span class="ident">new_top</span>),
-                        <span class="ident">pos2</span>(<span class="ident">INFINITY</span>, <span class="ident">new_top</span> <span class="op">+</span> <span class="ident">region</span>.<span class="ident">cursor</span>.<span class="ident">height</span>()),
+    <span class="doccomment">/// Move to the next row in a wrapping layout.
+    /// Otherwise does nothing.
+    </span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>end_row(<span class="kw-2">&amp;mut </span><span class="self">self</span>, region: <span class="kw-2">&amp;mut </span>Region, spacing: Vec2) {
+        <span class="kw">if </span><span class="self">self</span>.main_wrap {
+            <span class="kw">match </span><span class="self">self</span>.main_dir {
+                Direction::LeftToRight =&gt; {
+                    <span class="kw">let </span>new_top = region.cursor.bottom() + spacing.y;
+                    region.cursor = Rect::from_min_max(
+                        pos2(region.max_rect.left(), new_top),
+                        pos2(INFINITY, new_top + region.cursor.height()),
                     );
                 }
-                <span class="ident">Direction::RightToLeft</span> =&gt; {
-                    <span class="kw">let</span> <span class="ident">new_top</span> <span class="op">=</span> <span class="ident">region</span>.<span class="ident">cursor</span>.<span class="ident">bottom</span>() <span class="op">+</span> <span class="ident">spacing</span>.<span class="ident">y</span>;
-                    <span class="ident">region</span>.<span class="ident">cursor</span> <span class="op">=</span> <span class="ident">Rect::from_min_max</span>(
-                        <span class="ident">pos2</span>(<span class="op">-</span><span class="ident">INFINITY</span>, <span class="ident">new_top</span>),
-                        <span class="ident">pos2</span>(<span class="ident">region</span>.<span class="ident">max_rect</span>.<span class="ident">right</span>(), <span class="ident">new_top</span> <span class="op">+</span> <span class="ident">region</span>.<span class="ident">cursor</span>.<span class="ident">height</span>()),
+                Direction::RightToLeft =&gt; {
+                    <span class="kw">let </span>new_top = region.cursor.bottom() + spacing.y;
+                    region.cursor = Rect::from_min_max(
+                        pos2(-INFINITY, new_top),
+                        pos2(region.max_rect.right(), new_top + region.cursor.height()),
                     );
                 }
-                <span class="ident">Direction::TopDown</span> <span class="op">|</span> <span class="ident">Direction::BottomUp</span> =&gt; {}
+                Direction::TopDown | Direction::BottomUp =&gt; {}
             }
         }
     }
 
-    <span class="doccomment">/// Set row height in horizontal wrapping layout.</span>
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">set_row_height</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">region</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Region</span>, <span class="ident">height</span>: <span class="ident">f32</span>) {
-        <span class="kw">if</span> <span class="self">self</span>.<span class="ident">main_wrap</span> <span class="op">&amp;&amp;</span> <span class="self">self</span>.<span class="ident">is_horizontal</span>() {
-            <span class="ident">region</span>.<span class="ident">cursor</span>.<span class="ident">max</span>.<span class="ident">y</span> <span class="op">=</span> <span class="ident">region</span>.<span class="ident">cursor</span>.<span class="ident">min</span>.<span class="ident">y</span> <span class="op">+</span> <span class="ident">height</span>;
+    <span class="doccomment">/// Set row height in horizontal wrapping layout.
+    </span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>set_row_height(<span class="kw-2">&amp;mut </span><span class="self">self</span>, region: <span class="kw-2">&amp;mut </span>Region, height: f32) {
+        <span class="kw">if </span><span class="self">self</span>.main_wrap &amp;&amp; <span class="self">self</span>.is_horizontal() {
+            region.cursor.max.y = region.cursor.min.y + height;
         }
     }
 }
 
-<span class="comment">// ----------------------------------------------------------------------------</span>
+<span class="comment">// ----------------------------------------------------------------------------
 
-<span class="doccomment">/// ## Debug stuff</span>
-<span class="kw">impl</span> <span class="ident">Layout</span> {
-    <span class="doccomment">/// Shows where the next widget is going to be placed</span>
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">paint_text_at_cursor</span>(
+</span><span class="doccomment">/// ## Debug stuff
+</span><span class="kw">impl </span>Layout {
+    <span class="doccomment">/// Shows where the next widget is going to be placed
+    </span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>paint_text_at_cursor(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
-        <span class="ident">painter</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="kw">crate</span>::Painter</span>,
-        <span class="ident">region</span>: <span class="kw-2">&amp;</span><span class="ident">Region</span>,
-        <span class="ident">stroke</span>: <span class="ident">epaint::Stroke</span>,
-        <span class="ident">text</span>: <span class="kw">impl</span> <span class="ident">ToString</span>,
+        painter: <span class="kw-2">&amp;</span><span class="kw">crate</span>::Painter,
+        region: <span class="kw-2">&amp;</span>Region,
+        stroke: epaint::Stroke,
+        text: <span class="kw">impl </span>ToString,
     ) {
-        <span class="kw">let</span> <span class="ident">cursor</span> <span class="op">=</span> <span class="ident">region</span>.<span class="ident">cursor</span>;
-        <span class="kw">let</span> <span class="ident">next_pos</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">next_widget_position</span>(<span class="ident">region</span>);
+        <span class="kw">let </span>cursor = region.cursor;
+        <span class="kw">let </span>next_pos = <span class="self">self</span>.next_widget_position(region);
 
-        <span class="kw">let</span> <span class="ident">align</span>;
+        <span class="kw">let </span>align;
 
-        <span class="kw">let</span> <span class="ident">l</span> <span class="op">=</span> <span class="number">64.0</span>;
+        <span class="kw">let </span>l = <span class="number">64.0</span>;
 
-        <span class="kw">match</span> <span class="self">self</span>.<span class="ident">main_dir</span> {
-            <span class="ident">Direction::LeftToRight</span> =&gt; {
-                <span class="ident">painter</span>.<span class="ident">line_segment</span>([<span class="ident">cursor</span>.<span class="ident">left_top</span>(), <span class="ident">cursor</span>.<span class="ident">left_bottom</span>()], <span class="ident">stroke</span>);
-                <span class="ident">painter</span>.<span class="ident">arrow</span>(<span class="ident">next_pos</span>, <span class="ident">vec2</span>(<span class="ident">l</span>, <span class="number">0.0</span>), <span class="ident">stroke</span>);
-                <span class="ident">align</span> <span class="op">=</span> <span class="ident">Align2</span>([<span class="ident">Align::LEFT</span>, <span class="self">self</span>.<span class="ident">vertical_align</span>()]);
+        <span class="kw">match </span><span class="self">self</span>.main_dir {
+            Direction::LeftToRight =&gt; {
+                painter.line_segment([cursor.left_top(), cursor.left_bottom()], stroke);
+                painter.arrow(next_pos, vec2(l, <span class="number">0.0</span>), stroke);
+                align = Align2([Align::LEFT, <span class="self">self</span>.vertical_align()]);
             }
-            <span class="ident">Direction::RightToLeft</span> =&gt; {
-                <span class="ident">painter</span>.<span class="ident">line_segment</span>([<span class="ident">cursor</span>.<span class="ident">right_top</span>(), <span class="ident">cursor</span>.<span class="ident">right_bottom</span>()], <span class="ident">stroke</span>);
-                <span class="ident">painter</span>.<span class="ident">arrow</span>(<span class="ident">next_pos</span>, <span class="ident">vec2</span>(<span class="op">-</span><span class="ident">l</span>, <span class="number">0.0</span>), <span class="ident">stroke</span>);
-                <span class="ident">align</span> <span class="op">=</span> <span class="ident">Align2</span>([<span class="ident">Align::RIGHT</span>, <span class="self">self</span>.<span class="ident">vertical_align</span>()]);
+            Direction::RightToLeft =&gt; {
+                painter.line_segment([cursor.right_top(), cursor.right_bottom()], stroke);
+                painter.arrow(next_pos, vec2(-l, <span class="number">0.0</span>), stroke);
+                align = Align2([Align::RIGHT, <span class="self">self</span>.vertical_align()]);
             }
-            <span class="ident">Direction::TopDown</span> =&gt; {
-                <span class="ident">painter</span>.<span class="ident">line_segment</span>([<span class="ident">cursor</span>.<span class="ident">left_top</span>(), <span class="ident">cursor</span>.<span class="ident">right_top</span>()], <span class="ident">stroke</span>);
-                <span class="ident">painter</span>.<span class="ident">arrow</span>(<span class="ident">next_pos</span>, <span class="ident">vec2</span>(<span class="number">0.0</span>, <span class="ident">l</span>), <span class="ident">stroke</span>);
-                <span class="ident">align</span> <span class="op">=</span> <span class="ident">Align2</span>([<span class="self">self</span>.<span class="ident">horizontal_align</span>(), <span class="ident">Align::TOP</span>]);
+            Direction::TopDown =&gt; {
+                painter.line_segment([cursor.left_top(), cursor.right_top()], stroke);
+                painter.arrow(next_pos, vec2(<span class="number">0.0</span>, l), stroke);
+                align = Align2([<span class="self">self</span>.horizontal_align(), Align::TOP]);
             }
-            <span class="ident">Direction::BottomUp</span> =&gt; {
-                <span class="ident">painter</span>.<span class="ident">line_segment</span>([<span class="ident">cursor</span>.<span class="ident">left_bottom</span>(), <span class="ident">cursor</span>.<span class="ident">right_bottom</span>()], <span class="ident">stroke</span>);
-                <span class="ident">painter</span>.<span class="ident">arrow</span>(<span class="ident">next_pos</span>, <span class="ident">vec2</span>(<span class="number">0.0</span>, <span class="op">-</span><span class="ident">l</span>), <span class="ident">stroke</span>);
-                <span class="ident">align</span> <span class="op">=</span> <span class="ident">Align2</span>([<span class="self">self</span>.<span class="ident">horizontal_align</span>(), <span class="ident">Align::BOTTOM</span>]);
+            Direction::BottomUp =&gt; {
+                painter.line_segment([cursor.left_bottom(), cursor.right_bottom()], stroke);
+                painter.arrow(next_pos, vec2(<span class="number">0.0</span>, -l), stroke);
+                align = Align2([<span class="self">self</span>.horizontal_align(), Align::BOTTOM]);
             }
         }
 
-        <span class="ident">painter</span>.<span class="ident">debug_text</span>(<span class="ident">next_pos</span>, <span class="ident">align</span>, <span class="ident">stroke</span>.<span class="ident">color</span>, <span class="ident">text</span>);
+        painter.debug_text(next_pos, align, stroke.color, text);
     }
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="egui" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0 (a55dd71d5 2022-09-19)" ></div></body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="egui" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.66.1 (90743e729 2023-01-10)" ></div></body></html>

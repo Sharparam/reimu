@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/sdl2-0.35.2/src/sdl2/timer.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>timer.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../sdl2/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../sdl2/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../sdl2/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/sdl2-0.35.2/src/sdl2/timer.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>timer.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../normalize.css"><link rel="stylesheet" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../ayu.css" disabled><link rel="stylesheet" href="../../dark.css" disabled><link rel="stylesheet" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><div class="width-limiter"><nav class="sub"><a class="sub-logo-container" href="../../sdl2/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -185,192 +185,192 @@
 <span id="185">185</span>
 <span id="186">186</span>
 <span id="187">187</span>
-</pre><pre class="rust"><code><span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::sys</span>;
-<span class="kw">use</span> <span class="ident">libc::c_void</span>;
-<span class="kw">use</span> <span class="ident">std::marker::PhantomData</span>;
-<span class="kw">use</span> <span class="ident">std::mem</span>;
+</pre><pre class="rust"><code><span class="kw">use </span><span class="kw">crate</span>::sys;
+<span class="kw">use </span>libc::c_void;
+<span class="kw">use </span>std::marker::PhantomData;
+<span class="kw">use </span>std::mem;
 
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::TimerSubsystem</span>;
+<span class="kw">use </span><span class="kw">crate</span>::TimerSubsystem;
 
-<span class="kw">impl</span> <span class="ident">TimerSubsystem</span> {
-    <span class="doccomment">/// Constructs a new timer using the boxed closure `callback`.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// The timer is started immediately, it will be cancelled either:</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// * when the timer is dropped</span>
-    <span class="doccomment">/// * or when the callback returns a non-positive continuation interval</span>
-    <span class="attribute">#[<span class="ident">must_use</span> <span class="op">=</span> <span class="string">&quot;if unused the Timer will be dropped immediately&quot;</span>]</span>
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;SDL_AddTimer&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">add_timer</span><span class="op">&lt;</span><span class="lifetime">&#39;b</span>, <span class="lifetime">&#39;c</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="lifetime">&#39;b</span> <span class="self">self</span>, <span class="ident">delay</span>: <span class="ident">u32</span>, <span class="ident">callback</span>: <span class="ident">TimerCallback</span><span class="op">&lt;</span><span class="lifetime">&#39;c</span><span class="op">&gt;</span>) -&gt; <span class="ident">Timer</span><span class="op">&lt;</span><span class="lifetime">&#39;b</span>, <span class="lifetime">&#39;c</span><span class="op">&gt;</span> {
-        <span class="kw">unsafe</span> {
-            <span class="kw">let</span> <span class="ident">callback</span> <span class="op">=</span> <span class="ident">Box::new</span>(<span class="ident">callback</span>);
-            <span class="kw">let</span> <span class="ident">timer_id</span> <span class="op">=</span> <span class="ident">sys::SDL_AddTimer</span>(
-                <span class="ident">delay</span>,
-                <span class="prelude-val">Some</span>(<span class="ident">c_timer_callback</span>),
-                <span class="ident">mem::transmute_copy</span>(<span class="kw-2">&amp;</span><span class="ident">callback</span>),
+<span class="kw">impl </span>TimerSubsystem {
+    <span class="doccomment">/// Constructs a new timer using the boxed closure `callback`.
+    ///
+    /// The timer is started immediately, it will be cancelled either:
+    ///
+    /// * when the timer is dropped
+    /// * or when the callback returns a non-positive continuation interval
+    </span><span class="attribute">#[must_use = <span class="string">&quot;if unused the Timer will be dropped immediately&quot;</span>]
+    #[doc(alias = <span class="string">&quot;SDL_AddTimer&quot;</span>)]
+    </span><span class="kw">pub fn </span>add_timer&lt;<span class="lifetime">&#39;b</span>, <span class="lifetime">&#39;c</span>&gt;(<span class="kw-2">&amp;</span><span class="lifetime">&#39;b </span><span class="self">self</span>, delay: u32, callback: TimerCallback&lt;<span class="lifetime">&#39;c</span>&gt;) -&gt; Timer&lt;<span class="lifetime">&#39;b</span>, <span class="lifetime">&#39;c</span>&gt; {
+        <span class="kw">unsafe </span>{
+            <span class="kw">let </span>callback = Box::new(callback);
+            <span class="kw">let </span>timer_id = sys::SDL_AddTimer(
+                delay,
+                <span class="prelude-val">Some</span>(c_timer_callback),
+                mem::transmute_copy(<span class="kw-2">&amp;</span>callback),
             );
 
-            <span class="ident">Timer</span> {
-                <span class="ident">callback</span>: <span class="prelude-val">Some</span>(<span class="ident">callback</span>),
-                <span class="ident">raw</span>: <span class="ident">timer_id</span>,
-                <span class="ident">_marker</span>: <span class="ident">PhantomData</span>,
+            Timer {
+                callback: <span class="prelude-val">Some</span>(callback),
+                raw: timer_id,
+                _marker: PhantomData,
             }
         }
     }
 
-    <span class="doccomment">/// Gets the number of milliseconds elapsed since the timer subsystem was initialized.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// It&#39;s recommended that you use another library for timekeeping, such as `time`.</span>
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;SDL_GetTicks&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ticks</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">u32</span> {
-        <span class="comment">// Google says this is probably not thread-safe (TODO: prove/disprove this).</span>
-        <span class="kw">unsafe</span> { <span class="ident">sys::SDL_GetTicks</span>() }
+    <span class="doccomment">/// Gets the number of milliseconds elapsed since the timer subsystem was initialized.
+    ///
+    /// It&#39;s recommended that you use another library for timekeeping, such as `time`.
+    </span><span class="attribute">#[doc(alias = <span class="string">&quot;SDL_GetTicks&quot;</span>)]
+    </span><span class="kw">pub fn </span>ticks(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; u32 {
+        <span class="comment">// Google says this is probably not thread-safe (TODO: prove/disprove this).
+        </span><span class="kw">unsafe </span>{ sys::SDL_GetTicks() }
     }
 
-    <span class="doccomment">/// Sleeps the current thread for the specified amount of milliseconds.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// It&#39;s recommended that you use `std::thread::sleep()` instead.</span>
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;SDL_Delay&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">delay</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">ms</span>: <span class="ident">u32</span>) {
-        <span class="comment">// Google says this is probably not thread-safe (TODO: prove/disprove this).</span>
-        <span class="kw">unsafe</span> { <span class="ident">sys::SDL_Delay</span>(<span class="ident">ms</span>) }
+    <span class="doccomment">/// Sleeps the current thread for the specified amount of milliseconds.
+    ///
+    /// It&#39;s recommended that you use `std::thread::sleep()` instead.
+    </span><span class="attribute">#[doc(alias = <span class="string">&quot;SDL_Delay&quot;</span>)]
+    </span><span class="kw">pub fn </span>delay(<span class="kw-2">&amp;mut </span><span class="self">self</span>, ms: u32) {
+        <span class="comment">// Google says this is probably not thread-safe (TODO: prove/disprove this).
+        </span><span class="kw">unsafe </span>{ sys::SDL_Delay(ms) }
     }
 
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;SDL_GetPerformanceCounter&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">performance_counter</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">u64</span> {
-        <span class="kw">unsafe</span> { <span class="ident">sys::SDL_GetPerformanceCounter</span>() }
+    <span class="attribute">#[doc(alias = <span class="string">&quot;SDL_GetPerformanceCounter&quot;</span>)]
+    </span><span class="kw">pub fn </span>performance_counter(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; u64 {
+        <span class="kw">unsafe </span>{ sys::SDL_GetPerformanceCounter() }
     }
 
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;SDL_GetPerformanceFrequency&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">performance_frequency</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">u64</span> {
-        <span class="kw">unsafe</span> { <span class="ident">sys::SDL_GetPerformanceFrequency</span>() }
-    }
-}
-
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">TimerCallback</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">Box</span><span class="op">&lt;</span><span class="ident">dyn</span> <span class="ident">FnMut</span>() -&gt; <span class="ident">u32</span> <span class="op">+</span> <span class="lifetime">&#39;a</span> <span class="op">+</span> <span class="ident">Send</span><span class="op">&gt;</span>;
-
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Timer</span><span class="op">&lt;</span><span class="lifetime">&#39;b</span>, <span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="ident">callback</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Box</span><span class="op">&lt;</span><span class="ident">TimerCallback</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="op">&gt;</span>,
-    <span class="ident">raw</span>: <span class="ident">sys::SDL_TimerID</span>,
-    <span class="ident">_marker</span>: <span class="ident">PhantomData</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;b</span> ()<span class="op">&gt;</span>,
-}
-
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;b</span>, <span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">Timer</span><span class="op">&lt;</span><span class="lifetime">&#39;b</span>, <span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="doccomment">/// Returns the closure as a trait-object and cancels the timer</span>
-    <span class="doccomment">/// by consuming it...</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">into_inner</span>(<span class="kw-2">mut</span> <span class="self">self</span>) -&gt; <span class="ident">TimerCallback</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-        <span class="kw-2">*</span><span class="self">self</span>.<span class="ident">callback</span>.<span class="ident">take</span>().<span class="ident">unwrap</span>()
+    <span class="attribute">#[doc(alias = <span class="string">&quot;SDL_GetPerformanceFrequency&quot;</span>)]
+    </span><span class="kw">pub fn </span>performance_frequency(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; u64 {
+        <span class="kw">unsafe </span>{ sys::SDL_GetPerformanceFrequency() }
     }
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;b</span>, <span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">Drop</span> <span class="kw">for</span> <span class="ident">Timer</span><span class="op">&lt;</span><span class="lifetime">&#39;b</span>, <span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;SDL_RemoveTimer&quot;</span>)]</span>
-    <span class="kw">fn</span> <span class="ident">drop</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>) {
-        <span class="comment">// SDL_RemoveTimer returns SDL_FALSE if the timer wasn&#39;t found (impossible),</span>
-        <span class="comment">// or the timer has been cancelled via the callback (possible).</span>
-        <span class="comment">// The timer being cancelled isn&#39;t an issue, so we ignore the result.</span>
-        <span class="kw">unsafe</span> { <span class="ident">sys::SDL_RemoveTimer</span>(<span class="self">self</span>.<span class="ident">raw</span>) };
+<span class="kw">pub type </span>TimerCallback&lt;<span class="lifetime">&#39;a</span>&gt; = Box&lt;<span class="kw">dyn </span>FnMut() -&gt; u32 + <span class="lifetime">&#39;a </span>+ Send&gt;;
+
+<span class="kw">pub struct </span>Timer&lt;<span class="lifetime">&#39;b</span>, <span class="lifetime">&#39;a</span>&gt; {
+    callback: <span class="prelude-ty">Option</span>&lt;Box&lt;TimerCallback&lt;<span class="lifetime">&#39;a</span>&gt;&gt;&gt;,
+    raw: sys::SDL_TimerID,
+    _marker: PhantomData&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;b </span>()&gt;,
+}
+
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;b</span>, <span class="lifetime">&#39;a</span>&gt; Timer&lt;<span class="lifetime">&#39;b</span>, <span class="lifetime">&#39;a</span>&gt; {
+    <span class="doccomment">/// Returns the closure as a trait-object and cancels the timer
+    /// by consuming it...
+    </span><span class="kw">pub fn </span>into_inner(<span class="kw-2">mut </span><span class="self">self</span>) -&gt; TimerCallback&lt;<span class="lifetime">&#39;a</span>&gt; {
+        <span class="kw-2">*</span><span class="self">self</span>.callback.take().unwrap()
     }
 }
 
-<span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">c_timer_callback</span>(<span class="ident">_interval</span>: <span class="ident">u32</span>, <span class="ident">param</span>: <span class="kw-2">*mut</span> <span class="ident">c_void</span>) -&gt; <span class="ident">u32</span> {
-    <span class="kw">let</span> <span class="ident">f</span> <span class="op">=</span> <span class="ident">param</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">TimerCallback</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>;
-    <span class="kw">unsafe</span> { (<span class="kw-2">*</span><span class="ident">f</span>)() }
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;b</span>, <span class="lifetime">&#39;a</span>&gt; Drop <span class="kw">for </span>Timer&lt;<span class="lifetime">&#39;b</span>, <span class="lifetime">&#39;a</span>&gt; {
+    <span class="attribute">#[inline]
+    #[doc(alias = <span class="string">&quot;SDL_RemoveTimer&quot;</span>)]
+    </span><span class="kw">fn </span>drop(<span class="kw-2">&amp;mut </span><span class="self">self</span>) {
+        <span class="comment">// SDL_RemoveTimer returns SDL_FALSE if the timer wasn&#39;t found (impossible),
+        // or the timer has been cancelled via the callback (possible).
+        // The timer being cancelled isn&#39;t an issue, so we ignore the result.
+        </span><span class="kw">unsafe </span>{ sys::SDL_RemoveTimer(<span class="self">self</span>.raw) };
+    }
 }
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">not</span>(<span class="ident">target_os</span> <span class="op">=</span> <span class="string">&quot;macos&quot;</span>))]</span>
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">test</span>)]</span>
-<span class="kw">mod</span> <span class="ident">test</span> {
-    <span class="kw">use</span> <span class="ident">std::sync</span>::{<span class="ident">Arc</span>, <span class="ident">Mutex</span>};
-    <span class="kw">use</span> <span class="ident">std::time::Duration</span>;
+<span class="kw">extern </span><span class="string">&quot;C&quot; </span><span class="kw">fn </span>c_timer_callback(_interval: u32, param: <span class="kw-2">*mut </span>c_void) -&gt; u32 {
+    <span class="kw">let </span>f = param <span class="kw">as </span><span class="kw-2">*mut </span>TimerCallback&lt;<span class="lifetime">&#39;_</span>&gt;;
+    <span class="kw">unsafe </span>{ (<span class="kw-2">*</span>f)() }
+}
 
-    <span class="attribute">#[<span class="ident">test</span>]</span>
-    <span class="kw">fn</span> <span class="ident">test_timer</span>() {
-        <span class="ident">test_timer_runs_multiple_times</span>();
-        <span class="ident">test_timer_runs_at_least_once</span>();
-        <span class="ident">test_timer_can_be_recreated</span>();
+<span class="attribute">#[cfg(not(target_os = <span class="string">&quot;macos&quot;</span>))]
+#[cfg(test)]
+</span><span class="kw">mod </span>test {
+    <span class="kw">use </span>std::sync::{Arc, Mutex};
+    <span class="kw">use </span>std::time::Duration;
+
+    <span class="attribute">#[test]
+    </span><span class="kw">fn </span>test_timer() {
+        test_timer_runs_multiple_times();
+        test_timer_runs_at_least_once();
+        test_timer_can_be_recreated();
     }
 
-    <span class="kw">fn</span> <span class="ident">test_timer_runs_multiple_times</span>() {
-        <span class="kw">let</span> <span class="ident">sdl_context</span> <span class="op">=</span> <span class="ident"><span class="kw">crate</span>::sdl::init</span>().<span class="ident">unwrap</span>();
-        <span class="kw">let</span> <span class="ident">timer_subsystem</span> <span class="op">=</span> <span class="ident">sdl_context</span>.<span class="ident">timer</span>().<span class="ident">unwrap</span>();
+    <span class="kw">fn </span>test_timer_runs_multiple_times() {
+        <span class="kw">let </span>sdl_context = <span class="kw">crate</span>::sdl::init().unwrap();
+        <span class="kw">let </span>timer_subsystem = sdl_context.timer().unwrap();
 
-        <span class="kw">let</span> <span class="ident">local_num</span> <span class="op">=</span> <span class="ident">Arc::new</span>(<span class="ident">Mutex::new</span>(<span class="number">0</span>));
-        <span class="kw">let</span> <span class="ident">timer_num</span> <span class="op">=</span> <span class="ident">local_num</span>.<span class="ident">clone</span>();
+        <span class="kw">let </span>local_num = Arc::new(Mutex::new(<span class="number">0</span>));
+        <span class="kw">let </span>timer_num = local_num.clone();
 
-        <span class="kw">let</span> <span class="ident">_timer</span> <span class="op">=</span> <span class="ident">timer_subsystem</span>.<span class="ident">add_timer</span>(
+        <span class="kw">let </span>_timer = timer_subsystem.add_timer(
             <span class="number">20</span>,
-            <span class="ident">Box::new</span>(<span class="op">|</span><span class="op">|</span> {
-                <span class="comment">// increment up to 10 times (0 -&gt; 9)</span>
-                <span class="comment">// tick again in 100ms after each increment</span>
-                <span class="comment">//</span>
-                <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">num</span> <span class="op">=</span> <span class="ident">timer_num</span>.<span class="ident">lock</span>().<span class="ident">unwrap</span>();
-                <span class="kw">if</span> <span class="kw-2">*</span><span class="ident">num</span> <span class="op">&lt;</span> <span class="number">9</span> {
-                    <span class="kw-2">*</span><span class="ident">num</span> <span class="op">+</span><span class="op">=</span> <span class="number">1</span>;
-                    <span class="number">20</span>
-                } <span class="kw">else</span> {
-                    <span class="number">0</span>
-                }
+            Box::new(|| {
+                <span class="comment">// increment up to 10 times (0 -&gt; 9)
+                // tick again in 100ms after each increment
+                //
+                </span><span class="kw">let </span><span class="kw-2">mut </span>num = timer_num.lock().unwrap();
+                <span class="kw">if </span><span class="kw-2">*</span>num &lt; <span class="number">9 </span>{
+                    <span class="kw-2">*</span>num += <span class="number">1</span>;
+                    <span class="number">20
+                </span>} <span class="kw">else </span>{
+                    <span class="number">0
+                </span>}
             }),
         );
 
-        <span class="comment">// tick the timer at least 10 times w/ 200ms of &quot;buffer&quot;</span>
-        <span class="ident">::std::thread::sleep</span>(<span class="ident">Duration::from_millis</span>(<span class="number">250</span>));
-        <span class="kw">let</span> <span class="ident">num</span> <span class="op">=</span> <span class="ident">local_num</span>.<span class="ident">lock</span>().<span class="ident">unwrap</span>(); <span class="comment">// read the number back</span>
-        <span class="macro">assert_eq!</span>(<span class="kw-2">*</span><span class="ident">num</span>, <span class="number">9</span>); <span class="comment">// it should have incremented at least 10 times...</span>
-    }
+        <span class="comment">// tick the timer at least 10 times w/ 200ms of &quot;buffer&quot;
+        </span>::std::thread::sleep(Duration::from_millis(<span class="number">250</span>));
+        <span class="kw">let </span>num = local_num.lock().unwrap(); <span class="comment">// read the number back
+        </span><span class="macro">assert_eq!</span>(<span class="kw-2">*</span>num, <span class="number">9</span>); <span class="comment">// it should have incremented at least 10 times...
+    </span>}
 
-    <span class="kw">fn</span> <span class="ident">test_timer_runs_at_least_once</span>() {
-        <span class="kw">let</span> <span class="ident">sdl_context</span> <span class="op">=</span> <span class="ident"><span class="kw">crate</span>::sdl::init</span>().<span class="ident">unwrap</span>();
-        <span class="kw">let</span> <span class="ident">timer_subsystem</span> <span class="op">=</span> <span class="ident">sdl_context</span>.<span class="ident">timer</span>().<span class="ident">unwrap</span>();
+    <span class="kw">fn </span>test_timer_runs_at_least_once() {
+        <span class="kw">let </span>sdl_context = <span class="kw">crate</span>::sdl::init().unwrap();
+        <span class="kw">let </span>timer_subsystem = sdl_context.timer().unwrap();
 
-        <span class="kw">let</span> <span class="ident">local_flag</span> <span class="op">=</span> <span class="ident">Arc::new</span>(<span class="ident">Mutex::new</span>(<span class="bool-val">false</span>));
-        <span class="kw">let</span> <span class="ident">timer_flag</span> <span class="op">=</span> <span class="ident">local_flag</span>.<span class="ident">clone</span>();
+        <span class="kw">let </span>local_flag = Arc::new(Mutex::new(<span class="bool-val">false</span>));
+        <span class="kw">let </span>timer_flag = local_flag.clone();
 
-        <span class="kw">let</span> <span class="ident">_timer</span> <span class="op">=</span> <span class="ident">timer_subsystem</span>.<span class="ident">add_timer</span>(
+        <span class="kw">let </span>_timer = timer_subsystem.add_timer(
             <span class="number">20</span>,
-            <span class="ident">Box::new</span>(<span class="op">|</span><span class="op">|</span> {
-                <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">flag</span> <span class="op">=</span> <span class="ident">timer_flag</span>.<span class="ident">lock</span>().<span class="ident">unwrap</span>();
-                <span class="kw-2">*</span><span class="ident">flag</span> <span class="op">=</span> <span class="bool-val">true</span>;
-                <span class="number">0</span>
-            }),
+            Box::new(|| {
+                <span class="kw">let </span><span class="kw-2">mut </span>flag = timer_flag.lock().unwrap();
+                <span class="kw-2">*</span>flag = <span class="bool-val">true</span>;
+                <span class="number">0
+            </span>}),
         );
 
-        <span class="ident">::std::thread::sleep</span>(<span class="ident">Duration::from_millis</span>(<span class="number">50</span>));
-        <span class="kw">let</span> <span class="ident">flag</span> <span class="op">=</span> <span class="ident">local_flag</span>.<span class="ident">lock</span>().<span class="ident">unwrap</span>();
-        <span class="macro">assert_eq!</span>(<span class="kw-2">*</span><span class="ident">flag</span>, <span class="bool-val">true</span>);
+        ::std::thread::sleep(Duration::from_millis(<span class="number">50</span>));
+        <span class="kw">let </span>flag = local_flag.lock().unwrap();
+        <span class="macro">assert_eq!</span>(<span class="kw-2">*</span>flag, <span class="bool-val">true</span>);
     }
 
-    <span class="kw">fn</span> <span class="ident">test_timer_can_be_recreated</span>() {
-        <span class="kw">let</span> <span class="ident">sdl_context</span> <span class="op">=</span> <span class="ident"><span class="kw">crate</span>::sdl::init</span>().<span class="ident">unwrap</span>();
-        <span class="kw">let</span> <span class="ident">timer_subsystem</span> <span class="op">=</span> <span class="ident">sdl_context</span>.<span class="ident">timer</span>().<span class="ident">unwrap</span>();
+    <span class="kw">fn </span>test_timer_can_be_recreated() {
+        <span class="kw">let </span>sdl_context = <span class="kw">crate</span>::sdl::init().unwrap();
+        <span class="kw">let </span>timer_subsystem = sdl_context.timer().unwrap();
 
-        <span class="kw">let</span> <span class="ident">local_num</span> <span class="op">=</span> <span class="ident">Arc::new</span>(<span class="ident">Mutex::new</span>(<span class="number">0</span>));
-        <span class="kw">let</span> <span class="ident">timer_num</span> <span class="op">=</span> <span class="ident">local_num</span>.<span class="ident">clone</span>();
+        <span class="kw">let </span>local_num = Arc::new(Mutex::new(<span class="number">0</span>));
+        <span class="kw">let </span>timer_num = local_num.clone();
 
-        <span class="comment">// run the timer once and reclaim its closure</span>
-        <span class="kw">let</span> <span class="ident">timer_1</span> <span class="op">=</span> <span class="ident">timer_subsystem</span>.<span class="ident">add_timer</span>(
+        <span class="comment">// run the timer once and reclaim its closure
+        </span><span class="kw">let </span>timer_1 = timer_subsystem.add_timer(
             <span class="number">20</span>,
-            <span class="ident">Box::new</span>(<span class="kw">move</span> <span class="op">|</span><span class="op">|</span> {
-                <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">num</span> <span class="op">=</span> <span class="ident">timer_num</span>.<span class="ident">lock</span>().<span class="ident">unwrap</span>();
-                <span class="kw-2">*</span><span class="ident">num</span> <span class="op">+</span><span class="op">=</span> <span class="number">1</span>; <span class="comment">// increment the number</span>
-                <span class="number">0</span> <span class="comment">// do not run timer again</span>
-            }),
+            Box::new(<span class="kw">move </span>|| {
+                <span class="kw">let </span><span class="kw-2">mut </span>num = timer_num.lock().unwrap();
+                <span class="kw-2">*</span>num += <span class="number">1</span>; <span class="comment">// increment the number
+                </span><span class="number">0 </span><span class="comment">// do not run timer again
+            </span>}),
         );
 
-        <span class="comment">// reclaim closure after timer runs</span>
-        <span class="ident">::std::thread::sleep</span>(<span class="ident">Duration::from_millis</span>(<span class="number">50</span>));
-        <span class="kw">let</span> <span class="ident">closure</span> <span class="op">=</span> <span class="ident">timer_1</span>.<span class="ident">into_inner</span>();
+        <span class="comment">// reclaim closure after timer runs
+        </span>::std::thread::sleep(Duration::from_millis(<span class="number">50</span>));
+        <span class="kw">let </span>closure = timer_1.into_inner();
 
-        <span class="comment">// create a second timer and increment again</span>
-        <span class="kw">let</span> <span class="ident">_timer_2</span> <span class="op">=</span> <span class="ident">timer_subsystem</span>.<span class="ident">add_timer</span>(<span class="number">20</span>, <span class="ident">closure</span>);
-        <span class="ident">::std::thread::sleep</span>(<span class="ident">Duration::from_millis</span>(<span class="number">50</span>));
+        <span class="comment">// create a second timer and increment again
+        </span><span class="kw">let </span>_timer_2 = timer_subsystem.add_timer(<span class="number">20</span>, closure);
+        ::std::thread::sleep(Duration::from_millis(<span class="number">50</span>));
 
-        <span class="comment">// check that timer was incremented twice</span>
-        <span class="kw">let</span> <span class="ident">num</span> <span class="op">=</span> <span class="ident">local_num</span>.<span class="ident">lock</span>().<span class="ident">unwrap</span>();
-        <span class="macro">assert_eq!</span>(<span class="kw-2">*</span><span class="ident">num</span>, <span class="number">2</span>);
+        <span class="comment">// check that timer was incremented twice
+        </span><span class="kw">let </span>num = local_num.lock().unwrap();
+        <span class="macro">assert_eq!</span>(<span class="kw-2">*</span>num, <span class="number">2</span>);
     }
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="sdl2" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0 (a55dd71d5 2022-09-19)" ></div></body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="sdl2" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.66.1 (90743e729 2023-01-10)" ></div></body></html>

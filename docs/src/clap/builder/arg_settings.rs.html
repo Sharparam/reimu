@@ -1,6 +1,5 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/clap-4.0.18/src/builder/arg_settings.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>arg_settings.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../storage.js"></script><script defer src="../../../source-script.js"></script><script defer src="../../../source-files.js"></script><script defer src="../../../main.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../../clap/index.html"><div class="logo-container"><img src="https://raw.githubusercontent.com/clap-rs/clap/master/assets/clap.png" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../../clap/index.html"><div class="logo-container">
-                    <img src="https://raw.githubusercontent.com/clap-rs/clap/master/assets/clap.png" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../../clap/index.html">
-                        <img src="https://raw.githubusercontent.com/clap-rs/clap/master/assets/clap.png" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/clap-4.0.18/src/builder/arg_settings.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>arg_settings.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../../normalize.css"><link rel="stylesheet" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../../ayu.css" disabled><link rel="stylesheet" href="../../../dark.css" disabled><link rel="stylesheet" href="../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../storage.js"></script><script defer src="../../../source-script.js"></script><script defer src="../../../source-files.js"></script><script defer src="../../../main.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><div class="width-limiter"><nav class="sub"><a class="sub-logo-container" href="../../../clap/index.html">
+                        <img src="https://raw.githubusercontent.com/clap-rs/clap/master/assets/clap.png" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../wheel.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -145,150 +144,150 @@
 <span id="143">143</span>
 <span id="144">144</span>
 <span id="145">145</span>
-</pre><pre class="rust"><code><span class="comment">// Std</span>
-<span class="kw">use</span> <span class="ident">std::ops::BitOr</span>;
+</pre><pre class="rust"><code><span class="comment">// Std
+</span><span class="kw">use </span>std::ops::BitOr;
 
-<span class="comment">// Third party</span>
-<span class="kw">use</span> <span class="ident">bitflags::bitflags</span>;
+<span class="comment">// Third party
+</span><span class="kw">use </span>bitflags::bitflags;
 
-<span class="attribute">#[<span class="ident">allow</span>(<span class="ident">unused</span>)]</span>
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::Arg</span>;
+<span class="attribute">#[allow(unused)]
+</span><span class="kw">use </span><span class="kw">crate</span>::Arg;
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>)]</span>
-<span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">struct</span> <span class="ident">ArgFlags</span>(<span class="ident">Flags</span>);
+<span class="attribute">#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+</span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">struct </span>ArgFlags(Flags);
 
-<span class="kw">impl</span> <span class="ident">Default</span> <span class="kw">for</span> <span class="ident">ArgFlags</span> {
-    <span class="kw">fn</span> <span class="ident">default</span>() -&gt; <span class="self">Self</span> {
-        <span class="ident"><span class="self">Self</span>::empty</span>()
+<span class="kw">impl </span>Default <span class="kw">for </span>ArgFlags {
+    <span class="kw">fn </span>default() -&gt; <span class="self">Self </span>{
+        <span class="self">Self</span>::empty()
     }
 }
 
-<span class="doccomment">/// Various settings that apply to arguments and may be set, unset, and checked via getter/setter</span>
-<span class="doccomment">/// methods [`Arg::setting`], [`Arg::unset_setting`], and [`Arg::is_set`]. This is what the</span>
-<span class="doccomment">/// [`Arg`] methods which accept a `bool` use internally.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// [`Arg`]: crate::Arg</span>
-<span class="doccomment">/// [`Arg::setting`]: crate::Arg::setting()</span>
-<span class="doccomment">/// [`Arg::unset_setting`]: crate::Arg::unset_setting()</span>
-<span class="doccomment">/// [`Arg::is_set`]: crate::Arg::is_set()</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">PartialEq</span>, <span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
-<span class="attribute">#[<span class="ident">non_exhaustive</span>]</span>
-<span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">enum</span> <span class="ident">ArgSettings</span> {
-    <span class="ident">Required</span>,
-    <span class="ident">Global</span>,
-    <span class="ident">Hidden</span>,
-    <span class="ident">NextLineHelp</span>,
-    <span class="ident">HidePossibleValues</span>,
-    <span class="ident">AllowHyphenValues</span>,
-    <span class="ident">AllowNegativeNumbers</span>,
-    <span class="ident">RequireEquals</span>,
-    <span class="ident">Last</span>,
-    <span class="ident">TrailingVarArg</span>,
-    <span class="ident">HideDefaultValue</span>,
-    <span class="ident">IgnoreCase</span>,
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;env&quot;</span>)]</span>
-    <span class="ident">HideEnv</span>,
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;env&quot;</span>)]</span>
-    <span class="ident">HideEnvValues</span>,
-    <span class="ident">HiddenShortHelp</span>,
-    <span class="ident">HiddenLongHelp</span>,
-    <span class="ident">Exclusive</span>,
+<span class="doccomment">/// Various settings that apply to arguments and may be set, unset, and checked via getter/setter
+/// methods [`Arg::setting`], [`Arg::unset_setting`], and [`Arg::is_set`]. This is what the
+/// [`Arg`] methods which accept a `bool` use internally.
+///
+/// [`Arg`]: crate::Arg
+/// [`Arg::setting`]: crate::Arg::setting()
+/// [`Arg::unset_setting`]: crate::Arg::unset_setting()
+/// [`Arg::is_set`]: crate::Arg::is_set()
+</span><span class="attribute">#[derive(Debug, PartialEq, Copy, Clone)]
+#[non_exhaustive]
+</span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">enum </span>ArgSettings {
+    Required,
+    Global,
+    Hidden,
+    NextLineHelp,
+    HidePossibleValues,
+    AllowHyphenValues,
+    AllowNegativeNumbers,
+    RequireEquals,
+    Last,
+    TrailingVarArg,
+    HideDefaultValue,
+    IgnoreCase,
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;env&quot;</span>)]
+    </span>HideEnv,
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;env&quot;</span>)]
+    </span>HideEnvValues,
+    HiddenShortHelp,
+    HiddenLongHelp,
+    Exclusive,
 }
 
-<span class="macro">bitflags!</span> {
-    <span class="kw">struct</span> <span class="ident">Flags</span>: <span class="ident">u32</span> {
-        <span class="kw">const</span> <span class="ident">REQUIRED</span>         <span class="op">=</span> <span class="number">1</span>;
-        <span class="kw">const</span> <span class="ident">GLOBAL</span>           <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">3</span>;
-        <span class="kw">const</span> <span class="ident">HIDDEN</span>           <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">4</span>;
-        <span class="kw">const</span> <span class="ident">TRAILING_VARARG</span>  <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">5</span>;
-        <span class="kw">const</span> <span class="ident">ALLOW_NEG_NUMS</span>   <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">6</span>;
-        <span class="kw">const</span> <span class="ident">NEXT_LINE_HELP</span>   <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">7</span>;
-        <span class="kw">const</span> <span class="ident">DELIM_NOT_SET</span>    <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">10</span>;
-        <span class="kw">const</span> <span class="ident">HIDE_POS_VALS</span>    <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">11</span>;
-        <span class="kw">const</span> <span class="ident">ALLOW_TAC_VALS</span>   <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">12</span>;
-        <span class="kw">const</span> <span class="ident">REQUIRE_EQUALS</span>   <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">13</span>;
-        <span class="kw">const</span> <span class="ident">LAST</span>             <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">14</span>;
-        <span class="kw">const</span> <span class="ident">HIDE_DEFAULT_VAL</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">15</span>;
-        <span class="kw">const</span> <span class="ident">CASE_INSENSITIVE</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">16</span>;
-        <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;env&quot;</span>)]</span>
-        <span class="kw">const</span> <span class="ident">HIDE_ENV_VALS</span>    <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">17</span>;
-        <span class="kw">const</span> <span class="ident">HIDDEN_SHORT_H</span>   <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">18</span>;
-        <span class="kw">const</span> <span class="ident">HIDDEN_LONG_H</span>    <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">19</span>;
-        <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;env&quot;</span>)]</span>
-        <span class="kw">const</span> <span class="ident">HIDE_ENV</span>         <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">21</span>;
-        <span class="kw">const</span> <span class="ident">EXCLUSIVE</span>        <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">23</span>;
-        <span class="kw">const</span> <span class="ident">NO_OP</span>            <span class="op">=</span> <span class="number">0</span>;
+<span class="macro">bitflags! </span>{
+    <span class="kw">struct </span>Flags: u32 {
+        <span class="kw">const </span>REQUIRED         = <span class="number">1</span>;
+        <span class="kw">const </span>GLOBAL           = <span class="number">1 </span>&lt;&lt; <span class="number">3</span>;
+        <span class="kw">const </span>HIDDEN           = <span class="number">1 </span>&lt;&lt; <span class="number">4</span>;
+        <span class="kw">const </span>TRAILING_VARARG  = <span class="number">1 </span>&lt;&lt; <span class="number">5</span>;
+        <span class="kw">const </span>ALLOW_NEG_NUMS   = <span class="number">1 </span>&lt;&lt; <span class="number">6</span>;
+        <span class="kw">const </span>NEXT_LINE_HELP   = <span class="number">1 </span>&lt;&lt; <span class="number">7</span>;
+        <span class="kw">const </span>DELIM_NOT_SET    = <span class="number">1 </span>&lt;&lt; <span class="number">10</span>;
+        <span class="kw">const </span>HIDE_POS_VALS    = <span class="number">1 </span>&lt;&lt; <span class="number">11</span>;
+        <span class="kw">const </span>ALLOW_TAC_VALS   = <span class="number">1 </span>&lt;&lt; <span class="number">12</span>;
+        <span class="kw">const </span>REQUIRE_EQUALS   = <span class="number">1 </span>&lt;&lt; <span class="number">13</span>;
+        <span class="kw">const </span>LAST             = <span class="number">1 </span>&lt;&lt; <span class="number">14</span>;
+        <span class="kw">const </span>HIDE_DEFAULT_VAL = <span class="number">1 </span>&lt;&lt; <span class="number">15</span>;
+        <span class="kw">const </span>CASE_INSENSITIVE = <span class="number">1 </span>&lt;&lt; <span class="number">16</span>;
+        <span class="attribute">#[cfg(feature = <span class="string">&quot;env&quot;</span>)]
+        </span><span class="kw">const </span>HIDE_ENV_VALS    = <span class="number">1 </span>&lt;&lt; <span class="number">17</span>;
+        <span class="kw">const </span>HIDDEN_SHORT_H   = <span class="number">1 </span>&lt;&lt; <span class="number">18</span>;
+        <span class="kw">const </span>HIDDEN_LONG_H    = <span class="number">1 </span>&lt;&lt; <span class="number">19</span>;
+        <span class="attribute">#[cfg(feature = <span class="string">&quot;env&quot;</span>)]
+        </span><span class="kw">const </span>HIDE_ENV         = <span class="number">1 </span>&lt;&lt; <span class="number">21</span>;
+        <span class="kw">const </span>EXCLUSIVE        = <span class="number">1 </span>&lt;&lt; <span class="number">23</span>;
+        <span class="kw">const </span>NO_OP            = <span class="number">0</span>;
     }
 }
 
-<span class="macro">impl_settings!</span> { <span class="ident">ArgSettings</span>, <span class="ident">ArgFlags</span>,
-    <span class="ident">Required</span> =&gt; <span class="ident">Flags::REQUIRED</span>,
-    <span class="ident">Global</span> =&gt; <span class="ident">Flags::GLOBAL</span>,
-    <span class="ident">Hidden</span> =&gt; <span class="ident">Flags::HIDDEN</span>,
-    <span class="ident">NextLineHelp</span> =&gt; <span class="ident">Flags::NEXT_LINE_HELP</span>,
-    <span class="ident">HidePossibleValues</span> =&gt; <span class="ident">Flags::HIDE_POS_VALS</span>,
-    <span class="ident">AllowHyphenValues</span> =&gt; <span class="ident">Flags::ALLOW_TAC_VALS</span>,
-    <span class="ident">AllowNegativeNumbers</span> =&gt; <span class="ident">Flags::ALLOW_NEG_NUMS</span>,
-    <span class="ident">RequireEquals</span> =&gt; <span class="ident">Flags::REQUIRE_EQUALS</span>,
-    <span class="ident">Last</span> =&gt; <span class="ident">Flags::LAST</span>,
-    <span class="ident">TrailingVarArg</span> =&gt; <span class="ident">Flags::TRAILING_VARARG</span>,
-    <span class="ident">IgnoreCase</span> =&gt; <span class="ident">Flags::CASE_INSENSITIVE</span>,
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;env&quot;</span>)]</span>
-    <span class="ident">HideEnv</span> =&gt; <span class="ident">Flags::HIDE_ENV</span>,
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;env&quot;</span>)]</span>
-    <span class="ident">HideEnvValues</span> =&gt; <span class="ident">Flags::HIDE_ENV_VALS</span>,
-    <span class="ident">HideDefaultValue</span> =&gt; <span class="ident">Flags::HIDE_DEFAULT_VAL</span>,
-    <span class="ident">HiddenShortHelp</span> =&gt; <span class="ident">Flags::HIDDEN_SHORT_H</span>,
-    <span class="ident">HiddenLongHelp</span> =&gt; <span class="ident">Flags::HIDDEN_LONG_H</span>,
-    <span class="ident">Exclusive</span> =&gt; <span class="ident">Flags::EXCLUSIVE</span>
+<span class="macro">impl_settings! </span>{ ArgSettings, ArgFlags,
+    Required =&gt; Flags::REQUIRED,
+    Global =&gt; Flags::GLOBAL,
+    Hidden =&gt; Flags::HIDDEN,
+    NextLineHelp =&gt; Flags::NEXT_LINE_HELP,
+    HidePossibleValues =&gt; Flags::HIDE_POS_VALS,
+    AllowHyphenValues =&gt; Flags::ALLOW_TAC_VALS,
+    AllowNegativeNumbers =&gt; Flags::ALLOW_NEG_NUMS,
+    RequireEquals =&gt; Flags::REQUIRE_EQUALS,
+    Last =&gt; Flags::LAST,
+    TrailingVarArg =&gt; Flags::TRAILING_VARARG,
+    IgnoreCase =&gt; Flags::CASE_INSENSITIVE,
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;env&quot;</span>)]
+    </span>HideEnv =&gt; Flags::HIDE_ENV,
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;env&quot;</span>)]
+    </span>HideEnvValues =&gt; Flags::HIDE_ENV_VALS,
+    HideDefaultValue =&gt; Flags::HIDE_DEFAULT_VAL,
+    HiddenShortHelp =&gt; Flags::HIDDEN_SHORT_H,
+    HiddenLongHelp =&gt; Flags::HIDDEN_LONG_H,
+    Exclusive =&gt; Flags::EXCLUSIVE
 }
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">test</span>)]</span>
-<span class="kw">mod</span> <span class="ident">test</span> {
-    <span class="kw">use</span> <span class="kw">super</span>::<span class="kw-2">*</span>;
-    <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::Arg</span>;
+<span class="attribute">#[cfg(test)]
+</span><span class="kw">mod </span>test {
+    <span class="kw">use super</span>::<span class="kw-2">*</span>;
+    <span class="kw">use </span><span class="kw">crate</span>::Arg;
 
-    <span class="attribute">#[<span class="ident">test</span>]</span>
-    <span class="kw">fn</span> <span class="ident">setting</span>() {
-        <span class="kw">let</span> <span class="ident">m</span> <span class="op">=</span> <span class="ident">Arg::new</span>(<span class="string">&quot;setting&quot;</span>).<span class="ident">setting</span>(<span class="ident">ArgSettings::Required</span>);
-        <span class="macro">assert!</span>(<span class="ident">m</span>.<span class="ident">is_required_set</span>());
+    <span class="attribute">#[test]
+    </span><span class="kw">fn </span>setting() {
+        <span class="kw">let </span>m = Arg::new(<span class="string">&quot;setting&quot;</span>).setting(ArgSettings::Required);
+        <span class="macro">assert!</span>(m.is_required_set());
     }
 
-    <span class="attribute">#[<span class="ident">test</span>]</span>
-    <span class="kw">fn</span> <span class="ident">unset_setting</span>() {
-        <span class="kw">let</span> <span class="ident">m</span> <span class="op">=</span> <span class="ident">Arg::new</span>(<span class="string">&quot;unset_setting&quot;</span>).<span class="ident">setting</span>(<span class="ident">ArgSettings::Required</span>);
-        <span class="macro">assert!</span>(<span class="ident">m</span>.<span class="ident">is_required_set</span>());
+    <span class="attribute">#[test]
+    </span><span class="kw">fn </span>unset_setting() {
+        <span class="kw">let </span>m = Arg::new(<span class="string">&quot;unset_setting&quot;</span>).setting(ArgSettings::Required);
+        <span class="macro">assert!</span>(m.is_required_set());
 
-        <span class="kw">let</span> <span class="ident">m</span> <span class="op">=</span> <span class="ident">m</span>.<span class="ident">unset_setting</span>(<span class="ident">ArgSettings::Required</span>);
-        <span class="macro">assert!</span>(<span class="op">!</span><span class="ident">m</span>.<span class="ident">is_required_set</span>(), <span class="string">&quot;{:#?}&quot;</span>, <span class="ident">m</span>);
+        <span class="kw">let </span>m = m.unset_setting(ArgSettings::Required);
+        <span class="macro">assert!</span>(!m.is_required_set(), <span class="string">&quot;{:#?}&quot;</span>, m);
     }
 
-    <span class="attribute">#[<span class="ident">test</span>]</span>
-    <span class="kw">fn</span> <span class="ident">setting_bitor</span>() {
-        <span class="kw">let</span> <span class="ident">m</span> <span class="op">=</span> <span class="ident">Arg::new</span>(<span class="string">&quot;setting_bitor&quot;</span>)
-            .<span class="ident">setting</span>(<span class="ident">ArgSettings::Required</span> <span class="op">|</span> <span class="ident">ArgSettings::Hidden</span> <span class="op">|</span> <span class="ident">ArgSettings::Last</span>);
+    <span class="attribute">#[test]
+    </span><span class="kw">fn </span>setting_bitor() {
+        <span class="kw">let </span>m = Arg::new(<span class="string">&quot;setting_bitor&quot;</span>)
+            .setting(ArgSettings::Required | ArgSettings::Hidden | ArgSettings::Last);
 
-        <span class="macro">assert!</span>(<span class="ident">m</span>.<span class="ident">is_required_set</span>());
-        <span class="macro">assert!</span>(<span class="ident">m</span>.<span class="ident">is_hide_set</span>());
-        <span class="macro">assert!</span>(<span class="ident">m</span>.<span class="ident">is_last_set</span>());
+        <span class="macro">assert!</span>(m.is_required_set());
+        <span class="macro">assert!</span>(m.is_hide_set());
+        <span class="macro">assert!</span>(m.is_last_set());
     }
 
-    <span class="attribute">#[<span class="ident">test</span>]</span>
-    <span class="kw">fn</span> <span class="ident">unset_setting_bitor</span>() {
-        <span class="kw">let</span> <span class="ident">m</span> <span class="op">=</span> <span class="ident">Arg::new</span>(<span class="string">&quot;unset_setting_bitor&quot;</span>)
-            .<span class="ident">setting</span>(<span class="ident">ArgSettings::Required</span>)
-            .<span class="ident">setting</span>(<span class="ident">ArgSettings::Hidden</span>)
-            .<span class="ident">setting</span>(<span class="ident">ArgSettings::Last</span>);
+    <span class="attribute">#[test]
+    </span><span class="kw">fn </span>unset_setting_bitor() {
+        <span class="kw">let </span>m = Arg::new(<span class="string">&quot;unset_setting_bitor&quot;</span>)
+            .setting(ArgSettings::Required)
+            .setting(ArgSettings::Hidden)
+            .setting(ArgSettings::Last);
 
-        <span class="macro">assert!</span>(<span class="ident">m</span>.<span class="ident">is_required_set</span>());
-        <span class="macro">assert!</span>(<span class="ident">m</span>.<span class="ident">is_hide_set</span>());
-        <span class="macro">assert!</span>(<span class="ident">m</span>.<span class="ident">is_last_set</span>());
+        <span class="macro">assert!</span>(m.is_required_set());
+        <span class="macro">assert!</span>(m.is_hide_set());
+        <span class="macro">assert!</span>(m.is_last_set());
 
-        <span class="kw">let</span> <span class="ident">m</span> <span class="op">=</span> <span class="ident">m</span>.<span class="ident">unset_setting</span>(<span class="ident">ArgSettings::Required</span> <span class="op">|</span> <span class="ident">ArgSettings::Hidden</span> <span class="op">|</span> <span class="ident">ArgSettings::Last</span>);
-        <span class="macro">assert!</span>(<span class="op">!</span><span class="ident">m</span>.<span class="ident">is_required_set</span>(), <span class="string">&quot;{:#?}&quot;</span>, <span class="ident">m</span>);
-        <span class="macro">assert!</span>(<span class="op">!</span><span class="ident">m</span>.<span class="ident">is_hide_set</span>(), <span class="string">&quot;{:#?}&quot;</span>, <span class="ident">m</span>);
-        <span class="macro">assert!</span>(<span class="op">!</span><span class="ident">m</span>.<span class="ident">is_last_set</span>(), <span class="string">&quot;{:#?}&quot;</span>, <span class="ident">m</span>);
+        <span class="kw">let </span>m = m.unset_setting(ArgSettings::Required | ArgSettings::Hidden | ArgSettings::Last);
+        <span class="macro">assert!</span>(!m.is_required_set(), <span class="string">&quot;{:#?}&quot;</span>, m);
+        <span class="macro">assert!</span>(!m.is_hide_set(), <span class="string">&quot;{:#?}&quot;</span>, m);
+        <span class="macro">assert!</span>(!m.is_last_set(), <span class="string">&quot;{:#?}&quot;</span>, m);
     }
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="clap" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0 (a55dd71d5 2022-09-19)" ></div></body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="clap" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.66.1 (90743e729 2023-01-10)" ></div></body></html>

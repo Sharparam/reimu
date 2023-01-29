@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/egui-0.16.1/src/frame_state.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>frame_state.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../egui/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../egui/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../egui/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/egui-0.16.1/src/frame_state.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>frame_state.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../normalize.css"><link rel="stylesheet" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../ayu.css" disabled><link rel="stylesheet" href="../../dark.css" disabled><link rel="stylesheet" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><div class="width-limiter"><nav class="sub"><a class="sub-logo-container" href="../../egui/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -128,135 +128,135 @@
 <span id="128">128</span>
 <span id="129">129</span>
 <span id="130">130</span>
-</pre><pre class="rust"><code><span class="kw">use</span> <span class="kw">crate</span>::<span class="kw-2">*</span>;
+</pre><pre class="rust"><code><span class="kw">use crate</span>::<span class="kw-2">*</span>;
 
-<span class="doccomment">/// State that is collected during a frame and then cleared.</span>
-<span class="doccomment">/// Short-term (single frame) memory.</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>)]</span>
-<span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">struct</span> <span class="ident">FrameState</span> {
-    <span class="doccomment">/// All `Id`s that were used this frame.</span>
-    <span class="doccomment">/// Used to debug `Id` clashes of widgets.</span>
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">used_ids</span>: <span class="ident">IdMap</span><span class="op">&lt;</span><span class="ident">Rect</span><span class="op">&gt;</span>,
+<span class="doccomment">/// State that is collected during a frame and then cleared.
+/// Short-term (single frame) memory.
+</span><span class="attribute">#[derive(Clone)]
+</span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">struct </span>FrameState {
+    <span class="doccomment">/// All `Id`s that were used this frame.
+    /// Used to debug `Id` clashes of widgets.
+    </span><span class="kw">pub</span>(<span class="kw">crate</span>) used_ids: IdMap&lt;Rect&gt;,
 
-    <span class="doccomment">/// Starts off as the screen_rect, shrinks as panels are added.</span>
-    <span class="doccomment">/// The `CentralPanel` does not change this.</span>
-    <span class="doccomment">/// This is the area available to Window&#39;s.</span>
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">available_rect</span>: <span class="ident">Rect</span>,
+    <span class="doccomment">/// Starts off as the screen_rect, shrinks as panels are added.
+    /// The `CentralPanel` does not change this.
+    /// This is the area available to Window&#39;s.
+    </span><span class="kw">pub</span>(<span class="kw">crate</span>) available_rect: Rect,
 
-    <span class="doccomment">/// Starts off as the screen_rect, shrinks as panels are added.</span>
-    <span class="doccomment">/// The `CentralPanel` retracts from this.</span>
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">unused_rect</span>: <span class="ident">Rect</span>,
+    <span class="doccomment">/// Starts off as the screen_rect, shrinks as panels are added.
+    /// The `CentralPanel` retracts from this.
+    </span><span class="kw">pub</span>(<span class="kw">crate</span>) unused_rect: Rect,
 
-    <span class="doccomment">/// How much space is used by panels.</span>
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">used_by_panels</span>: <span class="ident">Rect</span>,
+    <span class="doccomment">/// How much space is used by panels.
+    </span><span class="kw">pub</span>(<span class="kw">crate</span>) used_by_panels: Rect,
 
-    <span class="doccomment">/// If a tooltip has been shown this frame, where was it?</span>
-    <span class="doccomment">/// This is used to prevent multiple tooltips to cover each other.</span>
-    <span class="doccomment">/// Initialized to `None` at the start of each frame.</span>
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">tooltip_rect</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span>(<span class="ident">Id</span>, <span class="ident">Rect</span>, <span class="ident">usize</span>)<span class="op">&gt;</span>,
+    <span class="doccomment">/// If a tooltip has been shown this frame, where was it?
+    /// This is used to prevent multiple tooltips to cover each other.
+    /// Initialized to `None` at the start of each frame.
+    </span><span class="kw">pub</span>(<span class="kw">crate</span>) tooltip_rect: <span class="prelude-ty">Option</span>&lt;(Id, Rect, usize)&gt;,
 
-    <span class="doccomment">/// Cleared by the first `ScrollArea` that makes use of it.</span>
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">scroll_delta</span>: <span class="ident">Vec2</span>, <span class="comment">// TODO: move to a Mutex inside of `InputState` ?</span>
-    <span class="doccomment">/// horizontal, vertical</span>
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">scroll_target</span>: [<span class="prelude-ty">Option</span><span class="op">&lt;</span>(<span class="ident">f32</span>, <span class="ident">Align</span>)<span class="op">&gt;</span>; <span class="number">2</span>],
+    <span class="doccomment">/// Cleared by the first `ScrollArea` that makes use of it.
+    </span><span class="kw">pub</span>(<span class="kw">crate</span>) scroll_delta: Vec2, <span class="comment">// TODO: move to a Mutex inside of `InputState` ?
+    </span><span class="doccomment">/// horizontal, vertical
+    </span><span class="kw">pub</span>(<span class="kw">crate</span>) scroll_target: [<span class="prelude-ty">Option</span>&lt;(f32, Align)&gt;; <span class="number">2</span>],
 }
 
-<span class="kw">impl</span> <span class="ident">Default</span> <span class="kw">for</span> <span class="ident">FrameState</span> {
-    <span class="kw">fn</span> <span class="ident">default</span>() -&gt; <span class="self">Self</span> {
-        <span class="self">Self</span> {
-            <span class="ident">used_ids</span>: <span class="ident">Default::default</span>(),
-            <span class="ident">available_rect</span>: <span class="ident">Rect::NAN</span>,
-            <span class="ident">unused_rect</span>: <span class="ident">Rect::NAN</span>,
-            <span class="ident">used_by_panels</span>: <span class="ident">Rect::NAN</span>,
-            <span class="ident">tooltip_rect</span>: <span class="prelude-val">None</span>,
-            <span class="ident">scroll_delta</span>: <span class="ident">Vec2::ZERO</span>,
-            <span class="ident">scroll_target</span>: [<span class="prelude-val">None</span>; <span class="number">2</span>],
+<span class="kw">impl </span>Default <span class="kw">for </span>FrameState {
+    <span class="kw">fn </span>default() -&gt; <span class="self">Self </span>{
+        <span class="self">Self </span>{
+            used_ids: Default::default(),
+            available_rect: Rect::NAN,
+            unused_rect: Rect::NAN,
+            used_by_panels: Rect::NAN,
+            tooltip_rect: <span class="prelude-val">None</span>,
+            scroll_delta: Vec2::ZERO,
+            scroll_target: [<span class="prelude-val">None</span>; <span class="number">2</span>],
         }
     }
 }
 
-<span class="kw">impl</span> <span class="ident">FrameState</span> {
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">begin_frame</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">input</span>: <span class="kw-2">&amp;</span><span class="ident">InputState</span>) {
-        <span class="kw">let</span> <span class="self">Self</span> {
-            <span class="ident">used_ids</span>,
-            <span class="ident">available_rect</span>,
-            <span class="ident">unused_rect</span>,
-            <span class="ident">used_by_panels</span>,
-            <span class="ident">tooltip_rect</span>,
-            <span class="ident">scroll_delta</span>,
-            <span class="ident">scroll_target</span>,
-        } <span class="op">=</span> <span class="self">self</span>;
+<span class="kw">impl </span>FrameState {
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>begin_frame(<span class="kw-2">&amp;mut </span><span class="self">self</span>, input: <span class="kw-2">&amp;</span>InputState) {
+        <span class="kw">let </span><span class="self">Self </span>{
+            used_ids,
+            available_rect,
+            unused_rect,
+            used_by_panels,
+            tooltip_rect,
+            scroll_delta,
+            scroll_target,
+        } = <span class="self">self</span>;
 
-        <span class="ident">used_ids</span>.<span class="ident">clear</span>();
-        <span class="kw-2">*</span><span class="ident">available_rect</span> <span class="op">=</span> <span class="ident">input</span>.<span class="ident">screen_rect</span>();
-        <span class="kw-2">*</span><span class="ident">unused_rect</span> <span class="op">=</span> <span class="ident">input</span>.<span class="ident">screen_rect</span>();
-        <span class="kw-2">*</span><span class="ident">used_by_panels</span> <span class="op">=</span> <span class="ident">Rect::NOTHING</span>;
-        <span class="kw-2">*</span><span class="ident">tooltip_rect</span> <span class="op">=</span> <span class="prelude-val">None</span>;
-        <span class="kw-2">*</span><span class="ident">scroll_delta</span> <span class="op">=</span> <span class="ident">input</span>.<span class="ident">scroll_delta</span>;
-        <span class="kw-2">*</span><span class="ident">scroll_target</span> <span class="op">=</span> [<span class="prelude-val">None</span>; <span class="number">2</span>];
+        used_ids.clear();
+        <span class="kw-2">*</span>available_rect = input.screen_rect();
+        <span class="kw-2">*</span>unused_rect = input.screen_rect();
+        <span class="kw-2">*</span>used_by_panels = Rect::NOTHING;
+        <span class="kw-2">*</span>tooltip_rect = <span class="prelude-val">None</span>;
+        <span class="kw-2">*</span>scroll_delta = input.scroll_delta;
+        <span class="kw-2">*</span>scroll_target = [<span class="prelude-val">None</span>; <span class="number">2</span>];
     }
 
-    <span class="doccomment">/// How much space is still available after panels has been added.</span>
-    <span class="doccomment">/// This is the &quot;background&quot; area, what egui doesn&#39;t cover with panels (but may cover with windows).</span>
-    <span class="doccomment">/// This is also the area to which windows are constrained.</span>
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">available_rect</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">Rect</span> {
+    <span class="doccomment">/// How much space is still available after panels has been added.
+    /// This is the &quot;background&quot; area, what egui doesn&#39;t cover with panels (but may cover with windows).
+    /// This is also the area to which windows are constrained.
+    </span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>available_rect(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; Rect {
         <span class="macro">crate::egui_assert!</span>(
-            <span class="self">self</span>.<span class="ident">available_rect</span>.<span class="ident">is_finite</span>(),
-            <span class="string">&quot;Called `available_rect()` before `CtxRef::run()`&quot;</span>
-        );
-        <span class="self">self</span>.<span class="ident">available_rect</span>
+            <span class="self">self</span>.available_rect.is_finite(),
+            <span class="string">&quot;Called `available_rect()` before `CtxRef::run()`&quot;
+        </span>);
+        <span class="self">self</span>.available_rect
     }
 
-    <span class="doccomment">/// Shrink `available_rect`.</span>
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">allocate_left_panel</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">panel_rect</span>: <span class="ident">Rect</span>) {
+    <span class="doccomment">/// Shrink `available_rect`.
+    </span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>allocate_left_panel(<span class="kw-2">&amp;mut </span><span class="self">self</span>, panel_rect: Rect) {
         <span class="macro">crate::egui_assert!</span>(
-            <span class="ident">panel_rect</span>.<span class="ident">min</span>.<span class="ident">distance</span>(<span class="self">self</span>.<span class="ident">available_rect</span>.<span class="ident">min</span>) <span class="op">&lt;</span> <span class="number">0.1</span>,
-            <span class="string">&quot;Mismatching left panel. You must not create a panel from within another panel.&quot;</span>
-        );
-        <span class="self">self</span>.<span class="ident">available_rect</span>.<span class="ident">min</span>.<span class="ident">x</span> <span class="op">=</span> <span class="ident">panel_rect</span>.<span class="ident">max</span>.<span class="ident">x</span>;
-        <span class="self">self</span>.<span class="ident">unused_rect</span>.<span class="ident">min</span>.<span class="ident">x</span> <span class="op">=</span> <span class="ident">panel_rect</span>.<span class="ident">max</span>.<span class="ident">x</span>;
-        <span class="self">self</span>.<span class="ident">used_by_panels</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">used_by_panels</span>.<span class="ident">union</span>(<span class="ident">panel_rect</span>);
+            panel_rect.min.distance(<span class="self">self</span>.available_rect.min) &lt; <span class="number">0.1</span>,
+            <span class="string">&quot;Mismatching left panel. You must not create a panel from within another panel.&quot;
+        </span>);
+        <span class="self">self</span>.available_rect.min.x = panel_rect.max.x;
+        <span class="self">self</span>.unused_rect.min.x = panel_rect.max.x;
+        <span class="self">self</span>.used_by_panels = <span class="self">self</span>.used_by_panels.union(panel_rect);
     }
 
-    <span class="doccomment">/// Shrink `available_rect`.</span>
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">allocate_right_panel</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">panel_rect</span>: <span class="ident">Rect</span>) {
+    <span class="doccomment">/// Shrink `available_rect`.
+    </span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>allocate_right_panel(<span class="kw-2">&amp;mut </span><span class="self">self</span>, panel_rect: Rect) {
         <span class="macro">crate::egui_assert!</span>(
-            <span class="ident">panel_rect</span>.<span class="ident">max</span>.<span class="ident">distance</span>(<span class="self">self</span>.<span class="ident">available_rect</span>.<span class="ident">max</span>) <span class="op">&lt;</span> <span class="number">0.1</span>,
-            <span class="string">&quot;Mismatching right panel. You must not create a panel from within another panel.&quot;</span>
-        );
-        <span class="self">self</span>.<span class="ident">available_rect</span>.<span class="ident">max</span>.<span class="ident">x</span> <span class="op">=</span> <span class="ident">panel_rect</span>.<span class="ident">min</span>.<span class="ident">x</span>;
-        <span class="self">self</span>.<span class="ident">unused_rect</span>.<span class="ident">max</span>.<span class="ident">x</span> <span class="op">=</span> <span class="ident">panel_rect</span>.<span class="ident">min</span>.<span class="ident">x</span>;
-        <span class="self">self</span>.<span class="ident">used_by_panels</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">used_by_panels</span>.<span class="ident">union</span>(<span class="ident">panel_rect</span>);
+            panel_rect.max.distance(<span class="self">self</span>.available_rect.max) &lt; <span class="number">0.1</span>,
+            <span class="string">&quot;Mismatching right panel. You must not create a panel from within another panel.&quot;
+        </span>);
+        <span class="self">self</span>.available_rect.max.x = panel_rect.min.x;
+        <span class="self">self</span>.unused_rect.max.x = panel_rect.min.x;
+        <span class="self">self</span>.used_by_panels = <span class="self">self</span>.used_by_panels.union(panel_rect);
     }
 
-    <span class="doccomment">/// Shrink `available_rect`.</span>
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">allocate_top_panel</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">panel_rect</span>: <span class="ident">Rect</span>) {
+    <span class="doccomment">/// Shrink `available_rect`.
+    </span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>allocate_top_panel(<span class="kw-2">&amp;mut </span><span class="self">self</span>, panel_rect: Rect) {
         <span class="macro">crate::egui_assert!</span>(
-            <span class="ident">panel_rect</span>.<span class="ident">min</span>.<span class="ident">distance</span>(<span class="self">self</span>.<span class="ident">available_rect</span>.<span class="ident">min</span>) <span class="op">&lt;</span> <span class="number">0.1</span>,
-            <span class="string">&quot;Mismatching top panel. You must not create a panel from within another panel.&quot;</span>
-        );
-        <span class="self">self</span>.<span class="ident">available_rect</span>.<span class="ident">min</span>.<span class="ident">y</span> <span class="op">=</span> <span class="ident">panel_rect</span>.<span class="ident">max</span>.<span class="ident">y</span>;
-        <span class="self">self</span>.<span class="ident">unused_rect</span>.<span class="ident">min</span>.<span class="ident">y</span> <span class="op">=</span> <span class="ident">panel_rect</span>.<span class="ident">max</span>.<span class="ident">y</span>;
-        <span class="self">self</span>.<span class="ident">used_by_panels</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">used_by_panels</span>.<span class="ident">union</span>(<span class="ident">panel_rect</span>);
+            panel_rect.min.distance(<span class="self">self</span>.available_rect.min) &lt; <span class="number">0.1</span>,
+            <span class="string">&quot;Mismatching top panel. You must not create a panel from within another panel.&quot;
+        </span>);
+        <span class="self">self</span>.available_rect.min.y = panel_rect.max.y;
+        <span class="self">self</span>.unused_rect.min.y = panel_rect.max.y;
+        <span class="self">self</span>.used_by_panels = <span class="self">self</span>.used_by_panels.union(panel_rect);
     }
 
-    <span class="doccomment">/// Shrink `available_rect`.</span>
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">allocate_bottom_panel</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">panel_rect</span>: <span class="ident">Rect</span>) {
+    <span class="doccomment">/// Shrink `available_rect`.
+    </span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>allocate_bottom_panel(<span class="kw-2">&amp;mut </span><span class="self">self</span>, panel_rect: Rect) {
         <span class="macro">crate::egui_assert!</span>(
-            <span class="ident">panel_rect</span>.<span class="ident">max</span>.<span class="ident">distance</span>(<span class="self">self</span>.<span class="ident">available_rect</span>.<span class="ident">max</span>) <span class="op">&lt;</span> <span class="number">0.1</span>,
-            <span class="string">&quot;Mismatching bottom panel. You must not create a panel from within another panel.&quot;</span>
-        );
-        <span class="self">self</span>.<span class="ident">available_rect</span>.<span class="ident">max</span>.<span class="ident">y</span> <span class="op">=</span> <span class="ident">panel_rect</span>.<span class="ident">min</span>.<span class="ident">y</span>;
-        <span class="self">self</span>.<span class="ident">unused_rect</span>.<span class="ident">max</span>.<span class="ident">y</span> <span class="op">=</span> <span class="ident">panel_rect</span>.<span class="ident">min</span>.<span class="ident">y</span>;
-        <span class="self">self</span>.<span class="ident">used_by_panels</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">used_by_panels</span>.<span class="ident">union</span>(<span class="ident">panel_rect</span>);
+            panel_rect.max.distance(<span class="self">self</span>.available_rect.max) &lt; <span class="number">0.1</span>,
+            <span class="string">&quot;Mismatching bottom panel. You must not create a panel from within another panel.&quot;
+        </span>);
+        <span class="self">self</span>.available_rect.max.y = panel_rect.min.y;
+        <span class="self">self</span>.unused_rect.max.y = panel_rect.min.y;
+        <span class="self">self</span>.used_by_panels = <span class="self">self</span>.used_by_panels.union(panel_rect);
     }
 
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">allocate_central_panel</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">panel_rect</span>: <span class="ident">Rect</span>) {
-        <span class="comment">// Note: we do not shrink `available_rect`, because</span>
-        <span class="comment">// we allow windows to cover the CentralPanel.</span>
-        <span class="self">self</span>.<span class="ident">unused_rect</span> <span class="op">=</span> <span class="ident">Rect::NOTHING</span>; <span class="comment">// Nothing left unused after this</span>
-        <span class="self">self</span>.<span class="ident">used_by_panels</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">used_by_panels</span>.<span class="ident">union</span>(<span class="ident">panel_rect</span>);
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>allocate_central_panel(<span class="kw-2">&amp;mut </span><span class="self">self</span>, panel_rect: Rect) {
+        <span class="comment">// Note: we do not shrink `available_rect`, because
+        // we allow windows to cover the CentralPanel.
+        </span><span class="self">self</span>.unused_rect = Rect::NOTHING; <span class="comment">// Nothing left unused after this
+        </span><span class="self">self</span>.used_by_panels = <span class="self">self</span>.used_by_panels.union(panel_rect);
     }
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="egui" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0 (a55dd71d5 2022-09-19)" ></div></body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="egui" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.66.1 (90743e729 2023-01-10)" ></div></body></html>

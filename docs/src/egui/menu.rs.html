@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/egui-0.16.1/src/menu.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>menu.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../egui/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../egui/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../egui/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/egui-0.16.1/src/menu.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>menu.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../normalize.css"><link rel="stylesheet" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../ayu.css" disabled><link rel="stylesheet" href="../../dark.css" disabled><link rel="stylesheet" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><div class="width-limiter"><nav class="sub"><a class="sub-logo-container" href="../../egui/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -629,636 +629,636 @@
 <span id="629">629</span>
 <span id="630">630</span>
 <span id="631">631</span>
-</pre><pre class="rust"><code><span class="doccomment">//! Menu bar functionality (very basic so far).</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! Usage:</span>
-<span class="doccomment">//! ```</span>
-<span class="doccomment">//! fn show_menu(ui: &amp;mut egui::Ui) {</span>
-<span class="doccomment">//!     use egui::{menu, Button};</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//!     menu::bar(ui, |ui| {</span>
-<span class="doccomment">//!         ui.menu_button(&quot;File&quot;, |ui| {</span>
-<span class="doccomment">//!             if ui.button(&quot;Open&quot;).clicked() {</span>
-<span class="doccomment">//!                 // …</span>
-<span class="doccomment">//!             }</span>
-<span class="doccomment">//!         });</span>
-<span class="doccomment">//!     });</span>
-<span class="doccomment">//! }</span>
-<span class="doccomment">//! ```</span>
+</pre><pre class="rust"><code><span class="doccomment">//! Menu bar functionality (very basic so far).
+//!
+//! Usage:
+//! ```
+//! fn show_menu(ui: &amp;mut egui::Ui) {
+//!     use egui::{menu, Button};
+//!
+//!     menu::bar(ui, |ui| {
+//!         ui.menu_button(&quot;File&quot;, |ui| {
+//!             if ui.button(&quot;Open&quot;).clicked() {
+//!                 // …
+//!             }
+//!         });
+//!     });
+//! }
+//! ```
 
-<span class="kw">use</span> <span class="kw">super</span>::{
-    <span class="ident">style</span>::{<span class="ident">Spacing</span>, <span class="ident">WidgetVisuals</span>},
-    <span class="ident">Align</span>, <span class="ident">CtxRef</span>, <span class="ident">Id</span>, <span class="ident">InnerResponse</span>, <span class="ident">PointerState</span>, <span class="ident">Pos2</span>, <span class="ident">Rect</span>, <span class="ident">Response</span>, <span class="ident">Sense</span>, <span class="ident">Style</span>, <span class="ident">TextStyle</span>,
-    <span class="ident">Ui</span>, <span class="ident">Vec2</span>,
+</span><span class="kw">use super</span>::{
+    style::{Spacing, WidgetVisuals},
+    Align, CtxRef, Id, InnerResponse, PointerState, Pos2, Rect, Response, Sense, Style, TextStyle,
+    Ui, Vec2,
 };
-<span class="kw">use</span> <span class="kw">crate</span>::{<span class="ident">widgets</span>::<span class="kw-2">*</span>, <span class="kw-2">*</span>};
-<span class="kw">use</span> <span class="ident">epaint</span>::{<span class="ident">mutex::RwLock</span>, <span class="ident">Stroke</span>};
-<span class="kw">use</span> <span class="ident">std::sync::Arc</span>;
+<span class="kw">use crate</span>::{widgets::<span class="kw-2">*</span>, <span class="kw-2">*</span>};
+<span class="kw">use </span>epaint::{mutex::RwLock, Stroke};
+<span class="kw">use </span>std::sync::Arc;
 
-<span class="doccomment">/// What is saved between frames.</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Default</span>)]</span>
-<span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">struct</span> <span class="ident">BarState</span> {
-    <span class="ident">open_menu</span>: <span class="ident">MenuRootManager</span>,
+<span class="doccomment">/// What is saved between frames.
+</span><span class="attribute">#[derive(Clone, Default)]
+</span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">struct </span>BarState {
+    open_menu: MenuRootManager,
 }
 
-<span class="kw">impl</span> <span class="ident">BarState</span> {
-    <span class="kw">fn</span> <span class="ident">load</span>(<span class="ident">ctx</span>: <span class="kw-2">&amp;</span><span class="ident">Context</span>, <span class="ident">bar_id</span>: <span class="ident">Id</span>) -&gt; <span class="self">Self</span> {
-        <span class="ident">ctx</span>.<span class="ident">memory</span>()
-            .<span class="ident">data</span>
-            .<span class="ident">get_temp</span>::<span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>(<span class="ident">bar_id</span>)
-            .<span class="ident">unwrap_or_default</span>()
+<span class="kw">impl </span>BarState {
+    <span class="kw">fn </span>load(ctx: <span class="kw-2">&amp;</span>Context, bar_id: Id) -&gt; <span class="self">Self </span>{
+        ctx.memory()
+            .data
+            .get_temp::&lt;<span class="self">Self</span>&gt;(bar_id)
+            .unwrap_or_default()
     }
 
-    <span class="kw">fn</span> <span class="ident">store</span>(<span class="self">self</span>, <span class="ident">ctx</span>: <span class="kw-2">&amp;</span><span class="ident">Context</span>, <span class="ident">bar_id</span>: <span class="ident">Id</span>) {
-        <span class="ident">ctx</span>.<span class="ident">memory</span>().<span class="ident">data</span>.<span class="ident">insert_temp</span>(<span class="ident">bar_id</span>, <span class="self">self</span>);
+    <span class="kw">fn </span>store(<span class="self">self</span>, ctx: <span class="kw-2">&amp;</span>Context, bar_id: Id) {
+        ctx.memory().data.insert_temp(bar_id, <span class="self">self</span>);
     }
 
-    <span class="doccomment">/// Show a menu at pointer if primary-clicked response.</span>
-    <span class="doccomment">/// Should be called from [`Context`] on a [`Response`]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">bar_menu</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span>(
-        <span class="kw-2">&amp;mut</span> <span class="self">self</span>,
-        <span class="ident">response</span>: <span class="kw-2">&amp;</span><span class="ident">Response</span>,
-        <span class="ident">add_contents</span>: <span class="kw">impl</span> <span class="ident">FnOnce</span>(<span class="kw-2">&amp;mut</span> <span class="ident">Ui</span>) -&gt; <span class="ident">R</span>,
-    ) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">InnerResponse</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span><span class="op">&gt;</span> {
-        <span class="ident">MenuRoot::stationary_click_interaction</span>(<span class="ident">response</span>, <span class="kw-2">&amp;mut</span> <span class="self">self</span>.<span class="ident">open_menu</span>, <span class="ident">response</span>.<span class="ident">id</span>);
-        <span class="self">self</span>.<span class="ident">open_menu</span>.<span class="ident">show</span>(<span class="ident">response</span>, <span class="ident">add_contents</span>)
-    }
-}
-<span class="kw">impl</span> <span class="ident">std::ops::Deref</span> <span class="kw">for</span> <span class="ident">BarState</span> {
-    <span class="kw">type</span> <span class="ident">Target</span> <span class="op">=</span> <span class="ident">MenuRootManager</span>;
-    <span class="kw">fn</span> <span class="ident">deref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Target</span> {
-        <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">open_menu</span>
+    <span class="doccomment">/// Show a menu at pointer if primary-clicked response.
+    /// Should be called from [`Context`] on a [`Response`]
+    </span><span class="kw">pub fn </span>bar_menu&lt;R&gt;(
+        <span class="kw-2">&amp;mut </span><span class="self">self</span>,
+        response: <span class="kw-2">&amp;</span>Response,
+        add_contents: <span class="kw">impl </span>FnOnce(<span class="kw-2">&amp;mut </span>Ui) -&gt; R,
+    ) -&gt; <span class="prelude-ty">Option</span>&lt;InnerResponse&lt;R&gt;&gt; {
+        MenuRoot::stationary_click_interaction(response, <span class="kw-2">&amp;mut </span><span class="self">self</span>.open_menu, response.id);
+        <span class="self">self</span>.open_menu.show(response, add_contents)
     }
 }
-<span class="kw">impl</span> <span class="ident">std::ops::DerefMut</span> <span class="kw">for</span> <span class="ident">BarState</span> {
-    <span class="kw">fn</span> <span class="ident">deref_mut</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>) -&gt; <span class="kw-2">&amp;mut</span> <span class="ident"><span class="self">Self</span>::Target</span> {
-        <span class="kw-2">&amp;mut</span> <span class="self">self</span>.<span class="ident">open_menu</span>
+<span class="kw">impl </span>std::ops::Deref <span class="kw">for </span>BarState {
+    <span class="kw">type </span>Target = MenuRootManager;
+    <span class="kw">fn </span>deref(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span><span class="self">Self</span>::Target {
+        <span class="kw-2">&amp;</span><span class="self">self</span>.open_menu
+    }
+}
+<span class="kw">impl </span>std::ops::DerefMut <span class="kw">for </span>BarState {
+    <span class="kw">fn </span>deref_mut(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;mut </span><span class="self">Self</span>::Target {
+        <span class="kw-2">&amp;mut </span><span class="self">self</span>.open_menu
     }
 }
 
-<span class="doccomment">/// The menu bar goes well in a [`TopBottomPanel::top`],</span>
-<span class="doccomment">/// but can also be placed in a `Window`.</span>
-<span class="doccomment">/// In the latter case you may want to wrap it in `Frame`.</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">bar</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span>(<span class="ident">ui</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Ui</span>, <span class="ident">add_contents</span>: <span class="kw">impl</span> <span class="ident">FnOnce</span>(<span class="kw-2">&amp;mut</span> <span class="ident">Ui</span>) -&gt; <span class="ident">R</span>) -&gt; <span class="ident">InnerResponse</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span> {
-    <span class="ident">ui</span>.<span class="ident">horizontal</span>(<span class="op">|</span><span class="ident">ui</span><span class="op">|</span> {
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">style</span> <span class="op">=</span> (<span class="kw-2">*</span><span class="kw-2">*</span><span class="ident">ui</span>.<span class="ident">style</span>()).<span class="ident">clone</span>();
-        <span class="ident">style</span>.<span class="ident">spacing</span>.<span class="ident">button_padding</span> <span class="op">=</span> <span class="ident">vec2</span>(<span class="number">2.0</span>, <span class="number">0.0</span>);
-        <span class="comment">// style.visuals.widgets.active.bg_fill = Color32::TRANSPARENT;</span>
-        <span class="ident">style</span>.<span class="ident">visuals</span>.<span class="ident">widgets</span>.<span class="ident">active</span>.<span class="ident">bg_stroke</span> <span class="op">=</span> <span class="ident">Stroke::none</span>();
-        <span class="comment">// style.visuals.widgets.hovered.bg_fill = Color32::TRANSPARENT;</span>
-        <span class="ident">style</span>.<span class="ident">visuals</span>.<span class="ident">widgets</span>.<span class="ident">hovered</span>.<span class="ident">bg_stroke</span> <span class="op">=</span> <span class="ident">Stroke::none</span>();
-        <span class="ident">style</span>.<span class="ident">visuals</span>.<span class="ident">widgets</span>.<span class="ident">inactive</span>.<span class="ident">bg_fill</span> <span class="op">=</span> <span class="ident">Color32::TRANSPARENT</span>;
-        <span class="ident">style</span>.<span class="ident">visuals</span>.<span class="ident">widgets</span>.<span class="ident">inactive</span>.<span class="ident">bg_stroke</span> <span class="op">=</span> <span class="ident">Stroke::none</span>();
-        <span class="ident">ui</span>.<span class="ident">set_style</span>(<span class="ident">style</span>);
+<span class="doccomment">/// The menu bar goes well in a [`TopBottomPanel::top`],
+/// but can also be placed in a `Window`.
+/// In the latter case you may want to wrap it in `Frame`.
+</span><span class="kw">pub fn </span>bar&lt;R&gt;(ui: <span class="kw-2">&amp;mut </span>Ui, add_contents: <span class="kw">impl </span>FnOnce(<span class="kw-2">&amp;mut </span>Ui) -&gt; R) -&gt; InnerResponse&lt;R&gt; {
+    ui.horizontal(|ui| {
+        <span class="kw">let </span><span class="kw-2">mut </span>style = (<span class="kw-2">**</span>ui.style()).clone();
+        style.spacing.button_padding = vec2(<span class="number">2.0</span>, <span class="number">0.0</span>);
+        <span class="comment">// style.visuals.widgets.active.bg_fill = Color32::TRANSPARENT;
+        </span>style.visuals.widgets.active.bg_stroke = Stroke::none();
+        <span class="comment">// style.visuals.widgets.hovered.bg_fill = Color32::TRANSPARENT;
+        </span>style.visuals.widgets.hovered.bg_stroke = Stroke::none();
+        style.visuals.widgets.inactive.bg_fill = Color32::TRANSPARENT;
+        style.visuals.widgets.inactive.bg_stroke = Stroke::none();
+        ui.set_style(style);
 
-        <span class="comment">// Take full width and fixed height:</span>
-        <span class="kw">let</span> <span class="ident">height</span> <span class="op">=</span> <span class="ident">ui</span>.<span class="ident">spacing</span>().<span class="ident">interact_size</span>.<span class="ident">y</span>;
-        <span class="ident">ui</span>.<span class="ident">set_min_size</span>(<span class="ident">vec2</span>(<span class="ident">ui</span>.<span class="ident">available_width</span>(), <span class="ident">height</span>));
+        <span class="comment">// Take full width and fixed height:
+        </span><span class="kw">let </span>height = ui.spacing().interact_size.y;
+        ui.set_min_size(vec2(ui.available_width(), height));
 
-        <span class="ident">add_contents</span>(<span class="ident">ui</span>)
+        add_contents(ui)
     })
 }
 
-<span class="doccomment">/// Construct a top level menu in a menu bar. This would be e.g. &quot;File&quot;, &quot;Edit&quot; etc.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// Responds to primary clicks.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// Returns `None` if the menu is not open.</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">menu_button</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span>(
-    <span class="ident">ui</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Ui</span>,
-    <span class="ident">title</span>: <span class="kw">impl</span> <span class="ident">Into</span><span class="op">&lt;</span><span class="ident">WidgetText</span><span class="op">&gt;</span>,
-    <span class="ident">add_contents</span>: <span class="kw">impl</span> <span class="ident">FnOnce</span>(<span class="kw-2">&amp;mut</span> <span class="ident">Ui</span>) -&gt; <span class="ident">R</span>,
-) -&gt; <span class="ident">InnerResponse</span><span class="op">&lt;</span><span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span><span class="op">&gt;</span> {
-    <span class="ident">stationary_menu_impl</span>(<span class="ident">ui</span>, <span class="ident">title</span>, <span class="ident">Box::new</span>(<span class="ident">add_contents</span>))
+<span class="doccomment">/// Construct a top level menu in a menu bar. This would be e.g. &quot;File&quot;, &quot;Edit&quot; etc.
+///
+/// Responds to primary clicks.
+///
+/// Returns `None` if the menu is not open.
+</span><span class="kw">pub fn </span>menu_button&lt;R&gt;(
+    ui: <span class="kw-2">&amp;mut </span>Ui,
+    title: <span class="kw">impl </span>Into&lt;WidgetText&gt;,
+    add_contents: <span class="kw">impl </span>FnOnce(<span class="kw-2">&amp;mut </span>Ui) -&gt; R,
+) -&gt; InnerResponse&lt;<span class="prelude-ty">Option</span>&lt;R&gt;&gt; {
+    stationary_menu_impl(ui, title, Box::new(add_contents))
 }
 
-<span class="doccomment">/// Construct a nested sub menu in another menu.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// Opens on hover.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// Returns `None` if the menu is not open.</span>
-<span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">submenu_button</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span>(
-    <span class="ident">ui</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Ui</span>,
-    <span class="ident">parent_state</span>: <span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">RwLock</span><span class="op">&lt;</span><span class="ident">MenuState</span><span class="op">&gt;</span><span class="op">&gt;</span>,
-    <span class="ident">title</span>: <span class="kw">impl</span> <span class="ident">Into</span><span class="op">&lt;</span><span class="ident">WidgetText</span><span class="op">&gt;</span>,
-    <span class="ident">add_contents</span>: <span class="kw">impl</span> <span class="ident">FnOnce</span>(<span class="kw-2">&amp;mut</span> <span class="ident">Ui</span>) -&gt; <span class="ident">R</span>,
-) -&gt; <span class="ident">InnerResponse</span><span class="op">&lt;</span><span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span><span class="op">&gt;</span> {
-    <span class="ident">SubMenu::new</span>(<span class="ident">parent_state</span>, <span class="ident">title</span>).<span class="ident">show</span>(<span class="ident">ui</span>, <span class="ident">add_contents</span>)
+<span class="doccomment">/// Construct a nested sub menu in another menu.
+///
+/// Opens on hover.
+///
+/// Returns `None` if the menu is not open.
+</span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>submenu_button&lt;R&gt;(
+    ui: <span class="kw-2">&amp;mut </span>Ui,
+    parent_state: Arc&lt;RwLock&lt;MenuState&gt;&gt;,
+    title: <span class="kw">impl </span>Into&lt;WidgetText&gt;,
+    add_contents: <span class="kw">impl </span>FnOnce(<span class="kw-2">&amp;mut </span>Ui) -&gt; R,
+) -&gt; InnerResponse&lt;<span class="prelude-ty">Option</span>&lt;R&gt;&gt; {
+    SubMenu::new(parent_state, title).show(ui, add_contents)
 }
 
-<span class="doccomment">/// wrapper for the contents of every menu.</span>
-<span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">menu_ui</span><span class="op">&lt;</span><span class="lifetime">&#39;c</span>, <span class="ident">R</span><span class="op">&gt;</span>(
-    <span class="ident">ctx</span>: <span class="kw-2">&amp;</span><span class="ident">CtxRef</span>,
-    <span class="ident">menu_id</span>: <span class="kw">impl</span> <span class="ident">std::hash::Hash</span>,
-    <span class="ident">menu_state_arc</span>: <span class="kw-2">&amp;</span><span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">RwLock</span><span class="op">&lt;</span><span class="ident">MenuState</span><span class="op">&gt;</span><span class="op">&gt;</span>,
-    <span class="kw-2">mut</span> <span class="ident">style</span>: <span class="ident">Style</span>,
-    <span class="ident">add_contents</span>: <span class="kw">impl</span> <span class="ident">FnOnce</span>(<span class="kw-2">&amp;mut</span> <span class="ident">Ui</span>) -&gt; <span class="ident">R</span> <span class="op">+</span> <span class="lifetime">&#39;c</span>,
-) -&gt; <span class="ident">InnerResponse</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span> {
-    <span class="kw">let</span> <span class="ident">pos</span> <span class="op">=</span> {
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">menu_state</span> <span class="op">=</span> <span class="ident">menu_state_arc</span>.<span class="ident">write</span>();
-        <span class="ident">menu_state</span>.<span class="ident">entry_count</span> <span class="op">=</span> <span class="number">0</span>;
-        <span class="ident">menu_state</span>.<span class="ident">rect</span>.<span class="ident">min</span>
+<span class="doccomment">/// wrapper for the contents of every menu.
+</span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>menu_ui&lt;<span class="lifetime">&#39;c</span>, R&gt;(
+    ctx: <span class="kw-2">&amp;</span>CtxRef,
+    menu_id: <span class="kw">impl </span>std::hash::Hash,
+    menu_state_arc: <span class="kw-2">&amp;</span>Arc&lt;RwLock&lt;MenuState&gt;&gt;,
+    <span class="kw-2">mut </span>style: Style,
+    add_contents: <span class="kw">impl </span>FnOnce(<span class="kw-2">&amp;mut </span>Ui) -&gt; R + <span class="lifetime">&#39;c</span>,
+) -&gt; InnerResponse&lt;R&gt; {
+    <span class="kw">let </span>pos = {
+        <span class="kw">let </span><span class="kw-2">mut </span>menu_state = menu_state_arc.write();
+        menu_state.entry_count = <span class="number">0</span>;
+        menu_state.rect.min
     };
-    <span class="comment">// style.visuals.widgets.active.bg_fill = Color32::TRANSPARENT;</span>
-    <span class="ident">style</span>.<span class="ident">visuals</span>.<span class="ident">widgets</span>.<span class="ident">active</span>.<span class="ident">bg_stroke</span> <span class="op">=</span> <span class="ident">Stroke::none</span>();
-    <span class="comment">// style.visuals.widgets.hovered.bg_fill = Color32::TRANSPARENT;</span>
-    <span class="ident">style</span>.<span class="ident">visuals</span>.<span class="ident">widgets</span>.<span class="ident">hovered</span>.<span class="ident">bg_stroke</span> <span class="op">=</span> <span class="ident">Stroke::none</span>();
-    <span class="ident">style</span>.<span class="ident">visuals</span>.<span class="ident">widgets</span>.<span class="ident">inactive</span>.<span class="ident">bg_fill</span> <span class="op">=</span> <span class="ident">Color32::TRANSPARENT</span>;
-    <span class="ident">style</span>.<span class="ident">visuals</span>.<span class="ident">widgets</span>.<span class="ident">inactive</span>.<span class="ident">bg_stroke</span> <span class="op">=</span> <span class="ident">Stroke::none</span>();
-    <span class="kw">let</span> <span class="ident">area</span> <span class="op">=</span> <span class="ident">Area::new</span>(<span class="ident">menu_id</span>)
-        .<span class="ident">order</span>(<span class="ident">Order::Foreground</span>)
-        .<span class="ident">fixed_pos</span>(<span class="ident">pos</span>)
-        .<span class="ident">interactable</span>(<span class="bool-val">false</span>)
-        .<span class="ident">drag_bounds</span>(<span class="ident">Rect::EVERYTHING</span>);
-    <span class="kw">let</span> <span class="ident">frame</span> <span class="op">=</span> <span class="ident">Frame::menu</span>(<span class="kw-2">&amp;</span><span class="ident">style</span>);
-    <span class="kw">let</span> <span class="ident">inner_response</span> <span class="op">=</span> <span class="ident">area</span>.<span class="ident">show</span>(<span class="ident">ctx</span>, <span class="op">|</span><span class="ident">ui</span><span class="op">|</span> {
-        <span class="ident">frame</span>
-            .<span class="ident">show</span>(<span class="ident">ui</span>, <span class="op">|</span><span class="ident">ui</span><span class="op">|</span> {
-                <span class="kw">const</span> <span class="ident">DEFAULT_MENU_WIDTH</span>: <span class="ident">f32</span> <span class="op">=</span> <span class="number">150.0</span>; <span class="comment">// TODO: add to ui.spacing</span>
-                <span class="ident">ui</span>.<span class="ident">set_max_width</span>(<span class="ident">DEFAULT_MENU_WIDTH</span>);
-                <span class="ident">ui</span>.<span class="ident">set_style</span>(<span class="ident">style</span>);
-                <span class="ident">ui</span>.<span class="ident">set_menu_state</span>(<span class="prelude-val">Some</span>(<span class="ident">menu_state_arc</span>.<span class="ident">clone</span>()));
-                <span class="ident">ui</span>.<span class="ident">with_layout</span>(<span class="ident">Layout::top_down_justified</span>(<span class="ident">Align::LEFT</span>), <span class="ident">add_contents</span>)
-                    .<span class="ident">inner</span>
+    <span class="comment">// style.visuals.widgets.active.bg_fill = Color32::TRANSPARENT;
+    </span>style.visuals.widgets.active.bg_stroke = Stroke::none();
+    <span class="comment">// style.visuals.widgets.hovered.bg_fill = Color32::TRANSPARENT;
+    </span>style.visuals.widgets.hovered.bg_stroke = Stroke::none();
+    style.visuals.widgets.inactive.bg_fill = Color32::TRANSPARENT;
+    style.visuals.widgets.inactive.bg_stroke = Stroke::none();
+    <span class="kw">let </span>area = Area::new(menu_id)
+        .order(Order::Foreground)
+        .fixed_pos(pos)
+        .interactable(<span class="bool-val">false</span>)
+        .drag_bounds(Rect::EVERYTHING);
+    <span class="kw">let </span>frame = Frame::menu(<span class="kw-2">&amp;</span>style);
+    <span class="kw">let </span>inner_response = area.show(ctx, |ui| {
+        frame
+            .show(ui, |ui| {
+                <span class="kw">const </span>DEFAULT_MENU_WIDTH: f32 = <span class="number">150.0</span>; <span class="comment">// TODO: add to ui.spacing
+                </span>ui.set_max_width(DEFAULT_MENU_WIDTH);
+                ui.set_style(style);
+                ui.set_menu_state(<span class="prelude-val">Some</span>(menu_state_arc.clone()));
+                ui.with_layout(Layout::top_down_justified(Align::LEFT), add_contents)
+                    .inner
             })
-            .<span class="ident">inner</span>
+            .inner
     });
-    <span class="ident">menu_state_arc</span>.<span class="ident">write</span>().<span class="ident">rect</span> <span class="op">=</span> <span class="ident">inner_response</span>.<span class="ident">response</span>.<span class="ident">rect</span>;
-    <span class="ident">inner_response</span>
+    menu_state_arc.write().rect = inner_response.response.rect;
+    inner_response
 }
 
-<span class="doccomment">/// Build a top level menu with a button.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// Responds to primary clicks.</span>
-<span class="kw">fn</span> <span class="ident">stationary_menu_impl</span><span class="op">&lt;</span><span class="lifetime">&#39;c</span>, <span class="ident">R</span><span class="op">&gt;</span>(
-    <span class="ident">ui</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Ui</span>,
-    <span class="ident">title</span>: <span class="kw">impl</span> <span class="ident">Into</span><span class="op">&lt;</span><span class="ident">WidgetText</span><span class="op">&gt;</span>,
-    <span class="ident">add_contents</span>: <span class="ident">Box</span><span class="op">&lt;</span><span class="kw">dyn</span> <span class="ident">FnOnce</span>(<span class="kw-2">&amp;mut</span> <span class="ident">Ui</span>) -&gt; <span class="ident">R</span> <span class="op">+</span> <span class="lifetime">&#39;c</span><span class="op">&gt;</span>,
-) -&gt; <span class="ident">InnerResponse</span><span class="op">&lt;</span><span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span><span class="op">&gt;</span> {
-    <span class="kw">let</span> <span class="ident">title</span> <span class="op">=</span> <span class="ident">title</span>.<span class="ident">into</span>();
-    <span class="kw">let</span> <span class="ident">bar_id</span> <span class="op">=</span> <span class="ident">ui</span>.<span class="ident">id</span>();
-    <span class="kw">let</span> <span class="ident">menu_id</span> <span class="op">=</span> <span class="ident">bar_id</span>.<span class="ident">with</span>(<span class="ident">title</span>.<span class="ident">text</span>());
+<span class="doccomment">/// Build a top level menu with a button.
+///
+/// Responds to primary clicks.
+</span><span class="kw">fn </span>stationary_menu_impl&lt;<span class="lifetime">&#39;c</span>, R&gt;(
+    ui: <span class="kw-2">&amp;mut </span>Ui,
+    title: <span class="kw">impl </span>Into&lt;WidgetText&gt;,
+    add_contents: Box&lt;<span class="kw">dyn </span>FnOnce(<span class="kw-2">&amp;mut </span>Ui) -&gt; R + <span class="lifetime">&#39;c</span>&gt;,
+) -&gt; InnerResponse&lt;<span class="prelude-ty">Option</span>&lt;R&gt;&gt; {
+    <span class="kw">let </span>title = title.into();
+    <span class="kw">let </span>bar_id = ui.id();
+    <span class="kw">let </span>menu_id = bar_id.with(title.text());
 
-    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">bar_state</span> <span class="op">=</span> <span class="ident">BarState::load</span>(<span class="ident">ui</span>.<span class="ident">ctx</span>(), <span class="ident">bar_id</span>);
+    <span class="kw">let </span><span class="kw-2">mut </span>bar_state = BarState::load(ui.ctx(), bar_id);
 
-    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">button</span> <span class="op">=</span> <span class="ident">Button::new</span>(<span class="ident">title</span>);
+    <span class="kw">let </span><span class="kw-2">mut </span>button = Button::new(title);
 
-    <span class="kw">if</span> <span class="ident">bar_state</span>.<span class="ident">open_menu</span>.<span class="ident">is_menu_open</span>(<span class="ident">menu_id</span>) {
-        <span class="ident">button</span> <span class="op">=</span> <span class="ident">button</span>.<span class="ident">fill</span>(<span class="ident">ui</span>.<span class="ident">visuals</span>().<span class="ident">widgets</span>.<span class="ident">open</span>.<span class="ident">bg_fill</span>);
-        <span class="ident">button</span> <span class="op">=</span> <span class="ident">button</span>.<span class="ident">stroke</span>(<span class="ident">ui</span>.<span class="ident">visuals</span>().<span class="ident">widgets</span>.<span class="ident">open</span>.<span class="ident">bg_stroke</span>);
+    <span class="kw">if </span>bar_state.open_menu.is_menu_open(menu_id) {
+        button = button.fill(ui.visuals().widgets.open.bg_fill);
+        button = button.stroke(ui.visuals().widgets.open.bg_stroke);
     }
 
-    <span class="kw">let</span> <span class="ident">button_response</span> <span class="op">=</span> <span class="ident">ui</span>.<span class="ident">add</span>(<span class="ident">button</span>);
-    <span class="kw">let</span> <span class="ident">inner</span> <span class="op">=</span> <span class="ident">bar_state</span>.<span class="ident">bar_menu</span>(<span class="kw-2">&amp;</span><span class="ident">button_response</span>, <span class="ident">add_contents</span>);
+    <span class="kw">let </span>button_response = ui.add(button);
+    <span class="kw">let </span>inner = bar_state.bar_menu(<span class="kw-2">&amp;</span>button_response, add_contents);
 
-    <span class="ident">bar_state</span>.<span class="ident">store</span>(<span class="ident">ui</span>.<span class="ident">ctx</span>(), <span class="ident">bar_id</span>);
-    <span class="ident">InnerResponse::new</span>(<span class="ident">inner</span>.<span class="ident">map</span>(<span class="op">|</span><span class="ident">r</span><span class="op">|</span> <span class="ident">r</span>.<span class="ident">inner</span>), <span class="ident">button_response</span>)
-}
-
-<span class="doccomment">/// Stores the state for the context menu.</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Default</span>)]</span>
-<span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">struct</span> <span class="ident">ContextMenuSystem</span> {
-    <span class="ident">root</span>: <span class="ident">MenuRootManager</span>,
-}
-<span class="kw">impl</span> <span class="ident">ContextMenuSystem</span> {
-    <span class="doccomment">/// Show a menu at pointer if right-clicked response.</span>
-    <span class="doccomment">/// Should be called from [`Context`] on a [`Response`]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">context_menu</span>(
-        <span class="kw-2">&amp;mut</span> <span class="self">self</span>,
-        <span class="ident">response</span>: <span class="kw-2">&amp;</span><span class="ident">Response</span>,
-        <span class="ident">add_contents</span>: <span class="kw">impl</span> <span class="ident">FnOnce</span>(<span class="kw-2">&amp;mut</span> <span class="ident">Ui</span>),
-    ) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">InnerResponse</span><span class="op">&lt;</span>()<span class="op">&gt;</span><span class="op">&gt;</span> {
-        <span class="ident">MenuRoot::context_click_interaction</span>(<span class="ident">response</span>, <span class="kw-2">&amp;mut</span> <span class="self">self</span>.<span class="ident">root</span>, <span class="ident">response</span>.<span class="ident">id</span>);
-        <span class="self">self</span>.<span class="ident">root</span>.<span class="ident">show</span>(<span class="ident">response</span>, <span class="ident">add_contents</span>)
-    }
-}
-<span class="kw">impl</span> <span class="ident">std::ops::Deref</span> <span class="kw">for</span> <span class="ident">ContextMenuSystem</span> {
-    <span class="kw">type</span> <span class="ident">Target</span> <span class="op">=</span> <span class="ident">MenuRootManager</span>;
-    <span class="kw">fn</span> <span class="ident">deref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Target</span> {
-        <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">root</span>
-    }
-}
-<span class="kw">impl</span> <span class="ident">std::ops::DerefMut</span> <span class="kw">for</span> <span class="ident">ContextMenuSystem</span> {
-    <span class="kw">fn</span> <span class="ident">deref_mut</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>) -&gt; <span class="kw-2">&amp;mut</span> <span class="ident"><span class="self">Self</span>::Target</span> {
-        <span class="kw-2">&amp;mut</span> <span class="self">self</span>.<span class="ident">root</span>
-    }
+    bar_state.store(ui.ctx(), bar_id);
+    InnerResponse::new(inner.map(|r| r.inner), button_response)
 }
 
-<span class="doccomment">/// Stores the state for the context menu.</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Default</span>)]</span>
-<span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">struct</span> <span class="ident">MenuRootManager</span> {
-    <span class="ident">inner</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">MenuRoot</span><span class="op">&gt;</span>,
+<span class="doccomment">/// Stores the state for the context menu.
+</span><span class="attribute">#[derive(Default)]
+</span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">struct </span>ContextMenuSystem {
+    root: MenuRootManager,
 }
-<span class="kw">impl</span> <span class="ident">MenuRootManager</span> {
-    <span class="doccomment">/// Show a menu at pointer if right-clicked response.</span>
-    <span class="doccomment">/// Should be called from [`Context`] on a [`Response`]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">show</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span>(
-        <span class="kw-2">&amp;mut</span> <span class="self">self</span>,
-        <span class="ident">response</span>: <span class="kw-2">&amp;</span><span class="ident">Response</span>,
-        <span class="ident">add_contents</span>: <span class="kw">impl</span> <span class="ident">FnOnce</span>(<span class="kw-2">&amp;mut</span> <span class="ident">Ui</span>) -&gt; <span class="ident">R</span>,
-    ) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">InnerResponse</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span><span class="op">&gt;</span> {
-        <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">root</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">inner</span>.<span class="ident">as_mut</span>() {
-            <span class="kw">let</span> (<span class="ident">menu_response</span>, <span class="ident">inner_response</span>) <span class="op">=</span> <span class="ident">root</span>.<span class="ident">show</span>(<span class="ident">response</span>, <span class="ident">add_contents</span>);
-            <span class="kw">if</span> <span class="kw">let</span> <span class="ident">MenuResponse::Close</span> <span class="op">=</span> <span class="ident">menu_response</span> {
-                <span class="self">self</span>.<span class="ident">inner</span> <span class="op">=</span> <span class="prelude-val">None</span>;
+<span class="kw">impl </span>ContextMenuSystem {
+    <span class="doccomment">/// Show a menu at pointer if right-clicked response.
+    /// Should be called from [`Context`] on a [`Response`]
+    </span><span class="kw">pub fn </span>context_menu(
+        <span class="kw-2">&amp;mut </span><span class="self">self</span>,
+        response: <span class="kw-2">&amp;</span>Response,
+        add_contents: <span class="kw">impl </span>FnOnce(<span class="kw-2">&amp;mut </span>Ui),
+    ) -&gt; <span class="prelude-ty">Option</span>&lt;InnerResponse&lt;()&gt;&gt; {
+        MenuRoot::context_click_interaction(response, <span class="kw-2">&amp;mut </span><span class="self">self</span>.root, response.id);
+        <span class="self">self</span>.root.show(response, add_contents)
+    }
+}
+<span class="kw">impl </span>std::ops::Deref <span class="kw">for </span>ContextMenuSystem {
+    <span class="kw">type </span>Target = MenuRootManager;
+    <span class="kw">fn </span>deref(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span><span class="self">Self</span>::Target {
+        <span class="kw-2">&amp;</span><span class="self">self</span>.root
+    }
+}
+<span class="kw">impl </span>std::ops::DerefMut <span class="kw">for </span>ContextMenuSystem {
+    <span class="kw">fn </span>deref_mut(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;mut </span><span class="self">Self</span>::Target {
+        <span class="kw-2">&amp;mut </span><span class="self">self</span>.root
+    }
+}
+
+<span class="doccomment">/// Stores the state for the context menu.
+</span><span class="attribute">#[derive(Clone, Default)]
+</span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">struct </span>MenuRootManager {
+    inner: <span class="prelude-ty">Option</span>&lt;MenuRoot&gt;,
+}
+<span class="kw">impl </span>MenuRootManager {
+    <span class="doccomment">/// Show a menu at pointer if right-clicked response.
+    /// Should be called from [`Context`] on a [`Response`]
+    </span><span class="kw">pub fn </span>show&lt;R&gt;(
+        <span class="kw-2">&amp;mut </span><span class="self">self</span>,
+        response: <span class="kw-2">&amp;</span>Response,
+        add_contents: <span class="kw">impl </span>FnOnce(<span class="kw-2">&amp;mut </span>Ui) -&gt; R,
+    ) -&gt; <span class="prelude-ty">Option</span>&lt;InnerResponse&lt;R&gt;&gt; {
+        <span class="kw">if let </span><span class="prelude-val">Some</span>(root) = <span class="self">self</span>.inner.as_mut() {
+            <span class="kw">let </span>(menu_response, inner_response) = root.show(response, add_contents);
+            <span class="kw">if let </span>MenuResponse::Close = menu_response {
+                <span class="self">self</span>.inner = <span class="prelude-val">None</span>;
             }
-            <span class="ident">inner_response</span>
-        } <span class="kw">else</span> {
-            <span class="prelude-val">None</span>
+            inner_response
+        } <span class="kw">else </span>{
+            <span class="prelude-val">None
+        </span>}
+    }
+    <span class="kw">fn </span>is_menu_open(<span class="kw-2">&amp;</span><span class="self">self</span>, id: Id) -&gt; bool {
+        <span class="self">self</span>.inner.as_ref().map(|m| m.id) == <span class="prelude-val">Some</span>(id)
+    }
+}
+<span class="kw">impl </span>std::ops::Deref <span class="kw">for </span>MenuRootManager {
+    <span class="kw">type </span>Target = <span class="prelude-ty">Option</span>&lt;MenuRoot&gt;;
+    <span class="kw">fn </span>deref(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span><span class="self">Self</span>::Target {
+        <span class="kw-2">&amp;</span><span class="self">self</span>.inner
+    }
+}
+<span class="kw">impl </span>std::ops::DerefMut <span class="kw">for </span>MenuRootManager {
+    <span class="kw">fn </span>deref_mut(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;mut </span><span class="self">Self</span>::Target {
+        <span class="kw-2">&amp;mut </span><span class="self">self</span>.inner
+    }
+}
+
+<span class="doccomment">/// Menu root associated with an Id from a Response
+</span><span class="attribute">#[derive(Clone)]
+</span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">struct </span>MenuRoot {
+    <span class="kw">pub </span>menu_state: Arc&lt;RwLock&lt;MenuState&gt;&gt;,
+    <span class="kw">pub </span>id: Id,
+}
+
+<span class="kw">impl </span>MenuRoot {
+    <span class="kw">pub fn </span>new(position: Pos2, id: Id) -&gt; <span class="self">Self </span>{
+        <span class="self">Self </span>{
+            menu_state: Arc::new(RwLock::new(MenuState::new(position))),
+            id,
         }
     }
-    <span class="kw">fn</span> <span class="ident">is_menu_open</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">id</span>: <span class="ident">Id</span>) -&gt; <span class="ident">bool</span> {
-        <span class="self">self</span>.<span class="ident">inner</span>.<span class="ident">as_ref</span>().<span class="ident">map</span>(<span class="op">|</span><span class="ident">m</span><span class="op">|</span> <span class="ident">m</span>.<span class="ident">id</span>) <span class="op">==</span> <span class="prelude-val">Some</span>(<span class="ident">id</span>)
-    }
-}
-<span class="kw">impl</span> <span class="ident">std::ops::Deref</span> <span class="kw">for</span> <span class="ident">MenuRootManager</span> {
-    <span class="kw">type</span> <span class="ident">Target</span> <span class="op">=</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">MenuRoot</span><span class="op">&gt;</span>;
-    <span class="kw">fn</span> <span class="ident">deref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Target</span> {
-        <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">inner</span>
-    }
-}
-<span class="kw">impl</span> <span class="ident">std::ops::DerefMut</span> <span class="kw">for</span> <span class="ident">MenuRootManager</span> {
-    <span class="kw">fn</span> <span class="ident">deref_mut</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>) -&gt; <span class="kw-2">&amp;mut</span> <span class="ident"><span class="self">Self</span>::Target</span> {
-        <span class="kw-2">&amp;mut</span> <span class="self">self</span>.<span class="ident">inner</span>
-    }
-}
+    <span class="kw">pub fn </span>show&lt;R&gt;(
+        <span class="kw-2">&amp;mut </span><span class="self">self</span>,
+        response: <span class="kw-2">&amp;</span>Response,
+        add_contents: <span class="kw">impl </span>FnOnce(<span class="kw-2">&amp;mut </span>Ui) -&gt; R,
+    ) -&gt; (MenuResponse, <span class="prelude-ty">Option</span>&lt;InnerResponse&lt;R&gt;&gt;) {
+        <span class="kw">if </span><span class="self">self</span>.id == response.id {
+            <span class="kw">let </span>inner_response =
+                MenuState::show(<span class="kw-2">&amp;</span>response.ctx, <span class="kw-2">&amp;</span><span class="self">self</span>.menu_state, <span class="self">self</span>.id, add_contents);
+            <span class="kw">let </span><span class="kw-2">mut </span>menu_state = <span class="self">self</span>.menu_state.write();
+            menu_state.rect = inner_response.response.rect;
 
-<span class="doccomment">/// Menu root associated with an Id from a Response</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>)]</span>
-<span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">struct</span> <span class="ident">MenuRoot</span> {
-    <span class="kw">pub</span> <span class="ident">menu_state</span>: <span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">RwLock</span><span class="op">&lt;</span><span class="ident">MenuState</span><span class="op">&gt;</span><span class="op">&gt;</span>,
-    <span class="kw">pub</span> <span class="ident">id</span>: <span class="ident">Id</span>,
-}
-
-<span class="kw">impl</span> <span class="ident">MenuRoot</span> {
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">position</span>: <span class="ident">Pos2</span>, <span class="ident">id</span>: <span class="ident">Id</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">Self</span> {
-            <span class="ident">menu_state</span>: <span class="ident">Arc::new</span>(<span class="ident">RwLock::new</span>(<span class="ident">MenuState::new</span>(<span class="ident">position</span>))),
-            <span class="ident">id</span>,
-        }
-    }
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">show</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span>(
-        <span class="kw-2">&amp;mut</span> <span class="self">self</span>,
-        <span class="ident">response</span>: <span class="kw-2">&amp;</span><span class="ident">Response</span>,
-        <span class="ident">add_contents</span>: <span class="kw">impl</span> <span class="ident">FnOnce</span>(<span class="kw-2">&amp;mut</span> <span class="ident">Ui</span>) -&gt; <span class="ident">R</span>,
-    ) -&gt; (<span class="ident">MenuResponse</span>, <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">InnerResponse</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span><span class="op">&gt;</span>) {
-        <span class="kw">if</span> <span class="self">self</span>.<span class="ident">id</span> <span class="op">==</span> <span class="ident">response</span>.<span class="ident">id</span> {
-            <span class="kw">let</span> <span class="ident">inner_response</span> <span class="op">=</span>
-                <span class="ident">MenuState::show</span>(<span class="kw-2">&amp;</span><span class="ident">response</span>.<span class="ident">ctx</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">menu_state</span>, <span class="self">self</span>.<span class="ident">id</span>, <span class="ident">add_contents</span>);
-            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">menu_state</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">menu_state</span>.<span class="ident">write</span>();
-            <span class="ident">menu_state</span>.<span class="ident">rect</span> <span class="op">=</span> <span class="ident">inner_response</span>.<span class="ident">response</span>.<span class="ident">rect</span>;
-
-            <span class="kw">if</span> <span class="ident">menu_state</span>.<span class="ident">response</span>.<span class="ident">is_close</span>() {
-                <span class="kw">return</span> (<span class="ident">MenuResponse::Close</span>, <span class="prelude-val">Some</span>(<span class="ident">inner_response</span>));
+            <span class="kw">if </span>menu_state.response.is_close() {
+                <span class="kw">return </span>(MenuResponse::Close, <span class="prelude-val">Some</span>(inner_response));
             }
         }
-        (<span class="ident">MenuResponse::Stay</span>, <span class="prelude-val">None</span>)
+        (MenuResponse::Stay, <span class="prelude-val">None</span>)
     }
 
-    <span class="doccomment">/// Interaction with a stationary menu, i.e. fixed in another Ui.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// Responds to primary clicks.</span>
-    <span class="kw">fn</span> <span class="ident">stationary_interaction</span>(
-        <span class="ident">response</span>: <span class="kw-2">&amp;</span><span class="ident">Response</span>,
-        <span class="ident">root</span>: <span class="kw-2">&amp;mut</span> <span class="ident">MenuRootManager</span>,
-        <span class="ident">id</span>: <span class="ident">Id</span>,
-    ) -&gt; <span class="ident">MenuResponse</span> {
-        <span class="kw">let</span> <span class="ident">pointer</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">response</span>.<span class="ident">ctx</span>.<span class="ident">input</span>().<span class="ident">pointer</span>;
-        <span class="kw">if</span> (<span class="ident">response</span>.<span class="ident">clicked</span>() <span class="op">&amp;&amp;</span> <span class="ident">root</span>.<span class="ident">is_menu_open</span>(<span class="ident">id</span>))
-            <span class="op">|</span><span class="op">|</span> <span class="ident">response</span>.<span class="ident">ctx</span>.<span class="ident">input</span>().<span class="ident">key_pressed</span>(<span class="ident">Key::Escape</span>)
+    <span class="doccomment">/// Interaction with a stationary menu, i.e. fixed in another Ui.
+    ///
+    /// Responds to primary clicks.
+    </span><span class="kw">fn </span>stationary_interaction(
+        response: <span class="kw-2">&amp;</span>Response,
+        root: <span class="kw-2">&amp;mut </span>MenuRootManager,
+        id: Id,
+    ) -&gt; MenuResponse {
+        <span class="kw">let </span>pointer = <span class="kw-2">&amp;</span>response.ctx.input().pointer;
+        <span class="kw">if </span>(response.clicked() &amp;&amp; root.is_menu_open(id))
+            || response.ctx.input().key_pressed(Key::Escape)
         {
-            <span class="comment">// menu open and button clicked or esc pressed</span>
-            <span class="kw">return</span> <span class="ident">MenuResponse::Close</span>;
-        } <span class="kw">else</span> <span class="kw">if</span> (<span class="ident">response</span>.<span class="ident">clicked</span>() <span class="op">&amp;&amp;</span> <span class="op">!</span><span class="ident">root</span>.<span class="ident">is_menu_open</span>(<span class="ident">id</span>))
-            <span class="op">|</span><span class="op">|</span> (<span class="ident">response</span>.<span class="ident">hovered</span>() <span class="op">&amp;&amp;</span> <span class="ident">root</span>.<span class="ident">is_some</span>())
+            <span class="comment">// menu open and button clicked or esc pressed
+            </span><span class="kw">return </span>MenuResponse::Close;
+        } <span class="kw">else if </span>(response.clicked() &amp;&amp; !root.is_menu_open(id))
+            || (response.hovered() &amp;&amp; root.is_some())
         {
-            <span class="comment">// menu not open and button clicked</span>
-            <span class="comment">// or button hovered while other menu is open</span>
-            <span class="kw">let</span> <span class="ident">pos</span> <span class="op">=</span> <span class="ident">response</span>.<span class="ident">rect</span>.<span class="ident">left_bottom</span>();
-            <span class="kw">return</span> <span class="ident">MenuResponse::Create</span>(<span class="ident">pos</span>, <span class="ident">id</span>);
-        } <span class="kw">else</span> <span class="kw">if</span> <span class="ident">pointer</span>.<span class="ident">any_pressed</span>() <span class="op">&amp;&amp;</span> <span class="ident">pointer</span>.<span class="ident">primary_down</span>() {
-            <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">pos</span>) <span class="op">=</span> <span class="ident">pointer</span>.<span class="ident">interact_pos</span>() {
-                <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">root</span>) <span class="op">=</span> <span class="ident">root</span>.<span class="ident">inner</span>.<span class="ident">as_mut</span>() {
-                    <span class="kw">if</span> <span class="ident">root</span>.<span class="ident">id</span> <span class="op">==</span> <span class="ident">id</span> {
-                        <span class="comment">// pressed somewhere while this menu is open</span>
-                        <span class="kw">let</span> <span class="ident">menu_state</span> <span class="op">=</span> <span class="ident">root</span>.<span class="ident">menu_state</span>.<span class="ident">read</span>();
-                        <span class="kw">let</span> <span class="ident">in_menu</span> <span class="op">=</span> <span class="ident">menu_state</span>.<span class="ident">area_contains</span>(<span class="ident">pos</span>);
-                        <span class="kw">if</span> <span class="op">!</span><span class="ident">in_menu</span> {
-                            <span class="kw">return</span> <span class="ident">MenuResponse::Close</span>;
+            <span class="comment">// menu not open and button clicked
+            // or button hovered while other menu is open
+            </span><span class="kw">let </span>pos = response.rect.left_bottom();
+            <span class="kw">return </span>MenuResponse::Create(pos, id);
+        } <span class="kw">else if </span>pointer.any_pressed() &amp;&amp; pointer.primary_down() {
+            <span class="kw">if let </span><span class="prelude-val">Some</span>(pos) = pointer.interact_pos() {
+                <span class="kw">if let </span><span class="prelude-val">Some</span>(root) = root.inner.as_mut() {
+                    <span class="kw">if </span>root.id == id {
+                        <span class="comment">// pressed somewhere while this menu is open
+                        </span><span class="kw">let </span>menu_state = root.menu_state.read();
+                        <span class="kw">let </span>in_menu = menu_state.area_contains(pos);
+                        <span class="kw">if </span>!in_menu {
+                            <span class="kw">return </span>MenuResponse::Close;
                         }
                     }
                 }
             }
         }
-        <span class="ident">MenuResponse::Stay</span>
+        MenuResponse::Stay
     }
 
-    <span class="doccomment">/// Interaction with a context menu (secondary clicks).</span>
-    <span class="kw">fn</span> <span class="ident">context_interaction</span>(
-        <span class="ident">response</span>: <span class="kw-2">&amp;</span><span class="ident">Response</span>,
-        <span class="ident">root</span>: <span class="kw-2">&amp;mut</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">MenuRoot</span><span class="op">&gt;</span>,
-        <span class="ident">id</span>: <span class="ident">Id</span>,
-    ) -&gt; <span class="ident">MenuResponse</span> {
-        <span class="kw">let</span> <span class="ident">response</span> <span class="op">=</span> <span class="ident">response</span>.<span class="ident">interact</span>(<span class="ident">Sense::click</span>());
-        <span class="kw">let</span> <span class="ident">pointer</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">response</span>.<span class="ident">ctx</span>.<span class="ident">input</span>().<span class="ident">pointer</span>;
-        <span class="kw">if</span> <span class="ident">pointer</span>.<span class="ident">any_pressed</span>() {
-            <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">pos</span>) <span class="op">=</span> <span class="ident">pointer</span>.<span class="ident">interact_pos</span>() {
-                <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">destroy</span> <span class="op">=</span> <span class="bool-val">false</span>;
-                <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">in_old_menu</span> <span class="op">=</span> <span class="bool-val">false</span>;
-                <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">root</span>) <span class="op">=</span> <span class="ident">root</span> {
-                    <span class="kw">let</span> <span class="ident">menu_state</span> <span class="op">=</span> <span class="ident">root</span>.<span class="ident">menu_state</span>.<span class="ident">read</span>();
-                    <span class="ident">in_old_menu</span> <span class="op">=</span> <span class="ident">menu_state</span>.<span class="ident">area_contains</span>(<span class="ident">pos</span>);
-                    <span class="ident">destroy</span> <span class="op">=</span> <span class="ident">root</span>.<span class="ident">id</span> <span class="op">==</span> <span class="ident">response</span>.<span class="ident">id</span>;
+    <span class="doccomment">/// Interaction with a context menu (secondary clicks).
+    </span><span class="kw">fn </span>context_interaction(
+        response: <span class="kw-2">&amp;</span>Response,
+        root: <span class="kw-2">&amp;mut </span><span class="prelude-ty">Option</span>&lt;MenuRoot&gt;,
+        id: Id,
+    ) -&gt; MenuResponse {
+        <span class="kw">let </span>response = response.interact(Sense::click());
+        <span class="kw">let </span>pointer = <span class="kw-2">&amp;</span>response.ctx.input().pointer;
+        <span class="kw">if </span>pointer.any_pressed() {
+            <span class="kw">if let </span><span class="prelude-val">Some</span>(pos) = pointer.interact_pos() {
+                <span class="kw">let </span><span class="kw-2">mut </span>destroy = <span class="bool-val">false</span>;
+                <span class="kw">let </span><span class="kw-2">mut </span>in_old_menu = <span class="bool-val">false</span>;
+                <span class="kw">if let </span><span class="prelude-val">Some</span>(root) = root {
+                    <span class="kw">let </span>menu_state = root.menu_state.read();
+                    in_old_menu = menu_state.area_contains(pos);
+                    destroy = root.id == response.id;
                 }
-                <span class="kw">if</span> <span class="op">!</span><span class="ident">in_old_menu</span> {
-                    <span class="kw">if</span> <span class="ident">response</span>.<span class="ident">hovered</span>() <span class="op">&amp;&amp;</span> <span class="ident">pointer</span>.<span class="ident">secondary_down</span>() {
-                        <span class="kw">return</span> <span class="ident">MenuResponse::Create</span>(<span class="ident">pos</span>, <span class="ident">id</span>);
-                    } <span class="kw">else</span> <span class="kw">if</span> (<span class="ident">response</span>.<span class="ident">hovered</span>() <span class="op">&amp;&amp;</span> <span class="ident">pointer</span>.<span class="ident">primary_down</span>()) <span class="op">|</span><span class="op">|</span> <span class="ident">destroy</span> {
-                        <span class="kw">return</span> <span class="ident">MenuResponse::Close</span>;
+                <span class="kw">if </span>!in_old_menu {
+                    <span class="kw">if </span>response.hovered() &amp;&amp; pointer.secondary_down() {
+                        <span class="kw">return </span>MenuResponse::Create(pos, id);
+                    } <span class="kw">else if </span>(response.hovered() &amp;&amp; pointer.primary_down()) || destroy {
+                        <span class="kw">return </span>MenuResponse::Close;
                     }
                 }
             }
         }
-        <span class="ident">MenuResponse::Stay</span>
+        MenuResponse::Stay
     }
 
-    <span class="kw">fn</span> <span class="ident">handle_menu_response</span>(<span class="ident">root</span>: <span class="kw-2">&amp;mut</span> <span class="ident">MenuRootManager</span>, <span class="ident">menu_response</span>: <span class="ident">MenuResponse</span>) {
-        <span class="kw">match</span> <span class="ident">menu_response</span> {
-            <span class="ident">MenuResponse::Create</span>(<span class="ident">pos</span>, <span class="ident">id</span>) =&gt; {
-                <span class="ident">root</span>.<span class="ident">inner</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">MenuRoot::new</span>(<span class="ident">pos</span>, <span class="ident">id</span>));
+    <span class="kw">fn </span>handle_menu_response(root: <span class="kw-2">&amp;mut </span>MenuRootManager, menu_response: MenuResponse) {
+        <span class="kw">match </span>menu_response {
+            MenuResponse::Create(pos, id) =&gt; {
+                root.inner = <span class="prelude-val">Some</span>(MenuRoot::new(pos, id));
             }
-            <span class="ident">MenuResponse::Close</span> =&gt; <span class="ident">root</span>.<span class="ident">inner</span> <span class="op">=</span> <span class="prelude-val">None</span>,
-            <span class="ident">MenuResponse::Stay</span> =&gt; {}
+            MenuResponse::Close =&gt; root.inner = <span class="prelude-val">None</span>,
+            MenuResponse::Stay =&gt; {}
         }
     }
 
-    <span class="doccomment">/// Respond to secondary (right) clicks.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">context_click_interaction</span>(<span class="ident">response</span>: <span class="kw-2">&amp;</span><span class="ident">Response</span>, <span class="ident">root</span>: <span class="kw-2">&amp;mut</span> <span class="ident">MenuRootManager</span>, <span class="ident">id</span>: <span class="ident">Id</span>) {
-        <span class="kw">let</span> <span class="ident">menu_response</span> <span class="op">=</span> <span class="ident"><span class="self">Self</span>::context_interaction</span>(<span class="ident">response</span>, <span class="ident">root</span>, <span class="ident">id</span>);
-        <span class="ident"><span class="self">Self</span>::handle_menu_response</span>(<span class="ident">root</span>, <span class="ident">menu_response</span>);
+    <span class="doccomment">/// Respond to secondary (right) clicks.
+    </span><span class="kw">pub fn </span>context_click_interaction(response: <span class="kw-2">&amp;</span>Response, root: <span class="kw-2">&amp;mut </span>MenuRootManager, id: Id) {
+        <span class="kw">let </span>menu_response = <span class="self">Self</span>::context_interaction(response, root, id);
+        <span class="self">Self</span>::handle_menu_response(root, menu_response);
     }
 
-    <span class="comment">// Responds to primary clicks.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">stationary_click_interaction</span>(<span class="ident">response</span>: <span class="kw-2">&amp;</span><span class="ident">Response</span>, <span class="ident">root</span>: <span class="kw-2">&amp;mut</span> <span class="ident">MenuRootManager</span>, <span class="ident">id</span>: <span class="ident">Id</span>) {
-        <span class="kw">let</span> <span class="ident">menu_response</span> <span class="op">=</span> <span class="ident"><span class="self">Self</span>::stationary_interaction</span>(<span class="ident">response</span>, <span class="ident">root</span>, <span class="ident">id</span>);
-        <span class="ident"><span class="self">Self</span>::handle_menu_response</span>(<span class="ident">root</span>, <span class="ident">menu_response</span>);
+    <span class="comment">// Responds to primary clicks.
+    </span><span class="kw">pub fn </span>stationary_click_interaction(response: <span class="kw-2">&amp;</span>Response, root: <span class="kw-2">&amp;mut </span>MenuRootManager, id: Id) {
+        <span class="kw">let </span>menu_response = <span class="self">Self</span>::stationary_interaction(response, root, id);
+        <span class="self">Self</span>::handle_menu_response(root, menu_response);
     }
 }
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">PartialEq</span>)]</span>
-<span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">enum</span> <span class="ident">MenuResponse</span> {
-    <span class="ident">Close</span>,
-    <span class="ident">Stay</span>,
-    <span class="ident">Create</span>(<span class="ident">Pos2</span>, <span class="ident">Id</span>),
+<span class="attribute">#[derive(Copy, Clone, PartialEq)]
+</span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">enum </span>MenuResponse {
+    Close,
+    Stay,
+    Create(Pos2, Id),
 }
-<span class="kw">impl</span> <span class="ident">MenuResponse</span> {
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_close</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span> {
-        <span class="kw-2">*</span><span class="self">self</span> <span class="op">==</span> <span class="ident"><span class="self">Self</span>::Close</span>
+<span class="kw">impl </span>MenuResponse {
+    <span class="kw">pub fn </span>is_close(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; bool {
+        <span class="kw-2">*</span><span class="self">self </span>== <span class="self">Self</span>::Close
     }
 }
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">SubMenuButton</span> {
-    <span class="ident">text</span>: <span class="ident">WidgetText</span>,
-    <span class="ident">icon</span>: <span class="ident">WidgetText</span>,
-    <span class="ident">index</span>: <span class="ident">usize</span>,
+<span class="kw">pub struct </span>SubMenuButton {
+    text: WidgetText,
+    icon: WidgetText,
+    index: usize,
 }
-<span class="kw">impl</span> <span class="ident">SubMenuButton</span> {
-    <span class="doccomment">/// The `icon` can be an emoji (e.g. `⏵` right arrow), shown right of the label</span>
-    <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">text</span>: <span class="kw">impl</span> <span class="ident">Into</span><span class="op">&lt;</span><span class="ident">WidgetText</span><span class="op">&gt;</span>, <span class="ident">icon</span>: <span class="kw">impl</span> <span class="ident">Into</span><span class="op">&lt;</span><span class="ident">WidgetText</span><span class="op">&gt;</span>, <span class="ident">index</span>: <span class="ident">usize</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">Self</span> {
-            <span class="ident">text</span>: <span class="ident">text</span>.<span class="ident">into</span>(),
-            <span class="ident">icon</span>: <span class="ident">icon</span>.<span class="ident">into</span>(),
-            <span class="ident">index</span>,
+<span class="kw">impl </span>SubMenuButton {
+    <span class="doccomment">/// The `icon` can be an emoji (e.g. `⏵` right arrow), shown right of the label
+    </span><span class="kw">fn </span>new(text: <span class="kw">impl </span>Into&lt;WidgetText&gt;, icon: <span class="kw">impl </span>Into&lt;WidgetText&gt;, index: usize) -&gt; <span class="self">Self </span>{
+        <span class="self">Self </span>{
+            text: text.into(),
+            icon: icon.into(),
+            index,
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">visuals</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>(
-        <span class="ident">ui</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">Ui</span>,
-        <span class="ident">response</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;_</span> <span class="ident">Response</span>,
-        <span class="ident">menu_state</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;_</span> <span class="ident">MenuState</span>,
-        <span class="ident">sub_id</span>: <span class="ident">Id</span>,
-    ) -&gt; <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">WidgetVisuals</span> {
-        <span class="kw">if</span> <span class="ident">menu_state</span>.<span class="ident">is_open</span>(<span class="ident">sub_id</span>) {
-            <span class="kw-2">&amp;</span><span class="ident">ui</span>.<span class="ident">style</span>().<span class="ident">visuals</span>.<span class="ident">widgets</span>.<span class="ident">hovered</span>
-        } <span class="kw">else</span> {
-            <span class="ident">ui</span>.<span class="ident">style</span>().<span class="ident">interact</span>(<span class="ident">response</span>)
+    <span class="kw">fn </span>visuals&lt;<span class="lifetime">&#39;a</span>&gt;(
+        ui: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>Ui,
+        response: <span class="kw-2">&amp;</span><span class="lifetime">&#39;_ </span>Response,
+        menu_state: <span class="kw-2">&amp;</span><span class="lifetime">&#39;_ </span>MenuState,
+        sub_id: Id,
+    ) -&gt; <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>WidgetVisuals {
+        <span class="kw">if </span>menu_state.is_open(sub_id) {
+            <span class="kw-2">&amp;</span>ui.style().visuals.widgets.hovered
+        } <span class="kw">else </span>{
+            ui.style().interact(response)
         }
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">icon</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">icon</span>: <span class="kw">impl</span> <span class="ident">Into</span><span class="op">&lt;</span><span class="ident">WidgetText</span><span class="op">&gt;</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">self</span>.<span class="ident">icon</span> <span class="op">=</span> <span class="ident">icon</span>.<span class="ident">into</span>();
-        <span class="self">self</span>
-    }
+    <span class="kw">pub fn </span>icon(<span class="kw-2">mut </span><span class="self">self</span>, icon: <span class="kw">impl </span>Into&lt;WidgetText&gt;) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.icon = icon.into();
+        <span class="self">self
+    </span>}
 
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">show</span>(<span class="self">self</span>, <span class="ident">ui</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Ui</span>, <span class="ident">menu_state</span>: <span class="kw-2">&amp;</span><span class="ident">MenuState</span>, <span class="ident">sub_id</span>: <span class="ident">Id</span>) -&gt; <span class="ident">Response</span> {
-        <span class="kw">let</span> <span class="ident">SubMenuButton</span> { <span class="ident">text</span>, <span class="ident">icon</span>, .. } <span class="op">=</span> <span class="self">self</span>;
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>show(<span class="self">self</span>, ui: <span class="kw-2">&amp;mut </span>Ui, menu_state: <span class="kw-2">&amp;</span>MenuState, sub_id: Id) -&gt; Response {
+        <span class="kw">let </span>SubMenuButton { text, icon, .. } = <span class="self">self</span>;
 
-        <span class="kw">let</span> <span class="ident">text_style</span> <span class="op">=</span> <span class="ident">TextStyle::Button</span>;
-        <span class="kw">let</span> <span class="ident">sense</span> <span class="op">=</span> <span class="ident">Sense::click</span>();
+        <span class="kw">let </span>text_style = TextStyle::Button;
+        <span class="kw">let </span>sense = Sense::click();
 
-        <span class="kw">let</span> <span class="ident">button_padding</span> <span class="op">=</span> <span class="ident">ui</span>.<span class="ident">spacing</span>().<span class="ident">button_padding</span>;
-        <span class="kw">let</span> <span class="ident">total_extra</span> <span class="op">=</span> <span class="ident">button_padding</span> <span class="op">+</span> <span class="ident">button_padding</span>;
-        <span class="kw">let</span> <span class="ident">text_available_width</span> <span class="op">=</span> <span class="ident">ui</span>.<span class="ident">available_width</span>() <span class="op">-</span> <span class="ident">total_extra</span>.<span class="ident">x</span>;
-        <span class="kw">let</span> <span class="ident">text_galley</span> <span class="op">=</span> <span class="ident">text</span>.<span class="ident">into_galley</span>(<span class="ident">ui</span>, <span class="prelude-val">Some</span>(<span class="bool-val">true</span>), <span class="ident">text_available_width</span>, <span class="ident">text_style</span>);
+        <span class="kw">let </span>button_padding = ui.spacing().button_padding;
+        <span class="kw">let </span>total_extra = button_padding + button_padding;
+        <span class="kw">let </span>text_available_width = ui.available_width() - total_extra.x;
+        <span class="kw">let </span>text_galley = text.into_galley(ui, <span class="prelude-val">Some</span>(<span class="bool-val">true</span>), text_available_width, text_style);
 
-        <span class="kw">let</span> <span class="ident">icon_available_width</span> <span class="op">=</span> <span class="ident">text_available_width</span> <span class="op">-</span> <span class="ident">text_galley</span>.<span class="ident">size</span>().<span class="ident">x</span>;
-        <span class="kw">let</span> <span class="ident">icon_galley</span> <span class="op">=</span> <span class="ident">icon</span>.<span class="ident">into_galley</span>(<span class="ident">ui</span>, <span class="prelude-val">Some</span>(<span class="bool-val">true</span>), <span class="ident">icon_available_width</span>, <span class="ident">text_style</span>);
-        <span class="kw">let</span> <span class="ident">text_and_icon_size</span> <span class="op">=</span> <span class="ident">Vec2::new</span>(
-            <span class="ident">text_galley</span>.<span class="ident">size</span>().<span class="ident">x</span> <span class="op">+</span> <span class="ident">icon_galley</span>.<span class="ident">size</span>().<span class="ident">x</span>,
-            <span class="ident">text_galley</span>.<span class="ident">size</span>().<span class="ident">y</span>.<span class="ident">max</span>(<span class="ident">icon_galley</span>.<span class="ident">size</span>().<span class="ident">y</span>),
+        <span class="kw">let </span>icon_available_width = text_available_width - text_galley.size().x;
+        <span class="kw">let </span>icon_galley = icon.into_galley(ui, <span class="prelude-val">Some</span>(<span class="bool-val">true</span>), icon_available_width, text_style);
+        <span class="kw">let </span>text_and_icon_size = Vec2::new(
+            text_galley.size().x + icon_galley.size().x,
+            text_galley.size().y.max(icon_galley.size().y),
         );
-        <span class="kw">let</span> <span class="ident">desired_size</span> <span class="op">=</span> <span class="ident">text_and_icon_size</span> <span class="op">+</span> <span class="number">2.0</span> <span class="op">*</span> <span class="ident">button_padding</span>;
+        <span class="kw">let </span>desired_size = text_and_icon_size + <span class="number">2.0 </span>* button_padding;
 
-        <span class="kw">let</span> (<span class="ident">rect</span>, <span class="ident">response</span>) <span class="op">=</span> <span class="ident">ui</span>.<span class="ident">allocate_at_least</span>(<span class="ident">desired_size</span>, <span class="ident">sense</span>);
-        <span class="ident">response</span>.<span class="ident">widget_info</span>(<span class="op">|</span><span class="op">|</span> {
-            <span class="ident"><span class="kw">crate</span>::WidgetInfo::labeled</span>(<span class="ident"><span class="kw">crate</span>::WidgetType::Button</span>, <span class="kw-2">&amp;</span><span class="ident">text_galley</span>.<span class="ident">text</span>())
+        <span class="kw">let </span>(rect, response) = ui.allocate_at_least(desired_size, sense);
+        response.widget_info(|| {
+            <span class="kw">crate</span>::WidgetInfo::labeled(<span class="kw">crate</span>::WidgetType::Button, <span class="kw-2">&amp;</span>text_galley.text())
         });
 
-        <span class="kw">if</span> <span class="ident">ui</span>.<span class="ident">is_rect_visible</span>(<span class="ident">rect</span>) {
-            <span class="kw">let</span> <span class="ident">visuals</span> <span class="op">=</span> <span class="ident"><span class="self">Self</span>::visuals</span>(<span class="ident">ui</span>, <span class="kw-2">&amp;</span><span class="ident">response</span>, <span class="ident">menu_state</span>, <span class="ident">sub_id</span>);
-            <span class="kw">let</span> <span class="ident">text_pos</span> <span class="op">=</span> <span class="ident">Align2::LEFT_CENTER</span>
-                .<span class="ident">align_size_within_rect</span>(<span class="ident">text_galley</span>.<span class="ident">size</span>(), <span class="ident">rect</span>.<span class="ident">shrink2</span>(<span class="ident">button_padding</span>))
-                .<span class="ident">min</span>;
-            <span class="kw">let</span> <span class="ident">icon_pos</span> <span class="op">=</span> <span class="ident">Align2::RIGHT_CENTER</span>
-                .<span class="ident">align_size_within_rect</span>(<span class="ident">icon_galley</span>.<span class="ident">size</span>(), <span class="ident">rect</span>.<span class="ident">shrink2</span>(<span class="ident">button_padding</span>))
-                .<span class="ident">min</span>;
+        <span class="kw">if </span>ui.is_rect_visible(rect) {
+            <span class="kw">let </span>visuals = <span class="self">Self</span>::visuals(ui, <span class="kw-2">&amp;</span>response, menu_state, sub_id);
+            <span class="kw">let </span>text_pos = Align2::LEFT_CENTER
+                .align_size_within_rect(text_galley.size(), rect.shrink2(button_padding))
+                .min;
+            <span class="kw">let </span>icon_pos = Align2::RIGHT_CENTER
+                .align_size_within_rect(icon_galley.size(), rect.shrink2(button_padding))
+                .min;
 
-            <span class="ident">ui</span>.<span class="ident">painter</span>().<span class="ident">rect_filled</span>(
-                <span class="ident">rect</span>.<span class="ident">expand</span>(<span class="ident">visuals</span>.<span class="ident">expansion</span>),
-                <span class="ident">visuals</span>.<span class="ident">corner_radius</span>,
-                <span class="ident">visuals</span>.<span class="ident">bg_fill</span>,
+            ui.painter().rect_filled(
+                rect.expand(visuals.expansion),
+                visuals.corner_radius,
+                visuals.bg_fill,
             );
 
-            <span class="kw">let</span> <span class="ident">text_color</span> <span class="op">=</span> <span class="ident">visuals</span>.<span class="ident">text_color</span>();
-            <span class="ident">text_galley</span>.<span class="ident">paint_with_fallback_color</span>(<span class="ident">ui</span>.<span class="ident">painter</span>(), <span class="ident">text_pos</span>, <span class="ident">text_color</span>);
-            <span class="ident">icon_galley</span>.<span class="ident">paint_with_fallback_color</span>(<span class="ident">ui</span>.<span class="ident">painter</span>(), <span class="ident">icon_pos</span>, <span class="ident">text_color</span>);
+            <span class="kw">let </span>text_color = visuals.text_color();
+            text_galley.paint_with_fallback_color(ui.painter(), text_pos, text_color);
+            icon_galley.paint_with_fallback_color(ui.painter(), icon_pos, text_color);
         }
-        <span class="ident">response</span>
+        response
     }
 }
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">SubMenu</span> {
-    <span class="ident">button</span>: <span class="ident">SubMenuButton</span>,
-    <span class="ident">parent_state</span>: <span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">RwLock</span><span class="op">&lt;</span><span class="ident">MenuState</span><span class="op">&gt;</span><span class="op">&gt;</span>,
+<span class="kw">pub struct </span>SubMenu {
+    button: SubMenuButton,
+    parent_state: Arc&lt;RwLock&lt;MenuState&gt;&gt;,
 }
-<span class="kw">impl</span> <span class="ident">SubMenu</span> {
-    <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">parent_state</span>: <span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">RwLock</span><span class="op">&lt;</span><span class="ident">MenuState</span><span class="op">&gt;</span><span class="op">&gt;</span>, <span class="ident">text</span>: <span class="kw">impl</span> <span class="ident">Into</span><span class="op">&lt;</span><span class="ident">WidgetText</span><span class="op">&gt;</span>) -&gt; <span class="self">Self</span> {
-        <span class="kw">let</span> <span class="ident">index</span> <span class="op">=</span> <span class="ident">parent_state</span>.<span class="ident">write</span>().<span class="ident">next_entry_index</span>();
-        <span class="self">Self</span> {
-            <span class="ident">button</span>: <span class="ident">SubMenuButton::new</span>(<span class="ident">text</span>, <span class="string">&quot;⏵&quot;</span>, <span class="ident">index</span>),
-            <span class="ident">parent_state</span>,
+<span class="kw">impl </span>SubMenu {
+    <span class="kw">fn </span>new(parent_state: Arc&lt;RwLock&lt;MenuState&gt;&gt;, text: <span class="kw">impl </span>Into&lt;WidgetText&gt;) -&gt; <span class="self">Self </span>{
+        <span class="kw">let </span>index = parent_state.write().next_entry_index();
+        <span class="self">Self </span>{
+            button: SubMenuButton::new(text, <span class="string">&quot;⏵&quot;</span>, index),
+            parent_state,
         }
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">show</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span>(
+    <span class="kw">pub fn </span>show&lt;R&gt;(
         <span class="self">self</span>,
-        <span class="ident">ui</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Ui</span>,
-        <span class="ident">add_contents</span>: <span class="kw">impl</span> <span class="ident">FnOnce</span>(<span class="kw-2">&amp;mut</span> <span class="ident">Ui</span>) -&gt; <span class="ident">R</span>,
-    ) -&gt; <span class="ident">InnerResponse</span><span class="op">&lt;</span><span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="ident">sub_id</span> <span class="op">=</span> <span class="ident">ui</span>.<span class="ident">id</span>().<span class="ident">with</span>(<span class="self">self</span>.<span class="ident">button</span>.<span class="ident">index</span>);
-        <span class="kw">let</span> <span class="ident">button</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">button</span>.<span class="ident">show</span>(<span class="ident">ui</span>, <span class="kw-2">&amp;</span><span class="kw-2">*</span><span class="self">self</span>.<span class="ident">parent_state</span>.<span class="ident">read</span>(), <span class="ident">sub_id</span>);
-        <span class="self">self</span>.<span class="ident">parent_state</span>
-            .<span class="ident">write</span>()
-            .<span class="ident">submenu_button_interaction</span>(<span class="ident">ui</span>, <span class="ident">sub_id</span>, <span class="kw-2">&amp;</span><span class="ident">button</span>);
-        <span class="kw">let</span> <span class="ident">inner</span> <span class="op">=</span> <span class="self">self</span>
-            .<span class="ident">parent_state</span>
-            .<span class="ident">write</span>()
-            .<span class="ident">show_submenu</span>(<span class="ident">ui</span>.<span class="ident">ctx</span>(), <span class="ident">sub_id</span>, <span class="ident">add_contents</span>);
-        <span class="ident">InnerResponse::new</span>(<span class="ident">inner</span>, <span class="ident">button</span>)
+        ui: <span class="kw-2">&amp;mut </span>Ui,
+        add_contents: <span class="kw">impl </span>FnOnce(<span class="kw-2">&amp;mut </span>Ui) -&gt; R,
+    ) -&gt; InnerResponse&lt;<span class="prelude-ty">Option</span>&lt;R&gt;&gt; {
+        <span class="kw">let </span>sub_id = ui.id().with(<span class="self">self</span>.button.index);
+        <span class="kw">let </span>button = <span class="self">self</span>.button.show(ui, <span class="kw-2">&amp;*</span><span class="self">self</span>.parent_state.read(), sub_id);
+        <span class="self">self</span>.parent_state
+            .write()
+            .submenu_button_interaction(ui, sub_id, <span class="kw-2">&amp;</span>button);
+        <span class="kw">let </span>inner = <span class="self">self
+            </span>.parent_state
+            .write()
+            .show_submenu(ui.ctx(), sub_id, add_contents);
+        InnerResponse::new(inner, button)
     }
 }
-<span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">struct</span> <span class="ident">MenuState</span> {
-    <span class="doccomment">/// The opened sub-menu and its `Id`</span>
-    <span class="ident">sub_menu</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span>(<span class="ident">Id</span>, <span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">RwLock</span><span class="op">&lt;</span><span class="ident">MenuState</span><span class="op">&gt;</span><span class="op">&gt;</span>)<span class="op">&gt;</span>,
-    <span class="doccomment">/// Bounding box of this menu (without the sub-menu)</span>
-    <span class="kw">pub</span> <span class="ident">rect</span>: <span class="ident">Rect</span>,
-    <span class="doccomment">/// Used to check if any menu in the tree wants to close</span>
-    <span class="kw">pub</span> <span class="ident">response</span>: <span class="ident">MenuResponse</span>,
-    <span class="doccomment">/// Used to hash different `Id`s for sub-menus</span>
-    <span class="ident">entry_count</span>: <span class="ident">usize</span>,
+<span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">struct </span>MenuState {
+    <span class="doccomment">/// The opened sub-menu and its `Id`
+    </span>sub_menu: <span class="prelude-ty">Option</span>&lt;(Id, Arc&lt;RwLock&lt;MenuState&gt;&gt;)&gt;,
+    <span class="doccomment">/// Bounding box of this menu (without the sub-menu)
+    </span><span class="kw">pub </span>rect: Rect,
+    <span class="doccomment">/// Used to check if any menu in the tree wants to close
+    </span><span class="kw">pub </span>response: MenuResponse,
+    <span class="doccomment">/// Used to hash different `Id`s for sub-menus
+    </span>entry_count: usize,
 }
-<span class="kw">impl</span> <span class="ident">MenuState</span> {
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">position</span>: <span class="ident">Pos2</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">Self</span> {
-            <span class="ident">rect</span>: <span class="ident">Rect::from_min_size</span>(<span class="ident">position</span>, <span class="ident">Vec2::ZERO</span>),
-            <span class="ident">sub_menu</span>: <span class="prelude-val">None</span>,
-            <span class="ident">response</span>: <span class="ident">MenuResponse::Stay</span>,
-            <span class="ident">entry_count</span>: <span class="number">0</span>,
+<span class="kw">impl </span>MenuState {
+    <span class="kw">pub fn </span>new(position: Pos2) -&gt; <span class="self">Self </span>{
+        <span class="self">Self </span>{
+            rect: Rect::from_min_size(position, Vec2::ZERO),
+            sub_menu: <span class="prelude-val">None</span>,
+            response: MenuResponse::Stay,
+            entry_count: <span class="number">0</span>,
         }
     }
-    <span class="doccomment">/// Close menu hierarchy.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">close</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>) {
-        <span class="self">self</span>.<span class="ident">response</span> <span class="op">=</span> <span class="ident">MenuResponse::Close</span>;
+    <span class="doccomment">/// Close menu hierarchy.
+    </span><span class="kw">pub fn </span>close(<span class="kw-2">&amp;mut </span><span class="self">self</span>) {
+        <span class="self">self</span>.response = MenuResponse::Close;
     }
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">show</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span>(
-        <span class="ident">ctx</span>: <span class="kw-2">&amp;</span><span class="ident">CtxRef</span>,
-        <span class="ident">menu_state</span>: <span class="kw-2">&amp;</span><span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">RwLock</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span><span class="op">&gt;</span>,
-        <span class="ident">id</span>: <span class="ident">Id</span>,
-        <span class="ident">add_contents</span>: <span class="kw">impl</span> <span class="ident">FnOnce</span>(<span class="kw-2">&amp;mut</span> <span class="ident">Ui</span>) -&gt; <span class="ident">R</span>,
-    ) -&gt; <span class="ident">InnerResponse</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="ident">style</span> <span class="op">=</span> <span class="ident">Style</span> {
-            <span class="ident">spacing</span>: <span class="ident">Spacing</span> {
-                <span class="ident">item_spacing</span>: <span class="ident">Vec2::ZERO</span>,
-                <span class="ident">button_padding</span>: <span class="ident"><span class="kw">crate</span>::vec2</span>(<span class="number">2.0</span>, <span class="number">0.0</span>),
-                ..<span class="ident">Default::default</span>()
+    <span class="kw">pub fn </span>show&lt;R&gt;(
+        ctx: <span class="kw-2">&amp;</span>CtxRef,
+        menu_state: <span class="kw-2">&amp;</span>Arc&lt;RwLock&lt;<span class="self">Self</span>&gt;&gt;,
+        id: Id,
+        add_contents: <span class="kw">impl </span>FnOnce(<span class="kw-2">&amp;mut </span>Ui) -&gt; R,
+    ) -&gt; InnerResponse&lt;R&gt; {
+        <span class="kw">let </span>style = Style {
+            spacing: Spacing {
+                item_spacing: Vec2::ZERO,
+                button_padding: <span class="kw">crate</span>::vec2(<span class="number">2.0</span>, <span class="number">0.0</span>),
+                ..Default::default()
             },
-            ..<span class="ident">Default::default</span>()
+            ..Default::default()
         };
-        <span class="ident"><span class="kw">crate</span>::menu::menu_ui</span>(<span class="ident">ctx</span>, <span class="ident">id</span>, <span class="ident">menu_state</span>, <span class="ident">style</span>, <span class="ident">add_contents</span>)
+        <span class="kw">crate</span>::menu::menu_ui(ctx, id, menu_state, style, add_contents)
     }
-    <span class="kw">fn</span> <span class="ident">show_submenu</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span>(
-        <span class="kw-2">&amp;mut</span> <span class="self">self</span>,
-        <span class="ident">ctx</span>: <span class="kw-2">&amp;</span><span class="ident">CtxRef</span>,
-        <span class="ident">id</span>: <span class="ident">Id</span>,
-        <span class="ident">add_contents</span>: <span class="kw">impl</span> <span class="ident">FnOnce</span>(<span class="kw-2">&amp;mut</span> <span class="ident">Ui</span>) -&gt; <span class="ident">R</span>,
-    ) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> (<span class="ident">sub_response</span>, <span class="ident">response</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">get_submenu</span>(<span class="ident">id</span>).<span class="ident">map</span>(<span class="op">|</span><span class="ident">sub</span><span class="op">|</span> {
-            <span class="kw">let</span> <span class="ident">inner_response</span> <span class="op">=</span> <span class="ident"><span class="self">Self</span>::show</span>(<span class="ident">ctx</span>, <span class="ident">sub</span>, <span class="ident">id</span>, <span class="ident">add_contents</span>);
-            (<span class="ident">sub</span>.<span class="ident">read</span>().<span class="ident">response</span>, <span class="ident">inner_response</span>.<span class="ident">inner</span>)
+    <span class="kw">fn </span>show_submenu&lt;R&gt;(
+        <span class="kw-2">&amp;mut </span><span class="self">self</span>,
+        ctx: <span class="kw-2">&amp;</span>CtxRef,
+        id: Id,
+        add_contents: <span class="kw">impl </span>FnOnce(<span class="kw-2">&amp;mut </span>Ui) -&gt; R,
+    ) -&gt; <span class="prelude-ty">Option</span>&lt;R&gt; {
+        <span class="kw">let </span>(sub_response, response) = <span class="self">self</span>.get_submenu(id).map(|sub| {
+            <span class="kw">let </span>inner_response = <span class="self">Self</span>::show(ctx, sub, id, add_contents);
+            (sub.read().response, inner_response.inner)
         })<span class="question-mark">?</span>;
-        <span class="self">self</span>.<span class="ident">cascade_close_response</span>(<span class="ident">sub_response</span>);
-        <span class="prelude-val">Some</span>(<span class="ident">response</span>)
+        <span class="self">self</span>.cascade_close_response(sub_response);
+        <span class="prelude-val">Some</span>(response)
     }
-    <span class="doccomment">/// Check if position is in the menu hierarchy&#39;s area.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">area_contains</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">pos</span>: <span class="ident">Pos2</span>) -&gt; <span class="ident">bool</span> {
-        <span class="self">self</span>.<span class="ident">rect</span>.<span class="ident">contains</span>(<span class="ident">pos</span>)
-            <span class="op">|</span><span class="op">|</span> <span class="self">self</span>
-                .<span class="ident">sub_menu</span>
-                .<span class="ident">as_ref</span>()
-                .<span class="ident">map_or</span>(<span class="bool-val">false</span>, <span class="op">|</span>(<span class="kw">_</span>, <span class="ident">sub</span>)<span class="op">|</span> <span class="ident">sub</span>.<span class="ident">read</span>().<span class="ident">area_contains</span>(<span class="ident">pos</span>))
+    <span class="doccomment">/// Check if position is in the menu hierarchy&#39;s area.
+    </span><span class="kw">pub fn </span>area_contains(<span class="kw-2">&amp;</span><span class="self">self</span>, pos: Pos2) -&gt; bool {
+        <span class="self">self</span>.rect.contains(pos)
+            || <span class="self">self
+                </span>.sub_menu
+                .as_ref()
+                .map_or(<span class="bool-val">false</span>, |(<span class="kw">_</span>, sub)| sub.read().area_contains(pos))
     }
-    <span class="kw">fn</span> <span class="ident">next_entry_index</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>) -&gt; <span class="ident">usize</span> {
-        <span class="self">self</span>.<span class="ident">entry_count</span> <span class="op">+</span><span class="op">=</span> <span class="number">1</span>;
-        <span class="self">self</span>.<span class="ident">entry_count</span> <span class="op">-</span> <span class="number">1</span>
-    }
-    <span class="doccomment">/// Sense button interaction opening and closing submenu.</span>
-    <span class="kw">fn</span> <span class="ident">submenu_button_interaction</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">ui</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Ui</span>, <span class="ident">sub_id</span>: <span class="ident">Id</span>, <span class="ident">button</span>: <span class="kw-2">&amp;</span><span class="ident">Response</span>) {
-        <span class="kw">let</span> <span class="ident">pointer</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">ui</span>.<span class="ident">input</span>().<span class="ident">pointer</span>.<span class="ident">clone</span>();
-        <span class="kw">let</span> <span class="ident">open</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">is_open</span>(<span class="ident">sub_id</span>);
-        <span class="kw">if</span> <span class="self">self</span>.<span class="ident">moving_towards_current_submenu</span>(<span class="ident">pointer</span>) {
-            <span class="comment">// ensure to repaint once even when pointer is not moving</span>
-            <span class="ident">ui</span>.<span class="ident">ctx</span>().<span class="ident">request_repaint</span>();
-        } <span class="kw">else</span> <span class="kw">if</span> <span class="op">!</span><span class="ident">open</span> <span class="op">&amp;&amp;</span> <span class="ident">button</span>.<span class="ident">hovered</span>() {
-            <span class="kw">let</span> <span class="ident">pos</span> <span class="op">=</span> <span class="ident">button</span>.<span class="ident">rect</span>.<span class="ident">right_top</span>();
-            <span class="self">self</span>.<span class="ident">open_submenu</span>(<span class="ident">sub_id</span>, <span class="ident">pos</span>);
-        } <span class="kw">else</span> <span class="kw">if</span> <span class="ident">open</span> <span class="op">&amp;&amp;</span> <span class="op">!</span><span class="ident">button</span>.<span class="ident">hovered</span>() <span class="op">&amp;&amp;</span> <span class="op">!</span><span class="self">self</span>.<span class="ident">hovering_current_submenu</span>(<span class="ident">pointer</span>) {
-            <span class="self">self</span>.<span class="ident">close_submenu</span>();
+    <span class="kw">fn </span>next_entry_index(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; usize {
+        <span class="self">self</span>.entry_count += <span class="number">1</span>;
+        <span class="self">self</span>.entry_count - <span class="number">1
+    </span>}
+    <span class="doccomment">/// Sense button interaction opening and closing submenu.
+    </span><span class="kw">fn </span>submenu_button_interaction(<span class="kw-2">&amp;mut </span><span class="self">self</span>, ui: <span class="kw-2">&amp;mut </span>Ui, sub_id: Id, button: <span class="kw-2">&amp;</span>Response) {
+        <span class="kw">let </span>pointer = <span class="kw-2">&amp;</span>ui.input().pointer.clone();
+        <span class="kw">let </span>open = <span class="self">self</span>.is_open(sub_id);
+        <span class="kw">if </span><span class="self">self</span>.moving_towards_current_submenu(pointer) {
+            <span class="comment">// ensure to repaint once even when pointer is not moving
+            </span>ui.ctx().request_repaint();
+        } <span class="kw">else if </span>!open &amp;&amp; button.hovered() {
+            <span class="kw">let </span>pos = button.rect.right_top();
+            <span class="self">self</span>.open_submenu(sub_id, pos);
+        } <span class="kw">else if </span>open &amp;&amp; !button.hovered() &amp;&amp; !<span class="self">self</span>.hovering_current_submenu(pointer) {
+            <span class="self">self</span>.close_submenu();
         }
     }
-    <span class="doccomment">/// Check if `dir` points from `pos` towards left side of `rect`.</span>
-    <span class="kw">fn</span> <span class="ident">points_at_left_of_rect</span>(<span class="ident">pos</span>: <span class="ident">Pos2</span>, <span class="ident">dir</span>: <span class="ident">Vec2</span>, <span class="ident">rect</span>: <span class="ident">Rect</span>) -&gt; <span class="ident">bool</span> {
-        <span class="kw">let</span> <span class="ident">vel_a</span> <span class="op">=</span> <span class="ident">dir</span>.<span class="ident">angle</span>();
-        <span class="kw">let</span> <span class="ident">top_a</span> <span class="op">=</span> (<span class="ident">rect</span>.<span class="ident">left_top</span>() <span class="op">-</span> <span class="ident">pos</span>).<span class="ident">angle</span>();
-        <span class="kw">let</span> <span class="ident">bottom_a</span> <span class="op">=</span> (<span class="ident">rect</span>.<span class="ident">left_bottom</span>() <span class="op">-</span> <span class="ident">pos</span>).<span class="ident">angle</span>();
-        <span class="ident">bottom_a</span> <span class="op">-</span> <span class="ident">vel_a</span> <span class="op">&gt;</span><span class="op">=</span> <span class="number">0.0</span> <span class="op">&amp;&amp;</span> <span class="ident">top_a</span> <span class="op">-</span> <span class="ident">vel_a</span> <span class="op">&lt;</span><span class="op">=</span> <span class="number">0.0</span>
-    }
-    <span class="doccomment">/// Check if pointer is moving towards current submenu.</span>
-    <span class="kw">fn</span> <span class="ident">moving_towards_current_submenu</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">pointer</span>: <span class="kw-2">&amp;</span><span class="ident">PointerState</span>) -&gt; <span class="ident">bool</span> {
-        <span class="kw">if</span> <span class="ident">pointer</span>.<span class="ident">is_still</span>() {
-            <span class="kw">return</span> <span class="bool-val">false</span>;
+    <span class="doccomment">/// Check if `dir` points from `pos` towards left side of `rect`.
+    </span><span class="kw">fn </span>points_at_left_of_rect(pos: Pos2, dir: Vec2, rect: Rect) -&gt; bool {
+        <span class="kw">let </span>vel_a = dir.angle();
+        <span class="kw">let </span>top_a = (rect.left_top() - pos).angle();
+        <span class="kw">let </span>bottom_a = (rect.left_bottom() - pos).angle();
+        bottom_a - vel_a &gt;= <span class="number">0.0 </span>&amp;&amp; top_a - vel_a &lt;= <span class="number">0.0
+    </span>}
+    <span class="doccomment">/// Check if pointer is moving towards current submenu.
+    </span><span class="kw">fn </span>moving_towards_current_submenu(<span class="kw-2">&amp;</span><span class="self">self</span>, pointer: <span class="kw-2">&amp;</span>PointerState) -&gt; bool {
+        <span class="kw">if </span>pointer.is_still() {
+            <span class="kw">return </span><span class="bool-val">false</span>;
         }
-        <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">sub_menu</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">get_current_submenu</span>() {
-            <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">pos</span>) <span class="op">=</span> <span class="ident">pointer</span>.<span class="ident">hover_pos</span>() {
-                <span class="kw">return</span> <span class="ident"><span class="self">Self</span>::points_at_left_of_rect</span>(<span class="ident">pos</span>, <span class="ident">pointer</span>.<span class="ident">velocity</span>(), <span class="ident">sub_menu</span>.<span class="ident">read</span>().<span class="ident">rect</span>);
+        <span class="kw">if let </span><span class="prelude-val">Some</span>(sub_menu) = <span class="self">self</span>.get_current_submenu() {
+            <span class="kw">if let </span><span class="prelude-val">Some</span>(pos) = pointer.hover_pos() {
+                <span class="kw">return </span><span class="self">Self</span>::points_at_left_of_rect(pos, pointer.velocity(), sub_menu.read().rect);
             }
         }
-        <span class="bool-val">false</span>
-    }
-    <span class="doccomment">/// Check if pointer is hovering current submenu.</span>
-    <span class="kw">fn</span> <span class="ident">hovering_current_submenu</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">pointer</span>: <span class="kw-2">&amp;</span><span class="ident">PointerState</span>) -&gt; <span class="ident">bool</span> {
-        <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">sub_menu</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">get_current_submenu</span>() {
-            <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">pos</span>) <span class="op">=</span> <span class="ident">pointer</span>.<span class="ident">hover_pos</span>() {
-                <span class="kw">return</span> <span class="ident">sub_menu</span>.<span class="ident">read</span>().<span class="ident">area_contains</span>(<span class="ident">pos</span>);
+        <span class="bool-val">false
+    </span>}
+    <span class="doccomment">/// Check if pointer is hovering current submenu.
+    </span><span class="kw">fn </span>hovering_current_submenu(<span class="kw-2">&amp;</span><span class="self">self</span>, pointer: <span class="kw-2">&amp;</span>PointerState) -&gt; bool {
+        <span class="kw">if let </span><span class="prelude-val">Some</span>(sub_menu) = <span class="self">self</span>.get_current_submenu() {
+            <span class="kw">if let </span><span class="prelude-val">Some</span>(pos) = pointer.hover_pos() {
+                <span class="kw">return </span>sub_menu.read().area_contains(pos);
             }
         }
-        <span class="bool-val">false</span>
-    }
-    <span class="doccomment">/// Cascade close response to menu root.</span>
-    <span class="kw">fn</span> <span class="ident">cascade_close_response</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">response</span>: <span class="ident">MenuResponse</span>) {
-        <span class="kw">if</span> <span class="ident">response</span>.<span class="ident">is_close</span>() {
-            <span class="self">self</span>.<span class="ident">response</span> <span class="op">=</span> <span class="ident">response</span>;
+        <span class="bool-val">false
+    </span>}
+    <span class="doccomment">/// Cascade close response to menu root.
+    </span><span class="kw">fn </span>cascade_close_response(<span class="kw-2">&amp;mut </span><span class="self">self</span>, response: MenuResponse) {
+        <span class="kw">if </span>response.is_close() {
+            <span class="self">self</span>.response = response;
         }
     }
-    <span class="kw">fn</span> <span class="ident">is_open</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">id</span>: <span class="ident">Id</span>) -&gt; <span class="ident">bool</span> {
-        <span class="self">self</span>.<span class="ident">get_sub_id</span>() <span class="op">==</span> <span class="prelude-val">Some</span>(<span class="ident">id</span>)
+    <span class="kw">fn </span>is_open(<span class="kw-2">&amp;</span><span class="self">self</span>, id: Id) -&gt; bool {
+        <span class="self">self</span>.get_sub_id() == <span class="prelude-val">Some</span>(id)
     }
-    <span class="kw">fn</span> <span class="ident">get_sub_id</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Id</span><span class="op">&gt;</span> {
-        <span class="self">self</span>.<span class="ident">sub_menu</span>.<span class="ident">as_ref</span>().<span class="ident">map</span>(<span class="op">|</span>(<span class="ident">id</span>, <span class="kw">_</span>)<span class="op">|</span> <span class="kw-2">*</span><span class="ident">id</span>)
+    <span class="kw">fn </span>get_sub_id(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;Id&gt; {
+        <span class="self">self</span>.sub_menu.as_ref().map(|(id, <span class="kw">_</span>)| <span class="kw-2">*</span>id)
     }
-    <span class="kw">fn</span> <span class="ident">get_current_submenu</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">RwLock</span><span class="op">&lt;</span><span class="ident">MenuState</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="op">&gt;</span> {
-        <span class="self">self</span>.<span class="ident">sub_menu</span>.<span class="ident">as_ref</span>().<span class="ident">map</span>(<span class="op">|</span>(<span class="kw">_</span>, <span class="ident">sub</span>)<span class="op">|</span> <span class="ident">sub</span>)
+    <span class="kw">fn </span>get_current_submenu(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span>Arc&lt;RwLock&lt;MenuState&gt;&gt;&gt; {
+        <span class="self">self</span>.sub_menu.as_ref().map(|(<span class="kw">_</span>, sub)| sub)
     }
-    <span class="kw">fn</span> <span class="ident">get_submenu</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">id</span>: <span class="ident">Id</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">RwLock</span><span class="op">&lt;</span><span class="ident">MenuState</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="op">&gt;</span> {
-        <span class="self">self</span>.<span class="ident">sub_menu</span>
-            .<span class="ident">as_ref</span>()
-            .<span class="ident">and_then</span>(<span class="op">|</span>(<span class="ident">k</span>, <span class="ident">sub</span>)<span class="op">|</span> <span class="kw">if</span> <span class="ident">id</span> <span class="op">==</span> <span class="kw-2">*</span><span class="ident">k</span> { <span class="prelude-val">Some</span>(<span class="ident">sub</span>) } <span class="kw">else</span> { <span class="prelude-val">None</span> })
+    <span class="kw">fn </span>get_submenu(<span class="kw-2">&amp;mut </span><span class="self">self</span>, id: Id) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span>Arc&lt;RwLock&lt;MenuState&gt;&gt;&gt; {
+        <span class="self">self</span>.sub_menu
+            .as_ref()
+            .and_then(|(k, sub)| <span class="kw">if </span>id == <span class="kw-2">*</span>k { <span class="prelude-val">Some</span>(sub) } <span class="kw">else </span>{ <span class="prelude-val">None </span>})
     }
-    <span class="doccomment">/// Open submenu at position, if not already open.</span>
-    <span class="kw">fn</span> <span class="ident">open_submenu</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">id</span>: <span class="ident">Id</span>, <span class="ident">pos</span>: <span class="ident">Pos2</span>) {
-        <span class="kw">if</span> <span class="op">!</span><span class="self">self</span>.<span class="ident">is_open</span>(<span class="ident">id</span>) {
-            <span class="self">self</span>.<span class="ident">sub_menu</span> <span class="op">=</span> <span class="prelude-val">Some</span>((<span class="ident">id</span>, <span class="ident">Arc::new</span>(<span class="ident">RwLock::new</span>(<span class="ident">MenuState::new</span>(<span class="ident">pos</span>)))));
+    <span class="doccomment">/// Open submenu at position, if not already open.
+    </span><span class="kw">fn </span>open_submenu(<span class="kw-2">&amp;mut </span><span class="self">self</span>, id: Id, pos: Pos2) {
+        <span class="kw">if </span>!<span class="self">self</span>.is_open(id) {
+            <span class="self">self</span>.sub_menu = <span class="prelude-val">Some</span>((id, Arc::new(RwLock::new(MenuState::new(pos)))));
         }
     }
-    <span class="kw">fn</span> <span class="ident">close_submenu</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>) {
-        <span class="self">self</span>.<span class="ident">sub_menu</span> <span class="op">=</span> <span class="prelude-val">None</span>;
+    <span class="kw">fn </span>close_submenu(<span class="kw-2">&amp;mut </span><span class="self">self</span>) {
+        <span class="self">self</span>.sub_menu = <span class="prelude-val">None</span>;
     }
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="egui" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0 (a55dd71d5 2022-09-19)" ></div></body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="egui" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.66.1 (90743e729 2023-01-10)" ></div></body></html>

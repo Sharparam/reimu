@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/ttf-parser-0.15.2/src/tables/morx.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>morx.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../storage.js"></script><script defer src="../../../source-script.js"></script><script defer src="../../../source-files.js"></script><script defer src="../../../main.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../../ttf_parser/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../../ttf_parser/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../../ttf_parser/index.html"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/ttf-parser-0.15.2/src/tables/morx.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>morx.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../../normalize.css"><link rel="stylesheet" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../../ayu.css" disabled><link rel="stylesheet" href="../../../dark.css" disabled><link rel="stylesheet" href="../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../storage.js"></script><script defer src="../../../source-script.js"></script><script defer src="../../../source-files.js"></script><script defer src="../../../main.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><div class="width-limiter"><nav class="sub"><a class="sub-logo-container" href="../../../ttf_parser/index.html"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../wheel.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -481,488 +481,488 @@
 <span id="481">481</span>
 <span id="482">482</span>
 <span id="483">483</span>
-</pre><pre class="rust"><code><span class="doccomment">//! An [Extended Glyph Metamorphosis Table](</span>
-<span class="doccomment">//! https://developer.apple.com/fonts/TrueType-Reference-Manual/RM06/Chap6morx.html) implementation.</span>
+</pre><pre class="rust"><code><span class="doccomment">//! An [Extended Glyph Metamorphosis Table](
+//! https://developer.apple.com/fonts/TrueType-Reference-Manual/RM06/Chap6morx.html) implementation.
 
-<span class="comment">// Note: We do not have tests for this table because it has a very complicated structure.</span>
-<span class="comment">// Specifically, the State Machine Tables. I have no idea how to generate them.</span>
-<span class="comment">// And all fonts that use this table are mainly Apple one, so we cannot use them for legal reasons.</span>
-<span class="comment">//</span>
-<span class="comment">// On the other hand, this table is tested indirectly by https://github.com/RazrFalcon/rustybuzz</span>
-<span class="comment">// And it has like 170 tests. Which is pretty good.</span>
-<span class="comment">// Therefore after applying any changes to this table,</span>
-<span class="comment">// you have to check that all rustybuzz tests are still passing.</span>
+</span><span class="comment">// Note: We do not have tests for this table because it has a very complicated structure.
+// Specifically, the State Machine Tables. I have no idea how to generate them.
+// And all fonts that use this table are mainly Apple one, so we cannot use them for legal reasons.
+//
+// On the other hand, this table is tested indirectly by https://github.com/RazrFalcon/rustybuzz
+// And it has like 170 tests. Which is pretty good.
+// Therefore after applying any changes to this table,
+// you have to check that all rustybuzz tests are still passing.
 
-<span class="kw">use</span> <span class="ident">core::num::NonZeroU16</span>;
+</span><span class="kw">use </span>core::num::NonZeroU16;
 
-<span class="kw">use</span> <span class="kw">crate</span>::{<span class="ident">aat</span>, <span class="ident">GlyphId</span>};
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::parser</span>::{<span class="ident">Stream</span>, <span class="ident">FromData</span>, <span class="ident">LazyArray32</span>, <span class="ident">NumFrom</span>, <span class="ident">Offset32</span>, <span class="ident">Offset</span>};
+<span class="kw">use crate</span>::{aat, GlyphId};
+<span class="kw">use </span><span class="kw">crate</span>::parser::{Stream, FromData, LazyArray32, NumFrom, Offset32, Offset};
 
-<span class="doccomment">/// The feature table is used to compute the sub-feature flags</span>
-<span class="doccomment">/// for a list of requested features and settings.</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">Debug</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Feature</span> {
-    <span class="doccomment">/// The type of feature.</span>
-    <span class="kw">pub</span> <span class="ident">kind</span>: <span class="ident">u16</span>,
-    <span class="doccomment">/// The feature&#39;s setting (aka selector).</span>
-    <span class="kw">pub</span> <span class="ident">setting</span>: <span class="ident">u16</span>,
-    <span class="doccomment">/// Flags for the settings that this feature and setting enables.</span>
-    <span class="kw">pub</span> <span class="ident">enable_flags</span>: <span class="ident">u32</span>,
-    <span class="doccomment">/// Complement of flags for the settings that this feature and setting disable.</span>
-    <span class="kw">pub</span> <span class="ident">disable_flags</span>: <span class="ident">u32</span>,
+<span class="doccomment">/// The feature table is used to compute the sub-feature flags
+/// for a list of requested features and settings.
+</span><span class="attribute">#[derive(Clone, Copy, Debug)]
+</span><span class="kw">pub struct </span>Feature {
+    <span class="doccomment">/// The type of feature.
+    </span><span class="kw">pub </span>kind: u16,
+    <span class="doccomment">/// The feature&#39;s setting (aka selector).
+    </span><span class="kw">pub </span>setting: u16,
+    <span class="doccomment">/// Flags for the settings that this feature and setting enables.
+    </span><span class="kw">pub </span>enable_flags: u32,
+    <span class="doccomment">/// Complement of flags for the settings that this feature and setting disable.
+    </span><span class="kw">pub </span>disable_flags: u32,
 }
 
-<span class="kw">impl</span> <span class="ident">FromData</span> <span class="kw">for</span> <span class="ident">Feature</span> {
-    <span class="kw">const</span> <span class="ident">SIZE</span>: <span class="ident">usize</span> <span class="op">=</span> <span class="number">12</span>;
+<span class="kw">impl </span>FromData <span class="kw">for </span>Feature {
+    <span class="kw">const </span>SIZE: usize = <span class="number">12</span>;
 
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">parse</span>(<span class="ident">data</span>: <span class="kw-2">&amp;</span>[<span class="ident">u8</span>]) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">s</span> <span class="op">=</span> <span class="ident">Stream::new</span>(<span class="ident">data</span>);
-        <span class="prelude-val">Some</span>(<span class="ident">Feature</span> {
-            <span class="ident">kind</span>: <span class="ident">s</span>.<span class="ident">read</span>::<span class="op">&lt;</span><span class="ident">u16</span><span class="op">&gt;</span>()<span class="question-mark">?</span>,
-            <span class="ident">setting</span>: <span class="ident">s</span>.<span class="ident">read</span>::<span class="op">&lt;</span><span class="ident">u16</span><span class="op">&gt;</span>()<span class="question-mark">?</span>,
-            <span class="ident">enable_flags</span>: <span class="ident">s</span>.<span class="ident">read</span>::<span class="op">&lt;</span><span class="ident">u32</span><span class="op">&gt;</span>()<span class="question-mark">?</span>,
-            <span class="ident">disable_flags</span>: <span class="ident">s</span>.<span class="ident">read</span>::<span class="op">&lt;</span><span class="ident">u32</span><span class="op">&gt;</span>()<span class="question-mark">?</span>,
+    <span class="attribute">#[inline]
+    </span><span class="kw">fn </span>parse(data: <span class="kw-2">&amp;</span>[u8]) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="self">Self</span>&gt; {
+        <span class="kw">let </span><span class="kw-2">mut </span>s = Stream::new(data);
+        <span class="prelude-val">Some</span>(Feature {
+            kind: s.read::&lt;u16&gt;()<span class="question-mark">?</span>,
+            setting: s.read::&lt;u16&gt;()<span class="question-mark">?</span>,
+            enable_flags: s.read::&lt;u32&gt;()<span class="question-mark">?</span>,
+            disable_flags: s.read::&lt;u32&gt;()<span class="question-mark">?</span>,
         })
     }
 }
 
 
-<span class="doccomment">/// A contextual subtable state table trailing data.</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">Debug</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ContextualEntryData</span> {
-    <span class="doccomment">/// A mark index.</span>
-    <span class="kw">pub</span> <span class="ident">mark_index</span>: <span class="ident">u16</span>,
-    <span class="doccomment">/// A current index.</span>
-    <span class="kw">pub</span> <span class="ident">current_index</span>: <span class="ident">u16</span>,
+<span class="doccomment">/// A contextual subtable state table trailing data.
+</span><span class="attribute">#[derive(Clone, Copy, Debug)]
+</span><span class="kw">pub struct </span>ContextualEntryData {
+    <span class="doccomment">/// A mark index.
+    </span><span class="kw">pub </span>mark_index: u16,
+    <span class="doccomment">/// A current index.
+    </span><span class="kw">pub </span>current_index: u16,
 }
 
-<span class="kw">impl</span> <span class="ident">FromData</span> <span class="kw">for</span> <span class="ident">ContextualEntryData</span> {
-    <span class="kw">const</span> <span class="ident">SIZE</span>: <span class="ident">usize</span> <span class="op">=</span> <span class="number">4</span>;
+<span class="kw">impl </span>FromData <span class="kw">for </span>ContextualEntryData {
+    <span class="kw">const </span>SIZE: usize = <span class="number">4</span>;
 
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">parse</span>(<span class="ident">data</span>: <span class="kw-2">&amp;</span>[<span class="ident">u8</span>]) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">s</span> <span class="op">=</span> <span class="ident">Stream::new</span>(<span class="ident">data</span>);
-        <span class="prelude-val">Some</span>(<span class="ident">ContextualEntryData</span> {
-            <span class="ident">mark_index</span>: <span class="ident">s</span>.<span class="ident">read</span>::<span class="op">&lt;</span><span class="ident">u16</span><span class="op">&gt;</span>()<span class="question-mark">?</span>,
-            <span class="ident">current_index</span>: <span class="ident">s</span>.<span class="ident">read</span>::<span class="op">&lt;</span><span class="ident">u16</span><span class="op">&gt;</span>()<span class="question-mark">?</span>,
+    <span class="attribute">#[inline]
+    </span><span class="kw">fn </span>parse(data: <span class="kw-2">&amp;</span>[u8]) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="self">Self</span>&gt; {
+        <span class="kw">let </span><span class="kw-2">mut </span>s = Stream::new(data);
+        <span class="prelude-val">Some</span>(ContextualEntryData {
+            mark_index: s.read::&lt;u16&gt;()<span class="question-mark">?</span>,
+            current_index: s.read::&lt;u16&gt;()<span class="question-mark">?</span>,
         })
     }
 }
 
-<span class="doccomment">/// A contextual subtable.</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ContextualSubtable</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="doccomment">/// The contextual glyph substitution state table.</span>
-    <span class="kw">pub</span> <span class="ident">state</span>: <span class="ident">aat::ExtendedStateTable</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">ContextualEntryData</span><span class="op">&gt;</span>,
-    <span class="ident">offsets_data</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>],
-    <span class="ident">offsets</span>: <span class="ident">LazyArray32</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">Offset32</span><span class="op">&gt;</span>,
-    <span class="ident">number_of_glyphs</span>: <span class="ident">NonZeroU16</span>,
+<span class="doccomment">/// A contextual subtable.
+</span><span class="attribute">#[derive(Clone)]
+</span><span class="kw">pub struct </span>ContextualSubtable&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="doccomment">/// The contextual glyph substitution state table.
+    </span><span class="kw">pub </span>state: aat::ExtendedStateTable&lt;<span class="lifetime">&#39;a</span>, ContextualEntryData&gt;,
+    offsets_data: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8],
+    offsets: LazyArray32&lt;<span class="lifetime">&#39;a</span>, Offset32&gt;,
+    number_of_glyphs: NonZeroU16,
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">ContextualSubtable</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="kw">fn</span> <span class="ident">parse</span>(<span class="ident">number_of_glyphs</span>: <span class="ident">NonZeroU16</span>, <span class="ident">data</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>]) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">s</span> <span class="op">=</span> <span class="ident">Stream::new</span>(<span class="ident">data</span>);
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; ContextualSubtable&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="kw">fn </span>parse(number_of_glyphs: NonZeroU16, data: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8]) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="self">Self</span>&gt; {
+        <span class="kw">let </span><span class="kw-2">mut </span>s = Stream::new(data);
 
-        <span class="kw">let</span> <span class="ident">state</span> <span class="op">=</span> <span class="ident">aat::ExtendedStateTable::parse</span>(<span class="ident">number_of_glyphs</span>, <span class="kw-2">&amp;mut</span> <span class="ident">s</span>)<span class="question-mark">?</span>;
+        <span class="kw">let </span>state = aat::ExtendedStateTable::parse(number_of_glyphs, <span class="kw-2">&amp;mut </span>s)<span class="question-mark">?</span>;
 
-        <span class="comment">// While the spec clearly states that this is an</span>
-        <span class="comment">// &#39;offset from the beginning of the state subtable&#39;,</span>
-        <span class="comment">// it&#39;s actually not. Subtable header should not be included.</span>
-        <span class="kw">let</span> <span class="ident">offset</span> <span class="op">=</span> <span class="ident">s</span>.<span class="ident">read</span>::<span class="op">&lt;</span><span class="ident">Offset32</span><span class="op">&gt;</span>()<span class="question-mark">?</span>.<span class="ident">to_usize</span>();
+        <span class="comment">// While the spec clearly states that this is an
+        // &#39;offset from the beginning of the state subtable&#39;,
+        // it&#39;s actually not. Subtable header should not be included.
+        </span><span class="kw">let </span>offset = s.read::&lt;Offset32&gt;()<span class="question-mark">?</span>.to_usize();
 
-        <span class="comment">// The offsets list is unsized.</span>
-        <span class="kw">let</span> <span class="ident">offsets_data</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">get</span>(<span class="ident">offset</span>..)<span class="question-mark">?</span>;
-        <span class="kw">let</span> <span class="ident">offsets</span> <span class="op">=</span> <span class="ident">LazyArray32</span>::<span class="op">&lt;</span><span class="ident">Offset32</span><span class="op">&gt;</span><span class="ident">::new</span>(<span class="ident">offsets_data</span>);
+        <span class="comment">// The offsets list is unsized.
+        </span><span class="kw">let </span>offsets_data = data.get(offset..)<span class="question-mark">?</span>;
+        <span class="kw">let </span>offsets = LazyArray32::&lt;Offset32&gt;::new(offsets_data);
 
-        <span class="prelude-val">Some</span>(<span class="ident">ContextualSubtable</span> {
-            <span class="ident">state</span>,
-            <span class="ident">offsets_data</span>,
-            <span class="ident">offsets</span>,
-            <span class="ident">number_of_glyphs</span>,
+        <span class="prelude-val">Some</span>(ContextualSubtable {
+            state,
+            offsets_data,
+            offsets,
+            number_of_glyphs,
         })
     }
 
-    <span class="doccomment">/// Returns a [Lookup](aat::Lookup) at index.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">lookup</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">index</span>: <span class="ident">u32</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">aat::Lookup</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="ident">offset</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">offsets</span>.<span class="ident">get</span>(<span class="ident">index</span>)<span class="question-mark">?</span>.<span class="ident">to_usize</span>();
-        <span class="kw">let</span> <span class="ident">lookup_data</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">offsets_data</span>.<span class="ident">get</span>(<span class="ident">offset</span>..)<span class="question-mark">?</span>;
-        <span class="ident">aat::Lookup::parse</span>(<span class="self">self</span>.<span class="ident">number_of_glyphs</span>, <span class="ident">lookup_data</span>)
+    <span class="doccomment">/// Returns a [Lookup](aat::Lookup) at index.
+    </span><span class="kw">pub fn </span>lookup(<span class="kw-2">&amp;</span><span class="self">self</span>, index: u32) -&gt; <span class="prelude-ty">Option</span>&lt;aat::Lookup&lt;<span class="lifetime">&#39;a</span>&gt;&gt; {
+        <span class="kw">let </span>offset = <span class="self">self</span>.offsets.get(index)<span class="question-mark">?</span>.to_usize();
+        <span class="kw">let </span>lookup_data = <span class="self">self</span>.offsets_data.get(offset..)<span class="question-mark">?</span>;
+        aat::Lookup::parse(<span class="self">self</span>.number_of_glyphs, lookup_data)
     }
 }
 
-<span class="kw">impl</span> <span class="ident">core::fmt::Debug</span> <span class="kw">for</span> <span class="ident">ContextualSubtable</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span> {
-    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;mut</span> <span class="ident">core::fmt::Formatter</span>) -&gt; <span class="ident">core::fmt::Result</span> {
-        <span class="macro">write!</span>(<span class="ident">f</span>, <span class="string">&quot;ContextualSubtable {{ ... }}&quot;</span>)
-    }
-}
-
-
-<span class="doccomment">/// A ligature subtable.</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">LigatureSubtable</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="doccomment">/// A state table.</span>
-    <span class="kw">pub</span> <span class="ident">state</span>: <span class="ident">aat::ExtendedStateTable</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">u16</span><span class="op">&gt;</span>,
-    <span class="doccomment">/// Ligature actions.</span>
-    <span class="kw">pub</span> <span class="ident">ligature_actions</span>: <span class="ident">LazyArray32</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">u32</span><span class="op">&gt;</span>,
-    <span class="doccomment">/// Ligature components.</span>
-    <span class="kw">pub</span> <span class="ident">components</span>: <span class="ident">LazyArray32</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">u16</span><span class="op">&gt;</span>,
-    <span class="doccomment">/// Ligatures.</span>
-    <span class="kw">pub</span> <span class="ident">ligatures</span>: <span class="ident">LazyArray32</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">GlyphId</span><span class="op">&gt;</span>,
-}
-
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">LigatureSubtable</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="kw">fn</span> <span class="ident">parse</span>(<span class="ident">number_of_glyphs</span>: <span class="ident">NonZeroU16</span>, <span class="ident">data</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>]) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">s</span> <span class="op">=</span> <span class="ident">Stream::new</span>(<span class="ident">data</span>);
-
-        <span class="kw">let</span> <span class="ident">state</span> <span class="op">=</span> <span class="ident">aat::ExtendedStateTable::parse</span>(<span class="ident">number_of_glyphs</span>, <span class="kw-2">&amp;mut</span> <span class="ident">s</span>)<span class="question-mark">?</span>;
-
-        <span class="comment">// Offset are from `ExtendedStateTable`/`data`, not from subtable start.</span>
-        <span class="kw">let</span> <span class="ident">ligature_action_offset</span> <span class="op">=</span> <span class="ident">s</span>.<span class="ident">read</span>::<span class="op">&lt;</span><span class="ident">Offset32</span><span class="op">&gt;</span>()<span class="question-mark">?</span>.<span class="ident">to_usize</span>();
-        <span class="kw">let</span> <span class="ident">component_offset</span> <span class="op">=</span> <span class="ident">s</span>.<span class="ident">read</span>::<span class="op">&lt;</span><span class="ident">Offset32</span><span class="op">&gt;</span>()<span class="question-mark">?</span>.<span class="ident">to_usize</span>();
-        <span class="kw">let</span> <span class="ident">ligature_offset</span> <span class="op">=</span> <span class="ident">s</span>.<span class="ident">read</span>::<span class="op">&lt;</span><span class="ident">Offset32</span><span class="op">&gt;</span>()<span class="question-mark">?</span>.<span class="ident">to_usize</span>();
-
-        <span class="comment">// All three arrays are unsized, so we&#39;re simply reading/mapping all the data past offset.</span>
-        <span class="kw">let</span> <span class="ident">ligature_actions</span> <span class="op">=</span> <span class="ident">LazyArray32</span>::<span class="op">&lt;</span><span class="ident">u32</span><span class="op">&gt;</span><span class="ident">::new</span>(<span class="ident">data</span>.<span class="ident">get</span>(<span class="ident">ligature_action_offset</span>..)<span class="question-mark">?</span>);
-        <span class="kw">let</span> <span class="ident">components</span> <span class="op">=</span> <span class="ident">LazyArray32</span>::<span class="op">&lt;</span><span class="ident">u16</span><span class="op">&gt;</span><span class="ident">::new</span>(<span class="ident">data</span>.<span class="ident">get</span>(<span class="ident">component_offset</span>..)<span class="question-mark">?</span>);
-        <span class="kw">let</span> <span class="ident">ligatures</span> <span class="op">=</span> <span class="ident">LazyArray32</span>::<span class="op">&lt;</span><span class="ident">GlyphId</span><span class="op">&gt;</span><span class="ident">::new</span>(<span class="ident">data</span>.<span class="ident">get</span>(<span class="ident">ligature_offset</span>..)<span class="question-mark">?</span>);
-
-        <span class="prelude-val">Some</span>(<span class="ident">LigatureSubtable</span> {
-            <span class="ident">state</span>,
-            <span class="ident">ligature_actions</span>,
-            <span class="ident">components</span>,
-            <span class="ident">ligatures</span>,
-        })
+<span class="kw">impl </span>core::fmt::Debug <span class="kw">for </span>ContextualSubtable&lt;<span class="lifetime">&#39;_</span>&gt; {
+    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>core::fmt::Formatter) -&gt; core::fmt::Result {
+        <span class="macro">write!</span>(f, <span class="string">&quot;ContextualSubtable {{ ... }}&quot;</span>)
     }
 }
 
 
-<span class="doccomment">/// A contextual subtable state table trailing data.</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">Debug</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">InsertionEntryData</span> {
-    <span class="doccomment">/// A current insert index.</span>
-    <span class="kw">pub</span> <span class="ident">current_insert_index</span>: <span class="ident">u16</span>,
-    <span class="doccomment">/// A marked insert index.</span>
-    <span class="kw">pub</span> <span class="ident">marked_insert_index</span>: <span class="ident">u16</span>,
+<span class="doccomment">/// A ligature subtable.
+</span><span class="attribute">#[derive(Clone, Debug)]
+</span><span class="kw">pub struct </span>LigatureSubtable&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="doccomment">/// A state table.
+    </span><span class="kw">pub </span>state: aat::ExtendedStateTable&lt;<span class="lifetime">&#39;a</span>, u16&gt;,
+    <span class="doccomment">/// Ligature actions.
+    </span><span class="kw">pub </span>ligature_actions: LazyArray32&lt;<span class="lifetime">&#39;a</span>, u32&gt;,
+    <span class="doccomment">/// Ligature components.
+    </span><span class="kw">pub </span>components: LazyArray32&lt;<span class="lifetime">&#39;a</span>, u16&gt;,
+    <span class="doccomment">/// Ligatures.
+    </span><span class="kw">pub </span>ligatures: LazyArray32&lt;<span class="lifetime">&#39;a</span>, GlyphId&gt;,
 }
 
-<span class="kw">impl</span> <span class="ident">FromData</span> <span class="kw">for</span> <span class="ident">InsertionEntryData</span> {
-    <span class="kw">const</span> <span class="ident">SIZE</span>: <span class="ident">usize</span> <span class="op">=</span> <span class="number">4</span>;
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; LigatureSubtable&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="kw">fn </span>parse(number_of_glyphs: NonZeroU16, data: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8]) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="self">Self</span>&gt; {
+        <span class="kw">let </span><span class="kw-2">mut </span>s = Stream::new(data);
 
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">parse</span>(<span class="ident">data</span>: <span class="kw-2">&amp;</span>[<span class="ident">u8</span>]) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">s</span> <span class="op">=</span> <span class="ident">Stream::new</span>(<span class="ident">data</span>);
-        <span class="prelude-val">Some</span>(<span class="ident">InsertionEntryData</span> {
-            <span class="ident">current_insert_index</span>: <span class="ident">s</span>.<span class="ident">read</span>::<span class="op">&lt;</span><span class="ident">u16</span><span class="op">&gt;</span>()<span class="question-mark">?</span>,
-            <span class="ident">marked_insert_index</span>: <span class="ident">s</span>.<span class="ident">read</span>::<span class="op">&lt;</span><span class="ident">u16</span><span class="op">&gt;</span>()<span class="question-mark">?</span>,
+        <span class="kw">let </span>state = aat::ExtendedStateTable::parse(number_of_glyphs, <span class="kw-2">&amp;mut </span>s)<span class="question-mark">?</span>;
+
+        <span class="comment">// Offset are from `ExtendedStateTable`/`data`, not from subtable start.
+        </span><span class="kw">let </span>ligature_action_offset = s.read::&lt;Offset32&gt;()<span class="question-mark">?</span>.to_usize();
+        <span class="kw">let </span>component_offset = s.read::&lt;Offset32&gt;()<span class="question-mark">?</span>.to_usize();
+        <span class="kw">let </span>ligature_offset = s.read::&lt;Offset32&gt;()<span class="question-mark">?</span>.to_usize();
+
+        <span class="comment">// All three arrays are unsized, so we&#39;re simply reading/mapping all the data past offset.
+        </span><span class="kw">let </span>ligature_actions = LazyArray32::&lt;u32&gt;::new(data.get(ligature_action_offset..)<span class="question-mark">?</span>);
+        <span class="kw">let </span>components = LazyArray32::&lt;u16&gt;::new(data.get(component_offset..)<span class="question-mark">?</span>);
+        <span class="kw">let </span>ligatures = LazyArray32::&lt;GlyphId&gt;::new(data.get(ligature_offset..)<span class="question-mark">?</span>);
+
+        <span class="prelude-val">Some</span>(LigatureSubtable {
+            state,
+            ligature_actions,
+            components,
+            ligatures,
         })
     }
 }
 
 
-<span class="doccomment">/// An insertion subtable.</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">InsertionSubtable</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="doccomment">/// A state table.</span>
-    <span class="kw">pub</span> <span class="ident">state</span>: <span class="ident">aat::ExtendedStateTable</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">InsertionEntryData</span><span class="op">&gt;</span>,
-    <span class="doccomment">/// Insertion glyphs.</span>
-    <span class="kw">pub</span> <span class="ident">glyphs</span>: <span class="ident">LazyArray32</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">GlyphId</span><span class="op">&gt;</span>,
+<span class="doccomment">/// A contextual subtable state table trailing data.
+</span><span class="attribute">#[derive(Clone, Copy, Debug)]
+</span><span class="kw">pub struct </span>InsertionEntryData {
+    <span class="doccomment">/// A current insert index.
+    </span><span class="kw">pub </span>current_insert_index: u16,
+    <span class="doccomment">/// A marked insert index.
+    </span><span class="kw">pub </span>marked_insert_index: u16,
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">InsertionSubtable</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="kw">fn</span> <span class="ident">parse</span>(<span class="ident">number_of_glyphs</span>: <span class="ident">NonZeroU16</span>, <span class="ident">data</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>]) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">s</span> <span class="op">=</span> <span class="ident">Stream::new</span>(<span class="ident">data</span>);
-        <span class="kw">let</span> <span class="ident">state</span> <span class="op">=</span> <span class="ident">aat::ExtendedStateTable::parse</span>(<span class="ident">number_of_glyphs</span>, <span class="kw-2">&amp;mut</span> <span class="ident">s</span>)<span class="question-mark">?</span>;
-        <span class="kw">let</span> <span class="ident">offset</span> <span class="op">=</span> <span class="ident">s</span>.<span class="ident">read</span>::<span class="op">&lt;</span><span class="ident">Offset32</span><span class="op">&gt;</span>()<span class="question-mark">?</span>.<span class="ident">to_usize</span>();
+<span class="kw">impl </span>FromData <span class="kw">for </span>InsertionEntryData {
+    <span class="kw">const </span>SIZE: usize = <span class="number">4</span>;
 
-        <span class="comment">// TODO: unsized array?</span>
-        <span class="comment">// The list is unsized.</span>
-        <span class="kw">let</span> <span class="ident">glyphs</span> <span class="op">=</span> <span class="ident">LazyArray32</span>::<span class="op">&lt;</span><span class="ident">GlyphId</span><span class="op">&gt;</span><span class="ident">::new</span>(<span class="ident">data</span>.<span class="ident">get</span>(<span class="ident">offset</span>..)<span class="question-mark">?</span>);
-
-        <span class="prelude-val">Some</span>(<span class="ident">InsertionSubtable</span> {
-            <span class="ident">state</span>,
-            <span class="ident">glyphs</span>,
+    <span class="attribute">#[inline]
+    </span><span class="kw">fn </span>parse(data: <span class="kw-2">&amp;</span>[u8]) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="self">Self</span>&gt; {
+        <span class="kw">let </span><span class="kw-2">mut </span>s = Stream::new(data);
+        <span class="prelude-val">Some</span>(InsertionEntryData {
+            current_insert_index: s.read::&lt;u16&gt;()<span class="question-mark">?</span>,
+            marked_insert_index: s.read::&lt;u16&gt;()<span class="question-mark">?</span>,
         })
     }
 }
 
 
-<span class="doccomment">/// A subtable kind.</span>
-<span class="attribute">#[<span class="ident">allow</span>(<span class="ident">missing_docs</span>)]</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
-<span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">SubtableKind</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="ident">Rearrangement</span>(<span class="ident">aat::ExtendedStateTable</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, ()<span class="op">&gt;</span>),
-    <span class="ident">Contextual</span>(<span class="ident">ContextualSubtable</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>),
-    <span class="ident">Ligature</span>(<span class="ident">LigatureSubtable</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>),
-    <span class="ident">NonContextual</span>(<span class="ident">aat::Lookup</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>),
-    <span class="ident">Insertion</span>(<span class="ident">InsertionSubtable</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>),
+<span class="doccomment">/// An insertion subtable.
+</span><span class="attribute">#[derive(Clone, Debug)]
+</span><span class="kw">pub struct </span>InsertionSubtable&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="doccomment">/// A state table.
+    </span><span class="kw">pub </span>state: aat::ExtendedStateTable&lt;<span class="lifetime">&#39;a</span>, InsertionEntryData&gt;,
+    <span class="doccomment">/// Insertion glyphs.
+    </span><span class="kw">pub </span>glyphs: LazyArray32&lt;<span class="lifetime">&#39;a</span>, GlyphId&gt;,
+}
+
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; InsertionSubtable&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="kw">fn </span>parse(number_of_glyphs: NonZeroU16, data: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8]) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="self">Self</span>&gt; {
+        <span class="kw">let </span><span class="kw-2">mut </span>s = Stream::new(data);
+        <span class="kw">let </span>state = aat::ExtendedStateTable::parse(number_of_glyphs, <span class="kw-2">&amp;mut </span>s)<span class="question-mark">?</span>;
+        <span class="kw">let </span>offset = s.read::&lt;Offset32&gt;()<span class="question-mark">?</span>.to_usize();
+
+        <span class="comment">// TODO: unsized array?
+        // The list is unsized.
+        </span><span class="kw">let </span>glyphs = LazyArray32::&lt;GlyphId&gt;::new(data.get(offset..)<span class="question-mark">?</span>);
+
+        <span class="prelude-val">Some</span>(InsertionSubtable {
+            state,
+            glyphs,
+        })
+    }
 }
 
 
-<span class="doccomment">/// A subtable coverage.</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">Debug</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Coverage</span>(<span class="ident">u8</span>);
-
-<span class="kw">impl</span> <span class="ident">Coverage</span> {
-    <span class="doccomment">/// If true, this subtable will process glyphs in logical order</span>
-    <span class="doccomment">/// (or reverse logical order if [`is_vertical`](Self::is_vertical) is also true).</span>
-    <span class="attribute">#[<span class="ident">inline</span>]</span> <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_logical</span>(<span class="self">self</span>) -&gt; <span class="ident">bool</span> { <span class="self">self</span>.<span class="number">0</span> <span class="op">&amp;</span> <span class="number">0x10</span> <span class="op">!</span><span class="op">=</span> <span class="number">0</span> }
-    <span class="doccomment">/// If true, this subtable will be applied to both horizontal and vertical text</span>
-    <span class="doccomment">/// ([`is_vertical`](Self::is_vertical) should be ignored).</span>
-    <span class="attribute">#[<span class="ident">inline</span>]</span> <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_all_directions</span>(<span class="self">self</span>) -&gt; <span class="ident">bool</span> { <span class="self">self</span>.<span class="number">0</span> <span class="op">&amp;</span> <span class="number">0x20</span> <span class="op">!</span><span class="op">=</span> <span class="number">0</span> }
-    <span class="doccomment">/// If true, this subtable will process glyphs in descending order.</span>
-    <span class="attribute">#[<span class="ident">inline</span>]</span> <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_backwards</span>(<span class="self">self</span>) -&gt; <span class="ident">bool</span> { <span class="self">self</span>.<span class="number">0</span> <span class="op">&amp;</span> <span class="number">0x40</span> <span class="op">!</span><span class="op">=</span> <span class="number">0</span> }
-    <span class="doccomment">/// If true, this subtable will only be applied to vertical text.</span>
-    <span class="attribute">#[<span class="ident">inline</span>]</span> <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_vertical</span>(<span class="self">self</span>) -&gt; <span class="ident">bool</span> { <span class="self">self</span>.<span class="number">0</span> <span class="op">&amp;</span> <span class="number">0x80</span> <span class="op">!</span><span class="op">=</span> <span class="number">0</span> }
+<span class="doccomment">/// A subtable kind.
+</span><span class="attribute">#[allow(missing_docs)]
+#[derive(Clone, Debug)]
+</span><span class="kw">pub enum </span>SubtableKind&lt;<span class="lifetime">&#39;a</span>&gt; {
+    Rearrangement(aat::ExtendedStateTable&lt;<span class="lifetime">&#39;a</span>, ()&gt;),
+    Contextual(ContextualSubtable&lt;<span class="lifetime">&#39;a</span>&gt;),
+    Ligature(LigatureSubtable&lt;<span class="lifetime">&#39;a</span>&gt;),
+    NonContextual(aat::Lookup&lt;<span class="lifetime">&#39;a</span>&gt;),
+    Insertion(InsertionSubtable&lt;<span class="lifetime">&#39;a</span>&gt;),
 }
 
 
-<span class="doccomment">/// A subtable in a metamorphosis chain.</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Subtable</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="doccomment">/// A subtable kind.</span>
-    <span class="kw">pub</span> <span class="ident">kind</span>: <span class="ident">SubtableKind</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>,
-    <span class="doccomment">/// A subtable coverage.</span>
-    <span class="kw">pub</span> <span class="ident">coverage</span>: <span class="ident">Coverage</span>,
-    <span class="doccomment">/// Subtable feature flags.</span>
-    <span class="kw">pub</span> <span class="ident">feature_flags</span>: <span class="ident">u32</span>,
+<span class="doccomment">/// A subtable coverage.
+</span><span class="attribute">#[derive(Clone, Copy, Debug)]
+</span><span class="kw">pub struct </span>Coverage(u8);
+
+<span class="kw">impl </span>Coverage {
+    <span class="doccomment">/// If true, this subtable will process glyphs in logical order
+    /// (or reverse logical order if [`is_vertical`](Self::is_vertical) is also true).
+    </span><span class="attribute">#[inline] </span><span class="kw">pub fn </span>is_logical(<span class="self">self</span>) -&gt; bool { <span class="self">self</span>.<span class="number">0 </span>&amp; <span class="number">0x10 </span>!= <span class="number">0 </span>}
+    <span class="doccomment">/// If true, this subtable will be applied to both horizontal and vertical text
+    /// ([`is_vertical`](Self::is_vertical) should be ignored).
+    </span><span class="attribute">#[inline] </span><span class="kw">pub fn </span>is_all_directions(<span class="self">self</span>) -&gt; bool { <span class="self">self</span>.<span class="number">0 </span>&amp; <span class="number">0x20 </span>!= <span class="number">0 </span>}
+    <span class="doccomment">/// If true, this subtable will process glyphs in descending order.
+    </span><span class="attribute">#[inline] </span><span class="kw">pub fn </span>is_backwards(<span class="self">self</span>) -&gt; bool { <span class="self">self</span>.<span class="number">0 </span>&amp; <span class="number">0x40 </span>!= <span class="number">0 </span>}
+    <span class="doccomment">/// If true, this subtable will only be applied to vertical text.
+    </span><span class="attribute">#[inline] </span><span class="kw">pub fn </span>is_vertical(<span class="self">self</span>) -&gt; bool { <span class="self">self</span>.<span class="number">0 </span>&amp; <span class="number">0x80 </span>!= <span class="number">0 </span>}
 }
 
 
-<span class="doccomment">/// A list of subtables in a metamorphosis chain.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// The internal data layout is not designed for random access,</span>
-<span class="doccomment">/// therefore we&#39;re not providing the `get()` method and only an iterator.</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Copy</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Subtables</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="ident">count</span>: <span class="ident">u32</span>,
-    <span class="ident">data</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>],
-    <span class="ident">number_of_glyphs</span>: <span class="ident">NonZeroU16</span>,
+<span class="doccomment">/// A subtable in a metamorphosis chain.
+</span><span class="attribute">#[derive(Clone, Debug)]
+</span><span class="kw">pub struct </span>Subtable&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="doccomment">/// A subtable kind.
+    </span><span class="kw">pub </span>kind: SubtableKind&lt;<span class="lifetime">&#39;a</span>&gt;,
+    <span class="doccomment">/// A subtable coverage.
+    </span><span class="kw">pub </span>coverage: Coverage,
+    <span class="doccomment">/// Subtable feature flags.
+    </span><span class="kw">pub </span>feature_flags: u32,
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">IntoIterator</span> <span class="kw">for</span> <span class="ident">Subtables</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="kw">type</span> <span class="ident">Item</span> <span class="op">=</span> <span class="ident">Subtable</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>;
-    <span class="kw">type</span> <span class="ident">IntoIter</span> <span class="op">=</span> <span class="ident">SubtablesIter</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>;
 
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">into_iter</span>(<span class="self">self</span>) -&gt; <span class="ident"><span class="self">Self</span>::IntoIter</span> {
-        <span class="ident">SubtablesIter</span> {
-            <span class="ident">index</span>: <span class="number">0</span>,
-            <span class="ident">count</span>: <span class="self">self</span>.<span class="ident">count</span>,
-            <span class="ident">stream</span>: <span class="ident">Stream::new</span>(<span class="self">self</span>.<span class="ident">data</span>),
-            <span class="ident">number_of_glyphs</span>: <span class="self">self</span>.<span class="ident">number_of_glyphs</span>,
+<span class="doccomment">/// A list of subtables in a metamorphosis chain.
+///
+/// The internal data layout is not designed for random access,
+/// therefore we&#39;re not providing the `get()` method and only an iterator.
+</span><span class="attribute">#[derive(Clone, Copy)]
+</span><span class="kw">pub struct </span>Subtables&lt;<span class="lifetime">&#39;a</span>&gt; {
+    count: u32,
+    data: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8],
+    number_of_glyphs: NonZeroU16,
+}
+
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; IntoIterator <span class="kw">for </span>Subtables&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="kw">type </span>Item = Subtable&lt;<span class="lifetime">&#39;a</span>&gt;;
+    <span class="kw">type </span>IntoIter = SubtablesIter&lt;<span class="lifetime">&#39;a</span>&gt;;
+
+    <span class="attribute">#[inline]
+    </span><span class="kw">fn </span>into_iter(<span class="self">self</span>) -&gt; <span class="self">Self</span>::IntoIter {
+        SubtablesIter {
+            index: <span class="number">0</span>,
+            count: <span class="self">self</span>.count,
+            stream: Stream::new(<span class="self">self</span>.data),
+            number_of_glyphs: <span class="self">self</span>.number_of_glyphs,
         }
     }
 }
 
-<span class="kw">impl</span> <span class="ident">core::fmt::Debug</span> <span class="kw">for</span> <span class="ident">Subtables</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span> {
-    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;mut</span> <span class="ident">core::fmt::Formatter</span>) -&gt; <span class="ident">core::fmt::Result</span> {
-        <span class="macro">write!</span>(<span class="ident">f</span>, <span class="string">&quot;Subtables {{ ... }}&quot;</span>)
+<span class="kw">impl </span>core::fmt::Debug <span class="kw">for </span>Subtables&lt;<span class="lifetime">&#39;_</span>&gt; {
+    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>core::fmt::Formatter) -&gt; core::fmt::Result {
+        <span class="macro">write!</span>(f, <span class="string">&quot;Subtables {{ ... }}&quot;</span>)
     }
 }
 
 
-<span class="doccomment">/// An iterator over a metamorphosis chain subtables.</span>
-<span class="attribute">#[<span class="ident">allow</span>(<span class="ident">missing_debug_implementations</span>)]</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Copy</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">SubtablesIter</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="ident">index</span>: <span class="ident">u32</span>,
-    <span class="ident">count</span>: <span class="ident">u32</span>,
-    <span class="ident">stream</span>: <span class="ident">Stream</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>,
-    <span class="ident">number_of_glyphs</span>: <span class="ident">NonZeroU16</span>,
+<span class="doccomment">/// An iterator over a metamorphosis chain subtables.
+</span><span class="attribute">#[allow(missing_debug_implementations)]
+#[derive(Clone, Copy)]
+</span><span class="kw">pub struct </span>SubtablesIter&lt;<span class="lifetime">&#39;a</span>&gt; {
+    index: u32,
+    count: u32,
+    stream: Stream&lt;<span class="lifetime">&#39;a</span>&gt;,
+    number_of_glyphs: NonZeroU16,
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">Iterator</span> <span class="kw">for</span> <span class="ident">SubtablesIter</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="kw">type</span> <span class="ident">Item</span> <span class="op">=</span> <span class="ident">Subtable</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>;
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; Iterator <span class="kw">for </span>SubtablesIter&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="kw">type </span>Item = Subtable&lt;<span class="lifetime">&#39;a</span>&gt;;
 
-    <span class="kw">fn</span> <span class="ident">next</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident"><span class="self">Self</span>::Item</span><span class="op">&gt;</span> {
-        <span class="kw">if</span> <span class="self">self</span>.<span class="ident">index</span> <span class="op">==</span> <span class="self">self</span>.<span class="ident">count</span> {
-            <span class="kw">return</span> <span class="prelude-val">None</span>;
+    <span class="kw">fn </span>next(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="self">Self</span>::Item&gt; {
+        <span class="kw">if </span><span class="self">self</span>.index == <span class="self">self</span>.count {
+            <span class="kw">return </span><span class="prelude-val">None</span>;
         }
 
-        <span class="kw">let</span> <span class="ident">s</span> <span class="op">=</span> <span class="kw-2">&amp;mut</span> <span class="self">self</span>.<span class="ident">stream</span>;
-        <span class="kw">if</span> <span class="ident">s</span>.<span class="ident">at_end</span>() {
-            <span class="kw">return</span> <span class="prelude-val">None</span>;
+        <span class="kw">let </span>s = <span class="kw-2">&amp;mut </span><span class="self">self</span>.stream;
+        <span class="kw">if </span>s.at_end() {
+            <span class="kw">return </span><span class="prelude-val">None</span>;
         }
 
-        <span class="kw">let</span> <span class="ident">len</span> <span class="op">=</span> <span class="ident">s</span>.<span class="ident">read</span>::<span class="op">&lt;</span><span class="ident">u32</span><span class="op">&gt;</span>()<span class="question-mark">?</span>;
-        <span class="kw">let</span> <span class="ident">coverage</span> <span class="op">=</span> <span class="ident">Coverage</span>(<span class="ident">s</span>.<span class="ident">read</span>::<span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span>()<span class="question-mark">?</span>);
-        <span class="ident">s</span>.<span class="ident">skip</span>::<span class="op">&lt;</span><span class="ident">u16</span><span class="op">&gt;</span>(); <span class="comment">// reserved</span>
-        <span class="kw">let</span> <span class="ident">kind</span> <span class="op">=</span> <span class="ident">s</span>.<span class="ident">read</span>::<span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span>()<span class="question-mark">?</span>;
-        <span class="kw">let</span> <span class="ident">feature_flags</span> <span class="op">=</span> <span class="ident">s</span>.<span class="ident">read</span>::<span class="op">&lt;</span><span class="ident">u32</span><span class="op">&gt;</span>()<span class="question-mark">?</span>;
+        <span class="kw">let </span>len = s.read::&lt;u32&gt;()<span class="question-mark">?</span>;
+        <span class="kw">let </span>coverage = Coverage(s.read::&lt;u8&gt;()<span class="question-mark">?</span>);
+        s.skip::&lt;u16&gt;(); <span class="comment">// reserved
+        </span><span class="kw">let </span>kind = s.read::&lt;u8&gt;()<span class="question-mark">?</span>;
+        <span class="kw">let </span>feature_flags = s.read::&lt;u32&gt;()<span class="question-mark">?</span>;
 
-        <span class="kw">const</span> <span class="ident">HEADER_LEN</span>: <span class="ident">usize</span> <span class="op">=</span> <span class="number">12</span>;
-        <span class="kw">let</span> <span class="ident">len</span> <span class="op">=</span> <span class="ident">usize::num_from</span>(<span class="ident">len</span>).<span class="ident">checked_sub</span>(<span class="ident">HEADER_LEN</span>)<span class="question-mark">?</span>;
-        <span class="kw">let</span> <span class="ident">subtables_data</span> <span class="op">=</span> <span class="ident">s</span>.<span class="ident">read_bytes</span>(<span class="ident">len</span>)<span class="question-mark">?</span>;
+        <span class="kw">const </span>HEADER_LEN: usize = <span class="number">12</span>;
+        <span class="kw">let </span>len = usize::num_from(len).checked_sub(HEADER_LEN)<span class="question-mark">?</span>;
+        <span class="kw">let </span>subtables_data = s.read_bytes(len)<span class="question-mark">?</span>;
 
-        <span class="kw">let</span> <span class="ident">kind</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">kind</span> {
-            <span class="number">0</span> =&gt; {
-                <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">s</span> <span class="op">=</span> <span class="ident">Stream::new</span>(<span class="ident">subtables_data</span>);
-                <span class="kw">let</span> <span class="ident">table</span> <span class="op">=</span> <span class="ident">aat::ExtendedStateTable::parse</span>(<span class="self">self</span>.<span class="ident">number_of_glyphs</span>, <span class="kw-2">&amp;mut</span> <span class="ident">s</span>)<span class="question-mark">?</span>;
-                <span class="ident">SubtableKind::Rearrangement</span>(<span class="ident">table</span>)
+        <span class="kw">let </span>kind = <span class="kw">match </span>kind {
+            <span class="number">0 </span>=&gt; {
+                <span class="kw">let </span><span class="kw-2">mut </span>s = Stream::new(subtables_data);
+                <span class="kw">let </span>table = aat::ExtendedStateTable::parse(<span class="self">self</span>.number_of_glyphs, <span class="kw-2">&amp;mut </span>s)<span class="question-mark">?</span>;
+                SubtableKind::Rearrangement(table)
             }
-            <span class="number">1</span> =&gt; {
-                <span class="kw">let</span> <span class="ident">table</span> <span class="op">=</span> <span class="ident">ContextualSubtable::parse</span>(<span class="self">self</span>.<span class="ident">number_of_glyphs</span>, <span class="ident">subtables_data</span>)<span class="question-mark">?</span>;
-                <span class="ident">SubtableKind::Contextual</span>(<span class="ident">table</span>)
+            <span class="number">1 </span>=&gt; {
+                <span class="kw">let </span>table = ContextualSubtable::parse(<span class="self">self</span>.number_of_glyphs, subtables_data)<span class="question-mark">?</span>;
+                SubtableKind::Contextual(table)
             }
-            <span class="number">2</span> =&gt; {
-                <span class="kw">let</span> <span class="ident">table</span> <span class="op">=</span> <span class="ident">LigatureSubtable::parse</span>(<span class="self">self</span>.<span class="ident">number_of_glyphs</span>, <span class="ident">subtables_data</span>)<span class="question-mark">?</span>;
-                <span class="ident">SubtableKind::Ligature</span>(<span class="ident">table</span>)
+            <span class="number">2 </span>=&gt; {
+                <span class="kw">let </span>table = LigatureSubtable::parse(<span class="self">self</span>.number_of_glyphs, subtables_data)<span class="question-mark">?</span>;
+                SubtableKind::Ligature(table)
             }
-            <span class="comment">// 3 - reserved</span>
-            <span class="number">4</span> =&gt; {
-                <span class="ident">SubtableKind::NonContextual</span>(<span class="ident">aat::Lookup::parse</span>(<span class="self">self</span>.<span class="ident">number_of_glyphs</span>, <span class="ident">subtables_data</span>)<span class="question-mark">?</span>)
+            <span class="comment">// 3 - reserved
+            </span><span class="number">4 </span>=&gt; {
+                SubtableKind::NonContextual(aat::Lookup::parse(<span class="self">self</span>.number_of_glyphs, subtables_data)<span class="question-mark">?</span>)
             }
-            <span class="number">5</span> =&gt; {
-                <span class="kw">let</span> <span class="ident">table</span> <span class="op">=</span> <span class="ident">InsertionSubtable::parse</span>(<span class="self">self</span>.<span class="ident">number_of_glyphs</span>, <span class="ident">subtables_data</span>)<span class="question-mark">?</span>;
-                <span class="ident">SubtableKind::Insertion</span>(<span class="ident">table</span>)
+            <span class="number">5 </span>=&gt; {
+                <span class="kw">let </span>table = InsertionSubtable::parse(<span class="self">self</span>.number_of_glyphs, subtables_data)<span class="question-mark">?</span>;
+                SubtableKind::Insertion(table)
             }
-            <span class="kw">_</span> =&gt; <span class="kw">return</span> <span class="prelude-val">None</span>,
+            <span class="kw">_ </span>=&gt; <span class="kw">return </span><span class="prelude-val">None</span>,
         };
 
-        <span class="prelude-val">Some</span>(<span class="ident">Subtable</span> {
-            <span class="ident">kind</span>,
-            <span class="ident">coverage</span>,
-            <span class="ident">feature_flags</span>,
+        <span class="prelude-val">Some</span>(Subtable {
+            kind,
+            coverage,
+            feature_flags,
         })
     }
 }
 
 
-<span class="doccomment">/// A metamorphosis chain.</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">Debug</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Chain</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="doccomment">/// Default chain features.</span>
-    <span class="kw">pub</span> <span class="ident">default_flags</span>: <span class="ident">u32</span>,
-    <span class="doccomment">/// A list of chain features.</span>
-    <span class="kw">pub</span> <span class="ident">features</span>: <span class="ident">LazyArray32</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">Feature</span><span class="op">&gt;</span>,
-    <span class="doccomment">/// A list of chain subtables.</span>
-    <span class="kw">pub</span> <span class="ident">subtables</span>: <span class="ident">Subtables</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>,
+<span class="doccomment">/// A metamorphosis chain.
+</span><span class="attribute">#[derive(Clone, Copy, Debug)]
+</span><span class="kw">pub struct </span>Chain&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="doccomment">/// Default chain features.
+    </span><span class="kw">pub </span>default_flags: u32,
+    <span class="doccomment">/// A list of chain features.
+    </span><span class="kw">pub </span>features: LazyArray32&lt;<span class="lifetime">&#39;a</span>, Feature&gt;,
+    <span class="doccomment">/// A list of chain subtables.
+    </span><span class="kw">pub </span>subtables: Subtables&lt;<span class="lifetime">&#39;a</span>&gt;,
 }
 
 
-<span class="doccomment">/// A list of metamorphosis chains.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// The internal data layout is not designed for random access,</span>
-<span class="doccomment">/// therefore we&#39;re not providing the `get()` method and only an iterator.</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Copy</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Chains</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="ident">data</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>],
-    <span class="ident">count</span>: <span class="ident">u32</span>,
-    <span class="ident">number_of_glyphs</span>: <span class="ident">NonZeroU16</span>,
+<span class="doccomment">/// A list of metamorphosis chains.
+///
+/// The internal data layout is not designed for random access,
+/// therefore we&#39;re not providing the `get()` method and only an iterator.
+</span><span class="attribute">#[derive(Clone, Copy)]
+</span><span class="kw">pub struct </span>Chains&lt;<span class="lifetime">&#39;a</span>&gt; {
+    data: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8],
+    count: u32,
+    number_of_glyphs: NonZeroU16,
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">Chains</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="kw">fn</span> <span class="ident">parse</span>(<span class="ident">number_of_glyphs</span>: <span class="ident">NonZeroU16</span>, <span class="ident">data</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>]) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">s</span> <span class="op">=</span> <span class="ident">Stream::new</span>(<span class="ident">data</span>);
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; Chains&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="kw">fn </span>parse(number_of_glyphs: NonZeroU16, data: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8]) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="self">Self</span>&gt; {
+        <span class="kw">let </span><span class="kw-2">mut </span>s = Stream::new(data);
 
-        <span class="ident">s</span>.<span class="ident">skip</span>::<span class="op">&lt;</span><span class="ident">u16</span><span class="op">&gt;</span>(); <span class="comment">// version</span>
-        <span class="ident">s</span>.<span class="ident">skip</span>::<span class="op">&lt;</span><span class="ident">u16</span><span class="op">&gt;</span>(); <span class="comment">// reserved</span>
-        <span class="kw">let</span> <span class="ident">count</span> <span class="op">=</span> <span class="ident">s</span>.<span class="ident">read</span>::<span class="op">&lt;</span><span class="ident">u32</span><span class="op">&gt;</span>()<span class="question-mark">?</span>;
+        s.skip::&lt;u16&gt;(); <span class="comment">// version
+        </span>s.skip::&lt;u16&gt;(); <span class="comment">// reserved
+        </span><span class="kw">let </span>count = s.read::&lt;u32&gt;()<span class="question-mark">?</span>;
 
-        <span class="prelude-val">Some</span>(<span class="ident">Chains</span> {
-            <span class="ident">count</span>,
-            <span class="ident">data</span>: <span class="ident">s</span>.<span class="ident">tail</span>()<span class="question-mark">?</span>,
-            <span class="ident">number_of_glyphs</span>,
+        <span class="prelude-val">Some</span>(Chains {
+            count,
+            data: s.tail()<span class="question-mark">?</span>,
+            number_of_glyphs,
         })
     }
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">IntoIterator</span> <span class="kw">for</span> <span class="ident">Chains</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="kw">type</span> <span class="ident">Item</span> <span class="op">=</span> <span class="ident">Chain</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>;
-    <span class="kw">type</span> <span class="ident">IntoIter</span> <span class="op">=</span> <span class="ident">ChainsIter</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>;
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; IntoIterator <span class="kw">for </span>Chains&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="kw">type </span>Item = Chain&lt;<span class="lifetime">&#39;a</span>&gt;;
+    <span class="kw">type </span>IntoIter = ChainsIter&lt;<span class="lifetime">&#39;a</span>&gt;;
 
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">into_iter</span>(<span class="self">self</span>) -&gt; <span class="ident"><span class="self">Self</span>::IntoIter</span> {
-        <span class="ident">ChainsIter</span> {
-            <span class="ident">index</span>: <span class="number">0</span>,
-            <span class="ident">count</span>: <span class="self">self</span>.<span class="ident">count</span>,
-            <span class="ident">stream</span>: <span class="ident">Stream::new</span>(<span class="self">self</span>.<span class="ident">data</span>),
-            <span class="ident">number_of_glyphs</span>: <span class="self">self</span>.<span class="ident">number_of_glyphs</span>,
+    <span class="attribute">#[inline]
+    </span><span class="kw">fn </span>into_iter(<span class="self">self</span>) -&gt; <span class="self">Self</span>::IntoIter {
+        ChainsIter {
+            index: <span class="number">0</span>,
+            count: <span class="self">self</span>.count,
+            stream: Stream::new(<span class="self">self</span>.data),
+            number_of_glyphs: <span class="self">self</span>.number_of_glyphs,
         }
     }
 }
 
-<span class="kw">impl</span> <span class="ident">core::fmt::Debug</span> <span class="kw">for</span> <span class="ident">Chains</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span> {
-    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;mut</span> <span class="ident">core::fmt::Formatter</span>) -&gt; <span class="ident">core::fmt::Result</span> {
-        <span class="macro">write!</span>(<span class="ident">f</span>, <span class="string">&quot;Chains {{ ... }}&quot;</span>)
+<span class="kw">impl </span>core::fmt::Debug <span class="kw">for </span>Chains&lt;<span class="lifetime">&#39;_</span>&gt; {
+    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>core::fmt::Formatter) -&gt; core::fmt::Result {
+        <span class="macro">write!</span>(f, <span class="string">&quot;Chains {{ ... }}&quot;</span>)
     }
 }
 
-<span class="doccomment">/// An iterator over metamorphosis chains.</span>
-<span class="attribute">#[<span class="ident">allow</span>(<span class="ident">missing_debug_implementations</span>)]</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Copy</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ChainsIter</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="ident">index</span>: <span class="ident">u32</span>,
-    <span class="ident">count</span>: <span class="ident">u32</span>,
-    <span class="ident">stream</span>: <span class="ident">Stream</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>,
-    <span class="ident">number_of_glyphs</span>: <span class="ident">NonZeroU16</span>,
+<span class="doccomment">/// An iterator over metamorphosis chains.
+</span><span class="attribute">#[allow(missing_debug_implementations)]
+#[derive(Clone, Copy)]
+</span><span class="kw">pub struct </span>ChainsIter&lt;<span class="lifetime">&#39;a</span>&gt; {
+    index: u32,
+    count: u32,
+    stream: Stream&lt;<span class="lifetime">&#39;a</span>&gt;,
+    number_of_glyphs: NonZeroU16,
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">Iterator</span> <span class="kw">for</span> <span class="ident">ChainsIter</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="kw">type</span> <span class="ident">Item</span> <span class="op">=</span> <span class="ident">Chain</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>;
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; Iterator <span class="kw">for </span>ChainsIter&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="kw">type </span>Item = Chain&lt;<span class="lifetime">&#39;a</span>&gt;;
 
-    <span class="kw">fn</span> <span class="ident">next</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident"><span class="self">Self</span>::Item</span><span class="op">&gt;</span> {
-        <span class="kw">if</span> <span class="self">self</span>.<span class="ident">index</span> <span class="op">==</span> <span class="self">self</span>.<span class="ident">count</span> {
-            <span class="kw">return</span> <span class="prelude-val">None</span>;
+    <span class="kw">fn </span>next(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="self">Self</span>::Item&gt; {
+        <span class="kw">if </span><span class="self">self</span>.index == <span class="self">self</span>.count {
+            <span class="kw">return </span><span class="prelude-val">None</span>;
         }
 
-        <span class="kw">if</span> <span class="self">self</span>.<span class="ident">stream</span>.<span class="ident">at_end</span>() {
-            <span class="kw">return</span> <span class="prelude-val">None</span>;
+        <span class="kw">if </span><span class="self">self</span>.stream.at_end() {
+            <span class="kw">return </span><span class="prelude-val">None</span>;
         }
 
-        <span class="kw">let</span> <span class="ident">default_flags</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">stream</span>.<span class="ident">read</span>::<span class="op">&lt;</span><span class="ident">u32</span><span class="op">&gt;</span>()<span class="question-mark">?</span>;
-        <span class="kw">let</span> <span class="ident">len</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">stream</span>.<span class="ident">read</span>::<span class="op">&lt;</span><span class="ident">u32</span><span class="op">&gt;</span>()<span class="question-mark">?</span>;
-        <span class="kw">let</span> <span class="ident">features_count</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">stream</span>.<span class="ident">read</span>::<span class="op">&lt;</span><span class="ident">u32</span><span class="op">&gt;</span>()<span class="question-mark">?</span>;
-        <span class="kw">let</span> <span class="ident">subtables_count</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">stream</span>.<span class="ident">read</span>::<span class="op">&lt;</span><span class="ident">u32</span><span class="op">&gt;</span>()<span class="question-mark">?</span>;
+        <span class="kw">let </span>default_flags = <span class="self">self</span>.stream.read::&lt;u32&gt;()<span class="question-mark">?</span>;
+        <span class="kw">let </span>len = <span class="self">self</span>.stream.read::&lt;u32&gt;()<span class="question-mark">?</span>;
+        <span class="kw">let </span>features_count = <span class="self">self</span>.stream.read::&lt;u32&gt;()<span class="question-mark">?</span>;
+        <span class="kw">let </span>subtables_count = <span class="self">self</span>.stream.read::&lt;u32&gt;()<span class="question-mark">?</span>;
 
-        <span class="kw">let</span> <span class="ident">features</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">stream</span>.<span class="ident">read_array32</span>::<span class="op">&lt;</span><span class="ident">Feature</span><span class="op">&gt;</span>(<span class="ident">features_count</span>)<span class="question-mark">?</span>;
+        <span class="kw">let </span>features = <span class="self">self</span>.stream.read_array32::&lt;Feature&gt;(features_count)<span class="question-mark">?</span>;
 
-        <span class="kw">const</span> <span class="ident">HEADER_LEN</span>: <span class="ident">usize</span> <span class="op">=</span> <span class="number">16</span>;
-        <span class="kw">let</span> <span class="ident">len</span> <span class="op">=</span> <span class="ident">usize::num_from</span>(<span class="ident">len</span>)
-            .<span class="ident">checked_sub</span>(<span class="ident">HEADER_LEN</span>)<span class="question-mark">?</span>
-            .<span class="ident">checked_sub</span>(<span class="ident">Feature::SIZE</span> <span class="op">*</span> <span class="ident">usize::num_from</span>(<span class="ident">features_count</span>))<span class="question-mark">?</span>;
+        <span class="kw">const </span>HEADER_LEN: usize = <span class="number">16</span>;
+        <span class="kw">let </span>len = usize::num_from(len)
+            .checked_sub(HEADER_LEN)<span class="question-mark">?
+            </span>.checked_sub(Feature::SIZE * usize::num_from(features_count))<span class="question-mark">?</span>;
 
-        <span class="kw">let</span> <span class="ident">subtables_data</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">stream</span>.<span class="ident">read_bytes</span>(<span class="ident">len</span>)<span class="question-mark">?</span>;
+        <span class="kw">let </span>subtables_data = <span class="self">self</span>.stream.read_bytes(len)<span class="question-mark">?</span>;
 
-        <span class="kw">let</span> <span class="ident">subtables</span> <span class="op">=</span> <span class="ident">Subtables</span> {
-            <span class="ident">data</span>: <span class="ident">subtables_data</span>,
-            <span class="ident">count</span>: <span class="ident">subtables_count</span>,
-            <span class="ident">number_of_glyphs</span>: <span class="self">self</span>.<span class="ident">number_of_glyphs</span>,
+        <span class="kw">let </span>subtables = Subtables {
+            data: subtables_data,
+            count: subtables_count,
+            number_of_glyphs: <span class="self">self</span>.number_of_glyphs,
         };
 
-        <span class="prelude-val">Some</span>(<span class="ident">Chain</span> {
-            <span class="ident">default_flags</span>,
-            <span class="ident">features</span>,
-            <span class="ident">subtables</span>,
+        <span class="prelude-val">Some</span>(Chain {
+            default_flags,
+            features,
+            subtables,
         })
     }
 }
 
 
-<span class="doccomment">/// An [Extended Glyph Metamorphosis Table](</span>
-<span class="doccomment">/// https://developer.apple.com/fonts/TrueType-Reference-Manual/RM06/Chap6morx.html).</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// Subtable Glyph Coverage used by morx v3 is not supported.</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Table</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="doccomment">/// A list of metamorphosis chains.</span>
-    <span class="kw">pub</span> <span class="ident">chains</span>: <span class="ident">Chains</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>,
+<span class="doccomment">/// An [Extended Glyph Metamorphosis Table](
+/// https://developer.apple.com/fonts/TrueType-Reference-Manual/RM06/Chap6morx.html).
+///
+/// Subtable Glyph Coverage used by morx v3 is not supported.
+</span><span class="attribute">#[derive(Clone)]
+</span><span class="kw">pub struct </span>Table&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="doccomment">/// A list of metamorphosis chains.
+    </span><span class="kw">pub </span>chains: Chains&lt;<span class="lifetime">&#39;a</span>&gt;,
 }
 
-<span class="kw">impl</span> <span class="ident">core::fmt::Debug</span> <span class="kw">for</span> <span class="ident">Table</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span> {
-    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;mut</span> <span class="ident">core::fmt::Formatter</span>) -&gt; <span class="ident">core::fmt::Result</span> {
-        <span class="macro">write!</span>(<span class="ident">f</span>, <span class="string">&quot;Table {{ ... }}&quot;</span>)
+<span class="kw">impl </span>core::fmt::Debug <span class="kw">for </span>Table&lt;<span class="lifetime">&#39;_</span>&gt; {
+    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>core::fmt::Formatter) -&gt; core::fmt::Result {
+        <span class="macro">write!</span>(f, <span class="string">&quot;Table {{ ... }}&quot;</span>)
     }
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">Table</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="doccomment">/// Parses a table from raw data.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// `number_of_glyphs` is from the `maxp` table.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">parse</span>(<span class="ident">number_of_glyphs</span>: <span class="ident">NonZeroU16</span>, <span class="ident">data</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>]) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
-        <span class="ident">Chains::parse</span>(<span class="ident">number_of_glyphs</span>, <span class="ident">data</span>).<span class="ident">map</span>(<span class="op">|</span><span class="ident">chains</span><span class="op">|</span> <span class="self">Self</span> { <span class="ident">chains</span> })
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; Table&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="doccomment">/// Parses a table from raw data.
+    ///
+    /// `number_of_glyphs` is from the `maxp` table.
+    </span><span class="kw">pub fn </span>parse(number_of_glyphs: NonZeroU16, data: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8]) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="self">Self</span>&gt; {
+        Chains::parse(number_of_glyphs, data).map(|chains| <span class="self">Self </span>{ chains })
     }
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="ttf_parser" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0 (a55dd71d5 2022-09-19)" ></div></body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="ttf_parser" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.66.1 (90743e729 2023-01-10)" ></div></body></html>

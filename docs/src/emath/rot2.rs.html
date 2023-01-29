@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/emath-0.16.0/src/rot2.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>rot2.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../emath/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../emath/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../emath/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/emath-0.16.0/src/rot2.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>rot2.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../normalize.css"><link rel="stylesheet" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../ayu.css" disabled><link rel="stylesheet" href="../../dark.css" disabled><link rel="stylesheet" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><div class="width-limiter"><nav class="sub"><a class="sub-logo-container" href="../../emath/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -190,197 +190,197 @@
 <span id="190">190</span>
 <span id="191">191</span>
 <span id="192">192</span>
-</pre><pre class="rust"><code><span class="kw">use</span> <span class="ident"><span class="kw">super</span>::Vec2</span>;
+</pre><pre class="rust"><code><span class="kw">use </span><span class="kw">super</span>::Vec2;
 
-<span class="comment">// {s,c} represents the rotation matrix:</span>
-<span class="comment">//</span>
-<span class="comment">// | c -s |</span>
-<span class="comment">// | s  c |</span>
-<span class="comment">//</span>
-<span class="comment">// `vec2(c,s)` represents where the X axis will end up after rotation.</span>
-<span class="comment">//</span>
-<span class="doccomment">/// Represents a rotation in the 2D plane.</span>
-<span class="comment">//</span>
-<span class="doccomment">/// A rotation of 𝞃/4 = 90° rotates the X axis to the Y axis.</span>
-<span class="comment">//</span>
-<span class="doccomment">/// Normally a `Rot2` is normalized (unit-length).</span>
-<span class="doccomment">/// If not, it will also scale vectors.</span>
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">PartialEq</span>)]</span>
-<span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;serde&quot;</span>, <span class="ident">derive</span>(<span class="ident">serde::Deserialize</span>, <span class="ident">serde::Serialize</span>))]</span>
-<span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;bytemuck&quot;</span>, <span class="ident">derive</span>(<span class="ident">bytemuck::Pod</span>, <span class="ident">bytemuck::Zeroable</span>))]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Rot2</span> {
-    <span class="doccomment">/// angle.sin()</span>
-    <span class="ident">s</span>: <span class="ident">f32</span>,
-    <span class="doccomment">/// angle.cos()</span>
-    <span class="ident">c</span>: <span class="ident">f32</span>,
+<span class="comment">// {s,c} represents the rotation matrix:
+//
+// | c -s |
+// | s  c |
+//
+// `vec2(c,s)` represents where the X axis will end up after rotation.
+//
+</span><span class="doccomment">/// Represents a rotation in the 2D plane.
+</span><span class="comment">//
+</span><span class="doccomment">/// A rotation of 𝞃/4 = 90° rotates the X axis to the Y axis.
+</span><span class="comment">//
+</span><span class="doccomment">/// Normally a `Rot2` is normalized (unit-length).
+/// If not, it will also scale vectors.
+</span><span class="attribute">#[repr(C)]
+#[derive(Clone, Copy, PartialEq)]
+#[cfg_attr(feature = <span class="string">&quot;serde&quot;</span>, derive(serde::Deserialize, serde::Serialize))]
+#[cfg_attr(feature = <span class="string">&quot;bytemuck&quot;</span>, derive(bytemuck::Pod, bytemuck::Zeroable))]
+</span><span class="kw">pub struct </span>Rot2 {
+    <span class="doccomment">/// angle.sin()
+    </span>s: f32,
+    <span class="doccomment">/// angle.cos()
+    </span>c: f32,
 }
 
-<span class="doccomment">/// Identity rotation</span>
-<span class="kw">impl</span> <span class="ident">Default</span> <span class="kw">for</span> <span class="ident">Rot2</span> {
-    <span class="doccomment">/// Identity rotation</span>
-    <span class="kw">fn</span> <span class="ident">default</span>() -&gt; <span class="self">Self</span> {
-        <span class="self">Self</span> { <span class="ident">s</span>: <span class="number">0.0</span>, <span class="ident">c</span>: <span class="number">1.0</span> }
+<span class="doccomment">/// Identity rotation
+</span><span class="kw">impl </span>Default <span class="kw">for </span>Rot2 {
+    <span class="doccomment">/// Identity rotation
+    </span><span class="kw">fn </span>default() -&gt; <span class="self">Self </span>{
+        <span class="self">Self </span>{ s: <span class="number">0.0</span>, c: <span class="number">1.0 </span>}
     }
 }
 
-<span class="kw">impl</span> <span class="ident">Rot2</span> {
-    <span class="doccomment">/// The identity rotation: nothing rotates</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">IDENTITY</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span> { <span class="ident">s</span>: <span class="number">0.0</span>, <span class="ident">c</span>: <span class="number">1.0</span> };
+<span class="kw">impl </span>Rot2 {
+    <span class="doccomment">/// The identity rotation: nothing rotates
+    </span><span class="kw">pub const </span>IDENTITY: <span class="self">Self </span>= <span class="self">Self </span>{ s: <span class="number">0.0</span>, c: <span class="number">1.0 </span>};
 
-    <span class="doccomment">/// Angle is clockwise in radians.</span>
-    <span class="doccomment">/// A 𝞃/4 = 90° rotation means rotating the X axis to the Y axis.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">from_angle</span>(<span class="ident">angle</span>: <span class="ident">f32</span>) -&gt; <span class="self">Self</span> {
-        <span class="kw">let</span> (<span class="ident">s</span>, <span class="ident">c</span>) <span class="op">=</span> <span class="ident">angle</span>.<span class="ident">sin_cos</span>();
-        <span class="self">Self</span> { <span class="ident">s</span>, <span class="ident">c</span> }
+    <span class="doccomment">/// Angle is clockwise in radians.
+    /// A 𝞃/4 = 90° rotation means rotating the X axis to the Y axis.
+    </span><span class="kw">pub fn </span>from_angle(angle: f32) -&gt; <span class="self">Self </span>{
+        <span class="kw">let </span>(s, c) = angle.sin_cos();
+        <span class="self">Self </span>{ s, c }
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">angle</span>(<span class="self">self</span>) -&gt; <span class="ident">f32</span> {
-        <span class="self">self</span>.<span class="ident">s</span>.<span class="ident">atan2</span>(<span class="self">self</span>.<span class="ident">c</span>)
+    <span class="kw">pub fn </span>angle(<span class="self">self</span>) -&gt; f32 {
+        <span class="self">self</span>.s.atan2(<span class="self">self</span>.c)
     }
 
-    <span class="doccomment">/// The factor by which vectors will be scaled.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">length</span>(<span class="self">self</span>) -&gt; <span class="ident">f32</span> {
-        <span class="self">self</span>.<span class="ident">c</span>.<span class="ident">hypot</span>(<span class="self">self</span>.<span class="ident">s</span>)
+    <span class="doccomment">/// The factor by which vectors will be scaled.
+    </span><span class="kw">pub fn </span>length(<span class="self">self</span>) -&gt; f32 {
+        <span class="self">self</span>.c.hypot(<span class="self">self</span>.s)
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">length_squared</span>(<span class="self">self</span>) -&gt; <span class="ident">f32</span> {
-        <span class="self">self</span>.<span class="ident">c</span>.<span class="ident">powi</span>(<span class="number">2</span>) <span class="op">+</span> <span class="self">self</span>.<span class="ident">s</span>.<span class="ident">powi</span>(<span class="number">2</span>)
+    <span class="kw">pub fn </span>length_squared(<span class="self">self</span>) -&gt; f32 {
+        <span class="self">self</span>.c.powi(<span class="number">2</span>) + <span class="self">self</span>.s.powi(<span class="number">2</span>)
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_finite</span>(<span class="self">self</span>) -&gt; <span class="ident">bool</span> {
-        <span class="self">self</span>.<span class="ident">c</span>.<span class="ident">is_finite</span>() <span class="op">&amp;&amp;</span> <span class="self">self</span>.<span class="ident">s</span>.<span class="ident">is_finite</span>()
+    <span class="kw">pub fn </span>is_finite(<span class="self">self</span>) -&gt; bool {
+        <span class="self">self</span>.c.is_finite() &amp;&amp; <span class="self">self</span>.s.is_finite()
     }
 
-    <span class="attribute">#[<span class="ident">must_use</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">inverse</span>(<span class="self">self</span>) -&gt; <span class="ident">Rot2</span> {
-        <span class="self">Self</span> {
-            <span class="ident">s</span>: <span class="op">-</span><span class="self">self</span>.<span class="ident">s</span>,
-            <span class="ident">c</span>: <span class="self">self</span>.<span class="ident">c</span>,
-        } <span class="op">/</span> <span class="self">self</span>.<span class="ident">length_squared</span>()
+    <span class="attribute">#[must_use]
+    </span><span class="kw">pub fn </span>inverse(<span class="self">self</span>) -&gt; Rot2 {
+        <span class="self">Self </span>{
+            s: -<span class="self">self</span>.s,
+            c: <span class="self">self</span>.c,
+        } / <span class="self">self</span>.length_squared()
     }
 
-    <span class="attribute">#[<span class="ident">must_use</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">normalized</span>(<span class="self">self</span>) -&gt; <span class="self">Self</span> {
-        <span class="kw">let</span> <span class="ident">l</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">length</span>();
-        <span class="kw">let</span> <span class="ident">ret</span> <span class="op">=</span> <span class="self">Self</span> {
-            <span class="ident">c</span>: <span class="self">self</span>.<span class="ident">c</span> <span class="op">/</span> <span class="ident">l</span>,
-            <span class="ident">s</span>: <span class="self">self</span>.<span class="ident">s</span> <span class="op">/</span> <span class="ident">l</span>,
+    <span class="attribute">#[must_use]
+    </span><span class="kw">pub fn </span>normalized(<span class="self">self</span>) -&gt; <span class="self">Self </span>{
+        <span class="kw">let </span>l = <span class="self">self</span>.length();
+        <span class="kw">let </span>ret = <span class="self">Self </span>{
+            c: <span class="self">self</span>.c / l,
+            s: <span class="self">self</span>.s / l,
         };
-        <span class="macro">crate::emath_assert!</span>(<span class="ident">ret</span>.<span class="ident">is_finite</span>());
-        <span class="ident">ret</span>
+        <span class="macro">crate::emath_assert!</span>(ret.is_finite());
+        ret
     }
 }
 
-<span class="kw">impl</span> <span class="ident">std::fmt::Debug</span> <span class="kw">for</span> <span class="ident">Rot2</span> {
-    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;mut</span> <span class="ident">std::fmt::Formatter</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>) -&gt; <span class="ident">std::fmt::Result</span> {
+<span class="kw">impl </span>std::fmt::Debug <span class="kw">for </span>Rot2 {
+    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>std::fmt::Formatter&lt;<span class="lifetime">&#39;_</span>&gt;) -&gt; std::fmt::Result {
         <span class="macro">write!</span>(
-            <span class="ident">f</span>,
+            f,
             <span class="string">&quot;Rot2 {{ angle: {:.1}°, length: {} }}&quot;</span>,
-            <span class="self">self</span>.<span class="ident">angle</span>().<span class="ident">to_degrees</span>(),
-            <span class="self">self</span>.<span class="ident">length</span>()
+            <span class="self">self</span>.angle().to_degrees(),
+            <span class="self">self</span>.length()
         )
     }
 }
 
-<span class="kw">impl</span> <span class="ident">std::ops::Mul</span><span class="op">&lt;</span><span class="ident">Rot2</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Rot2</span> {
-    <span class="kw">type</span> <span class="ident">Output</span> <span class="op">=</span> <span class="ident">Rot2</span>;
-    <span class="kw">fn</span> <span class="ident">mul</span>(<span class="self">self</span>, <span class="ident">r</span>: <span class="ident">Rot2</span>) -&gt; <span class="ident">Rot2</span> {
+<span class="kw">impl </span>std::ops::Mul&lt;Rot2&gt; <span class="kw">for </span>Rot2 {
+    <span class="kw">type </span>Output = Rot2;
+    <span class="kw">fn </span>mul(<span class="self">self</span>, r: Rot2) -&gt; Rot2 {
         <span class="comment">/*
         |lc -ls| * |rc -rs|
         |ls  lc|   |rs  rc|
-        */</span>
-        <span class="ident">Rot2</span> {
-            <span class="ident">c</span>: <span class="self">self</span>.<span class="ident">c</span> <span class="op">*</span> <span class="ident">r</span>.<span class="ident">c</span> <span class="op">-</span> <span class="self">self</span>.<span class="ident">s</span> <span class="op">*</span> <span class="ident">r</span>.<span class="ident">s</span>,
-            <span class="ident">s</span>: <span class="self">self</span>.<span class="ident">s</span> <span class="op">*</span> <span class="ident">r</span>.<span class="ident">c</span> <span class="op">+</span> <span class="self">self</span>.<span class="ident">c</span> <span class="op">*</span> <span class="ident">r</span>.<span class="ident">s</span>,
+        */
+        </span>Rot2 {
+            c: <span class="self">self</span>.c * r.c - <span class="self">self</span>.s * r.s,
+            s: <span class="self">self</span>.s * r.c + <span class="self">self</span>.c * r.s,
         }
     }
 }
 
-<span class="doccomment">/// Rotates (and maybe scales) the vector.</span>
-<span class="kw">impl</span> <span class="ident">std::ops::Mul</span><span class="op">&lt;</span><span class="ident">Vec2</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Rot2</span> {
-    <span class="kw">type</span> <span class="ident">Output</span> <span class="op">=</span> <span class="ident">Vec2</span>;
-    <span class="kw">fn</span> <span class="ident">mul</span>(<span class="self">self</span>, <span class="ident">v</span>: <span class="ident">Vec2</span>) -&gt; <span class="ident">Vec2</span> {
-        <span class="ident">Vec2</span> {
-            <span class="ident">x</span>: <span class="self">self</span>.<span class="ident">c</span> <span class="op">*</span> <span class="ident">v</span>.<span class="ident">x</span> <span class="op">-</span> <span class="self">self</span>.<span class="ident">s</span> <span class="op">*</span> <span class="ident">v</span>.<span class="ident">y</span>,
-            <span class="ident">y</span>: <span class="self">self</span>.<span class="ident">s</span> <span class="op">*</span> <span class="ident">v</span>.<span class="ident">x</span> <span class="op">+</span> <span class="self">self</span>.<span class="ident">c</span> <span class="op">*</span> <span class="ident">v</span>.<span class="ident">y</span>,
+<span class="doccomment">/// Rotates (and maybe scales) the vector.
+</span><span class="kw">impl </span>std::ops::Mul&lt;Vec2&gt; <span class="kw">for </span>Rot2 {
+    <span class="kw">type </span>Output = Vec2;
+    <span class="kw">fn </span>mul(<span class="self">self</span>, v: Vec2) -&gt; Vec2 {
+        Vec2 {
+            x: <span class="self">self</span>.c * v.x - <span class="self">self</span>.s * v.y,
+            y: <span class="self">self</span>.s * v.x + <span class="self">self</span>.c * v.y,
         }
     }
 }
 
-<span class="doccomment">/// Scales the rotor.</span>
-<span class="kw">impl</span> <span class="ident">std::ops::Mul</span><span class="op">&lt;</span><span class="ident">Rot2</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">f32</span> {
-    <span class="kw">type</span> <span class="ident">Output</span> <span class="op">=</span> <span class="ident">Rot2</span>;
-    <span class="kw">fn</span> <span class="ident">mul</span>(<span class="self">self</span>, <span class="ident">r</span>: <span class="ident">Rot2</span>) -&gt; <span class="ident">Rot2</span> {
-        <span class="ident">Rot2</span> {
-            <span class="ident">c</span>: <span class="self">self</span> <span class="op">*</span> <span class="ident">r</span>.<span class="ident">c</span>,
-            <span class="ident">s</span>: <span class="self">self</span> <span class="op">*</span> <span class="ident">r</span>.<span class="ident">s</span>,
+<span class="doccomment">/// Scales the rotor.
+</span><span class="kw">impl </span>std::ops::Mul&lt;Rot2&gt; <span class="kw">for </span>f32 {
+    <span class="kw">type </span>Output = Rot2;
+    <span class="kw">fn </span>mul(<span class="self">self</span>, r: Rot2) -&gt; Rot2 {
+        Rot2 {
+            c: <span class="self">self </span>* r.c,
+            s: <span class="self">self </span>* r.s,
         }
     }
 }
 
-<span class="doccomment">/// Scales the rotor.</span>
-<span class="kw">impl</span> <span class="ident">std::ops::Mul</span><span class="op">&lt;</span><span class="ident">f32</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Rot2</span> {
-    <span class="kw">type</span> <span class="ident">Output</span> <span class="op">=</span> <span class="ident">Rot2</span>;
-    <span class="kw">fn</span> <span class="ident">mul</span>(<span class="self">self</span>, <span class="ident">r</span>: <span class="ident">f32</span>) -&gt; <span class="ident">Rot2</span> {
-        <span class="ident">Rot2</span> {
-            <span class="ident">c</span>: <span class="self">self</span>.<span class="ident">c</span> <span class="op">*</span> <span class="ident">r</span>,
-            <span class="ident">s</span>: <span class="self">self</span>.<span class="ident">s</span> <span class="op">*</span> <span class="ident">r</span>,
+<span class="doccomment">/// Scales the rotor.
+</span><span class="kw">impl </span>std::ops::Mul&lt;f32&gt; <span class="kw">for </span>Rot2 {
+    <span class="kw">type </span>Output = Rot2;
+    <span class="kw">fn </span>mul(<span class="self">self</span>, r: f32) -&gt; Rot2 {
+        Rot2 {
+            c: <span class="self">self</span>.c * r,
+            s: <span class="self">self</span>.s * r,
         }
     }
 }
 
-<span class="doccomment">/// Scales the rotor.</span>
-<span class="kw">impl</span> <span class="ident">std::ops::Div</span><span class="op">&lt;</span><span class="ident">f32</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Rot2</span> {
-    <span class="kw">type</span> <span class="ident">Output</span> <span class="op">=</span> <span class="ident">Rot2</span>;
-    <span class="kw">fn</span> <span class="ident">div</span>(<span class="self">self</span>, <span class="ident">r</span>: <span class="ident">f32</span>) -&gt; <span class="ident">Rot2</span> {
-        <span class="ident">Rot2</span> {
-            <span class="ident">c</span>: <span class="self">self</span>.<span class="ident">c</span> <span class="op">/</span> <span class="ident">r</span>,
-            <span class="ident">s</span>: <span class="self">self</span>.<span class="ident">s</span> <span class="op">/</span> <span class="ident">r</span>,
+<span class="doccomment">/// Scales the rotor.
+</span><span class="kw">impl </span>std::ops::Div&lt;f32&gt; <span class="kw">for </span>Rot2 {
+    <span class="kw">type </span>Output = Rot2;
+    <span class="kw">fn </span>div(<span class="self">self</span>, r: f32) -&gt; Rot2 {
+        Rot2 {
+            c: <span class="self">self</span>.c / r,
+            s: <span class="self">self</span>.s / r,
         }
     }
 }
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">test</span>)]</span>
-<span class="kw">mod</span> <span class="ident">test</span> {
-    <span class="kw">use</span> <span class="ident"><span class="kw">super</span>::Rot2</span>;
-    <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::vec2</span>;
+<span class="attribute">#[cfg(test)]
+</span><span class="kw">mod </span>test {
+    <span class="kw">use </span><span class="kw">super</span>::Rot2;
+    <span class="kw">use </span><span class="kw">crate</span>::vec2;
 
-    <span class="attribute">#[<span class="ident">test</span>]</span>
-    <span class="kw">fn</span> <span class="ident">test_rotation2</span>() {
+    <span class="attribute">#[test]
+    </span><span class="kw">fn </span>test_rotation2() {
         {
-            <span class="kw">let</span> <span class="ident">angle</span> <span class="op">=</span> <span class="ident">std::f32::consts::TAU</span> <span class="op">/</span> <span class="number">6.0</span>;
-            <span class="kw">let</span> <span class="ident">rot</span> <span class="op">=</span> <span class="ident">Rot2::from_angle</span>(<span class="ident">angle</span>);
-            <span class="macro">assert!</span>((<span class="ident">rot</span>.<span class="ident">angle</span>() <span class="op">-</span> <span class="ident">angle</span>).<span class="ident">abs</span>() <span class="op">&lt;</span> <span class="number">1e-5</span>);
-            <span class="macro">assert!</span>((<span class="ident">rot</span> <span class="op">*</span> <span class="ident">rot</span>.<span class="ident">inverse</span>()).<span class="ident">angle</span>().<span class="ident">abs</span>() <span class="op">&lt;</span> <span class="number">1e-5</span>);
-            <span class="macro">assert!</span>((<span class="ident">rot</span>.<span class="ident">inverse</span>() <span class="op">*</span> <span class="ident">rot</span>).<span class="ident">angle</span>().<span class="ident">abs</span>() <span class="op">&lt;</span> <span class="number">1e-5</span>);
-        }
-
-        {
-            <span class="kw">let</span> <span class="ident">angle</span> <span class="op">=</span> <span class="ident">std::f32::consts::TAU</span> <span class="op">/</span> <span class="number">4.0</span>;
-            <span class="kw">let</span> <span class="ident">rot</span> <span class="op">=</span> <span class="ident">Rot2::from_angle</span>(<span class="ident">angle</span>);
-            <span class="macro">assert!</span>(((<span class="ident">rot</span> <span class="op">*</span> <span class="ident">vec2</span>(<span class="number">1.0</span>, <span class="number">0.0</span>)) <span class="op">-</span> <span class="ident">vec2</span>(<span class="number">0.0</span>, <span class="number">1.0</span>)).<span class="ident">length</span>() <span class="op">&lt;</span> <span class="number">1e-5</span>);
+            <span class="kw">let </span>angle = std::f32::consts::TAU / <span class="number">6.0</span>;
+            <span class="kw">let </span>rot = Rot2::from_angle(angle);
+            <span class="macro">assert!</span>((rot.angle() - angle).abs() &lt; <span class="number">1e-5</span>);
+            <span class="macro">assert!</span>((rot * rot.inverse()).angle().abs() &lt; <span class="number">1e-5</span>);
+            <span class="macro">assert!</span>((rot.inverse() * rot).angle().abs() &lt; <span class="number">1e-5</span>);
         }
 
         {
-            <span class="comment">// Test rotation and scaling</span>
-            <span class="kw">let</span> <span class="ident">angle</span> <span class="op">=</span> <span class="ident">std::f32::consts::TAU</span> <span class="op">/</span> <span class="number">4.0</span>;
-            <span class="kw">let</span> <span class="ident">rot</span> <span class="op">=</span> <span class="number">3.0</span> <span class="op">*</span> <span class="ident">Rot2::from_angle</span>(<span class="ident">angle</span>);
-            <span class="kw">let</span> <span class="ident">rotated</span> <span class="op">=</span> <span class="ident">rot</span> <span class="op">*</span> <span class="ident">vec2</span>(<span class="number">1.0</span>, <span class="number">0.0</span>);
-            <span class="kw">let</span> <span class="ident">expected</span> <span class="op">=</span> <span class="ident">vec2</span>(<span class="number">0.0</span>, <span class="number">3.0</span>);
+            <span class="kw">let </span>angle = std::f32::consts::TAU / <span class="number">4.0</span>;
+            <span class="kw">let </span>rot = Rot2::from_angle(angle);
+            <span class="macro">assert!</span>(((rot * vec2(<span class="number">1.0</span>, <span class="number">0.0</span>)) - vec2(<span class="number">0.0</span>, <span class="number">1.0</span>)).length() &lt; <span class="number">1e-5</span>);
+        }
+
+        {
+            <span class="comment">// Test rotation and scaling
+            </span><span class="kw">let </span>angle = std::f32::consts::TAU / <span class="number">4.0</span>;
+            <span class="kw">let </span>rot = <span class="number">3.0 </span>* Rot2::from_angle(angle);
+            <span class="kw">let </span>rotated = rot * vec2(<span class="number">1.0</span>, <span class="number">0.0</span>);
+            <span class="kw">let </span>expected = vec2(<span class="number">0.0</span>, <span class="number">3.0</span>);
             <span class="macro">assert!</span>(
-                (<span class="ident">rotated</span> <span class="op">-</span> <span class="ident">expected</span>).<span class="ident">length</span>() <span class="op">&lt;</span> <span class="number">1e-5</span>,
+                (rotated - expected).length() &lt; <span class="number">1e-5</span>,
                 <span class="string">&quot;Expected {:?} to equal {:?}. rot: {:?}&quot;</span>,
-                <span class="ident">rotated</span>,
-                <span class="ident">expected</span>,
-                <span class="ident">rot</span>,
+                rotated,
+                expected,
+                rot,
             );
 
-            <span class="kw">let</span> <span class="ident">undone</span> <span class="op">=</span> <span class="ident">rot</span>.<span class="ident">inverse</span>() <span class="op">*</span> <span class="ident">rot</span>;
-            <span class="macro">assert!</span>(<span class="ident">undone</span>.<span class="ident">angle</span>().<span class="ident">abs</span>() <span class="op">&lt;</span> <span class="number">1e-5</span>);
-            <span class="macro">assert!</span>((<span class="ident">undone</span>.<span class="ident">length</span>() <span class="op">-</span> <span class="number">1.0</span>).<span class="ident">abs</span>() <span class="op">&lt;</span> <span class="number">1e-5</span>,);
+            <span class="kw">let </span>undone = rot.inverse() * rot;
+            <span class="macro">assert!</span>(undone.angle().abs() &lt; <span class="number">1e-5</span>);
+            <span class="macro">assert!</span>((undone.length() - <span class="number">1.0</span>).abs() &lt; <span class="number">1e-5</span>,);
         }
     }
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="emath" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0 (a55dd71d5 2022-09-19)" ></div></body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="emath" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.66.1 (90743e729 2023-01-10)" ></div></body></html>

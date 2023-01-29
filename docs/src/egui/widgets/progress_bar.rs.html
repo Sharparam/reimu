@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/egui-0.16.1/src/widgets/progress_bar.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>progress_bar.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../storage.js"></script><script defer src="../../../source-script.js"></script><script defer src="../../../source-files.js"></script><script defer src="../../../main.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../../egui/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../../egui/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../../egui/index.html"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/egui-0.16.1/src/widgets/progress_bar.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>progress_bar.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../../normalize.css"><link rel="stylesheet" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../../ayu.css" disabled><link rel="stylesheet" href="../../../dark.css" disabled><link rel="stylesheet" href="../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../storage.js"></script><script defer src="../../../source-script.js"></script><script defer src="../../../source-files.js"></script><script defer src="../../../main.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><div class="width-limiter"><nav class="sub"><a class="sub-logo-container" href="../../../egui/index.html"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../wheel.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -147,154 +147,154 @@
 <span id="147">147</span>
 <span id="148">148</span>
 <span id="149">149</span>
-</pre><pre class="rust"><code><span class="kw">use</span> <span class="kw">crate</span>::<span class="kw-2">*</span>;
+</pre><pre class="rust"><code><span class="kw">use crate</span>::<span class="kw-2">*</span>;
 
-<span class="kw">enum</span> <span class="ident">ProgressBarText</span> {
-    <span class="ident">Custom</span>(<span class="ident">WidgetText</span>),
-    <span class="ident">Percentage</span>,
+<span class="kw">enum </span>ProgressBarText {
+    Custom(WidgetText),
+    Percentage,
 }
 
-<span class="doccomment">/// A simple progress bar.</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ProgressBar</span> {
-    <span class="ident">progress</span>: <span class="ident">f32</span>,
-    <span class="ident">desired_width</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">f32</span><span class="op">&gt;</span>,
-    <span class="ident">text</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">ProgressBarText</span><span class="op">&gt;</span>,
-    <span class="ident">animate</span>: <span class="ident">bool</span>,
+<span class="doccomment">/// A simple progress bar.
+</span><span class="kw">pub struct </span>ProgressBar {
+    progress: f32,
+    desired_width: <span class="prelude-ty">Option</span>&lt;f32&gt;,
+    text: <span class="prelude-ty">Option</span>&lt;ProgressBarText&gt;,
+    animate: bool,
 }
 
-<span class="kw">impl</span> <span class="ident">ProgressBar</span> {
-    <span class="doccomment">/// Progress in the `[0, 1]` range, where `1` means &quot;completed&quot;.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">progress</span>: <span class="ident">f32</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">Self</span> {
-            <span class="ident">progress</span>: <span class="ident">progress</span>.<span class="ident">clamp</span>(<span class="number">0.0</span>, <span class="number">1.0</span>),
-            <span class="ident">desired_width</span>: <span class="prelude-val">None</span>,
-            <span class="ident">text</span>: <span class="prelude-val">None</span>,
-            <span class="ident">animate</span>: <span class="bool-val">false</span>,
+<span class="kw">impl </span>ProgressBar {
+    <span class="doccomment">/// Progress in the `[0, 1]` range, where `1` means &quot;completed&quot;.
+    </span><span class="kw">pub fn </span>new(progress: f32) -&gt; <span class="self">Self </span>{
+        <span class="self">Self </span>{
+            progress: progress.clamp(<span class="number">0.0</span>, <span class="number">1.0</span>),
+            desired_width: <span class="prelude-val">None</span>,
+            text: <span class="prelude-val">None</span>,
+            animate: <span class="bool-val">false</span>,
         }
     }
 
-    <span class="doccomment">/// The desired width of the bar. Will use all horizontal space if not set.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">desired_width</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">desired_width</span>: <span class="ident">f32</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">self</span>.<span class="ident">desired_width</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">desired_width</span>);
-        <span class="self">self</span>
-    }
+    <span class="doccomment">/// The desired width of the bar. Will use all horizontal space if not set.
+    </span><span class="kw">pub fn </span>desired_width(<span class="kw-2">mut </span><span class="self">self</span>, desired_width: f32) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.desired_width = <span class="prelude-val">Some</span>(desired_width);
+        <span class="self">self
+    </span>}
 
-    <span class="doccomment">/// A custom text to display on the progress bar.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">text</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">text</span>: <span class="kw">impl</span> <span class="ident">Into</span><span class="op">&lt;</span><span class="ident">WidgetText</span><span class="op">&gt;</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">self</span>.<span class="ident">text</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">ProgressBarText::Custom</span>(<span class="ident">text</span>.<span class="ident">into</span>()));
-        <span class="self">self</span>
-    }
+    <span class="doccomment">/// A custom text to display on the progress bar.
+    </span><span class="kw">pub fn </span>text(<span class="kw-2">mut </span><span class="self">self</span>, text: <span class="kw">impl </span>Into&lt;WidgetText&gt;) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.text = <span class="prelude-val">Some</span>(ProgressBarText::Custom(text.into()));
+        <span class="self">self
+    </span>}
 
-    <span class="doccomment">/// Show the progress in percent on the progress bar.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">show_percentage</span>(<span class="kw-2">mut</span> <span class="self">self</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">self</span>.<span class="ident">text</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">ProgressBarText::Percentage</span>);
-        <span class="self">self</span>
-    }
+    <span class="doccomment">/// Show the progress in percent on the progress bar.
+    </span><span class="kw">pub fn </span>show_percentage(<span class="kw-2">mut </span><span class="self">self</span>) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.text = <span class="prelude-val">Some</span>(ProgressBarText::Percentage);
+        <span class="self">self
+    </span>}
 
-    <span class="doccomment">/// Whether to display a loading animation when progress `&lt; 1`.</span>
-    <span class="doccomment">/// Note that this will cause the UI to be redrawn.</span>
-    <span class="doccomment">/// Defaults to `false`.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">animate</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">animate</span>: <span class="ident">bool</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">self</span>.<span class="ident">animate</span> <span class="op">=</span> <span class="ident">animate</span>;
-        <span class="self">self</span>
-    }
+    <span class="doccomment">/// Whether to display a loading animation when progress `&lt; 1`.
+    /// Note that this will cause the UI to be redrawn.
+    /// Defaults to `false`.
+    </span><span class="kw">pub fn </span>animate(<span class="kw-2">mut </span><span class="self">self</span>, animate: bool) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.animate = animate;
+        <span class="self">self
+    </span>}
 }
 
-<span class="kw">impl</span> <span class="ident">Widget</span> <span class="kw">for</span> <span class="ident">ProgressBar</span> {
-    <span class="kw">fn</span> <span class="ident">ui</span>(<span class="self">self</span>, <span class="ident">ui</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Ui</span>) -&gt; <span class="ident">Response</span> {
-        <span class="kw">let</span> <span class="ident">ProgressBar</span> {
-            <span class="ident">progress</span>,
-            <span class="ident">desired_width</span>,
-            <span class="ident">text</span>,
-            <span class="ident">animate</span>,
-        } <span class="op">=</span> <span class="self">self</span>;
+<span class="kw">impl </span>Widget <span class="kw">for </span>ProgressBar {
+    <span class="kw">fn </span>ui(<span class="self">self</span>, ui: <span class="kw-2">&amp;mut </span>Ui) -&gt; Response {
+        <span class="kw">let </span>ProgressBar {
+            progress,
+            desired_width,
+            text,
+            animate,
+        } = <span class="self">self</span>;
 
-        <span class="kw">let</span> <span class="ident">animate</span> <span class="op">=</span> <span class="ident">animate</span> <span class="op">&amp;&amp;</span> <span class="ident">progress</span> <span class="op">&lt;</span> <span class="number">1.0</span>;
+        <span class="kw">let </span>animate = animate &amp;&amp; progress &lt; <span class="number">1.0</span>;
 
-        <span class="kw">if</span> <span class="ident">animate</span> {
-            <span class="ident">ui</span>.<span class="ident">ctx</span>().<span class="ident">request_repaint</span>();
+        <span class="kw">if </span>animate {
+            ui.ctx().request_repaint();
         }
 
-        <span class="kw">let</span> <span class="ident">desired_width</span> <span class="op">=</span>
-            <span class="ident">desired_width</span>.<span class="ident">unwrap_or_else</span>(<span class="op">|</span><span class="op">|</span> <span class="ident">ui</span>.<span class="ident">available_size_before_wrap</span>().<span class="ident">x</span>.<span class="ident">at_least</span>(<span class="number">96.0</span>));
-        <span class="kw">let</span> <span class="ident">height</span> <span class="op">=</span> <span class="ident">ui</span>.<span class="ident">spacing</span>().<span class="ident">interact_size</span>.<span class="ident">y</span>;
-        <span class="kw">let</span> (<span class="ident">outer_rect</span>, <span class="ident">response</span>) <span class="op">=</span>
-            <span class="ident">ui</span>.<span class="ident">allocate_exact_size</span>(<span class="ident">vec2</span>(<span class="ident">desired_width</span>, <span class="ident">height</span>), <span class="ident">Sense::hover</span>());
+        <span class="kw">let </span>desired_width =
+            desired_width.unwrap_or_else(|| ui.available_size_before_wrap().x.at_least(<span class="number">96.0</span>));
+        <span class="kw">let </span>height = ui.spacing().interact_size.y;
+        <span class="kw">let </span>(outer_rect, response) =
+            ui.allocate_exact_size(vec2(desired_width, height), Sense::hover());
 
-        <span class="kw">if</span> <span class="ident">ui</span>.<span class="ident">is_rect_visible</span>(<span class="ident">response</span>.<span class="ident">rect</span>) {
-            <span class="kw">let</span> <span class="ident">visuals</span> <span class="op">=</span> <span class="ident">ui</span>.<span class="ident">style</span>().<span class="ident">visuals</span>.<span class="ident">clone</span>();
-            <span class="kw">let</span> <span class="ident">corner_radius</span> <span class="op">=</span> <span class="ident">outer_rect</span>.<span class="ident">height</span>() <span class="op">/</span> <span class="number">2.0</span>;
-            <span class="ident">ui</span>.<span class="ident">painter</span>().<span class="ident">rect</span>(
-                <span class="ident">outer_rect</span>,
-                <span class="ident">corner_radius</span>,
-                <span class="ident">visuals</span>.<span class="ident">extreme_bg_color</span>,
-                <span class="ident">Stroke::none</span>(),
+        <span class="kw">if </span>ui.is_rect_visible(response.rect) {
+            <span class="kw">let </span>visuals = ui.style().visuals.clone();
+            <span class="kw">let </span>corner_radius = outer_rect.height() / <span class="number">2.0</span>;
+            ui.painter().rect(
+                outer_rect,
+                corner_radius,
+                visuals.extreme_bg_color,
+                Stroke::none(),
             );
-            <span class="kw">let</span> <span class="ident">inner_rect</span> <span class="op">=</span> <span class="ident">Rect::from_min_size</span>(
-                <span class="ident">outer_rect</span>.<span class="ident">min</span>,
-                <span class="ident">vec2</span>(
-                    (<span class="ident">outer_rect</span>.<span class="ident">width</span>() <span class="op">*</span> <span class="ident">progress</span>).<span class="ident">at_least</span>(<span class="ident">outer_rect</span>.<span class="ident">height</span>()),
-                    <span class="ident">outer_rect</span>.<span class="ident">height</span>(),
+            <span class="kw">let </span>inner_rect = Rect::from_min_size(
+                outer_rect.min,
+                vec2(
+                    (outer_rect.width() * progress).at_least(outer_rect.height()),
+                    outer_rect.height(),
                 ),
             );
 
-            <span class="kw">let</span> (<span class="ident">dark</span>, <span class="ident">bright</span>) <span class="op">=</span> (<span class="number">0.7</span>, <span class="number">1.0</span>);
-            <span class="kw">let</span> <span class="ident">color_factor</span> <span class="op">=</span> <span class="kw">if</span> <span class="ident">animate</span> {
-                <span class="ident">lerp</span>(<span class="ident">dark</span>..<span class="op">=</span><span class="ident">bright</span>, <span class="ident">ui</span>.<span class="ident">input</span>().<span class="ident">time</span>.<span class="ident">cos</span>().<span class="ident">abs</span>())
-            } <span class="kw">else</span> {
-                <span class="ident">bright</span>
+            <span class="kw">let </span>(dark, bright) = (<span class="number">0.7</span>, <span class="number">1.0</span>);
+            <span class="kw">let </span>color_factor = <span class="kw">if </span>animate {
+                lerp(dark..=bright, ui.input().time.cos().abs())
+            } <span class="kw">else </span>{
+                bright
             };
 
-            <span class="ident">ui</span>.<span class="ident">painter</span>().<span class="ident">rect</span>(
-                <span class="ident">inner_rect</span>,
-                <span class="ident">corner_radius</span>,
-                <span class="ident">Color32::from</span>(<span class="ident">Rgba::from</span>(<span class="ident">visuals</span>.<span class="ident">selection</span>.<span class="ident">bg_fill</span>) <span class="op">*</span> <span class="ident">color_factor</span> <span class="kw">as</span> <span class="ident">f32</span>),
-                <span class="ident">Stroke::none</span>(),
+            ui.painter().rect(
+                inner_rect,
+                corner_radius,
+                Color32::from(Rgba::from(visuals.selection.bg_fill) * color_factor <span class="kw">as </span>f32),
+                Stroke::none(),
             );
 
-            <span class="kw">if</span> <span class="ident">animate</span> {
-                <span class="kw">let</span> <span class="ident">n_points</span> <span class="op">=</span> <span class="number">20</span>;
-                <span class="kw">let</span> <span class="ident">start_angle</span> <span class="op">=</span> <span class="ident">ui</span>.<span class="ident">input</span>().<span class="ident">time</span> <span class="kw">as</span> <span class="ident">f64</span> <span class="op">*</span> <span class="number">360f64</span>.<span class="ident">to_radians</span>();
-                <span class="kw">let</span> <span class="ident">end_angle</span> <span class="op">=</span> <span class="ident">start_angle</span> <span class="op">+</span> <span class="number">240f64</span>.<span class="ident">to_radians</span>() <span class="op">*</span> <span class="ident">ui</span>.<span class="ident">input</span>().<span class="ident">time</span>.<span class="ident">sin</span>();
-                <span class="kw">let</span> <span class="ident">circle_radius</span> <span class="op">=</span> <span class="ident">corner_radius</span> <span class="op">-</span> <span class="number">2.0</span>;
-                <span class="kw">let</span> <span class="ident">points</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Pos2</span><span class="op">&gt;</span> <span class="op">=</span> (<span class="number">0</span>..<span class="ident">n_points</span>)
-                    .<span class="ident">map</span>(<span class="op">|</span><span class="ident">i</span><span class="op">|</span> {
-                        <span class="kw">let</span> <span class="ident">angle</span> <span class="op">=</span> <span class="ident">lerp</span>(<span class="ident">start_angle</span>..<span class="op">=</span><span class="ident">end_angle</span>, <span class="ident">i</span> <span class="kw">as</span> <span class="ident">f64</span> <span class="op">/</span> <span class="ident">n_points</span> <span class="kw">as</span> <span class="ident">f64</span>);
-                        <span class="kw">let</span> (<span class="ident">sin</span>, <span class="ident">cos</span>) <span class="op">=</span> <span class="ident">angle</span>.<span class="ident">sin_cos</span>();
-                        <span class="ident">inner_rect</span>.<span class="ident">right_center</span>()
-                            <span class="op">+</span> <span class="ident">circle_radius</span> <span class="op">*</span> <span class="ident">vec2</span>(<span class="ident">cos</span> <span class="kw">as</span> <span class="ident">f32</span>, <span class="ident">sin</span> <span class="kw">as</span> <span class="ident">f32</span>)
-                            <span class="op">+</span> <span class="ident">vec2</span>(<span class="op">-</span><span class="ident">corner_radius</span>, <span class="number">0.0</span>)
+            <span class="kw">if </span>animate {
+                <span class="kw">let </span>n_points = <span class="number">20</span>;
+                <span class="kw">let </span>start_angle = ui.input().time <span class="kw">as </span>f64 * <span class="number">360f64</span>.to_radians();
+                <span class="kw">let </span>end_angle = start_angle + <span class="number">240f64</span>.to_radians() * ui.input().time.sin();
+                <span class="kw">let </span>circle_radius = corner_radius - <span class="number">2.0</span>;
+                <span class="kw">let </span>points: Vec&lt;Pos2&gt; = (<span class="number">0</span>..n_points)
+                    .map(|i| {
+                        <span class="kw">let </span>angle = lerp(start_angle..=end_angle, i <span class="kw">as </span>f64 / n_points <span class="kw">as </span>f64);
+                        <span class="kw">let </span>(sin, cos) = angle.sin_cos();
+                        inner_rect.right_center()
+                            + circle_radius * vec2(cos <span class="kw">as </span>f32, sin <span class="kw">as </span>f32)
+                            + vec2(-corner_radius, <span class="number">0.0</span>)
                     })
-                    .<span class="ident">collect</span>();
-                <span class="ident">ui</span>.<span class="ident">painter</span>().<span class="ident">add</span>(<span class="ident">Shape::line</span>(
-                    <span class="ident">points</span>,
-                    <span class="ident">Stroke::new</span>(<span class="number">2.0</span>, <span class="ident">visuals</span>.<span class="ident">faint_bg_color</span>),
+                    .collect();
+                ui.painter().add(Shape::line(
+                    points,
+                    Stroke::new(<span class="number">2.0</span>, visuals.faint_bg_color),
                 ));
             }
 
-            <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">text_kind</span>) <span class="op">=</span> <span class="ident">text</span> {
-                <span class="kw">let</span> <span class="ident">text</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">text_kind</span> {
-                    <span class="ident">ProgressBarText::Custom</span>(<span class="ident">text</span>) =&gt; <span class="ident">text</span>,
-                    <span class="ident">ProgressBarText::Percentage</span> =&gt; {
-                        <span class="macro">format!</span>(<span class="string">&quot;{}%&quot;</span>, (<span class="ident">progress</span> <span class="op">*</span> <span class="number">100.0</span>) <span class="kw">as</span> <span class="ident">usize</span>).<span class="ident">into</span>()
+            <span class="kw">if let </span><span class="prelude-val">Some</span>(text_kind) = text {
+                <span class="kw">let </span>text = <span class="kw">match </span>text_kind {
+                    ProgressBarText::Custom(text) =&gt; text,
+                    ProgressBarText::Percentage =&gt; {
+                        <span class="macro">format!</span>(<span class="string">&quot;{}%&quot;</span>, (progress * <span class="number">100.0</span>) <span class="kw">as </span>usize).into()
                     }
                 };
-                <span class="kw">let</span> <span class="ident">galley</span> <span class="op">=</span> <span class="ident">text</span>.<span class="ident">into_galley</span>(<span class="ident">ui</span>, <span class="prelude-val">Some</span>(<span class="bool-val">false</span>), <span class="ident">f32::INFINITY</span>, <span class="ident">TextStyle::Button</span>);
-                <span class="kw">let</span> <span class="ident">text_pos</span> <span class="op">=</span> <span class="ident">outer_rect</span>.<span class="ident">left_center</span>() <span class="op">-</span> <span class="ident">Vec2::new</span>(<span class="number">0.0</span>, <span class="ident">galley</span>.<span class="ident">size</span>().<span class="ident">y</span> <span class="op">/</span> <span class="number">2.0</span>)
-                    <span class="op">+</span> <span class="ident">vec2</span>(<span class="ident">ui</span>.<span class="ident">spacing</span>().<span class="ident">item_spacing</span>.<span class="ident">x</span>, <span class="number">0.0</span>);
-                <span class="kw">let</span> <span class="ident">text_color</span> <span class="op">=</span> <span class="ident">visuals</span>
-                    .<span class="ident">override_text_color</span>
-                    .<span class="ident">unwrap_or</span>(<span class="ident">visuals</span>.<span class="ident">selection</span>.<span class="ident">stroke</span>.<span class="ident">color</span>);
-                <span class="ident">galley</span>.<span class="ident">paint_with_fallback_color</span>(
-                    <span class="kw-2">&amp;</span><span class="ident">ui</span>.<span class="ident">painter</span>().<span class="ident">sub_region</span>(<span class="ident">outer_rect</span>),
-                    <span class="ident">text_pos</span>,
-                    <span class="ident">text_color</span>,
+                <span class="kw">let </span>galley = text.into_galley(ui, <span class="prelude-val">Some</span>(<span class="bool-val">false</span>), f32::INFINITY, TextStyle::Button);
+                <span class="kw">let </span>text_pos = outer_rect.left_center() - Vec2::new(<span class="number">0.0</span>, galley.size().y / <span class="number">2.0</span>)
+                    + vec2(ui.spacing().item_spacing.x, <span class="number">0.0</span>);
+                <span class="kw">let </span>text_color = visuals
+                    .override_text_color
+                    .unwrap_or(visuals.selection.stroke.color);
+                galley.paint_with_fallback_color(
+                    <span class="kw-2">&amp;</span>ui.painter().sub_region(outer_rect),
+                    text_pos,
+                    text_color,
                 );
             }
         }
 
-        <span class="ident">response</span>
+        response
     }
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="egui" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0 (a55dd71d5 2022-09-19)" ></div></body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="egui" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.66.1 (90743e729 2023-01-10)" ></div></body></html>

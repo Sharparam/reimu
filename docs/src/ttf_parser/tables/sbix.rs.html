@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/ttf-parser-0.15.2/src/tables/sbix.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>sbix.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../storage.js"></script><script defer src="../../../source-script.js"></script><script defer src="../../../source-files.js"></script><script defer src="../../../main.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../../ttf_parser/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../../ttf_parser/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../../ttf_parser/index.html"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/ttf-parser-0.15.2/src/tables/sbix.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>sbix.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../../normalize.css"><link rel="stylesheet" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../../ayu.css" disabled><link rel="stylesheet" href="../../../dark.css" disabled><link rel="stylesheet" href="../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../storage.js"></script><script defer src="../../../source-script.js"></script><script defer src="../../../source-files.js"></script><script defer src="../../../main.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><div class="width-limiter"><nav class="sub"><a class="sub-logo-container" href="../../../ttf_parser/index.html"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../wheel.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -245,252 +245,252 @@
 <span id="245">245</span>
 <span id="246">246</span>
 <span id="247">247</span>
-</pre><pre class="rust"><code><span class="doccomment">//! A [Standard Bitmap Graphics Table](</span>
-<span class="doccomment">//! https://docs.microsoft.com/en-us/typography/opentype/spec/sbix) implementation.</span>
+</pre><pre class="rust"><code><span class="doccomment">//! A [Standard Bitmap Graphics Table](
+//! https://docs.microsoft.com/en-us/typography/opentype/spec/sbix) implementation.
 
-<span class="kw">use</span> <span class="ident">core::convert::TryFrom</span>;
-<span class="kw">use</span> <span class="ident">core::num::NonZeroU16</span>;
+</span><span class="kw">use </span>core::convert::TryFrom;
+<span class="kw">use </span>core::num::NonZeroU16;
 
-<span class="kw">use</span> <span class="kw">crate</span>::{<span class="ident">GlyphId</span>, <span class="ident">RasterGlyphImage</span>, <span class="ident">RasterImageFormat</span>, <span class="ident">Tag</span>};
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::parser</span>::{<span class="ident">Stream</span>, <span class="ident">FromData</span>, <span class="ident">Offset</span>, <span class="ident">Offset32</span>, <span class="ident">LazyArray16</span>, <span class="ident">LazyArray32</span>};
+<span class="kw">use crate</span>::{GlyphId, RasterGlyphImage, RasterImageFormat, Tag};
+<span class="kw">use </span><span class="kw">crate</span>::parser::{Stream, FromData, Offset, Offset32, LazyArray16, LazyArray32};
 
-<span class="doccomment">/// A strike of glyphs.</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Copy</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Strike</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="doccomment">/// The pixels per EM size for which this strike was designed.</span>
-    <span class="kw">pub</span> <span class="ident">pixels_per_em</span>: <span class="ident">u16</span>,
-    <span class="doccomment">/// The device pixel density (in PPI) for which this strike was designed.</span>
-    <span class="kw">pub</span> <span class="ident">ppi</span>: <span class="ident">u16</span>,
-    <span class="ident">offsets</span>: <span class="ident">LazyArray16</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">Offset32</span><span class="op">&gt;</span>,
-    <span class="doccomment">/// Data from the beginning of the `Strikes` table.</span>
-    <span class="ident">data</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>],
+<span class="doccomment">/// A strike of glyphs.
+</span><span class="attribute">#[derive(Clone, Copy)]
+</span><span class="kw">pub struct </span>Strike&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="doccomment">/// The pixels per EM size for which this strike was designed.
+    </span><span class="kw">pub </span>pixels_per_em: u16,
+    <span class="doccomment">/// The device pixel density (in PPI) for which this strike was designed.
+    </span><span class="kw">pub </span>ppi: u16,
+    offsets: LazyArray16&lt;<span class="lifetime">&#39;a</span>, Offset32&gt;,
+    <span class="doccomment">/// Data from the beginning of the `Strikes` table.
+    </span>data: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8],
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">Strike</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="kw">fn</span> <span class="ident">parse</span>(<span class="ident">number_of_glyphs</span>: <span class="ident">u16</span>, <span class="ident">data</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>]) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">s</span> <span class="op">=</span> <span class="ident">Stream::new</span>(<span class="ident">data</span>);
-        <span class="kw">let</span> <span class="ident">pixels_per_em</span> <span class="op">=</span> <span class="ident">s</span>.<span class="ident">read</span>::<span class="op">&lt;</span><span class="ident">u16</span><span class="op">&gt;</span>()<span class="question-mark">?</span>;
-        <span class="kw">let</span> <span class="ident">ppi</span> <span class="op">=</span> <span class="ident">s</span>.<span class="ident">read</span>::<span class="op">&lt;</span><span class="ident">u16</span><span class="op">&gt;</span>()<span class="question-mark">?</span>;
-        <span class="kw">let</span> <span class="ident">offsets</span> <span class="op">=</span> <span class="ident">s</span>.<span class="ident">read_array16</span>(<span class="ident">number_of_glyphs</span>)<span class="question-mark">?</span>;
-        <span class="prelude-val">Some</span>(<span class="ident">Strike</span> {
-            <span class="ident">pixels_per_em</span>,
-            <span class="ident">ppi</span>,
-            <span class="ident">offsets</span>,
-            <span class="ident">data</span>,
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; Strike&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="kw">fn </span>parse(number_of_glyphs: u16, data: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8]) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="self">Self</span>&gt; {
+        <span class="kw">let </span><span class="kw-2">mut </span>s = Stream::new(data);
+        <span class="kw">let </span>pixels_per_em = s.read::&lt;u16&gt;()<span class="question-mark">?</span>;
+        <span class="kw">let </span>ppi = s.read::&lt;u16&gt;()<span class="question-mark">?</span>;
+        <span class="kw">let </span>offsets = s.read_array16(number_of_glyphs)<span class="question-mark">?</span>;
+        <span class="prelude-val">Some</span>(Strike {
+            pixels_per_em,
+            ppi,
+            offsets,
+            data,
         })
     }
 
-    <span class="doccomment">/// Returns a glyph data.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">glyph_id</span>: <span class="ident">GlyphId</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">RasterGlyphImage</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span><span class="op">&gt;</span> {
-        <span class="self">self</span>.<span class="ident">get_inner</span>(<span class="ident">glyph_id</span>, <span class="number">0</span>)
+    <span class="doccomment">/// Returns a glyph data.
+    </span><span class="kw">pub fn </span>get(<span class="kw-2">&amp;</span><span class="self">self</span>, glyph_id: GlyphId) -&gt; <span class="prelude-ty">Option</span>&lt;RasterGlyphImage&lt;<span class="lifetime">&#39;a</span>&gt;&gt; {
+        <span class="self">self</span>.get_inner(glyph_id, <span class="number">0</span>)
     }
 
-    <span class="kw">fn</span> <span class="ident">get_inner</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">glyph_id</span>: <span class="ident">GlyphId</span>, <span class="ident">depth</span>: <span class="ident">u8</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">RasterGlyphImage</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span><span class="op">&gt;</span> {
-        <span class="comment">// Recursive `dupe`. Bail.</span>
-        <span class="kw">if</span> <span class="ident">depth</span> <span class="op">==</span> <span class="number">10</span> {
-            <span class="kw">return</span> <span class="prelude-val">None</span>;
+    <span class="kw">fn </span>get_inner(<span class="kw-2">&amp;</span><span class="self">self</span>, glyph_id: GlyphId, depth: u8) -&gt; <span class="prelude-ty">Option</span>&lt;RasterGlyphImage&lt;<span class="lifetime">&#39;a</span>&gt;&gt; {
+        <span class="comment">// Recursive `dupe`. Bail.
+        </span><span class="kw">if </span>depth == <span class="number">10 </span>{
+            <span class="kw">return </span><span class="prelude-val">None</span>;
         }
 
-        <span class="kw">let</span> <span class="ident">start</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">offsets</span>.<span class="ident">get</span>(<span class="ident">glyph_id</span>.<span class="number">0</span>)<span class="question-mark">?</span>.<span class="ident">to_usize</span>();
-        <span class="kw">let</span> <span class="ident">end</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">offsets</span>.<span class="ident">get</span>(<span class="ident">glyph_id</span>.<span class="number">0</span>.<span class="ident">checked_add</span>(<span class="number">1</span>)<span class="question-mark">?</span>)<span class="question-mark">?</span>.<span class="ident">to_usize</span>();
+        <span class="kw">let </span>start = <span class="self">self</span>.offsets.get(glyph_id.<span class="number">0</span>)<span class="question-mark">?</span>.to_usize();
+        <span class="kw">let </span>end = <span class="self">self</span>.offsets.get(glyph_id.<span class="number">0</span>.checked_add(<span class="number">1</span>)<span class="question-mark">?</span>)<span class="question-mark">?</span>.to_usize();
 
-        <span class="kw">if</span> <span class="ident">start</span> <span class="op">==</span> <span class="ident">end</span> {
-            <span class="kw">return</span> <span class="prelude-val">None</span>;
+        <span class="kw">if </span>start == end {
+            <span class="kw">return </span><span class="prelude-val">None</span>;
         }
 
-        <span class="kw">let</span> <span class="ident">data_len</span> <span class="op">=</span> <span class="ident">end</span>.<span class="ident">checked_sub</span>(<span class="ident">start</span>)<span class="question-mark">?</span>.<span class="ident">checked_sub</span>(<span class="number">8</span>)<span class="question-mark">?</span>; <span class="comment">// 8 is a Glyph data header size.</span>
+        <span class="kw">let </span>data_len = end.checked_sub(start)<span class="question-mark">?</span>.checked_sub(<span class="number">8</span>)<span class="question-mark">?</span>; <span class="comment">// 8 is a Glyph data header size.
 
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">s</span> <span class="op">=</span> <span class="ident">Stream::new_at</span>(<span class="self">self</span>.<span class="ident">data</span>, <span class="ident">start</span>)<span class="question-mark">?</span>;
-        <span class="kw">let</span> <span class="ident">x</span> <span class="op">=</span> <span class="ident">s</span>.<span class="ident">read</span>::<span class="op">&lt;</span><span class="ident">i16</span><span class="op">&gt;</span>()<span class="question-mark">?</span>;
-        <span class="kw">let</span> <span class="ident">y</span> <span class="op">=</span> <span class="ident">s</span>.<span class="ident">read</span>::<span class="op">&lt;</span><span class="ident">i16</span><span class="op">&gt;</span>()<span class="question-mark">?</span>;
-        <span class="kw">let</span> <span class="ident">image_type</span> <span class="op">=</span> <span class="ident">s</span>.<span class="ident">read</span>::<span class="op">&lt;</span><span class="ident">Tag</span><span class="op">&gt;</span>()<span class="question-mark">?</span>;
-        <span class="kw">let</span> <span class="ident">image_data</span> <span class="op">=</span> <span class="ident">s</span>.<span class="ident">read_bytes</span>(<span class="ident">data_len</span>)<span class="question-mark">?</span>;
+        </span><span class="kw">let </span><span class="kw-2">mut </span>s = Stream::new_at(<span class="self">self</span>.data, start)<span class="question-mark">?</span>;
+        <span class="kw">let </span>x = s.read::&lt;i16&gt;()<span class="question-mark">?</span>;
+        <span class="kw">let </span>y = s.read::&lt;i16&gt;()<span class="question-mark">?</span>;
+        <span class="kw">let </span>image_type = s.read::&lt;Tag&gt;()<span class="question-mark">?</span>;
+        <span class="kw">let </span>image_data = s.read_bytes(data_len)<span class="question-mark">?</span>;
 
-        <span class="comment">// We do ignore `pdf` and `mask` intentionally, because Apple docs state that:</span>
-        <span class="comment">// &#39;Support for the &#39;pdf &#39; and &#39;mask&#39; data types and sbixDrawOutlines flag</span>
-        <span class="comment">// are planned for future releases of iOS and OS X.&#39;</span>
-        <span class="kw">let</span> <span class="ident">format</span> <span class="op">=</span> <span class="kw">match</span> <span class="kw-2">&amp;</span><span class="ident">image_type</span>.<span class="ident">to_bytes</span>() {
-            <span class="string">b&quot;png &quot;</span> =&gt; <span class="ident">RasterImageFormat::PNG</span>,
-            <span class="string">b&quot;dupe&quot;</span> =&gt; {
-                <span class="comment">// &#39;The special graphicType of &#39;dupe&#39; indicates that</span>
-                <span class="comment">// the data field contains a glyph ID. The bitmap data for</span>
-                <span class="comment">// the indicated glyph should be used for the current glyph.&#39;</span>
-                <span class="kw">let</span> <span class="ident">glyph_id</span> <span class="op">=</span> <span class="ident">GlyphId::parse</span>(<span class="ident">image_data</span>)<span class="question-mark">?</span>;
-                <span class="comment">// TODO: The spec isn&#39;t clear about which x/y values should we use.</span>
-                <span class="comment">//       The current glyph or the referenced one.</span>
-                <span class="kw">return</span> <span class="self">self</span>.<span class="ident">get_inner</span>(<span class="ident">glyph_id</span>, <span class="ident">depth</span> <span class="op">+</span> <span class="number">1</span>);
+        <span class="comment">// We do ignore `pdf` and `mask` intentionally, because Apple docs state that:
+        // &#39;Support for the &#39;pdf &#39; and &#39;mask&#39; data types and sbixDrawOutlines flag
+        // are planned for future releases of iOS and OS X.&#39;
+        </span><span class="kw">let </span>format = <span class="kw">match </span><span class="kw-2">&amp;</span>image_type.to_bytes() {
+            <span class="string">b&quot;png &quot; </span>=&gt; RasterImageFormat::PNG,
+            <span class="string">b&quot;dupe&quot; </span>=&gt; {
+                <span class="comment">// &#39;The special graphicType of &#39;dupe&#39; indicates that
+                // the data field contains a glyph ID. The bitmap data for
+                // the indicated glyph should be used for the current glyph.&#39;
+                </span><span class="kw">let </span>glyph_id = GlyphId::parse(image_data)<span class="question-mark">?</span>;
+                <span class="comment">// TODO: The spec isn&#39;t clear about which x/y values should we use.
+                //       The current glyph or the referenced one.
+                </span><span class="kw">return </span><span class="self">self</span>.get_inner(glyph_id, depth + <span class="number">1</span>);
             }
-            <span class="kw">_</span> =&gt; {
-                <span class="comment">// TODO: support JPEG and TIFF</span>
-                <span class="kw">return</span> <span class="prelude-val">None</span>;
+            <span class="kw">_ </span>=&gt; {
+                <span class="comment">// TODO: support JPEG and TIFF
+                </span><span class="kw">return </span><span class="prelude-val">None</span>;
             }
         };
 
-        <span class="kw">let</span> (<span class="ident">width</span>, <span class="ident">height</span>) <span class="op">=</span> <span class="ident">png_size</span>(<span class="ident">image_data</span>)<span class="question-mark">?</span>;
+        <span class="kw">let </span>(width, height) = png_size(image_data)<span class="question-mark">?</span>;
 
-        <span class="prelude-val">Some</span>(<span class="ident">RasterGlyphImage</span> {
-            <span class="ident">x</span>,
-            <span class="ident">y</span>,
-            <span class="ident">width</span>,
-            <span class="ident">height</span>,
-            <span class="ident">pixels_per_em</span>: <span class="self">self</span>.<span class="ident">pixels_per_em</span>,
-            <span class="ident">format</span>,
-            <span class="ident">data</span>: <span class="ident">image_data</span>,
+        <span class="prelude-val">Some</span>(RasterGlyphImage {
+            x,
+            y,
+            width,
+            height,
+            pixels_per_em: <span class="self">self</span>.pixels_per_em,
+            format,
+            data: image_data,
         })
     }
 
-    <span class="doccomment">/// Returns the number of glyphs in this strike.</span>
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">len</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">u16</span> {
-        <span class="comment">// The last offset simply indicates the glyph data end. We don&#39;t need it.</span>
-        <span class="self">self</span>.<span class="ident">offsets</span>.<span class="ident">len</span>() <span class="op">-</span> <span class="number">1</span>
+    <span class="doccomment">/// Returns the number of glyphs in this strike.
+    </span><span class="attribute">#[inline]
+    </span><span class="kw">pub fn </span>len(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; u16 {
+        <span class="comment">// The last offset simply indicates the glyph data end. We don&#39;t need it.
+        </span><span class="self">self</span>.offsets.len() - <span class="number">1
+    </span>}
+}
+
+<span class="kw">impl </span>core::fmt::Debug <span class="kw">for </span>Strike&lt;<span class="lifetime">&#39;_</span>&gt; {
+    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>core::fmt::Formatter) -&gt; core::fmt::Result {
+        <span class="macro">write!</span>(f, <span class="string">&quot;Strike {{ ... }}&quot;</span>)
     }
 }
 
-<span class="kw">impl</span> <span class="ident">core::fmt::Debug</span> <span class="kw">for</span> <span class="ident">Strike</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span> {
-    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;mut</span> <span class="ident">core::fmt::Formatter</span>) -&gt; <span class="ident">core::fmt::Result</span> {
-        <span class="macro">write!</span>(<span class="ident">f</span>, <span class="string">&quot;Strike {{ ... }}&quot;</span>)
+
+<span class="doccomment">/// A list of [`Strike`]s.
+</span><span class="attribute">#[derive(Clone, Copy)]
+</span><span class="kw">pub struct </span>Strikes&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="doccomment">/// `sbix` table data.
+    </span>data: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8],
+    <span class="comment">// Offsets from the beginning of the `sbix` table.
+    </span>offsets: LazyArray32&lt;<span class="lifetime">&#39;a</span>, Offset32&gt;,
+    <span class="comment">// The total number of glyphs in the face + 1. From the `maxp` table.
+    </span>number_of_glyphs: u16,
+}
+
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; Strikes&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="doccomment">/// Returns a strike at the index.
+    </span><span class="kw">pub fn </span>get(<span class="kw-2">&amp;</span><span class="self">self</span>, index: u32) -&gt; <span class="prelude-ty">Option</span>&lt;Strike&lt;<span class="lifetime">&#39;a</span>&gt;&gt; {
+        <span class="kw">let </span>offset = <span class="self">self</span>.offsets.get(index)<span class="question-mark">?</span>.to_usize();
+        <span class="kw">let </span>data = <span class="self">self</span>.data.get(offset..)<span class="question-mark">?</span>;
+        Strike::parse(<span class="self">self</span>.number_of_glyphs, data)
+    }
+
+    <span class="doccomment">/// Returns the number of strikes.
+    </span><span class="attribute">#[inline]
+    </span><span class="kw">pub fn </span>len(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; u32 {
+        <span class="self">self</span>.offsets.len()
     }
 }
 
-
-<span class="doccomment">/// A list of [`Strike`]s.</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Copy</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Strikes</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="doccomment">/// `sbix` table data.</span>
-    <span class="ident">data</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>],
-    <span class="comment">// Offsets from the beginning of the `sbix` table.</span>
-    <span class="ident">offsets</span>: <span class="ident">LazyArray32</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">Offset32</span><span class="op">&gt;</span>,
-    <span class="comment">// The total number of glyphs in the face + 1. From the `maxp` table.</span>
-    <span class="ident">number_of_glyphs</span>: <span class="ident">u16</span>,
-}
-
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">Strikes</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="doccomment">/// Returns a strike at the index.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">index</span>: <span class="ident">u32</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Strike</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="ident">offset</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">offsets</span>.<span class="ident">get</span>(<span class="ident">index</span>)<span class="question-mark">?</span>.<span class="ident">to_usize</span>();
-        <span class="kw">let</span> <span class="ident">data</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">data</span>.<span class="ident">get</span>(<span class="ident">offset</span>..)<span class="question-mark">?</span>;
-        <span class="ident">Strike::parse</span>(<span class="self">self</span>.<span class="ident">number_of_glyphs</span>, <span class="ident">data</span>)
-    }
-
-    <span class="doccomment">/// Returns the number of strikes.</span>
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">len</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">u32</span> {
-        <span class="self">self</span>.<span class="ident">offsets</span>.<span class="ident">len</span>()
+<span class="kw">impl </span>core::fmt::Debug <span class="kw">for </span>Strikes&lt;<span class="lifetime">&#39;_</span>&gt; {
+    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>core::fmt::Formatter) -&gt; core::fmt::Result {
+        <span class="macro">write!</span>(f, <span class="string">&quot;Strikes {{ ... }}&quot;</span>)
     }
 }
 
-<span class="kw">impl</span> <span class="ident">core::fmt::Debug</span> <span class="kw">for</span> <span class="ident">Strikes</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span> {
-    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;mut</span> <span class="ident">core::fmt::Formatter</span>) -&gt; <span class="ident">core::fmt::Result</span> {
-        <span class="macro">write!</span>(<span class="ident">f</span>, <span class="string">&quot;Strikes {{ ... }}&quot;</span>)
-    }
-}
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; IntoIterator <span class="kw">for </span>Strikes&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="kw">type </span>Item = Strike&lt;<span class="lifetime">&#39;a</span>&gt;;
+    <span class="kw">type </span>IntoIter = StrikesIter&lt;<span class="lifetime">&#39;a</span>&gt;;
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">IntoIterator</span> <span class="kw">for</span> <span class="ident">Strikes</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="kw">type</span> <span class="ident">Item</span> <span class="op">=</span> <span class="ident">Strike</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>;
-    <span class="kw">type</span> <span class="ident">IntoIter</span> <span class="op">=</span> <span class="ident">StrikesIter</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>;
-
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">into_iter</span>(<span class="self">self</span>) -&gt; <span class="ident"><span class="self">Self</span>::IntoIter</span> {
-        <span class="ident">StrikesIter</span> {
-            <span class="ident">strikes</span>: <span class="self">self</span>,
-            <span class="ident">index</span>: <span class="number">0</span>,
+    <span class="attribute">#[inline]
+    </span><span class="kw">fn </span>into_iter(<span class="self">self</span>) -&gt; <span class="self">Self</span>::IntoIter {
+        StrikesIter {
+            strikes: <span class="self">self</span>,
+            index: <span class="number">0</span>,
         }
     }
 }
 
-<span class="doccomment">/// An iterator over [`Strikes`].</span>
-<span class="attribute">#[<span class="ident">allow</span>(<span class="ident">missing_debug_implementations</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">StrikesIter</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="ident">strikes</span>: <span class="ident">Strikes</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>,
-    <span class="ident">index</span>: <span class="ident">u32</span>,
+<span class="doccomment">/// An iterator over [`Strikes`].
+</span><span class="attribute">#[allow(missing_debug_implementations)]
+</span><span class="kw">pub struct </span>StrikesIter&lt;<span class="lifetime">&#39;a</span>&gt; {
+    strikes: Strikes&lt;<span class="lifetime">&#39;a</span>&gt;,
+    index: u32,
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">Iterator</span> <span class="kw">for</span> <span class="ident">StrikesIter</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="kw">type</span> <span class="ident">Item</span> <span class="op">=</span> <span class="ident">Strike</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>;
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; Iterator <span class="kw">for </span>StrikesIter&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="kw">type </span>Item = Strike&lt;<span class="lifetime">&#39;a</span>&gt;;
 
-    <span class="kw">fn</span> <span class="ident">next</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident"><span class="self">Self</span>::Item</span><span class="op">&gt;</span> {
-        <span class="kw">if</span> <span class="self">self</span>.<span class="ident">index</span> <span class="op">&lt;</span> <span class="self">self</span>.<span class="ident">strikes</span>.<span class="ident">len</span>() {
-            <span class="self">self</span>.<span class="ident">index</span> <span class="op">+</span><span class="op">=</span> <span class="number">1</span>;
-            <span class="self">self</span>.<span class="ident">strikes</span>.<span class="ident">get</span>(<span class="self">self</span>.<span class="ident">index</span> <span class="op">-</span> <span class="number">1</span>)
-        } <span class="kw">else</span> {
-            <span class="prelude-val">None</span>
-        }
+    <span class="kw">fn </span>next(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="self">Self</span>::Item&gt; {
+        <span class="kw">if </span><span class="self">self</span>.index &lt; <span class="self">self</span>.strikes.len() {
+            <span class="self">self</span>.index += <span class="number">1</span>;
+            <span class="self">self</span>.strikes.get(<span class="self">self</span>.index - <span class="number">1</span>)
+        } <span class="kw">else </span>{
+            <span class="prelude-val">None
+        </span>}
     }
 }
 
 
-<span class="doccomment">/// A [Standard Bitmap Graphics Table](</span>
-<span class="doccomment">/// https://docs.microsoft.com/en-us/typography/opentype/spec/sbix).</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">Debug</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Table</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="doccomment">/// A list of [`Strike`]s.</span>
-    <span class="kw">pub</span> <span class="ident">strikes</span>: <span class="ident">Strikes</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>,
+<span class="doccomment">/// A [Standard Bitmap Graphics Table](
+/// https://docs.microsoft.com/en-us/typography/opentype/spec/sbix).
+</span><span class="attribute">#[derive(Clone, Copy, Debug)]
+</span><span class="kw">pub struct </span>Table&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="doccomment">/// A list of [`Strike`]s.
+    </span><span class="kw">pub </span>strikes: Strikes&lt;<span class="lifetime">&#39;a</span>&gt;,
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">Table</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="doccomment">/// Parses a table from raw data.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// - `number_of_glyphs` is from the `maxp` table.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">parse</span>(<span class="ident">number_of_glyphs</span>: <span class="ident">NonZeroU16</span>, <span class="ident">data</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>]) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="ident">number_of_glyphs</span> <span class="op">=</span> <span class="ident">number_of_glyphs</span>.<span class="ident">get</span>().<span class="ident">checked_add</span>(<span class="number">1</span>)<span class="question-mark">?</span>;
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; Table&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="doccomment">/// Parses a table from raw data.
+    ///
+    /// - `number_of_glyphs` is from the `maxp` table.
+    </span><span class="kw">pub fn </span>parse(number_of_glyphs: NonZeroU16, data: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8]) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="self">Self</span>&gt; {
+        <span class="kw">let </span>number_of_glyphs = number_of_glyphs.get().checked_add(<span class="number">1</span>)<span class="question-mark">?</span>;
 
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">s</span> <span class="op">=</span> <span class="ident">Stream::new</span>(<span class="ident">data</span>);
+        <span class="kw">let </span><span class="kw-2">mut </span>s = Stream::new(data);
 
-        <span class="kw">let</span> <span class="ident">version</span> <span class="op">=</span> <span class="ident">s</span>.<span class="ident">read</span>::<span class="op">&lt;</span><span class="ident">u16</span><span class="op">&gt;</span>()<span class="question-mark">?</span>;
-        <span class="kw">if</span> <span class="ident">version</span> <span class="op">!</span><span class="op">=</span> <span class="number">1</span> {
-            <span class="kw">return</span> <span class="prelude-val">None</span>;
+        <span class="kw">let </span>version = s.read::&lt;u16&gt;()<span class="question-mark">?</span>;
+        <span class="kw">if </span>version != <span class="number">1 </span>{
+            <span class="kw">return </span><span class="prelude-val">None</span>;
         }
 
-        <span class="ident">s</span>.<span class="ident">skip</span>::<span class="op">&lt;</span><span class="ident">u16</span><span class="op">&gt;</span>(); <span class="comment">// flags</span>
+        s.skip::&lt;u16&gt;(); <span class="comment">// flags
 
-        <span class="kw">let</span> <span class="ident">strikes_count</span> <span class="op">=</span> <span class="ident">s</span>.<span class="ident">read</span>::<span class="op">&lt;</span><span class="ident">u32</span><span class="op">&gt;</span>()<span class="question-mark">?</span>;
-        <span class="kw">if</span> <span class="ident">strikes_count</span> <span class="op">==</span> <span class="number">0</span> {
-            <span class="kw">return</span> <span class="prelude-val">None</span>;
+        </span><span class="kw">let </span>strikes_count = s.read::&lt;u32&gt;()<span class="question-mark">?</span>;
+        <span class="kw">if </span>strikes_count == <span class="number">0 </span>{
+            <span class="kw">return </span><span class="prelude-val">None</span>;
         }
 
-        <span class="kw">let</span> <span class="ident">offsets</span> <span class="op">=</span> <span class="ident">s</span>.<span class="ident">read_array32</span>::<span class="op">&lt;</span><span class="ident">Offset32</span><span class="op">&gt;</span>(<span class="ident">strikes_count</span>)<span class="question-mark">?</span>;
+        <span class="kw">let </span>offsets = s.read_array32::&lt;Offset32&gt;(strikes_count)<span class="question-mark">?</span>;
 
-        <span class="prelude-val">Some</span>(<span class="ident">Table</span> {
-            <span class="ident">strikes</span>: <span class="ident">Strikes</span> {
-                <span class="ident">data</span>,
-                <span class="ident">offsets</span>,
-                <span class="ident">number_of_glyphs</span>,
+        <span class="prelude-val">Some</span>(Table {
+            strikes: Strikes {
+                data,
+                offsets,
+                number_of_glyphs,
             },
         })
     }
 
-    <span class="doccomment">/// Selects the best matching [`Strike`] based on `pixels_per_em`.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">best_strike</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">pixels_per_em</span>: <span class="ident">u16</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Strike</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">idx</span> <span class="op">=</span> <span class="number">0</span>;
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">max_ppem</span> <span class="op">=</span> <span class="number">0</span>;
-        <span class="kw">for</span> (<span class="ident">i</span>, <span class="ident">strike</span>) <span class="kw">in</span> <span class="self">self</span>.<span class="ident">strikes</span>.<span class="ident">into_iter</span>().<span class="ident">enumerate</span>() {
-            <span class="kw">if</span> (<span class="ident">pixels_per_em</span> <span class="op">&lt;</span><span class="op">=</span> <span class="ident">strike</span>.<span class="ident">pixels_per_em</span> <span class="op">&amp;&amp;</span> <span class="ident">strike</span>.<span class="ident">pixels_per_em</span> <span class="op">&lt;</span> <span class="ident">max_ppem</span>) <span class="op">|</span><span class="op">|</span>
-                (<span class="ident">pixels_per_em</span> <span class="op">&gt;</span> <span class="ident">max_ppem</span> <span class="op">&amp;&amp;</span> <span class="ident">strike</span>.<span class="ident">pixels_per_em</span> <span class="op">&gt;</span> <span class="ident">max_ppem</span>)
+    <span class="doccomment">/// Selects the best matching [`Strike`] based on `pixels_per_em`.
+    </span><span class="kw">pub fn </span>best_strike(<span class="kw-2">&amp;</span><span class="self">self</span>, pixels_per_em: u16) -&gt; <span class="prelude-ty">Option</span>&lt;Strike&lt;<span class="lifetime">&#39;a</span>&gt;&gt; {
+        <span class="kw">let </span><span class="kw-2">mut </span>idx = <span class="number">0</span>;
+        <span class="kw">let </span><span class="kw-2">mut </span>max_ppem = <span class="number">0</span>;
+        <span class="kw">for </span>(i, strike) <span class="kw">in </span><span class="self">self</span>.strikes.into_iter().enumerate() {
+            <span class="kw">if </span>(pixels_per_em &lt;= strike.pixels_per_em &amp;&amp; strike.pixels_per_em &lt; max_ppem) ||
+                (pixels_per_em &gt; max_ppem &amp;&amp; strike.pixels_per_em &gt; max_ppem)
             {
-                <span class="ident">idx</span> <span class="op">=</span> <span class="ident">i</span> <span class="kw">as</span> <span class="ident">u32</span>;
-                <span class="ident">max_ppem</span> <span class="op">=</span> <span class="ident">strike</span>.<span class="ident">pixels_per_em</span>;
+                idx = i <span class="kw">as </span>u32;
+                max_ppem = strike.pixels_per_em;
             }
         }
 
-        <span class="self">self</span>.<span class="ident">strikes</span>.<span class="ident">get</span>(<span class="ident">idx</span>)
+        <span class="self">self</span>.strikes.get(idx)
     }
 }
 
-<span class="comment">// The `sbix` table doesn&#39;t store the image size, so we have to parse it manually.</span>
-<span class="comment">// Which is quite simple in case of PNG, but way more complex for JPEG.</span>
-<span class="comment">// Therefore we are omitting it for now.</span>
-<span class="kw">fn</span> <span class="ident">png_size</span>(<span class="ident">data</span>: <span class="kw-2">&amp;</span>[<span class="ident">u8</span>]) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span>(<span class="ident">u16</span>, <span class="ident">u16</span>)<span class="op">&gt;</span> {
-    <span class="comment">// PNG stores its size as u32 BE at a fixed offset.</span>
-    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">s</span> <span class="op">=</span> <span class="ident">Stream::new_at</span>(<span class="ident">data</span>, <span class="number">16</span>)<span class="question-mark">?</span>;
-    <span class="kw">let</span> <span class="ident">width</span> <span class="op">=</span> <span class="ident">s</span>.<span class="ident">read</span>::<span class="op">&lt;</span><span class="ident">u32</span><span class="op">&gt;</span>()<span class="question-mark">?</span>;
-    <span class="kw">let</span> <span class="ident">height</span> <span class="op">=</span> <span class="ident">s</span>.<span class="ident">read</span>::<span class="op">&lt;</span><span class="ident">u32</span><span class="op">&gt;</span>()<span class="question-mark">?</span>;
+<span class="comment">// The `sbix` table doesn&#39;t store the image size, so we have to parse it manually.
+// Which is quite simple in case of PNG, but way more complex for JPEG.
+// Therefore we are omitting it for now.
+</span><span class="kw">fn </span>png_size(data: <span class="kw-2">&amp;</span>[u8]) -&gt; <span class="prelude-ty">Option</span>&lt;(u16, u16)&gt; {
+    <span class="comment">// PNG stores its size as u32 BE at a fixed offset.
+    </span><span class="kw">let </span><span class="kw-2">mut </span>s = Stream::new_at(data, <span class="number">16</span>)<span class="question-mark">?</span>;
+    <span class="kw">let </span>width = s.read::&lt;u32&gt;()<span class="question-mark">?</span>;
+    <span class="kw">let </span>height = s.read::&lt;u32&gt;()<span class="question-mark">?</span>;
 
-    <span class="comment">// PNG size larger than u16::MAX is an error.</span>
-    <span class="prelude-val">Some</span>((
-        <span class="ident">u16::try_from</span>(<span class="ident">width</span>).<span class="ident">ok</span>()<span class="question-mark">?</span>,
-        <span class="ident">u16::try_from</span>(<span class="ident">height</span>).<span class="ident">ok</span>()<span class="question-mark">?</span>,
+    <span class="comment">// PNG size larger than u16::MAX is an error.
+    </span><span class="prelude-val">Some</span>((
+        u16::try_from(width).ok()<span class="question-mark">?</span>,
+        u16::try_from(height).ok()<span class="question-mark">?</span>,
     ))
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="ttf_parser" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0 (a55dd71d5 2022-09-19)" ></div></body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="ttf_parser" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.66.1 (90743e729 2023-01-10)" ></div></body></html>

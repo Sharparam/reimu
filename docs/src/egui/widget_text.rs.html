@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/egui-0.16.1/src/widget_text.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>widget_text.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../egui/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../egui/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../egui/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/egui-0.16.1/src/widget_text.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>widget_text.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../normalize.css"><link rel="stylesheet" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../ayu.css" disabled><link rel="stylesheet" href="../../dark.css" disabled><link rel="stylesheet" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><div class="width-limiter"><nav class="sub"><a class="sub-logo-container" href="../../egui/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -633,640 +633,640 @@
 <span id="633">633</span>
 <span id="634">634</span>
 <span id="635">635</span>
-</pre><pre class="rust"><code><span class="kw">use</span> <span class="ident">std::sync::Arc</span>;
+</pre><pre class="rust"><code><span class="kw">use </span>std::sync::Arc;
 
-<span class="kw">use</span> <span class="kw">crate</span>::{
-    <span class="ident">style::WidgetVisuals</span>, <span class="ident">text::LayoutJob</span>, <span class="ident">Align</span>, <span class="ident">Color32</span>, <span class="ident">Galley</span>, <span class="ident">Pos2</span>, <span class="ident">Style</span>, <span class="ident">TextStyle</span>, <span class="ident">Ui</span>,
-    <span class="ident">Visuals</span>,
+<span class="kw">use crate</span>::{
+    style::WidgetVisuals, text::LayoutJob, Align, Color32, Galley, Pos2, Style, TextStyle, Ui,
+    Visuals,
 };
 
-<span class="doccomment">/// Text and optional style choices for it.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// The style choices (font, color) are applied to the entire text.</span>
-<span class="doccomment">/// For more detailed control, use [`crate::text::LayoutJob`] instead.</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Default</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">RichText</span> {
-    <span class="ident">text</span>: <span class="ident">String</span>,
-    <span class="ident">text_style</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">TextStyle</span><span class="op">&gt;</span>,
-    <span class="ident">background_color</span>: <span class="ident">Color32</span>,
-    <span class="ident">text_color</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Color32</span><span class="op">&gt;</span>,
-    <span class="ident">code</span>: <span class="ident">bool</span>,
-    <span class="ident">strong</span>: <span class="ident">bool</span>,
-    <span class="ident">weak</span>: <span class="ident">bool</span>,
-    <span class="ident">strikethrough</span>: <span class="ident">bool</span>,
-    <span class="ident">underline</span>: <span class="ident">bool</span>,
-    <span class="ident">italics</span>: <span class="ident">bool</span>,
-    <span class="ident">raised</span>: <span class="ident">bool</span>,
+<span class="doccomment">/// Text and optional style choices for it.
+///
+/// The style choices (font, color) are applied to the entire text.
+/// For more detailed control, use [`crate::text::LayoutJob`] instead.
+</span><span class="attribute">#[derive(Default)]
+</span><span class="kw">pub struct </span>RichText {
+    text: String,
+    text_style: <span class="prelude-ty">Option</span>&lt;TextStyle&gt;,
+    background_color: Color32,
+    text_color: <span class="prelude-ty">Option</span>&lt;Color32&gt;,
+    code: bool,
+    strong: bool,
+    weak: bool,
+    strikethrough: bool,
+    underline: bool,
+    italics: bool,
+    raised: bool,
 }
 
-<span class="kw">impl</span> <span class="ident">From</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">str</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">RichText</span> {
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">text</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) -&gt; <span class="self">Self</span> {
-        <span class="ident">RichText::new</span>(<span class="ident">text</span>)
+<span class="kw">impl </span>From&lt;<span class="kw-2">&amp;</span>str&gt; <span class="kw">for </span>RichText {
+    <span class="attribute">#[inline]
+    </span><span class="kw">fn </span>from(text: <span class="kw-2">&amp;</span>str) -&gt; <span class="self">Self </span>{
+        RichText::new(text)
     }
 }
 
-<span class="kw">impl</span> <span class="ident">From</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">String</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">RichText</span> {
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">text</span>: <span class="kw-2">&amp;</span><span class="ident">String</span>) -&gt; <span class="self">Self</span> {
-        <span class="ident">RichText::new</span>(<span class="ident">text</span>)
+<span class="kw">impl </span>From&lt;<span class="kw-2">&amp;</span>String&gt; <span class="kw">for </span>RichText {
+    <span class="attribute">#[inline]
+    </span><span class="kw">fn </span>from(text: <span class="kw-2">&amp;</span>String) -&gt; <span class="self">Self </span>{
+        RichText::new(text)
     }
 }
 
-<span class="kw">impl</span> <span class="ident">From</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">RichText</span> {
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">text</span>: <span class="ident">String</span>) -&gt; <span class="self">Self</span> {
-        <span class="ident">RichText::new</span>(<span class="ident">text</span>)
+<span class="kw">impl </span>From&lt;String&gt; <span class="kw">for </span>RichText {
+    <span class="attribute">#[inline]
+    </span><span class="kw">fn </span>from(text: String) -&gt; <span class="self">Self </span>{
+        RichText::new(text)
     }
 }
 
-<span class="kw">impl</span> <span class="ident">RichText</span> {
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">text</span>: <span class="kw">impl</span> <span class="ident">Into</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">Self</span> {
-            <span class="ident">text</span>: <span class="ident">text</span>.<span class="ident">into</span>(),
-            ..<span class="ident">Default::default</span>()
+<span class="kw">impl </span>RichText {
+    <span class="attribute">#[inline]
+    </span><span class="kw">pub fn </span>new(text: <span class="kw">impl </span>Into&lt;String&gt;) -&gt; <span class="self">Self </span>{
+        <span class="self">Self </span>{
+            text: text.into(),
+            ..Default::default()
         }
     }
 
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_empty</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span> {
-        <span class="self">self</span>.<span class="ident">text</span>.<span class="ident">is_empty</span>()
+    <span class="attribute">#[inline]
+    </span><span class="kw">pub fn </span>is_empty(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; bool {
+        <span class="self">self</span>.text.is_empty()
     }
 
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">text</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span><span class="ident">str</span> {
-        <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">text</span>
+    <span class="attribute">#[inline]
+    </span><span class="kw">pub fn </span>text(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span>str {
+        <span class="kw-2">&amp;</span><span class="self">self</span>.text
     }
 
-    <span class="doccomment">/// Override the [`TextStyle`].</span>
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">text_style</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">text_style</span>: <span class="ident">TextStyle</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">self</span>.<span class="ident">text_style</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">text_style</span>);
-        <span class="self">self</span>
+    <span class="doccomment">/// Override the [`TextStyle`].
+    </span><span class="attribute">#[inline]
+    </span><span class="kw">pub fn </span>text_style(<span class="kw-2">mut </span><span class="self">self</span>, text_style: TextStyle) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.text_style = <span class="prelude-val">Some</span>(text_style);
+        <span class="self">self
+    </span>}
+
+    <span class="doccomment">/// Set the [`TextStyle`] unless it has already been set
+    </span><span class="attribute">#[inline]
+    </span><span class="kw">pub fn </span>fallback_text_style(<span class="kw-2">mut </span><span class="self">self</span>, text_style: TextStyle) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.text_style.get_or_insert(text_style);
+        <span class="self">self
+    </span>}
+
+    <span class="doccomment">/// Use [`TextStyle::Heading`].
+    </span><span class="attribute">#[inline]
+    </span><span class="kw">pub fn </span>heading(<span class="self">self</span>) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.text_style(TextStyle::Heading)
     }
 
-    <span class="doccomment">/// Set the [`TextStyle`] unless it has already been set</span>
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">fallback_text_style</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">text_style</span>: <span class="ident">TextStyle</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">self</span>.<span class="ident">text_style</span>.<span class="ident">get_or_insert</span>(<span class="ident">text_style</span>);
-        <span class="self">self</span>
+    <span class="doccomment">/// Use [`TextStyle::Monospace`].
+    </span><span class="attribute">#[inline]
+    </span><span class="kw">pub fn </span>monospace(<span class="self">self</span>) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.text_style(TextStyle::Monospace)
     }
 
-    <span class="doccomment">/// Use [`TextStyle::Heading`].</span>
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">heading</span>(<span class="self">self</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">self</span>.<span class="ident">text_style</span>(<span class="ident">TextStyle::Heading</span>)
+    <span class="doccomment">/// Monospace label with different background color.
+    </span><span class="attribute">#[inline]
+    </span><span class="kw">pub fn </span>code(<span class="kw-2">mut </span><span class="self">self</span>) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.code = <span class="bool-val">true</span>;
+        <span class="self">self</span>.text_style(TextStyle::Monospace)
     }
 
-    <span class="doccomment">/// Use [`TextStyle::Monospace`].</span>
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">monospace</span>(<span class="self">self</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">self</span>.<span class="ident">text_style</span>(<span class="ident">TextStyle::Monospace</span>)
+    <span class="doccomment">/// Extra strong text (stronger color).
+    </span><span class="attribute">#[inline]
+    </span><span class="kw">pub fn </span>strong(<span class="kw-2">mut </span><span class="self">self</span>) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.strong = <span class="bool-val">true</span>;
+        <span class="self">self
+    </span>}
+
+    <span class="doccomment">/// Extra weak text (fainter color).
+    </span><span class="attribute">#[inline]
+    </span><span class="kw">pub fn </span>weak(<span class="kw-2">mut </span><span class="self">self</span>) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.weak = <span class="bool-val">true</span>;
+        <span class="self">self
+    </span>}
+
+    <span class="doccomment">/// Draw a line under the text.
+    ///
+    /// If you want to control the line color, use [`LayoutJob`] instead.
+    </span><span class="attribute">#[inline]
+    </span><span class="kw">pub fn </span>underline(<span class="kw-2">mut </span><span class="self">self</span>) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.underline = <span class="bool-val">true</span>;
+        <span class="self">self
+    </span>}
+
+    <span class="doccomment">/// Draw a line through the text, crossing it out.
+    ///
+    /// If you want to control the strikethrough line color, use [`LayoutJob`] instead.
+    </span><span class="attribute">#[inline]
+    </span><span class="kw">pub fn </span>strikethrough(<span class="kw-2">mut </span><span class="self">self</span>) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.strikethrough = <span class="bool-val">true</span>;
+        <span class="self">self
+    </span>}
+
+    <span class="doccomment">/// Tilt the characters to the right.
+    </span><span class="attribute">#[inline]
+    </span><span class="kw">pub fn </span>italics(<span class="kw-2">mut </span><span class="self">self</span>) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.italics = <span class="bool-val">true</span>;
+        <span class="self">self
+    </span>}
+
+    <span class="doccomment">/// Smaller text.
+    </span><span class="attribute">#[inline]
+    </span><span class="kw">pub fn </span>small(<span class="self">self</span>) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.text_style(TextStyle::Small)
     }
 
-    <span class="doccomment">/// Monospace label with different background color.</span>
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">code</span>(<span class="kw-2">mut</span> <span class="self">self</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">self</span>.<span class="ident">code</span> <span class="op">=</span> <span class="bool-val">true</span>;
-        <span class="self">self</span>.<span class="ident">text_style</span>(<span class="ident">TextStyle::Monospace</span>)
+    <span class="doccomment">/// For e.g. exponents.
+    </span><span class="attribute">#[inline]
+    </span><span class="kw">pub fn </span>small_raised(<span class="self">self</span>) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.text_style(TextStyle::Small).raised()
     }
 
-    <span class="doccomment">/// Extra strong text (stronger color).</span>
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">strong</span>(<span class="kw-2">mut</span> <span class="self">self</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">self</span>.<span class="ident">strong</span> <span class="op">=</span> <span class="bool-val">true</span>;
-        <span class="self">self</span>
+    <span class="doccomment">/// Align text to top. Only applicable together with [`Self::small()`].
+    </span><span class="attribute">#[inline]
+    </span><span class="kw">pub fn </span>raised(<span class="kw-2">mut </span><span class="self">self</span>) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.raised = <span class="bool-val">true</span>;
+        <span class="self">self
+    </span>}
+
+    <span class="doccomment">/// Fill-color behind the text.
+    </span><span class="attribute">#[inline]
+    </span><span class="kw">pub fn </span>background_color(<span class="kw-2">mut </span><span class="self">self</span>, background_color: <span class="kw">impl </span>Into&lt;Color32&gt;) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.background_color = background_color.into();
+        <span class="self">self
+    </span>}
+
+    <span class="doccomment">/// Override text color.
+    </span><span class="attribute">#[inline]
+    </span><span class="kw">pub fn </span>color(<span class="kw-2">mut </span><span class="self">self</span>, color: <span class="kw">impl </span>Into&lt;Color32&gt;) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.text_color = <span class="prelude-val">Some</span>(color.into());
+        <span class="self">self
+    </span>}
+
+    <span class="doccomment">/// Read the font height of the selected text style.
+    </span><span class="kw">pub fn </span>font_height(<span class="kw-2">&amp;</span><span class="self">self</span>, fonts: <span class="kw-2">&amp;</span>epaint::text::Fonts, style: <span class="kw-2">&amp;</span><span class="kw">crate</span>::Style) -&gt; f32 {
+        <span class="kw">let </span>text_style = <span class="self">self
+            </span>.text_style
+            .or(style.override_text_style)
+            .unwrap_or(style.body_text_style);
+        fonts.row_height(text_style)
     }
 
-    <span class="doccomment">/// Extra weak text (fainter color).</span>
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">weak</span>(<span class="kw-2">mut</span> <span class="self">self</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">self</span>.<span class="ident">weak</span> <span class="op">=</span> <span class="bool-val">true</span>;
-        <span class="self">self</span>
-    }
-
-    <span class="doccomment">/// Draw a line under the text.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// If you want to control the line color, use [`LayoutJob`] instead.</span>
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">underline</span>(<span class="kw-2">mut</span> <span class="self">self</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">self</span>.<span class="ident">underline</span> <span class="op">=</span> <span class="bool-val">true</span>;
-        <span class="self">self</span>
-    }
-
-    <span class="doccomment">/// Draw a line through the text, crossing it out.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// If you want to control the strikethrough line color, use [`LayoutJob`] instead.</span>
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">strikethrough</span>(<span class="kw-2">mut</span> <span class="self">self</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">self</span>.<span class="ident">strikethrough</span> <span class="op">=</span> <span class="bool-val">true</span>;
-        <span class="self">self</span>
-    }
-
-    <span class="doccomment">/// Tilt the characters to the right.</span>
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">italics</span>(<span class="kw-2">mut</span> <span class="self">self</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">self</span>.<span class="ident">italics</span> <span class="op">=</span> <span class="bool-val">true</span>;
-        <span class="self">self</span>
-    }
-
-    <span class="doccomment">/// Smaller text.</span>
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">small</span>(<span class="self">self</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">self</span>.<span class="ident">text_style</span>(<span class="ident">TextStyle::Small</span>)
-    }
-
-    <span class="doccomment">/// For e.g. exponents.</span>
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">small_raised</span>(<span class="self">self</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">self</span>.<span class="ident">text_style</span>(<span class="ident">TextStyle::Small</span>).<span class="ident">raised</span>()
-    }
-
-    <span class="doccomment">/// Align text to top. Only applicable together with [`Self::small()`].</span>
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">raised</span>(<span class="kw-2">mut</span> <span class="self">self</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">self</span>.<span class="ident">raised</span> <span class="op">=</span> <span class="bool-val">true</span>;
-        <span class="self">self</span>
-    }
-
-    <span class="doccomment">/// Fill-color behind the text.</span>
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">background_color</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">background_color</span>: <span class="kw">impl</span> <span class="ident">Into</span><span class="op">&lt;</span><span class="ident">Color32</span><span class="op">&gt;</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">self</span>.<span class="ident">background_color</span> <span class="op">=</span> <span class="ident">background_color</span>.<span class="ident">into</span>();
-        <span class="self">self</span>
-    }
-
-    <span class="doccomment">/// Override text color.</span>
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">color</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">color</span>: <span class="kw">impl</span> <span class="ident">Into</span><span class="op">&lt;</span><span class="ident">Color32</span><span class="op">&gt;</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">self</span>.<span class="ident">text_color</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">color</span>.<span class="ident">into</span>());
-        <span class="self">self</span>
-    }
-
-    <span class="doccomment">/// Read the font height of the selected text style.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">font_height</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">fonts</span>: <span class="kw-2">&amp;</span><span class="ident">epaint::text::Fonts</span>, <span class="ident">style</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="kw">crate</span>::Style</span>) -&gt; <span class="ident">f32</span> {
-        <span class="kw">let</span> <span class="ident">text_style</span> <span class="op">=</span> <span class="self">self</span>
-            .<span class="ident">text_style</span>
-            .<span class="ident">or</span>(<span class="ident">style</span>.<span class="ident">override_text_style</span>)
-            .<span class="ident">unwrap_or</span>(<span class="ident">style</span>.<span class="ident">body_text_style</span>);
-        <span class="ident">fonts</span>.<span class="ident">row_height</span>(<span class="ident">text_style</span>)
-    }
-
-    <span class="kw">fn</span> <span class="ident">into_text_job</span>(
+    <span class="kw">fn </span>into_text_job(
         <span class="self">self</span>,
-        <span class="ident">style</span>: <span class="kw-2">&amp;</span><span class="ident">Style</span>,
-        <span class="ident">default_text_style</span>: <span class="ident">TextStyle</span>,
-        <span class="ident">default_valign</span>: <span class="ident">Align</span>,
-    ) -&gt; <span class="ident">WidgetTextJob</span> {
-        <span class="kw">let</span> <span class="ident">text_color</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">get_text_color</span>(<span class="kw-2">&amp;</span><span class="ident">style</span>.<span class="ident">visuals</span>);
+        style: <span class="kw-2">&amp;</span>Style,
+        default_text_style: TextStyle,
+        default_valign: Align,
+    ) -&gt; WidgetTextJob {
+        <span class="kw">let </span>text_color = <span class="self">self</span>.get_text_color(<span class="kw-2">&amp;</span>style.visuals);
 
-        <span class="kw">let</span> <span class="self">Self</span> {
-            <span class="ident">text</span>,
-            <span class="ident">text_style</span>,
-            <span class="ident">background_color</span>,
-            <span class="ident">text_color</span>: <span class="kw">_</span>, <span class="comment">// already used by `get_text_color`</span>
-            <span class="ident">code</span>,
-            <span class="ident">strong</span>: <span class="kw">_</span>, <span class="comment">// already used by `get_text_color`</span>
-            <span class="ident">weak</span>: <span class="kw">_</span>,   <span class="comment">// already used by `get_text_color`</span>
-            <span class="ident">strikethrough</span>,
-            <span class="ident">underline</span>,
-            <span class="ident">italics</span>,
-            <span class="ident">raised</span>,
-        } <span class="op">=</span> <span class="self">self</span>;
+        <span class="kw">let </span><span class="self">Self </span>{
+            text,
+            text_style,
+            background_color,
+            text_color: <span class="kw">_</span>, <span class="comment">// already used by `get_text_color`
+            </span>code,
+            strong: <span class="kw">_</span>, <span class="comment">// already used by `get_text_color`
+            </span>weak: <span class="kw">_</span>,   <span class="comment">// already used by `get_text_color`
+            </span>strikethrough,
+            underline,
+            italics,
+            raised,
+        } = <span class="self">self</span>;
 
-        <span class="kw">let</span> <span class="ident">job_has_color</span> <span class="op">=</span> <span class="ident">text_color</span>.<span class="ident">is_some</span>();
-        <span class="kw">let</span> <span class="ident">line_color</span> <span class="op">=</span> <span class="ident">text_color</span>.<span class="ident">unwrap_or_else</span>(<span class="op">|</span><span class="op">|</span> <span class="ident">style</span>.<span class="ident">visuals</span>.<span class="ident">text_color</span>());
-        <span class="kw">let</span> <span class="ident">text_color</span> <span class="op">=</span> <span class="ident">text_color</span>.<span class="ident">unwrap_or</span>(<span class="ident"><span class="kw">crate</span>::Color32::TEMPORARY_COLOR</span>);
+        <span class="kw">let </span>job_has_color = text_color.is_some();
+        <span class="kw">let </span>line_color = text_color.unwrap_or_else(|| style.visuals.text_color());
+        <span class="kw">let </span>text_color = text_color.unwrap_or(<span class="kw">crate</span>::Color32::TEMPORARY_COLOR);
 
-        <span class="kw">let</span> <span class="ident">text_style</span> <span class="op">=</span> <span class="ident">text_style</span>
-            .<span class="ident">or</span>(<span class="ident">style</span>.<span class="ident">override_text_style</span>)
-            .<span class="ident">unwrap_or</span>(<span class="ident">default_text_style</span>);
+        <span class="kw">let </span>text_style = text_style
+            .or(style.override_text_style)
+            .unwrap_or(default_text_style);
 
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">background_color</span> <span class="op">=</span> <span class="ident">background_color</span>;
-        <span class="kw">if</span> <span class="ident">code</span> {
-            <span class="ident">background_color</span> <span class="op">=</span> <span class="ident">style</span>.<span class="ident">visuals</span>.<span class="ident">code_bg_color</span>;
+        <span class="kw">let </span><span class="kw-2">mut </span>background_color = background_color;
+        <span class="kw">if </span>code {
+            background_color = style.visuals.code_bg_color;
         }
-        <span class="kw">let</span> <span class="ident">underline</span> <span class="op">=</span> <span class="kw">if</span> <span class="ident">underline</span> {
-            <span class="ident"><span class="kw">crate</span>::Stroke::new</span>(<span class="number">1.0</span>, <span class="ident">line_color</span>)
-        } <span class="kw">else</span> {
-            <span class="ident"><span class="kw">crate</span>::Stroke::none</span>()
+        <span class="kw">let </span>underline = <span class="kw">if </span>underline {
+            <span class="kw">crate</span>::Stroke::new(<span class="number">1.0</span>, line_color)
+        } <span class="kw">else </span>{
+            <span class="kw">crate</span>::Stroke::none()
         };
-        <span class="kw">let</span> <span class="ident">strikethrough</span> <span class="op">=</span> <span class="kw">if</span> <span class="ident">strikethrough</span> {
-            <span class="ident"><span class="kw">crate</span>::Stroke::new</span>(<span class="number">1.0</span>, <span class="ident">line_color</span>)
-        } <span class="kw">else</span> {
-            <span class="ident"><span class="kw">crate</span>::Stroke::none</span>()
-        };
-
-        <span class="kw">let</span> <span class="ident">valign</span> <span class="op">=</span> <span class="kw">if</span> <span class="ident">raised</span> {
-            <span class="ident"><span class="kw">crate</span>::Align::TOP</span>
-        } <span class="kw">else</span> {
-            <span class="ident">default_valign</span>
+        <span class="kw">let </span>strikethrough = <span class="kw">if </span>strikethrough {
+            <span class="kw">crate</span>::Stroke::new(<span class="number">1.0</span>, line_color)
+        } <span class="kw">else </span>{
+            <span class="kw">crate</span>::Stroke::none()
         };
 
-        <span class="kw">let</span> <span class="ident">text_format</span> <span class="op">=</span> <span class="ident"><span class="kw">crate</span>::text::TextFormat</span> {
-            <span class="ident">style</span>: <span class="ident">text_style</span>,
-            <span class="ident">color</span>: <span class="ident">text_color</span>,
-            <span class="ident">background</span>: <span class="ident">background_color</span>,
-            <span class="ident">italics</span>,
-            <span class="ident">underline</span>,
-            <span class="ident">strikethrough</span>,
-            <span class="ident">valign</span>,
+        <span class="kw">let </span>valign = <span class="kw">if </span>raised {
+            <span class="kw">crate</span>::Align::TOP
+        } <span class="kw">else </span>{
+            default_valign
         };
 
-        <span class="kw">let</span> <span class="ident">job</span> <span class="op">=</span> <span class="ident">LayoutJob::single_section</span>(<span class="ident">text</span>, <span class="ident">text_format</span>);
-        <span class="ident">WidgetTextJob</span> { <span class="ident">job</span>, <span class="ident">job_has_color</span> }
+        <span class="kw">let </span>text_format = <span class="kw">crate</span>::text::TextFormat {
+            style: text_style,
+            color: text_color,
+            background: background_color,
+            italics,
+            underline,
+            strikethrough,
+            valign,
+        };
+
+        <span class="kw">let </span>job = LayoutJob::single_section(text, text_format);
+        WidgetTextJob { job, job_has_color }
     }
 
-    <span class="kw">fn</span> <span class="ident">get_text_color</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">visuals</span>: <span class="kw-2">&amp;</span><span class="ident">Visuals</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Color32</span><span class="op">&gt;</span> {
-        <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">text_color</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">text_color</span> {
-            <span class="prelude-val">Some</span>(<span class="ident">text_color</span>)
-        } <span class="kw">else</span> <span class="kw">if</span> <span class="self">self</span>.<span class="ident">strong</span> {
-            <span class="prelude-val">Some</span>(<span class="ident">visuals</span>.<span class="ident">strong_text_color</span>())
-        } <span class="kw">else</span> <span class="kw">if</span> <span class="self">self</span>.<span class="ident">weak</span> {
-            <span class="prelude-val">Some</span>(<span class="ident">visuals</span>.<span class="ident">weak_text_color</span>())
-        } <span class="kw">else</span> {
-            <span class="ident">visuals</span>.<span class="ident">override_text_color</span>
+    <span class="kw">fn </span>get_text_color(<span class="kw-2">&amp;</span><span class="self">self</span>, visuals: <span class="kw-2">&amp;</span>Visuals) -&gt; <span class="prelude-ty">Option</span>&lt;Color32&gt; {
+        <span class="kw">if let </span><span class="prelude-val">Some</span>(text_color) = <span class="self">self</span>.text_color {
+            <span class="prelude-val">Some</span>(text_color)
+        } <span class="kw">else if </span><span class="self">self</span>.strong {
+            <span class="prelude-val">Some</span>(visuals.strong_text_color())
+        } <span class="kw">else if </span><span class="self">self</span>.weak {
+            <span class="prelude-val">Some</span>(visuals.weak_text_color())
+        } <span class="kw">else </span>{
+            visuals.override_text_color
         }
     }
 }
 
-<span class="comment">// ----------------------------------------------------------------------------</span>
+<span class="comment">// ----------------------------------------------------------------------------
 
-<span class="doccomment">/// This is how you specify text for a widget.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// A lot of widgets use `impl Into&lt;WidgetText&gt;` as an argument,</span>
-<span class="doccomment">/// allowing you to pass in [`String`], [`RichText`], [`LayoutJob`], and more.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// Often a [`WidgetText`] is just a simple [`String`],</span>
-<span class="doccomment">/// but it can be a [`RichText`] (text with color, style, etc),</span>
-<span class="doccomment">/// a [`LayoutJob`] (for when you want full control of how the text looks)</span>
-<span class="doccomment">/// or text that has already been layed out in a [`Galley`].</span>
-<span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">WidgetText</span> {
-    <span class="ident">RichText</span>(<span class="ident">RichText</span>),
-    <span class="doccomment">/// Use this [`LayoutJob`] when laying out the text.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// Only [`LayoutJob::text`] and [`LayoutJob::sections`] are guaranteed to be respected.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// [`LayoutJob::wrap_width`], [`LayoutJob::halign`], [`LayoutJob::justify`]</span>
-    <span class="doccomment">/// and [`LayoutJob::first_row_min_height`] will likely be determined by the [`crate::Layout`]</span>
-    <span class="doccomment">/// of the [`Ui`] the widget is placed in.</span>
-    <span class="doccomment">/// If you want all parts of the `LayoutJob` respected, then convert it to a</span>
-    <span class="doccomment">/// [`Galley`] and use [`Self::Galley`] instead.</span>
-    <span class="ident">LayoutJob</span>(<span class="ident">LayoutJob</span>),
-    <span class="doccomment">/// Use exactly this galley when painting the text.</span>
-    <span class="ident">Galley</span>(<span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">Galley</span><span class="op">&gt;</span>),
+</span><span class="doccomment">/// This is how you specify text for a widget.
+///
+/// A lot of widgets use `impl Into&lt;WidgetText&gt;` as an argument,
+/// allowing you to pass in [`String`], [`RichText`], [`LayoutJob`], and more.
+///
+/// Often a [`WidgetText`] is just a simple [`String`],
+/// but it can be a [`RichText`] (text with color, style, etc),
+/// a [`LayoutJob`] (for when you want full control of how the text looks)
+/// or text that has already been layed out in a [`Galley`].
+</span><span class="kw">pub enum </span>WidgetText {
+    RichText(RichText),
+    <span class="doccomment">/// Use this [`LayoutJob`] when laying out the text.
+    ///
+    /// Only [`LayoutJob::text`] and [`LayoutJob::sections`] are guaranteed to be respected.
+    ///
+    /// [`LayoutJob::wrap_width`], [`LayoutJob::halign`], [`LayoutJob::justify`]
+    /// and [`LayoutJob::first_row_min_height`] will likely be determined by the [`crate::Layout`]
+    /// of the [`Ui`] the widget is placed in.
+    /// If you want all parts of the `LayoutJob` respected, then convert it to a
+    /// [`Galley`] and use [`Self::Galley`] instead.
+    </span>LayoutJob(LayoutJob),
+    <span class="doccomment">/// Use exactly this galley when painting the text.
+    </span>Galley(Arc&lt;Galley&gt;),
 }
 
-<span class="kw">impl</span> <span class="ident">Default</span> <span class="kw">for</span> <span class="ident">WidgetText</span> {
-    <span class="kw">fn</span> <span class="ident">default</span>() -&gt; <span class="self">Self</span> {
-        <span class="ident"><span class="self">Self</span>::RichText</span>(<span class="ident">RichText::default</span>())
+<span class="kw">impl </span>Default <span class="kw">for </span>WidgetText {
+    <span class="kw">fn </span>default() -&gt; <span class="self">Self </span>{
+        <span class="self">Self</span>::RichText(RichText::default())
     }
 }
 
-<span class="kw">impl</span> <span class="ident">WidgetText</span> {
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_empty</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span> {
-        <span class="kw">match</span> <span class="self">self</span> {
-            <span class="ident"><span class="self">Self</span>::RichText</span>(<span class="ident">text</span>) =&gt; <span class="ident">text</span>.<span class="ident">is_empty</span>(),
-            <span class="ident"><span class="self">Self</span>::LayoutJob</span>(<span class="ident">job</span>) =&gt; <span class="ident">job</span>.<span class="ident">is_empty</span>(),
-            <span class="ident"><span class="self">Self</span>::Galley</span>(<span class="ident">galley</span>) =&gt; <span class="ident">galley</span>.<span class="ident">is_empty</span>(),
+<span class="kw">impl </span>WidgetText {
+    <span class="attribute">#[inline]
+    </span><span class="kw">pub fn </span>is_empty(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; bool {
+        <span class="kw">match </span><span class="self">self </span>{
+            <span class="self">Self</span>::RichText(text) =&gt; text.is_empty(),
+            <span class="self">Self</span>::LayoutJob(job) =&gt; job.is_empty(),
+            <span class="self">Self</span>::Galley(galley) =&gt; galley.is_empty(),
         }
     }
 
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">text</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span><span class="ident">str</span> {
-        <span class="kw">match</span> <span class="self">self</span> {
-            <span class="ident"><span class="self">Self</span>::RichText</span>(<span class="ident">text</span>) =&gt; <span class="ident">text</span>.<span class="ident">text</span>(),
-            <span class="ident"><span class="self">Self</span>::LayoutJob</span>(<span class="ident">job</span>) =&gt; <span class="kw-2">&amp;</span><span class="ident">job</span>.<span class="ident">text</span>,
-            <span class="ident"><span class="self">Self</span>::Galley</span>(<span class="ident">galley</span>) =&gt; <span class="ident">galley</span>.<span class="ident">text</span>(),
+    <span class="attribute">#[inline]
+    </span><span class="kw">pub fn </span>text(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span>str {
+        <span class="kw">match </span><span class="self">self </span>{
+            <span class="self">Self</span>::RichText(text) =&gt; text.text(),
+            <span class="self">Self</span>::LayoutJob(job) =&gt; <span class="kw-2">&amp;</span>job.text,
+            <span class="self">Self</span>::Galley(galley) =&gt; galley.text(),
         }
     }
 
-    <span class="doccomment">/// Override the [`TextStyle`] if, and only if, this is a [`RichText`].</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// Prefer using [`RichText`] directly!</span>
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">text_style</span>(<span class="self">self</span>, <span class="ident">text_style</span>: <span class="ident">TextStyle</span>) -&gt; <span class="self">Self</span> {
-        <span class="kw">match</span> <span class="self">self</span> {
-            <span class="ident"><span class="self">Self</span>::RichText</span>(<span class="ident">text</span>) =&gt; <span class="ident"><span class="self">Self</span>::RichText</span>(<span class="ident">text</span>.<span class="ident">text_style</span>(<span class="ident">text_style</span>)),
-            <span class="ident"><span class="self">Self</span>::LayoutJob</span>(<span class="kw">_</span>) <span class="op">|</span> <span class="ident"><span class="self">Self</span>::Galley</span>(<span class="kw">_</span>) =&gt; <span class="self">self</span>,
+    <span class="doccomment">/// Override the [`TextStyle`] if, and only if, this is a [`RichText`].
+    ///
+    /// Prefer using [`RichText`] directly!
+    </span><span class="attribute">#[inline]
+    </span><span class="kw">pub fn </span>text_style(<span class="self">self</span>, text_style: TextStyle) -&gt; <span class="self">Self </span>{
+        <span class="kw">match </span><span class="self">self </span>{
+            <span class="self">Self</span>::RichText(text) =&gt; <span class="self">Self</span>::RichText(text.text_style(text_style)),
+            <span class="self">Self</span>::LayoutJob(<span class="kw">_</span>) | <span class="self">Self</span>::Galley(<span class="kw">_</span>) =&gt; <span class="self">self</span>,
         }
     }
 
-    <span class="doccomment">/// Set the [`TextStyle`] unless it has already been set</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// Prefer using [`RichText`] directly!</span>
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">fallback_text_style</span>(<span class="self">self</span>, <span class="ident">text_style</span>: <span class="ident">TextStyle</span>) -&gt; <span class="self">Self</span> {
-        <span class="kw">match</span> <span class="self">self</span> {
-            <span class="ident"><span class="self">Self</span>::RichText</span>(<span class="ident">text</span>) =&gt; <span class="ident"><span class="self">Self</span>::RichText</span>(<span class="ident">text</span>.<span class="ident">fallback_text_style</span>(<span class="ident">text_style</span>)),
-            <span class="ident"><span class="self">Self</span>::LayoutJob</span>(<span class="kw">_</span>) <span class="op">|</span> <span class="ident"><span class="self">Self</span>::Galley</span>(<span class="kw">_</span>) =&gt; <span class="self">self</span>,
+    <span class="doccomment">/// Set the [`TextStyle`] unless it has already been set
+    ///
+    /// Prefer using [`RichText`] directly!
+    </span><span class="attribute">#[inline]
+    </span><span class="kw">pub fn </span>fallback_text_style(<span class="self">self</span>, text_style: TextStyle) -&gt; <span class="self">Self </span>{
+        <span class="kw">match </span><span class="self">self </span>{
+            <span class="self">Self</span>::RichText(text) =&gt; <span class="self">Self</span>::RichText(text.fallback_text_style(text_style)),
+            <span class="self">Self</span>::LayoutJob(<span class="kw">_</span>) | <span class="self">Self</span>::Galley(<span class="kw">_</span>) =&gt; <span class="self">self</span>,
         }
     }
 
-    <span class="doccomment">/// Override text color if, and only if, this is a [`RichText`].</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// Prefer using [`RichText`] directly!</span>
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">color</span>(<span class="self">self</span>, <span class="ident">color</span>: <span class="kw">impl</span> <span class="ident">Into</span><span class="op">&lt;</span><span class="ident">Color32</span><span class="op">&gt;</span>) -&gt; <span class="self">Self</span> {
-        <span class="kw">match</span> <span class="self">self</span> {
-            <span class="ident"><span class="self">Self</span>::RichText</span>(<span class="ident">text</span>) =&gt; <span class="ident"><span class="self">Self</span>::RichText</span>(<span class="ident">text</span>.<span class="ident">color</span>(<span class="ident">color</span>)),
-            <span class="ident"><span class="self">Self</span>::LayoutJob</span>(<span class="kw">_</span>) <span class="op">|</span> <span class="ident"><span class="self">Self</span>::Galley</span>(<span class="kw">_</span>) =&gt; <span class="self">self</span>,
+    <span class="doccomment">/// Override text color if, and only if, this is a [`RichText`].
+    ///
+    /// Prefer using [`RichText`] directly!
+    </span><span class="attribute">#[inline]
+    </span><span class="kw">pub fn </span>color(<span class="self">self</span>, color: <span class="kw">impl </span>Into&lt;Color32&gt;) -&gt; <span class="self">Self </span>{
+        <span class="kw">match </span><span class="self">self </span>{
+            <span class="self">Self</span>::RichText(text) =&gt; <span class="self">Self</span>::RichText(text.color(color)),
+            <span class="self">Self</span>::LayoutJob(<span class="kw">_</span>) | <span class="self">Self</span>::Galley(<span class="kw">_</span>) =&gt; <span class="self">self</span>,
         }
     }
 
-    <span class="doccomment">/// Prefer using [`RichText`] directly!</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">heading</span>(<span class="self">self</span>) -&gt; <span class="self">Self</span> {
-        <span class="kw">match</span> <span class="self">self</span> {
-            <span class="ident"><span class="self">Self</span>::RichText</span>(<span class="ident">text</span>) =&gt; <span class="ident"><span class="self">Self</span>::RichText</span>(<span class="ident">text</span>.<span class="ident">heading</span>()),
-            <span class="ident"><span class="self">Self</span>::LayoutJob</span>(<span class="kw">_</span>) <span class="op">|</span> <span class="ident"><span class="self">Self</span>::Galley</span>(<span class="kw">_</span>) =&gt; <span class="self">self</span>,
+    <span class="doccomment">/// Prefer using [`RichText`] directly!
+    </span><span class="kw">pub fn </span>heading(<span class="self">self</span>) -&gt; <span class="self">Self </span>{
+        <span class="kw">match </span><span class="self">self </span>{
+            <span class="self">Self</span>::RichText(text) =&gt; <span class="self">Self</span>::RichText(text.heading()),
+            <span class="self">Self</span>::LayoutJob(<span class="kw">_</span>) | <span class="self">Self</span>::Galley(<span class="kw">_</span>) =&gt; <span class="self">self</span>,
         }
     }
 
-    <span class="doccomment">/// Prefer using [`RichText`] directly!</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">monospace</span>(<span class="self">self</span>) -&gt; <span class="self">Self</span> {
-        <span class="kw">match</span> <span class="self">self</span> {
-            <span class="ident"><span class="self">Self</span>::RichText</span>(<span class="ident">text</span>) =&gt; <span class="ident"><span class="self">Self</span>::RichText</span>(<span class="ident">text</span>.<span class="ident">monospace</span>()),
-            <span class="ident"><span class="self">Self</span>::LayoutJob</span>(<span class="kw">_</span>) <span class="op">|</span> <span class="ident"><span class="self">Self</span>::Galley</span>(<span class="kw">_</span>) =&gt; <span class="self">self</span>,
+    <span class="doccomment">/// Prefer using [`RichText`] directly!
+    </span><span class="kw">pub fn </span>monospace(<span class="self">self</span>) -&gt; <span class="self">Self </span>{
+        <span class="kw">match </span><span class="self">self </span>{
+            <span class="self">Self</span>::RichText(text) =&gt; <span class="self">Self</span>::RichText(text.monospace()),
+            <span class="self">Self</span>::LayoutJob(<span class="kw">_</span>) | <span class="self">Self</span>::Galley(<span class="kw">_</span>) =&gt; <span class="self">self</span>,
         }
     }
 
-    <span class="doccomment">/// Prefer using [`RichText`] directly!</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">code</span>(<span class="self">self</span>) -&gt; <span class="self">Self</span> {
-        <span class="kw">match</span> <span class="self">self</span> {
-            <span class="ident"><span class="self">Self</span>::RichText</span>(<span class="ident">text</span>) =&gt; <span class="ident"><span class="self">Self</span>::RichText</span>(<span class="ident">text</span>.<span class="ident">code</span>()),
-            <span class="ident"><span class="self">Self</span>::LayoutJob</span>(<span class="kw">_</span>) <span class="op">|</span> <span class="ident"><span class="self">Self</span>::Galley</span>(<span class="kw">_</span>) =&gt; <span class="self">self</span>,
+    <span class="doccomment">/// Prefer using [`RichText`] directly!
+    </span><span class="kw">pub fn </span>code(<span class="self">self</span>) -&gt; <span class="self">Self </span>{
+        <span class="kw">match </span><span class="self">self </span>{
+            <span class="self">Self</span>::RichText(text) =&gt; <span class="self">Self</span>::RichText(text.code()),
+            <span class="self">Self</span>::LayoutJob(<span class="kw">_</span>) | <span class="self">Self</span>::Galley(<span class="kw">_</span>) =&gt; <span class="self">self</span>,
         }
     }
 
-    <span class="doccomment">/// Prefer using [`RichText`] directly!</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">strong</span>(<span class="self">self</span>) -&gt; <span class="self">Self</span> {
-        <span class="kw">match</span> <span class="self">self</span> {
-            <span class="ident"><span class="self">Self</span>::RichText</span>(<span class="ident">text</span>) =&gt; <span class="ident"><span class="self">Self</span>::RichText</span>(<span class="ident">text</span>.<span class="ident">strong</span>()),
-            <span class="ident"><span class="self">Self</span>::LayoutJob</span>(<span class="kw">_</span>) <span class="op">|</span> <span class="ident"><span class="self">Self</span>::Galley</span>(<span class="kw">_</span>) =&gt; <span class="self">self</span>,
+    <span class="doccomment">/// Prefer using [`RichText`] directly!
+    </span><span class="kw">pub fn </span>strong(<span class="self">self</span>) -&gt; <span class="self">Self </span>{
+        <span class="kw">match </span><span class="self">self </span>{
+            <span class="self">Self</span>::RichText(text) =&gt; <span class="self">Self</span>::RichText(text.strong()),
+            <span class="self">Self</span>::LayoutJob(<span class="kw">_</span>) | <span class="self">Self</span>::Galley(<span class="kw">_</span>) =&gt; <span class="self">self</span>,
         }
     }
 
-    <span class="doccomment">/// Prefer using [`RichText`] directly!</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">weak</span>(<span class="self">self</span>) -&gt; <span class="self">Self</span> {
-        <span class="kw">match</span> <span class="self">self</span> {
-            <span class="ident"><span class="self">Self</span>::RichText</span>(<span class="ident">text</span>) =&gt; <span class="ident"><span class="self">Self</span>::RichText</span>(<span class="ident">text</span>.<span class="ident">weak</span>()),
-            <span class="ident"><span class="self">Self</span>::LayoutJob</span>(<span class="kw">_</span>) <span class="op">|</span> <span class="ident"><span class="self">Self</span>::Galley</span>(<span class="kw">_</span>) =&gt; <span class="self">self</span>,
+    <span class="doccomment">/// Prefer using [`RichText`] directly!
+    </span><span class="kw">pub fn </span>weak(<span class="self">self</span>) -&gt; <span class="self">Self </span>{
+        <span class="kw">match </span><span class="self">self </span>{
+            <span class="self">Self</span>::RichText(text) =&gt; <span class="self">Self</span>::RichText(text.weak()),
+            <span class="self">Self</span>::LayoutJob(<span class="kw">_</span>) | <span class="self">Self</span>::Galley(<span class="kw">_</span>) =&gt; <span class="self">self</span>,
         }
     }
 
-    <span class="doccomment">/// Prefer using [`RichText`] directly!</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">underline</span>(<span class="self">self</span>) -&gt; <span class="self">Self</span> {
-        <span class="kw">match</span> <span class="self">self</span> {
-            <span class="ident"><span class="self">Self</span>::RichText</span>(<span class="ident">text</span>) =&gt; <span class="ident"><span class="self">Self</span>::RichText</span>(<span class="ident">text</span>.<span class="ident">underline</span>()),
-            <span class="ident"><span class="self">Self</span>::LayoutJob</span>(<span class="kw">_</span>) <span class="op">|</span> <span class="ident"><span class="self">Self</span>::Galley</span>(<span class="kw">_</span>) =&gt; <span class="self">self</span>,
+    <span class="doccomment">/// Prefer using [`RichText`] directly!
+    </span><span class="kw">pub fn </span>underline(<span class="self">self</span>) -&gt; <span class="self">Self </span>{
+        <span class="kw">match </span><span class="self">self </span>{
+            <span class="self">Self</span>::RichText(text) =&gt; <span class="self">Self</span>::RichText(text.underline()),
+            <span class="self">Self</span>::LayoutJob(<span class="kw">_</span>) | <span class="self">Self</span>::Galley(<span class="kw">_</span>) =&gt; <span class="self">self</span>,
         }
     }
 
-    <span class="doccomment">/// Prefer using [`RichText`] directly!</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">strikethrough</span>(<span class="self">self</span>) -&gt; <span class="self">Self</span> {
-        <span class="kw">match</span> <span class="self">self</span> {
-            <span class="ident"><span class="self">Self</span>::RichText</span>(<span class="ident">text</span>) =&gt; <span class="ident"><span class="self">Self</span>::RichText</span>(<span class="ident">text</span>.<span class="ident">strikethrough</span>()),
-            <span class="ident"><span class="self">Self</span>::LayoutJob</span>(<span class="kw">_</span>) <span class="op">|</span> <span class="ident"><span class="self">Self</span>::Galley</span>(<span class="kw">_</span>) =&gt; <span class="self">self</span>,
+    <span class="doccomment">/// Prefer using [`RichText`] directly!
+    </span><span class="kw">pub fn </span>strikethrough(<span class="self">self</span>) -&gt; <span class="self">Self </span>{
+        <span class="kw">match </span><span class="self">self </span>{
+            <span class="self">Self</span>::RichText(text) =&gt; <span class="self">Self</span>::RichText(text.strikethrough()),
+            <span class="self">Self</span>::LayoutJob(<span class="kw">_</span>) | <span class="self">Self</span>::Galley(<span class="kw">_</span>) =&gt; <span class="self">self</span>,
         }
     }
 
-    <span class="doccomment">/// Prefer using [`RichText`] directly!</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">italics</span>(<span class="self">self</span>) -&gt; <span class="self">Self</span> {
-        <span class="kw">match</span> <span class="self">self</span> {
-            <span class="ident"><span class="self">Self</span>::RichText</span>(<span class="ident">text</span>) =&gt; <span class="ident"><span class="self">Self</span>::RichText</span>(<span class="ident">text</span>.<span class="ident">italics</span>()),
-            <span class="ident"><span class="self">Self</span>::LayoutJob</span>(<span class="kw">_</span>) <span class="op">|</span> <span class="ident"><span class="self">Self</span>::Galley</span>(<span class="kw">_</span>) =&gt; <span class="self">self</span>,
+    <span class="doccomment">/// Prefer using [`RichText`] directly!
+    </span><span class="kw">pub fn </span>italics(<span class="self">self</span>) -&gt; <span class="self">Self </span>{
+        <span class="kw">match </span><span class="self">self </span>{
+            <span class="self">Self</span>::RichText(text) =&gt; <span class="self">Self</span>::RichText(text.italics()),
+            <span class="self">Self</span>::LayoutJob(<span class="kw">_</span>) | <span class="self">Self</span>::Galley(<span class="kw">_</span>) =&gt; <span class="self">self</span>,
         }
     }
 
-    <span class="doccomment">/// Prefer using [`RichText`] directly!</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">small</span>(<span class="self">self</span>) -&gt; <span class="self">Self</span> {
-        <span class="kw">match</span> <span class="self">self</span> {
-            <span class="ident"><span class="self">Self</span>::RichText</span>(<span class="ident">text</span>) =&gt; <span class="ident"><span class="self">Self</span>::RichText</span>(<span class="ident">text</span>.<span class="ident">small</span>()),
-            <span class="ident"><span class="self">Self</span>::LayoutJob</span>(<span class="kw">_</span>) <span class="op">|</span> <span class="ident"><span class="self">Self</span>::Galley</span>(<span class="kw">_</span>) =&gt; <span class="self">self</span>,
+    <span class="doccomment">/// Prefer using [`RichText`] directly!
+    </span><span class="kw">pub fn </span>small(<span class="self">self</span>) -&gt; <span class="self">Self </span>{
+        <span class="kw">match </span><span class="self">self </span>{
+            <span class="self">Self</span>::RichText(text) =&gt; <span class="self">Self</span>::RichText(text.small()),
+            <span class="self">Self</span>::LayoutJob(<span class="kw">_</span>) | <span class="self">Self</span>::Galley(<span class="kw">_</span>) =&gt; <span class="self">self</span>,
         }
     }
 
-    <span class="doccomment">/// Prefer using [`RichText`] directly!</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">small_raised</span>(<span class="self">self</span>) -&gt; <span class="self">Self</span> {
-        <span class="kw">match</span> <span class="self">self</span> {
-            <span class="ident"><span class="self">Self</span>::RichText</span>(<span class="ident">text</span>) =&gt; <span class="ident"><span class="self">Self</span>::RichText</span>(<span class="ident">text</span>.<span class="ident">small_raised</span>()),
-            <span class="ident"><span class="self">Self</span>::LayoutJob</span>(<span class="kw">_</span>) <span class="op">|</span> <span class="ident"><span class="self">Self</span>::Galley</span>(<span class="kw">_</span>) =&gt; <span class="self">self</span>,
+    <span class="doccomment">/// Prefer using [`RichText`] directly!
+    </span><span class="kw">pub fn </span>small_raised(<span class="self">self</span>) -&gt; <span class="self">Self </span>{
+        <span class="kw">match </span><span class="self">self </span>{
+            <span class="self">Self</span>::RichText(text) =&gt; <span class="self">Self</span>::RichText(text.small_raised()),
+            <span class="self">Self</span>::LayoutJob(<span class="kw">_</span>) | <span class="self">Self</span>::Galley(<span class="kw">_</span>) =&gt; <span class="self">self</span>,
         }
     }
 
-    <span class="doccomment">/// Prefer using [`RichText`] directly!</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">raised</span>(<span class="self">self</span>) -&gt; <span class="self">Self</span> {
-        <span class="kw">match</span> <span class="self">self</span> {
-            <span class="ident"><span class="self">Self</span>::RichText</span>(<span class="ident">text</span>) =&gt; <span class="ident"><span class="self">Self</span>::RichText</span>(<span class="ident">text</span>.<span class="ident">raised</span>()),
-            <span class="ident"><span class="self">Self</span>::LayoutJob</span>(<span class="kw">_</span>) <span class="op">|</span> <span class="ident"><span class="self">Self</span>::Galley</span>(<span class="kw">_</span>) =&gt; <span class="self">self</span>,
+    <span class="doccomment">/// Prefer using [`RichText`] directly!
+    </span><span class="kw">pub fn </span>raised(<span class="self">self</span>) -&gt; <span class="self">Self </span>{
+        <span class="kw">match </span><span class="self">self </span>{
+            <span class="self">Self</span>::RichText(text) =&gt; <span class="self">Self</span>::RichText(text.raised()),
+            <span class="self">Self</span>::LayoutJob(<span class="kw">_</span>) | <span class="self">Self</span>::Galley(<span class="kw">_</span>) =&gt; <span class="self">self</span>,
         }
     }
 
-    <span class="doccomment">/// Prefer using [`RichText`] directly!</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">background_color</span>(<span class="self">self</span>, <span class="ident">background_color</span>: <span class="kw">impl</span> <span class="ident">Into</span><span class="op">&lt;</span><span class="ident">Color32</span><span class="op">&gt;</span>) -&gt; <span class="self">Self</span> {
-        <span class="kw">match</span> <span class="self">self</span> {
-            <span class="ident"><span class="self">Self</span>::RichText</span>(<span class="ident">text</span>) =&gt; <span class="ident"><span class="self">Self</span>::RichText</span>(<span class="ident">text</span>.<span class="ident">background_color</span>(<span class="ident">background_color</span>)),
-            <span class="ident"><span class="self">Self</span>::LayoutJob</span>(<span class="kw">_</span>) <span class="op">|</span> <span class="ident"><span class="self">Self</span>::Galley</span>(<span class="kw">_</span>) =&gt; <span class="self">self</span>,
+    <span class="doccomment">/// Prefer using [`RichText`] directly!
+    </span><span class="kw">pub fn </span>background_color(<span class="self">self</span>, background_color: <span class="kw">impl </span>Into&lt;Color32&gt;) -&gt; <span class="self">Self </span>{
+        <span class="kw">match </span><span class="self">self </span>{
+            <span class="self">Self</span>::RichText(text) =&gt; <span class="self">Self</span>::RichText(text.background_color(background_color)),
+            <span class="self">Self</span>::LayoutJob(<span class="kw">_</span>) | <span class="self">Self</span>::Galley(<span class="kw">_</span>) =&gt; <span class="self">self</span>,
         }
     }
 
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">font_height</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">fonts</span>: <span class="kw-2">&amp;</span><span class="ident">epaint::text::Fonts</span>, <span class="ident">style</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="kw">crate</span>::Style</span>) -&gt; <span class="ident">f32</span> {
-        <span class="kw">match</span> <span class="self">self</span> {
-            <span class="ident"><span class="self">Self</span>::RichText</span>(<span class="ident">text</span>) =&gt; <span class="ident">text</span>.<span class="ident">font_height</span>(<span class="ident">fonts</span>, <span class="ident">style</span>),
-            <span class="ident"><span class="self">Self</span>::LayoutJob</span>(<span class="ident">job</span>) =&gt; <span class="ident">job</span>.<span class="ident">font_height</span>(<span class="ident">fonts</span>),
-            <span class="ident"><span class="self">Self</span>::Galley</span>(<span class="ident">galley</span>) =&gt; {
-                <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">row</span>) <span class="op">=</span> <span class="ident">galley</span>.<span class="ident">rows</span>.<span class="ident">first</span>() {
-                    <span class="ident">row</span>.<span class="ident">height</span>()
-                } <span class="kw">else</span> {
-                    <span class="ident">galley</span>.<span class="ident">size</span>().<span class="ident">y</span>
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>font_height(<span class="kw-2">&amp;</span><span class="self">self</span>, fonts: <span class="kw-2">&amp;</span>epaint::text::Fonts, style: <span class="kw-2">&amp;</span><span class="kw">crate</span>::Style) -&gt; f32 {
+        <span class="kw">match </span><span class="self">self </span>{
+            <span class="self">Self</span>::RichText(text) =&gt; text.font_height(fonts, style),
+            <span class="self">Self</span>::LayoutJob(job) =&gt; job.font_height(fonts),
+            <span class="self">Self</span>::Galley(galley) =&gt; {
+                <span class="kw">if let </span><span class="prelude-val">Some</span>(row) = galley.rows.first() {
+                    row.height()
+                } <span class="kw">else </span>{
+                    galley.size().y
                 }
             }
         }
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">into_text_job</span>(
+    <span class="kw">pub fn </span>into_text_job(
         <span class="self">self</span>,
-        <span class="ident">style</span>: <span class="kw-2">&amp;</span><span class="ident">Style</span>,
-        <span class="ident">default_text_style</span>: <span class="ident">TextStyle</span>,
-        <span class="ident">default_valign</span>: <span class="ident">Align</span>,
-    ) -&gt; <span class="ident">WidgetTextJob</span> {
-        <span class="kw">match</span> <span class="self">self</span> {
-            <span class="ident"><span class="self">Self</span>::RichText</span>(<span class="ident">text</span>) =&gt; <span class="ident">text</span>.<span class="ident">into_text_job</span>(<span class="ident">style</span>, <span class="ident">default_text_style</span>, <span class="ident">default_valign</span>),
-            <span class="ident"><span class="self">Self</span>::LayoutJob</span>(<span class="ident">job</span>) =&gt; <span class="ident">WidgetTextJob</span> {
-                <span class="ident">job</span>,
-                <span class="ident">job_has_color</span>: <span class="bool-val">true</span>,
+        style: <span class="kw-2">&amp;</span>Style,
+        default_text_style: TextStyle,
+        default_valign: Align,
+    ) -&gt; WidgetTextJob {
+        <span class="kw">match </span><span class="self">self </span>{
+            <span class="self">Self</span>::RichText(text) =&gt; text.into_text_job(style, default_text_style, default_valign),
+            <span class="self">Self</span>::LayoutJob(job) =&gt; WidgetTextJob {
+                job,
+                job_has_color: <span class="bool-val">true</span>,
             },
-            <span class="ident"><span class="self">Self</span>::Galley</span>(<span class="ident">galley</span>) =&gt; {
-                <span class="kw">let</span> <span class="ident">job</span>: <span class="ident">LayoutJob</span> <span class="op">=</span> (<span class="kw-2">*</span><span class="ident">galley</span>.<span class="ident">job</span>).<span class="ident">clone</span>();
-                <span class="ident">WidgetTextJob</span> {
-                    <span class="ident">job</span>,
-                    <span class="ident">job_has_color</span>: <span class="bool-val">true</span>,
+            <span class="self">Self</span>::Galley(galley) =&gt; {
+                <span class="kw">let </span>job: LayoutJob = (<span class="kw-2">*</span>galley.job).clone();
+                WidgetTextJob {
+                    job,
+                    job_has_color: <span class="bool-val">true</span>,
                 }
             }
         }
     }
 
-    <span class="doccomment">/// Layout with wrap mode based on the containing `Ui`.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// wrap: override for [`Ui::wrap_text`].</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">into_galley</span>(
+    <span class="doccomment">/// Layout with wrap mode based on the containing `Ui`.
+    ///
+    /// wrap: override for [`Ui::wrap_text`].
+    </span><span class="kw">pub fn </span>into_galley(
         <span class="self">self</span>,
-        <span class="ident">ui</span>: <span class="kw-2">&amp;</span><span class="ident">Ui</span>,
-        <span class="ident">wrap</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">bool</span><span class="op">&gt;</span>,
-        <span class="ident">available_width</span>: <span class="ident">f32</span>,
-        <span class="ident">default_text_style</span>: <span class="ident">TextStyle</span>,
-    ) -&gt; <span class="ident">WidgetTextGalley</span> {
-        <span class="kw">let</span> <span class="ident">wrap</span> <span class="op">=</span> <span class="ident">wrap</span>.<span class="ident">unwrap_or_else</span>(<span class="op">|</span><span class="op">|</span> <span class="ident">ui</span>.<span class="ident">wrap_text</span>());
-        <span class="kw">let</span> <span class="ident">wrap_width</span> <span class="op">=</span> <span class="kw">if</span> <span class="ident">wrap</span> { <span class="ident">available_width</span> } <span class="kw">else</span> { <span class="ident">f32::INFINITY</span> };
+        ui: <span class="kw-2">&amp;</span>Ui,
+        wrap: <span class="prelude-ty">Option</span>&lt;bool&gt;,
+        available_width: f32,
+        default_text_style: TextStyle,
+    ) -&gt; WidgetTextGalley {
+        <span class="kw">let </span>wrap = wrap.unwrap_or_else(|| ui.wrap_text());
+        <span class="kw">let </span>wrap_width = <span class="kw">if </span>wrap { available_width } <span class="kw">else </span>{ f32::INFINITY };
 
-        <span class="kw">match</span> <span class="self">self</span> {
-            <span class="ident"><span class="self">Self</span>::RichText</span>(<span class="ident">text</span>) =&gt; {
-                <span class="kw">let</span> <span class="ident">valign</span> <span class="op">=</span> <span class="ident">ui</span>.<span class="ident">layout</span>().<span class="ident">vertical_align</span>();
-                <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">text_job</span> <span class="op">=</span> <span class="ident">text</span>.<span class="ident">into_text_job</span>(<span class="ident">ui</span>.<span class="ident">style</span>(), <span class="ident">default_text_style</span>, <span class="ident">valign</span>);
-                <span class="ident">text_job</span>.<span class="ident">job</span>.<span class="ident">wrap_width</span> <span class="op">=</span> <span class="ident">wrap_width</span>;
-                <span class="ident">WidgetTextGalley</span> {
-                    <span class="ident">galley</span>: <span class="ident">ui</span>.<span class="ident">fonts</span>().<span class="ident">layout_job</span>(<span class="ident">text_job</span>.<span class="ident">job</span>),
-                    <span class="ident">galley_has_color</span>: <span class="ident">text_job</span>.<span class="ident">job_has_color</span>,
+        <span class="kw">match </span><span class="self">self </span>{
+            <span class="self">Self</span>::RichText(text) =&gt; {
+                <span class="kw">let </span>valign = ui.layout().vertical_align();
+                <span class="kw">let </span><span class="kw-2">mut </span>text_job = text.into_text_job(ui.style(), default_text_style, valign);
+                text_job.job.wrap_width = wrap_width;
+                WidgetTextGalley {
+                    galley: ui.fonts().layout_job(text_job.job),
+                    galley_has_color: text_job.job_has_color,
                 }
             }
-            <span class="ident"><span class="self">Self</span>::LayoutJob</span>(<span class="kw-2">mut</span> <span class="ident">job</span>) =&gt; {
-                <span class="ident">job</span>.<span class="ident">wrap_width</span> <span class="op">=</span> <span class="ident">wrap_width</span>;
-                <span class="ident">WidgetTextGalley</span> {
-                    <span class="ident">galley</span>: <span class="ident">ui</span>.<span class="ident">fonts</span>().<span class="ident">layout_job</span>(<span class="ident">job</span>),
-                    <span class="ident">galley_has_color</span>: <span class="bool-val">true</span>,
+            <span class="self">Self</span>::LayoutJob(<span class="kw-2">mut </span>job) =&gt; {
+                job.wrap_width = wrap_width;
+                WidgetTextGalley {
+                    galley: ui.fonts().layout_job(job),
+                    galley_has_color: <span class="bool-val">true</span>,
                 }
             }
-            <span class="ident"><span class="self">Self</span>::Galley</span>(<span class="ident">galley</span>) =&gt; <span class="ident">WidgetTextGalley</span> {
-                <span class="ident">galley</span>,
-                <span class="ident">galley_has_color</span>: <span class="bool-val">true</span>,
+            <span class="self">Self</span>::Galley(galley) =&gt; WidgetTextGalley {
+                galley,
+                galley_has_color: <span class="bool-val">true</span>,
             },
         }
     }
 }
 
-<span class="kw">impl</span> <span class="ident">From</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">str</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">WidgetText</span> {
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">text</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) -&gt; <span class="self">Self</span> {
-        <span class="ident"><span class="self">Self</span>::RichText</span>(<span class="ident">RichText::new</span>(<span class="ident">text</span>))
+<span class="kw">impl </span>From&lt;<span class="kw-2">&amp;</span>str&gt; <span class="kw">for </span>WidgetText {
+    <span class="attribute">#[inline]
+    </span><span class="kw">fn </span>from(text: <span class="kw-2">&amp;</span>str) -&gt; <span class="self">Self </span>{
+        <span class="self">Self</span>::RichText(RichText::new(text))
     }
 }
 
-<span class="kw">impl</span> <span class="ident">From</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">String</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">WidgetText</span> {
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">text</span>: <span class="kw-2">&amp;</span><span class="ident">String</span>) -&gt; <span class="self">Self</span> {
-        <span class="ident"><span class="self">Self</span>::RichText</span>(<span class="ident">RichText::new</span>(<span class="ident">text</span>))
+<span class="kw">impl </span>From&lt;<span class="kw-2">&amp;</span>String&gt; <span class="kw">for </span>WidgetText {
+    <span class="attribute">#[inline]
+    </span><span class="kw">fn </span>from(text: <span class="kw-2">&amp;</span>String) -&gt; <span class="self">Self </span>{
+        <span class="self">Self</span>::RichText(RichText::new(text))
     }
 }
 
-<span class="kw">impl</span> <span class="ident">From</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">WidgetText</span> {
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">text</span>: <span class="ident">String</span>) -&gt; <span class="self">Self</span> {
-        <span class="ident"><span class="self">Self</span>::RichText</span>(<span class="ident">RichText::new</span>(<span class="ident">text</span>))
+<span class="kw">impl </span>From&lt;String&gt; <span class="kw">for </span>WidgetText {
+    <span class="attribute">#[inline]
+    </span><span class="kw">fn </span>from(text: String) -&gt; <span class="self">Self </span>{
+        <span class="self">Self</span>::RichText(RichText::new(text))
     }
 }
 
-<span class="kw">impl</span> <span class="ident">From</span><span class="op">&lt;</span><span class="ident">RichText</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">WidgetText</span> {
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">rich_text</span>: <span class="ident">RichText</span>) -&gt; <span class="self">Self</span> {
-        <span class="ident"><span class="self">Self</span>::RichText</span>(<span class="ident">rich_text</span>)
+<span class="kw">impl </span>From&lt;RichText&gt; <span class="kw">for </span>WidgetText {
+    <span class="attribute">#[inline]
+    </span><span class="kw">fn </span>from(rich_text: RichText) -&gt; <span class="self">Self </span>{
+        <span class="self">Self</span>::RichText(rich_text)
     }
 }
 
-<span class="kw">impl</span> <span class="ident">From</span><span class="op">&lt;</span><span class="ident">LayoutJob</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">WidgetText</span> {
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">layout_job</span>: <span class="ident">LayoutJob</span>) -&gt; <span class="self">Self</span> {
-        <span class="ident"><span class="self">Self</span>::LayoutJob</span>(<span class="ident">layout_job</span>)
+<span class="kw">impl </span>From&lt;LayoutJob&gt; <span class="kw">for </span>WidgetText {
+    <span class="attribute">#[inline]
+    </span><span class="kw">fn </span>from(layout_job: LayoutJob) -&gt; <span class="self">Self </span>{
+        <span class="self">Self</span>::LayoutJob(layout_job)
     }
 }
 
-<span class="kw">impl</span> <span class="ident">From</span><span class="op">&lt;</span><span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">Galley</span><span class="op">&gt;</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">WidgetText</span> {
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">galley</span>: <span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">Galley</span><span class="op">&gt;</span>) -&gt; <span class="self">Self</span> {
-        <span class="ident"><span class="self">Self</span>::Galley</span>(<span class="ident">galley</span>)
+<span class="kw">impl </span>From&lt;Arc&lt;Galley&gt;&gt; <span class="kw">for </span>WidgetText {
+    <span class="attribute">#[inline]
+    </span><span class="kw">fn </span>from(galley: Arc&lt;Galley&gt;) -&gt; <span class="self">Self </span>{
+        <span class="self">Self</span>::Galley(galley)
     }
 }
 
-<span class="comment">// ----------------------------------------------------------------------------</span>
+<span class="comment">// ----------------------------------------------------------------------------
 
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">WidgetTextJob</span> {
-    <span class="kw">pub</span> <span class="ident">job</span>: <span class="ident">LayoutJob</span>,
-    <span class="kw">pub</span> <span class="ident">job_has_color</span>: <span class="ident">bool</span>,
+</span><span class="kw">pub struct </span>WidgetTextJob {
+    <span class="kw">pub </span>job: LayoutJob,
+    <span class="kw">pub </span>job_has_color: bool,
 }
 
-<span class="kw">impl</span> <span class="ident">WidgetTextJob</span> {
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">into_galley</span>(<span class="self">self</span>, <span class="ident">fonts</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="kw">crate</span>::text::Fonts</span>) -&gt; <span class="ident">WidgetTextGalley</span> {
-        <span class="kw">let</span> <span class="self">Self</span> { <span class="ident">job</span>, <span class="ident">job_has_color</span> } <span class="op">=</span> <span class="self">self</span>;
-        <span class="kw">let</span> <span class="ident">galley</span> <span class="op">=</span> <span class="ident">fonts</span>.<span class="ident">layout_job</span>(<span class="ident">job</span>);
-        <span class="ident">WidgetTextGalley</span> {
-            <span class="ident">galley</span>,
-            <span class="ident">galley_has_color</span>: <span class="ident">job_has_color</span>,
+<span class="kw">impl </span>WidgetTextJob {
+    <span class="kw">pub fn </span>into_galley(<span class="self">self</span>, fonts: <span class="kw-2">&amp;</span><span class="kw">crate</span>::text::Fonts) -&gt; WidgetTextGalley {
+        <span class="kw">let </span><span class="self">Self </span>{ job, job_has_color } = <span class="self">self</span>;
+        <span class="kw">let </span>galley = fonts.layout_job(job);
+        WidgetTextGalley {
+            galley,
+            galley_has_color: job_has_color,
         }
     }
 }
 
-<span class="comment">// ----------------------------------------------------------------------------</span>
+<span class="comment">// ----------------------------------------------------------------------------
 
-<span class="doccomment">/// Text that has been layed out and ready to be painted.</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">WidgetTextGalley</span> {
-    <span class="kw">pub</span> <span class="ident">galley</span>: <span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">Galley</span><span class="op">&gt;</span>,
-    <span class="kw">pub</span> <span class="ident">galley_has_color</span>: <span class="ident">bool</span>,
+</span><span class="doccomment">/// Text that has been layed out and ready to be painted.
+</span><span class="kw">pub struct </span>WidgetTextGalley {
+    <span class="kw">pub </span>galley: Arc&lt;Galley&gt;,
+    <span class="kw">pub </span>galley_has_color: bool,
 }
 
-<span class="kw">impl</span> <span class="ident">WidgetTextGalley</span> {
-    <span class="doccomment">/// Size of the layed out text.</span>
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">size</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident"><span class="kw">crate</span>::Vec2</span> {
-        <span class="self">self</span>.<span class="ident">galley</span>.<span class="ident">size</span>()
+<span class="kw">impl </span>WidgetTextGalley {
+    <span class="doccomment">/// Size of the layed out text.
+    </span><span class="attribute">#[inline]
+    </span><span class="kw">pub fn </span>size(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw">crate</span>::Vec2 {
+        <span class="self">self</span>.galley.size()
     }
 
-    <span class="doccomment">/// Size of the layed out text.</span>
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">text</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span><span class="ident">str</span> {
-        <span class="self">self</span>.<span class="ident">galley</span>.<span class="ident">text</span>()
+    <span class="doccomment">/// Size of the layed out text.
+    </span><span class="attribute">#[inline]
+    </span><span class="kw">pub fn </span>text(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span>str {
+        <span class="self">self</span>.galley.text()
     }
 
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">galley</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span><span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">Galley</span><span class="op">&gt;</span> {
-        <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">galley</span>
+    <span class="attribute">#[inline]
+    </span><span class="kw">pub fn </span>galley(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span>Arc&lt;Galley&gt; {
+        <span class="kw-2">&amp;</span><span class="self">self</span>.galley
     }
 
-    <span class="doccomment">/// Use the colors in the original [`WidgetText`] if any,</span>
-    <span class="doccomment">/// else fall back to the one specified by the [`WidgetVisuals`].</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">paint_with_visuals</span>(
+    <span class="doccomment">/// Use the colors in the original [`WidgetText`] if any,
+    /// else fall back to the one specified by the [`WidgetVisuals`].
+    </span><span class="kw">pub fn </span>paint_with_visuals(
         <span class="self">self</span>,
-        <span class="ident">painter</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="kw">crate</span>::Painter</span>,
-        <span class="ident">text_pos</span>: <span class="ident">Pos2</span>,
-        <span class="ident">visuals</span>: <span class="kw-2">&amp;</span><span class="ident">WidgetVisuals</span>,
+        painter: <span class="kw-2">&amp;</span><span class="kw">crate</span>::Painter,
+        text_pos: Pos2,
+        visuals: <span class="kw-2">&amp;</span>WidgetVisuals,
     ) {
-        <span class="self">self</span>.<span class="ident">paint_with_fallback_color</span>(<span class="ident">painter</span>, <span class="ident">text_pos</span>, <span class="ident">visuals</span>.<span class="ident">text_color</span>());
+        <span class="self">self</span>.paint_with_fallback_color(painter, text_pos, visuals.text_color());
     }
 
-    <span class="doccomment">/// Use the colors in the original [`WidgetText`] if any,</span>
-    <span class="doccomment">/// else fall back to the given color.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">paint_with_fallback_color</span>(
+    <span class="doccomment">/// Use the colors in the original [`WidgetText`] if any,
+    /// else fall back to the given color.
+    </span><span class="kw">pub fn </span>paint_with_fallback_color(
         <span class="self">self</span>,
-        <span class="ident">painter</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="kw">crate</span>::Painter</span>,
-        <span class="ident">text_pos</span>: <span class="ident">Pos2</span>,
-        <span class="ident">text_color</span>: <span class="ident">Color32</span>,
+        painter: <span class="kw-2">&amp;</span><span class="kw">crate</span>::Painter,
+        text_pos: Pos2,
+        text_color: Color32,
     ) {
-        <span class="kw">if</span> <span class="self">self</span>.<span class="ident">galley_has_color</span> {
-            <span class="ident">painter</span>.<span class="ident">galley</span>(<span class="ident">text_pos</span>, <span class="self">self</span>.<span class="ident">galley</span>);
-        } <span class="kw">else</span> {
-            <span class="ident">painter</span>.<span class="ident">galley_with_color</span>(<span class="ident">text_pos</span>, <span class="self">self</span>.<span class="ident">galley</span>, <span class="ident">text_color</span>);
+        <span class="kw">if </span><span class="self">self</span>.galley_has_color {
+            painter.galley(text_pos, <span class="self">self</span>.galley);
+        } <span class="kw">else </span>{
+            painter.galley_with_color(text_pos, <span class="self">self</span>.galley, text_color);
         }
     }
 
-    <span class="doccomment">/// Paint with this specific color.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">paint_with_color_override</span>(
+    <span class="doccomment">/// Paint with this specific color.
+    </span><span class="kw">pub fn </span>paint_with_color_override(
         <span class="self">self</span>,
-        <span class="ident">painter</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="kw">crate</span>::Painter</span>,
-        <span class="ident">text_pos</span>: <span class="ident">Pos2</span>,
-        <span class="ident">text_color</span>: <span class="ident">Color32</span>,
+        painter: <span class="kw-2">&amp;</span><span class="kw">crate</span>::Painter,
+        text_pos: Pos2,
+        text_color: Color32,
     ) {
-        <span class="ident">painter</span>.<span class="ident">galley_with_color</span>(<span class="ident">text_pos</span>, <span class="self">self</span>.<span class="ident">galley</span>, <span class="ident">text_color</span>);
+        painter.galley_with_color(text_pos, <span class="self">self</span>.galley, text_color);
     }
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="egui" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0 (a55dd71d5 2022-09-19)" ></div></body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="egui" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.66.1 (90743e729 2023-01-10)" ></div></body></html>

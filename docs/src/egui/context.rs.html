@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/egui-0.16.1/src/context.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>context.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../egui/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../egui/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../egui/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/egui-0.16.1/src/context.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>context.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../normalize.css"><link rel="stylesheet" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../ayu.css" disabled><link rel="stylesheet" href="../../dark.css" disabled><link rel="stylesheet" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><div class="width-limiter"><nav class="sub"><a class="sub-logo-container" href="../../egui/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -1037,179 +1037,179 @@
 <span id="1037">1037</span>
 <span id="1038">1038</span>
 <span id="1039">1039</span>
-</pre><pre class="rust"><code><span class="comment">// #![warn(missing_docs)]</span>
+</pre><pre class="rust"><code><span class="comment">// #![warn(missing_docs)]
 
-<span class="kw">use</span> <span class="ident">std::sync</span>::{
-    <span class="ident">atomic</span>::{<span class="ident">AtomicU32</span>, <span class="ident">Ordering::SeqCst</span>},
-    <span class="ident">Arc</span>,
+</span><span class="kw">use </span>std::sync::{
+    atomic::{AtomicU32, Ordering::SeqCst},
+    Arc,
 };
 
-<span class="kw">use</span> <span class="kw">crate</span>::{
-    <span class="ident">animation_manager::AnimationManager</span>,
-    <span class="ident">data::output::Output</span>,
-    <span class="ident">frame_state::FrameState</span>,
-    <span class="ident">input_state</span>::<span class="kw-2">*</span>,
-    <span class="ident">layers::GraphicLayers</span>,
-    <span class="ident">menu::ContextMenuSystem</span>,
-    <span class="ident">mutex</span>::{<span class="ident">Mutex</span>, <span class="ident">MutexGuard</span>},
+<span class="kw">use crate</span>::{
+    animation_manager::AnimationManager,
+    data::output::Output,
+    frame_state::FrameState,
+    input_state::<span class="kw-2">*</span>,
+    layers::GraphicLayers,
+    menu::ContextMenuSystem,
+    mutex::{Mutex, MutexGuard},
     <span class="kw-2">*</span>,
 };
-<span class="kw">use</span> <span class="ident">epaint</span>::{<span class="ident">stats</span>::<span class="kw-2">*</span>, <span class="ident">text::Fonts</span>, <span class="kw-2">*</span>};
+<span class="kw">use </span>epaint::{stats::<span class="kw-2">*</span>, text::Fonts, <span class="kw-2">*</span>};
 
-<span class="comment">// ----------------------------------------------------------------------------</span>
+<span class="comment">// ----------------------------------------------------------------------------
 
-<span class="doccomment">/// A wrapper around [`Arc`](std::sync::Arc)`&lt;`[`Context`]`&gt;`.</span>
-<span class="doccomment">/// This is how you will normally create and access a [`Context`].</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// Almost all methods are marked `&amp;self`, `Context` has interior mutability (protected by mutexes).</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// [`CtxRef`] is cheap to clone, and any clones refers to the same mutable data.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// A [`CtxRef`] is only valid for the duration of a frame, and so you should not store a [`CtxRef`] between frames.</span>
-<span class="doccomment">/// A new [`CtxRef`] is created each frame by calling [`Self::run`].</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// # Example:</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// ``` no_run</span>
-<span class="doccomment">/// # fn handle_output(_: egui::Output) {}</span>
-<span class="doccomment">/// # fn paint(_: Vec&lt;egui::ClippedMesh&gt;) {}</span>
-<span class="doccomment">/// let mut ctx = egui::CtxRef::default();</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// // Game loop:</span>
-<span class="doccomment">/// loop {</span>
-<span class="doccomment">///     let raw_input = egui::RawInput::default();</span>
-<span class="doccomment">///     let (output, shapes) = ctx.run(raw_input, |ctx| {</span>
-<span class="doccomment">///         egui::CentralPanel::default().show(&amp;ctx, |ui| {</span>
-<span class="doccomment">///             ui.label(&quot;Hello world!&quot;);</span>
-<span class="doccomment">///             if ui.button(&quot;Click me&quot;).clicked() {</span>
-<span class="doccomment">///                 // take some action here</span>
-<span class="doccomment">///             }</span>
-<span class="doccomment">///         });</span>
-<span class="doccomment">///     });</span>
-<span class="doccomment">///     let clipped_meshes = ctx.tessellate(shapes); // create triangles to paint</span>
-<span class="doccomment">///     handle_output(output);</span>
-<span class="doccomment">///     paint(clipped_meshes);</span>
-<span class="doccomment">/// }</span>
-<span class="doccomment">/// ```</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">CtxRef</span>(<span class="ident">std::sync::Arc</span><span class="op">&lt;</span><span class="ident">Context</span><span class="op">&gt;</span>);
+</span><span class="doccomment">/// A wrapper around [`Arc`](std::sync::Arc)`&lt;`[`Context`]`&gt;`.
+/// This is how you will normally create and access a [`Context`].
+///
+/// Almost all methods are marked `&amp;self`, `Context` has interior mutability (protected by mutexes).
+///
+/// [`CtxRef`] is cheap to clone, and any clones refers to the same mutable data.
+///
+/// A [`CtxRef`] is only valid for the duration of a frame, and so you should not store a [`CtxRef`] between frames.
+/// A new [`CtxRef`] is created each frame by calling [`Self::run`].
+///
+/// # Example:
+///
+/// ``` no_run
+/// # fn handle_output(_: egui::Output) {}
+/// # fn paint(_: Vec&lt;egui::ClippedMesh&gt;) {}
+/// let mut ctx = egui::CtxRef::default();
+///
+/// // Game loop:
+/// loop {
+///     let raw_input = egui::RawInput::default();
+///     let (output, shapes) = ctx.run(raw_input, |ctx| {
+///         egui::CentralPanel::default().show(&amp;ctx, |ui| {
+///             ui.label(&quot;Hello world!&quot;);
+///             if ui.button(&quot;Click me&quot;).clicked() {
+///                 // take some action here
+///             }
+///         });
+///     });
+///     let clipped_meshes = ctx.tessellate(shapes); // create triangles to paint
+///     handle_output(output);
+///     paint(clipped_meshes);
+/// }
+/// ```
+</span><span class="attribute">#[derive(Clone)]
+</span><span class="kw">pub struct </span>CtxRef(std::sync::Arc&lt;Context&gt;);
 
-<span class="kw">impl</span> <span class="ident">std::ops::Deref</span> <span class="kw">for</span> <span class="ident">CtxRef</span> {
-    <span class="kw">type</span> <span class="ident">Target</span> <span class="op">=</span> <span class="ident">Context</span>;
+<span class="kw">impl </span>std::ops::Deref <span class="kw">for </span>CtxRef {
+    <span class="kw">type </span>Target = Context;
 
-    <span class="kw">fn</span> <span class="ident">deref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span><span class="ident">Context</span> {
-        <span class="kw-2">&amp;</span><span class="kw-2">*</span><span class="self">self</span>.<span class="number">0</span>
+    <span class="kw">fn </span>deref(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span>Context {
+        <span class="kw-2">&amp;*</span><span class="self">self</span>.<span class="number">0
+    </span>}
+}
+
+<span class="kw">impl </span>AsRef&lt;Context&gt; <span class="kw">for </span>CtxRef {
+    <span class="kw">fn </span>as_ref(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span>Context {
+        <span class="self">self</span>.<span class="number">0</span>.as_ref()
     }
 }
 
-<span class="kw">impl</span> <span class="ident">AsRef</span><span class="op">&lt;</span><span class="ident">Context</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">CtxRef</span> {
-    <span class="kw">fn</span> <span class="ident">as_ref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span><span class="ident">Context</span> {
-        <span class="self">self</span>.<span class="number">0</span>.<span class="ident">as_ref</span>()
+<span class="kw">impl </span>std::borrow::Borrow&lt;Context&gt; <span class="kw">for </span>CtxRef {
+    <span class="kw">fn </span>borrow(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span>Context {
+        <span class="self">self</span>.<span class="number">0</span>.borrow()
     }
 }
 
-<span class="kw">impl</span> <span class="ident">std::borrow::Borrow</span><span class="op">&lt;</span><span class="ident">Context</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">CtxRef</span> {
-    <span class="kw">fn</span> <span class="ident">borrow</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span><span class="ident">Context</span> {
-        <span class="self">self</span>.<span class="number">0</span>.<span class="ident">borrow</span>()
+<span class="kw">impl </span>std::cmp::PartialEq <span class="kw">for </span>CtxRef {
+    <span class="kw">fn </span>eq(<span class="kw-2">&amp;</span><span class="self">self</span>, other: <span class="kw-2">&amp;</span>CtxRef) -&gt; bool {
+        Arc::ptr_eq(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="number">0</span>, <span class="kw-2">&amp;</span>other.<span class="number">0</span>)
     }
 }
 
-<span class="kw">impl</span> <span class="ident">std::cmp::PartialEq</span> <span class="kw">for</span> <span class="ident">CtxRef</span> {
-    <span class="kw">fn</span> <span class="ident">eq</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">other</span>: <span class="kw-2">&amp;</span><span class="ident">CtxRef</span>) -&gt; <span class="ident">bool</span> {
-        <span class="ident">Arc::ptr_eq</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="number">0</span>, <span class="kw-2">&amp;</span><span class="ident">other</span>.<span class="number">0</span>)
-    }
-}
-
-<span class="kw">impl</span> <span class="ident">Default</span> <span class="kw">for</span> <span class="ident">CtxRef</span> {
-    <span class="kw">fn</span> <span class="ident">default</span>() -&gt; <span class="self">Self</span> {
-        <span class="self">Self</span>(<span class="ident">Arc::new</span>(<span class="ident">Context</span> {
-            <span class="comment">// Start with painting an extra frame to compensate for some widgets</span>
-            <span class="comment">// that take two frames before they &quot;settle&quot;:</span>
-            <span class="ident">repaint_requests</span>: <span class="ident">AtomicU32::new</span>(<span class="number">1</span>),
-            ..<span class="ident">Context::default</span>()
+<span class="kw">impl </span>Default <span class="kw">for </span>CtxRef {
+    <span class="kw">fn </span>default() -&gt; <span class="self">Self </span>{
+        <span class="self">Self</span>(Arc::new(Context {
+            <span class="comment">// Start with painting an extra frame to compensate for some widgets
+            // that take two frames before they &quot;settle&quot;:
+            </span>repaint_requests: AtomicU32::new(<span class="number">1</span>),
+            ..Context::default()
         }))
     }
 }
 
-<span class="kw">impl</span> <span class="ident">CtxRef</span> {
-    <span class="doccomment">/// Run the ui code for one frame.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// Put your widgets into a [`SidePanel`], [`TopBottomPanel`], [`CentralPanel`], [`Window`] or [`Area`].</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// This will modify the internal reference to point to a new generation of [`Context`].</span>
-    <span class="doccomment">/// Any old clones of this [`CtxRef`] will refer to the old [`Context`], which will not get new input.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// You can alternatively run [`Self::begin_single_pass_frame`] and [`Self::end_single_pass_frame`].</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// ``` rust</span>
-    <span class="doccomment">/// // One egui context that you keep reusing:</span>
-    <span class="doccomment">/// let mut ctx = egui::CtxRef::default();</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// // Each frame:</span>
-    <span class="doccomment">/// let input = egui::RawInput::default();</span>
-    <span class="doccomment">/// let (output, shapes) = ctx.run(input, |ctx| {</span>
-    <span class="doccomment">///     egui::CentralPanel::default().show(&amp;ctx, |ui| {</span>
-    <span class="doccomment">///         ui.label(&quot;Hello egui!&quot;);</span>
-    <span class="doccomment">///     });</span>
-    <span class="doccomment">/// });</span>
-    <span class="doccomment">/// // handle output, paint shapes</span>
-    <span class="doccomment">/// ```</span>
-    <span class="attribute">#[<span class="ident">must_use</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">run</span>(
-        <span class="kw-2">&amp;mut</span> <span class="self">self</span>,
-        <span class="ident">new_input</span>: <span class="ident">RawInput</span>,
-        <span class="ident">run_ui</span>: <span class="kw">impl</span> <span class="ident">FnOnce</span>(<span class="kw-2">&amp;</span><span class="ident">CtxRef</span>),
-    ) -&gt; (<span class="ident">Output</span>, <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">ClippedShape</span><span class="op">&gt;</span>) {
-        <span class="self">self</span>.<span class="ident">begin_frame</span>(<span class="ident">new_input</span>);
-        <span class="ident">run_ui</span>(<span class="self">self</span>);
-        <span class="self">self</span>.<span class="ident">end_frame</span>()
+<span class="kw">impl </span>CtxRef {
+    <span class="doccomment">/// Run the ui code for one frame.
+    ///
+    /// Put your widgets into a [`SidePanel`], [`TopBottomPanel`], [`CentralPanel`], [`Window`] or [`Area`].
+    ///
+    /// This will modify the internal reference to point to a new generation of [`Context`].
+    /// Any old clones of this [`CtxRef`] will refer to the old [`Context`], which will not get new input.
+    ///
+    /// You can alternatively run [`Self::begin_single_pass_frame`] and [`Self::end_single_pass_frame`].
+    ///
+    /// ``` rust
+    /// // One egui context that you keep reusing:
+    /// let mut ctx = egui::CtxRef::default();
+    ///
+    /// // Each frame:
+    /// let input = egui::RawInput::default();
+    /// let (output, shapes) = ctx.run(input, |ctx| {
+    ///     egui::CentralPanel::default().show(&amp;ctx, |ui| {
+    ///         ui.label(&quot;Hello egui!&quot;);
+    ///     });
+    /// });
+    /// // handle output, paint shapes
+    /// ```
+    </span><span class="attribute">#[must_use]
+    </span><span class="kw">pub fn </span>run(
+        <span class="kw-2">&amp;mut </span><span class="self">self</span>,
+        new_input: RawInput,
+        run_ui: <span class="kw">impl </span>FnOnce(<span class="kw-2">&amp;</span>CtxRef),
+    ) -&gt; (Output, Vec&lt;ClippedShape&gt;) {
+        <span class="self">self</span>.begin_frame(new_input);
+        run_ui(<span class="self">self</span>);
+        <span class="self">self</span>.end_frame()
     }
 
-    <span class="doccomment">/// An alternative to calling [`Self::run`].</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// ``` rust</span>
-    <span class="doccomment">/// // One egui context that you keep reusing:</span>
-    <span class="doccomment">/// let mut ctx = egui::CtxRef::default();</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// // Each frame:</span>
-    <span class="doccomment">/// let input = egui::RawInput::default();</span>
-    <span class="doccomment">/// ctx.begin_frame(input);</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// egui::CentralPanel::default().show(&amp;ctx, |ui| {</span>
-    <span class="doccomment">///     ui.label(&quot;Hello egui!&quot;);</span>
-    <span class="doccomment">/// });</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// let (output, shapes) = ctx.end_frame();</span>
-    <span class="doccomment">/// // handle output, paint shapes</span>
-    <span class="doccomment">/// ```</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">begin_frame</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">new_input</span>: <span class="ident">RawInput</span>) {
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">self_</span>: <span class="ident">Context</span> <span class="op">=</span> (<span class="kw-2">*</span><span class="self">self</span>.<span class="number">0</span>).<span class="ident">clone</span>();
-        <span class="ident">self_</span>.<span class="ident">begin_frame_mut</span>(<span class="ident">new_input</span>);
-        <span class="kw-2">*</span><span class="self">self</span> <span class="op">=</span> <span class="self">Self</span>(<span class="ident">Arc::new</span>(<span class="ident">self_</span>));
+    <span class="doccomment">/// An alternative to calling [`Self::run`].
+    ///
+    /// ``` rust
+    /// // One egui context that you keep reusing:
+    /// let mut ctx = egui::CtxRef::default();
+    ///
+    /// // Each frame:
+    /// let input = egui::RawInput::default();
+    /// ctx.begin_frame(input);
+    ///
+    /// egui::CentralPanel::default().show(&amp;ctx, |ui| {
+    ///     ui.label(&quot;Hello egui!&quot;);
+    /// });
+    ///
+    /// let (output, shapes) = ctx.end_frame();
+    /// // handle output, paint shapes
+    /// ```
+    </span><span class="kw">pub fn </span>begin_frame(<span class="kw-2">&amp;mut </span><span class="self">self</span>, new_input: RawInput) {
+        <span class="kw">let </span><span class="kw-2">mut </span>self_: Context = (<span class="kw-2">*</span><span class="self">self</span>.<span class="number">0</span>).clone();
+        self_.begin_frame_mut(new_input);
+        <span class="kw-2">*</span><span class="self">self </span>= <span class="self">Self</span>(Arc::new(self_));
     }
 
-    <span class="comment">// ---------------------------------------------------------------------</span>
+    <span class="comment">// ---------------------------------------------------------------------
 
-    <span class="doccomment">/// If the given [`Id`] is not unique, an error will be printed at the given position.</span>
-    <span class="doccomment">/// Call this for [`Id`]:s that need interaction or persistence.</span>
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">register_interaction_id</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">id</span>: <span class="ident">Id</span>, <span class="ident">new_rect</span>: <span class="ident">Rect</span>) {
-        <span class="kw">let</span> <span class="ident">prev_rect</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">frame_state</span>().<span class="ident">used_ids</span>.<span class="ident">insert</span>(<span class="ident">id</span>, <span class="ident">new_rect</span>);
-        <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">prev_rect</span>) <span class="op">=</span> <span class="ident">prev_rect</span> {
-            <span class="comment">// it is ok to reuse the same ID for e.g. a frame around a widget,</span>
-            <span class="comment">// or to check for interaction with the same widget twice:</span>
-            <span class="kw">if</span> <span class="ident">prev_rect</span>.<span class="ident">expand</span>(<span class="number">0.1</span>).<span class="ident">contains_rect</span>(<span class="ident">new_rect</span>)
-                <span class="op">|</span><span class="op">|</span> <span class="ident">new_rect</span>.<span class="ident">expand</span>(<span class="number">0.1</span>).<span class="ident">contains_rect</span>(<span class="ident">prev_rect</span>)
+    </span><span class="doccomment">/// If the given [`Id`] is not unique, an error will be printed at the given position.
+    /// Call this for [`Id`]:s that need interaction or persistence.
+    </span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>register_interaction_id(<span class="kw-2">&amp;</span><span class="self">self</span>, id: Id, new_rect: Rect) {
+        <span class="kw">let </span>prev_rect = <span class="self">self</span>.frame_state().used_ids.insert(id, new_rect);
+        <span class="kw">if let </span><span class="prelude-val">Some</span>(prev_rect) = prev_rect {
+            <span class="comment">// it is ok to reuse the same ID for e.g. a frame around a widget,
+            // or to check for interaction with the same widget twice:
+            </span><span class="kw">if </span>prev_rect.expand(<span class="number">0.1</span>).contains_rect(new_rect)
+                || new_rect.expand(<span class="number">0.1</span>).contains_rect(prev_rect)
             {
                 <span class="kw">return</span>;
             }
 
-            <span class="kw">let</span> <span class="ident">show_error</span> <span class="op">=</span> <span class="op">|</span><span class="ident">pos</span>: <span class="ident">Pos2</span>, <span class="ident">text</span>: <span class="ident">String</span><span class="op">|</span> {
-                <span class="kw">let</span> <span class="ident">painter</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">debug_painter</span>();
-                <span class="kw">let</span> <span class="ident">rect</span> <span class="op">=</span> <span class="ident">painter</span>.<span class="ident">error</span>(<span class="ident">pos</span>, <span class="ident">text</span>);
-                <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">pointer_pos</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">input</span>.<span class="ident">pointer</span>.<span class="ident">hover_pos</span>() {
-                    <span class="kw">if</span> <span class="ident">rect</span>.<span class="ident">contains</span>(<span class="ident">pointer_pos</span>) {
-                        <span class="ident">painter</span>.<span class="ident">error</span>(
-                            <span class="ident">rect</span>.<span class="ident">left_bottom</span>() <span class="op">+</span> <span class="ident">vec2</span>(<span class="number">2.0</span>, <span class="number">4.0</span>),
+            <span class="kw">let </span>show_error = |pos: Pos2, text: String| {
+                <span class="kw">let </span>painter = <span class="self">self</span>.debug_painter();
+                <span class="kw">let </span>rect = painter.error(pos, text);
+                <span class="kw">if let </span><span class="prelude-val">Some</span>(pointer_pos) = <span class="self">self</span>.input.pointer.hover_pos() {
+                    <span class="kw">if </span>rect.contains(pointer_pos) {
+                        painter.error(
+                            rect.left_bottom() + vec2(<span class="number">2.0</span>, <span class="number">4.0</span>),
                             <span class="string">&quot;ID clashes happens when things like Windows or CollapsingHeaders share names,\n\
                              or when things like ScrollAreas and Resize areas aren&#39;t given unique id_source:s.&quot;</span>,
                         );
@@ -1217,145 +1217,145 @@
                 }
             };
 
-            <span class="kw">let</span> <span class="ident">id_str</span> <span class="op">=</span> <span class="ident">id</span>.<span class="ident">short_debug_format</span>();
+            <span class="kw">let </span>id_str = id.short_debug_format();
 
-            <span class="kw">if</span> <span class="ident">prev_rect</span>.<span class="ident">min</span>.<span class="ident">distance</span>(<span class="ident">new_rect</span>.<span class="ident">min</span>) <span class="op">&lt;</span> <span class="number">4.0</span> {
-                <span class="ident">show_error</span>(<span class="ident">new_rect</span>.<span class="ident">min</span>, <span class="macro">format!</span>(<span class="string">&quot;Double use of ID {}&quot;</span>, <span class="ident">id_str</span>));
-            } <span class="kw">else</span> {
-                <span class="ident">show_error</span>(<span class="ident">prev_rect</span>.<span class="ident">min</span>, <span class="macro">format!</span>(<span class="string">&quot;First use of ID {}&quot;</span>, <span class="ident">id_str</span>));
-                <span class="ident">show_error</span>(<span class="ident">new_rect</span>.<span class="ident">min</span>, <span class="macro">format!</span>(<span class="string">&quot;Second use of ID {}&quot;</span>, <span class="ident">id_str</span>));
+            <span class="kw">if </span>prev_rect.min.distance(new_rect.min) &lt; <span class="number">4.0 </span>{
+                show_error(new_rect.min, <span class="macro">format!</span>(<span class="string">&quot;Double use of ID {}&quot;</span>, id_str));
+            } <span class="kw">else </span>{
+                show_error(prev_rect.min, <span class="macro">format!</span>(<span class="string">&quot;First use of ID {}&quot;</span>, id_str));
+                show_error(new_rect.min, <span class="macro">format!</span>(<span class="string">&quot;Second use of ID {}&quot;</span>, id_str));
             }
         }
     }
 
-    <span class="comment">// ---------------------------------------------------------------------</span>
+    <span class="comment">// ---------------------------------------------------------------------
 
-    <span class="doccomment">/// Use `ui.interact` instead</span>
-    <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">clippy::too_many_arguments</span>)]</span>
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">interact</span>(
+    </span><span class="doccomment">/// Use `ui.interact` instead
+    </span><span class="attribute">#[allow(clippy::too_many_arguments)]
+    </span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>interact(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
-        <span class="ident">clip_rect</span>: <span class="ident">Rect</span>,
-        <span class="ident">item_spacing</span>: <span class="ident">Vec2</span>,
-        <span class="ident">layer_id</span>: <span class="ident">LayerId</span>,
-        <span class="ident">id</span>: <span class="ident">Id</span>,
-        <span class="ident">rect</span>: <span class="ident">Rect</span>,
-        <span class="ident">sense</span>: <span class="ident">Sense</span>,
-        <span class="ident">enabled</span>: <span class="ident">bool</span>,
-    ) -&gt; <span class="ident">Response</span> {
-        <span class="kw">let</span> <span class="ident">gap</span> <span class="op">=</span> <span class="number">0.5</span>; <span class="comment">// Just to make sure we don&#39;t accidentally hover two things at once (a small eps should be sufficient).</span>
+        clip_rect: Rect,
+        item_spacing: Vec2,
+        layer_id: LayerId,
+        id: Id,
+        rect: Rect,
+        sense: Sense,
+        enabled: bool,
+    ) -&gt; Response {
+        <span class="kw">let </span>gap = <span class="number">0.5</span>; <span class="comment">// Just to make sure we don&#39;t accidentally hover two things at once (a small eps should be sufficient).
 
-        <span class="comment">// Make it easier to click things:</span>
-        <span class="kw">let</span> <span class="ident">interact_rect</span> <span class="op">=</span> <span class="ident">rect</span>.<span class="ident">expand2</span>(
-            (<span class="number">0.5</span> <span class="op">*</span> <span class="ident">item_spacing</span> <span class="op">-</span> <span class="ident">Vec2::splat</span>(<span class="ident">gap</span>))
-                .<span class="ident">at_least</span>(<span class="ident">Vec2::splat</span>(<span class="number">0.0</span>))
-                .<span class="ident">at_most</span>(<span class="ident">Vec2::splat</span>(<span class="number">5.0</span>)),
-        ); <span class="comment">// make it easier to click</span>
-        <span class="kw">let</span> <span class="ident">hovered</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">rect_contains_pointer</span>(<span class="ident">layer_id</span>, <span class="ident">clip_rect</span>.<span class="ident">intersect</span>(<span class="ident">interact_rect</span>));
-        <span class="self">self</span>.<span class="ident">interact_with_hovered</span>(<span class="ident">layer_id</span>, <span class="ident">id</span>, <span class="ident">rect</span>, <span class="ident">sense</span>, <span class="ident">enabled</span>, <span class="ident">hovered</span>)
+        // Make it easier to click things:
+        </span><span class="kw">let </span>interact_rect = rect.expand2(
+            (<span class="number">0.5 </span>* item_spacing - Vec2::splat(gap))
+                .at_least(Vec2::splat(<span class="number">0.0</span>))
+                .at_most(Vec2::splat(<span class="number">5.0</span>)),
+        ); <span class="comment">// make it easier to click
+        </span><span class="kw">let </span>hovered = <span class="self">self</span>.rect_contains_pointer(layer_id, clip_rect.intersect(interact_rect));
+        <span class="self">self</span>.interact_with_hovered(layer_id, id, rect, sense, enabled, hovered)
     }
 
-    <span class="doccomment">/// You specify if a thing is hovered, and the function gives a `Response`.</span>
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">interact_with_hovered</span>(
+    <span class="doccomment">/// You specify if a thing is hovered, and the function gives a `Response`.
+    </span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>interact_with_hovered(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
-        <span class="ident">layer_id</span>: <span class="ident">LayerId</span>,
-        <span class="ident">id</span>: <span class="ident">Id</span>,
-        <span class="ident">rect</span>: <span class="ident">Rect</span>,
-        <span class="ident">sense</span>: <span class="ident">Sense</span>,
-        <span class="ident">enabled</span>: <span class="ident">bool</span>,
-        <span class="ident">hovered</span>: <span class="ident">bool</span>,
-    ) -&gt; <span class="ident">Response</span> {
-        <span class="kw">let</span> <span class="ident">hovered</span> <span class="op">=</span> <span class="ident">hovered</span> <span class="op">&amp;&amp;</span> <span class="ident">enabled</span>; <span class="comment">// can&#39;t even hover disabled widgets</span>
+        layer_id: LayerId,
+        id: Id,
+        rect: Rect,
+        sense: Sense,
+        enabled: bool,
+        hovered: bool,
+    ) -&gt; Response {
+        <span class="kw">let </span>hovered = hovered &amp;&amp; enabled; <span class="comment">// can&#39;t even hover disabled widgets
 
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">response</span> <span class="op">=</span> <span class="ident">Response</span> {
-            <span class="ident">ctx</span>: <span class="self">self</span>.<span class="ident">clone</span>(),
-            <span class="ident">layer_id</span>,
-            <span class="ident">id</span>,
-            <span class="ident">rect</span>,
-            <span class="ident">sense</span>,
-            <span class="ident">enabled</span>,
-            <span class="ident">hovered</span>,
-            <span class="ident">clicked</span>: <span class="ident">Default::default</span>(),
-            <span class="ident">double_clicked</span>: <span class="ident">Default::default</span>(),
-            <span class="ident">dragged</span>: <span class="bool-val">false</span>,
-            <span class="ident">drag_released</span>: <span class="bool-val">false</span>,
-            <span class="ident">is_pointer_button_down_on</span>: <span class="bool-val">false</span>,
-            <span class="ident">interact_pointer_pos</span>: <span class="prelude-val">None</span>,
-            <span class="ident">changed</span>: <span class="bool-val">false</span>, <span class="comment">// must be set by the widget itself</span>
-        };
+        </span><span class="kw">let </span><span class="kw-2">mut </span>response = Response {
+            ctx: <span class="self">self</span>.clone(),
+            layer_id,
+            id,
+            rect,
+            sense,
+            enabled,
+            hovered,
+            clicked: Default::default(),
+            double_clicked: Default::default(),
+            dragged: <span class="bool-val">false</span>,
+            drag_released: <span class="bool-val">false</span>,
+            is_pointer_button_down_on: <span class="bool-val">false</span>,
+            interact_pointer_pos: <span class="prelude-val">None</span>,
+            changed: <span class="bool-val">false</span>, <span class="comment">// must be set by the widget itself
+        </span>};
 
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">memory</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">memory</span>();
+        <span class="kw">let </span><span class="kw-2">mut </span>memory = <span class="self">self</span>.memory();
 
-        <span class="kw">if</span> <span class="op">!</span><span class="ident">enabled</span> <span class="op">|</span><span class="op">|</span> <span class="op">!</span><span class="ident">sense</span>.<span class="ident">focusable</span> <span class="op">|</span><span class="op">|</span> <span class="op">!</span><span class="ident">layer_id</span>.<span class="ident">allow_interaction</span>() {
-            <span class="comment">// Not interested or allowed input:</span>
-            <span class="ident">memory</span>.<span class="ident">surrender_focus</span>(<span class="ident">id</span>);
-            <span class="kw">return</span> <span class="ident">response</span>;
+        <span class="kw">if </span>!enabled || !sense.focusable || !layer_id.allow_interaction() {
+            <span class="comment">// Not interested or allowed input:
+            </span>memory.surrender_focus(id);
+            <span class="kw">return </span>response;
         }
 
-        <span class="comment">// We only want to focus labels if the screen reader is on.</span>
-        <span class="kw">let</span> <span class="ident">interested_in_focus</span> <span class="op">=</span>
-            <span class="ident">sense</span>.<span class="ident">interactive</span>() <span class="op">|</span><span class="op">|</span> <span class="ident">sense</span>.<span class="ident">focusable</span> <span class="op">&amp;&amp;</span> <span class="ident">memory</span>.<span class="ident">options</span>.<span class="ident">screen_reader</span>;
+        <span class="comment">// We only want to focus labels if the screen reader is on.
+        </span><span class="kw">let </span>interested_in_focus =
+            sense.interactive() || sense.focusable &amp;&amp; memory.options.screen_reader;
 
-        <span class="kw">if</span> <span class="ident">interested_in_focus</span> {
-            <span class="ident">memory</span>.<span class="ident">interested_in_focus</span>(<span class="ident">id</span>);
+        <span class="kw">if </span>interested_in_focus {
+            memory.interested_in_focus(id);
         }
 
-        <span class="kw">if</span> <span class="ident">sense</span>.<span class="ident">click</span>
-            <span class="op">&amp;&amp;</span> <span class="ident">memory</span>.<span class="ident">has_focus</span>(<span class="ident">response</span>.<span class="ident">id</span>)
-            <span class="op">&amp;&amp;</span> (<span class="self">self</span>.<span class="ident">input</span>().<span class="ident">key_pressed</span>(<span class="ident">Key::Space</span>) <span class="op">|</span><span class="op">|</span> <span class="self">self</span>.<span class="ident">input</span>().<span class="ident">key_pressed</span>(<span class="ident">Key::Enter</span>))
+        <span class="kw">if </span>sense.click
+            &amp;&amp; memory.has_focus(response.id)
+            &amp;&amp; (<span class="self">self</span>.input().key_pressed(Key::Space) || <span class="self">self</span>.input().key_pressed(Key::Enter))
         {
-            <span class="comment">// Space/enter works like a primary click for e.g. selected buttons</span>
-            <span class="ident">response</span>.<span class="ident">clicked</span>[<span class="ident">PointerButton::Primary</span> <span class="kw">as</span> <span class="ident">usize</span>] <span class="op">=</span> <span class="bool-val">true</span>;
+            <span class="comment">// Space/enter works like a primary click for e.g. selected buttons
+            </span>response.clicked[PointerButton::Primary <span class="kw">as </span>usize] = <span class="bool-val">true</span>;
         }
 
-        <span class="self">self</span>.<span class="ident">register_interaction_id</span>(<span class="ident">id</span>, <span class="ident">rect</span>);
+        <span class="self">self</span>.register_interaction_id(id, rect);
 
-        <span class="kw">if</span> <span class="ident">sense</span>.<span class="ident">click</span> <span class="op">|</span><span class="op">|</span> <span class="ident">sense</span>.<span class="ident">drag</span> {
-            <span class="ident">memory</span>.<span class="ident">interaction</span>.<span class="ident">click_interest</span> <span class="op">|</span><span class="op">=</span> <span class="ident">hovered</span> <span class="op">&amp;&amp;</span> <span class="ident">sense</span>.<span class="ident">click</span>;
-            <span class="ident">memory</span>.<span class="ident">interaction</span>.<span class="ident">drag_interest</span> <span class="op">|</span><span class="op">=</span> <span class="ident">hovered</span> <span class="op">&amp;&amp;</span> <span class="ident">sense</span>.<span class="ident">drag</span>;
+        <span class="kw">if </span>sense.click || sense.drag {
+            memory.interaction.click_interest |= hovered &amp;&amp; sense.click;
+            memory.interaction.drag_interest |= hovered &amp;&amp; sense.drag;
 
-            <span class="ident">response</span>.<span class="ident">dragged</span> <span class="op">=</span> <span class="ident">memory</span>.<span class="ident">interaction</span>.<span class="ident">drag_id</span> <span class="op">==</span> <span class="prelude-val">Some</span>(<span class="ident">id</span>);
-            <span class="ident">response</span>.<span class="ident">is_pointer_button_down_on</span> <span class="op">=</span>
-                <span class="ident">memory</span>.<span class="ident">interaction</span>.<span class="ident">click_id</span> <span class="op">==</span> <span class="prelude-val">Some</span>(<span class="ident">id</span>) <span class="op">|</span><span class="op">|</span> <span class="ident">response</span>.<span class="ident">dragged</span>;
+            response.dragged = memory.interaction.drag_id == <span class="prelude-val">Some</span>(id);
+            response.is_pointer_button_down_on =
+                memory.interaction.click_id == <span class="prelude-val">Some</span>(id) || response.dragged;
 
-            <span class="kw">for</span> <span class="ident">pointer_event</span> <span class="kw">in</span> <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">input</span>.<span class="ident">pointer</span>.<span class="ident">pointer_events</span> {
-                <span class="kw">match</span> <span class="ident">pointer_event</span> {
-                    <span class="ident">PointerEvent::Moved</span>(<span class="kw">_</span>) =&gt; {}
-                    <span class="ident">PointerEvent::Pressed</span>(<span class="kw">_</span>) =&gt; {
-                        <span class="kw">if</span> <span class="ident">hovered</span> {
-                            <span class="kw">if</span> <span class="ident">sense</span>.<span class="ident">click</span> <span class="op">&amp;&amp;</span> <span class="ident">memory</span>.<span class="ident">interaction</span>.<span class="ident">click_id</span>.<span class="ident">is_none</span>() {
-                                <span class="comment">// potential start of a click</span>
-                                <span class="ident">memory</span>.<span class="ident">interaction</span>.<span class="ident">click_id</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">id</span>);
-                                <span class="ident">response</span>.<span class="ident">is_pointer_button_down_on</span> <span class="op">=</span> <span class="bool-val">true</span>;
+            <span class="kw">for </span>pointer_event <span class="kw">in </span><span class="kw-2">&amp;</span><span class="self">self</span>.input.pointer.pointer_events {
+                <span class="kw">match </span>pointer_event {
+                    PointerEvent::Moved(<span class="kw">_</span>) =&gt; {}
+                    PointerEvent::Pressed(<span class="kw">_</span>) =&gt; {
+                        <span class="kw">if </span>hovered {
+                            <span class="kw">if </span>sense.click &amp;&amp; memory.interaction.click_id.is_none() {
+                                <span class="comment">// potential start of a click
+                                </span>memory.interaction.click_id = <span class="prelude-val">Some</span>(id);
+                                response.is_pointer_button_down_on = <span class="bool-val">true</span>;
                             }
 
-                            <span class="comment">// HACK: windows have low priority on dragging.</span>
-                            <span class="comment">// This is so that if you drag a slider in a window,</span>
-                            <span class="comment">// the slider will steal the drag away from the window.</span>
-                            <span class="comment">// This is needed because we do window interaction first (to prevent frame delay),</span>
-                            <span class="comment">// and then do content layout.</span>
-                            <span class="kw">if</span> <span class="ident">sense</span>.<span class="ident">drag</span>
-                                <span class="op">&amp;&amp;</span> (<span class="ident">memory</span>.<span class="ident">interaction</span>.<span class="ident">drag_id</span>.<span class="ident">is_none</span>()
-                                    <span class="op">|</span><span class="op">|</span> <span class="ident">memory</span>.<span class="ident">interaction</span>.<span class="ident">drag_is_window</span>)
+                            <span class="comment">// HACK: windows have low priority on dragging.
+                            // This is so that if you drag a slider in a window,
+                            // the slider will steal the drag away from the window.
+                            // This is needed because we do window interaction first (to prevent frame delay),
+                            // and then do content layout.
+                            </span><span class="kw">if </span>sense.drag
+                                &amp;&amp; (memory.interaction.drag_id.is_none()
+                                    || memory.interaction.drag_is_window)
                             {
-                                <span class="comment">// potential start of a drag</span>
-                                <span class="ident">memory</span>.<span class="ident">interaction</span>.<span class="ident">drag_id</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">id</span>);
-                                <span class="ident">memory</span>.<span class="ident">interaction</span>.<span class="ident">drag_is_window</span> <span class="op">=</span> <span class="bool-val">false</span>;
-                                <span class="ident">memory</span>.<span class="ident">window_interaction</span> <span class="op">=</span> <span class="prelude-val">None</span>; <span class="comment">// HACK: stop moving windows (if any)</span>
-                                <span class="ident">response</span>.<span class="ident">is_pointer_button_down_on</span> <span class="op">=</span> <span class="bool-val">true</span>;
-                                <span class="ident">response</span>.<span class="ident">dragged</span> <span class="op">=</span> <span class="bool-val">true</span>;
+                                <span class="comment">// potential start of a drag
+                                </span>memory.interaction.drag_id = <span class="prelude-val">Some</span>(id);
+                                memory.interaction.drag_is_window = <span class="bool-val">false</span>;
+                                memory.window_interaction = <span class="prelude-val">None</span>; <span class="comment">// HACK: stop moving windows (if any)
+                                </span>response.is_pointer_button_down_on = <span class="bool-val">true</span>;
+                                response.dragged = <span class="bool-val">true</span>;
                             }
                         }
                     }
-                    <span class="ident">PointerEvent::Released</span>(<span class="ident">click</span>) =&gt; {
-                        <span class="ident">response</span>.<span class="ident">drag_released</span> <span class="op">=</span> <span class="ident">response</span>.<span class="ident">dragged</span>;
-                        <span class="ident">response</span>.<span class="ident">dragged</span> <span class="op">=</span> <span class="bool-val">false</span>;
+                    PointerEvent::Released(click) =&gt; {
+                        response.drag_released = response.dragged;
+                        response.dragged = <span class="bool-val">false</span>;
 
-                        <span class="kw">if</span> <span class="ident">hovered</span> <span class="op">&amp;&amp;</span> <span class="ident">response</span>.<span class="ident">is_pointer_button_down_on</span> {
-                            <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">click</span>) <span class="op">=</span> <span class="ident">click</span> {
-                                <span class="kw">let</span> <span class="ident">clicked</span> <span class="op">=</span> <span class="ident">hovered</span> <span class="op">&amp;&amp;</span> <span class="ident">response</span>.<span class="ident">is_pointer_button_down_on</span>;
-                                <span class="ident">response</span>.<span class="ident">clicked</span>[<span class="ident">click</span>.<span class="ident">button</span> <span class="kw">as</span> <span class="ident">usize</span>] <span class="op">=</span> <span class="ident">clicked</span>;
-                                <span class="ident">response</span>.<span class="ident">double_clicked</span>[<span class="ident">click</span>.<span class="ident">button</span> <span class="kw">as</span> <span class="ident">usize</span>] <span class="op">=</span>
-                                    <span class="ident">clicked</span> <span class="op">&amp;&amp;</span> <span class="ident">click</span>.<span class="ident">is_double</span>();
+                        <span class="kw">if </span>hovered &amp;&amp; response.is_pointer_button_down_on {
+                            <span class="kw">if let </span><span class="prelude-val">Some</span>(click) = click {
+                                <span class="kw">let </span>clicked = hovered &amp;&amp; response.is_pointer_button_down_on;
+                                response.clicked[click.button <span class="kw">as </span>usize] = clicked;
+                                response.double_clicked[click.button <span class="kw">as </span>usize] =
+                                    clicked &amp;&amp; click.is_double();
                             }
                         }
                     }
@@ -1363,718 +1363,718 @@
             }
         }
 
-        <span class="kw">if</span> <span class="ident">response</span>.<span class="ident">is_pointer_button_down_on</span> {
-            <span class="ident">response</span>.<span class="ident">interact_pointer_pos</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">input</span>().<span class="ident">pointer</span>.<span class="ident">interact_pos</span>();
+        <span class="kw">if </span>response.is_pointer_button_down_on {
+            response.interact_pointer_pos = <span class="self">self</span>.input().pointer.interact_pos();
         }
 
-        <span class="kw">if</span> <span class="self">self</span>.<span class="ident">input</span>.<span class="ident">pointer</span>.<span class="ident">any_down</span>() {
-            <span class="ident">response</span>.<span class="ident">hovered</span> <span class="op">&amp;=</span> <span class="ident">response</span>.<span class="ident">is_pointer_button_down_on</span>; <span class="comment">// we don&#39;t hover widgets while interacting with *other* widgets</span>
+        <span class="kw">if </span><span class="self">self</span>.input.pointer.any_down() {
+            response.hovered &amp;= response.is_pointer_button_down_on; <span class="comment">// we don&#39;t hover widgets while interacting with *other* widgets
+        </span>}
+
+        <span class="kw">if </span>memory.has_focus(response.id) &amp;&amp; response.clicked_elsewhere() {
+            memory.surrender_focus(id);
         }
 
-        <span class="kw">if</span> <span class="ident">memory</span>.<span class="ident">has_focus</span>(<span class="ident">response</span>.<span class="ident">id</span>) <span class="op">&amp;&amp;</span> <span class="ident">response</span>.<span class="ident">clicked_elsewhere</span>() {
-            <span class="ident">memory</span>.<span class="ident">surrender_focus</span>(<span class="ident">id</span>);
-        }
-
-        <span class="ident">response</span>
+        response
     }
 
-    <span class="doccomment">/// Get a full-screen painter for a new or existing layer</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">layer_painter</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">layer_id</span>: <span class="ident">LayerId</span>) -&gt; <span class="ident">Painter</span> {
-        <span class="ident">Painter::new</span>(<span class="self">self</span>.<span class="ident">clone</span>(), <span class="ident">layer_id</span>, <span class="self">self</span>.<span class="ident">input</span>.<span class="ident">screen_rect</span>())
+    <span class="doccomment">/// Get a full-screen painter for a new or existing layer
+    </span><span class="kw">pub fn </span>layer_painter(<span class="kw-2">&amp;</span><span class="self">self</span>, layer_id: LayerId) -&gt; Painter {
+        Painter::new(<span class="self">self</span>.clone(), layer_id, <span class="self">self</span>.input.screen_rect())
     }
 
-    <span class="doccomment">/// Paint on top of everything else</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">debug_painter</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">Painter</span> {
-        <span class="ident"><span class="self">Self</span>::layer_painter</span>(<span class="self">self</span>, <span class="ident">LayerId::debug</span>())
+    <span class="doccomment">/// Paint on top of everything else
+    </span><span class="kw">pub fn </span>debug_painter(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; Painter {
+        <span class="self">Self</span>::layer_painter(<span class="self">self</span>, LayerId::debug())
     }
 }
 
-<span class="comment">// ----------------------------------------------------------------------------</span>
+<span class="comment">// ----------------------------------------------------------------------------
 
-<span class="doccomment">/// Your handle to egui.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// This is the first thing you need when working with egui.</span>
-<span class="doccomment">/// Use [`CtxRef`] to create and refer to a [`Context`].</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// Contains the [`InputState`], [`Memory`], [`Output`], and more.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// Almost all methods are marked `&amp;self`, [`Context`] has interior mutability (protected by mutexes).</span>
-<span class="doccomment">/// Multi-threaded access to a [`Context`] is behind the feature flag `multi_threaded`.</span>
-<span class="doccomment">/// Normally you&#39;d always do all ui work on one thread, or perhaps use multiple contexts,</span>
-<span class="doccomment">/// but if you really want to access the same [`Context`] from multiple threads, it *SHOULD* be fine,</span>
-<span class="doccomment">/// but you are likely the first person to try it.</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Default</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Context</span> {
-    <span class="comment">// We clone the Context each frame so we can set a new `input`.</span>
-    <span class="comment">// This is so we can avoid a mutex lock to access the `InputState`.</span>
-    <span class="comment">// This means everything else needs to be behind an Arc.</span>
-    <span class="comment">// We can probably come up with a nicer design.</span>
-    <span class="comment">//</span>
-    <span class="doccomment">/// `None` until the start of the first frame.</span>
-    <span class="ident">fonts</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">Fonts</span><span class="op">&gt;</span><span class="op">&gt;</span>,
-    <span class="ident">memory</span>: <span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">Mutex</span><span class="op">&lt;</span><span class="ident">Memory</span><span class="op">&gt;</span><span class="op">&gt;</span>,
-    <span class="ident">animation_manager</span>: <span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">Mutex</span><span class="op">&lt;</span><span class="ident">AnimationManager</span><span class="op">&gt;</span><span class="op">&gt;</span>,
-    <span class="ident">context_menu_system</span>: <span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">Mutex</span><span class="op">&lt;</span><span class="ident">ContextMenuSystem</span><span class="op">&gt;</span><span class="op">&gt;</span>,
+</span><span class="doccomment">/// Your handle to egui.
+///
+/// This is the first thing you need when working with egui.
+/// Use [`CtxRef`] to create and refer to a [`Context`].
+///
+/// Contains the [`InputState`], [`Memory`], [`Output`], and more.
+///
+/// Almost all methods are marked `&amp;self`, [`Context`] has interior mutability (protected by mutexes).
+/// Multi-threaded access to a [`Context`] is behind the feature flag `multi_threaded`.
+/// Normally you&#39;d always do all ui work on one thread, or perhaps use multiple contexts,
+/// but if you really want to access the same [`Context`] from multiple threads, it *SHOULD* be fine,
+/// but you are likely the first person to try it.
+</span><span class="attribute">#[derive(Default)]
+</span><span class="kw">pub struct </span>Context {
+    <span class="comment">// We clone the Context each frame so we can set a new `input`.
+    // This is so we can avoid a mutex lock to access the `InputState`.
+    // This means everything else needs to be behind an Arc.
+    // We can probably come up with a nicer design.
+    //
+    </span><span class="doccomment">/// `None` until the start of the first frame.
+    </span>fonts: <span class="prelude-ty">Option</span>&lt;Arc&lt;Fonts&gt;&gt;,
+    memory: Arc&lt;Mutex&lt;Memory&gt;&gt;,
+    animation_manager: Arc&lt;Mutex&lt;AnimationManager&gt;&gt;,
+    context_menu_system: Arc&lt;Mutex&lt;ContextMenuSystem&gt;&gt;,
 
-    <span class="ident">input</span>: <span class="ident">InputState</span>,
+    input: InputState,
 
-    <span class="doccomment">/// State that is collected during a frame and then cleared</span>
-    <span class="ident">frame_state</span>: <span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">Mutex</span><span class="op">&lt;</span><span class="ident">FrameState</span><span class="op">&gt;</span><span class="op">&gt;</span>,
+    <span class="doccomment">/// State that is collected during a frame and then cleared
+    </span>frame_state: Arc&lt;Mutex&lt;FrameState&gt;&gt;,
 
-    <span class="comment">// The output of a frame:</span>
-    <span class="ident">graphics</span>: <span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">Mutex</span><span class="op">&lt;</span><span class="ident">GraphicLayers</span><span class="op">&gt;</span><span class="op">&gt;</span>,
-    <span class="ident">output</span>: <span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">Mutex</span><span class="op">&lt;</span><span class="ident">Output</span><span class="op">&gt;</span><span class="op">&gt;</span>,
+    <span class="comment">// The output of a frame:
+    </span>graphics: Arc&lt;Mutex&lt;GraphicLayers&gt;&gt;,
+    output: Arc&lt;Mutex&lt;Output&gt;&gt;,
 
-    <span class="ident">paint_stats</span>: <span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">Mutex</span><span class="op">&lt;</span><span class="ident">PaintStats</span><span class="op">&gt;</span><span class="op">&gt;</span>,
+    paint_stats: Arc&lt;Mutex&lt;PaintStats&gt;&gt;,
 
-    <span class="doccomment">/// While positive, keep requesting repaints. Decrement at the end of each frame.</span>
-    <span class="ident">repaint_requests</span>: <span class="ident">AtomicU32</span>,
+    <span class="doccomment">/// While positive, keep requesting repaints. Decrement at the end of each frame.
+    </span>repaint_requests: AtomicU32,
 }
 
-<span class="kw">impl</span> <span class="ident">Clone</span> <span class="kw">for</span> <span class="ident">Context</span> {
-    <span class="kw">fn</span> <span class="ident">clone</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="self">Self</span> {
-        <span class="ident">Context</span> {
-            <span class="ident">fonts</span>: <span class="self">self</span>.<span class="ident">fonts</span>.<span class="ident">clone</span>(),
-            <span class="ident">memory</span>: <span class="self">self</span>.<span class="ident">memory</span>.<span class="ident">clone</span>(),
-            <span class="ident">animation_manager</span>: <span class="self">self</span>.<span class="ident">animation_manager</span>.<span class="ident">clone</span>(),
-            <span class="ident">input</span>: <span class="self">self</span>.<span class="ident">input</span>.<span class="ident">clone</span>(),
-            <span class="ident">frame_state</span>: <span class="self">self</span>.<span class="ident">frame_state</span>.<span class="ident">clone</span>(),
-            <span class="ident">graphics</span>: <span class="self">self</span>.<span class="ident">graphics</span>.<span class="ident">clone</span>(),
-            <span class="ident">output</span>: <span class="self">self</span>.<span class="ident">output</span>.<span class="ident">clone</span>(),
-            <span class="ident">paint_stats</span>: <span class="self">self</span>.<span class="ident">paint_stats</span>.<span class="ident">clone</span>(),
-            <span class="ident">repaint_requests</span>: <span class="self">self</span>.<span class="ident">repaint_requests</span>.<span class="ident">load</span>(<span class="ident">SeqCst</span>).<span class="ident">into</span>(),
-            <span class="ident">context_menu_system</span>: <span class="self">self</span>.<span class="ident">context_menu_system</span>.<span class="ident">clone</span>(),
+<span class="kw">impl </span>Clone <span class="kw">for </span>Context {
+    <span class="kw">fn </span>clone(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="self">Self </span>{
+        Context {
+            fonts: <span class="self">self</span>.fonts.clone(),
+            memory: <span class="self">self</span>.memory.clone(),
+            animation_manager: <span class="self">self</span>.animation_manager.clone(),
+            input: <span class="self">self</span>.input.clone(),
+            frame_state: <span class="self">self</span>.frame_state.clone(),
+            graphics: <span class="self">self</span>.graphics.clone(),
+            output: <span class="self">self</span>.output.clone(),
+            paint_stats: <span class="self">self</span>.paint_stats.clone(),
+            repaint_requests: <span class="self">self</span>.repaint_requests.load(SeqCst).into(),
+            context_menu_system: <span class="self">self</span>.context_menu_system.clone(),
         }
     }
 }
 
-<span class="kw">impl</span> <span class="ident">Context</span> {
-    <span class="doccomment">/// How much space is still available after panels has been added.</span>
-    <span class="doccomment">/// This is the &quot;background&quot; area, what egui doesn&#39;t cover with panels (but may cover with windows).</span>
-    <span class="doccomment">/// This is also the area to which windows are constrained.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">available_rect</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">Rect</span> {
-        <span class="self">self</span>.<span class="ident">frame_state</span>.<span class="ident">lock</span>().<span class="ident">available_rect</span>()
+<span class="kw">impl </span>Context {
+    <span class="doccomment">/// How much space is still available after panels has been added.
+    /// This is the &quot;background&quot; area, what egui doesn&#39;t cover with panels (but may cover with windows).
+    /// This is also the area to which windows are constrained.
+    </span><span class="kw">pub fn </span>available_rect(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; Rect {
+        <span class="self">self</span>.frame_state.lock().available_rect()
     }
 
-    <span class="doccomment">/// Stores all the egui state.</span>
-    <span class="doccomment">/// If you want to store/restore egui, serialize this.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">memory</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">MutexGuard</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span>, <span class="ident">Memory</span><span class="op">&gt;</span> {
-        <span class="self">self</span>.<span class="ident">memory</span>.<span class="ident">lock</span>()
+    <span class="doccomment">/// Stores all the egui state.
+    /// If you want to store/restore egui, serialize this.
+    </span><span class="kw">pub fn </span>memory(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; MutexGuard&lt;<span class="lifetime">&#39;_</span>, Memory&gt; {
+        <span class="self">self</span>.memory.lock()
     }
 
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">context_menu_system</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">MutexGuard</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span>, <span class="ident">ContextMenuSystem</span><span class="op">&gt;</span> {
-        <span class="self">self</span>.<span class="ident">context_menu_system</span>.<span class="ident">lock</span>()
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>context_menu_system(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; MutexGuard&lt;<span class="lifetime">&#39;_</span>, ContextMenuSystem&gt; {
+        <span class="self">self</span>.context_menu_system.lock()
     }
 
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">graphics</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">MutexGuard</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span>, <span class="ident">GraphicLayers</span><span class="op">&gt;</span> {
-        <span class="self">self</span>.<span class="ident">graphics</span>.<span class="ident">lock</span>()
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>graphics(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; MutexGuard&lt;<span class="lifetime">&#39;_</span>, GraphicLayers&gt; {
+        <span class="self">self</span>.graphics.lock()
     }
 
-    <span class="doccomment">/// What egui outputs each frame.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">output</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">MutexGuard</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span>, <span class="ident">Output</span><span class="op">&gt;</span> {
-        <span class="self">self</span>.<span class="ident">output</span>.<span class="ident">lock</span>()
+    <span class="doccomment">/// What egui outputs each frame.
+    </span><span class="kw">pub fn </span>output(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; MutexGuard&lt;<span class="lifetime">&#39;_</span>, Output&gt; {
+        <span class="self">self</span>.output.lock()
     }
 
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">frame_state</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">MutexGuard</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span>, <span class="ident">FrameState</span><span class="op">&gt;</span> {
-        <span class="self">self</span>.<span class="ident">frame_state</span>.<span class="ident">lock</span>()
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>frame_state(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; MutexGuard&lt;<span class="lifetime">&#39;_</span>, FrameState&gt; {
+        <span class="self">self</span>.frame_state.lock()
     }
 
-    <span class="doccomment">/// Call this if there is need to repaint the UI, i.e. if you are showing an animation.</span>
-    <span class="doccomment">/// If this is called at least once in a frame, then there will be another frame right after this.</span>
-    <span class="doccomment">/// Call as many times as you wish, only one repaint will be issued.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">request_repaint</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) {
-        <span class="comment">// request two frames of repaint, just to cover some corner cases (frame delays):</span>
-        <span class="kw">let</span> <span class="ident">times_to_repaint</span> <span class="op">=</span> <span class="number">2</span>;
-        <span class="self">self</span>.<span class="ident">repaint_requests</span>.<span class="ident">store</span>(<span class="ident">times_to_repaint</span>, <span class="ident">SeqCst</span>);
+    <span class="doccomment">/// Call this if there is need to repaint the UI, i.e. if you are showing an animation.
+    /// If this is called at least once in a frame, then there will be another frame right after this.
+    /// Call as many times as you wish, only one repaint will be issued.
+    </span><span class="kw">pub fn </span>request_repaint(<span class="kw-2">&amp;</span><span class="self">self</span>) {
+        <span class="comment">// request two frames of repaint, just to cover some corner cases (frame delays):
+        </span><span class="kw">let </span>times_to_repaint = <span class="number">2</span>;
+        <span class="self">self</span>.repaint_requests.store(times_to_repaint, SeqCst);
     }
 
-    <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">input</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span><span class="ident">InputState</span> {
-        <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">input</span>
+    <span class="attribute">#[inline(always)]
+    </span><span class="kw">pub fn </span>input(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span>InputState {
+        <span class="kw-2">&amp;</span><span class="self">self</span>.input
     }
 
-    <span class="doccomment">/// Not valid until first call to [`CtxRef::run()`].</span>
-    <span class="doccomment">/// That&#39;s because since we don&#39;t know the proper `pixels_per_point` until then.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">fonts</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span><span class="ident">Fonts</span> {
-        <span class="kw-2">&amp;</span><span class="kw-2">*</span><span class="self">self</span>
-            .<span class="ident">fonts</span>
-            .<span class="ident">as_ref</span>()
-            .<span class="ident">expect</span>(<span class="string">&quot;No fonts available until first call to CtxRef::run()&quot;</span>)
+    <span class="doccomment">/// Not valid until first call to [`CtxRef::run()`].
+    /// That&#39;s because since we don&#39;t know the proper `pixels_per_point` until then.
+    </span><span class="kw">pub fn </span>fonts(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span>Fonts {
+        <span class="kw-2">&amp;*</span><span class="self">self
+            </span>.fonts
+            .as_ref()
+            .expect(<span class="string">&quot;No fonts available until first call to CtxRef::run()&quot;</span>)
     }
 
-    <span class="doccomment">/// The egui font image, containing font characters etc.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// Not valid until first call to [`CtxRef::run()`].</span>
-    <span class="doccomment">/// That&#39;s because since we don&#39;t know the proper `pixels_per_point` until then.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">font_image</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">epaint::FontImage</span><span class="op">&gt;</span> {
-        <span class="self">self</span>.<span class="ident">fonts</span>().<span class="ident">font_image</span>()
+    <span class="doccomment">/// The egui font image, containing font characters etc.
+    ///
+    /// Not valid until first call to [`CtxRef::run()`].
+    /// That&#39;s because since we don&#39;t know the proper `pixels_per_point` until then.
+    </span><span class="kw">pub fn </span>font_image(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; Arc&lt;epaint::FontImage&gt; {
+        <span class="self">self</span>.fonts().font_image()
     }
 
-    <span class="attribute">#[<span class="ident">deprecated</span> <span class="op">=</span> <span class="string">&quot;Renamed font_image&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">texture</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">epaint::FontImage</span><span class="op">&gt;</span> {
-        <span class="self">self</span>.<span class="ident">fonts</span>().<span class="ident">font_image</span>()
+    <span class="attribute">#[deprecated = <span class="string">&quot;Renamed font_image&quot;</span>]
+    </span><span class="kw">pub fn </span>texture(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; Arc&lt;epaint::FontImage&gt; {
+        <span class="self">self</span>.fonts().font_image()
     }
 
-    <span class="doccomment">/// Tell `egui` which fonts to use.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// The default `egui` fonts only support latin and cyrillic alphabets,</span>
-    <span class="doccomment">/// but you can call this to install additional fonts that support e.g. korean characters.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// The new fonts will become active at the start of the next frame.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_fonts</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">font_definitions</span>: <span class="ident">FontDefinitions</span>) {
-        <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">current_fonts</span>) <span class="op">=</span> <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">fonts</span> {
-            <span class="comment">// NOTE: this comparison is expensive since it checks TTF data for equality</span>
-            <span class="kw">if</span> <span class="ident">current_fonts</span>.<span class="ident">definitions</span>() <span class="op">==</span> <span class="kw-2">&amp;</span><span class="ident">font_definitions</span> {
-                <span class="kw">return</span>; <span class="comment">// no change - save us from reloading font textures</span>
-            }
+    <span class="doccomment">/// Tell `egui` which fonts to use.
+    ///
+    /// The default `egui` fonts only support latin and cyrillic alphabets,
+    /// but you can call this to install additional fonts that support e.g. korean characters.
+    ///
+    /// The new fonts will become active at the start of the next frame.
+    </span><span class="kw">pub fn </span>set_fonts(<span class="kw-2">&amp;</span><span class="self">self</span>, font_definitions: FontDefinitions) {
+        <span class="kw">if let </span><span class="prelude-val">Some</span>(current_fonts) = <span class="kw-2">&amp;</span><span class="self">self</span>.fonts {
+            <span class="comment">// NOTE: this comparison is expensive since it checks TTF data for equality
+            </span><span class="kw">if </span>current_fonts.definitions() == <span class="kw-2">&amp;</span>font_definitions {
+                <span class="kw">return</span>; <span class="comment">// no change - save us from reloading font textures
+            </span>}
         }
 
-        <span class="self">self</span>.<span class="ident">memory</span>().<span class="ident">new_font_definitions</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">font_definitions</span>);
+        <span class="self">self</span>.memory().new_font_definitions = <span class="prelude-val">Some</span>(font_definitions);
     }
 
-    <span class="doccomment">/// The [`Style`] used by all subsequent windows, panels etc.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">style</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">Style</span><span class="op">&gt;</span> {
-        <span class="self">self</span>.<span class="ident">memory</span>().<span class="ident">options</span>.<span class="ident">style</span>.<span class="ident">clone</span>()
+    <span class="doccomment">/// The [`Style`] used by all subsequent windows, panels etc.
+    </span><span class="kw">pub fn </span>style(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; Arc&lt;Style&gt; {
+        <span class="self">self</span>.memory().options.style.clone()
     }
 
-    <span class="doccomment">/// The [`Style`] used by all new windows, panels etc.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// You can also use [`Ui::style_mut`] to change the style of a single [`Ui`].</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// Example:</span>
-    <span class="doccomment">/// ```</span>
-    <span class="doccomment">/// # let mut ctx = egui::CtxRef::default();</span>
-    <span class="doccomment">/// let mut style: egui::Style = (*ctx.style()).clone();</span>
-    <span class="doccomment">/// style.spacing.item_spacing = egui::vec2(10.0, 20.0);</span>
-    <span class="doccomment">/// ctx.set_style(style);</span>
-    <span class="doccomment">/// ```</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_style</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">style</span>: <span class="kw">impl</span> <span class="ident">Into</span><span class="op">&lt;</span><span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">Style</span><span class="op">&gt;</span><span class="op">&gt;</span>) {
-        <span class="self">self</span>.<span class="ident">memory</span>().<span class="ident">options</span>.<span class="ident">style</span> <span class="op">=</span> <span class="ident">style</span>.<span class="ident">into</span>();
+    <span class="doccomment">/// The [`Style`] used by all new windows, panels etc.
+    ///
+    /// You can also use [`Ui::style_mut`] to change the style of a single [`Ui`].
+    ///
+    /// Example:
+    /// ```
+    /// # let mut ctx = egui::CtxRef::default();
+    /// let mut style: egui::Style = (*ctx.style()).clone();
+    /// style.spacing.item_spacing = egui::vec2(10.0, 20.0);
+    /// ctx.set_style(style);
+    /// ```
+    </span><span class="kw">pub fn </span>set_style(<span class="kw-2">&amp;</span><span class="self">self</span>, style: <span class="kw">impl </span>Into&lt;Arc&lt;Style&gt;&gt;) {
+        <span class="self">self</span>.memory().options.style = style.into();
     }
 
-    <span class="doccomment">/// The [`Visuals`] used by all subsequent windows, panels etc.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// You can also use [`Ui::visuals_mut`] to change the visuals of a single [`Ui`].</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// Example:</span>
-    <span class="doccomment">/// ```</span>
-    <span class="doccomment">/// # let mut ctx = egui::CtxRef::default();</span>
-    <span class="doccomment">/// ctx.set_visuals(egui::Visuals::light()); // Switch to light mode</span>
-    <span class="doccomment">/// ```</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_visuals</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">visuals</span>: <span class="ident"><span class="kw">crate</span>::Visuals</span>) {
-        <span class="ident">std::sync::Arc::make_mut</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>.<span class="ident">memory</span>().<span class="ident">options</span>.<span class="ident">style</span>).<span class="ident">visuals</span> <span class="op">=</span> <span class="ident">visuals</span>;
+    <span class="doccomment">/// The [`Visuals`] used by all subsequent windows, panels etc.
+    ///
+    /// You can also use [`Ui::visuals_mut`] to change the visuals of a single [`Ui`].
+    ///
+    /// Example:
+    /// ```
+    /// # let mut ctx = egui::CtxRef::default();
+    /// ctx.set_visuals(egui::Visuals::light()); // Switch to light mode
+    /// ```
+    </span><span class="kw">pub fn </span>set_visuals(<span class="kw-2">&amp;</span><span class="self">self</span>, visuals: <span class="kw">crate</span>::Visuals) {
+        std::sync::Arc::make_mut(<span class="kw-2">&amp;mut </span><span class="self">self</span>.memory().options.style).visuals = visuals;
     }
 
-    <span class="doccomment">/// The number of physical pixels for each logical point.</span>
-    <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">pixels_per_point</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">f32</span> {
-        <span class="self">self</span>.<span class="ident">input</span>.<span class="ident">pixels_per_point</span>()
+    <span class="doccomment">/// The number of physical pixels for each logical point.
+    </span><span class="attribute">#[inline(always)]
+    </span><span class="kw">pub fn </span>pixels_per_point(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; f32 {
+        <span class="self">self</span>.input.pixels_per_point()
     }
 
-    <span class="doccomment">/// Set the number of physical pixels for each logical point.</span>
-    <span class="doccomment">/// Will become active at the start of the next frame.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// Note that this may be overwritten by input from the integration via [`RawInput::pixels_per_point`].</span>
-    <span class="doccomment">/// For instance, when using `egui_web` the browsers native zoom level will always be used.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_pixels_per_point</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">pixels_per_point</span>: <span class="ident">f32</span>) {
-        <span class="kw">if</span> <span class="ident">pixels_per_point</span> <span class="op">!</span><span class="op">=</span> <span class="self">self</span>.<span class="ident">pixels_per_point</span>() {
-            <span class="self">self</span>.<span class="ident">request_repaint</span>();
+    <span class="doccomment">/// Set the number of physical pixels for each logical point.
+    /// Will become active at the start of the next frame.
+    ///
+    /// Note that this may be overwritten by input from the integration via [`RawInput::pixels_per_point`].
+    /// For instance, when using `egui_web` the browsers native zoom level will always be used.
+    </span><span class="kw">pub fn </span>set_pixels_per_point(<span class="kw-2">&amp;</span><span class="self">self</span>, pixels_per_point: f32) {
+        <span class="kw">if </span>pixels_per_point != <span class="self">self</span>.pixels_per_point() {
+            <span class="self">self</span>.request_repaint();
         }
 
-        <span class="self">self</span>.<span class="ident">memory</span>().<span class="ident">new_pixels_per_point</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">pixels_per_point</span>);
+        <span class="self">self</span>.memory().new_pixels_per_point = <span class="prelude-val">Some</span>(pixels_per_point);
     }
 
-    <span class="doccomment">/// Useful for pixel-perfect rendering</span>
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">round_to_pixel</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">point</span>: <span class="ident">f32</span>) -&gt; <span class="ident">f32</span> {
-        <span class="kw">let</span> <span class="ident">pixels_per_point</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">pixels_per_point</span>();
-        (<span class="ident">point</span> <span class="op">*</span> <span class="ident">pixels_per_point</span>).<span class="ident">round</span>() <span class="op">/</span> <span class="ident">pixels_per_point</span>
+    <span class="doccomment">/// Useful for pixel-perfect rendering
+    </span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>round_to_pixel(<span class="kw-2">&amp;</span><span class="self">self</span>, point: f32) -&gt; f32 {
+        <span class="kw">let </span>pixels_per_point = <span class="self">self</span>.pixels_per_point();
+        (point * pixels_per_point).round() / pixels_per_point
     }
 
-    <span class="doccomment">/// Useful for pixel-perfect rendering</span>
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">round_pos_to_pixels</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">pos</span>: <span class="ident">Pos2</span>) -&gt; <span class="ident">Pos2</span> {
-        <span class="ident">pos2</span>(<span class="self">self</span>.<span class="ident">round_to_pixel</span>(<span class="ident">pos</span>.<span class="ident">x</span>), <span class="self">self</span>.<span class="ident">round_to_pixel</span>(<span class="ident">pos</span>.<span class="ident">y</span>))
+    <span class="doccomment">/// Useful for pixel-perfect rendering
+    </span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>round_pos_to_pixels(<span class="kw-2">&amp;</span><span class="self">self</span>, pos: Pos2) -&gt; Pos2 {
+        pos2(<span class="self">self</span>.round_to_pixel(pos.x), <span class="self">self</span>.round_to_pixel(pos.y))
     }
 
-    <span class="doccomment">/// Useful for pixel-perfect rendering</span>
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">round_vec_to_pixels</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">vec</span>: <span class="ident">Vec2</span>) -&gt; <span class="ident">Vec2</span> {
-        <span class="ident">vec2</span>(<span class="self">self</span>.<span class="ident">round_to_pixel</span>(<span class="ident">vec</span>.<span class="ident">x</span>), <span class="self">self</span>.<span class="ident">round_to_pixel</span>(<span class="ident">vec</span>.<span class="ident">y</span>))
+    <span class="doccomment">/// Useful for pixel-perfect rendering
+    </span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>round_vec_to_pixels(<span class="kw-2">&amp;</span><span class="self">self</span>, vec: Vec2) -&gt; Vec2 {
+        vec2(<span class="self">self</span>.round_to_pixel(vec.x), <span class="self">self</span>.round_to_pixel(vec.y))
     }
 
-    <span class="doccomment">/// Useful for pixel-perfect rendering</span>
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">round_rect_to_pixels</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">rect</span>: <span class="ident">Rect</span>) -&gt; <span class="ident">Rect</span> {
-        <span class="ident">Rect</span> {
-            <span class="ident">min</span>: <span class="self">self</span>.<span class="ident">round_pos_to_pixels</span>(<span class="ident">rect</span>.<span class="ident">min</span>),
-            <span class="ident">max</span>: <span class="self">self</span>.<span class="ident">round_pos_to_pixels</span>(<span class="ident">rect</span>.<span class="ident">max</span>),
+    <span class="doccomment">/// Useful for pixel-perfect rendering
+    </span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>round_rect_to_pixels(<span class="kw-2">&amp;</span><span class="self">self</span>, rect: Rect) -&gt; Rect {
+        Rect {
+            min: <span class="self">self</span>.round_pos_to_pixels(rect.min),
+            max: <span class="self">self</span>.round_pos_to_pixels(rect.max),
         }
     }
 
-    <span class="comment">// ---------------------------------------------------------------------</span>
+    <span class="comment">// ---------------------------------------------------------------------
 
-    <span class="doccomment">/// Constrain the position of a window/area so it fits within the provided boundary.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// If area is `None`, will constrain to [`Self::available_rect`].</span>
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">constrain_window_rect_to_area</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">window</span>: <span class="ident">Rect</span>, <span class="ident">area</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Rect</span><span class="op">&gt;</span>) -&gt; <span class="ident">Rect</span> {
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">area</span> <span class="op">=</span> <span class="ident">area</span>.<span class="ident">unwrap_or_else</span>(<span class="op">|</span><span class="op">|</span> <span class="self">self</span>.<span class="ident">available_rect</span>());
+    </span><span class="doccomment">/// Constrain the position of a window/area so it fits within the provided boundary.
+    ///
+    /// If area is `None`, will constrain to [`Self::available_rect`].
+    </span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>constrain_window_rect_to_area(<span class="kw-2">&amp;</span><span class="self">self</span>, window: Rect, area: <span class="prelude-ty">Option</span>&lt;Rect&gt;) -&gt; Rect {
+        <span class="kw">let </span><span class="kw-2">mut </span>area = area.unwrap_or_else(|| <span class="self">self</span>.available_rect());
 
-        <span class="kw">if</span> <span class="ident">window</span>.<span class="ident">width</span>() <span class="op">&gt;</span> <span class="ident">area</span>.<span class="ident">width</span>() {
-            <span class="comment">// Allow overlapping side bars.</span>
-            <span class="comment">// This is important for small screens, e.g. mobiles running the web demo.</span>
-            <span class="ident">area</span>.<span class="ident">max</span>.<span class="ident">x</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">input</span>().<span class="ident">screen_rect</span>().<span class="ident">max</span>.<span class="ident">x</span>;
-            <span class="ident">area</span>.<span class="ident">min</span>.<span class="ident">x</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">input</span>().<span class="ident">screen_rect</span>().<span class="ident">min</span>.<span class="ident">x</span>;
+        <span class="kw">if </span>window.width() &gt; area.width() {
+            <span class="comment">// Allow overlapping side bars.
+            // This is important for small screens, e.g. mobiles running the web demo.
+            </span>area.max.x = <span class="self">self</span>.input().screen_rect().max.x;
+            area.min.x = <span class="self">self</span>.input().screen_rect().min.x;
         }
-        <span class="kw">if</span> <span class="ident">window</span>.<span class="ident">height</span>() <span class="op">&gt;</span> <span class="ident">area</span>.<span class="ident">height</span>() {
-            <span class="comment">// Allow overlapping top/bottom bars:</span>
-            <span class="ident">area</span>.<span class="ident">max</span>.<span class="ident">y</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">input</span>().<span class="ident">screen_rect</span>().<span class="ident">max</span>.<span class="ident">y</span>;
-            <span class="ident">area</span>.<span class="ident">min</span>.<span class="ident">y</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">input</span>().<span class="ident">screen_rect</span>().<span class="ident">min</span>.<span class="ident">y</span>;
+        <span class="kw">if </span>window.height() &gt; area.height() {
+            <span class="comment">// Allow overlapping top/bottom bars:
+            </span>area.max.y = <span class="self">self</span>.input().screen_rect().max.y;
+            area.min.y = <span class="self">self</span>.input().screen_rect().min.y;
         }
 
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">pos</span> <span class="op">=</span> <span class="ident">window</span>.<span class="ident">min</span>;
+        <span class="kw">let </span><span class="kw-2">mut </span>pos = window.min;
 
-        <span class="comment">// Constrain to screen, unless window is too large to fit:</span>
-        <span class="kw">let</span> <span class="ident">margin_x</span> <span class="op">=</span> (<span class="ident">window</span>.<span class="ident">width</span>() <span class="op">-</span> <span class="ident">area</span>.<span class="ident">width</span>()).<span class="ident">at_least</span>(<span class="number">0.0</span>);
-        <span class="kw">let</span> <span class="ident">margin_y</span> <span class="op">=</span> (<span class="ident">window</span>.<span class="ident">height</span>() <span class="op">-</span> <span class="ident">area</span>.<span class="ident">height</span>()).<span class="ident">at_least</span>(<span class="number">0.0</span>);
+        <span class="comment">// Constrain to screen, unless window is too large to fit:
+        </span><span class="kw">let </span>margin_x = (window.width() - area.width()).at_least(<span class="number">0.0</span>);
+        <span class="kw">let </span>margin_y = (window.height() - area.height()).at_least(<span class="number">0.0</span>);
 
-        <span class="ident">pos</span>.<span class="ident">x</span> <span class="op">=</span> <span class="ident">pos</span>.<span class="ident">x</span>.<span class="ident">at_most</span>(<span class="ident">area</span>.<span class="ident">right</span>() <span class="op">+</span> <span class="ident">margin_x</span> <span class="op">-</span> <span class="ident">window</span>.<span class="ident">width</span>()); <span class="comment">// move left if needed</span>
-        <span class="ident">pos</span>.<span class="ident">x</span> <span class="op">=</span> <span class="ident">pos</span>.<span class="ident">x</span>.<span class="ident">at_least</span>(<span class="ident">area</span>.<span class="ident">left</span>() <span class="op">-</span> <span class="ident">margin_x</span>); <span class="comment">// move right if needed</span>
-        <span class="ident">pos</span>.<span class="ident">y</span> <span class="op">=</span> <span class="ident">pos</span>.<span class="ident">y</span>.<span class="ident">at_most</span>(<span class="ident">area</span>.<span class="ident">bottom</span>() <span class="op">+</span> <span class="ident">margin_y</span> <span class="op">-</span> <span class="ident">window</span>.<span class="ident">height</span>()); <span class="comment">// move right if needed</span>
-        <span class="ident">pos</span>.<span class="ident">y</span> <span class="op">=</span> <span class="ident">pos</span>.<span class="ident">y</span>.<span class="ident">at_least</span>(<span class="ident">area</span>.<span class="ident">top</span>() <span class="op">-</span> <span class="ident">margin_y</span>); <span class="comment">// move down if needed</span>
+        pos.x = pos.x.at_most(area.right() + margin_x - window.width()); <span class="comment">// move left if needed
+        </span>pos.x = pos.x.at_least(area.left() - margin_x); <span class="comment">// move right if needed
+        </span>pos.y = pos.y.at_most(area.bottom() + margin_y - window.height()); <span class="comment">// move right if needed
+        </span>pos.y = pos.y.at_least(area.top() - margin_y); <span class="comment">// move down if needed
 
-        <span class="ident">pos</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">round_pos_to_pixels</span>(<span class="ident">pos</span>);
+        </span>pos = <span class="self">self</span>.round_pos_to_pixels(pos);
 
-        <span class="ident">Rect::from_min_size</span>(<span class="ident">pos</span>, <span class="ident">window</span>.<span class="ident">size</span>())
+        Rect::from_min_size(pos, window.size())
     }
 
-    <span class="comment">// ---------------------------------------------------------------------</span>
+    <span class="comment">// ---------------------------------------------------------------------
 
-    <span class="kw">fn</span> <span class="ident">begin_frame_mut</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">new_raw_input</span>: <span class="ident">RawInput</span>) {
-        <span class="self">self</span>.<span class="ident">memory</span>().<span class="ident">begin_frame</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">input</span>, <span class="kw-2">&amp;</span><span class="ident">new_raw_input</span>);
+    </span><span class="kw">fn </span>begin_frame_mut(<span class="kw-2">&amp;mut </span><span class="self">self</span>, new_raw_input: RawInput) {
+        <span class="self">self</span>.memory().begin_frame(<span class="kw-2">&amp;</span><span class="self">self</span>.input, <span class="kw-2">&amp;</span>new_raw_input);
 
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">input</span> <span class="op">=</span> <span class="ident">std::mem::take</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>.<span class="ident">input</span>);
-        <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">new_pixels_per_point</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">memory</span>().<span class="ident">new_pixels_per_point</span>.<span class="ident">take</span>() {
-            <span class="ident">input</span>.<span class="ident">pixels_per_point</span> <span class="op">=</span> <span class="ident">new_pixels_per_point</span>;
+        <span class="kw">let </span><span class="kw-2">mut </span>input = std::mem::take(<span class="kw-2">&amp;mut </span><span class="self">self</span>.input);
+        <span class="kw">if let </span><span class="prelude-val">Some</span>(new_pixels_per_point) = <span class="self">self</span>.memory().new_pixels_per_point.take() {
+            input.pixels_per_point = new_pixels_per_point;
         }
 
-        <span class="self">self</span>.<span class="ident">input</span> <span class="op">=</span> <span class="ident">input</span>.<span class="ident">begin_frame</span>(<span class="ident">new_raw_input</span>);
-        <span class="self">self</span>.<span class="ident">frame_state</span>.<span class="ident">lock</span>().<span class="ident">begin_frame</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">input</span>);
+        <span class="self">self</span>.input = input.begin_frame(new_raw_input);
+        <span class="self">self</span>.frame_state.lock().begin_frame(<span class="kw-2">&amp;</span><span class="self">self</span>.input);
 
-        <span class="self">self</span>.<span class="ident">update_fonts</span>(<span class="self">self</span>.<span class="ident">input</span>.<span class="ident">pixels_per_point</span>());
+        <span class="self">self</span>.update_fonts(<span class="self">self</span>.input.pixels_per_point());
 
-        <span class="comment">// Ensure we register the background area so panels and background ui can catch clicks:</span>
-        <span class="kw">let</span> <span class="ident">screen_rect</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">input</span>.<span class="ident">screen_rect</span>();
-        <span class="self">self</span>.<span class="ident">memory</span>().<span class="ident">areas</span>.<span class="ident">set_state</span>(
-            <span class="ident">LayerId::background</span>(),
-            <span class="ident">containers::area::State</span> {
-                <span class="ident">pos</span>: <span class="ident">screen_rect</span>.<span class="ident">min</span>,
-                <span class="ident">size</span>: <span class="ident">screen_rect</span>.<span class="ident">size</span>(),
-                <span class="ident">interactable</span>: <span class="bool-val">true</span>,
+        <span class="comment">// Ensure we register the background area so panels and background ui can catch clicks:
+        </span><span class="kw">let </span>screen_rect = <span class="self">self</span>.input.screen_rect();
+        <span class="self">self</span>.memory().areas.set_state(
+            LayerId::background(),
+            containers::area::State {
+                pos: screen_rect.min,
+                size: screen_rect.size(),
+                interactable: <span class="bool-val">true</span>,
             },
         );
     }
 
-    <span class="doccomment">/// Load fonts unless already loaded.</span>
-    <span class="kw">fn</span> <span class="ident">update_fonts</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">pixels_per_point</span>: <span class="ident">f32</span>) {
-        <span class="kw">let</span> <span class="ident">new_font_definitions</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">memory</span>().<span class="ident">new_font_definitions</span>.<span class="ident">take</span>();
+    <span class="doccomment">/// Load fonts unless already loaded.
+    </span><span class="kw">fn </span>update_fonts(<span class="kw-2">&amp;mut </span><span class="self">self</span>, pixels_per_point: f32) {
+        <span class="kw">let </span>new_font_definitions = <span class="self">self</span>.memory().new_font_definitions.take();
 
-        <span class="kw">let</span> <span class="ident">pixels_per_point_changed</span> <span class="op">=</span> <span class="kw">match</span> <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">fonts</span> {
-            <span class="prelude-val">None</span> =&gt; <span class="bool-val">true</span>,
-            <span class="prelude-val">Some</span>(<span class="ident">current_fonts</span>) =&gt; {
-                (<span class="ident">current_fonts</span>.<span class="ident">pixels_per_point</span>() <span class="op">-</span> <span class="ident">pixels_per_point</span>).<span class="ident">abs</span>() <span class="op">&gt;</span> <span class="number">1e-3</span>
-            }
+        <span class="kw">let </span>pixels_per_point_changed = <span class="kw">match </span><span class="kw-2">&amp;</span><span class="self">self</span>.fonts {
+            <span class="prelude-val">None </span>=&gt; <span class="bool-val">true</span>,
+            <span class="prelude-val">Some</span>(current_fonts) =&gt; {
+                (current_fonts.pixels_per_point() - pixels_per_point).abs() &gt; <span class="number">1e-3
+            </span>}
         };
 
-        <span class="kw">if</span> <span class="self">self</span>.<span class="ident">fonts</span>.<span class="ident">is_none</span>() <span class="op">|</span><span class="op">|</span> <span class="ident">new_font_definitions</span>.<span class="ident">is_some</span>() <span class="op">|</span><span class="op">|</span> <span class="ident">pixels_per_point_changed</span> {
-            <span class="self">self</span>.<span class="ident">fonts</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">Arc::new</span>(<span class="ident">Fonts::new</span>(
-                <span class="ident">pixels_per_point</span>,
-                <span class="ident">new_font_definitions</span>.<span class="ident">unwrap_or_else</span>(<span class="op">|</span><span class="op">|</span> {
-                    <span class="self">self</span>.<span class="ident">fonts</span>
-                        .<span class="ident">as_ref</span>()
-                        .<span class="ident">map</span>(<span class="op">|</span><span class="ident">font</span><span class="op">|</span> <span class="ident">font</span>.<span class="ident">definitions</span>().<span class="ident">clone</span>())
-                        .<span class="ident">unwrap_or_default</span>()
+        <span class="kw">if </span><span class="self">self</span>.fonts.is_none() || new_font_definitions.is_some() || pixels_per_point_changed {
+            <span class="self">self</span>.fonts = <span class="prelude-val">Some</span>(Arc::new(Fonts::new(
+                pixels_per_point,
+                new_font_definitions.unwrap_or_else(|| {
+                    <span class="self">self</span>.fonts
+                        .as_ref()
+                        .map(|font| font.definitions().clone())
+                        .unwrap_or_default()
                 }),
             )));
         }
     }
 
-    <span class="doccomment">/// Call at the end of each frame.</span>
-    <span class="doccomment">/// Returns what has happened this frame [`crate::Output`] as well as what you need to paint.</span>
-    <span class="doccomment">/// You can transform the returned shapes into triangles with a call to [`Context::tessellate`].</span>
-    <span class="attribute">#[<span class="ident">must_use</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">end_frame</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; (<span class="ident">Output</span>, <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">ClippedShape</span><span class="op">&gt;</span>) {
-        <span class="kw">if</span> <span class="self">self</span>.<span class="ident">input</span>.<span class="ident">wants_repaint</span>() {
-            <span class="self">self</span>.<span class="ident">request_repaint</span>();
+    <span class="doccomment">/// Call at the end of each frame.
+    /// Returns what has happened this frame [`crate::Output`] as well as what you need to paint.
+    /// You can transform the returned shapes into triangles with a call to [`Context::tessellate`].
+    </span><span class="attribute">#[must_use]
+    </span><span class="kw">pub fn </span>end_frame(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; (Output, Vec&lt;ClippedShape&gt;) {
+        <span class="kw">if </span><span class="self">self</span>.input.wants_repaint() {
+            <span class="self">self</span>.request_repaint();
         }
 
-        <span class="self">self</span>.<span class="ident">memory</span>()
-            .<span class="ident">end_frame</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">input</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">frame_state</span>().<span class="ident">used_ids</span>);
+        <span class="self">self</span>.memory()
+            .end_frame(<span class="kw-2">&amp;</span><span class="self">self</span>.input, <span class="kw-2">&amp;</span><span class="self">self</span>.frame_state().used_ids);
 
-        <span class="self">self</span>.<span class="ident">fonts</span>().<span class="ident">end_frame</span>();
+        <span class="self">self</span>.fonts().end_frame();
 
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">output</span>: <span class="ident">Output</span> <span class="op">=</span> <span class="ident">std::mem::take</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>.<span class="ident">output</span>());
-        <span class="kw">if</span> <span class="self">self</span>.<span class="ident">repaint_requests</span>.<span class="ident">load</span>(<span class="ident">SeqCst</span>) <span class="op">&gt;</span> <span class="number">0</span> {
-            <span class="self">self</span>.<span class="ident">repaint_requests</span>.<span class="ident">fetch_sub</span>(<span class="number">1</span>, <span class="ident">SeqCst</span>);
-            <span class="ident">output</span>.<span class="ident">needs_repaint</span> <span class="op">=</span> <span class="bool-val">true</span>;
+        <span class="kw">let </span><span class="kw-2">mut </span>output: Output = std::mem::take(<span class="kw-2">&amp;mut </span><span class="self">self</span>.output());
+        <span class="kw">if </span><span class="self">self</span>.repaint_requests.load(SeqCst) &gt; <span class="number">0 </span>{
+            <span class="self">self</span>.repaint_requests.fetch_sub(<span class="number">1</span>, SeqCst);
+            output.needs_repaint = <span class="bool-val">true</span>;
         }
 
-        <span class="kw">let</span> <span class="ident">shapes</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">drain_paint_lists</span>();
-        (<span class="ident">output</span>, <span class="ident">shapes</span>)
+        <span class="kw">let </span>shapes = <span class="self">self</span>.drain_paint_lists();
+        (output, shapes)
     }
 
-    <span class="kw">fn</span> <span class="ident">drain_paint_lists</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">ClippedShape</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="ident">memory</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">memory</span>();
-        <span class="self">self</span>.<span class="ident">graphics</span>().<span class="ident">drain</span>(<span class="ident">memory</span>.<span class="ident">areas</span>.<span class="ident">order</span>()).<span class="ident">collect</span>()
+    <span class="kw">fn </span>drain_paint_lists(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; Vec&lt;ClippedShape&gt; {
+        <span class="kw">let </span>memory = <span class="self">self</span>.memory();
+        <span class="self">self</span>.graphics().drain(memory.areas.order()).collect()
     }
 
-    <span class="doccomment">/// Tessellate the given shapes into triangle meshes.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">tessellate</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">shapes</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">ClippedShape</span><span class="op">&gt;</span>) -&gt; <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">ClippedMesh</span><span class="op">&gt;</span> {
-        <span class="comment">// A tempting optimization is to reuse the tessellation from last frame if the</span>
-        <span class="comment">// shapes are the same, but just comparing the shapes takes about 50% of the time</span>
-        <span class="comment">// it takes to tessellate them, so it is not a worth optimization.</span>
+    <span class="doccomment">/// Tessellate the given shapes into triangle meshes.
+    </span><span class="kw">pub fn </span>tessellate(<span class="kw-2">&amp;</span><span class="self">self</span>, shapes: Vec&lt;ClippedShape&gt;) -&gt; Vec&lt;ClippedMesh&gt; {
+        <span class="comment">// A tempting optimization is to reuse the tessellation from last frame if the
+        // shapes are the same, but just comparing the shapes takes about 50% of the time
+        // it takes to tessellate them, so it is not a worth optimization.
 
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">tessellation_options</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">memory</span>().<span class="ident">options</span>.<span class="ident">tessellation_options</span>;
-        <span class="ident">tessellation_options</span>.<span class="ident">pixels_per_point</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">pixels_per_point</span>();
-        <span class="ident">tessellation_options</span>.<span class="ident">aa_size</span> <span class="op">=</span> <span class="number">1.0</span> <span class="op">/</span> <span class="self">self</span>.<span class="ident">pixels_per_point</span>();
-        <span class="kw">let</span> <span class="ident">paint_stats</span> <span class="op">=</span> <span class="ident">PaintStats::from_shapes</span>(<span class="kw-2">&amp;</span><span class="ident">shapes</span>);
-        <span class="kw">let</span> <span class="ident">clipped_meshes</span> <span class="op">=</span> <span class="ident">tessellator::tessellate_shapes</span>(
-            <span class="ident">shapes</span>,
-            <span class="ident">tessellation_options</span>,
-            <span class="self">self</span>.<span class="ident">fonts</span>().<span class="ident">font_image</span>().<span class="ident">size</span>(),
+        </span><span class="kw">let </span><span class="kw-2">mut </span>tessellation_options = <span class="self">self</span>.memory().options.tessellation_options;
+        tessellation_options.pixels_per_point = <span class="self">self</span>.pixels_per_point();
+        tessellation_options.aa_size = <span class="number">1.0 </span>/ <span class="self">self</span>.pixels_per_point();
+        <span class="kw">let </span>paint_stats = PaintStats::from_shapes(<span class="kw-2">&amp;</span>shapes);
+        <span class="kw">let </span>clipped_meshes = tessellator::tessellate_shapes(
+            shapes,
+            tessellation_options,
+            <span class="self">self</span>.fonts().font_image().size(),
         );
-        <span class="kw-2">*</span><span class="self">self</span>.<span class="ident">paint_stats</span>.<span class="ident">lock</span>() <span class="op">=</span> <span class="ident">paint_stats</span>.<span class="ident">with_clipped_meshes</span>(<span class="kw-2">&amp;</span><span class="ident">clipped_meshes</span>);
-        <span class="ident">clipped_meshes</span>
+        <span class="kw-2">*</span><span class="self">self</span>.paint_stats.lock() = paint_stats.with_clipped_meshes(<span class="kw-2">&amp;</span>clipped_meshes);
+        clipped_meshes
     }
 
-    <span class="comment">// ---------------------------------------------------------------------</span>
+    <span class="comment">// ---------------------------------------------------------------------
 
-    <span class="doccomment">/// How much space is used by panels and windows.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">used_rect</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">Rect</span> {
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">used</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">frame_state</span>().<span class="ident">used_by_panels</span>;
-        <span class="kw">for</span> <span class="ident">window</span> <span class="kw">in</span> <span class="self">self</span>.<span class="ident">memory</span>().<span class="ident">areas</span>.<span class="ident">visible_windows</span>() {
-            <span class="ident">used</span> <span class="op">=</span> <span class="ident">used</span>.<span class="ident">union</span>(<span class="ident">window</span>.<span class="ident">rect</span>());
+    </span><span class="doccomment">/// How much space is used by panels and windows.
+    </span><span class="kw">pub fn </span>used_rect(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; Rect {
+        <span class="kw">let </span><span class="kw-2">mut </span>used = <span class="self">self</span>.frame_state().used_by_panels;
+        <span class="kw">for </span>window <span class="kw">in </span><span class="self">self</span>.memory().areas.visible_windows() {
+            used = used.union(window.rect());
         }
-        <span class="ident">used</span>
+        used
     }
 
-    <span class="doccomment">/// How much space is used by panels and windows.</span>
-    <span class="doccomment">/// You can shrink your egui area to this size and still fit all egui components.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">used_size</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">Vec2</span> {
-        <span class="self">self</span>.<span class="ident">used_rect</span>().<span class="ident">max</span> <span class="op">-</span> <span class="ident">Pos2::new</span>(<span class="number">0.0</span>, <span class="number">0.0</span>)
+    <span class="doccomment">/// How much space is used by panels and windows.
+    /// You can shrink your egui area to this size and still fit all egui components.
+    </span><span class="kw">pub fn </span>used_size(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; Vec2 {
+        <span class="self">self</span>.used_rect().max - Pos2::new(<span class="number">0.0</span>, <span class="number">0.0</span>)
     }
 
-    <span class="comment">// ---------------------------------------------------------------------</span>
+    <span class="comment">// ---------------------------------------------------------------------
 
-    <span class="doccomment">/// Is the pointer (mouse/touch) over any egui area?</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_pointer_over_area</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span> {
-        <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">pointer_pos</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">input</span>.<span class="ident">pointer</span>.<span class="ident">interact_pos</span>() {
-            <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">layer</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">layer_id_at</span>(<span class="ident">pointer_pos</span>) {
-                <span class="kw">if</span> <span class="ident">layer</span>.<span class="ident">order</span> <span class="op">==</span> <span class="ident">Order::Background</span> {
-                    <span class="op">!</span><span class="self">self</span>.<span class="ident">frame_state</span>().<span class="ident">unused_rect</span>.<span class="ident">contains</span>(<span class="ident">pointer_pos</span>)
-                } <span class="kw">else</span> {
-                    <span class="bool-val">true</span>
-                }
-            } <span class="kw">else</span> {
-                <span class="bool-val">false</span>
-            }
-        } <span class="kw">else</span> {
-            <span class="bool-val">false</span>
-        }
+    </span><span class="doccomment">/// Is the pointer (mouse/touch) over any egui area?
+    </span><span class="kw">pub fn </span>is_pointer_over_area(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; bool {
+        <span class="kw">if let </span><span class="prelude-val">Some</span>(pointer_pos) = <span class="self">self</span>.input.pointer.interact_pos() {
+            <span class="kw">if let </span><span class="prelude-val">Some</span>(layer) = <span class="self">self</span>.layer_id_at(pointer_pos) {
+                <span class="kw">if </span>layer.order == Order::Background {
+                    !<span class="self">self</span>.frame_state().unused_rect.contains(pointer_pos)
+                } <span class="kw">else </span>{
+                    <span class="bool-val">true
+                </span>}
+            } <span class="kw">else </span>{
+                <span class="bool-val">false
+            </span>}
+        } <span class="kw">else </span>{
+            <span class="bool-val">false
+        </span>}
     }
 
-    <span class="doccomment">/// True if egui is currently interested in the pointer (mouse or touch).</span>
-    <span class="doccomment">/// Could be the pointer is hovering over a [`Window`] or the user is dragging a widget.</span>
-    <span class="doccomment">/// If `false`, the pointer is outside of any egui area and so</span>
-    <span class="doccomment">/// you may be interested in what it is doing (e.g. controlling your game).</span>
-    <span class="doccomment">/// Returns `false` if a drag started outside of egui and then moved over an egui area.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">wants_pointer_input</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span> {
-        <span class="self">self</span>.<span class="ident">is_using_pointer</span>() <span class="op">|</span><span class="op">|</span> (<span class="self">self</span>.<span class="ident">is_pointer_over_area</span>() <span class="op">&amp;&amp;</span> <span class="op">!</span><span class="self">self</span>.<span class="ident">input</span>().<span class="ident">pointer</span>.<span class="ident">any_down</span>())
+    <span class="doccomment">/// True if egui is currently interested in the pointer (mouse or touch).
+    /// Could be the pointer is hovering over a [`Window`] or the user is dragging a widget.
+    /// If `false`, the pointer is outside of any egui area and so
+    /// you may be interested in what it is doing (e.g. controlling your game).
+    /// Returns `false` if a drag started outside of egui and then moved over an egui area.
+    </span><span class="kw">pub fn </span>wants_pointer_input(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; bool {
+        <span class="self">self</span>.is_using_pointer() || (<span class="self">self</span>.is_pointer_over_area() &amp;&amp; !<span class="self">self</span>.input().pointer.any_down())
     }
 
-    <span class="doccomment">/// Is egui currently using the pointer position (e.g. dragging a slider).</span>
-    <span class="doccomment">/// NOTE: this will return `false` if the pointer is just hovering over an egui area.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_using_pointer</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span> {
-        <span class="self">self</span>.<span class="ident">memory</span>().<span class="ident">interaction</span>.<span class="ident">is_using_pointer</span>()
+    <span class="doccomment">/// Is egui currently using the pointer position (e.g. dragging a slider).
+    /// NOTE: this will return `false` if the pointer is just hovering over an egui area.
+    </span><span class="kw">pub fn </span>is_using_pointer(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; bool {
+        <span class="self">self</span>.memory().interaction.is_using_pointer()
     }
 
-    <span class="doccomment">/// If `true`, egui is currently listening on text input (e.g. typing text in a [`TextEdit`]).</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">wants_keyboard_input</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span> {
-        <span class="self">self</span>.<span class="ident">memory</span>().<span class="ident">interaction</span>.<span class="ident">focus</span>.<span class="ident">focused</span>().<span class="ident">is_some</span>()
+    <span class="doccomment">/// If `true`, egui is currently listening on text input (e.g. typing text in a [`TextEdit`]).
+    </span><span class="kw">pub fn </span>wants_keyboard_input(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; bool {
+        <span class="self">self</span>.memory().interaction.focus.focused().is_some()
     }
 
-    <span class="comment">// ---------------------------------------------------------------------</span>
+    <span class="comment">// ---------------------------------------------------------------------
 
-    <span class="doccomment">/// Move all the graphics at the given layer.</span>
-    <span class="doccomment">/// Can be used to implement drag-and-drop (see relevant demo).</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">translate_layer</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">layer_id</span>: <span class="ident">LayerId</span>, <span class="ident">delta</span>: <span class="ident">Vec2</span>) {
-        <span class="kw">if</span> <span class="ident">delta</span> <span class="op">!</span><span class="op">=</span> <span class="ident">Vec2::ZERO</span> {
-            <span class="self">self</span>.<span class="ident">graphics</span>().<span class="ident">list</span>(<span class="ident">layer_id</span>).<span class="ident">lock</span>().<span class="ident">translate</span>(<span class="ident">delta</span>);
-        }
-    }
-
-    <span class="doccomment">/// Top-most layer at the given position.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">layer_id_at</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">pos</span>: <span class="ident">Pos2</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">LayerId</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="ident">resize_grab_radius_side</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">style</span>().<span class="ident">interaction</span>.<span class="ident">resize_grab_radius_side</span>;
-        <span class="self">self</span>.<span class="ident">memory</span>().<span class="ident">layer_id_at</span>(<span class="ident">pos</span>, <span class="ident">resize_grab_radius_side</span>)
-    }
-
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">rect_contains_pointer</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">layer_id</span>: <span class="ident">LayerId</span>, <span class="ident">rect</span>: <span class="ident">Rect</span>) -&gt; <span class="ident">bool</span> {
-        <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">pointer_pos</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">input</span>.<span class="ident">pointer</span>.<span class="ident">interact_pos</span>() {
-            <span class="ident">rect</span>.<span class="ident">contains</span>(<span class="ident">pointer_pos</span>) <span class="op">&amp;&amp;</span> <span class="self">self</span>.<span class="ident">layer_id_at</span>(<span class="ident">pointer_pos</span>) <span class="op">==</span> <span class="prelude-val">Some</span>(<span class="ident">layer_id</span>)
-        } <span class="kw">else</span> {
-            <span class="bool-val">false</span>
+    </span><span class="doccomment">/// Move all the graphics at the given layer.
+    /// Can be used to implement drag-and-drop (see relevant demo).
+    </span><span class="kw">pub fn </span>translate_layer(<span class="kw-2">&amp;</span><span class="self">self</span>, layer_id: LayerId, delta: Vec2) {
+        <span class="kw">if </span>delta != Vec2::ZERO {
+            <span class="self">self</span>.graphics().list(layer_id).lock().translate(delta);
         }
     }
 
-    <span class="comment">// ---------------------------------------------------------------------</span>
-
-    <span class="doccomment">/// Wether or not to debug widget layout on hover.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">debug_on_hover</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span> {
-        <span class="self">self</span>.<span class="ident">memory</span>().<span class="ident">options</span>.<span class="ident">style</span>.<span class="ident">debug</span>.<span class="ident">debug_on_hover</span>
+    <span class="doccomment">/// Top-most layer at the given position.
+    </span><span class="kw">pub fn </span>layer_id_at(<span class="kw-2">&amp;</span><span class="self">self</span>, pos: Pos2) -&gt; <span class="prelude-ty">Option</span>&lt;LayerId&gt; {
+        <span class="kw">let </span>resize_grab_radius_side = <span class="self">self</span>.style().interaction.resize_grab_radius_side;
+        <span class="self">self</span>.memory().layer_id_at(pos, resize_grab_radius_side)
     }
 
-    <span class="doccomment">/// Turn on/off wether or not to debug widget layout on hover.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_debug_on_hover</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">debug_on_hover</span>: <span class="ident">bool</span>) {
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">style</span> <span class="op">=</span> (<span class="kw-2">*</span><span class="self">self</span>.<span class="ident">memory</span>().<span class="ident">options</span>.<span class="ident">style</span>).<span class="ident">clone</span>();
-        <span class="ident">style</span>.<span class="ident">debug</span>.<span class="ident">debug_on_hover</span> <span class="op">=</span> <span class="ident">debug_on_hover</span>;
-        <span class="self">self</span>.<span class="ident">set_style</span>(<span class="ident">style</span>);
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>rect_contains_pointer(<span class="kw-2">&amp;</span><span class="self">self</span>, layer_id: LayerId, rect: Rect) -&gt; bool {
+        <span class="kw">if let </span><span class="prelude-val">Some</span>(pointer_pos) = <span class="self">self</span>.input.pointer.interact_pos() {
+            rect.contains(pointer_pos) &amp;&amp; <span class="self">self</span>.layer_id_at(pointer_pos) == <span class="prelude-val">Some</span>(layer_id)
+        } <span class="kw">else </span>{
+            <span class="bool-val">false
+        </span>}
+    }
+
+    <span class="comment">// ---------------------------------------------------------------------
+
+    </span><span class="doccomment">/// Wether or not to debug widget layout on hover.
+    </span><span class="kw">pub fn </span>debug_on_hover(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; bool {
+        <span class="self">self</span>.memory().options.style.debug.debug_on_hover
+    }
+
+    <span class="doccomment">/// Turn on/off wether or not to debug widget layout on hover.
+    </span><span class="kw">pub fn </span>set_debug_on_hover(<span class="kw-2">&amp;</span><span class="self">self</span>, debug_on_hover: bool) {
+        <span class="kw">let </span><span class="kw-2">mut </span>style = (<span class="kw-2">*</span><span class="self">self</span>.memory().options.style).clone();
+        style.debug.debug_on_hover = debug_on_hover;
+        <span class="self">self</span>.set_style(style);
     }
 }
 
-<span class="doccomment">/// ## Animation</span>
-<span class="kw">impl</span> <span class="ident">Context</span> {
-    <span class="doccomment">/// Returns a value in the range [0, 1], to indicate &quot;how on&quot; this thing is.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// The first time called it will return `if value { 1.0 } else { 0.0 }`</span>
-    <span class="doccomment">/// Calling this with `value = true` will always yield a number larger than zero, quickly going towards one.</span>
-    <span class="doccomment">/// Calling this with `value = false` will always yield a number less than one, quickly going towards zero.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// The function will call [`Self::request_repaint()`] when appropriate.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// The animation time is taken from [`Style::animation_time`].</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">animate_bool</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">id</span>: <span class="ident">Id</span>, <span class="ident">value</span>: <span class="ident">bool</span>) -&gt; <span class="ident">f32</span> {
-        <span class="kw">let</span> <span class="ident">animation_time</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">style</span>().<span class="ident">animation_time</span>;
-        <span class="self">self</span>.<span class="ident">animate_bool_with_time</span>(<span class="ident">id</span>, <span class="ident">value</span>, <span class="ident">animation_time</span>)
+<span class="doccomment">/// ## Animation
+</span><span class="kw">impl </span>Context {
+    <span class="doccomment">/// Returns a value in the range [0, 1], to indicate &quot;how on&quot; this thing is.
+    ///
+    /// The first time called it will return `if value { 1.0 } else { 0.0 }`
+    /// Calling this with `value = true` will always yield a number larger than zero, quickly going towards one.
+    /// Calling this with `value = false` will always yield a number less than one, quickly going towards zero.
+    ///
+    /// The function will call [`Self::request_repaint()`] when appropriate.
+    ///
+    /// The animation time is taken from [`Style::animation_time`].
+    </span><span class="kw">pub fn </span>animate_bool(<span class="kw-2">&amp;</span><span class="self">self</span>, id: Id, value: bool) -&gt; f32 {
+        <span class="kw">let </span>animation_time = <span class="self">self</span>.style().animation_time;
+        <span class="self">self</span>.animate_bool_with_time(id, value, animation_time)
     }
 
-    <span class="doccomment">/// Like [`Self::animate_bool`] but allows you to control the animation time.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">animate_bool_with_time</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">id</span>: <span class="ident">Id</span>, <span class="ident">value</span>: <span class="ident">bool</span>, <span class="ident">animation_time</span>: <span class="ident">f32</span>) -&gt; <span class="ident">f32</span> {
-        <span class="kw">let</span> <span class="ident">animated_value</span> <span class="op">=</span>
-            <span class="self">self</span>.<span class="ident">animation_manager</span>
-                .<span class="ident">lock</span>()
-                .<span class="ident">animate_bool</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">input</span>, <span class="ident">animation_time</span>, <span class="ident">id</span>, <span class="ident">value</span>);
-        <span class="kw">let</span> <span class="ident">animation_in_progress</span> <span class="op">=</span> <span class="number">0.0</span> <span class="op">&lt;</span> <span class="ident">animated_value</span> <span class="op">&amp;&amp;</span> <span class="ident">animated_value</span> <span class="op">&lt;</span> <span class="number">1.0</span>;
-        <span class="kw">if</span> <span class="ident">animation_in_progress</span> {
-            <span class="self">self</span>.<span class="ident">request_repaint</span>();
+    <span class="doccomment">/// Like [`Self::animate_bool`] but allows you to control the animation time.
+    </span><span class="kw">pub fn </span>animate_bool_with_time(<span class="kw-2">&amp;</span><span class="self">self</span>, id: Id, value: bool, animation_time: f32) -&gt; f32 {
+        <span class="kw">let </span>animated_value =
+            <span class="self">self</span>.animation_manager
+                .lock()
+                .animate_bool(<span class="kw-2">&amp;</span><span class="self">self</span>.input, animation_time, id, value);
+        <span class="kw">let </span>animation_in_progress = <span class="number">0.0 </span>&lt; animated_value &amp;&amp; animated_value &lt; <span class="number">1.0</span>;
+        <span class="kw">if </span>animation_in_progress {
+            <span class="self">self</span>.request_repaint();
         }
-        <span class="ident">animated_value</span>
+        animated_value
     }
 
-    <span class="doccomment">/// Clear memory of any animations.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">clear_animations</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) {
-        <span class="kw-2">*</span><span class="self">self</span>.<span class="ident">animation_manager</span>.<span class="ident">lock</span>() <span class="op">=</span> <span class="ident">Default::default</span>();
+    <span class="doccomment">/// Clear memory of any animations.
+    </span><span class="kw">pub fn </span>clear_animations(<span class="kw-2">&amp;</span><span class="self">self</span>) {
+        <span class="kw-2">*</span><span class="self">self</span>.animation_manager.lock() = Default::default();
     }
 }
 
-<span class="kw">impl</span> <span class="ident">Context</span> {
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">settings_ui</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">ui</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Ui</span>) {
-        <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::containers</span>::<span class="kw-2">*</span>;
+<span class="kw">impl </span>Context {
+    <span class="kw">pub fn </span>settings_ui(<span class="kw-2">&amp;</span><span class="self">self</span>, ui: <span class="kw-2">&amp;mut </span>Ui) {
+        <span class="kw">use </span><span class="kw">crate</span>::containers::<span class="kw-2">*</span>;
 
-        <span class="ident">CollapsingHeader::new</span>(<span class="string">&quot;🎑 Style&quot;</span>)
-            .<span class="ident">default_open</span>(<span class="bool-val">true</span>)
-            .<span class="ident">show</span>(<span class="ident">ui</span>, <span class="op">|</span><span class="ident">ui</span><span class="op">|</span> {
-                <span class="self">self</span>.<span class="ident">style_ui</span>(<span class="ident">ui</span>);
+        CollapsingHeader::new(<span class="string">&quot;🎑 Style&quot;</span>)
+            .default_open(<span class="bool-val">true</span>)
+            .show(ui, |ui| {
+                <span class="self">self</span>.style_ui(ui);
             });
 
-        <span class="ident">CollapsingHeader::new</span>(<span class="string">&quot;🔠 Fonts&quot;</span>)
-            .<span class="ident">default_open</span>(<span class="bool-val">false</span>)
-            .<span class="ident">show</span>(<span class="ident">ui</span>, <span class="op">|</span><span class="ident">ui</span><span class="op">|</span> {
-                <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">font_definitions</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">fonts</span>().<span class="ident">definitions</span>().<span class="ident">clone</span>();
-                <span class="ident">font_definitions</span>.<span class="ident">ui</span>(<span class="ident">ui</span>);
-                <span class="self">self</span>.<span class="ident">fonts</span>().<span class="ident">font_image</span>().<span class="ident">ui</span>(<span class="ident">ui</span>);
-                <span class="self">self</span>.<span class="ident">set_fonts</span>(<span class="ident">font_definitions</span>);
+        CollapsingHeader::new(<span class="string">&quot;🔠 Fonts&quot;</span>)
+            .default_open(<span class="bool-val">false</span>)
+            .show(ui, |ui| {
+                <span class="kw">let </span><span class="kw-2">mut </span>font_definitions = <span class="self">self</span>.fonts().definitions().clone();
+                font_definitions.ui(ui);
+                <span class="self">self</span>.fonts().font_image().ui(ui);
+                <span class="self">self</span>.set_fonts(font_definitions);
             });
 
-        <span class="ident">CollapsingHeader::new</span>(<span class="string">&quot;✒ Painting&quot;</span>)
-            .<span class="ident">default_open</span>(<span class="bool-val">true</span>)
-            .<span class="ident">show</span>(<span class="ident">ui</span>, <span class="op">|</span><span class="ident">ui</span><span class="op">|</span> {
-                <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">tessellation_options</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">memory</span>().<span class="ident">options</span>.<span class="ident">tessellation_options</span>;
-                <span class="ident">tessellation_options</span>.<span class="ident">ui</span>(<span class="ident">ui</span>);
-                <span class="ident">ui</span>.<span class="ident">vertical_centered</span>(<span class="op">|</span><span class="ident">ui</span><span class="op">|</span> <span class="ident">reset_button</span>(<span class="ident">ui</span>, <span class="kw-2">&amp;mut</span> <span class="ident">tessellation_options</span>));
-                <span class="self">self</span>.<span class="ident">memory</span>().<span class="ident">options</span>.<span class="ident">tessellation_options</span> <span class="op">=</span> <span class="ident">tessellation_options</span>;
+        CollapsingHeader::new(<span class="string">&quot;✒ Painting&quot;</span>)
+            .default_open(<span class="bool-val">true</span>)
+            .show(ui, |ui| {
+                <span class="kw">let </span><span class="kw-2">mut </span>tessellation_options = <span class="self">self</span>.memory().options.tessellation_options;
+                tessellation_options.ui(ui);
+                ui.vertical_centered(|ui| reset_button(ui, <span class="kw-2">&amp;mut </span>tessellation_options));
+                <span class="self">self</span>.memory().options.tessellation_options = tessellation_options;
             });
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">inspection_ui</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">ui</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Ui</span>) {
-        <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::containers</span>::<span class="kw-2">*</span>;
-        <span class="macro">crate::trace!</span>(<span class="ident">ui</span>);
+    <span class="kw">pub fn </span>inspection_ui(<span class="kw-2">&amp;</span><span class="self">self</span>, ui: <span class="kw-2">&amp;mut </span>Ui) {
+        <span class="kw">use </span><span class="kw">crate</span>::containers::<span class="kw-2">*</span>;
+        <span class="macro">crate::trace!</span>(ui);
 
-        <span class="ident">ui</span>.<span class="ident">label</span>(<span class="macro">format!</span>(<span class="string">&quot;Is using pointer: {}&quot;</span>, <span class="self">self</span>.<span class="ident">is_using_pointer</span>()))
-            .<span class="ident">on_hover_text</span>(
+        ui.label(<span class="macro">format!</span>(<span class="string">&quot;Is using pointer: {}&quot;</span>, <span class="self">self</span>.is_using_pointer()))
+            .on_hover_text(
                 <span class="string">&quot;Is egui currently using the pointer actively (e.g. dragging a slider)?&quot;</span>,
             );
-        <span class="ident">ui</span>.<span class="ident">label</span>(<span class="macro">format!</span>(<span class="string">&quot;Wants pointer input: {}&quot;</span>, <span class="self">self</span>.<span class="ident">wants_pointer_input</span>()))
-            .<span class="ident">on_hover_text</span>(<span class="string">&quot;Is egui currently interested in the location of the pointer (either because it is in use, or because it is hovering over a window).&quot;</span>);
-        <span class="ident">ui</span>.<span class="ident">label</span>(<span class="macro">format!</span>(
+        ui.label(<span class="macro">format!</span>(<span class="string">&quot;Wants pointer input: {}&quot;</span>, <span class="self">self</span>.wants_pointer_input()))
+            .on_hover_text(<span class="string">&quot;Is egui currently interested in the location of the pointer (either because it is in use, or because it is hovering over a window).&quot;</span>);
+        ui.label(<span class="macro">format!</span>(
             <span class="string">&quot;Wants keyboard input: {}&quot;</span>,
-            <span class="self">self</span>.<span class="ident">wants_keyboard_input</span>()
+            <span class="self">self</span>.wants_keyboard_input()
         ))
-        .<span class="ident">on_hover_text</span>(<span class="string">&quot;Is egui currently listening for text input?&quot;</span>);
-        <span class="ident">ui</span>.<span class="ident">label</span>(<span class="macro">format!</span>(
+        .on_hover_text(<span class="string">&quot;Is egui currently listening for text input?&quot;</span>);
+        ui.label(<span class="macro">format!</span>(
             <span class="string">&quot;Keyboard focus widget: {}&quot;</span>,
-            <span class="self">self</span>.<span class="ident">memory</span>()
-                .<span class="ident">interaction</span>
-                .<span class="ident">focus</span>
-                .<span class="ident">focused</span>()
-                .<span class="ident">as_ref</span>()
-                .<span class="ident">map</span>(<span class="ident">Id::short_debug_format</span>)
-                .<span class="ident">unwrap_or_default</span>()
+            <span class="self">self</span>.memory()
+                .interaction
+                .focus
+                .focused()
+                .as_ref()
+                .map(Id::short_debug_format)
+                .unwrap_or_default()
         ))
-        .<span class="ident">on_hover_text</span>(<span class="string">&quot;Is egui currently listening for text input?&quot;</span>);
+        .on_hover_text(<span class="string">&quot;Is egui currently listening for text input?&quot;</span>);
 
-        <span class="kw">let</span> <span class="ident">pointer_pos</span> <span class="op">=</span> <span class="self">self</span>
-            .<span class="ident">input</span>()
-            .<span class="ident">pointer</span>
-            .<span class="ident">hover_pos</span>()
-            .<span class="ident">map_or_else</span>(<span class="ident">String::new</span>, <span class="op">|</span><span class="ident">pos</span><span class="op">|</span> <span class="macro">format!</span>(<span class="string">&quot;{:?}&quot;</span>, <span class="ident">pos</span>));
-        <span class="ident">ui</span>.<span class="ident">label</span>(<span class="macro">format!</span>(<span class="string">&quot;Pointer pos: {}&quot;</span>, <span class="ident">pointer_pos</span>));
+        <span class="kw">let </span>pointer_pos = <span class="self">self
+            </span>.input()
+            .pointer
+            .hover_pos()
+            .map_or_else(String::new, |pos| <span class="macro">format!</span>(<span class="string">&quot;{:?}&quot;</span>, pos));
+        ui.label(<span class="macro">format!</span>(<span class="string">&quot;Pointer pos: {}&quot;</span>, pointer_pos));
 
-        <span class="kw">let</span> <span class="ident">top_layer</span> <span class="op">=</span> <span class="self">self</span>
-            .<span class="ident">input</span>()
-            .<span class="ident">pointer</span>
-            .<span class="ident">hover_pos</span>()
-            .<span class="ident">and_then</span>(<span class="op">|</span><span class="ident">pos</span><span class="op">|</span> <span class="self">self</span>.<span class="ident">layer_id_at</span>(<span class="ident">pos</span>))
-            .<span class="ident">map_or_else</span>(<span class="ident">String::new</span>, <span class="op">|</span><span class="ident">layer</span><span class="op">|</span> <span class="ident">layer</span>.<span class="ident">short_debug_format</span>());
-        <span class="ident">ui</span>.<span class="ident">label</span>(<span class="macro">format!</span>(<span class="string">&quot;Top layer under mouse: {}&quot;</span>, <span class="ident">top_layer</span>));
+        <span class="kw">let </span>top_layer = <span class="self">self
+            </span>.input()
+            .pointer
+            .hover_pos()
+            .and_then(|pos| <span class="self">self</span>.layer_id_at(pos))
+            .map_or_else(String::new, |layer| layer.short_debug_format());
+        ui.label(<span class="macro">format!</span>(<span class="string">&quot;Top layer under mouse: {}&quot;</span>, top_layer));
 
-        <span class="ident">ui</span>.<span class="ident">add_space</span>(<span class="number">16.0</span>);
+        ui.add_space(<span class="number">16.0</span>);
 
-        <span class="ident">ui</span>.<span class="ident">label</span>(<span class="macro">format!</span>(
+        ui.label(<span class="macro">format!</span>(
             <span class="string">&quot;There are {} text galleys in the layout cache&quot;</span>,
-            <span class="self">self</span>.<span class="ident">fonts</span>().<span class="ident">num_galleys_in_cache</span>()
+            <span class="self">self</span>.fonts().num_galleys_in_cache()
         ))
-        .<span class="ident">on_hover_text</span>(<span class="string">&quot;This is approximately the number of text strings on screen&quot;</span>);
-        <span class="ident">ui</span>.<span class="ident">add_space</span>(<span class="number">16.0</span>);
+        .on_hover_text(<span class="string">&quot;This is approximately the number of text strings on screen&quot;</span>);
+        ui.add_space(<span class="number">16.0</span>);
 
-        <span class="ident">CollapsingHeader::new</span>(<span class="string">&quot;📥 Input&quot;</span>)
-            .<span class="ident">default_open</span>(<span class="bool-val">false</span>)
-            .<span class="ident">show</span>(<span class="ident">ui</span>, <span class="op">|</span><span class="ident">ui</span><span class="op">|</span> <span class="ident">ui</span>.<span class="ident">input</span>().<span class="ident">clone</span>().<span class="ident">ui</span>(<span class="ident">ui</span>));
+        CollapsingHeader::new(<span class="string">&quot;📥 Input&quot;</span>)
+            .default_open(<span class="bool-val">false</span>)
+            .show(ui, |ui| ui.input().clone().ui(ui));
 
-        <span class="ident">CollapsingHeader::new</span>(<span class="string">&quot;📊 Paint stats&quot;</span>)
-            .<span class="ident">default_open</span>(<span class="bool-val">true</span>)
-            .<span class="ident">show</span>(<span class="ident">ui</span>, <span class="op">|</span><span class="ident">ui</span><span class="op">|</span> {
-                <span class="self">self</span>.<span class="ident">paint_stats</span>.<span class="ident">lock</span>().<span class="ident">ui</span>(<span class="ident">ui</span>);
+        CollapsingHeader::new(<span class="string">&quot;📊 Paint stats&quot;</span>)
+            .default_open(<span class="bool-val">true</span>)
+            .show(ui, |ui| {
+                <span class="self">self</span>.paint_stats.lock().ui(ui);
             });
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">memory_ui</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">ui</span>: <span class="kw-2">&amp;mut</span> <span class="ident"><span class="kw">crate</span>::Ui</span>) {
-        <span class="kw">if</span> <span class="ident">ui</span>
-            .<span class="ident">button</span>(<span class="string">&quot;Reset all&quot;</span>)
-            .<span class="ident">on_hover_text</span>(<span class="string">&quot;Reset all egui state&quot;</span>)
-            .<span class="ident">clicked</span>()
+    <span class="kw">pub fn </span>memory_ui(<span class="kw-2">&amp;</span><span class="self">self</span>, ui: <span class="kw-2">&amp;mut </span><span class="kw">crate</span>::Ui) {
+        <span class="kw">if </span>ui
+            .button(<span class="string">&quot;Reset all&quot;</span>)
+            .on_hover_text(<span class="string">&quot;Reset all egui state&quot;</span>)
+            .clicked()
         {
-            <span class="kw-2">*</span><span class="self">self</span>.<span class="ident">memory</span>() <span class="op">=</span> <span class="ident">Default::default</span>();
+            <span class="kw-2">*</span><span class="self">self</span>.memory() = Default::default();
         }
 
-        <span class="kw">let</span> <span class="ident">num_state</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">memory</span>().<span class="ident">data</span>.<span class="ident">len</span>();
-        <span class="kw">let</span> <span class="ident">num_serialized</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">memory</span>().<span class="ident">data</span>.<span class="ident">count_serialized</span>();
-        <span class="ident">ui</span>.<span class="ident">label</span>(<span class="macro">format!</span>(
+        <span class="kw">let </span>num_state = <span class="self">self</span>.memory().data.len();
+        <span class="kw">let </span>num_serialized = <span class="self">self</span>.memory().data.count_serialized();
+        ui.label(<span class="macro">format!</span>(
             <span class="string">&quot;{} widget states stored (of which {} are serialized).&quot;</span>,
-            <span class="ident">num_state</span>, <span class="ident">num_serialized</span>
+            num_state, num_serialized
         ));
 
-        <span class="ident">ui</span>.<span class="ident">horizontal</span>(<span class="op">|</span><span class="ident">ui</span><span class="op">|</span> {
-            <span class="ident">ui</span>.<span class="ident">label</span>(<span class="macro">format!</span>(
+        ui.horizontal(|ui| {
+            ui.label(<span class="macro">format!</span>(
                 <span class="string">&quot;{} areas (panels, windows, popups, …)&quot;</span>,
-                <span class="self">self</span>.<span class="ident">memory</span>().<span class="ident">areas</span>.<span class="ident">count</span>()
+                <span class="self">self</span>.memory().areas.count()
             ));
-            <span class="kw">if</span> <span class="ident">ui</span>.<span class="ident">button</span>(<span class="string">&quot;Reset&quot;</span>).<span class="ident">clicked</span>() {
-                <span class="self">self</span>.<span class="ident">memory</span>().<span class="ident">areas</span> <span class="op">=</span> <span class="ident">Default::default</span>();
+            <span class="kw">if </span>ui.button(<span class="string">&quot;Reset&quot;</span>).clicked() {
+                <span class="self">self</span>.memory().areas = Default::default();
             }
         });
-        <span class="ident">ui</span>.<span class="ident">indent</span>(<span class="string">&quot;areas&quot;</span>, <span class="op">|</span><span class="ident">ui</span><span class="op">|</span> {
-            <span class="ident">ui</span>.<span class="ident">label</span>(<span class="string">&quot;Visible areas, ordered back to front.&quot;</span>);
-            <span class="ident">ui</span>.<span class="ident">label</span>(<span class="string">&quot;Hover to highlight&quot;</span>);
-            <span class="kw">let</span> <span class="ident">layers_ids</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">LayerId</span><span class="op">&gt;</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">memory</span>().<span class="ident">areas</span>.<span class="ident">order</span>().<span class="ident">to_vec</span>();
-            <span class="kw">for</span> <span class="ident">layer_id</span> <span class="kw">in</span> <span class="ident">layers_ids</span> {
-                <span class="kw">let</span> <span class="ident">area</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">memory</span>().<span class="ident">areas</span>.<span class="ident">get</span>(<span class="ident">layer_id</span>.<span class="ident">id</span>).<span class="ident">cloned</span>();
-                <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">area</span>) <span class="op">=</span> <span class="ident">area</span> {
-                    <span class="kw">let</span> <span class="ident">is_visible</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">memory</span>().<span class="ident">areas</span>.<span class="ident">is_visible</span>(<span class="kw-2">&amp;</span><span class="ident">layer_id</span>);
-                    <span class="kw">if</span> <span class="op">!</span><span class="ident">is_visible</span> {
+        ui.indent(<span class="string">&quot;areas&quot;</span>, |ui| {
+            ui.label(<span class="string">&quot;Visible areas, ordered back to front.&quot;</span>);
+            ui.label(<span class="string">&quot;Hover to highlight&quot;</span>);
+            <span class="kw">let </span>layers_ids: Vec&lt;LayerId&gt; = <span class="self">self</span>.memory().areas.order().to_vec();
+            <span class="kw">for </span>layer_id <span class="kw">in </span>layers_ids {
+                <span class="kw">let </span>area = <span class="self">self</span>.memory().areas.get(layer_id.id).cloned();
+                <span class="kw">if let </span><span class="prelude-val">Some</span>(area) = area {
+                    <span class="kw">let </span>is_visible = <span class="self">self</span>.memory().areas.is_visible(<span class="kw-2">&amp;</span>layer_id);
+                    <span class="kw">if </span>!is_visible {
                         <span class="kw">continue</span>;
                     }
-                    <span class="kw">let</span> <span class="ident">text</span> <span class="op">=</span> <span class="macro">format!</span>(<span class="string">&quot;{} - {:?}&quot;</span>, <span class="ident">layer_id</span>.<span class="ident">short_debug_format</span>(), <span class="ident">area</span>.<span class="ident">rect</span>(),);
-                    <span class="comment">// TODO: `Sense::hover_highlight()`</span>
-                    <span class="kw">if</span> <span class="ident">ui</span>
-                        .<span class="ident">add</span>(<span class="ident">Label::new</span>(<span class="ident">RichText::new</span>(<span class="ident">text</span>).<span class="ident">monospace</span>()).<span class="ident">sense</span>(<span class="ident">Sense::click</span>()))
-                        .<span class="ident">hovered</span>
-                        <span class="op">&amp;&amp;</span> <span class="ident">is_visible</span>
+                    <span class="kw">let </span>text = <span class="macro">format!</span>(<span class="string">&quot;{} - {:?}&quot;</span>, layer_id.short_debug_format(), area.rect(),);
+                    <span class="comment">// TODO: `Sense::hover_highlight()`
+                    </span><span class="kw">if </span>ui
+                        .add(Label::new(RichText::new(text).monospace()).sense(Sense::click()))
+                        .hovered
+                        &amp;&amp; is_visible
                     {
-                        <span class="ident">ui</span>.<span class="ident">ctx</span>()
-                            .<span class="ident">debug_painter</span>()
-                            .<span class="ident">debug_rect</span>(<span class="ident">area</span>.<span class="ident">rect</span>(), <span class="ident">Color32::RED</span>, <span class="string">&quot;&quot;</span>);
+                        ui.ctx()
+                            .debug_painter()
+                            .debug_rect(area.rect(), Color32::RED, <span class="string">&quot;&quot;</span>);
                     }
                 }
             }
         });
 
-        <span class="ident">ui</span>.<span class="ident">horizontal</span>(<span class="op">|</span><span class="ident">ui</span><span class="op">|</span> {
-            <span class="ident">ui</span>.<span class="ident">label</span>(<span class="macro">format!</span>(
+        ui.horizontal(|ui| {
+            ui.label(<span class="macro">format!</span>(
                 <span class="string">&quot;{} collapsing headers&quot;</span>,
-                <span class="self">self</span>.<span class="ident">memory</span>()
-                    .<span class="ident">data</span>
-                    .<span class="ident">count</span>::<span class="op">&lt;</span><span class="ident">containers::collapsing_header::State</span><span class="op">&gt;</span>()
+                <span class="self">self</span>.memory()
+                    .data
+                    .count::&lt;containers::collapsing_header::State&gt;()
             ));
-            <span class="kw">if</span> <span class="ident">ui</span>.<span class="ident">button</span>(<span class="string">&quot;Reset&quot;</span>).<span class="ident">clicked</span>() {
-                <span class="self">self</span>.<span class="ident">memory</span>()
-                    .<span class="ident">data</span>
-                    .<span class="ident">remove_by_type</span>::<span class="op">&lt;</span><span class="ident">containers::collapsing_header::State</span><span class="op">&gt;</span>();
+            <span class="kw">if </span>ui.button(<span class="string">&quot;Reset&quot;</span>).clicked() {
+                <span class="self">self</span>.memory()
+                    .data
+                    .remove_by_type::&lt;containers::collapsing_header::State&gt;();
             }
         });
 
-        <span class="ident">ui</span>.<span class="ident">horizontal</span>(<span class="op">|</span><span class="ident">ui</span><span class="op">|</span> {
-            <span class="ident">ui</span>.<span class="ident">label</span>(<span class="macro">format!</span>(
+        ui.horizontal(|ui| {
+            ui.label(<span class="macro">format!</span>(
                 <span class="string">&quot;{} menu bars&quot;</span>,
-                <span class="self">self</span>.<span class="ident">memory</span>().<span class="ident">data</span>.<span class="ident">count</span>::<span class="op">&lt;</span><span class="ident">menu::BarState</span><span class="op">&gt;</span>()
+                <span class="self">self</span>.memory().data.count::&lt;menu::BarState&gt;()
             ));
-            <span class="kw">if</span> <span class="ident">ui</span>.<span class="ident">button</span>(<span class="string">&quot;Reset&quot;</span>).<span class="ident">clicked</span>() {
-                <span class="self">self</span>.<span class="ident">memory</span>().<span class="ident">data</span>.<span class="ident">remove_by_type</span>::<span class="op">&lt;</span><span class="ident">menu::BarState</span><span class="op">&gt;</span>();
+            <span class="kw">if </span>ui.button(<span class="string">&quot;Reset&quot;</span>).clicked() {
+                <span class="self">self</span>.memory().data.remove_by_type::&lt;menu::BarState&gt;();
             }
         });
 
-        <span class="ident">ui</span>.<span class="ident">horizontal</span>(<span class="op">|</span><span class="ident">ui</span><span class="op">|</span> {
-            <span class="ident">ui</span>.<span class="ident">label</span>(<span class="macro">format!</span>(
+        ui.horizontal(|ui| {
+            ui.label(<span class="macro">format!</span>(
                 <span class="string">&quot;{} scroll areas&quot;</span>,
-                <span class="self">self</span>.<span class="ident">memory</span>().<span class="ident">data</span>.<span class="ident">count</span>::<span class="op">&lt;</span><span class="ident">scroll_area::State</span><span class="op">&gt;</span>()
+                <span class="self">self</span>.memory().data.count::&lt;scroll_area::State&gt;()
             ));
-            <span class="kw">if</span> <span class="ident">ui</span>.<span class="ident">button</span>(<span class="string">&quot;Reset&quot;</span>).<span class="ident">clicked</span>() {
-                <span class="self">self</span>.<span class="ident">memory</span>().<span class="ident">data</span>.<span class="ident">remove_by_type</span>::<span class="op">&lt;</span><span class="ident">scroll_area::State</span><span class="op">&gt;</span>();
+            <span class="kw">if </span>ui.button(<span class="string">&quot;Reset&quot;</span>).clicked() {
+                <span class="self">self</span>.memory().data.remove_by_type::&lt;scroll_area::State&gt;();
             }
         });
 
-        <span class="ident">ui</span>.<span class="ident">horizontal</span>(<span class="op">|</span><span class="ident">ui</span><span class="op">|</span> {
-            <span class="ident">ui</span>.<span class="ident">label</span>(<span class="macro">format!</span>(
+        ui.horizontal(|ui| {
+            ui.label(<span class="macro">format!</span>(
                 <span class="string">&quot;{} resize areas&quot;</span>,
-                <span class="self">self</span>.<span class="ident">memory</span>().<span class="ident">data</span>.<span class="ident">count</span>::<span class="op">&lt;</span><span class="ident">resize::State</span><span class="op">&gt;</span>()
+                <span class="self">self</span>.memory().data.count::&lt;resize::State&gt;()
             ));
-            <span class="kw">if</span> <span class="ident">ui</span>.<span class="ident">button</span>(<span class="string">&quot;Reset&quot;</span>).<span class="ident">clicked</span>() {
-                <span class="self">self</span>.<span class="ident">memory</span>().<span class="ident">data</span>.<span class="ident">remove_by_type</span>::<span class="op">&lt;</span><span class="ident">resize::State</span><span class="op">&gt;</span>();
+            <span class="kw">if </span>ui.button(<span class="string">&quot;Reset&quot;</span>).clicked() {
+                <span class="self">self</span>.memory().data.remove_by_type::&lt;resize::State&gt;();
             }
         });
 
-        <span class="ident">ui</span>.<span class="ident">shrink_width_to_current</span>(); <span class="comment">// don&#39;t let the text below grow this window wider</span>
-        <span class="ident">ui</span>.<span class="ident">label</span>(<span class="string">&quot;NOTE: the position of this window cannot be reset from within itself.&quot;</span>);
+        ui.shrink_width_to_current(); <span class="comment">// don&#39;t let the text below grow this window wider
+        </span>ui.label(<span class="string">&quot;NOTE: the position of this window cannot be reset from within itself.&quot;</span>);
 
-        <span class="ident">ui</span>.<span class="ident">collapsing</span>(<span class="string">&quot;Interaction&quot;</span>, <span class="op">|</span><span class="ident">ui</span><span class="op">|</span> {
-            <span class="kw">let</span> <span class="ident">interaction</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">memory</span>().<span class="ident">interaction</span>.<span class="ident">clone</span>();
-            <span class="ident">interaction</span>.<span class="ident">ui</span>(<span class="ident">ui</span>);
+        ui.collapsing(<span class="string">&quot;Interaction&quot;</span>, |ui| {
+            <span class="kw">let </span>interaction = <span class="self">self</span>.memory().interaction.clone();
+            interaction.ui(ui);
         });
     }
 }
 
-<span class="kw">impl</span> <span class="ident">Context</span> {
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">style_ui</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">ui</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Ui</span>) {
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">style</span>: <span class="ident">Style</span> <span class="op">=</span> (<span class="kw-2">*</span><span class="self">self</span>.<span class="ident">style</span>()).<span class="ident">clone</span>();
-        <span class="ident">style</span>.<span class="ident">ui</span>(<span class="ident">ui</span>);
-        <span class="self">self</span>.<span class="ident">set_style</span>(<span class="ident">style</span>);
+<span class="kw">impl </span>Context {
+    <span class="kw">pub fn </span>style_ui(<span class="kw-2">&amp;</span><span class="self">self</span>, ui: <span class="kw-2">&amp;mut </span>Ui) {
+        <span class="kw">let </span><span class="kw-2">mut </span>style: Style = (<span class="kw-2">*</span><span class="self">self</span>.style()).clone();
+        style.ui(ui);
+        <span class="self">self</span>.set_style(style);
     }
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="egui" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0 (a55dd71d5 2022-09-19)" ></div></body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="egui" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.66.1 (90743e729 2023-01-10)" ></div></body></html>

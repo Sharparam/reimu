@@ -1,6 +1,5 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/clap-4.0.18/src/error/format.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>format.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../storage.js"></script><script defer src="../../../source-script.js"></script><script defer src="../../../source-files.js"></script><script defer src="../../../main.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../../clap/index.html"><div class="logo-container"><img src="https://raw.githubusercontent.com/clap-rs/clap/master/assets/clap.png" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../../clap/index.html"><div class="logo-container">
-                    <img src="https://raw.githubusercontent.com/clap-rs/clap/master/assets/clap.png" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../../clap/index.html">
-                        <img src="https://raw.githubusercontent.com/clap-rs/clap/master/assets/clap.png" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/clap-4.0.18/src/error/format.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>format.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../../normalize.css"><link rel="stylesheet" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../../ayu.css" disabled><link rel="stylesheet" href="../../../dark.css" disabled><link rel="stylesheet" href="../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../storage.js"></script><script defer src="../../../source-script.js"></script><script defer src="../../../source-files.js"></script><script defer src="../../../main.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><div class="width-limiter"><nav class="sub"><a class="sub-logo-container" href="../../../clap/index.html">
+                        <img src="https://raw.githubusercontent.com/clap-rs/clap/master/assets/clap.png" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../wheel.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -422,427 +421,427 @@
 <span id="420">420</span>
 <span id="421">421</span>
 <span id="422">422</span>
-</pre><pre class="rust"><code><span class="attribute">#![<span class="ident">allow</span>(<span class="ident">missing_copy_implementations</span>)]</span>
-<span class="attribute">#![<span class="ident">allow</span>(<span class="ident">missing_debug_implementations</span>)]</span>
-<span class="attribute">#![<span class="ident">cfg_attr</span>(<span class="ident">not</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;error-context&quot;</span>), <span class="ident">allow</span>(<span class="ident">dead_code</span>))]</span>
-<span class="attribute">#![<span class="ident">cfg_attr</span>(<span class="ident">not</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;error-context&quot;</span>), <span class="ident">allow</span>(<span class="ident">unused_imports</span>))]</span>
+</pre><pre class="rust"><code><span class="attribute">#![allow(missing_copy_implementations)]
+#![allow(missing_debug_implementations)]
+#![cfg_attr(not(feature = <span class="string">&quot;error-context&quot;</span>), allow(dead_code))]
+#![cfg_attr(not(feature = <span class="string">&quot;error-context&quot;</span>), allow(unused_imports))]
 
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::builder::Command</span>;
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::builder::StyledStr</span>;
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;error-context&quot;</span>)]</span>
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::error::ContextKind</span>;
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;error-context&quot;</span>)]</span>
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::error::ContextValue</span>;
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::error::ErrorKind</span>;
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::output::TAB</span>;
+</span><span class="kw">use </span><span class="kw">crate</span>::builder::Command;
+<span class="kw">use </span><span class="kw">crate</span>::builder::StyledStr;
+<span class="attribute">#[cfg(feature = <span class="string">&quot;error-context&quot;</span>)]
+</span><span class="kw">use </span><span class="kw">crate</span>::error::ContextKind;
+<span class="attribute">#[cfg(feature = <span class="string">&quot;error-context&quot;</span>)]
+</span><span class="kw">use </span><span class="kw">crate</span>::error::ContextValue;
+<span class="kw">use </span><span class="kw">crate</span>::error::ErrorKind;
+<span class="kw">use </span><span class="kw">crate</span>::output::TAB;
 
-<span class="doccomment">/// Defines how to format an error for displaying to the user</span>
-<span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">ErrorFormatter</span>: <span class="ident">Sized</span> {
-    <span class="doccomment">/// Stylize the error for the terminal</span>
-    <span class="kw">fn</span> <span class="ident">format_error</span>(<span class="ident">error</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="kw">crate</span>::error::Error</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>) -&gt; <span class="ident">StyledStr</span>;
+<span class="doccomment">/// Defines how to format an error for displaying to the user
+</span><span class="kw">pub trait </span>ErrorFormatter: Sized {
+    <span class="doccomment">/// Stylize the error for the terminal
+    </span><span class="kw">fn </span>format_error(error: <span class="kw-2">&amp;</span><span class="kw">crate</span>::error::Error&lt;<span class="self">Self</span>&gt;) -&gt; StyledStr;
 }
 
-<span class="doccomment">/// Report [`ErrorKind`]</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// No context is included.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// **NOTE:** Consider removing the [`error-context`][crate::_features] default feature if using this to remove all</span>
-<span class="doccomment">/// overhead for [`RichFormatter`].</span>
-<span class="attribute">#[<span class="ident">non_exhaustive</span>]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">KindFormatter</span>;
+<span class="doccomment">/// Report [`ErrorKind`]
+///
+/// No context is included.
+///
+/// **NOTE:** Consider removing the [`error-context`][crate::_features] default feature if using this to remove all
+/// overhead for [`RichFormatter`].
+</span><span class="attribute">#[non_exhaustive]
+</span><span class="kw">pub struct </span>KindFormatter;
 
-<span class="kw">impl</span> <span class="ident">ErrorFormatter</span> <span class="kw">for</span> <span class="ident">KindFormatter</span> {
-    <span class="kw">fn</span> <span class="ident">format_error</span>(<span class="ident">error</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="kw">crate</span>::error::Error</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>) -&gt; <span class="ident">StyledStr</span> {
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">styled</span> <span class="op">=</span> <span class="ident">StyledStr::new</span>();
-        <span class="ident">start_error</span>(<span class="kw-2">&amp;mut</span> <span class="ident">styled</span>);
-        <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">msg</span>) <span class="op">=</span> <span class="ident">error</span>.<span class="ident">kind</span>().<span class="ident">as_str</span>() {
-            <span class="ident">styled</span>.<span class="ident">none</span>(<span class="ident">msg</span>.<span class="ident">to_owned</span>());
-        } <span class="kw">else</span> <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">source</span>) <span class="op">=</span> <span class="ident">error</span>.<span class="ident">inner</span>.<span class="ident">source</span>.<span class="ident">as_ref</span>() {
-            <span class="ident">styled</span>.<span class="ident">none</span>(<span class="ident">source</span>.<span class="ident">to_string</span>());
-        } <span class="kw">else</span> {
-            <span class="ident">styled</span>.<span class="ident">none</span>(<span class="string">&quot;Unknown cause&quot;</span>);
+<span class="kw">impl </span>ErrorFormatter <span class="kw">for </span>KindFormatter {
+    <span class="kw">fn </span>format_error(error: <span class="kw-2">&amp;</span><span class="kw">crate</span>::error::Error&lt;<span class="self">Self</span>&gt;) -&gt; StyledStr {
+        <span class="kw">let </span><span class="kw-2">mut </span>styled = StyledStr::new();
+        start_error(<span class="kw-2">&amp;mut </span>styled);
+        <span class="kw">if let </span><span class="prelude-val">Some</span>(msg) = error.kind().as_str() {
+            styled.none(msg.to_owned());
+        } <span class="kw">else if let </span><span class="prelude-val">Some</span>(source) = error.inner.source.as_ref() {
+            styled.none(source.to_string());
+        } <span class="kw">else </span>{
+            styled.none(<span class="string">&quot;Unknown cause&quot;</span>);
         }
-        <span class="ident">styled</span>.<span class="ident">none</span>(<span class="string">&quot;\n&quot;</span>);
-        <span class="ident">styled</span>
+        styled.none(<span class="string">&quot;\n&quot;</span>);
+        styled
     }
 }
 
-<span class="doccomment">/// Richly formatted error context</span>
-<span class="attribute">#[<span class="ident">non_exhaustive</span>]</span>
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;error-context&quot;</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">RichFormatter</span>;
+<span class="doccomment">/// Richly formatted error context
+</span><span class="attribute">#[non_exhaustive]
+#[cfg(feature = <span class="string">&quot;error-context&quot;</span>)]
+</span><span class="kw">pub struct </span>RichFormatter;
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;error-context&quot;</span>)]</span>
-<span class="kw">impl</span> <span class="ident">ErrorFormatter</span> <span class="kw">for</span> <span class="ident">RichFormatter</span> {
-    <span class="kw">fn</span> <span class="ident">format_error</span>(<span class="ident">error</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="kw">crate</span>::error::Error</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>) -&gt; <span class="ident">StyledStr</span> {
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">styled</span> <span class="op">=</span> <span class="ident">StyledStr::new</span>();
-        <span class="ident">start_error</span>(<span class="kw-2">&amp;mut</span> <span class="ident">styled</span>);
+<span class="attribute">#[cfg(feature = <span class="string">&quot;error-context&quot;</span>)]
+</span><span class="kw">impl </span>ErrorFormatter <span class="kw">for </span>RichFormatter {
+    <span class="kw">fn </span>format_error(error: <span class="kw-2">&amp;</span><span class="kw">crate</span>::error::Error&lt;<span class="self">Self</span>&gt;) -&gt; StyledStr {
+        <span class="kw">let </span><span class="kw-2">mut </span>styled = StyledStr::new();
+        start_error(<span class="kw-2">&amp;mut </span>styled);
 
-        <span class="kw">if</span> <span class="op">!</span><span class="ident">write_dynamic_context</span>(<span class="ident">error</span>, <span class="kw-2">&amp;mut</span> <span class="ident">styled</span>) {
-            <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">msg</span>) <span class="op">=</span> <span class="ident">error</span>.<span class="ident">kind</span>().<span class="ident">as_str</span>() {
-                <span class="ident">styled</span>.<span class="ident">none</span>(<span class="ident">msg</span>.<span class="ident">to_owned</span>());
-            } <span class="kw">else</span> <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">source</span>) <span class="op">=</span> <span class="ident">error</span>.<span class="ident">inner</span>.<span class="ident">source</span>.<span class="ident">as_ref</span>() {
-                <span class="ident">styled</span>.<span class="ident">none</span>(<span class="ident">source</span>.<span class="ident">to_string</span>());
-            } <span class="kw">else</span> {
-                <span class="ident">styled</span>.<span class="ident">none</span>(<span class="string">&quot;Unknown cause&quot;</span>);
+        <span class="kw">if </span>!write_dynamic_context(error, <span class="kw-2">&amp;mut </span>styled) {
+            <span class="kw">if let </span><span class="prelude-val">Some</span>(msg) = error.kind().as_str() {
+                styled.none(msg.to_owned());
+            } <span class="kw">else if let </span><span class="prelude-val">Some</span>(source) = error.inner.source.as_ref() {
+                styled.none(source.to_string());
+            } <span class="kw">else </span>{
+                styled.none(<span class="string">&quot;Unknown cause&quot;</span>);
             }
         }
 
-        <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">valid</span>) <span class="op">=</span> <span class="ident">error</span>.<span class="ident">get</span>(<span class="ident">ContextKind::SuggestedSubcommand</span>) {
-            <span class="ident">styled</span>.<span class="ident">none</span>(<span class="string">&quot;\n\n&quot;</span>);
-            <span class="ident">did_you_mean</span>(<span class="kw-2">&amp;mut</span> <span class="ident">styled</span>, <span class="ident">valid</span>);
+        <span class="kw">if let </span><span class="prelude-val">Some</span>(valid) = error.get(ContextKind::SuggestedSubcommand) {
+            styled.none(<span class="string">&quot;\n\n&quot;</span>);
+            did_you_mean(<span class="kw-2">&amp;mut </span>styled, valid);
         }
-        <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">valid</span>) <span class="op">=</span> <span class="ident">error</span>.<span class="ident">get</span>(<span class="ident">ContextKind::SuggestedArg</span>) {
-            <span class="ident">styled</span>.<span class="ident">none</span>(<span class="string">&quot;\n\n&quot;</span>);
-            <span class="ident">did_you_mean</span>(<span class="kw-2">&amp;mut</span> <span class="ident">styled</span>, <span class="ident">valid</span>);
+        <span class="kw">if let </span><span class="prelude-val">Some</span>(valid) = error.get(ContextKind::SuggestedArg) {
+            styled.none(<span class="string">&quot;\n\n&quot;</span>);
+            did_you_mean(<span class="kw-2">&amp;mut </span>styled, valid);
         }
-        <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">valid</span>) <span class="op">=</span> <span class="ident">error</span>.<span class="ident">get</span>(<span class="ident">ContextKind::SuggestedValue</span>) {
-            <span class="ident">styled</span>.<span class="ident">none</span>(<span class="string">&quot;\n\n&quot;</span>);
-            <span class="ident">did_you_mean</span>(<span class="kw-2">&amp;mut</span> <span class="ident">styled</span>, <span class="ident">valid</span>);
+        <span class="kw">if let </span><span class="prelude-val">Some</span>(valid) = error.get(ContextKind::SuggestedValue) {
+            styled.none(<span class="string">&quot;\n\n&quot;</span>);
+            did_you_mean(<span class="kw-2">&amp;mut </span>styled, valid);
         }
-        <span class="kw">let</span> <span class="ident">suggestions</span> <span class="op">=</span> <span class="ident">error</span>.<span class="ident">get</span>(<span class="ident">ContextKind::Suggested</span>);
-        <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">ContextValue::StyledStrs</span>(<span class="ident">suggestions</span>)) <span class="op">=</span> <span class="ident">suggestions</span> {
-            <span class="kw">for</span> <span class="ident">suggestion</span> <span class="kw">in</span> <span class="ident">suggestions</span> {
-                <span class="ident">styled</span>.<span class="ident">none</span>(<span class="string">&quot;\n\n&quot;</span>);
-                <span class="ident">styled</span>.<span class="ident">none</span>(<span class="ident">TAB</span>);
-                <span class="ident">styled</span>.<span class="ident">extend</span>(<span class="ident">suggestion</span>.<span class="ident">iter</span>());
+        <span class="kw">let </span>suggestions = error.get(ContextKind::Suggested);
+        <span class="kw">if let </span><span class="prelude-val">Some</span>(ContextValue::StyledStrs(suggestions)) = suggestions {
+            <span class="kw">for </span>suggestion <span class="kw">in </span>suggestions {
+                styled.none(<span class="string">&quot;\n\n&quot;</span>);
+                styled.none(TAB);
+                styled.extend(suggestion.iter());
             }
         }
 
-        <span class="kw">let</span> <span class="ident">usage</span> <span class="op">=</span> <span class="ident">error</span>.<span class="ident">get</span>(<span class="ident">ContextKind::Usage</span>);
-        <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">ContextValue::StyledStr</span>(<span class="ident">usage</span>)) <span class="op">=</span> <span class="ident">usage</span> {
-            <span class="ident">put_usage</span>(<span class="kw-2">&amp;mut</span> <span class="ident">styled</span>, <span class="ident">usage</span>.<span class="ident">clone</span>());
+        <span class="kw">let </span>usage = error.get(ContextKind::Usage);
+        <span class="kw">if let </span><span class="prelude-val">Some</span>(ContextValue::StyledStr(usage)) = usage {
+            put_usage(<span class="kw-2">&amp;mut </span>styled, usage.clone());
         }
 
-        <span class="ident">try_help</span>(<span class="kw-2">&amp;mut</span> <span class="ident">styled</span>, <span class="ident">error</span>.<span class="ident">inner</span>.<span class="ident">help_flag</span>);
+        try_help(<span class="kw-2">&amp;mut </span>styled, error.inner.help_flag);
 
-        <span class="ident">styled</span>
+        styled
     }
 }
 
-<span class="kw">fn</span> <span class="ident">start_error</span>(<span class="ident">styled</span>: <span class="kw-2">&amp;mut</span> <span class="ident">StyledStr</span>) {
-    <span class="ident">styled</span>.<span class="ident">error</span>(<span class="string">&quot;error:&quot;</span>);
-    <span class="ident">styled</span>.<span class="ident">none</span>(<span class="string">&quot; &quot;</span>);
+<span class="kw">fn </span>start_error(styled: <span class="kw-2">&amp;mut </span>StyledStr) {
+    styled.error(<span class="string">&quot;error:&quot;</span>);
+    styled.none(<span class="string">&quot; &quot;</span>);
 }
 
-<span class="attribute">#[<span class="ident">must_use</span>]</span>
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;error-context&quot;</span>)]</span>
-<span class="kw">fn</span> <span class="ident">write_dynamic_context</span>(<span class="ident">error</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="kw">crate</span>::error::Error</span>, <span class="ident">styled</span>: <span class="kw-2">&amp;mut</span> <span class="ident">StyledStr</span>) -&gt; <span class="ident">bool</span> {
-    <span class="kw">match</span> <span class="ident">error</span>.<span class="ident">kind</span>() {
-        <span class="ident">ErrorKind::ArgumentConflict</span> =&gt; {
-            <span class="kw">let</span> <span class="ident">invalid_arg</span> <span class="op">=</span> <span class="ident">error</span>.<span class="ident">get</span>(<span class="ident">ContextKind::InvalidArg</span>);
-            <span class="kw">let</span> <span class="ident">prior_arg</span> <span class="op">=</span> <span class="ident">error</span>.<span class="ident">get</span>(<span class="ident">ContextKind::PriorArg</span>);
-            <span class="kw">if</span> <span class="kw">let</span> (<span class="prelude-val">Some</span>(<span class="ident">ContextValue::String</span>(<span class="ident">invalid_arg</span>)), <span class="prelude-val">Some</span>(<span class="ident">prior_arg</span>)) <span class="op">=</span>
-                (<span class="ident">invalid_arg</span>, <span class="ident">prior_arg</span>)
+<span class="attribute">#[must_use]
+#[cfg(feature = <span class="string">&quot;error-context&quot;</span>)]
+</span><span class="kw">fn </span>write_dynamic_context(error: <span class="kw-2">&amp;</span><span class="kw">crate</span>::error::Error, styled: <span class="kw-2">&amp;mut </span>StyledStr) -&gt; bool {
+    <span class="kw">match </span>error.kind() {
+        ErrorKind::ArgumentConflict =&gt; {
+            <span class="kw">let </span>invalid_arg = error.get(ContextKind::InvalidArg);
+            <span class="kw">let </span>prior_arg = error.get(ContextKind::PriorArg);
+            <span class="kw">if let </span>(<span class="prelude-val">Some</span>(ContextValue::String(invalid_arg)), <span class="prelude-val">Some</span>(prior_arg)) =
+                (invalid_arg, prior_arg)
             {
-                <span class="kw">if</span> <span class="ident">ContextValue::String</span>(<span class="ident">invalid_arg</span>.<span class="ident">clone</span>()) <span class="op">==</span> <span class="kw-2">*</span><span class="ident">prior_arg</span> {
-                    <span class="ident">styled</span>.<span class="ident">none</span>(<span class="string">&quot;The argument &#39;&quot;</span>);
-                    <span class="ident">styled</span>.<span class="ident">warning</span>(<span class="ident">invalid_arg</span>);
-                    <span class="ident">styled</span>.<span class="ident">none</span>(<span class="string">&quot;&#39; was provided more than once, but cannot be used multiple times&quot;</span>);
-                } <span class="kw">else</span> {
-                    <span class="ident">styled</span>.<span class="ident">none</span>(<span class="string">&quot;The argument &#39;&quot;</span>);
-                    <span class="ident">styled</span>.<span class="ident">warning</span>(<span class="ident">invalid_arg</span>);
-                    <span class="ident">styled</span>.<span class="ident">none</span>(<span class="string">&quot;&#39; cannot be used with&quot;</span>);
+                <span class="kw">if </span>ContextValue::String(invalid_arg.clone()) == <span class="kw-2">*</span>prior_arg {
+                    styled.none(<span class="string">&quot;The argument &#39;&quot;</span>);
+                    styled.warning(invalid_arg);
+                    styled.none(<span class="string">&quot;&#39; was provided more than once, but cannot be used multiple times&quot;</span>);
+                } <span class="kw">else </span>{
+                    styled.none(<span class="string">&quot;The argument &#39;&quot;</span>);
+                    styled.warning(invalid_arg);
+                    styled.none(<span class="string">&quot;&#39; cannot be used with&quot;</span>);
 
-                    <span class="kw">match</span> <span class="ident">prior_arg</span> {
-                        <span class="ident">ContextValue::Strings</span>(<span class="ident">values</span>) =&gt; {
-                            <span class="ident">styled</span>.<span class="ident">none</span>(<span class="string">&quot;:&quot;</span>);
-                            <span class="kw">for</span> <span class="ident">v</span> <span class="kw">in</span> <span class="ident">values</span> {
-                                <span class="ident">styled</span>.<span class="ident">none</span>(<span class="string">&quot;\n&quot;</span>);
-                                <span class="ident">styled</span>.<span class="ident">none</span>(<span class="ident">TAB</span>);
-                                <span class="ident">styled</span>.<span class="ident">warning</span>(<span class="kw-2">&amp;</span><span class="kw-2">*</span><span class="kw-2">*</span><span class="ident">v</span>);
+                    <span class="kw">match </span>prior_arg {
+                        ContextValue::Strings(values) =&gt; {
+                            styled.none(<span class="string">&quot;:&quot;</span>);
+                            <span class="kw">for </span>v <span class="kw">in </span>values {
+                                styled.none(<span class="string">&quot;\n&quot;</span>);
+                                styled.none(TAB);
+                                styled.warning(<span class="kw-2">&amp;**</span>v);
                             }
                         }
-                        <span class="ident">ContextValue::String</span>(<span class="ident">value</span>) =&gt; {
-                            <span class="ident">styled</span>.<span class="ident">none</span>(<span class="string">&quot; &#39;&quot;</span>);
-                            <span class="ident">styled</span>.<span class="ident">warning</span>(<span class="ident">value</span>);
-                            <span class="ident">styled</span>.<span class="ident">none</span>(<span class="string">&quot;&#39;&quot;</span>);
+                        ContextValue::String(value) =&gt; {
+                            styled.none(<span class="string">&quot; &#39;&quot;</span>);
+                            styled.warning(value);
+                            styled.none(<span class="string">&quot;&#39;&quot;</span>);
                         }
-                        <span class="kw">_</span> =&gt; {
-                            <span class="ident">styled</span>.<span class="ident">none</span>(<span class="string">&quot; one or more of the other specified arguments&quot;</span>);
+                        <span class="kw">_ </span>=&gt; {
+                            styled.none(<span class="string">&quot; one or more of the other specified arguments&quot;</span>);
                         }
                     }
                 }
-                <span class="bool-val">true</span>
-            } <span class="kw">else</span> {
-                <span class="bool-val">false</span>
-            }
+                <span class="bool-val">true
+            </span>} <span class="kw">else </span>{
+                <span class="bool-val">false
+            </span>}
         }
-        <span class="ident">ErrorKind::NoEquals</span> =&gt; {
-            <span class="kw">let</span> <span class="ident">invalid_arg</span> <span class="op">=</span> <span class="ident">error</span>.<span class="ident">get</span>(<span class="ident">ContextKind::InvalidArg</span>);
-            <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">ContextValue::String</span>(<span class="ident">invalid_arg</span>)) <span class="op">=</span> <span class="ident">invalid_arg</span> {
-                <span class="ident">styled</span>.<span class="ident">none</span>(<span class="string">&quot;Equal sign is needed when assigning values to &#39;&quot;</span>);
-                <span class="ident">styled</span>.<span class="ident">warning</span>(<span class="ident">invalid_arg</span>);
-                <span class="ident">styled</span>.<span class="ident">none</span>(<span class="string">&quot;&#39;&quot;</span>);
-                <span class="bool-val">true</span>
-            } <span class="kw">else</span> {
-                <span class="bool-val">false</span>
-            }
+        ErrorKind::NoEquals =&gt; {
+            <span class="kw">let </span>invalid_arg = error.get(ContextKind::InvalidArg);
+            <span class="kw">if let </span><span class="prelude-val">Some</span>(ContextValue::String(invalid_arg)) = invalid_arg {
+                styled.none(<span class="string">&quot;Equal sign is needed when assigning values to &#39;&quot;</span>);
+                styled.warning(invalid_arg);
+                styled.none(<span class="string">&quot;&#39;&quot;</span>);
+                <span class="bool-val">true
+            </span>} <span class="kw">else </span>{
+                <span class="bool-val">false
+            </span>}
         }
-        <span class="ident">ErrorKind::InvalidValue</span> =&gt; {
-            <span class="kw">let</span> <span class="ident">invalid_arg</span> <span class="op">=</span> <span class="ident">error</span>.<span class="ident">get</span>(<span class="ident">ContextKind::InvalidArg</span>);
-            <span class="kw">let</span> <span class="ident">invalid_value</span> <span class="op">=</span> <span class="ident">error</span>.<span class="ident">get</span>(<span class="ident">ContextKind::InvalidValue</span>);
-            <span class="kw">if</span> <span class="kw">let</span> (
-                <span class="prelude-val">Some</span>(<span class="ident">ContextValue::String</span>(<span class="ident">invalid_arg</span>)),
-                <span class="prelude-val">Some</span>(<span class="ident">ContextValue::String</span>(<span class="ident">invalid_value</span>)),
-            ) <span class="op">=</span> (<span class="ident">invalid_arg</span>, <span class="ident">invalid_value</span>)
+        ErrorKind::InvalidValue =&gt; {
+            <span class="kw">let </span>invalid_arg = error.get(ContextKind::InvalidArg);
+            <span class="kw">let </span>invalid_value = error.get(ContextKind::InvalidValue);
+            <span class="kw">if let </span>(
+                <span class="prelude-val">Some</span>(ContextValue::String(invalid_arg)),
+                <span class="prelude-val">Some</span>(ContextValue::String(invalid_value)),
+            ) = (invalid_arg, invalid_value)
             {
-                <span class="kw">if</span> <span class="ident">invalid_value</span>.<span class="ident">is_empty</span>() {
-                    <span class="ident">styled</span>.<span class="ident">none</span>(<span class="string">&quot;The argument &#39;&quot;</span>);
-                    <span class="ident">styled</span>.<span class="ident">warning</span>(<span class="ident">invalid_arg</span>);
-                    <span class="ident">styled</span>.<span class="ident">none</span>(<span class="string">&quot;&#39; requires a value but none was supplied&quot;</span>);
-                } <span class="kw">else</span> {
-                    <span class="ident">styled</span>.<span class="ident">none</span>(<span class="string">&quot;&#39;&quot;</span>);
-                    <span class="ident">styled</span>.<span class="ident">none</span>(<span class="ident">invalid_value</span>);
-                    <span class="ident">styled</span>.<span class="ident">none</span>(<span class="string">&quot;&#39; isn&#39;t a valid value for &#39;&quot;</span>);
-                    <span class="ident">styled</span>.<span class="ident">warning</span>(<span class="ident">invalid_arg</span>);
-                    <span class="ident">styled</span>.<span class="ident">none</span>(<span class="string">&quot;&#39;&quot;</span>);
+                <span class="kw">if </span>invalid_value.is_empty() {
+                    styled.none(<span class="string">&quot;The argument &#39;&quot;</span>);
+                    styled.warning(invalid_arg);
+                    styled.none(<span class="string">&quot;&#39; requires a value but none was supplied&quot;</span>);
+                } <span class="kw">else </span>{
+                    styled.none(<span class="string">&quot;&#39;&quot;</span>);
+                    styled.none(invalid_value);
+                    styled.none(<span class="string">&quot;&#39; isn&#39;t a valid value for &#39;&quot;</span>);
+                    styled.warning(invalid_arg);
+                    styled.none(<span class="string">&quot;&#39;&quot;</span>);
                 }
 
-                <span class="kw">let</span> <span class="ident">possible_values</span> <span class="op">=</span> <span class="ident">error</span>.<span class="ident">get</span>(<span class="ident">ContextKind::ValidValue</span>);
-                <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">ContextValue::Strings</span>(<span class="ident">possible_values</span>)) <span class="op">=</span> <span class="ident">possible_values</span> {
-                    <span class="kw">if</span> <span class="op">!</span><span class="ident">possible_values</span>.<span class="ident">is_empty</span>() {
-                        <span class="ident">styled</span>.<span class="ident">none</span>(<span class="string">&quot;\n&quot;</span>);
-                        <span class="ident">styled</span>.<span class="ident">none</span>(<span class="ident">TAB</span>);
-                        <span class="ident">styled</span>.<span class="ident">none</span>(<span class="string">&quot;[possible values: &quot;</span>);
-                        <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>((<span class="ident">last</span>, <span class="ident">elements</span>)) <span class="op">=</span> <span class="ident">possible_values</span>.<span class="ident">split_last</span>() {
-                            <span class="kw">for</span> <span class="ident">v</span> <span class="kw">in</span> <span class="ident">elements</span> {
-                                <span class="ident">styled</span>.<span class="ident">good</span>(<span class="ident">escape</span>(<span class="ident">v</span>));
-                                <span class="ident">styled</span>.<span class="ident">none</span>(<span class="string">&quot;, &quot;</span>);
+                <span class="kw">let </span>possible_values = error.get(ContextKind::ValidValue);
+                <span class="kw">if let </span><span class="prelude-val">Some</span>(ContextValue::Strings(possible_values)) = possible_values {
+                    <span class="kw">if </span>!possible_values.is_empty() {
+                        styled.none(<span class="string">&quot;\n&quot;</span>);
+                        styled.none(TAB);
+                        styled.none(<span class="string">&quot;[possible values: &quot;</span>);
+                        <span class="kw">if let </span><span class="prelude-val">Some</span>((last, elements)) = possible_values.split_last() {
+                            <span class="kw">for </span>v <span class="kw">in </span>elements {
+                                styled.good(escape(v));
+                                styled.none(<span class="string">&quot;, &quot;</span>);
                             }
-                            <span class="ident">styled</span>.<span class="ident">good</span>(<span class="ident">escape</span>(<span class="ident">last</span>));
+                            styled.good(escape(last));
                         }
-                        <span class="ident">styled</span>.<span class="ident">none</span>(<span class="string">&quot;]&quot;</span>);
+                        styled.none(<span class="string">&quot;]&quot;</span>);
                     }
                 }
-                <span class="bool-val">true</span>
-            } <span class="kw">else</span> {
-                <span class="bool-val">false</span>
-            }
+                <span class="bool-val">true
+            </span>} <span class="kw">else </span>{
+                <span class="bool-val">false
+            </span>}
         }
-        <span class="ident">ErrorKind::InvalidSubcommand</span> =&gt; {
-            <span class="kw">let</span> <span class="ident">invalid_sub</span> <span class="op">=</span> <span class="ident">error</span>.<span class="ident">get</span>(<span class="ident">ContextKind::InvalidSubcommand</span>);
-            <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">ContextValue::String</span>(<span class="ident">invalid_sub</span>)) <span class="op">=</span> <span class="ident">invalid_sub</span> {
-                <span class="ident">styled</span>.<span class="ident">none</span>(<span class="string">&quot;The subcommand &#39;&quot;</span>);
-                <span class="ident">styled</span>.<span class="ident">warning</span>(<span class="ident">invalid_sub</span>);
-                <span class="ident">styled</span>.<span class="ident">none</span>(<span class="string">&quot;&#39; wasn&#39;t recognized&quot;</span>);
-                <span class="bool-val">true</span>
-            } <span class="kw">else</span> {
-                <span class="bool-val">false</span>
-            }
+        ErrorKind::InvalidSubcommand =&gt; {
+            <span class="kw">let </span>invalid_sub = error.get(ContextKind::InvalidSubcommand);
+            <span class="kw">if let </span><span class="prelude-val">Some</span>(ContextValue::String(invalid_sub)) = invalid_sub {
+                styled.none(<span class="string">&quot;The subcommand &#39;&quot;</span>);
+                styled.warning(invalid_sub);
+                styled.none(<span class="string">&quot;&#39; wasn&#39;t recognized&quot;</span>);
+                <span class="bool-val">true
+            </span>} <span class="kw">else </span>{
+                <span class="bool-val">false
+            </span>}
         }
-        <span class="ident">ErrorKind::MissingRequiredArgument</span> =&gt; {
-            <span class="kw">let</span> <span class="ident">invalid_arg</span> <span class="op">=</span> <span class="ident">error</span>.<span class="ident">get</span>(<span class="ident">ContextKind::InvalidArg</span>);
-            <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">ContextValue::Strings</span>(<span class="ident">invalid_arg</span>)) <span class="op">=</span> <span class="ident">invalid_arg</span> {
-                <span class="ident">styled</span>.<span class="ident">none</span>(<span class="string">&quot;The following required arguments were not provided:&quot;</span>);
-                <span class="kw">for</span> <span class="ident">v</span> <span class="kw">in</span> <span class="ident">invalid_arg</span> {
-                    <span class="ident">styled</span>.<span class="ident">none</span>(<span class="string">&quot;\n&quot;</span>);
-                    <span class="ident">styled</span>.<span class="ident">none</span>(<span class="ident">TAB</span>);
-                    <span class="ident">styled</span>.<span class="ident">good</span>(<span class="kw-2">&amp;</span><span class="kw-2">*</span><span class="kw-2">*</span><span class="ident">v</span>);
+        ErrorKind::MissingRequiredArgument =&gt; {
+            <span class="kw">let </span>invalid_arg = error.get(ContextKind::InvalidArg);
+            <span class="kw">if let </span><span class="prelude-val">Some</span>(ContextValue::Strings(invalid_arg)) = invalid_arg {
+                styled.none(<span class="string">&quot;The following required arguments were not provided:&quot;</span>);
+                <span class="kw">for </span>v <span class="kw">in </span>invalid_arg {
+                    styled.none(<span class="string">&quot;\n&quot;</span>);
+                    styled.none(TAB);
+                    styled.good(<span class="kw-2">&amp;**</span>v);
                 }
-                <span class="bool-val">true</span>
-            } <span class="kw">else</span> {
-                <span class="bool-val">false</span>
-            }
+                <span class="bool-val">true
+            </span>} <span class="kw">else </span>{
+                <span class="bool-val">false
+            </span>}
         }
-        <span class="ident">ErrorKind::MissingSubcommand</span> =&gt; {
-            <span class="kw">let</span> <span class="ident">invalid_sub</span> <span class="op">=</span> <span class="ident">error</span>.<span class="ident">get</span>(<span class="ident">ContextKind::InvalidSubcommand</span>);
-            <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">ContextValue::String</span>(<span class="ident">invalid_sub</span>)) <span class="op">=</span> <span class="ident">invalid_sub</span> {
-                <span class="ident">styled</span>.<span class="ident">none</span>(<span class="string">&quot;&#39;&quot;</span>);
-                <span class="ident">styled</span>.<span class="ident">warning</span>(<span class="ident">invalid_sub</span>);
-                <span class="ident">styled</span>.<span class="ident">none</span>(<span class="string">&quot;&#39; requires a subcommand but one was not provided&quot;</span>);
-                <span class="bool-val">true</span>
-            } <span class="kw">else</span> {
-                <span class="bool-val">false</span>
-            }
+        ErrorKind::MissingSubcommand =&gt; {
+            <span class="kw">let </span>invalid_sub = error.get(ContextKind::InvalidSubcommand);
+            <span class="kw">if let </span><span class="prelude-val">Some</span>(ContextValue::String(invalid_sub)) = invalid_sub {
+                styled.none(<span class="string">&quot;&#39;&quot;</span>);
+                styled.warning(invalid_sub);
+                styled.none(<span class="string">&quot;&#39; requires a subcommand but one was not provided&quot;</span>);
+                <span class="bool-val">true
+            </span>} <span class="kw">else </span>{
+                <span class="bool-val">false
+            </span>}
         }
-        <span class="ident">ErrorKind::InvalidUtf8</span> =&gt; <span class="bool-val">false</span>,
-        <span class="ident">ErrorKind::TooManyValues</span> =&gt; {
-            <span class="kw">let</span> <span class="ident">invalid_arg</span> <span class="op">=</span> <span class="ident">error</span>.<span class="ident">get</span>(<span class="ident">ContextKind::InvalidArg</span>);
-            <span class="kw">let</span> <span class="ident">invalid_value</span> <span class="op">=</span> <span class="ident">error</span>.<span class="ident">get</span>(<span class="ident">ContextKind::InvalidValue</span>);
-            <span class="kw">if</span> <span class="kw">let</span> (
-                <span class="prelude-val">Some</span>(<span class="ident">ContextValue::String</span>(<span class="ident">invalid_arg</span>)),
-                <span class="prelude-val">Some</span>(<span class="ident">ContextValue::String</span>(<span class="ident">invalid_value</span>)),
-            ) <span class="op">=</span> (<span class="ident">invalid_arg</span>, <span class="ident">invalid_value</span>)
+        ErrorKind::InvalidUtf8 =&gt; <span class="bool-val">false</span>,
+        ErrorKind::TooManyValues =&gt; {
+            <span class="kw">let </span>invalid_arg = error.get(ContextKind::InvalidArg);
+            <span class="kw">let </span>invalid_value = error.get(ContextKind::InvalidValue);
+            <span class="kw">if let </span>(
+                <span class="prelude-val">Some</span>(ContextValue::String(invalid_arg)),
+                <span class="prelude-val">Some</span>(ContextValue::String(invalid_value)),
+            ) = (invalid_arg, invalid_value)
             {
-                <span class="ident">styled</span>.<span class="ident">none</span>(<span class="string">&quot;The value &#39;&quot;</span>);
-                <span class="ident">styled</span>.<span class="ident">warning</span>(<span class="ident">invalid_value</span>);
-                <span class="ident">styled</span>.<span class="ident">none</span>(<span class="string">&quot;&#39; was provided to &#39;&quot;</span>);
-                <span class="ident">styled</span>.<span class="ident">warning</span>(<span class="ident">invalid_arg</span>);
-                <span class="ident">styled</span>.<span class="ident">none</span>(<span class="string">&quot;&#39; but it wasn&#39;t expecting any more values&quot;</span>);
-                <span class="bool-val">true</span>
-            } <span class="kw">else</span> {
-                <span class="bool-val">false</span>
-            }
+                styled.none(<span class="string">&quot;The value &#39;&quot;</span>);
+                styled.warning(invalid_value);
+                styled.none(<span class="string">&quot;&#39; was provided to &#39;&quot;</span>);
+                styled.warning(invalid_arg);
+                styled.none(<span class="string">&quot;&#39; but it wasn&#39;t expecting any more values&quot;</span>);
+                <span class="bool-val">true
+            </span>} <span class="kw">else </span>{
+                <span class="bool-val">false
+            </span>}
         }
-        <span class="ident">ErrorKind::TooFewValues</span> =&gt; {
-            <span class="kw">let</span> <span class="ident">invalid_arg</span> <span class="op">=</span> <span class="ident">error</span>.<span class="ident">get</span>(<span class="ident">ContextKind::InvalidArg</span>);
-            <span class="kw">let</span> <span class="ident">actual_num_values</span> <span class="op">=</span> <span class="ident">error</span>.<span class="ident">get</span>(<span class="ident">ContextKind::ActualNumValues</span>);
-            <span class="kw">let</span> <span class="ident">min_values</span> <span class="op">=</span> <span class="ident">error</span>.<span class="ident">get</span>(<span class="ident">ContextKind::MinValues</span>);
-            <span class="kw">if</span> <span class="kw">let</span> (
-                <span class="prelude-val">Some</span>(<span class="ident">ContextValue::String</span>(<span class="ident">invalid_arg</span>)),
-                <span class="prelude-val">Some</span>(<span class="ident">ContextValue::Number</span>(<span class="ident">actual_num_values</span>)),
-                <span class="prelude-val">Some</span>(<span class="ident">ContextValue::Number</span>(<span class="ident">min_values</span>)),
-            ) <span class="op">=</span> (<span class="ident">invalid_arg</span>, <span class="ident">actual_num_values</span>, <span class="ident">min_values</span>)
+        ErrorKind::TooFewValues =&gt; {
+            <span class="kw">let </span>invalid_arg = error.get(ContextKind::InvalidArg);
+            <span class="kw">let </span>actual_num_values = error.get(ContextKind::ActualNumValues);
+            <span class="kw">let </span>min_values = error.get(ContextKind::MinValues);
+            <span class="kw">if let </span>(
+                <span class="prelude-val">Some</span>(ContextValue::String(invalid_arg)),
+                <span class="prelude-val">Some</span>(ContextValue::Number(actual_num_values)),
+                <span class="prelude-val">Some</span>(ContextValue::Number(min_values)),
+            ) = (invalid_arg, actual_num_values, min_values)
             {
-                <span class="kw">let</span> <span class="ident">were_provided</span> <span class="op">=</span> <span class="ident">singular_or_plural</span>(<span class="kw-2">*</span><span class="ident">actual_num_values</span> <span class="kw">as</span> <span class="ident">usize</span>);
-                <span class="ident">styled</span>.<span class="ident">none</span>(<span class="string">&quot;The argument &#39;&quot;</span>);
-                <span class="ident">styled</span>.<span class="ident">warning</span>(<span class="ident">invalid_arg</span>);
-                <span class="ident">styled</span>.<span class="ident">none</span>(<span class="string">&quot;&#39; requires at least &quot;</span>);
-                <span class="ident">styled</span>.<span class="ident">warning</span>(<span class="ident">min_values</span>.<span class="ident">to_string</span>());
-                <span class="ident">styled</span>.<span class="ident">none</span>(<span class="string">&quot; values but only &quot;</span>);
-                <span class="ident">styled</span>.<span class="ident">warning</span>(<span class="ident">actual_num_values</span>.<span class="ident">to_string</span>());
-                <span class="ident">styled</span>.<span class="ident">none</span>(<span class="ident">were_provided</span>);
-                <span class="bool-val">true</span>
-            } <span class="kw">else</span> {
-                <span class="bool-val">false</span>
-            }
+                <span class="kw">let </span>were_provided = singular_or_plural(<span class="kw-2">*</span>actual_num_values <span class="kw">as </span>usize);
+                styled.none(<span class="string">&quot;The argument &#39;&quot;</span>);
+                styled.warning(invalid_arg);
+                styled.none(<span class="string">&quot;&#39; requires at least &quot;</span>);
+                styled.warning(min_values.to_string());
+                styled.none(<span class="string">&quot; values but only &quot;</span>);
+                styled.warning(actual_num_values.to_string());
+                styled.none(were_provided);
+                <span class="bool-val">true
+            </span>} <span class="kw">else </span>{
+                <span class="bool-val">false
+            </span>}
         }
-        <span class="ident">ErrorKind::ValueValidation</span> =&gt; {
-            <span class="kw">let</span> <span class="ident">invalid_arg</span> <span class="op">=</span> <span class="ident">error</span>.<span class="ident">get</span>(<span class="ident">ContextKind::InvalidArg</span>);
-            <span class="kw">let</span> <span class="ident">invalid_value</span> <span class="op">=</span> <span class="ident">error</span>.<span class="ident">get</span>(<span class="ident">ContextKind::InvalidValue</span>);
-            <span class="kw">if</span> <span class="kw">let</span> (
-                <span class="prelude-val">Some</span>(<span class="ident">ContextValue::String</span>(<span class="ident">invalid_arg</span>)),
-                <span class="prelude-val">Some</span>(<span class="ident">ContextValue::String</span>(<span class="ident">invalid_value</span>)),
-            ) <span class="op">=</span> (<span class="ident">invalid_arg</span>, <span class="ident">invalid_value</span>)
+        ErrorKind::ValueValidation =&gt; {
+            <span class="kw">let </span>invalid_arg = error.get(ContextKind::InvalidArg);
+            <span class="kw">let </span>invalid_value = error.get(ContextKind::InvalidValue);
+            <span class="kw">if let </span>(
+                <span class="prelude-val">Some</span>(ContextValue::String(invalid_arg)),
+                <span class="prelude-val">Some</span>(ContextValue::String(invalid_value)),
+            ) = (invalid_arg, invalid_value)
             {
-                <span class="ident">styled</span>.<span class="ident">none</span>(<span class="string">&quot;Invalid value &#39;&quot;</span>);
-                <span class="ident">styled</span>.<span class="ident">warning</span>(<span class="ident">invalid_value</span>);
-                <span class="ident">styled</span>.<span class="ident">none</span>(<span class="string">&quot;&#39; for &#39;&quot;</span>);
-                <span class="ident">styled</span>.<span class="ident">warning</span>(<span class="ident">invalid_arg</span>);
-                <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">source</span>) <span class="op">=</span> <span class="ident">error</span>.<span class="ident">inner</span>.<span class="ident">source</span>.<span class="ident">as_deref</span>() {
-                    <span class="ident">styled</span>.<span class="ident">none</span>(<span class="string">&quot;&#39;: &quot;</span>);
-                    <span class="ident">styled</span>.<span class="ident">none</span>(<span class="ident">source</span>.<span class="ident">to_string</span>());
-                } <span class="kw">else</span> {
-                    <span class="ident">styled</span>.<span class="ident">none</span>(<span class="string">&quot;&#39;&quot;</span>);
+                styled.none(<span class="string">&quot;Invalid value &#39;&quot;</span>);
+                styled.warning(invalid_value);
+                styled.none(<span class="string">&quot;&#39; for &#39;&quot;</span>);
+                styled.warning(invalid_arg);
+                <span class="kw">if let </span><span class="prelude-val">Some</span>(source) = error.inner.source.as_deref() {
+                    styled.none(<span class="string">&quot;&#39;: &quot;</span>);
+                    styled.none(source.to_string());
+                } <span class="kw">else </span>{
+                    styled.none(<span class="string">&quot;&#39;&quot;</span>);
                 }
-                <span class="bool-val">true</span>
-            } <span class="kw">else</span> {
-                <span class="bool-val">false</span>
-            }
+                <span class="bool-val">true
+            </span>} <span class="kw">else </span>{
+                <span class="bool-val">false
+            </span>}
         }
-        <span class="ident">ErrorKind::WrongNumberOfValues</span> =&gt; {
-            <span class="kw">let</span> <span class="ident">invalid_arg</span> <span class="op">=</span> <span class="ident">error</span>.<span class="ident">get</span>(<span class="ident">ContextKind::InvalidArg</span>);
-            <span class="kw">let</span> <span class="ident">actual_num_values</span> <span class="op">=</span> <span class="ident">error</span>.<span class="ident">get</span>(<span class="ident">ContextKind::ActualNumValues</span>);
-            <span class="kw">let</span> <span class="ident">num_values</span> <span class="op">=</span> <span class="ident">error</span>.<span class="ident">get</span>(<span class="ident">ContextKind::ExpectedNumValues</span>);
-            <span class="kw">if</span> <span class="kw">let</span> (
-                <span class="prelude-val">Some</span>(<span class="ident">ContextValue::String</span>(<span class="ident">invalid_arg</span>)),
-                <span class="prelude-val">Some</span>(<span class="ident">ContextValue::Number</span>(<span class="ident">actual_num_values</span>)),
-                <span class="prelude-val">Some</span>(<span class="ident">ContextValue::Number</span>(<span class="ident">num_values</span>)),
-            ) <span class="op">=</span> (<span class="ident">invalid_arg</span>, <span class="ident">actual_num_values</span>, <span class="ident">num_values</span>)
+        ErrorKind::WrongNumberOfValues =&gt; {
+            <span class="kw">let </span>invalid_arg = error.get(ContextKind::InvalidArg);
+            <span class="kw">let </span>actual_num_values = error.get(ContextKind::ActualNumValues);
+            <span class="kw">let </span>num_values = error.get(ContextKind::ExpectedNumValues);
+            <span class="kw">if let </span>(
+                <span class="prelude-val">Some</span>(ContextValue::String(invalid_arg)),
+                <span class="prelude-val">Some</span>(ContextValue::Number(actual_num_values)),
+                <span class="prelude-val">Some</span>(ContextValue::Number(num_values)),
+            ) = (invalid_arg, actual_num_values, num_values)
             {
-                <span class="kw">let</span> <span class="ident">were_provided</span> <span class="op">=</span> <span class="ident">singular_or_plural</span>(<span class="kw-2">*</span><span class="ident">actual_num_values</span> <span class="kw">as</span> <span class="ident">usize</span>);
-                <span class="ident">styled</span>.<span class="ident">none</span>(<span class="string">&quot;The argument &#39;&quot;</span>);
-                <span class="ident">styled</span>.<span class="ident">warning</span>(<span class="ident">invalid_arg</span>);
-                <span class="ident">styled</span>.<span class="ident">none</span>(<span class="string">&quot;&#39; requires &quot;</span>);
-                <span class="ident">styled</span>.<span class="ident">warning</span>(<span class="ident">num_values</span>.<span class="ident">to_string</span>());
-                <span class="ident">styled</span>.<span class="ident">none</span>(<span class="string">&quot; values, but &quot;</span>);
-                <span class="ident">styled</span>.<span class="ident">warning</span>(<span class="ident">actual_num_values</span>.<span class="ident">to_string</span>());
-                <span class="ident">styled</span>.<span class="ident">none</span>(<span class="ident">were_provided</span>);
-                <span class="bool-val">true</span>
-            } <span class="kw">else</span> {
-                <span class="bool-val">false</span>
-            }
+                <span class="kw">let </span>were_provided = singular_or_plural(<span class="kw-2">*</span>actual_num_values <span class="kw">as </span>usize);
+                styled.none(<span class="string">&quot;The argument &#39;&quot;</span>);
+                styled.warning(invalid_arg);
+                styled.none(<span class="string">&quot;&#39; requires &quot;</span>);
+                styled.warning(num_values.to_string());
+                styled.none(<span class="string">&quot; values, but &quot;</span>);
+                styled.warning(actual_num_values.to_string());
+                styled.none(were_provided);
+                <span class="bool-val">true
+            </span>} <span class="kw">else </span>{
+                <span class="bool-val">false
+            </span>}
         }
-        <span class="ident">ErrorKind::UnknownArgument</span> =&gt; {
-            <span class="kw">let</span> <span class="ident">invalid_arg</span> <span class="op">=</span> <span class="ident">error</span>.<span class="ident">get</span>(<span class="ident">ContextKind::InvalidArg</span>);
-            <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">ContextValue::String</span>(<span class="ident">invalid_arg</span>)) <span class="op">=</span> <span class="ident">invalid_arg</span> {
-                <span class="ident">styled</span>.<span class="ident">none</span>(<span class="string">&quot;Found argument &#39;&quot;</span>);
-                <span class="ident">styled</span>.<span class="ident">warning</span>(<span class="ident">invalid_arg</span>.<span class="ident">to_string</span>());
-                <span class="ident">styled</span>.<span class="ident">none</span>(<span class="string">&quot;&#39; which wasn&#39;t expected, or isn&#39;t valid in this context&quot;</span>);
-                <span class="bool-val">true</span>
-            } <span class="kw">else</span> {
-                <span class="bool-val">false</span>
-            }
+        ErrorKind::UnknownArgument =&gt; {
+            <span class="kw">let </span>invalid_arg = error.get(ContextKind::InvalidArg);
+            <span class="kw">if let </span><span class="prelude-val">Some</span>(ContextValue::String(invalid_arg)) = invalid_arg {
+                styled.none(<span class="string">&quot;Found argument &#39;&quot;</span>);
+                styled.warning(invalid_arg.to_string());
+                styled.none(<span class="string">&quot;&#39; which wasn&#39;t expected, or isn&#39;t valid in this context&quot;</span>);
+                <span class="bool-val">true
+            </span>} <span class="kw">else </span>{
+                <span class="bool-val">false
+            </span>}
         }
-        <span class="ident">ErrorKind::DisplayHelp</span>
-        <span class="op">|</span> <span class="ident">ErrorKind::DisplayHelpOnMissingArgumentOrSubcommand</span>
-        <span class="op">|</span> <span class="ident">ErrorKind::DisplayVersion</span>
-        <span class="op">|</span> <span class="ident">ErrorKind::Io</span>
-        <span class="op">|</span> <span class="ident">ErrorKind::Format</span> =&gt; <span class="bool-val">false</span>,
+        ErrorKind::DisplayHelp
+        | ErrorKind::DisplayHelpOnMissingArgumentOrSubcommand
+        | ErrorKind::DisplayVersion
+        | ErrorKind::Io
+        | ErrorKind::Format =&gt; <span class="bool-val">false</span>,
     }
 }
 
-<span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">format_error_message</span>(
-    <span class="ident">message</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>,
-    <span class="ident">cmd</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">Command</span><span class="op">&gt;</span>,
-    <span class="ident">usage</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">StyledStr</span><span class="op">&gt;</span>,
-) -&gt; <span class="ident">StyledStr</span> {
-    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">styled</span> <span class="op">=</span> <span class="ident">StyledStr::new</span>();
-    <span class="ident">start_error</span>(<span class="kw-2">&amp;mut</span> <span class="ident">styled</span>);
-    <span class="ident">styled</span>.<span class="ident">none</span>(<span class="ident">message</span>);
-    <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">usage</span>) <span class="op">=</span> <span class="ident">usage</span> {
-        <span class="ident">put_usage</span>(<span class="kw-2">&amp;mut</span> <span class="ident">styled</span>, <span class="ident">usage</span>);
+<span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>format_error_message(
+    message: <span class="kw-2">&amp;</span>str,
+    cmd: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span>Command&gt;,
+    usage: <span class="prelude-ty">Option</span>&lt;StyledStr&gt;,
+) -&gt; StyledStr {
+    <span class="kw">let </span><span class="kw-2">mut </span>styled = StyledStr::new();
+    start_error(<span class="kw-2">&amp;mut </span>styled);
+    styled.none(message);
+    <span class="kw">if let </span><span class="prelude-val">Some</span>(usage) = usage {
+        put_usage(<span class="kw-2">&amp;mut </span>styled, usage);
     }
-    <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">cmd</span>) <span class="op">=</span> <span class="ident">cmd</span> {
-        <span class="ident">try_help</span>(<span class="kw-2">&amp;mut</span> <span class="ident">styled</span>, <span class="ident">get_help_flag</span>(<span class="ident">cmd</span>));
+    <span class="kw">if let </span><span class="prelude-val">Some</span>(cmd) = cmd {
+        try_help(<span class="kw-2">&amp;mut </span>styled, get_help_flag(cmd));
     }
-    <span class="ident">styled</span>
+    styled
 }
 
-<span class="doccomment">/// Returns the singular or plural form on the verb to be based on the argument&#39;s value.</span>
-<span class="kw">fn</span> <span class="ident">singular_or_plural</span>(<span class="ident">n</span>: <span class="ident">usize</span>) -&gt; <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> {
-    <span class="kw">if</span> <span class="ident">n</span> <span class="op">&gt;</span> <span class="number">1</span> {
-        <span class="string">&quot; were provided&quot;</span>
-    } <span class="kw">else</span> {
-        <span class="string">&quot; was provided&quot;</span>
-    }
+<span class="doccomment">/// Returns the singular or plural form on the verb to be based on the argument&#39;s value.
+</span><span class="kw">fn </span>singular_or_plural(n: usize) -&gt; <span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str {
+    <span class="kw">if </span>n &gt; <span class="number">1 </span>{
+        <span class="string">&quot; were provided&quot;
+    </span>} <span class="kw">else </span>{
+        <span class="string">&quot; was provided&quot;
+    </span>}
 }
 
-<span class="kw">fn</span> <span class="ident">put_usage</span>(<span class="ident">styled</span>: <span class="kw-2">&amp;mut</span> <span class="ident">StyledStr</span>, <span class="ident">usage</span>: <span class="ident">StyledStr</span>) {
-    <span class="ident">styled</span>.<span class="ident">none</span>(<span class="string">&quot;\n\n&quot;</span>);
-    <span class="ident">styled</span>.<span class="ident">extend</span>(<span class="ident">usage</span>.<span class="ident">into_iter</span>());
+<span class="kw">fn </span>put_usage(styled: <span class="kw-2">&amp;mut </span>StyledStr, usage: StyledStr) {
+    styled.none(<span class="string">&quot;\n\n&quot;</span>);
+    styled.extend(usage.into_iter());
 }
 
-<span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">get_help_flag</span>(<span class="ident">cmd</span>: <span class="kw-2">&amp;</span><span class="ident">Command</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span><span class="op">&gt;</span> {
-    <span class="kw">if</span> <span class="op">!</span><span class="ident">cmd</span>.<span class="ident">is_disable_help_flag_set</span>() {
+<span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>get_help_flag(cmd: <span class="kw-2">&amp;</span>Command) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str&gt; {
+    <span class="kw">if </span>!cmd.is_disable_help_flag_set() {
         <span class="prelude-val">Some</span>(<span class="string">&quot;--help&quot;</span>)
-    } <span class="kw">else</span> <span class="kw">if</span> <span class="ident">cmd</span>.<span class="ident">has_subcommands</span>() <span class="op">&amp;&amp;</span> <span class="op">!</span><span class="ident">cmd</span>.<span class="ident">is_disable_help_subcommand_set</span>() {
+    } <span class="kw">else if </span>cmd.has_subcommands() &amp;&amp; !cmd.is_disable_help_subcommand_set() {
         <span class="prelude-val">Some</span>(<span class="string">&quot;help&quot;</span>)
-    } <span class="kw">else</span> {
-        <span class="prelude-val">None</span>
+    } <span class="kw">else </span>{
+        <span class="prelude-val">None
+    </span>}
+}
+
+<span class="kw">fn </span>try_help(styled: <span class="kw-2">&amp;mut </span>StyledStr, help: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span>str&gt;) {
+    <span class="kw">if let </span><span class="prelude-val">Some</span>(help) = help {
+        styled.none(<span class="string">&quot;\n\nFor more information try &#39;&quot;</span>);
+        styled.literal(help.to_owned());
+        styled.none(<span class="string">&quot;&#39;\n&quot;</span>);
+    } <span class="kw">else </span>{
+        styled.none(<span class="string">&quot;\n&quot;</span>);
     }
 }
 
-<span class="kw">fn</span> <span class="ident">try_help</span>(<span class="ident">styled</span>: <span class="kw-2">&amp;mut</span> <span class="ident">StyledStr</span>, <span class="ident">help</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">str</span><span class="op">&gt;</span>) {
-    <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">help</span>) <span class="op">=</span> <span class="ident">help</span> {
-        <span class="ident">styled</span>.<span class="ident">none</span>(<span class="string">&quot;\n\nFor more information try &#39;&quot;</span>);
-        <span class="ident">styled</span>.<span class="ident">literal</span>(<span class="ident">help</span>.<span class="ident">to_owned</span>());
-        <span class="ident">styled</span>.<span class="ident">none</span>(<span class="string">&quot;&#39;\n&quot;</span>);
-    } <span class="kw">else</span> {
-        <span class="ident">styled</span>.<span class="ident">none</span>(<span class="string">&quot;\n&quot;</span>);
-    }
-}
-
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;error-context&quot;</span>)]</span>
-<span class="kw">fn</span> <span class="ident">did_you_mean</span>(<span class="ident">styled</span>: <span class="kw-2">&amp;mut</span> <span class="ident">StyledStr</span>, <span class="ident">valid</span>: <span class="kw-2">&amp;</span><span class="ident">ContextValue</span>) {
-    <span class="kw">if</span> <span class="kw">let</span> <span class="ident">ContextValue::String</span>(<span class="ident">valid</span>) <span class="op">=</span> <span class="ident">valid</span> {
-        <span class="ident">styled</span>.<span class="ident">none</span>(<span class="ident">TAB</span>);
-        <span class="ident">styled</span>.<span class="ident">none</span>(<span class="string">&quot;Did you mean &#39;&quot;</span>);
-        <span class="ident">styled</span>.<span class="ident">good</span>(<span class="ident">valid</span>);
-        <span class="ident">styled</span>.<span class="ident">none</span>(<span class="string">&quot;&#39;?&quot;</span>);
-    } <span class="kw">else</span> <span class="kw">if</span> <span class="kw">let</span> <span class="ident">ContextValue::Strings</span>(<span class="ident">valid</span>) <span class="op">=</span> <span class="ident">valid</span> {
-        <span class="ident">styled</span>.<span class="ident">none</span>(<span class="ident">TAB</span>);
-        <span class="ident">styled</span>.<span class="ident">none</span>(<span class="string">&quot;Did you mean &quot;</span>);
-        <span class="kw">for</span> (<span class="ident">i</span>, <span class="ident">valid</span>) <span class="kw">in</span> <span class="ident">valid</span>.<span class="ident">iter</span>().<span class="ident">enumerate</span>() {
-            <span class="kw">if</span> <span class="ident">i</span> <span class="op">!</span><span class="op">=</span> <span class="number">0</span> {
-                <span class="ident">styled</span>.<span class="ident">none</span>(<span class="string">&quot;, &quot;</span>);
+<span class="attribute">#[cfg(feature = <span class="string">&quot;error-context&quot;</span>)]
+</span><span class="kw">fn </span>did_you_mean(styled: <span class="kw-2">&amp;mut </span>StyledStr, valid: <span class="kw-2">&amp;</span>ContextValue) {
+    <span class="kw">if let </span>ContextValue::String(valid) = valid {
+        styled.none(TAB);
+        styled.none(<span class="string">&quot;Did you mean &#39;&quot;</span>);
+        styled.good(valid);
+        styled.none(<span class="string">&quot;&#39;?&quot;</span>);
+    } <span class="kw">else if let </span>ContextValue::Strings(valid) = valid {
+        styled.none(TAB);
+        styled.none(<span class="string">&quot;Did you mean &quot;</span>);
+        <span class="kw">for </span>(i, valid) <span class="kw">in </span>valid.iter().enumerate() {
+            <span class="kw">if </span>i != <span class="number">0 </span>{
+                styled.none(<span class="string">&quot;, &quot;</span>);
             }
-            <span class="ident">styled</span>.<span class="ident">none</span>(<span class="string">&quot;&#39;&quot;</span>);
-            <span class="ident">styled</span>.<span class="ident">good</span>(<span class="ident">valid</span>);
-            <span class="ident">styled</span>.<span class="ident">none</span>(<span class="string">&quot;&#39;&quot;</span>);
+            styled.none(<span class="string">&quot;&#39;&quot;</span>);
+            styled.good(valid);
+            styled.none(<span class="string">&quot;&#39;&quot;</span>);
         }
-        <span class="ident">styled</span>.<span class="ident">none</span>(<span class="string">&quot;?&quot;</span>);
+        styled.none(<span class="string">&quot;?&quot;</span>);
     }
 }
 
-<span class="kw">fn</span> <span class="ident">escape</span>(<span class="ident">s</span>: <span class="kw">impl</span> <span class="ident">AsRef</span><span class="op">&lt;</span><span class="ident">str</span><span class="op">&gt;</span>) -&gt; <span class="ident">String</span> {
-    <span class="kw">let</span> <span class="ident">s</span> <span class="op">=</span> <span class="ident">s</span>.<span class="ident">as_ref</span>();
-    <span class="kw">if</span> <span class="ident">s</span>.<span class="ident">contains</span>(<span class="ident">char::is_whitespace</span>) {
-        <span class="macro">format!</span>(<span class="string">&quot;{:?}&quot;</span>, <span class="ident">s</span>)
-    } <span class="kw">else</span> {
-        <span class="ident">s</span>.<span class="ident">to_owned</span>()
+<span class="kw">fn </span>escape(s: <span class="kw">impl </span>AsRef&lt;str&gt;) -&gt; String {
+    <span class="kw">let </span>s = s.as_ref();
+    <span class="kw">if </span>s.contains(char::is_whitespace) {
+        <span class="macro">format!</span>(<span class="string">&quot;{:?}&quot;</span>, s)
+    } <span class="kw">else </span>{
+        s.to_owned()
     }
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="clap" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0 (a55dd71d5 2022-09-19)" ></div></body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="clap" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.66.1 (90743e729 2023-01-10)" ></div></body></html>

@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/egui-0.16.1/src/placer.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>placer.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../egui/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../egui/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../egui/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/egui-0.16.1/src/placer.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>placer.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../normalize.css"><link rel="stylesheet" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../ayu.css" disabled><link rel="stylesheet" href="../../dark.css" disabled><link rel="stylesheet" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><div class="width-limiter"><nav class="sub"><a class="sub-logo-container" href="../../egui/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -276,283 +276,283 @@
 <span id="276">276</span>
 <span id="277">277</span>
 <span id="278">278</span>
-</pre><pre class="rust"><code><span class="kw">use</span> <span class="kw">crate</span>::<span class="kw-2">*</span>;
+</pre><pre class="rust"><code><span class="kw">use crate</span>::<span class="kw-2">*</span>;
 
-<span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">struct</span> <span class="ident">Placer</span> {
-    <span class="doccomment">/// If set this will take precedence over [`layout`].</span>
-    <span class="ident">grid</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">grid::GridLayout</span><span class="op">&gt;</span>,
-    <span class="ident">layout</span>: <span class="ident">Layout</span>,
-    <span class="ident">region</span>: <span class="ident">Region</span>,
+<span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">struct </span>Placer {
+    <span class="doccomment">/// If set this will take precedence over [`layout`].
+    </span>grid: <span class="prelude-ty">Option</span>&lt;grid::GridLayout&gt;,
+    layout: Layout,
+    region: Region,
 }
 
-<span class="kw">impl</span> <span class="ident">Placer</span> {
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">max_rect</span>: <span class="ident">Rect</span>, <span class="ident">layout</span>: <span class="ident">Layout</span>) -&gt; <span class="self">Self</span> {
-        <span class="kw">let</span> <span class="ident">region</span> <span class="op">=</span> <span class="ident">layout</span>.<span class="ident">region_from_max_rect</span>(<span class="ident">max_rect</span>);
-        <span class="self">Self</span> {
-            <span class="ident">grid</span>: <span class="prelude-val">None</span>,
-            <span class="ident">layout</span>,
-            <span class="ident">region</span>,
+<span class="kw">impl </span>Placer {
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>new(max_rect: Rect, layout: Layout) -&gt; <span class="self">Self </span>{
+        <span class="kw">let </span>region = layout.region_from_max_rect(max_rect);
+        <span class="self">Self </span>{
+            grid: <span class="prelude-val">None</span>,
+            layout,
+            region,
         }
     }
 
-    <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">set_grid</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">grid</span>: <span class="ident">grid::GridLayout</span>) {
-        <span class="self">self</span>.<span class="ident">grid</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">grid</span>);
+    <span class="attribute">#[inline(always)]
+    </span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>set_grid(<span class="kw-2">&amp;mut </span><span class="self">self</span>, grid: grid::GridLayout) {
+        <span class="self">self</span>.grid = <span class="prelude-val">Some</span>(grid);
     }
 
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">save_grid</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>) {
-        <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">grid</span>) <span class="op">=</span> <span class="kw-2">&amp;mut</span> <span class="self">self</span>.<span class="ident">grid</span> {
-            <span class="ident">grid</span>.<span class="ident">save</span>();
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>save_grid(<span class="kw-2">&amp;mut </span><span class="self">self</span>) {
+        <span class="kw">if let </span><span class="prelude-val">Some</span>(grid) = <span class="kw-2">&amp;mut </span><span class="self">self</span>.grid {
+            grid.save();
         }
     }
 
-    <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">grid</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">grid::GridLayout</span><span class="op">&gt;</span> {
-        <span class="self">self</span>.<span class="ident">grid</span>.<span class="ident">as_ref</span>()
+    <span class="attribute">#[inline(always)]
+    </span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>grid(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span>grid::GridLayout&gt; {
+        <span class="self">self</span>.grid.as_ref()
     }
 
-    <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">is_grid</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span> {
-        <span class="self">self</span>.<span class="ident">grid</span>.<span class="ident">is_some</span>()
+    <span class="attribute">#[inline(always)]
+    </span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>is_grid(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; bool {
+        <span class="self">self</span>.grid.is_some()
     }
 
-    <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">layout</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span><span class="ident">Layout</span> {
-        <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">layout</span>
+    <span class="attribute">#[inline(always)]
+    </span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>layout(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span>Layout {
+        <span class="kw-2">&amp;</span><span class="self">self</span>.layout
     }
 
-    <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">prefer_right_to_left</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span> {
-        <span class="self">self</span>.<span class="ident">layout</span>.<span class="ident">prefer_right_to_left</span>()
+    <span class="attribute">#[inline(always)]
+    </span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>prefer_right_to_left(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; bool {
+        <span class="self">self</span>.layout.prefer_right_to_left()
     }
 
-    <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">min_rect</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">Rect</span> {
-        <span class="self">self</span>.<span class="ident">region</span>.<span class="ident">min_rect</span>
+    <span class="attribute">#[inline(always)]
+    </span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>min_rect(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; Rect {
+        <span class="self">self</span>.region.min_rect
     }
 
-    <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">max_rect</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">Rect</span> {
-        <span class="self">self</span>.<span class="ident">region</span>.<span class="ident">max_rect</span>
+    <span class="attribute">#[inline(always)]
+    </span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>max_rect(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; Rect {
+        <span class="self">self</span>.region.max_rect
     }
 
-    <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">force_set_min_rect</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">min_rect</span>: <span class="ident">Rect</span>) {
-        <span class="self">self</span>.<span class="ident">region</span>.<span class="ident">min_rect</span> <span class="op">=</span> <span class="ident">min_rect</span>;
+    <span class="attribute">#[inline(always)]
+    </span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>force_set_min_rect(<span class="kw-2">&amp;mut </span><span class="self">self</span>, min_rect: Rect) {
+        <span class="self">self</span>.region.min_rect = min_rect;
     }
 
-    <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">cursor</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">Rect</span> {
-        <span class="self">self</span>.<span class="ident">region</span>.<span class="ident">cursor</span>
+    <span class="attribute">#[inline(always)]
+    </span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>cursor(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; Rect {
+        <span class="self">self</span>.region.cursor
     }
 
-    <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">set_cursor</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">cursor</span>: <span class="ident">Rect</span>) {
-        <span class="self">self</span>.<span class="ident">region</span>.<span class="ident">cursor</span> <span class="op">=</span> <span class="ident">cursor</span>;
+    <span class="attribute">#[inline(always)]
+    </span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>set_cursor(<span class="kw-2">&amp;mut </span><span class="self">self</span>, cursor: Rect) {
+        <span class="self">self</span>.region.cursor = cursor;
     }
 }
 
-<span class="kw">impl</span> <span class="ident">Placer</span> {
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">align_size_within_rect</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">size</span>: <span class="ident">Vec2</span>, <span class="ident">outer</span>: <span class="ident">Rect</span>) -&gt; <span class="ident">Rect</span> {
-        <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">grid</span>) <span class="op">=</span> <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">grid</span> {
-            <span class="ident">grid</span>.<span class="ident">align_size_within_rect</span>(<span class="ident">size</span>, <span class="ident">outer</span>)
-        } <span class="kw">else</span> {
-            <span class="self">self</span>.<span class="ident">layout</span>.<span class="ident">align_size_within_rect</span>(<span class="ident">size</span>, <span class="ident">outer</span>)
+<span class="kw">impl </span>Placer {
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>align_size_within_rect(<span class="kw-2">&amp;</span><span class="self">self</span>, size: Vec2, outer: Rect) -&gt; Rect {
+        <span class="kw">if let </span><span class="prelude-val">Some</span>(grid) = <span class="kw-2">&amp;</span><span class="self">self</span>.grid {
+            grid.align_size_within_rect(size, outer)
+        } <span class="kw">else </span>{
+            <span class="self">self</span>.layout.align_size_within_rect(size, outer)
         }
     }
 
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">available_rect_before_wrap</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">Rect</span> {
-        <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">grid</span>) <span class="op">=</span> <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">grid</span> {
-            <span class="ident">grid</span>.<span class="ident">available_rect</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">region</span>)
-        } <span class="kw">else</span> {
-            <span class="self">self</span>.<span class="ident">layout</span>.<span class="ident">available_rect_before_wrap</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">region</span>)
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>available_rect_before_wrap(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; Rect {
+        <span class="kw">if let </span><span class="prelude-val">Some</span>(grid) = <span class="kw-2">&amp;</span><span class="self">self</span>.grid {
+            grid.available_rect(<span class="kw-2">&amp;</span><span class="self">self</span>.region)
+        } <span class="kw">else </span>{
+            <span class="self">self</span>.layout.available_rect_before_wrap(<span class="kw-2">&amp;</span><span class="self">self</span>.region)
         }
     }
 
-    <span class="doccomment">/// Amount of space available for a widget.</span>
-    <span class="doccomment">/// For wrapping layouts, this is the maximum (after wrap).</span>
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">available_size</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">Vec2</span> {
-        <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">grid</span>) <span class="op">=</span> <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">grid</span> {
-            <span class="ident">grid</span>.<span class="ident">available_rect</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">region</span>).<span class="ident">size</span>()
-        } <span class="kw">else</span> {
-            <span class="self">self</span>.<span class="ident">layout</span>.<span class="ident">available_size</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">region</span>)
+    <span class="doccomment">/// Amount of space available for a widget.
+    /// For wrapping layouts, this is the maximum (after wrap).
+    </span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>available_size(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; Vec2 {
+        <span class="kw">if let </span><span class="prelude-val">Some</span>(grid) = <span class="kw-2">&amp;</span><span class="self">self</span>.grid {
+            grid.available_rect(<span class="kw-2">&amp;</span><span class="self">self</span>.region).size()
+        } <span class="kw">else </span>{
+            <span class="self">self</span>.layout.available_size(<span class="kw-2">&amp;</span><span class="self">self</span>.region)
         }
     }
 
-    <span class="doccomment">/// Returns where to put the next widget that is of the given size.</span>
-    <span class="doccomment">/// The returned `frame_rect` will always be justified along the cross axis.</span>
-    <span class="doccomment">/// This is what you then pass to `advance_after_rects`.</span>
-    <span class="doccomment">/// Use `justify_and_align` to get the inner `widget_rect`.</span>
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">next_space</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">child_size</span>: <span class="ident">Vec2</span>, <span class="ident">item_spacing</span>: <span class="ident">Vec2</span>) -&gt; <span class="ident">Rect</span> {
-        <span class="self">self</span>.<span class="ident">region</span>.<span class="ident">sanity_check</span>();
-        <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">grid</span>) <span class="op">=</span> <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">grid</span> {
-            <span class="ident">grid</span>.<span class="ident">next_cell</span>(<span class="self">self</span>.<span class="ident">region</span>.<span class="ident">cursor</span>, <span class="ident">child_size</span>)
-        } <span class="kw">else</span> {
-            <span class="self">self</span>.<span class="ident">layout</span>
-                .<span class="ident">next_frame</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">region</span>, <span class="ident">child_size</span>, <span class="ident">item_spacing</span>)
+    <span class="doccomment">/// Returns where to put the next widget that is of the given size.
+    /// The returned `frame_rect` will always be justified along the cross axis.
+    /// This is what you then pass to `advance_after_rects`.
+    /// Use `justify_and_align` to get the inner `widget_rect`.
+    </span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>next_space(<span class="kw-2">&amp;</span><span class="self">self</span>, child_size: Vec2, item_spacing: Vec2) -&gt; Rect {
+        <span class="self">self</span>.region.sanity_check();
+        <span class="kw">if let </span><span class="prelude-val">Some</span>(grid) = <span class="kw-2">&amp;</span><span class="self">self</span>.grid {
+            grid.next_cell(<span class="self">self</span>.region.cursor, child_size)
+        } <span class="kw">else </span>{
+            <span class="self">self</span>.layout
+                .next_frame(<span class="kw-2">&amp;</span><span class="self">self</span>.region, child_size, item_spacing)
         }
     }
 
-    <span class="doccomment">/// Where do we expect a zero-sized widget to be placed?</span>
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">next_widget_position</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">Pos2</span> {
-        <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">grid</span>) <span class="op">=</span> <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">grid</span> {
-            <span class="ident">grid</span>.<span class="ident">next_cell</span>(<span class="self">self</span>.<span class="ident">region</span>.<span class="ident">cursor</span>, <span class="ident">Vec2::ZERO</span>).<span class="ident">center</span>()
-        } <span class="kw">else</span> {
-            <span class="self">self</span>.<span class="ident">layout</span>.<span class="ident">next_widget_position</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">region</span>)
+    <span class="doccomment">/// Where do we expect a zero-sized widget to be placed?
+    </span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>next_widget_position(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; Pos2 {
+        <span class="kw">if let </span><span class="prelude-val">Some</span>(grid) = <span class="kw-2">&amp;</span><span class="self">self</span>.grid {
+            grid.next_cell(<span class="self">self</span>.region.cursor, Vec2::ZERO).center()
+        } <span class="kw">else </span>{
+            <span class="self">self</span>.layout.next_widget_position(<span class="kw-2">&amp;</span><span class="self">self</span>.region)
         }
     }
 
-    <span class="doccomment">/// Apply justify or alignment after calling `next_space`.</span>
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">justify_and_align</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">rect</span>: <span class="ident">Rect</span>, <span class="ident">child_size</span>: <span class="ident">Vec2</span>) -&gt; <span class="ident">Rect</span> {
-        <span class="macro">crate::egui_assert!</span>(<span class="op">!</span><span class="ident">rect</span>.<span class="ident">any_nan</span>());
-        <span class="macro">crate::egui_assert!</span>(<span class="op">!</span><span class="ident">child_size</span>.<span class="ident">any_nan</span>());
+    <span class="doccomment">/// Apply justify or alignment after calling `next_space`.
+    </span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>justify_and_align(<span class="kw-2">&amp;</span><span class="self">self</span>, rect: Rect, child_size: Vec2) -&gt; Rect {
+        <span class="macro">crate::egui_assert!</span>(!rect.any_nan());
+        <span class="macro">crate::egui_assert!</span>(!child_size.any_nan());
 
-        <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">grid</span>) <span class="op">=</span> <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">grid</span> {
-            <span class="ident">grid</span>.<span class="ident">justify_and_align</span>(<span class="ident">rect</span>, <span class="ident">child_size</span>)
-        } <span class="kw">else</span> {
-            <span class="self">self</span>.<span class="ident">layout</span>.<span class="ident">justify_and_align</span>(<span class="ident">rect</span>, <span class="ident">child_size</span>)
+        <span class="kw">if let </span><span class="prelude-val">Some</span>(grid) = <span class="kw-2">&amp;</span><span class="self">self</span>.grid {
+            grid.justify_and_align(rect, child_size)
+        } <span class="kw">else </span>{
+            <span class="self">self</span>.layout.justify_and_align(rect, child_size)
         }
     }
 
-    <span class="doccomment">/// Advance the cursor by this many points.</span>
-    <span class="doccomment">/// [`Self::min_rect`] will expand to contain the cursor.</span>
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">advance_cursor</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">amount</span>: <span class="ident">f32</span>) {
+    <span class="doccomment">/// Advance the cursor by this many points.
+    /// [`Self::min_rect`] will expand to contain the cursor.
+    </span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>advance_cursor(<span class="kw-2">&amp;mut </span><span class="self">self</span>, amount: f32) {
         <span class="macro">crate::egui_assert!</span>(
-            <span class="self">self</span>.<span class="ident">grid</span>.<span class="ident">is_none</span>(),
-            <span class="string">&quot;You cannot advance the cursor when in a grid layout&quot;</span>
-        );
-        <span class="self">self</span>.<span class="ident">layout</span>.<span class="ident">advance_cursor</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>.<span class="ident">region</span>, <span class="ident">amount</span>);
+            <span class="self">self</span>.grid.is_none(),
+            <span class="string">&quot;You cannot advance the cursor when in a grid layout&quot;
+        </span>);
+        <span class="self">self</span>.layout.advance_cursor(<span class="kw-2">&amp;mut </span><span class="self">self</span>.region, amount);
     }
 
-    <span class="doccomment">/// Advance cursor after a widget was added to a specific rectangle</span>
-    <span class="doccomment">/// and expand the region `min_rect`.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// * `frame_rect`: the frame inside which a widget was e.g. centered</span>
-    <span class="doccomment">/// * `widget_rect`: the actual rect used by the widget</span>
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">advance_after_rects</span>(
-        <span class="kw-2">&amp;mut</span> <span class="self">self</span>,
-        <span class="ident">frame_rect</span>: <span class="ident">Rect</span>,
-        <span class="ident">widget_rect</span>: <span class="ident">Rect</span>,
-        <span class="ident">item_spacing</span>: <span class="ident">Vec2</span>,
+    <span class="doccomment">/// Advance cursor after a widget was added to a specific rectangle
+    /// and expand the region `min_rect`.
+    ///
+    /// * `frame_rect`: the frame inside which a widget was e.g. centered
+    /// * `widget_rect`: the actual rect used by the widget
+    </span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>advance_after_rects(
+        <span class="kw-2">&amp;mut </span><span class="self">self</span>,
+        frame_rect: Rect,
+        widget_rect: Rect,
+        item_spacing: Vec2,
     ) {
-        <span class="macro">egui_assert!</span>(<span class="op">!</span><span class="ident">frame_rect</span>.<span class="ident">any_nan</span>());
-        <span class="macro">egui_assert!</span>(<span class="op">!</span><span class="ident">widget_rect</span>.<span class="ident">any_nan</span>());
-        <span class="self">self</span>.<span class="ident">region</span>.<span class="ident">sanity_check</span>();
+        <span class="macro">egui_assert!</span>(!frame_rect.any_nan());
+        <span class="macro">egui_assert!</span>(!widget_rect.any_nan());
+        <span class="self">self</span>.region.sanity_check();
 
-        <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">grid</span>) <span class="op">=</span> <span class="kw-2">&amp;mut</span> <span class="self">self</span>.<span class="ident">grid</span> {
-            <span class="ident">grid</span>.<span class="ident">advance</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>.<span class="ident">region</span>.<span class="ident">cursor</span>, <span class="ident">frame_rect</span>, <span class="ident">widget_rect</span>);
-        } <span class="kw">else</span> {
-            <span class="self">self</span>.<span class="ident">layout</span>.<span class="ident">advance_after_rects</span>(
-                <span class="kw-2">&amp;mut</span> <span class="self">self</span>.<span class="ident">region</span>.<span class="ident">cursor</span>,
-                <span class="ident">frame_rect</span>,
-                <span class="ident">widget_rect</span>,
-                <span class="ident">item_spacing</span>,
+        <span class="kw">if let </span><span class="prelude-val">Some</span>(grid) = <span class="kw-2">&amp;mut </span><span class="self">self</span>.grid {
+            grid.advance(<span class="kw-2">&amp;mut </span><span class="self">self</span>.region.cursor, frame_rect, widget_rect);
+        } <span class="kw">else </span>{
+            <span class="self">self</span>.layout.advance_after_rects(
+                <span class="kw-2">&amp;mut </span><span class="self">self</span>.region.cursor,
+                frame_rect,
+                widget_rect,
+                item_spacing,
             );
         }
 
-        <span class="self">self</span>.<span class="ident">expand_to_include_rect</span>(<span class="ident">frame_rect</span>); <span class="comment">// e.g. for centered layouts: pretend we used whole frame</span>
+        <span class="self">self</span>.expand_to_include_rect(frame_rect); <span class="comment">// e.g. for centered layouts: pretend we used whole frame
 
-        <span class="self">self</span>.<span class="ident">region</span>.<span class="ident">sanity_check</span>();
+        </span><span class="self">self</span>.region.sanity_check();
     }
 
-    <span class="doccomment">/// Move to the next row in a grid layout or wrapping layout.</span>
-    <span class="doccomment">/// Otherwise does nothing.</span>
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">end_row</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">item_spacing</span>: <span class="ident">Vec2</span>, <span class="ident">painter</span>: <span class="kw-2">&amp;</span><span class="ident">Painter</span>) {
-        <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">grid</span>) <span class="op">=</span> <span class="kw-2">&amp;mut</span> <span class="self">self</span>.<span class="ident">grid</span> {
-            <span class="ident">grid</span>.<span class="ident">end_row</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>.<span class="ident">region</span>.<span class="ident">cursor</span>, <span class="ident">painter</span>);
-        } <span class="kw">else</span> {
-            <span class="self">self</span>.<span class="ident">layout</span>.<span class="ident">end_row</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>.<span class="ident">region</span>, <span class="ident">item_spacing</span>);
+    <span class="doccomment">/// Move to the next row in a grid layout or wrapping layout.
+    /// Otherwise does nothing.
+    </span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>end_row(<span class="kw-2">&amp;mut </span><span class="self">self</span>, item_spacing: Vec2, painter: <span class="kw-2">&amp;</span>Painter) {
+        <span class="kw">if let </span><span class="prelude-val">Some</span>(grid) = <span class="kw-2">&amp;mut </span><span class="self">self</span>.grid {
+            grid.end_row(<span class="kw-2">&amp;mut </span><span class="self">self</span>.region.cursor, painter);
+        } <span class="kw">else </span>{
+            <span class="self">self</span>.layout.end_row(<span class="kw-2">&amp;mut </span><span class="self">self</span>.region, item_spacing);
         }
     }
 
-    <span class="doccomment">/// Set row height in horizontal wrapping layout.</span>
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">set_row_height</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">height</span>: <span class="ident">f32</span>) {
-        <span class="self">self</span>.<span class="ident">layout</span>.<span class="ident">set_row_height</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>.<span class="ident">region</span>, <span class="ident">height</span>);
+    <span class="doccomment">/// Set row height in horizontal wrapping layout.
+    </span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>set_row_height(<span class="kw-2">&amp;mut </span><span class="self">self</span>, height: f32) {
+        <span class="self">self</span>.layout.set_row_height(<span class="kw-2">&amp;mut </span><span class="self">self</span>.region, height);
     }
 }
 
-<span class="kw">impl</span> <span class="ident">Placer</span> {
-    <span class="doccomment">/// Expand the `min_rect` and `max_rect` of this ui to include a child at the given rect.</span>
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">expand_to_include_rect</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">rect</span>: <span class="ident">Rect</span>) {
-        <span class="self">self</span>.<span class="ident">region</span>.<span class="ident">expand_to_include_rect</span>(<span class="ident">rect</span>);
+<span class="kw">impl </span>Placer {
+    <span class="doccomment">/// Expand the `min_rect` and `max_rect` of this ui to include a child at the given rect.
+    </span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>expand_to_include_rect(<span class="kw-2">&amp;mut </span><span class="self">self</span>, rect: Rect) {
+        <span class="self">self</span>.region.expand_to_include_rect(rect);
     }
 
-    <span class="doccomment">/// Expand the `min_rect` and `max_rect` of this ui to include a child at the given x-coordinate.</span>
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">expand_to_include_x</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">x</span>: <span class="ident">f32</span>) {
-        <span class="self">self</span>.<span class="ident">region</span>.<span class="ident">expand_to_include_x</span>(<span class="ident">x</span>);
+    <span class="doccomment">/// Expand the `min_rect` and `max_rect` of this ui to include a child at the given x-coordinate.
+    </span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>expand_to_include_x(<span class="kw-2">&amp;mut </span><span class="self">self</span>, x: f32) {
+        <span class="self">self</span>.region.expand_to_include_x(x);
     }
 
-    <span class="doccomment">/// Expand the `min_rect` and `max_rect` of this ui to include a child at the given y-coordinate.</span>
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">expand_to_include_y</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">y</span>: <span class="ident">f32</span>) {
-        <span class="self">self</span>.<span class="ident">region</span>.<span class="ident">expand_to_include_y</span>(<span class="ident">y</span>);
+    <span class="doccomment">/// Expand the `min_rect` and `max_rect` of this ui to include a child at the given y-coordinate.
+    </span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>expand_to_include_y(<span class="kw-2">&amp;mut </span><span class="self">self</span>, y: f32) {
+        <span class="self">self</span>.region.expand_to_include_y(y);
     }
 
-    <span class="kw">fn</span> <span class="ident">next_widget_space_ignore_wrap_justify</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">size</span>: <span class="ident">Vec2</span>) -&gt; <span class="ident">Rect</span> {
-        <span class="self">self</span>.<span class="ident">layout</span>
-            .<span class="ident">next_widget_space_ignore_wrap_justify</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">region</span>, <span class="ident">size</span>)
+    <span class="kw">fn </span>next_widget_space_ignore_wrap_justify(<span class="kw-2">&amp;</span><span class="self">self</span>, size: Vec2) -&gt; Rect {
+        <span class="self">self</span>.layout
+            .next_widget_space_ignore_wrap_justify(<span class="kw-2">&amp;</span><span class="self">self</span>.region, size)
     }
 
-    <span class="doccomment">/// Set the maximum width of the ui.</span>
-    <span class="doccomment">/// You won&#39;t be able to shrink it below the current minimum size.</span>
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">set_max_width</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">width</span>: <span class="ident">f32</span>) {
-        <span class="kw">let</span> <span class="ident">rect</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">next_widget_space_ignore_wrap_justify</span>(<span class="ident">vec2</span>(<span class="ident">width</span>, <span class="number">0.0</span>));
-        <span class="kw">let</span> <span class="ident">region</span> <span class="op">=</span> <span class="kw-2">&amp;mut</span> <span class="self">self</span>.<span class="ident">region</span>;
-        <span class="ident">region</span>.<span class="ident">max_rect</span>.<span class="ident">min</span>.<span class="ident">x</span> <span class="op">=</span> <span class="ident">rect</span>.<span class="ident">min</span>.<span class="ident">x</span>;
-        <span class="ident">region</span>.<span class="ident">max_rect</span>.<span class="ident">max</span>.<span class="ident">x</span> <span class="op">=</span> <span class="ident">rect</span>.<span class="ident">max</span>.<span class="ident">x</span>;
-        <span class="ident">region</span>.<span class="ident">max_rect</span> <span class="op">=</span> <span class="ident">region</span>.<span class="ident">max_rect</span>.<span class="ident">union</span>(<span class="ident">region</span>.<span class="ident">min_rect</span>); <span class="comment">// make sure we didn&#39;t shrink too much</span>
+    <span class="doccomment">/// Set the maximum width of the ui.
+    /// You won&#39;t be able to shrink it below the current minimum size.
+    </span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>set_max_width(<span class="kw-2">&amp;mut </span><span class="self">self</span>, width: f32) {
+        <span class="kw">let </span>rect = <span class="self">self</span>.next_widget_space_ignore_wrap_justify(vec2(width, <span class="number">0.0</span>));
+        <span class="kw">let </span>region = <span class="kw-2">&amp;mut </span><span class="self">self</span>.region;
+        region.max_rect.min.x = rect.min.x;
+        region.max_rect.max.x = rect.max.x;
+        region.max_rect = region.max_rect.union(region.min_rect); <span class="comment">// make sure we didn&#39;t shrink too much
 
-        <span class="ident">region</span>.<span class="ident">cursor</span>.<span class="ident">min</span>.<span class="ident">x</span> <span class="op">=</span> <span class="ident">region</span>.<span class="ident">max_rect</span>.<span class="ident">min</span>.<span class="ident">x</span>;
-        <span class="ident">region</span>.<span class="ident">cursor</span>.<span class="ident">max</span>.<span class="ident">x</span> <span class="op">=</span> <span class="ident">region</span>.<span class="ident">max_rect</span>.<span class="ident">max</span>.<span class="ident">x</span>;
+        </span>region.cursor.min.x = region.max_rect.min.x;
+        region.cursor.max.x = region.max_rect.max.x;
 
-        <span class="ident">region</span>.<span class="ident">sanity_check</span>();
+        region.sanity_check();
     }
 
-    <span class="doccomment">/// Set the maximum height of the ui.</span>
-    <span class="doccomment">/// You won&#39;t be able to shrink it below the current minimum size.</span>
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">set_max_height</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">height</span>: <span class="ident">f32</span>) {
-        <span class="kw">let</span> <span class="ident">rect</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">next_widget_space_ignore_wrap_justify</span>(<span class="ident">vec2</span>(<span class="number">0.0</span>, <span class="ident">height</span>));
-        <span class="kw">let</span> <span class="ident">region</span> <span class="op">=</span> <span class="kw-2">&amp;mut</span> <span class="self">self</span>.<span class="ident">region</span>;
-        <span class="ident">region</span>.<span class="ident">max_rect</span>.<span class="ident">min</span>.<span class="ident">y</span> <span class="op">=</span> <span class="ident">rect</span>.<span class="ident">min</span>.<span class="ident">y</span>;
-        <span class="ident">region</span>.<span class="ident">max_rect</span>.<span class="ident">max</span>.<span class="ident">y</span> <span class="op">=</span> <span class="ident">rect</span>.<span class="ident">max</span>.<span class="ident">y</span>;
-        <span class="ident">region</span>.<span class="ident">max_rect</span> <span class="op">=</span> <span class="ident">region</span>.<span class="ident">max_rect</span>.<span class="ident">union</span>(<span class="ident">region</span>.<span class="ident">min_rect</span>); <span class="comment">// make sure we didn&#39;t shrink too much</span>
+    <span class="doccomment">/// Set the maximum height of the ui.
+    /// You won&#39;t be able to shrink it below the current minimum size.
+    </span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>set_max_height(<span class="kw-2">&amp;mut </span><span class="self">self</span>, height: f32) {
+        <span class="kw">let </span>rect = <span class="self">self</span>.next_widget_space_ignore_wrap_justify(vec2(<span class="number">0.0</span>, height));
+        <span class="kw">let </span>region = <span class="kw-2">&amp;mut </span><span class="self">self</span>.region;
+        region.max_rect.min.y = rect.min.y;
+        region.max_rect.max.y = rect.max.y;
+        region.max_rect = region.max_rect.union(region.min_rect); <span class="comment">// make sure we didn&#39;t shrink too much
 
-        <span class="ident">region</span>.<span class="ident">cursor</span>.<span class="ident">min</span>.<span class="ident">y</span> <span class="op">=</span> <span class="ident">region</span>.<span class="ident">max_rect</span>.<span class="ident">min</span>.<span class="ident">y</span>;
-        <span class="ident">region</span>.<span class="ident">cursor</span>.<span class="ident">max</span>.<span class="ident">y</span> <span class="op">=</span> <span class="ident">region</span>.<span class="ident">max_rect</span>.<span class="ident">max</span>.<span class="ident">y</span>;
+        </span>region.cursor.min.y = region.max_rect.min.y;
+        region.cursor.max.y = region.max_rect.max.y;
 
-        <span class="ident">region</span>.<span class="ident">sanity_check</span>();
+        region.sanity_check();
     }
 
-    <span class="doccomment">/// Set the minimum width of the ui.</span>
-    <span class="doccomment">/// This can&#39;t shrink the ui, only make it larger.</span>
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">set_min_width</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">width</span>: <span class="ident">f32</span>) {
-        <span class="kw">let</span> <span class="ident">rect</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">next_widget_space_ignore_wrap_justify</span>(<span class="ident">vec2</span>(<span class="ident">width</span>, <span class="number">0.0</span>));
-        <span class="self">self</span>.<span class="ident">region</span>.<span class="ident">expand_to_include_x</span>(<span class="ident">rect</span>.<span class="ident">min</span>.<span class="ident">x</span>);
-        <span class="self">self</span>.<span class="ident">region</span>.<span class="ident">expand_to_include_x</span>(<span class="ident">rect</span>.<span class="ident">max</span>.<span class="ident">x</span>);
+    <span class="doccomment">/// Set the minimum width of the ui.
+    /// This can&#39;t shrink the ui, only make it larger.
+    </span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>set_min_width(<span class="kw-2">&amp;mut </span><span class="self">self</span>, width: f32) {
+        <span class="kw">let </span>rect = <span class="self">self</span>.next_widget_space_ignore_wrap_justify(vec2(width, <span class="number">0.0</span>));
+        <span class="self">self</span>.region.expand_to_include_x(rect.min.x);
+        <span class="self">self</span>.region.expand_to_include_x(rect.max.x);
     }
 
-    <span class="doccomment">/// Set the minimum height of the ui.</span>
-    <span class="doccomment">/// This can&#39;t shrink the ui, only make it larger.</span>
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">set_min_height</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">height</span>: <span class="ident">f32</span>) {
-        <span class="kw">let</span> <span class="ident">rect</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">next_widget_space_ignore_wrap_justify</span>(<span class="ident">vec2</span>(<span class="number">0.0</span>, <span class="ident">height</span>));
-        <span class="self">self</span>.<span class="ident">region</span>.<span class="ident">expand_to_include_y</span>(<span class="ident">rect</span>.<span class="ident">min</span>.<span class="ident">y</span>);
-        <span class="self">self</span>.<span class="ident">region</span>.<span class="ident">expand_to_include_y</span>(<span class="ident">rect</span>.<span class="ident">max</span>.<span class="ident">y</span>);
+    <span class="doccomment">/// Set the minimum height of the ui.
+    /// This can&#39;t shrink the ui, only make it larger.
+    </span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>set_min_height(<span class="kw-2">&amp;mut </span><span class="self">self</span>, height: f32) {
+        <span class="kw">let </span>rect = <span class="self">self</span>.next_widget_space_ignore_wrap_justify(vec2(<span class="number">0.0</span>, height));
+        <span class="self">self</span>.region.expand_to_include_y(rect.min.y);
+        <span class="self">self</span>.region.expand_to_include_y(rect.max.y);
     }
 }
 
-<span class="kw">impl</span> <span class="ident">Placer</span> {
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">debug_paint_cursor</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">painter</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="kw">crate</span>::Painter</span>, <span class="ident">text</span>: <span class="kw">impl</span> <span class="ident">ToString</span>) {
-        <span class="kw">let</span> <span class="ident">stroke</span> <span class="op">=</span> <span class="ident">Stroke::new</span>(<span class="number">1.0</span>, <span class="ident">Color32::DEBUG_COLOR</span>);
+<span class="kw">impl </span>Placer {
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>debug_paint_cursor(<span class="kw-2">&amp;</span><span class="self">self</span>, painter: <span class="kw-2">&amp;</span><span class="kw">crate</span>::Painter, text: <span class="kw">impl </span>ToString) {
+        <span class="kw">let </span>stroke = Stroke::new(<span class="number">1.0</span>, Color32::DEBUG_COLOR);
 
-        <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">grid</span>) <span class="op">=</span> <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">grid</span> {
-            <span class="kw">let</span> <span class="ident">rect</span> <span class="op">=</span> <span class="ident">grid</span>.<span class="ident">next_cell</span>(<span class="self">self</span>.<span class="ident">cursor</span>(), <span class="ident">Vec2::splat</span>(<span class="number">0.0</span>));
-            <span class="ident">painter</span>.<span class="ident">rect_stroke</span>(<span class="ident">rect</span>, <span class="number">1.0</span>, <span class="ident">stroke</span>);
-            <span class="kw">let</span> <span class="ident">align</span> <span class="op">=</span> <span class="ident">Align2::CENTER_CENTER</span>;
-            <span class="ident">painter</span>.<span class="ident">debug_text</span>(<span class="ident">align</span>.<span class="ident">pos_in_rect</span>(<span class="kw-2">&amp;</span><span class="ident">rect</span>), <span class="ident">align</span>, <span class="ident">stroke</span>.<span class="ident">color</span>, <span class="ident">text</span>);
-        } <span class="kw">else</span> {
-            <span class="self">self</span>.<span class="ident">layout</span>
-                .<span class="ident">paint_text_at_cursor</span>(<span class="ident">painter</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">region</span>, <span class="ident">stroke</span>, <span class="ident">text</span>);
+        <span class="kw">if let </span><span class="prelude-val">Some</span>(grid) = <span class="kw-2">&amp;</span><span class="self">self</span>.grid {
+            <span class="kw">let </span>rect = grid.next_cell(<span class="self">self</span>.cursor(), Vec2::splat(<span class="number">0.0</span>));
+            painter.rect_stroke(rect, <span class="number">1.0</span>, stroke);
+            <span class="kw">let </span>align = Align2::CENTER_CENTER;
+            painter.debug_text(align.pos_in_rect(<span class="kw-2">&amp;</span>rect), align, stroke.color, text);
+        } <span class="kw">else </span>{
+            <span class="self">self</span>.layout
+                .paint_text_at_cursor(painter, <span class="kw-2">&amp;</span><span class="self">self</span>.region, stroke, text);
         }
     }
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="egui" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0 (a55dd71d5 2022-09-19)" ></div></body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="egui" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.66.1 (90743e729 2023-01-10)" ></div></body></html>

@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/egui-0.16.1/src/grid.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>grid.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../egui/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../egui/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../egui/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/egui-0.16.1/src/grid.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>grid.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../normalize.css"><link rel="stylesheet" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../ayu.css" disabled><link rel="stylesheet" href="../../dark.css" disabled><link rel="stylesheet" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><div class="width-limiter"><nav class="sub"><a class="sub-logo-container" href="../../egui/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -383,390 +383,390 @@
 <span id="383">383</span>
 <span id="384">384</span>
 <span id="385">385</span>
-</pre><pre class="rust"><code><span class="kw">use</span> <span class="kw">crate</span>::<span class="kw-2">*</span>;
+</pre><pre class="rust"><code><span class="kw">use crate</span>::<span class="kw-2">*</span>;
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">Default</span>, <span class="ident">PartialEq</span>)]</span>
-<span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;serde&quot;</span>, <span class="ident">derive</span>(<span class="ident">serde::Deserialize</span>, <span class="ident">serde::Serialize</span>))]</span>
-<span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">struct</span> <span class="ident">State</span> {
-    <span class="ident">col_widths</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">f32</span><span class="op">&gt;</span>,
-    <span class="ident">row_heights</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">f32</span><span class="op">&gt;</span>,
+<span class="attribute">#[derive(Clone, Debug, Default, PartialEq)]
+#[cfg_attr(feature = <span class="string">&quot;serde&quot;</span>, derive(serde::Deserialize, serde::Serialize))]
+</span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">struct </span>State {
+    col_widths: Vec&lt;f32&gt;,
+    row_heights: Vec&lt;f32&gt;,
 }
 
-<span class="kw">impl</span> <span class="ident">State</span> {
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">load</span>(<span class="ident">ctx</span>: <span class="kw-2">&amp;</span><span class="ident">Context</span>, <span class="ident">id</span>: <span class="ident">Id</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
-        <span class="ident">ctx</span>.<span class="ident">memory</span>().<span class="ident">data</span>.<span class="ident">get_persisted</span>(<span class="ident">id</span>)
+<span class="kw">impl </span>State {
+    <span class="kw">pub fn </span>load(ctx: <span class="kw-2">&amp;</span>Context, id: Id) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="self">Self</span>&gt; {
+        ctx.memory().data.get_persisted(id)
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">store</span>(<span class="self">self</span>, <span class="ident">ctx</span>: <span class="kw-2">&amp;</span><span class="ident">Context</span>, <span class="ident">id</span>: <span class="ident">Id</span>) {
-        <span class="ident">ctx</span>.<span class="ident">memory</span>().<span class="ident">data</span>.<span class="ident">insert_persisted</span>(<span class="ident">id</span>, <span class="self">self</span>);
+    <span class="kw">pub fn </span>store(<span class="self">self</span>, ctx: <span class="kw-2">&amp;</span>Context, id: Id) {
+        ctx.memory().data.insert_persisted(id, <span class="self">self</span>);
     }
 
-    <span class="kw">fn</span> <span class="ident">set_min_col_width</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">col</span>: <span class="ident">usize</span>, <span class="ident">width</span>: <span class="ident">f32</span>) {
-        <span class="self">self</span>.<span class="ident">col_widths</span>
-            .<span class="ident">resize</span>(<span class="self">self</span>.<span class="ident">col_widths</span>.<span class="ident">len</span>().<span class="ident">max</span>(<span class="ident">col</span> <span class="op">+</span> <span class="number">1</span>), <span class="number">0.0</span>);
-        <span class="self">self</span>.<span class="ident">col_widths</span>[<span class="ident">col</span>] <span class="op">=</span> <span class="self">self</span>.<span class="ident">col_widths</span>[<span class="ident">col</span>].<span class="ident">max</span>(<span class="ident">width</span>);
+    <span class="kw">fn </span>set_min_col_width(<span class="kw-2">&amp;mut </span><span class="self">self</span>, col: usize, width: f32) {
+        <span class="self">self</span>.col_widths
+            .resize(<span class="self">self</span>.col_widths.len().max(col + <span class="number">1</span>), <span class="number">0.0</span>);
+        <span class="self">self</span>.col_widths[col] = <span class="self">self</span>.col_widths[col].max(width);
     }
 
-    <span class="kw">fn</span> <span class="ident">set_min_row_height</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">row</span>: <span class="ident">usize</span>, <span class="ident">height</span>: <span class="ident">f32</span>) {
-        <span class="self">self</span>.<span class="ident">row_heights</span>
-            .<span class="ident">resize</span>(<span class="self">self</span>.<span class="ident">row_heights</span>.<span class="ident">len</span>().<span class="ident">max</span>(<span class="ident">row</span> <span class="op">+</span> <span class="number">1</span>), <span class="number">0.0</span>);
-        <span class="self">self</span>.<span class="ident">row_heights</span>[<span class="ident">row</span>] <span class="op">=</span> <span class="self">self</span>.<span class="ident">row_heights</span>[<span class="ident">row</span>].<span class="ident">max</span>(<span class="ident">height</span>);
+    <span class="kw">fn </span>set_min_row_height(<span class="kw-2">&amp;mut </span><span class="self">self</span>, row: usize, height: f32) {
+        <span class="self">self</span>.row_heights
+            .resize(<span class="self">self</span>.row_heights.len().max(row + <span class="number">1</span>), <span class="number">0.0</span>);
+        <span class="self">self</span>.row_heights[row] = <span class="self">self</span>.row_heights[row].max(height);
     }
 
-    <span class="kw">fn</span> <span class="ident">col_width</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">col</span>: <span class="ident">usize</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">f32</span><span class="op">&gt;</span> {
-        <span class="self">self</span>.<span class="ident">col_widths</span>.<span class="ident">get</span>(<span class="ident">col</span>).<span class="ident">copied</span>()
+    <span class="kw">fn </span>col_width(<span class="kw-2">&amp;</span><span class="self">self</span>, col: usize) -&gt; <span class="prelude-ty">Option</span>&lt;f32&gt; {
+        <span class="self">self</span>.col_widths.get(col).copied()
     }
 
-    <span class="kw">fn</span> <span class="ident">row_height</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">row</span>: <span class="ident">usize</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">f32</span><span class="op">&gt;</span> {
-        <span class="self">self</span>.<span class="ident">row_heights</span>.<span class="ident">get</span>(<span class="ident">row</span>).<span class="ident">copied</span>()
+    <span class="kw">fn </span>row_height(<span class="kw-2">&amp;</span><span class="self">self</span>, row: usize) -&gt; <span class="prelude-ty">Option</span>&lt;f32&gt; {
+        <span class="self">self</span>.row_heights.get(row).copied()
     }
 
-    <span class="kw">fn</span> <span class="ident">full_width</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">x_spacing</span>: <span class="ident">f32</span>) -&gt; <span class="ident">f32</span> {
-        <span class="self">self</span>.<span class="ident">col_widths</span>.<span class="ident">iter</span>().<span class="ident">sum</span>::<span class="op">&lt;</span><span class="ident">f32</span><span class="op">&gt;</span>()
-            <span class="op">+</span> (<span class="self">self</span>.<span class="ident">col_widths</span>.<span class="ident">len</span>().<span class="ident">at_least</span>(<span class="number">1</span>) <span class="op">-</span> <span class="number">1</span>) <span class="kw">as</span> <span class="ident">f32</span> <span class="op">*</span> <span class="ident">x_spacing</span>
+    <span class="kw">fn </span>full_width(<span class="kw-2">&amp;</span><span class="self">self</span>, x_spacing: f32) -&gt; f32 {
+        <span class="self">self</span>.col_widths.iter().sum::&lt;f32&gt;()
+            + (<span class="self">self</span>.col_widths.len().at_least(<span class="number">1</span>) - <span class="number">1</span>) <span class="kw">as </span>f32 * x_spacing
     }
 }
 
-<span class="comment">// ----------------------------------------------------------------------------</span>
+<span class="comment">// ----------------------------------------------------------------------------
 
-<span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">struct</span> <span class="ident">GridLayout</span> {
-    <span class="ident">ctx</span>: <span class="ident">CtxRef</span>,
-    <span class="ident">style</span>: <span class="ident">std::sync::Arc</span><span class="op">&lt;</span><span class="ident">Style</span><span class="op">&gt;</span>,
-    <span class="ident">id</span>: <span class="ident">Id</span>,
+</span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">struct </span>GridLayout {
+    ctx: CtxRef,
+    style: std::sync::Arc&lt;Style&gt;,
+    id: Id,
 
-    <span class="doccomment">/// State previous frame (if any).</span>
-    <span class="doccomment">/// This can be used to predict future sizes of cells.</span>
-    <span class="ident">prev_state</span>: <span class="ident">State</span>,
-    <span class="doccomment">/// State accumulated during the current frame.</span>
-    <span class="ident">curr_state</span>: <span class="ident">State</span>,
-    <span class="ident">initial_available</span>: <span class="ident">Rect</span>,
+    <span class="doccomment">/// State previous frame (if any).
+    /// This can be used to predict future sizes of cells.
+    </span>prev_state: State,
+    <span class="doccomment">/// State accumulated during the current frame.
+    </span>curr_state: State,
+    initial_available: Rect,
 
-    <span class="comment">// Options:</span>
-    <span class="ident">num_columns</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">usize</span><span class="op">&gt;</span>,
-    <span class="ident">spacing</span>: <span class="ident">Vec2</span>,
-    <span class="ident">min_cell_size</span>: <span class="ident">Vec2</span>,
-    <span class="ident">max_cell_size</span>: <span class="ident">Vec2</span>,
-    <span class="ident">striped</span>: <span class="ident">bool</span>,
+    <span class="comment">// Options:
+    </span>num_columns: <span class="prelude-ty">Option</span>&lt;usize&gt;,
+    spacing: Vec2,
+    min_cell_size: Vec2,
+    max_cell_size: Vec2,
+    striped: bool,
 
-    <span class="comment">// Cursor:</span>
-    <span class="ident">col</span>: <span class="ident">usize</span>,
-    <span class="ident">row</span>: <span class="ident">usize</span>,
+    <span class="comment">// Cursor:
+    </span>col: usize,
+    row: usize,
 }
 
-<span class="kw">impl</span> <span class="ident">GridLayout</span> {
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">ui</span>: <span class="kw-2">&amp;</span><span class="ident">Ui</span>, <span class="ident">id</span>: <span class="ident">Id</span>) -&gt; <span class="self">Self</span> {
-        <span class="kw">let</span> <span class="ident">prev_state</span> <span class="op">=</span> <span class="ident">State::load</span>(<span class="ident">ui</span>.<span class="ident">ctx</span>(), <span class="ident">id</span>).<span class="ident">unwrap_or_default</span>();
+<span class="kw">impl </span>GridLayout {
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>new(ui: <span class="kw-2">&amp;</span>Ui, id: Id) -&gt; <span class="self">Self </span>{
+        <span class="kw">let </span>prev_state = State::load(ui.ctx(), id).unwrap_or_default();
 
-        <span class="comment">// TODO: respect current layout</span>
+        <span class="comment">// TODO: respect current layout
 
-        <span class="kw">let</span> <span class="ident">initial_available</span> <span class="op">=</span> <span class="ident">ui</span>.<span class="ident">placer</span>().<span class="ident">max_rect</span>().<span class="ident">intersect</span>(<span class="ident">ui</span>.<span class="ident">cursor</span>());
+        </span><span class="kw">let </span>initial_available = ui.placer().max_rect().intersect(ui.cursor());
         <span class="macro">crate::egui_assert!</span>(
-            <span class="ident">initial_available</span>.<span class="ident">min</span>.<span class="ident">x</span>.<span class="ident">is_finite</span>(),
-            <span class="string">&quot;Grid not yet available for right-to-left layouts&quot;</span>
-        );
+            initial_available.min.x.is_finite(),
+            <span class="string">&quot;Grid not yet available for right-to-left layouts&quot;
+        </span>);
 
-        <span class="self">Self</span> {
-            <span class="ident">ctx</span>: <span class="ident">ui</span>.<span class="ident">ctx</span>().<span class="ident">clone</span>(),
-            <span class="ident">style</span>: <span class="ident">ui</span>.<span class="ident">style</span>().<span class="ident">clone</span>(),
-            <span class="ident">id</span>,
-            <span class="ident">prev_state</span>,
-            <span class="ident">curr_state</span>: <span class="ident">State::default</span>(),
-            <span class="ident">initial_available</span>,
+        <span class="self">Self </span>{
+            ctx: ui.ctx().clone(),
+            style: ui.style().clone(),
+            id,
+            prev_state,
+            curr_state: State::default(),
+            initial_available,
 
-            <span class="ident">num_columns</span>: <span class="prelude-val">None</span>,
-            <span class="ident">spacing</span>: <span class="ident">ui</span>.<span class="ident">spacing</span>().<span class="ident">item_spacing</span>,
-            <span class="ident">min_cell_size</span>: <span class="ident">ui</span>.<span class="ident">spacing</span>().<span class="ident">interact_size</span>,
-            <span class="ident">max_cell_size</span>: <span class="ident">Vec2::INFINITY</span>,
-            <span class="ident">striped</span>: <span class="bool-val">false</span>,
+            num_columns: <span class="prelude-val">None</span>,
+            spacing: ui.spacing().item_spacing,
+            min_cell_size: ui.spacing().interact_size,
+            max_cell_size: Vec2::INFINITY,
+            striped: <span class="bool-val">false</span>,
 
-            <span class="ident">col</span>: <span class="number">0</span>,
-            <span class="ident">row</span>: <span class="number">0</span>,
+            col: <span class="number">0</span>,
+            row: <span class="number">0</span>,
         }
     }
 }
 
-<span class="kw">impl</span> <span class="ident">GridLayout</span> {
-    <span class="kw">fn</span> <span class="ident">prev_col_width</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">col</span>: <span class="ident">usize</span>) -&gt; <span class="ident">f32</span> {
-        <span class="self">self</span>.<span class="ident">prev_state</span>
-            .<span class="ident">col_width</span>(<span class="ident">col</span>)
-            .<span class="ident">unwrap_or</span>(<span class="self">self</span>.<span class="ident">min_cell_size</span>.<span class="ident">x</span>)
+<span class="kw">impl </span>GridLayout {
+    <span class="kw">fn </span>prev_col_width(<span class="kw-2">&amp;</span><span class="self">self</span>, col: usize) -&gt; f32 {
+        <span class="self">self</span>.prev_state
+            .col_width(col)
+            .unwrap_or(<span class="self">self</span>.min_cell_size.x)
     }
-    <span class="kw">fn</span> <span class="ident">prev_row_height</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">row</span>: <span class="ident">usize</span>) -&gt; <span class="ident">f32</span> {
-        <span class="self">self</span>.<span class="ident">prev_state</span>
-            .<span class="ident">row_height</span>(<span class="ident">row</span>)
-            .<span class="ident">unwrap_or</span>(<span class="self">self</span>.<span class="ident">min_cell_size</span>.<span class="ident">y</span>)
-    }
-
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">wrap_text</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span> {
-        <span class="self">self</span>.<span class="ident">max_cell_size</span>.<span class="ident">x</span>.<span class="ident">is_finite</span>()
+    <span class="kw">fn </span>prev_row_height(<span class="kw-2">&amp;</span><span class="self">self</span>, row: usize) -&gt; f32 {
+        <span class="self">self</span>.prev_state
+            .row_height(row)
+            .unwrap_or(<span class="self">self</span>.min_cell_size.y)
     }
 
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">available_rect</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">region</span>: <span class="kw-2">&amp;</span><span class="ident">Region</span>) -&gt; <span class="ident">Rect</span> {
-        <span class="kw">let</span> <span class="ident">is_last_column</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="self">self</span>.<span class="ident">col</span> <span class="op">+</span> <span class="number">1</span>) <span class="op">==</span> <span class="self">self</span>.<span class="ident">num_columns</span>;
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>wrap_text(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; bool {
+        <span class="self">self</span>.max_cell_size.x.is_finite()
+    }
 
-        <span class="kw">let</span> <span class="ident">width</span> <span class="op">=</span> <span class="kw">if</span> <span class="ident">is_last_column</span> {
-            (<span class="self">self</span>.<span class="ident">initial_available</span>.<span class="ident">right</span>() <span class="op">-</span> <span class="ident">region</span>.<span class="ident">cursor</span>.<span class="ident">left</span>()).<span class="ident">at_most</span>(<span class="self">self</span>.<span class="ident">max_cell_size</span>.<span class="ident">x</span>)
-        } <span class="kw">else</span> <span class="kw">if</span> <span class="self">self</span>.<span class="ident">max_cell_size</span>.<span class="ident">x</span>.<span class="ident">is_finite</span>() {
-            <span class="comment">// TODO: should probably heed `prev_state` here too</span>
-            <span class="self">self</span>.<span class="ident">max_cell_size</span>.<span class="ident">x</span>
-        } <span class="kw">else</span> {
-            <span class="comment">// If we want to allow width-filling widgets like `Separator` in one of the first cells</span>
-            <span class="comment">// then we need to make sure they don&#39;t spill out of the first cell:</span>
-            <span class="self">self</span>.<span class="ident">prev_state</span>
-                .<span class="ident">col_width</span>(<span class="self">self</span>.<span class="ident">col</span>)
-                .<span class="ident">or_else</span>(<span class="op">|</span><span class="op">|</span> <span class="self">self</span>.<span class="ident">curr_state</span>.<span class="ident">col_width</span>(<span class="self">self</span>.<span class="ident">col</span>))
-                .<span class="ident">unwrap_or</span>(<span class="self">self</span>.<span class="ident">min_cell_size</span>.<span class="ident">x</span>)
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>available_rect(<span class="kw-2">&amp;</span><span class="self">self</span>, region: <span class="kw-2">&amp;</span>Region) -&gt; Rect {
+        <span class="kw">let </span>is_last_column = <span class="prelude-val">Some</span>(<span class="self">self</span>.col + <span class="number">1</span>) == <span class="self">self</span>.num_columns;
+
+        <span class="kw">let </span>width = <span class="kw">if </span>is_last_column {
+            (<span class="self">self</span>.initial_available.right() - region.cursor.left()).at_most(<span class="self">self</span>.max_cell_size.x)
+        } <span class="kw">else if </span><span class="self">self</span>.max_cell_size.x.is_finite() {
+            <span class="comment">// TODO: should probably heed `prev_state` here too
+            </span><span class="self">self</span>.max_cell_size.x
+        } <span class="kw">else </span>{
+            <span class="comment">// If we want to allow width-filling widgets like `Separator` in one of the first cells
+            // then we need to make sure they don&#39;t spill out of the first cell:
+            </span><span class="self">self</span>.prev_state
+                .col_width(<span class="self">self</span>.col)
+                .or_else(|| <span class="self">self</span>.curr_state.col_width(<span class="self">self</span>.col))
+                .unwrap_or(<span class="self">self</span>.min_cell_size.x)
         };
 
-        <span class="comment">// If something above was wider, we can be wider:</span>
-        <span class="kw">let</span> <span class="ident">width</span> <span class="op">=</span> <span class="ident">width</span>.<span class="ident">max</span>(<span class="self">self</span>.<span class="ident">curr_state</span>.<span class="ident">col_width</span>(<span class="self">self</span>.<span class="ident">col</span>).<span class="ident">unwrap_or</span>(<span class="number">0.0</span>));
+        <span class="comment">// If something above was wider, we can be wider:
+        </span><span class="kw">let </span>width = width.max(<span class="self">self</span>.curr_state.col_width(<span class="self">self</span>.col).unwrap_or(<span class="number">0.0</span>));
 
-        <span class="kw">let</span> <span class="ident">available</span> <span class="op">=</span> <span class="ident">region</span>.<span class="ident">max_rect</span>.<span class="ident">intersect</span>(<span class="ident">region</span>.<span class="ident">cursor</span>);
+        <span class="kw">let </span>available = region.max_rect.intersect(region.cursor);
 
-        <span class="kw">let</span> <span class="ident">height</span> <span class="op">=</span> <span class="ident">region</span>.<span class="ident">max_rect</span>.<span class="ident">max</span>.<span class="ident">y</span> <span class="op">-</span> <span class="ident">available</span>.<span class="ident">top</span>();
-        <span class="kw">let</span> <span class="ident">height</span> <span class="op">=</span> <span class="ident">height</span>
-            .<span class="ident">at_least</span>(<span class="self">self</span>.<span class="ident">min_cell_size</span>.<span class="ident">y</span>)
-            .<span class="ident">at_most</span>(<span class="self">self</span>.<span class="ident">max_cell_size</span>.<span class="ident">y</span>);
+        <span class="kw">let </span>height = region.max_rect.max.y - available.top();
+        <span class="kw">let </span>height = height
+            .at_least(<span class="self">self</span>.min_cell_size.y)
+            .at_most(<span class="self">self</span>.max_cell_size.y);
 
-        <span class="ident">Rect::from_min_size</span>(<span class="ident">available</span>.<span class="ident">min</span>, <span class="ident">vec2</span>(<span class="ident">width</span>, <span class="ident">height</span>))
+        Rect::from_min_size(available.min, vec2(width, height))
     }
 
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">next_cell</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">cursor</span>: <span class="ident">Rect</span>, <span class="ident">child_size</span>: <span class="ident">Vec2</span>) -&gt; <span class="ident">Rect</span> {
-        <span class="kw">let</span> <span class="ident">width</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">prev_state</span>.<span class="ident">col_width</span>(<span class="self">self</span>.<span class="ident">col</span>).<span class="ident">unwrap_or</span>(<span class="number">0.0</span>);
-        <span class="kw">let</span> <span class="ident">height</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">prev_row_height</span>(<span class="self">self</span>.<span class="ident">row</span>);
-        <span class="kw">let</span> <span class="ident">size</span> <span class="op">=</span> <span class="ident">child_size</span>.<span class="ident">max</span>(<span class="ident">vec2</span>(<span class="ident">width</span>, <span class="ident">height</span>));
-        <span class="ident">Rect::from_min_size</span>(<span class="ident">cursor</span>.<span class="ident">min</span>, <span class="ident">size</span>)
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>next_cell(<span class="kw-2">&amp;</span><span class="self">self</span>, cursor: Rect, child_size: Vec2) -&gt; Rect {
+        <span class="kw">let </span>width = <span class="self">self</span>.prev_state.col_width(<span class="self">self</span>.col).unwrap_or(<span class="number">0.0</span>);
+        <span class="kw">let </span>height = <span class="self">self</span>.prev_row_height(<span class="self">self</span>.row);
+        <span class="kw">let </span>size = child_size.max(vec2(width, height));
+        Rect::from_min_size(cursor.min, size)
     }
 
-    <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">clippy::unused_self</span>)]</span>
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">align_size_within_rect</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">size</span>: <span class="ident">Vec2</span>, <span class="ident">frame</span>: <span class="ident">Rect</span>) -&gt; <span class="ident">Rect</span> {
-        <span class="comment">// TODO: allow this alignment to be customized</span>
-        <span class="ident">Align2::LEFT_CENTER</span>.<span class="ident">align_size_within_rect</span>(<span class="ident">size</span>, <span class="ident">frame</span>)
+    <span class="attribute">#[allow(clippy::unused_self)]
+    </span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>align_size_within_rect(<span class="kw-2">&amp;</span><span class="self">self</span>, size: Vec2, frame: Rect) -&gt; Rect {
+        <span class="comment">// TODO: allow this alignment to be customized
+        </span>Align2::LEFT_CENTER.align_size_within_rect(size, frame)
     }
 
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">justify_and_align</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">frame</span>: <span class="ident">Rect</span>, <span class="ident">size</span>: <span class="ident">Vec2</span>) -&gt; <span class="ident">Rect</span> {
-        <span class="self">self</span>.<span class="ident">align_size_within_rect</span>(<span class="ident">size</span>, <span class="ident">frame</span>)
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>justify_and_align(<span class="kw-2">&amp;</span><span class="self">self</span>, frame: Rect, size: Vec2) -&gt; Rect {
+        <span class="self">self</span>.align_size_within_rect(size, frame)
     }
 
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">advance</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">cursor</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Rect</span>, <span class="ident">_frame_rect</span>: <span class="ident">Rect</span>, <span class="ident">widget_rect</span>: <span class="ident">Rect</span>) {
-        <span class="kw">let</span> <span class="ident">debug_expand_width</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">style</span>.<span class="ident">debug</span>.<span class="ident">show_expand_width</span>;
-        <span class="kw">let</span> <span class="ident">debug_expand_height</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">style</span>.<span class="ident">debug</span>.<span class="ident">show_expand_height</span>;
-        <span class="kw">if</span> <span class="ident">debug_expand_width</span> <span class="op">|</span><span class="op">|</span> <span class="ident">debug_expand_height</span> {
-            <span class="kw">let</span> <span class="ident">rect</span> <span class="op">=</span> <span class="ident">widget_rect</span>;
-            <span class="kw">let</span> <span class="ident">too_wide</span> <span class="op">=</span> <span class="ident">rect</span>.<span class="ident">width</span>() <span class="op">&gt;</span> <span class="self">self</span>.<span class="ident">prev_col_width</span>(<span class="self">self</span>.<span class="ident">col</span>);
-            <span class="kw">let</span> <span class="ident">too_high</span> <span class="op">=</span> <span class="ident">rect</span>.<span class="ident">height</span>() <span class="op">&gt;</span> <span class="self">self</span>.<span class="ident">prev_row_height</span>(<span class="self">self</span>.<span class="ident">row</span>);
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>advance(<span class="kw-2">&amp;mut </span><span class="self">self</span>, cursor: <span class="kw-2">&amp;mut </span>Rect, _frame_rect: Rect, widget_rect: Rect) {
+        <span class="kw">let </span>debug_expand_width = <span class="self">self</span>.style.debug.show_expand_width;
+        <span class="kw">let </span>debug_expand_height = <span class="self">self</span>.style.debug.show_expand_height;
+        <span class="kw">if </span>debug_expand_width || debug_expand_height {
+            <span class="kw">let </span>rect = widget_rect;
+            <span class="kw">let </span>too_wide = rect.width() &gt; <span class="self">self</span>.prev_col_width(<span class="self">self</span>.col);
+            <span class="kw">let </span>too_high = rect.height() &gt; <span class="self">self</span>.prev_row_height(<span class="self">self</span>.row);
 
-            <span class="kw">if</span> (<span class="ident">debug_expand_width</span> <span class="op">&amp;&amp;</span> <span class="ident">too_wide</span>) <span class="op">|</span><span class="op">|</span> (<span class="ident">debug_expand_height</span> <span class="op">&amp;&amp;</span> <span class="ident">too_high</span>) {
-                <span class="kw">let</span> <span class="ident">painter</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">ctx</span>.<span class="ident">debug_painter</span>();
-                <span class="ident">painter</span>.<span class="ident">rect_stroke</span>(<span class="ident">rect</span>, <span class="number">0.0</span>, (<span class="number">1.0</span>, <span class="ident">Color32::LIGHT_BLUE</span>));
+            <span class="kw">if </span>(debug_expand_width &amp;&amp; too_wide) || (debug_expand_height &amp;&amp; too_high) {
+                <span class="kw">let </span>painter = <span class="self">self</span>.ctx.debug_painter();
+                painter.rect_stroke(rect, <span class="number">0.0</span>, (<span class="number">1.0</span>, Color32::LIGHT_BLUE));
 
-                <span class="kw">let</span> <span class="ident">stroke</span> <span class="op">=</span> <span class="ident">Stroke::new</span>(<span class="number">2.5</span>, <span class="ident">Color32::from_rgb</span>(<span class="number">200</span>, <span class="number">0</span>, <span class="number">0</span>));
-                <span class="kw">let</span> <span class="ident">paint_line_seg</span> <span class="op">=</span> <span class="op">|</span><span class="ident">a</span>, <span class="ident">b</span><span class="op">|</span> <span class="ident">painter</span>.<span class="ident">line_segment</span>([<span class="ident">a</span>, <span class="ident">b</span>], <span class="ident">stroke</span>);
+                <span class="kw">let </span>stroke = Stroke::new(<span class="number">2.5</span>, Color32::from_rgb(<span class="number">200</span>, <span class="number">0</span>, <span class="number">0</span>));
+                <span class="kw">let </span>paint_line_seg = |a, b| painter.line_segment([a, b], stroke);
 
-                <span class="kw">if</span> <span class="ident">debug_expand_width</span> <span class="op">&amp;&amp;</span> <span class="ident">too_wide</span> {
-                    <span class="ident">paint_line_seg</span>(<span class="ident">rect</span>.<span class="ident">left_top</span>(), <span class="ident">rect</span>.<span class="ident">left_bottom</span>());
-                    <span class="ident">paint_line_seg</span>(<span class="ident">rect</span>.<span class="ident">left_center</span>(), <span class="ident">rect</span>.<span class="ident">right_center</span>());
-                    <span class="ident">paint_line_seg</span>(<span class="ident">rect</span>.<span class="ident">right_top</span>(), <span class="ident">rect</span>.<span class="ident">right_bottom</span>());
+                <span class="kw">if </span>debug_expand_width &amp;&amp; too_wide {
+                    paint_line_seg(rect.left_top(), rect.left_bottom());
+                    paint_line_seg(rect.left_center(), rect.right_center());
+                    paint_line_seg(rect.right_top(), rect.right_bottom());
                 }
             }
         }
 
-        <span class="self">self</span>.<span class="ident">curr_state</span>
-            .<span class="ident">set_min_col_width</span>(<span class="self">self</span>.<span class="ident">col</span>, <span class="ident">widget_rect</span>.<span class="ident">width</span>().<span class="ident">max</span>(<span class="self">self</span>.<span class="ident">min_cell_size</span>.<span class="ident">x</span>));
-        <span class="self">self</span>.<span class="ident">curr_state</span>
-            .<span class="ident">set_min_row_height</span>(<span class="self">self</span>.<span class="ident">row</span>, <span class="ident">widget_rect</span>.<span class="ident">height</span>().<span class="ident">max</span>(<span class="self">self</span>.<span class="ident">min_cell_size</span>.<span class="ident">y</span>));
+        <span class="self">self</span>.curr_state
+            .set_min_col_width(<span class="self">self</span>.col, widget_rect.width().max(<span class="self">self</span>.min_cell_size.x));
+        <span class="self">self</span>.curr_state
+            .set_min_row_height(<span class="self">self</span>.row, widget_rect.height().max(<span class="self">self</span>.min_cell_size.y));
 
-        <span class="ident">cursor</span>.<span class="ident">min</span>.<span class="ident">x</span> <span class="op">+</span><span class="op">=</span> <span class="self">self</span>.<span class="ident">prev_col_width</span>(<span class="self">self</span>.<span class="ident">col</span>) <span class="op">+</span> <span class="self">self</span>.<span class="ident">spacing</span>.<span class="ident">x</span>;
-        <span class="self">self</span>.<span class="ident">col</span> <span class="op">+</span><span class="op">=</span> <span class="number">1</span>;
+        cursor.min.x += <span class="self">self</span>.prev_col_width(<span class="self">self</span>.col) + <span class="self">self</span>.spacing.x;
+        <span class="self">self</span>.col += <span class="number">1</span>;
     }
 
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">end_row</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">cursor</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Rect</span>, <span class="ident">painter</span>: <span class="kw-2">&amp;</span><span class="ident">Painter</span>) {
-        <span class="ident">cursor</span>.<span class="ident">min</span>.<span class="ident">x</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">initial_available</span>.<span class="ident">min</span>.<span class="ident">x</span>;
-        <span class="ident">cursor</span>.<span class="ident">min</span>.<span class="ident">y</span> <span class="op">+</span><span class="op">=</span> <span class="self">self</span>.<span class="ident">spacing</span>.<span class="ident">y</span>;
-        <span class="ident">cursor</span>.<span class="ident">min</span>.<span class="ident">y</span> <span class="op">+</span><span class="op">=</span> <span class="self">self</span>
-            .<span class="ident">curr_state</span>
-            .<span class="ident">row_height</span>(<span class="self">self</span>.<span class="ident">row</span>)
-            .<span class="ident">unwrap_or</span>(<span class="self">self</span>.<span class="ident">min_cell_size</span>.<span class="ident">y</span>);
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>end_row(<span class="kw-2">&amp;mut </span><span class="self">self</span>, cursor: <span class="kw-2">&amp;mut </span>Rect, painter: <span class="kw-2">&amp;</span>Painter) {
+        cursor.min.x = <span class="self">self</span>.initial_available.min.x;
+        cursor.min.y += <span class="self">self</span>.spacing.y;
+        cursor.min.y += <span class="self">self
+            </span>.curr_state
+            .row_height(<span class="self">self</span>.row)
+            .unwrap_or(<span class="self">self</span>.min_cell_size.y);
 
-        <span class="self">self</span>.<span class="ident">col</span> <span class="op">=</span> <span class="number">0</span>;
-        <span class="self">self</span>.<span class="ident">row</span> <span class="op">+</span><span class="op">=</span> <span class="number">1</span>;
+        <span class="self">self</span>.col = <span class="number">0</span>;
+        <span class="self">self</span>.row += <span class="number">1</span>;
 
-        <span class="kw">if</span> <span class="self">self</span>.<span class="ident">striped</span> <span class="op">&amp;&amp;</span> <span class="self">self</span>.<span class="ident">row</span> <span class="op">%</span> <span class="number">2</span> <span class="op">==</span> <span class="number">1</span> {
-            <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">height</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">prev_state</span>.<span class="ident">row_height</span>(<span class="self">self</span>.<span class="ident">row</span>) {
-                <span class="comment">// Paint background for coming row:</span>
-                <span class="kw">let</span> <span class="ident">size</span> <span class="op">=</span> <span class="ident">Vec2::new</span>(<span class="self">self</span>.<span class="ident">prev_state</span>.<span class="ident">full_width</span>(<span class="self">self</span>.<span class="ident">spacing</span>.<span class="ident">x</span>), <span class="ident">height</span>);
-                <span class="kw">let</span> <span class="ident">rect</span> <span class="op">=</span> <span class="ident">Rect::from_min_size</span>(<span class="ident">cursor</span>.<span class="ident">min</span>, <span class="ident">size</span>);
-                <span class="kw">let</span> <span class="ident">rect</span> <span class="op">=</span> <span class="ident">rect</span>.<span class="ident">expand2</span>(<span class="number">0.5</span> <span class="op">*</span> <span class="self">self</span>.<span class="ident">spacing</span>.<span class="ident">y</span> <span class="op">*</span> <span class="ident">Vec2::Y</span>);
-                <span class="kw">let</span> <span class="ident">rect</span> <span class="op">=</span> <span class="ident">rect</span>.<span class="ident">expand2</span>(<span class="number">2.0</span> <span class="op">*</span> <span class="ident">Vec2::X</span>); <span class="comment">// HACK: just looks better with some spacing on the sides</span>
+        <span class="kw">if </span><span class="self">self</span>.striped &amp;&amp; <span class="self">self</span>.row % <span class="number">2 </span>== <span class="number">1 </span>{
+            <span class="kw">if let </span><span class="prelude-val">Some</span>(height) = <span class="self">self</span>.prev_state.row_height(<span class="self">self</span>.row) {
+                <span class="comment">// Paint background for coming row:
+                </span><span class="kw">let </span>size = Vec2::new(<span class="self">self</span>.prev_state.full_width(<span class="self">self</span>.spacing.x), height);
+                <span class="kw">let </span>rect = Rect::from_min_size(cursor.min, size);
+                <span class="kw">let </span>rect = rect.expand2(<span class="number">0.5 </span>* <span class="self">self</span>.spacing.y * Vec2::Y);
+                <span class="kw">let </span>rect = rect.expand2(<span class="number">2.0 </span>* Vec2::X); <span class="comment">// HACK: just looks better with some spacing on the sides
 
-                <span class="ident">painter</span>.<span class="ident">rect_filled</span>(<span class="ident">rect</span>, <span class="number">2.0</span>, <span class="self">self</span>.<span class="ident">style</span>.<span class="ident">visuals</span>.<span class="ident">faint_bg_color</span>);
+                </span>painter.rect_filled(rect, <span class="number">2.0</span>, <span class="self">self</span>.style.visuals.faint_bg_color);
             }
         }
     }
 
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">save</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) {
-        <span class="kw">if</span> <span class="self">self</span>.<span class="ident">curr_state</span> <span class="op">!</span><span class="op">=</span> <span class="self">self</span>.<span class="ident">prev_state</span> {
-            <span class="self">self</span>.<span class="ident">curr_state</span>.<span class="ident">clone</span>().<span class="ident">store</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">ctx</span>, <span class="self">self</span>.<span class="ident">id</span>);
-            <span class="self">self</span>.<span class="ident">ctx</span>.<span class="ident">request_repaint</span>();
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>save(<span class="kw-2">&amp;</span><span class="self">self</span>) {
+        <span class="kw">if </span><span class="self">self</span>.curr_state != <span class="self">self</span>.prev_state {
+            <span class="self">self</span>.curr_state.clone().store(<span class="kw-2">&amp;</span><span class="self">self</span>.ctx, <span class="self">self</span>.id);
+            <span class="self">self</span>.ctx.request_repaint();
         }
     }
 }
 
-<span class="comment">// ----------------------------------------------------------------------------</span>
+<span class="comment">// ----------------------------------------------------------------------------
 
-<span class="doccomment">/// A simple grid layout.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// The cells are always layed out left to right, top-down.</span>
-<span class="doccomment">/// The contents of each cell will be aligned to the left and center.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// If you want to add multiple widgets to a cell you need to group them with</span>
-<span class="doccomment">/// [`Ui::horizontal`], [`Ui::vertical`] etc.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// ```</span>
-<span class="doccomment">/// # egui::__run_test_ui(|ui| {</span>
-<span class="doccomment">/// egui::Grid::new(&quot;some_unique_id&quot;).show(ui, |ui| {</span>
-<span class="doccomment">///     ui.label(&quot;First row, first column&quot;);</span>
-<span class="doccomment">///     ui.label(&quot;First row, second column&quot;);</span>
-<span class="doccomment">///     ui.end_row();</span>
-<span class="doccomment">///</span>
-<span class="doccomment">///     ui.label(&quot;Second row, first column&quot;);</span>
-<span class="doccomment">///     ui.label(&quot;Second row, second column&quot;);</span>
-<span class="doccomment">///     ui.label(&quot;Second row, third column&quot;);</span>
-<span class="doccomment">///     ui.end_row();</span>
-<span class="doccomment">///</span>
-<span class="doccomment">///     ui.horizontal(|ui| { ui.label(&quot;Same&quot;); ui.label(&quot;cell&quot;); });</span>
-<span class="doccomment">///     ui.label(&quot;Third row, second column&quot;);</span>
-<span class="doccomment">///     ui.end_row();</span>
-<span class="doccomment">/// });</span>
-<span class="doccomment">/// # });</span>
-<span class="doccomment">/// ```</span>
-<span class="attribute">#[<span class="ident">must_use</span> <span class="op">=</span> <span class="string">&quot;You should call .show()&quot;</span>]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Grid</span> {
-    <span class="ident">id_source</span>: <span class="ident">Id</span>,
-    <span class="ident">num_columns</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">usize</span><span class="op">&gt;</span>,
-    <span class="ident">striped</span>: <span class="ident">bool</span>,
-    <span class="ident">min_col_width</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">f32</span><span class="op">&gt;</span>,
-    <span class="ident">min_row_height</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">f32</span><span class="op">&gt;</span>,
-    <span class="ident">max_cell_size</span>: <span class="ident">Vec2</span>,
-    <span class="ident">spacing</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Vec2</span><span class="op">&gt;</span>,
-    <span class="ident">start_row</span>: <span class="ident">usize</span>,
+</span><span class="doccomment">/// A simple grid layout.
+///
+/// The cells are always layed out left to right, top-down.
+/// The contents of each cell will be aligned to the left and center.
+///
+/// If you want to add multiple widgets to a cell you need to group them with
+/// [`Ui::horizontal`], [`Ui::vertical`] etc.
+///
+/// ```
+/// # egui::__run_test_ui(|ui| {
+/// egui::Grid::new(&quot;some_unique_id&quot;).show(ui, |ui| {
+///     ui.label(&quot;First row, first column&quot;);
+///     ui.label(&quot;First row, second column&quot;);
+///     ui.end_row();
+///
+///     ui.label(&quot;Second row, first column&quot;);
+///     ui.label(&quot;Second row, second column&quot;);
+///     ui.label(&quot;Second row, third column&quot;);
+///     ui.end_row();
+///
+///     ui.horizontal(|ui| { ui.label(&quot;Same&quot;); ui.label(&quot;cell&quot;); });
+///     ui.label(&quot;Third row, second column&quot;);
+///     ui.end_row();
+/// });
+/// # });
+/// ```
+</span><span class="attribute">#[must_use = <span class="string">&quot;You should call .show()&quot;</span>]
+</span><span class="kw">pub struct </span>Grid {
+    id_source: Id,
+    num_columns: <span class="prelude-ty">Option</span>&lt;usize&gt;,
+    striped: bool,
+    min_col_width: <span class="prelude-ty">Option</span>&lt;f32&gt;,
+    min_row_height: <span class="prelude-ty">Option</span>&lt;f32&gt;,
+    max_cell_size: Vec2,
+    spacing: <span class="prelude-ty">Option</span>&lt;Vec2&gt;,
+    start_row: usize,
 }
 
-<span class="kw">impl</span> <span class="ident">Grid</span> {
-    <span class="doccomment">/// Create a new [`Grid`] with a locally unique identifier.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">id_source</span>: <span class="kw">impl</span> <span class="ident">std::hash::Hash</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">Self</span> {
-            <span class="ident">id_source</span>: <span class="ident">Id::new</span>(<span class="ident">id_source</span>),
-            <span class="ident">num_columns</span>: <span class="prelude-val">None</span>,
-            <span class="ident">striped</span>: <span class="bool-val">false</span>,
-            <span class="ident">min_col_width</span>: <span class="prelude-val">None</span>,
-            <span class="ident">min_row_height</span>: <span class="prelude-val">None</span>,
-            <span class="ident">max_cell_size</span>: <span class="ident">Vec2::INFINITY</span>,
-            <span class="ident">spacing</span>: <span class="prelude-val">None</span>,
-            <span class="ident">start_row</span>: <span class="number">0</span>,
+<span class="kw">impl </span>Grid {
+    <span class="doccomment">/// Create a new [`Grid`] with a locally unique identifier.
+    </span><span class="kw">pub fn </span>new(id_source: <span class="kw">impl </span>std::hash::Hash) -&gt; <span class="self">Self </span>{
+        <span class="self">Self </span>{
+            id_source: Id::new(id_source),
+            num_columns: <span class="prelude-val">None</span>,
+            striped: <span class="bool-val">false</span>,
+            min_col_width: <span class="prelude-val">None</span>,
+            min_row_height: <span class="prelude-val">None</span>,
+            max_cell_size: Vec2::INFINITY,
+            spacing: <span class="prelude-val">None</span>,
+            start_row: <span class="number">0</span>,
         }
     }
 
-    <span class="doccomment">/// Setting this will allow the last column to expand to take up the rest of the space of the parent [`Ui`].</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">num_columns</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">num_columns</span>: <span class="ident">usize</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">self</span>.<span class="ident">num_columns</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">num_columns</span>);
-        <span class="self">self</span>
-    }
+    <span class="doccomment">/// Setting this will allow the last column to expand to take up the rest of the space of the parent [`Ui`].
+    </span><span class="kw">pub fn </span>num_columns(<span class="kw-2">mut </span><span class="self">self</span>, num_columns: usize) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.num_columns = <span class="prelude-val">Some</span>(num_columns);
+        <span class="self">self
+    </span>}
 
-    <span class="doccomment">/// If `true`, add a subtle background color to every other row.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// This can make a table easier to read.</span>
-    <span class="doccomment">/// Default: `false`.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">striped</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">striped</span>: <span class="ident">bool</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">self</span>.<span class="ident">striped</span> <span class="op">=</span> <span class="ident">striped</span>;
-        <span class="self">self</span>
-    }
+    <span class="doccomment">/// If `true`, add a subtle background color to every other row.
+    ///
+    /// This can make a table easier to read.
+    /// Default: `false`.
+    </span><span class="kw">pub fn </span>striped(<span class="kw-2">mut </span><span class="self">self</span>, striped: bool) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.striped = striped;
+        <span class="self">self
+    </span>}
 
-    <span class="doccomment">/// Set minimum width of each column.</span>
-    <span class="doccomment">/// Default: [`crate::style::Spacing::interact_size`]`.x`.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">min_col_width</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">min_col_width</span>: <span class="ident">f32</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">self</span>.<span class="ident">min_col_width</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">min_col_width</span>);
-        <span class="self">self</span>
-    }
+    <span class="doccomment">/// Set minimum width of each column.
+    /// Default: [`crate::style::Spacing::interact_size`]`.x`.
+    </span><span class="kw">pub fn </span>min_col_width(<span class="kw-2">mut </span><span class="self">self</span>, min_col_width: f32) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.min_col_width = <span class="prelude-val">Some</span>(min_col_width);
+        <span class="self">self
+    </span>}
 
-    <span class="doccomment">/// Set minimum height of each row.</span>
-    <span class="doccomment">/// Default: [`crate::style::Spacing::interact_size`]`.y`.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">min_row_height</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">min_row_height</span>: <span class="ident">f32</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">self</span>.<span class="ident">min_row_height</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">min_row_height</span>);
-        <span class="self">self</span>
-    }
+    <span class="doccomment">/// Set minimum height of each row.
+    /// Default: [`crate::style::Spacing::interact_size`]`.y`.
+    </span><span class="kw">pub fn </span>min_row_height(<span class="kw-2">mut </span><span class="self">self</span>, min_row_height: f32) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.min_row_height = <span class="prelude-val">Some</span>(min_row_height);
+        <span class="self">self
+    </span>}
 
-    <span class="doccomment">/// Set soft maximum width (wrapping width) of each column.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">max_col_width</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">max_col_width</span>: <span class="ident">f32</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">self</span>.<span class="ident">max_cell_size</span>.<span class="ident">x</span> <span class="op">=</span> <span class="ident">max_col_width</span>;
-        <span class="self">self</span>
-    }
+    <span class="doccomment">/// Set soft maximum width (wrapping width) of each column.
+    </span><span class="kw">pub fn </span>max_col_width(<span class="kw-2">mut </span><span class="self">self</span>, max_col_width: f32) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.max_cell_size.x = max_col_width;
+        <span class="self">self
+    </span>}
 
-    <span class="doccomment">/// Set spacing between columns/rows.</span>
-    <span class="doccomment">/// Default: [`crate::style::Spacing::item_spacing`].</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">spacing</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">spacing</span>: <span class="kw">impl</span> <span class="ident">Into</span><span class="op">&lt;</span><span class="ident">Vec2</span><span class="op">&gt;</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">self</span>.<span class="ident">spacing</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">spacing</span>.<span class="ident">into</span>());
-        <span class="self">self</span>
-    }
+    <span class="doccomment">/// Set spacing between columns/rows.
+    /// Default: [`crate::style::Spacing::item_spacing`].
+    </span><span class="kw">pub fn </span>spacing(<span class="kw-2">mut </span><span class="self">self</span>, spacing: <span class="kw">impl </span>Into&lt;Vec2&gt;) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.spacing = <span class="prelude-val">Some</span>(spacing.into());
+        <span class="self">self
+    </span>}
 
-    <span class="doccomment">/// Change which row number the grid starts on.</span>
-    <span class="doccomment">/// This can be useful when you have a large `Grid` inside of [`ScrollArea::show_rows`].</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">start_row</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">start_row</span>: <span class="ident">usize</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">self</span>.<span class="ident">start_row</span> <span class="op">=</span> <span class="ident">start_row</span>;
-        <span class="self">self</span>
-    }
+    <span class="doccomment">/// Change which row number the grid starts on.
+    /// This can be useful when you have a large `Grid` inside of [`ScrollArea::show_rows`].
+    </span><span class="kw">pub fn </span>start_row(<span class="kw-2">mut </span><span class="self">self</span>, start_row: usize) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.start_row = start_row;
+        <span class="self">self
+    </span>}
 }
 
-<span class="kw">impl</span> <span class="ident">Grid</span> {
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">show</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span>(<span class="self">self</span>, <span class="ident">ui</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Ui</span>, <span class="ident">add_contents</span>: <span class="kw">impl</span> <span class="ident">FnOnce</span>(<span class="kw-2">&amp;mut</span> <span class="ident">Ui</span>) -&gt; <span class="ident">R</span>) -&gt; <span class="ident">InnerResponse</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span> {
-        <span class="self">self</span>.<span class="ident">show_dyn</span>(<span class="ident">ui</span>, <span class="ident">Box::new</span>(<span class="ident">add_contents</span>))
+<span class="kw">impl </span>Grid {
+    <span class="kw">pub fn </span>show&lt;R&gt;(<span class="self">self</span>, ui: <span class="kw-2">&amp;mut </span>Ui, add_contents: <span class="kw">impl </span>FnOnce(<span class="kw-2">&amp;mut </span>Ui) -&gt; R) -&gt; InnerResponse&lt;R&gt; {
+        <span class="self">self</span>.show_dyn(ui, Box::new(add_contents))
     }
 
-    <span class="kw">fn</span> <span class="ident">show_dyn</span><span class="op">&lt;</span><span class="lifetime">&#39;c</span>, <span class="ident">R</span><span class="op">&gt;</span>(
+    <span class="kw">fn </span>show_dyn&lt;<span class="lifetime">&#39;c</span>, R&gt;(
         <span class="self">self</span>,
-        <span class="ident">ui</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Ui</span>,
-        <span class="ident">add_contents</span>: <span class="ident">Box</span><span class="op">&lt;</span><span class="kw">dyn</span> <span class="ident">FnOnce</span>(<span class="kw-2">&amp;mut</span> <span class="ident">Ui</span>) -&gt; <span class="ident">R</span> <span class="op">+</span> <span class="lifetime">&#39;c</span><span class="op">&gt;</span>,
-    ) -&gt; <span class="ident">InnerResponse</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="self">Self</span> {
-            <span class="ident">id_source</span>,
-            <span class="ident">num_columns</span>,
-            <span class="ident">striped</span>,
-            <span class="ident">min_col_width</span>,
-            <span class="ident">min_row_height</span>,
-            <span class="ident">max_cell_size</span>,
-            <span class="ident">spacing</span>,
-            <span class="ident">start_row</span>,
-        } <span class="op">=</span> <span class="self">self</span>;
-        <span class="kw">let</span> <span class="ident">min_col_width</span> <span class="op">=</span> <span class="ident">min_col_width</span>.<span class="ident">unwrap_or_else</span>(<span class="op">|</span><span class="op">|</span> <span class="ident">ui</span>.<span class="ident">spacing</span>().<span class="ident">interact_size</span>.<span class="ident">x</span>);
-        <span class="kw">let</span> <span class="ident">min_row_height</span> <span class="op">=</span> <span class="ident">min_row_height</span>.<span class="ident">unwrap_or_else</span>(<span class="op">|</span><span class="op">|</span> <span class="ident">ui</span>.<span class="ident">spacing</span>().<span class="ident">interact_size</span>.<span class="ident">y</span>);
-        <span class="kw">let</span> <span class="ident">spacing</span> <span class="op">=</span> <span class="ident">spacing</span>.<span class="ident">unwrap_or_else</span>(<span class="op">|</span><span class="op">|</span> <span class="ident">ui</span>.<span class="ident">spacing</span>().<span class="ident">item_spacing</span>);
+        ui: <span class="kw-2">&amp;mut </span>Ui,
+        add_contents: Box&lt;<span class="kw">dyn </span>FnOnce(<span class="kw-2">&amp;mut </span>Ui) -&gt; R + <span class="lifetime">&#39;c</span>&gt;,
+    ) -&gt; InnerResponse&lt;R&gt; {
+        <span class="kw">let </span><span class="self">Self </span>{
+            id_source,
+            num_columns,
+            striped,
+            min_col_width,
+            min_row_height,
+            max_cell_size,
+            spacing,
+            start_row,
+        } = <span class="self">self</span>;
+        <span class="kw">let </span>min_col_width = min_col_width.unwrap_or_else(|| ui.spacing().interact_size.x);
+        <span class="kw">let </span>min_row_height = min_row_height.unwrap_or_else(|| ui.spacing().interact_size.y);
+        <span class="kw">let </span>spacing = spacing.unwrap_or_else(|| ui.spacing().item_spacing);
 
-        <span class="comment">// Each grid cell is aligned LEFT_CENTER.</span>
-        <span class="comment">// If somebody wants to wrap more things inside a cell,</span>
-        <span class="comment">// then we should pick a default layout that matches that alignment,</span>
-        <span class="comment">// which we do here:</span>
-        <span class="kw">let</span> <span class="ident">max_rect</span> <span class="op">=</span> <span class="ident">ui</span>.<span class="ident">cursor</span>().<span class="ident">intersect</span>(<span class="ident">ui</span>.<span class="ident">max_rect</span>());
-        <span class="ident">ui</span>.<span class="ident">allocate_ui_at_rect</span>(<span class="ident">max_rect</span>, <span class="op">|</span><span class="ident">ui</span><span class="op">|</span> {
-            <span class="ident">ui</span>.<span class="ident">horizontal</span>(<span class="op">|</span><span class="ident">ui</span><span class="op">|</span> {
-                <span class="kw">let</span> <span class="ident">id</span> <span class="op">=</span> <span class="ident">ui</span>.<span class="ident">make_persistent_id</span>(<span class="ident">id_source</span>);
-                <span class="kw">let</span> <span class="ident">grid</span> <span class="op">=</span> <span class="ident">GridLayout</span> {
-                    <span class="ident">num_columns</span>,
-                    <span class="ident">striped</span>,
-                    <span class="ident">min_cell_size</span>: <span class="ident">vec2</span>(<span class="ident">min_col_width</span>, <span class="ident">min_row_height</span>),
-                    <span class="ident">max_cell_size</span>,
-                    <span class="ident">spacing</span>,
-                    <span class="ident">row</span>: <span class="ident">start_row</span>,
-                    ..<span class="ident">GridLayout::new</span>(<span class="ident">ui</span>, <span class="ident">id</span>)
+        <span class="comment">// Each grid cell is aligned LEFT_CENTER.
+        // If somebody wants to wrap more things inside a cell,
+        // then we should pick a default layout that matches that alignment,
+        // which we do here:
+        </span><span class="kw">let </span>max_rect = ui.cursor().intersect(ui.max_rect());
+        ui.allocate_ui_at_rect(max_rect, |ui| {
+            ui.horizontal(|ui| {
+                <span class="kw">let </span>id = ui.make_persistent_id(id_source);
+                <span class="kw">let </span>grid = GridLayout {
+                    num_columns,
+                    striped,
+                    min_cell_size: vec2(min_col_width, min_row_height),
+                    max_cell_size,
+                    spacing,
+                    row: start_row,
+                    ..GridLayout::new(ui, id)
                 };
 
-                <span class="ident">ui</span>.<span class="ident">set_grid</span>(<span class="ident">grid</span>);
-                <span class="kw">let</span> <span class="ident">r</span> <span class="op">=</span> <span class="ident">add_contents</span>(<span class="ident">ui</span>);
-                <span class="ident">ui</span>.<span class="ident">save_grid</span>();
-                <span class="ident">r</span>
+                ui.set_grid(grid);
+                <span class="kw">let </span>r = add_contents(ui);
+                ui.save_grid();
+                r
             })
-            .<span class="ident">inner</span>
+            .inner
         })
     }
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="egui" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0 (a55dd71d5 2022-09-19)" ></div></body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="egui" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.66.1 (90743e729 2023-01-10)" ></div></body></html>

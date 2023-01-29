@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/egui-0.16.1/src/data/input.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>input.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../storage.js"></script><script defer src="../../../source-script.js"></script><script defer src="../../../source-files.js"></script><script defer src="../../../main.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../../egui/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../../egui/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../../egui/index.html"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/egui-0.16.1/src/data/input.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>input.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../../normalize.css"><link rel="stylesheet" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../../ayu.css" disabled><link rel="stylesheet" href="../../../dark.css" disabled><link rel="stylesheet" href="../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../storage.js"></script><script defer src="../../../source-script.js"></script><script defer src="../../../source-files.js"></script><script defer src="../../../main.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><div class="width-limiter"><nav class="sub"><a class="sub-logo-container" href="../../../egui/index.html"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../wheel.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -423,430 +423,430 @@
 <span id="423">423</span>
 <span id="424">424</span>
 <span id="425">425</span>
-</pre><pre class="rust"><code><span class="doccomment">//! The input needed by egui.</span>
+</pre><pre class="rust"><code><span class="doccomment">//! The input needed by egui.
 
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::emath</span>::<span class="kw-2">*</span>;
+</span><span class="kw">use </span><span class="kw">crate</span>::emath::<span class="kw-2">*</span>;
 
-<span class="doccomment">/// What the integrations provides to egui at the start of each frame.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// Set the values that make sense, leave the rest at their `Default::default()`.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// You can check if `egui` is using the inputs using</span>
-<span class="doccomment">/// [`crate::Context::wants_pointer_input`] and [`crate::Context::wants_keyboard_input`].</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// All coordinates are in points (logical pixels) with origin (0, 0) in the top left corner.</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>)]</span>
-<span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;serde&quot;</span>, <span class="ident">derive</span>(<span class="ident">serde::Deserialize</span>, <span class="ident">serde::Serialize</span>))]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">RawInput</span> {
-    <span class="doccomment">/// Position and size of the area that egui should use.</span>
-    <span class="doccomment">/// Usually you would set this to</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// `Some(Rect::from_pos_size(Default::default(), screen_size))`.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// but you could also constrain egui to some smaller portion of your window if you like.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// `None` will be treated as &quot;same as last frame&quot;, with the default being a very big area.</span>
-    <span class="kw">pub</span> <span class="ident">screen_rect</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Rect</span><span class="op">&gt;</span>,
+<span class="doccomment">/// What the integrations provides to egui at the start of each frame.
+///
+/// Set the values that make sense, leave the rest at their `Default::default()`.
+///
+/// You can check if `egui` is using the inputs using
+/// [`crate::Context::wants_pointer_input`] and [`crate::Context::wants_keyboard_input`].
+///
+/// All coordinates are in points (logical pixels) with origin (0, 0) in the top left corner.
+</span><span class="attribute">#[derive(Clone, Debug, PartialEq)]
+#[cfg_attr(feature = <span class="string">&quot;serde&quot;</span>, derive(serde::Deserialize, serde::Serialize))]
+</span><span class="kw">pub struct </span>RawInput {
+    <span class="doccomment">/// Position and size of the area that egui should use.
+    /// Usually you would set this to
+    ///
+    /// `Some(Rect::from_pos_size(Default::default(), screen_size))`.
+    ///
+    /// but you could also constrain egui to some smaller portion of your window if you like.
+    ///
+    /// `None` will be treated as &quot;same as last frame&quot;, with the default being a very big area.
+    </span><span class="kw">pub </span>screen_rect: <span class="prelude-ty">Option</span>&lt;Rect&gt;,
 
-    <span class="doccomment">/// Also known as device pixel ratio, &gt; 1 for high resolution screens.</span>
-    <span class="doccomment">/// If text looks blurry you probably forgot to set this.</span>
-    <span class="doccomment">/// Set this the first frame, whenever it changes, or just on every frame.</span>
-    <span class="kw">pub</span> <span class="ident">pixels_per_point</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">f32</span><span class="op">&gt;</span>,
+    <span class="doccomment">/// Also known as device pixel ratio, &gt; 1 for high resolution screens.
+    /// If text looks blurry you probably forgot to set this.
+    /// Set this the first frame, whenever it changes, or just on every frame.
+    </span><span class="kw">pub </span>pixels_per_point: <span class="prelude-ty">Option</span>&lt;f32&gt;,
 
-    <span class="doccomment">/// Monotonically increasing time, in seconds. Relative to whatever. Used for animations.</span>
-    <span class="doccomment">/// If `None` is provided, egui will assume a time delta of `predicted_dt` (default 1/60 seconds).</span>
-    <span class="kw">pub</span> <span class="ident">time</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">f64</span><span class="op">&gt;</span>,
+    <span class="doccomment">/// Monotonically increasing time, in seconds. Relative to whatever. Used for animations.
+    /// If `None` is provided, egui will assume a time delta of `predicted_dt` (default 1/60 seconds).
+    </span><span class="kw">pub </span>time: <span class="prelude-ty">Option</span>&lt;f64&gt;,
 
-    <span class="doccomment">/// Should be set to the expected time between frames when painting at vsync speeds.</span>
-    <span class="doccomment">/// The default for this is 1/60.</span>
-    <span class="doccomment">/// Can safely be left at its default value.</span>
-    <span class="kw">pub</span> <span class="ident">predicted_dt</span>: <span class="ident">f32</span>,
+    <span class="doccomment">/// Should be set to the expected time between frames when painting at vsync speeds.
+    /// The default for this is 1/60.
+    /// Can safely be left at its default value.
+    </span><span class="kw">pub </span>predicted_dt: f32,
 
-    <span class="doccomment">/// Which modifier keys are down at the start of the frame?</span>
-    <span class="kw">pub</span> <span class="ident">modifiers</span>: <span class="ident">Modifiers</span>,
+    <span class="doccomment">/// Which modifier keys are down at the start of the frame?
+    </span><span class="kw">pub </span>modifiers: Modifiers,
 
-    <span class="doccomment">/// In-order events received this frame.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// There is currently no way to know if egui handles a particular event,</span>
-    <span class="doccomment">/// but you can check if egui is using the keyboard with [`crate::Context::wants_keyboard_input`]</span>
-    <span class="doccomment">/// and/or the pointer (mouse/touch) with [`crate::Context::is_using_pointer`].</span>
-    <span class="kw">pub</span> <span class="ident">events</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Event</span><span class="op">&gt;</span>,
+    <span class="doccomment">/// In-order events received this frame.
+    ///
+    /// There is currently no way to know if egui handles a particular event,
+    /// but you can check if egui is using the keyboard with [`crate::Context::wants_keyboard_input`]
+    /// and/or the pointer (mouse/touch) with [`crate::Context::is_using_pointer`].
+    </span><span class="kw">pub </span>events: Vec&lt;Event&gt;,
 
-    <span class="doccomment">/// Dragged files hovering over egui.</span>
-    <span class="kw">pub</span> <span class="ident">hovered_files</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">HoveredFile</span><span class="op">&gt;</span>,
+    <span class="doccomment">/// Dragged files hovering over egui.
+    </span><span class="kw">pub </span>hovered_files: Vec&lt;HoveredFile&gt;,
 
-    <span class="doccomment">/// Dragged files dropped into egui.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// Note: when using `eframe` on Windows you need to enable</span>
-    <span class="doccomment">/// drag-and-drop support using `epi::NativeOptions`.</span>
-    <span class="kw">pub</span> <span class="ident">dropped_files</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">DroppedFile</span><span class="op">&gt;</span>,
+    <span class="doccomment">/// Dragged files dropped into egui.
+    ///
+    /// Note: when using `eframe` on Windows you need to enable
+    /// drag-and-drop support using `epi::NativeOptions`.
+    </span><span class="kw">pub </span>dropped_files: Vec&lt;DroppedFile&gt;,
 }
 
-<span class="kw">impl</span> <span class="ident">Default</span> <span class="kw">for</span> <span class="ident">RawInput</span> {
-    <span class="kw">fn</span> <span class="ident">default</span>() -&gt; <span class="self">Self</span> {
-        <span class="self">Self</span> {
-            <span class="ident">screen_rect</span>: <span class="prelude-val">None</span>,
-            <span class="ident">pixels_per_point</span>: <span class="prelude-val">None</span>,
-            <span class="ident">time</span>: <span class="prelude-val">None</span>,
-            <span class="ident">predicted_dt</span>: <span class="number">1.0</span> <span class="op">/</span> <span class="number">60.0</span>,
-            <span class="ident">modifiers</span>: <span class="ident">Modifiers::default</span>(),
-            <span class="ident">events</span>: <span class="macro">vec!</span>[],
-            <span class="ident">hovered_files</span>: <span class="ident">Default::default</span>(),
-            <span class="ident">dropped_files</span>: <span class="ident">Default::default</span>(),
+<span class="kw">impl </span>Default <span class="kw">for </span>RawInput {
+    <span class="kw">fn </span>default() -&gt; <span class="self">Self </span>{
+        <span class="self">Self </span>{
+            screen_rect: <span class="prelude-val">None</span>,
+            pixels_per_point: <span class="prelude-val">None</span>,
+            time: <span class="prelude-val">None</span>,
+            predicted_dt: <span class="number">1.0 </span>/ <span class="number">60.0</span>,
+            modifiers: Modifiers::default(),
+            events: <span class="macro">vec!</span>[],
+            hovered_files: Default::default(),
+            dropped_files: Default::default(),
         }
     }
 }
 
-<span class="kw">impl</span> <span class="ident">RawInput</span> {
-    <span class="doccomment">/// Helper: move volatile (deltas and events), clone the rest.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// * [`Self::hovered_files`] is cloned.</span>
-    <span class="doccomment">/// * [`Self::dropped_files`] is moved.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">take</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>) -&gt; <span class="ident">RawInput</span> {
-        <span class="ident">RawInput</span> {
-            <span class="ident">screen_rect</span>: <span class="self">self</span>.<span class="ident">screen_rect</span>.<span class="ident">take</span>(),
-            <span class="ident">pixels_per_point</span>: <span class="self">self</span>.<span class="ident">pixels_per_point</span>.<span class="ident">take</span>(),
-            <span class="ident">time</span>: <span class="self">self</span>.<span class="ident">time</span>.<span class="ident">take</span>(),
-            <span class="ident">predicted_dt</span>: <span class="self">self</span>.<span class="ident">predicted_dt</span>,
-            <span class="ident">modifiers</span>: <span class="self">self</span>.<span class="ident">modifiers</span>,
-            <span class="ident">events</span>: <span class="ident">std::mem::take</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>.<span class="ident">events</span>),
-            <span class="ident">hovered_files</span>: <span class="self">self</span>.<span class="ident">hovered_files</span>.<span class="ident">clone</span>(),
-            <span class="ident">dropped_files</span>: <span class="ident">std::mem::take</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>.<span class="ident">dropped_files</span>),
+<span class="kw">impl </span>RawInput {
+    <span class="doccomment">/// Helper: move volatile (deltas and events), clone the rest.
+    ///
+    /// * [`Self::hovered_files`] is cloned.
+    /// * [`Self::dropped_files`] is moved.
+    </span><span class="kw">pub fn </span>take(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; RawInput {
+        RawInput {
+            screen_rect: <span class="self">self</span>.screen_rect.take(),
+            pixels_per_point: <span class="self">self</span>.pixels_per_point.take(),
+            time: <span class="self">self</span>.time.take(),
+            predicted_dt: <span class="self">self</span>.predicted_dt,
+            modifiers: <span class="self">self</span>.modifiers,
+            events: std::mem::take(<span class="kw-2">&amp;mut </span><span class="self">self</span>.events),
+            hovered_files: <span class="self">self</span>.hovered_files.clone(),
+            dropped_files: std::mem::take(<span class="kw-2">&amp;mut </span><span class="self">self</span>.dropped_files),
         }
     }
 
-    <span class="doccomment">/// Add on new input.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">append</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">newer</span>: <span class="self">Self</span>) {
-        <span class="kw">let</span> <span class="self">Self</span> {
-            <span class="ident">screen_rect</span>,
-            <span class="ident">pixels_per_point</span>,
-            <span class="ident">time</span>,
-            <span class="ident">predicted_dt</span>,
-            <span class="ident">modifiers</span>,
-            <span class="kw-2">mut</span> <span class="ident">events</span>,
-            <span class="kw-2">mut</span> <span class="ident">hovered_files</span>,
-            <span class="kw-2">mut</span> <span class="ident">dropped_files</span>,
-        } <span class="op">=</span> <span class="ident">newer</span>;
+    <span class="doccomment">/// Add on new input.
+    </span><span class="kw">pub fn </span>append(<span class="kw-2">&amp;mut </span><span class="self">self</span>, newer: <span class="self">Self</span>) {
+        <span class="kw">let </span><span class="self">Self </span>{
+            screen_rect,
+            pixels_per_point,
+            time,
+            predicted_dt,
+            modifiers,
+            <span class="kw-2">mut </span>events,
+            <span class="kw-2">mut </span>hovered_files,
+            <span class="kw-2">mut </span>dropped_files,
+        } = newer;
 
-        <span class="self">self</span>.<span class="ident">screen_rect</span> <span class="op">=</span> <span class="ident">screen_rect</span>.<span class="ident">or</span>(<span class="self">self</span>.<span class="ident">screen_rect</span>);
-        <span class="self">self</span>.<span class="ident">pixels_per_point</span> <span class="op">=</span> <span class="ident">pixels_per_point</span>.<span class="ident">or</span>(<span class="self">self</span>.<span class="ident">pixels_per_point</span>);
-        <span class="self">self</span>.<span class="ident">time</span> <span class="op">=</span> <span class="ident">time</span>; <span class="comment">// use latest time</span>
-        <span class="self">self</span>.<span class="ident">predicted_dt</span> <span class="op">=</span> <span class="ident">predicted_dt</span>; <span class="comment">// use latest dt</span>
-        <span class="self">self</span>.<span class="ident">modifiers</span> <span class="op">=</span> <span class="ident">modifiers</span>; <span class="comment">// use latest</span>
-        <span class="self">self</span>.<span class="ident">events</span>.<span class="ident">append</span>(<span class="kw-2">&amp;mut</span> <span class="ident">events</span>);
-        <span class="self">self</span>.<span class="ident">hovered_files</span>.<span class="ident">append</span>(<span class="kw-2">&amp;mut</span> <span class="ident">hovered_files</span>);
-        <span class="self">self</span>.<span class="ident">dropped_files</span>.<span class="ident">append</span>(<span class="kw-2">&amp;mut</span> <span class="ident">dropped_files</span>);
+        <span class="self">self</span>.screen_rect = screen_rect.or(<span class="self">self</span>.screen_rect);
+        <span class="self">self</span>.pixels_per_point = pixels_per_point.or(<span class="self">self</span>.pixels_per_point);
+        <span class="self">self</span>.time = time; <span class="comment">// use latest time
+        </span><span class="self">self</span>.predicted_dt = predicted_dt; <span class="comment">// use latest dt
+        </span><span class="self">self</span>.modifiers = modifiers; <span class="comment">// use latest
+        </span><span class="self">self</span>.events.append(<span class="kw-2">&amp;mut </span>events);
+        <span class="self">self</span>.hovered_files.append(<span class="kw-2">&amp;mut </span>hovered_files);
+        <span class="self">self</span>.dropped_files.append(<span class="kw-2">&amp;mut </span>dropped_files);
     }
 }
 
-<span class="doccomment">/// A file about to be dropped into egui.</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">Default</span>, <span class="ident">PartialEq</span>)]</span>
-<span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;serde&quot;</span>, <span class="ident">derive</span>(<span class="ident">serde::Deserialize</span>, <span class="ident">serde::Serialize</span>))]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">HoveredFile</span> {
-    <span class="doccomment">/// Set by the `egui-winit` backend.</span>
-    <span class="kw">pub</span> <span class="ident">path</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">std::path::PathBuf</span><span class="op">&gt;</span>,
-    <span class="doccomment">/// With the `egui_web` backend, this is set to the mime-type of the file (if available).</span>
-    <span class="kw">pub</span> <span class="ident">mime</span>: <span class="ident">String</span>,
+<span class="doccomment">/// A file about to be dropped into egui.
+</span><span class="attribute">#[derive(Clone, Debug, Default, PartialEq)]
+#[cfg_attr(feature = <span class="string">&quot;serde&quot;</span>, derive(serde::Deserialize, serde::Serialize))]
+</span><span class="kw">pub struct </span>HoveredFile {
+    <span class="doccomment">/// Set by the `egui-winit` backend.
+    </span><span class="kw">pub </span>path: <span class="prelude-ty">Option</span>&lt;std::path::PathBuf&gt;,
+    <span class="doccomment">/// With the `egui_web` backend, this is set to the mime-type of the file (if available).
+    </span><span class="kw">pub </span>mime: String,
 }
 
-<span class="doccomment">/// A file dropped into egui.</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">Default</span>, <span class="ident">PartialEq</span>)]</span>
-<span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;serde&quot;</span>, <span class="ident">derive</span>(<span class="ident">serde::Deserialize</span>, <span class="ident">serde::Serialize</span>))]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">DroppedFile</span> {
-    <span class="doccomment">/// Set by the `egui-winit` backend.</span>
-    <span class="kw">pub</span> <span class="ident">path</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">std::path::PathBuf</span><span class="op">&gt;</span>,
-    <span class="doccomment">/// Name of the file. Set by the `egui_web` backend.</span>
-    <span class="kw">pub</span> <span class="ident">name</span>: <span class="ident">String</span>,
-    <span class="doccomment">/// Set by the `egui_web` backend.</span>
-    <span class="kw">pub</span> <span class="ident">last_modified</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">std::time::SystemTime</span><span class="op">&gt;</span>,
-    <span class="doccomment">/// Set by the `egui_web` backend.</span>
-    <span class="kw">pub</span> <span class="ident">bytes</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">std::sync::Arc</span><span class="op">&lt;</span>[<span class="ident">u8</span>]<span class="op">&gt;</span><span class="op">&gt;</span>,
+<span class="doccomment">/// A file dropped into egui.
+</span><span class="attribute">#[derive(Clone, Debug, Default, PartialEq)]
+#[cfg_attr(feature = <span class="string">&quot;serde&quot;</span>, derive(serde::Deserialize, serde::Serialize))]
+</span><span class="kw">pub struct </span>DroppedFile {
+    <span class="doccomment">/// Set by the `egui-winit` backend.
+    </span><span class="kw">pub </span>path: <span class="prelude-ty">Option</span>&lt;std::path::PathBuf&gt;,
+    <span class="doccomment">/// Name of the file. Set by the `egui_web` backend.
+    </span><span class="kw">pub </span>name: String,
+    <span class="doccomment">/// Set by the `egui_web` backend.
+    </span><span class="kw">pub </span>last_modified: <span class="prelude-ty">Option</span>&lt;std::time::SystemTime&gt;,
+    <span class="doccomment">/// Set by the `egui_web` backend.
+    </span><span class="kw">pub </span>bytes: <span class="prelude-ty">Option</span>&lt;std::sync::Arc&lt;[u8]&gt;&gt;,
 }
 
-<span class="doccomment">/// An input event generated by the integration.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// This only covers events that egui cares about.</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>)]</span>
-<span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;serde&quot;</span>, <span class="ident">derive</span>(<span class="ident">serde::Deserialize</span>, <span class="ident">serde::Serialize</span>))]</span>
-<span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">Event</span> {
-    <span class="doccomment">/// The integration detected a &quot;copy&quot; event (e.g. Cmd+C).</span>
-    <span class="ident">Copy</span>,
-    <span class="doccomment">/// The integration detected a &quot;cut&quot; event (e.g. Cmd+X).</span>
-    <span class="ident">Cut</span>,
-    <span class="doccomment">/// Text input, e.g. via keyboard or paste action.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// When the user presses enter/return, do not send a `Text` (just [`Key::Enter`]).</span>
-    <span class="ident">Text</span>(<span class="ident">String</span>),
-    <span class="ident">Key</span> {
-        <span class="ident">key</span>: <span class="ident">Key</span>,
-        <span class="ident">pressed</span>: <span class="ident">bool</span>,
-        <span class="ident">modifiers</span>: <span class="ident">Modifiers</span>,
+<span class="doccomment">/// An input event generated by the integration.
+///
+/// This only covers events that egui cares about.
+</span><span class="attribute">#[derive(Clone, Debug, PartialEq)]
+#[cfg_attr(feature = <span class="string">&quot;serde&quot;</span>, derive(serde::Deserialize, serde::Serialize))]
+</span><span class="kw">pub enum </span>Event {
+    <span class="doccomment">/// The integration detected a &quot;copy&quot; event (e.g. Cmd+C).
+    </span>Copy,
+    <span class="doccomment">/// The integration detected a &quot;cut&quot; event (e.g. Cmd+X).
+    </span>Cut,
+    <span class="doccomment">/// Text input, e.g. via keyboard or paste action.
+    ///
+    /// When the user presses enter/return, do not send a `Text` (just [`Key::Enter`]).
+    </span>Text(String),
+    Key {
+        key: Key,
+        pressed: bool,
+        modifiers: Modifiers,
     },
 
-    <span class="ident">PointerMoved</span>(<span class="ident">Pos2</span>),
-    <span class="ident">PointerButton</span> {
-        <span class="ident">pos</span>: <span class="ident">Pos2</span>,
-        <span class="ident">button</span>: <span class="ident">PointerButton</span>,
-        <span class="ident">pressed</span>: <span class="ident">bool</span>,
-        <span class="doccomment">/// The state of the modifier keys at the time of the event</span>
-        <span class="ident">modifiers</span>: <span class="ident">Modifiers</span>,
+    PointerMoved(Pos2),
+    PointerButton {
+        pos: Pos2,
+        button: PointerButton,
+        pressed: bool,
+        <span class="doccomment">/// The state of the modifier keys at the time of the event
+        </span>modifiers: Modifiers,
     },
-    <span class="doccomment">/// The mouse left the screen, or the last/primary touch input disappeared.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// This means there is no longer a cursor on the screen for hovering etc.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// On touch-up first send `PointerButton{pressed: false, …}` followed by `PointerLeft`.</span>
-    <span class="ident">PointerGone</span>,
+    <span class="doccomment">/// The mouse left the screen, or the last/primary touch input disappeared.
+    ///
+    /// This means there is no longer a cursor on the screen for hovering etc.
+    ///
+    /// On touch-up first send `PointerButton{pressed: false, …}` followed by `PointerLeft`.
+    </span>PointerGone,
 
-    <span class="doccomment">/// How many points (logical pixels) the user scrolled.</span>
-    <span class="ident">Scroll</span>(<span class="ident">Vec2</span>),
+    <span class="doccomment">/// How many points (logical pixels) the user scrolled.
+    </span>Scroll(Vec2),
 
-    <span class="doccomment">/// Zoom scale factor this frame (e.g. from ctrl-scroll or pinch gesture).</span>
-    <span class="doccomment">/// * `zoom = 1`: no change.</span>
-    <span class="doccomment">/// * `zoom &lt; 1`: pinch together</span>
-    <span class="doccomment">/// * `zoom &gt; 1`: pinch spread</span>
-    <span class="ident">Zoom</span>(<span class="ident">f32</span>),
+    <span class="doccomment">/// Zoom scale factor this frame (e.g. from ctrl-scroll or pinch gesture).
+    /// * `zoom = 1`: no change.
+    /// * `zoom &lt; 1`: pinch together
+    /// * `zoom &gt; 1`: pinch spread
+    </span>Zoom(f32),
 
-    <span class="doccomment">/// IME composition start.</span>
-    <span class="ident">CompositionStart</span>,
-    <span class="doccomment">/// A new IME candidate is being suggested.</span>
-    <span class="ident">CompositionUpdate</span>(<span class="ident">String</span>),
-    <span class="doccomment">/// IME composition ended with this final result.</span>
-    <span class="ident">CompositionEnd</span>(<span class="ident">String</span>),
+    <span class="doccomment">/// IME composition start.
+    </span>CompositionStart,
+    <span class="doccomment">/// A new IME candidate is being suggested.
+    </span>CompositionUpdate(String),
+    <span class="doccomment">/// IME composition ended with this final result.
+    </span>CompositionEnd(String),
 
-    <span class="doccomment">/// On touch screens, report this *in addition to*</span>
-    <span class="doccomment">/// [`Self::PointerMoved`], [`Self::PointerButton`], [`Self::PointerGone`]</span>
-    <span class="ident">Touch</span> {
-        <span class="doccomment">/// Hashed device identifier (if available; may be zero).</span>
-        <span class="doccomment">/// Can be used to separate touches from different devices.</span>
-        <span class="ident">device_id</span>: <span class="ident">TouchDeviceId</span>,
-        <span class="doccomment">/// Unique identifier of a finger/pen. Value is stable from touch down</span>
-        <span class="doccomment">/// to lift-up</span>
-        <span class="ident">id</span>: <span class="ident">TouchId</span>,
-        <span class="ident">phase</span>: <span class="ident">TouchPhase</span>,
-        <span class="doccomment">/// Position of the touch (or where the touch was last detected)</span>
-        <span class="ident">pos</span>: <span class="ident">Pos2</span>,
-        <span class="doccomment">/// Describes how hard the touch device was pressed. May always be `0` if the platform does</span>
-        <span class="doccomment">/// not support pressure sensitivity.</span>
-        <span class="doccomment">/// The value is in the range from 0.0 (no pressure) to 1.0 (maximum pressure).</span>
-        <span class="ident">force</span>: <span class="ident">f32</span>,
+    <span class="doccomment">/// On touch screens, report this *in addition to*
+    /// [`Self::PointerMoved`], [`Self::PointerButton`], [`Self::PointerGone`]
+    </span>Touch {
+        <span class="doccomment">/// Hashed device identifier (if available; may be zero).
+        /// Can be used to separate touches from different devices.
+        </span>device_id: TouchDeviceId,
+        <span class="doccomment">/// Unique identifier of a finger/pen. Value is stable from touch down
+        /// to lift-up
+        </span>id: TouchId,
+        phase: TouchPhase,
+        <span class="doccomment">/// Position of the touch (or where the touch was last detected)
+        </span>pos: Pos2,
+        <span class="doccomment">/// Describes how hard the touch device was pressed. May always be `0` if the platform does
+        /// not support pressure sensitivity.
+        /// The value is in the range from 0.0 (no pressure) to 1.0 (maximum pressure).
+        </span>force: f32,
     },
 }
 
-<span class="doccomment">/// Mouse button (or similar for touch input)</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">Debug</span>, <span class="ident">Eq</span>, <span class="ident">PartialEq</span>)]</span>
-<span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;serde&quot;</span>, <span class="ident">derive</span>(<span class="ident">serde::Deserialize</span>, <span class="ident">serde::Serialize</span>))]</span>
-<span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">PointerButton</span> {
-    <span class="doccomment">/// The primary mouse button is usually the left one.</span>
-    <span class="ident">Primary</span> <span class="op">=</span> <span class="number">0</span>,
-    <span class="doccomment">/// The secondary mouse button is usually the right one,</span>
-    <span class="doccomment">/// and most often used for context menus or other optional things.</span>
-    <span class="ident">Secondary</span> <span class="op">=</span> <span class="number">1</span>,
-    <span class="doccomment">/// The tertiary mouse button is usually the middle mouse button (e.g. clicking the scroll wheel).</span>
-    <span class="ident">Middle</span> <span class="op">=</span> <span class="number">2</span>,
+<span class="doccomment">/// Mouse button (or similar for touch input)
+</span><span class="attribute">#[derive(Clone, Copy, Debug, Eq, PartialEq)]
+#[cfg_attr(feature = <span class="string">&quot;serde&quot;</span>, derive(serde::Deserialize, serde::Serialize))]
+</span><span class="kw">pub enum </span>PointerButton {
+    <span class="doccomment">/// The primary mouse button is usually the left one.
+    </span>Primary = <span class="number">0</span>,
+    <span class="doccomment">/// The secondary mouse button is usually the right one,
+    /// and most often used for context menus or other optional things.
+    </span>Secondary = <span class="number">1</span>,
+    <span class="doccomment">/// The tertiary mouse button is usually the middle mouse button (e.g. clicking the scroll wheel).
+    </span>Middle = <span class="number">2</span>,
 }
 
-<span class="doccomment">/// Number of pointer buttons supported by egui, i.e. the number of possible states of [`PointerButton`].</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">NUM_POINTER_BUTTONS</span>: <span class="ident">usize</span> <span class="op">=</span> <span class="number">3</span>;
+<span class="doccomment">/// Number of pointer buttons supported by egui, i.e. the number of possible states of [`PointerButton`].
+</span><span class="kw">pub const </span>NUM_POINTER_BUTTONS: usize = <span class="number">3</span>;
 
-<span class="doccomment">/// State of the modifier keys. These must be fed to egui.</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">Debug</span>, <span class="ident">Default</span>, <span class="ident">Eq</span>, <span class="ident">PartialEq</span>)]</span>
-<span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;serde&quot;</span>, <span class="ident">derive</span>(<span class="ident">serde::Deserialize</span>, <span class="ident">serde::Serialize</span>))]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Modifiers</span> {
-    <span class="doccomment">/// Either of the alt keys are down (option ⌥ on Mac).</span>
-    <span class="kw">pub</span> <span class="ident">alt</span>: <span class="ident">bool</span>,
-    <span class="doccomment">/// Either of the control keys are down.</span>
-    <span class="doccomment">/// When checking for keyboard shortcuts, consider using [`Self::command`] instead.</span>
-    <span class="kw">pub</span> <span class="ident">ctrl</span>: <span class="ident">bool</span>,
-    <span class="doccomment">/// Either of the shift keys are down.</span>
-    <span class="kw">pub</span> <span class="ident">shift</span>: <span class="ident">bool</span>,
-    <span class="doccomment">/// The Mac ⌘ Command key. Should always be set to `false` on other platforms.</span>
-    <span class="kw">pub</span> <span class="ident">mac_cmd</span>: <span class="ident">bool</span>,
-    <span class="doccomment">/// On Windows and Linux, set this to the same value as `ctrl`.</span>
-    <span class="doccomment">/// On Mac, this should be set whenever one of the ⌘ Command keys are down (same as `mac_cmd`).</span>
-    <span class="doccomment">/// This is so that egui can, for instance, select all text by checking for `command + A`</span>
-    <span class="doccomment">/// and it will work on both Mac and Windows.</span>
-    <span class="kw">pub</span> <span class="ident">command</span>: <span class="ident">bool</span>,
+<span class="doccomment">/// State of the modifier keys. These must be fed to egui.
+</span><span class="attribute">#[derive(Clone, Copy, Debug, Default, Eq, PartialEq)]
+#[cfg_attr(feature = <span class="string">&quot;serde&quot;</span>, derive(serde::Deserialize, serde::Serialize))]
+</span><span class="kw">pub struct </span>Modifiers {
+    <span class="doccomment">/// Either of the alt keys are down (option ⌥ on Mac).
+    </span><span class="kw">pub </span>alt: bool,
+    <span class="doccomment">/// Either of the control keys are down.
+    /// When checking for keyboard shortcuts, consider using [`Self::command`] instead.
+    </span><span class="kw">pub </span>ctrl: bool,
+    <span class="doccomment">/// Either of the shift keys are down.
+    </span><span class="kw">pub </span>shift: bool,
+    <span class="doccomment">/// The Mac ⌘ Command key. Should always be set to `false` on other platforms.
+    </span><span class="kw">pub </span>mac_cmd: bool,
+    <span class="doccomment">/// On Windows and Linux, set this to the same value as `ctrl`.
+    /// On Mac, this should be set whenever one of the ⌘ Command keys are down (same as `mac_cmd`).
+    /// This is so that egui can, for instance, select all text by checking for `command + A`
+    /// and it will work on both Mac and Windows.
+    </span><span class="kw">pub </span>command: bool,
 }
 
-<span class="kw">impl</span> <span class="ident">Modifiers</span> {
-    <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_none</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span> {
-        <span class="self">self</span> <span class="op">==</span> <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::default</span>()
+<span class="kw">impl </span>Modifiers {
+    <span class="attribute">#[inline(always)]
+    </span><span class="kw">pub fn </span>is_none(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; bool {
+        <span class="self">self </span>== <span class="kw-2">&amp;</span><span class="self">Self</span>::default()
     }
 
-    <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">any</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span> {
-        <span class="op">!</span><span class="self">self</span>.<span class="ident">is_none</span>()
+    <span class="attribute">#[inline(always)]
+    </span><span class="kw">pub fn </span>any(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; bool {
+        !<span class="self">self</span>.is_none()
     }
 
-    <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">shift_only</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span> {
-        <span class="self">self</span>.<span class="ident">shift</span> <span class="op">&amp;&amp;</span> <span class="op">!</span>(<span class="self">self</span>.<span class="ident">alt</span> <span class="op">|</span><span class="op">|</span> <span class="self">self</span>.<span class="ident">command</span>)
+    <span class="attribute">#[inline(always)]
+    </span><span class="kw">pub fn </span>shift_only(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; bool {
+        <span class="self">self</span>.shift &amp;&amp; !(<span class="self">self</span>.alt || <span class="self">self</span>.command)
     }
 
-    <span class="doccomment">/// true if only [`Self::ctrl`] or only [`Self::mac_cmd`] is pressed.</span>
-    <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">command_only</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span> {
-        <span class="op">!</span><span class="self">self</span>.<span class="ident">alt</span> <span class="op">&amp;&amp;</span> <span class="op">!</span><span class="self">self</span>.<span class="ident">shift</span> <span class="op">&amp;&amp;</span> <span class="self">self</span>.<span class="ident">command</span>
+    <span class="doccomment">/// true if only [`Self::ctrl`] or only [`Self::mac_cmd`] is pressed.
+    </span><span class="attribute">#[inline(always)]
+    </span><span class="kw">pub fn </span>command_only(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; bool {
+        !<span class="self">self</span>.alt &amp;&amp; !<span class="self">self</span>.shift &amp;&amp; <span class="self">self</span>.command
     }
 }
 
-<span class="doccomment">/// Keyboard keys.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// Includes all keys egui is interested in (such as `Home` and `End`)</span>
-<span class="doccomment">/// plus a few that are useful for detecting keyboard shortcuts.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// Many keys are omitted because they are not always physical keys (depending on keyboard language), e.g. `;` and `§`,</span>
-<span class="doccomment">/// and are therefor unsuitable as keyboard shortcuts if you want your app to be portable.</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">Debug</span>, <span class="ident">Eq</span>, <span class="ident">Ord</span>, <span class="ident">PartialEq</span>, <span class="ident">PartialOrd</span>, <span class="ident">Hash</span>)]</span>
-<span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;serde&quot;</span>, <span class="ident">derive</span>(<span class="ident">serde::Deserialize</span>, <span class="ident">serde::Serialize</span>))]</span>
-<span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">Key</span> {
-    <span class="ident">ArrowDown</span>,
-    <span class="ident">ArrowLeft</span>,
-    <span class="ident">ArrowRight</span>,
-    <span class="ident">ArrowUp</span>,
+<span class="doccomment">/// Keyboard keys.
+///
+/// Includes all keys egui is interested in (such as `Home` and `End`)
+/// plus a few that are useful for detecting keyboard shortcuts.
+///
+/// Many keys are omitted because they are not always physical keys (depending on keyboard language), e.g. `;` and `§`,
+/// and are therefor unsuitable as keyboard shortcuts if you want your app to be portable.
+</span><span class="attribute">#[derive(Clone, Copy, Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[cfg_attr(feature = <span class="string">&quot;serde&quot;</span>, derive(serde::Deserialize, serde::Serialize))]
+</span><span class="kw">pub enum </span>Key {
+    ArrowDown,
+    ArrowLeft,
+    ArrowRight,
+    ArrowUp,
 
-    <span class="ident">Escape</span>,
-    <span class="ident">Tab</span>,
-    <span class="ident">Backspace</span>,
-    <span class="ident">Enter</span>,
-    <span class="ident">Space</span>,
+    Escape,
+    Tab,
+    Backspace,
+    Enter,
+    Space,
 
-    <span class="ident">Insert</span>,
-    <span class="ident">Delete</span>,
-    <span class="ident">Home</span>,
-    <span class="ident">End</span>,
-    <span class="ident">PageUp</span>,
-    <span class="ident">PageDown</span>,
+    Insert,
+    Delete,
+    Home,
+    End,
+    PageUp,
+    PageDown,
 
-    <span class="doccomment">/// Either from the main row or from the numpad.</span>
-    <span class="ident">Num0</span>,
-    <span class="doccomment">/// Either from the main row or from the numpad.</span>
-    <span class="ident">Num1</span>,
-    <span class="doccomment">/// Either from the main row or from the numpad.</span>
-    <span class="ident">Num2</span>,
-    <span class="doccomment">/// Either from the main row or from the numpad.</span>
-    <span class="ident">Num3</span>,
-    <span class="doccomment">/// Either from the main row or from the numpad.</span>
-    <span class="ident">Num4</span>,
-    <span class="doccomment">/// Either from the main row or from the numpad.</span>
-    <span class="ident">Num5</span>,
-    <span class="doccomment">/// Either from the main row or from the numpad.</span>
-    <span class="ident">Num6</span>,
-    <span class="doccomment">/// Either from the main row or from the numpad.</span>
-    <span class="ident">Num7</span>,
-    <span class="doccomment">/// Either from the main row or from the numpad.</span>
-    <span class="ident">Num8</span>,
-    <span class="doccomment">/// Either from the main row or from the numpad.</span>
-    <span class="ident">Num9</span>,
+    <span class="doccomment">/// Either from the main row or from the numpad.
+    </span>Num0,
+    <span class="doccomment">/// Either from the main row or from the numpad.
+    </span>Num1,
+    <span class="doccomment">/// Either from the main row or from the numpad.
+    </span>Num2,
+    <span class="doccomment">/// Either from the main row or from the numpad.
+    </span>Num3,
+    <span class="doccomment">/// Either from the main row or from the numpad.
+    </span>Num4,
+    <span class="doccomment">/// Either from the main row or from the numpad.
+    </span>Num5,
+    <span class="doccomment">/// Either from the main row or from the numpad.
+    </span>Num6,
+    <span class="doccomment">/// Either from the main row or from the numpad.
+    </span>Num7,
+    <span class="doccomment">/// Either from the main row or from the numpad.
+    </span>Num8,
+    <span class="doccomment">/// Either from the main row or from the numpad.
+    </span>Num9,
 
-    <span class="ident">A</span>, <span class="comment">// Used for cmd+A (select All)</span>
-    <span class="ident">B</span>,
-    <span class="ident">C</span>,
-    <span class="ident">D</span>,
-    <span class="ident">E</span>,
-    <span class="ident">F</span>,
-    <span class="ident">G</span>,
-    <span class="ident">H</span>,
-    <span class="ident">I</span>,
-    <span class="ident">J</span>,
-    <span class="ident">K</span>, <span class="comment">// Used for ctrl+K (delete text after cursor)</span>
-    <span class="ident">L</span>,
-    <span class="ident">M</span>,
-    <span class="ident">N</span>,
-    <span class="ident">O</span>,
-    <span class="ident">P</span>,
-    <span class="ident">Q</span>,
-    <span class="ident">R</span>,
-    <span class="ident">S</span>,
-    <span class="ident">T</span>,
-    <span class="ident">U</span>, <span class="comment">// Used for ctrl+U (delete text before cursor)</span>
-    <span class="ident">V</span>,
-    <span class="ident">W</span>, <span class="comment">// Used for ctrl+W (delete previous word)</span>
-    <span class="ident">X</span>,
-    <span class="ident">Y</span>,
-    <span class="ident">Z</span>, <span class="comment">// Used for cmd+Z (undo)</span>
-}
+    A, <span class="comment">// Used for cmd+A (select All)
+    </span>B,
+    C,
+    D,
+    E,
+    F,
+    G,
+    H,
+    I,
+    J,
+    K, <span class="comment">// Used for ctrl+K (delete text after cursor)
+    </span>L,
+    M,
+    N,
+    O,
+    P,
+    Q,
+    R,
+    S,
+    T,
+    U, <span class="comment">// Used for ctrl+U (delete text before cursor)
+    </span>V,
+    W, <span class="comment">// Used for ctrl+W (delete previous word)
+    </span>X,
+    Y,
+    Z, <span class="comment">// Used for cmd+Z (undo)
+</span>}
 
-<span class="kw">impl</span> <span class="ident">RawInput</span> {
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ui</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">ui</span>: <span class="kw-2">&amp;mut</span> <span class="ident"><span class="kw">crate</span>::Ui</span>) {
-        <span class="kw">let</span> <span class="self">Self</span> {
-            <span class="ident">screen_rect</span>,
-            <span class="ident">pixels_per_point</span>,
-            <span class="ident">time</span>,
-            <span class="ident">predicted_dt</span>,
-            <span class="ident">modifiers</span>,
-            <span class="ident">events</span>,
-            <span class="ident">hovered_files</span>,
-            <span class="ident">dropped_files</span>,
-        } <span class="op">=</span> <span class="self">self</span>;
+<span class="kw">impl </span>RawInput {
+    <span class="kw">pub fn </span>ui(<span class="kw-2">&amp;</span><span class="self">self</span>, ui: <span class="kw-2">&amp;mut </span><span class="kw">crate</span>::Ui) {
+        <span class="kw">let </span><span class="self">Self </span>{
+            screen_rect,
+            pixels_per_point,
+            time,
+            predicted_dt,
+            modifiers,
+            events,
+            hovered_files,
+            dropped_files,
+        } = <span class="self">self</span>;
 
-        <span class="ident">ui</span>.<span class="ident">label</span>(<span class="macro">format!</span>(<span class="string">&quot;screen_rect: {:?} points&quot;</span>, <span class="ident">screen_rect</span>));
-        <span class="ident">ui</span>.<span class="ident">label</span>(<span class="macro">format!</span>(<span class="string">&quot;pixels_per_point: {:?}&quot;</span>, <span class="ident">pixels_per_point</span>))
-            .<span class="ident">on_hover_text</span>(
+        ui.label(<span class="macro">format!</span>(<span class="string">&quot;screen_rect: {:?} points&quot;</span>, screen_rect));
+        ui.label(<span class="macro">format!</span>(<span class="string">&quot;pixels_per_point: {:?}&quot;</span>, pixels_per_point))
+            .on_hover_text(
                 <span class="string">&quot;Also called HDPI factor.\nNumber of physical pixels per each logical pixel.&quot;</span>,
             );
-        <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">time</span>) <span class="op">=</span> <span class="ident">time</span> {
-            <span class="ident">ui</span>.<span class="ident">label</span>(<span class="macro">format!</span>(<span class="string">&quot;time: {:.3} s&quot;</span>, <span class="ident">time</span>));
-        } <span class="kw">else</span> {
-            <span class="ident">ui</span>.<span class="ident">label</span>(<span class="string">&quot;time: None&quot;</span>);
+        <span class="kw">if let </span><span class="prelude-val">Some</span>(time) = time {
+            ui.label(<span class="macro">format!</span>(<span class="string">&quot;time: {:.3} s&quot;</span>, time));
+        } <span class="kw">else </span>{
+            ui.label(<span class="string">&quot;time: None&quot;</span>);
         }
-        <span class="ident">ui</span>.<span class="ident">label</span>(<span class="macro">format!</span>(<span class="string">&quot;predicted_dt: {:.1} ms&quot;</span>, <span class="number">1e3</span> <span class="op">*</span> <span class="ident">predicted_dt</span>));
-        <span class="ident">ui</span>.<span class="ident">label</span>(<span class="macro">format!</span>(<span class="string">&quot;modifiers: {:#?}&quot;</span>, <span class="ident">modifiers</span>));
-        <span class="ident">ui</span>.<span class="ident">label</span>(<span class="macro">format!</span>(<span class="string">&quot;events: {:?}&quot;</span>, <span class="ident">events</span>))
-            .<span class="ident">on_hover_text</span>(<span class="string">&quot;key presses etc&quot;</span>);
-        <span class="ident">ui</span>.<span class="ident">label</span>(<span class="macro">format!</span>(<span class="string">&quot;hovered_files: {}&quot;</span>, <span class="ident">hovered_files</span>.<span class="ident">len</span>()));
-        <span class="ident">ui</span>.<span class="ident">label</span>(<span class="macro">format!</span>(<span class="string">&quot;dropped_files: {}&quot;</span>, <span class="ident">dropped_files</span>.<span class="ident">len</span>()));
+        ui.label(<span class="macro">format!</span>(<span class="string">&quot;predicted_dt: {:.1} ms&quot;</span>, <span class="number">1e3 </span>* predicted_dt));
+        ui.label(<span class="macro">format!</span>(<span class="string">&quot;modifiers: {:#?}&quot;</span>, modifiers));
+        ui.label(<span class="macro">format!</span>(<span class="string">&quot;events: {:?}&quot;</span>, events))
+            .on_hover_text(<span class="string">&quot;key presses etc&quot;</span>);
+        ui.label(<span class="macro">format!</span>(<span class="string">&quot;hovered_files: {}&quot;</span>, hovered_files.len()));
+        ui.label(<span class="macro">format!</span>(<span class="string">&quot;dropped_files: {}&quot;</span>, dropped_files.len()));
     }
 }
 
-<span class="doccomment">/// this is a `u64` as values of this kind can always be obtained by hashing</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">Debug</span>, <span class="ident">Eq</span>, <span class="ident">PartialEq</span>, <span class="ident">PartialOrd</span>, <span class="ident">Ord</span>)]</span>
-<span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;serde&quot;</span>, <span class="ident">derive</span>(<span class="ident">serde::Deserialize</span>, <span class="ident">serde::Serialize</span>))]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">TouchDeviceId</span>(<span class="kw">pub</span> <span class="ident">u64</span>);
+<span class="doccomment">/// this is a `u64` as values of this kind can always be obtained by hashing
+</span><span class="attribute">#[derive(Clone, Copy, Debug, Eq, PartialEq, PartialOrd, Ord)]
+#[cfg_attr(feature = <span class="string">&quot;serde&quot;</span>, derive(serde::Deserialize, serde::Serialize))]
+</span><span class="kw">pub struct </span>TouchDeviceId(<span class="kw">pub </span>u64);
 
-<span class="doccomment">/// Unique identification of a touch occurrence (finger or pen or …).</span>
-<span class="doccomment">/// A Touch ID is valid until the finger is lifted.</span>
-<span class="doccomment">/// A new ID is used for the next touch.</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">Debug</span>, <span class="ident">Eq</span>, <span class="ident">PartialEq</span>, <span class="ident">PartialOrd</span>, <span class="ident">Ord</span>)]</span>
-<span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;serde&quot;</span>, <span class="ident">derive</span>(<span class="ident">serde::Deserialize</span>, <span class="ident">serde::Serialize</span>))]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">TouchId</span>(<span class="kw">pub</span> <span class="ident">u64</span>);
+<span class="doccomment">/// Unique identification of a touch occurrence (finger or pen or …).
+/// A Touch ID is valid until the finger is lifted.
+/// A new ID is used for the next touch.
+</span><span class="attribute">#[derive(Clone, Copy, Debug, Eq, PartialEq, PartialOrd, Ord)]
+#[cfg_attr(feature = <span class="string">&quot;serde&quot;</span>, derive(serde::Deserialize, serde::Serialize))]
+</span><span class="kw">pub struct </span>TouchId(<span class="kw">pub </span>u64);
 
-<span class="doccomment">/// In what phase a touch event is in.</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">Debug</span>, <span class="ident">Eq</span>, <span class="ident">PartialEq</span>)]</span>
-<span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;serde&quot;</span>, <span class="ident">derive</span>(<span class="ident">serde::Deserialize</span>, <span class="ident">serde::Serialize</span>))]</span>
-<span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">TouchPhase</span> {
-    <span class="doccomment">/// User just placed a touch point on the touch surface</span>
-    <span class="ident">Start</span>,
-    <span class="doccomment">/// User moves a touch point along the surface. This event is also sent when</span>
-    <span class="doccomment">/// any attributes (position, force, …) of the touch point change.</span>
-    <span class="ident">Move</span>,
-    <span class="doccomment">/// User lifted the finger or pen from the surface, or slid off the edge of</span>
-    <span class="doccomment">/// the surface</span>
-    <span class="ident">End</span>,
-    <span class="doccomment">/// Touch operation has been disrupted by something (various reasons are possible,</span>
-    <span class="doccomment">/// maybe a pop-up alert or any other kind of interruption which may not have</span>
-    <span class="doccomment">/// been intended by the user)</span>
-    <span class="ident">Cancel</span>,
+<span class="doccomment">/// In what phase a touch event is in.
+</span><span class="attribute">#[derive(Clone, Copy, Debug, Eq, PartialEq)]
+#[cfg_attr(feature = <span class="string">&quot;serde&quot;</span>, derive(serde::Deserialize, serde::Serialize))]
+</span><span class="kw">pub enum </span>TouchPhase {
+    <span class="doccomment">/// User just placed a touch point on the touch surface
+    </span>Start,
+    <span class="doccomment">/// User moves a touch point along the surface. This event is also sent when
+    /// any attributes (position, force, …) of the touch point change.
+    </span>Move,
+    <span class="doccomment">/// User lifted the finger or pen from the surface, or slid off the edge of
+    /// the surface
+    </span>End,
+    <span class="doccomment">/// Touch operation has been disrupted by something (various reasons are possible,
+    /// maybe a pop-up alert or any other kind of interruption which may not have
+    /// been intended by the user)
+    </span>Cancel,
 }
 
-<span class="kw">impl</span> <span class="ident">From</span><span class="op">&lt;</span><span class="ident">u64</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">TouchId</span> {
-    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">id</span>: <span class="ident">u64</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">Self</span>(<span class="ident">id</span>)
+<span class="kw">impl </span>From&lt;u64&gt; <span class="kw">for </span>TouchId {
+    <span class="kw">fn </span>from(id: u64) -&gt; <span class="self">Self </span>{
+        <span class="self">Self</span>(id)
     }
 }
 
-<span class="kw">impl</span> <span class="ident">From</span><span class="op">&lt;</span><span class="ident">i32</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">TouchId</span> {
-    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">id</span>: <span class="ident">i32</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">Self</span>(<span class="ident">id</span> <span class="kw">as</span> <span class="ident">u64</span>)
+<span class="kw">impl </span>From&lt;i32&gt; <span class="kw">for </span>TouchId {
+    <span class="kw">fn </span>from(id: i32) -&gt; <span class="self">Self </span>{
+        <span class="self">Self</span>(id <span class="kw">as </span>u64)
     }
 }
 
-<span class="kw">impl</span> <span class="ident">From</span><span class="op">&lt;</span><span class="ident">u32</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">TouchId</span> {
-    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">id</span>: <span class="ident">u32</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">Self</span>(<span class="ident">id</span> <span class="kw">as</span> <span class="ident">u64</span>)
+<span class="kw">impl </span>From&lt;u32&gt; <span class="kw">for </span>TouchId {
+    <span class="kw">fn </span>from(id: u32) -&gt; <span class="self">Self </span>{
+        <span class="self">Self</span>(id <span class="kw">as </span>u64)
     }
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="egui" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0 (a55dd71d5 2022-09-19)" ></div></body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="egui" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.66.1 (90743e729 2023-01-10)" ></div></body></html>

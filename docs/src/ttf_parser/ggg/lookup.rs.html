@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/ttf-parser-0.15.2/src/ggg/lookup.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>lookup.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../storage.js"></script><script defer src="../../../source-script.js"></script><script defer src="../../../source-files.js"></script><script defer src="../../../main.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../../ttf_parser/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../../ttf_parser/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../../ttf_parser/index.html"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/ttf-parser-0.15.2/src/ggg/lookup.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>lookup.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../../normalize.css"><link rel="stylesheet" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../../ayu.css" disabled><link rel="stylesheet" href="../../../dark.css" disabled><link rel="stylesheet" href="../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../storage.js"></script><script defer src="../../../source-script.js"></script><script defer src="../../../source-files.js"></script><script defer src="../../../main.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><div class="width-limiter"><nav class="sub"><a class="sub-logo-container" href="../../../ttf_parser/index.html"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../wheel.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -150,157 +150,157 @@
 <span id="150">150</span>
 <span id="151">151</span>
 <span id="152">152</span>
-</pre><pre class="rust"><code><span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::parser</span>::{<span class="ident">FromData</span>, <span class="ident">FromSlice</span>, <span class="ident">LazyArray16</span>, <span class="ident">LazyOffsetArray16</span>, <span class="ident">Offset</span>, <span class="ident">Offset16</span>, <span class="ident">Offset32</span>, <span class="ident">Stream</span>};
+</pre><pre class="rust"><code><span class="kw">use </span><span class="kw">crate</span>::parser::{FromData, FromSlice, LazyArray16, LazyOffsetArray16, Offset, Offset16, Offset32, Stream};
 
-<span class="doccomment">/// A list of [`Lookup`] values.</span>
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">LookupList</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">LazyOffsetArray16</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">Lookup</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span><span class="op">&gt;</span>;
+<span class="doccomment">/// A list of [`Lookup`] values.
+</span><span class="kw">pub type </span>LookupList&lt;<span class="lifetime">&#39;a</span>&gt; = LazyOffsetArray16&lt;<span class="lifetime">&#39;a</span>, Lookup&lt;<span class="lifetime">&#39;a</span>&gt;&gt;;
 
-<span class="doccomment">/// A [Lookup Table](https://docs.microsoft.com/en-us/typography/opentype/spec/chapter2#lookup-table).</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">Debug</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Lookup</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="doccomment">/// Lookup qualifiers.</span>
-    <span class="kw">pub</span> <span class="ident">flags</span>: <span class="ident">LookupFlags</span>,
-    <span class="doccomment">/// Available subtables.</span>
-    <span class="kw">pub</span> <span class="ident">subtables</span>: <span class="ident">LookupSubtables</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>,
-    <span class="doccomment">/// Index into GDEF mark glyph sets structure.</span>
-    <span class="kw">pub</span> <span class="ident">mark_filtering_set</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">u16</span><span class="op">&gt;</span>,
+<span class="doccomment">/// A [Lookup Table](https://docs.microsoft.com/en-us/typography/opentype/spec/chapter2#lookup-table).
+</span><span class="attribute">#[derive(Clone, Copy, Debug)]
+</span><span class="kw">pub struct </span>Lookup&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="doccomment">/// Lookup qualifiers.
+    </span><span class="kw">pub </span>flags: LookupFlags,
+    <span class="doccomment">/// Available subtables.
+    </span><span class="kw">pub </span>subtables: LookupSubtables&lt;<span class="lifetime">&#39;a</span>&gt;,
+    <span class="doccomment">/// Index into GDEF mark glyph sets structure.
+    </span><span class="kw">pub </span>mark_filtering_set: <span class="prelude-ty">Option</span>&lt;u16&gt;,
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">FromSlice</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Lookup</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="kw">fn</span> <span class="ident">parse</span>(<span class="ident">data</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>]) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">s</span> <span class="op">=</span> <span class="ident">Stream::new</span>(<span class="ident">data</span>);
-        <span class="kw">let</span> <span class="ident">kind</span> <span class="op">=</span> <span class="ident">s</span>.<span class="ident">read</span>::<span class="op">&lt;</span><span class="ident">u16</span><span class="op">&gt;</span>()<span class="question-mark">?</span>;
-        <span class="kw">let</span> <span class="ident">flags</span> <span class="op">=</span> <span class="ident">s</span>.<span class="ident">read</span>::<span class="op">&lt;</span><span class="ident">LookupFlags</span><span class="op">&gt;</span>()<span class="question-mark">?</span>;
-        <span class="kw">let</span> <span class="ident">count</span> <span class="op">=</span> <span class="ident">s</span>.<span class="ident">read</span>::<span class="op">&lt;</span><span class="ident">u16</span><span class="op">&gt;</span>()<span class="question-mark">?</span>;
-        <span class="kw">let</span> <span class="ident">offsets</span> <span class="op">=</span> <span class="ident">s</span>.<span class="ident">read_array16</span>(<span class="ident">count</span>)<span class="question-mark">?</span>;
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; FromSlice&lt;<span class="lifetime">&#39;a</span>&gt; <span class="kw">for </span>Lookup&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="kw">fn </span>parse(data: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8]) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="self">Self</span>&gt; {
+        <span class="kw">let </span><span class="kw-2">mut </span>s = Stream::new(data);
+        <span class="kw">let </span>kind = s.read::&lt;u16&gt;()<span class="question-mark">?</span>;
+        <span class="kw">let </span>flags = s.read::&lt;LookupFlags&gt;()<span class="question-mark">?</span>;
+        <span class="kw">let </span>count = s.read::&lt;u16&gt;()<span class="question-mark">?</span>;
+        <span class="kw">let </span>offsets = s.read_array16(count)<span class="question-mark">?</span>;
 
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">mark_filtering_set</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">u16</span><span class="op">&gt;</span> <span class="op">=</span> <span class="prelude-val">None</span>;
-        <span class="kw">if</span> <span class="ident">flags</span>.<span class="ident">use_mark_filtering_set</span>() {
-            <span class="ident">mark_filtering_set</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">s</span>.<span class="ident">read</span>::<span class="op">&lt;</span><span class="ident">u16</span><span class="op">&gt;</span>()<span class="question-mark">?</span>);
+        <span class="kw">let </span><span class="kw-2">mut </span>mark_filtering_set: <span class="prelude-ty">Option</span>&lt;u16&gt; = <span class="prelude-val">None</span>;
+        <span class="kw">if </span>flags.use_mark_filtering_set() {
+            mark_filtering_set = <span class="prelude-val">Some</span>(s.read::&lt;u16&gt;()<span class="question-mark">?</span>);
         }
 
-        <span class="prelude-val">Some</span>(<span class="self">Self</span> {
-            <span class="ident">flags</span>,
-            <span class="ident">subtables</span>: <span class="ident">LookupSubtables</span> { <span class="ident">kind</span>, <span class="ident">data</span>, <span class="ident">offsets</span> },
-            <span class="ident">mark_filtering_set</span>,
+        <span class="prelude-val">Some</span>(<span class="self">Self </span>{
+            flags,
+            subtables: LookupSubtables { kind, data, offsets },
+            mark_filtering_set,
         })
     }
 }
 
-<span class="doccomment">/// A trait for parsing Lookup subtables.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// Internal use only.</span>
-<span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">LookupSubtable</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>: <span class="ident">Sized</span> {
-    <span class="doccomment">/// Parses raw data.</span>
-    <span class="kw">fn</span> <span class="ident">parse</span>(<span class="ident">data</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>], <span class="ident">kind</span>: <span class="ident">u16</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>;
+<span class="doccomment">/// A trait for parsing Lookup subtables.
+///
+/// Internal use only.
+</span><span class="kw">pub trait </span>LookupSubtable&lt;<span class="lifetime">&#39;a</span>&gt;: Sized {
+    <span class="doccomment">/// Parses raw data.
+    </span><span class="kw">fn </span>parse(data: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8], kind: u16) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="self">Self</span>&gt;;
 }
 
-<span class="doccomment">/// A list of lookup subtables.</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Copy</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">LookupSubtables</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="ident">kind</span>: <span class="ident">u16</span>,
-    <span class="ident">data</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>],
-    <span class="ident">offsets</span>: <span class="ident">LazyArray16</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">Offset16</span><span class="op">&gt;</span>,
+<span class="doccomment">/// A list of lookup subtables.
+</span><span class="attribute">#[derive(Clone, Copy)]
+</span><span class="kw">pub struct </span>LookupSubtables&lt;<span class="lifetime">&#39;a</span>&gt; {
+    kind: u16,
+    data: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8],
+    offsets: LazyArray16&lt;<span class="lifetime">&#39;a</span>, Offset16&gt;,
 }
 
-<span class="kw">impl</span> <span class="ident">core::fmt::Debug</span> <span class="kw">for</span> <span class="ident">LookupSubtables</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span> {
-    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;mut</span> <span class="ident">core::fmt::Formatter</span>) -&gt; <span class="ident">core::fmt::Result</span> {
-        <span class="macro">write!</span>(<span class="ident">f</span>, <span class="string">&quot;LookupSubtables {{ ... }}&quot;</span>)
+<span class="kw">impl </span>core::fmt::Debug <span class="kw">for </span>LookupSubtables&lt;<span class="lifetime">&#39;_</span>&gt; {
+    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>core::fmt::Formatter) -&gt; core::fmt::Result {
+        <span class="macro">write!</span>(f, <span class="string">&quot;LookupSubtables {{ ... }}&quot;</span>)
     }
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">LookupSubtables</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="doccomment">/// Returns a number of items in the LookupSubtables.</span>
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">len</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">u16</span> {
-        <span class="self">self</span>.<span class="ident">offsets</span>.<span class="ident">len</span>()
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; LookupSubtables&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="doccomment">/// Returns a number of items in the LookupSubtables.
+    </span><span class="attribute">#[inline]
+    </span><span class="kw">pub fn </span>len(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; u16 {
+        <span class="self">self</span>.offsets.len()
     }
 
-    <span class="doccomment">/// Parses a subtable at index.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// Accepts either</span>
-    <span class="doccomment">/// [`PositioningSubtable`](crate::gpos::PositioningSubtable)</span>
-    <span class="doccomment">/// or [`SubstitutionSubtable`](crate::gsub::SubstitutionSubtable).</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// Technically, we can enforce it at compile time, but it makes code too convoluted.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">LookupSubtable</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">index</span>: <span class="ident">u16</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="ident">offset</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">offsets</span>.<span class="ident">get</span>(<span class="ident">index</span>)<span class="question-mark">?</span>.<span class="ident">to_usize</span>();
-        <span class="kw">let</span> <span class="ident">data</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">data</span>.<span class="ident">get</span>(<span class="ident">offset</span>..)<span class="question-mark">?</span>;
-        <span class="ident">T::parse</span>(<span class="ident">data</span>, <span class="self">self</span>.<span class="ident">kind</span>)
+    <span class="doccomment">/// Parses a subtable at index.
+    ///
+    /// Accepts either
+    /// [`PositioningSubtable`](crate::gpos::PositioningSubtable)
+    /// or [`SubstitutionSubtable`](crate::gsub::SubstitutionSubtable).
+    ///
+    /// Technically, we can enforce it at compile time, but it makes code too convoluted.
+    </span><span class="kw">pub fn </span>get&lt;T: LookupSubtable&lt;<span class="lifetime">&#39;a</span>&gt;&gt;(<span class="kw-2">&amp;</span><span class="self">self</span>, index: u16) -&gt; <span class="prelude-ty">Option</span>&lt;T&gt; {
+        <span class="kw">let </span>offset = <span class="self">self</span>.offsets.get(index)<span class="question-mark">?</span>.to_usize();
+        <span class="kw">let </span>data = <span class="self">self</span>.data.get(offset..)<span class="question-mark">?</span>;
+        T::parse(data, <span class="self">self</span>.kind)
     }
 
-    <span class="doccomment">/// Creates an iterator over subtables.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// We cannot use `IntoIterator` here, because we have to use user-provided base type.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">into_iter</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">LookupSubtable</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="self">self</span>) -&gt; <span class="ident">LookupSubtablesIter</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">T</span><span class="op">&gt;</span> {
-        <span class="ident">LookupSubtablesIter</span> {
-            <span class="ident">data</span>: <span class="self">self</span>,
-            <span class="ident">index</span>: <span class="number">0</span>,
-            <span class="ident">data_type</span>: <span class="ident">core::marker::PhantomData</span>,
+    <span class="doccomment">/// Creates an iterator over subtables.
+    ///
+    /// We cannot use `IntoIterator` here, because we have to use user-provided base type.
+    </span><span class="kw">pub fn </span>into_iter&lt;T: LookupSubtable&lt;<span class="lifetime">&#39;a</span>&gt;&gt;(<span class="self">self</span>) -&gt; LookupSubtablesIter&lt;<span class="lifetime">&#39;a</span>, T&gt; {
+        LookupSubtablesIter {
+            data: <span class="self">self</span>,
+            index: <span class="number">0</span>,
+            data_type: core::marker::PhantomData,
         }
     }
 }
 
-<span class="doccomment">/// An iterator over lookup subtables.</span>
-<span class="attribute">#[<span class="ident">allow</span>(<span class="ident">missing_debug_implementations</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">LookupSubtablesIter</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">T</span>: <span class="ident">LookupSubtable</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span><span class="op">&gt;</span> {
-    <span class="ident">data</span>: <span class="ident">LookupSubtables</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>,
-    <span class="ident">index</span>: <span class="ident">u16</span>,
-    <span class="ident">data_type</span>: <span class="ident">core::marker::PhantomData</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>,
+<span class="doccomment">/// An iterator over lookup subtables.
+</span><span class="attribute">#[allow(missing_debug_implementations)]
+</span><span class="kw">pub struct </span>LookupSubtablesIter&lt;<span class="lifetime">&#39;a</span>, T: LookupSubtable&lt;<span class="lifetime">&#39;a</span>&gt;&gt; {
+    data: LookupSubtables&lt;<span class="lifetime">&#39;a</span>&gt;,
+    index: u16,
+    data_type: core::marker::PhantomData&lt;T&gt;,
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">T</span>: <span class="ident">LookupSubtable</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span><span class="op">&gt;</span> <span class="ident">Iterator</span> <span class="kw">for</span> <span class="ident">LookupSubtablesIter</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">T</span><span class="op">&gt;</span> {
-    <span class="kw">type</span> <span class="ident">Item</span> <span class="op">=</span> <span class="ident">T</span>;
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>, T: LookupSubtable&lt;<span class="lifetime">&#39;a</span>&gt;&gt; Iterator <span class="kw">for </span>LookupSubtablesIter&lt;<span class="lifetime">&#39;a</span>, T&gt; {
+    <span class="kw">type </span>Item = T;
 
-    <span class="kw">fn</span> <span class="ident">next</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident"><span class="self">Self</span>::Item</span><span class="op">&gt;</span> {
-        <span class="kw">if</span> <span class="self">self</span>.<span class="ident">index</span> <span class="op">&lt;</span> <span class="self">self</span>.<span class="ident">data</span>.<span class="ident">len</span>() {
-            <span class="self">self</span>.<span class="ident">index</span> <span class="op">+</span><span class="op">=</span> <span class="number">1</span>;
-            <span class="self">self</span>.<span class="ident">data</span>.<span class="ident">get</span>(<span class="self">self</span>.<span class="ident">index</span> <span class="op">-</span> <span class="number">1</span>)
-        } <span class="kw">else</span> {
-            <span class="prelude-val">None</span>
-        }
+    <span class="kw">fn </span>next(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="self">Self</span>::Item&gt; {
+        <span class="kw">if </span><span class="self">self</span>.index &lt; <span class="self">self</span>.data.len() {
+            <span class="self">self</span>.index += <span class="number">1</span>;
+            <span class="self">self</span>.data.get(<span class="self">self</span>.index - <span class="number">1</span>)
+        } <span class="kw">else </span>{
+            <span class="prelude-val">None
+        </span>}
     }
 }
 
-<span class="doccomment">/// Lookup table flags.</span>
-<span class="attribute">#[<span class="ident">allow</span>(<span class="ident">missing_docs</span>)]</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">Debug</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">LookupFlags</span>(<span class="kw">pub</span> <span class="ident">u16</span>);
+<span class="doccomment">/// Lookup table flags.
+</span><span class="attribute">#[allow(missing_docs)]
+#[derive(Clone, Copy, Debug)]
+</span><span class="kw">pub struct </span>LookupFlags(<span class="kw">pub </span>u16);
 
-<span class="attribute">#[<span class="ident">allow</span>(<span class="ident">missing_docs</span>)]</span>
-<span class="kw">impl</span> <span class="ident">LookupFlags</span> {
-    <span class="attribute">#[<span class="ident">inline</span>]</span> <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">right_to_left</span>(<span class="self">self</span>) -&gt; <span class="ident">bool</span> { <span class="self">self</span>.<span class="number">0</span> <span class="op">&amp;</span> <span class="number">0x0001</span> <span class="op">!</span><span class="op">=</span> <span class="number">0</span> }
-    <span class="attribute">#[<span class="ident">inline</span>]</span> <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ignore_base_glyphs</span>(<span class="self">self</span>) -&gt; <span class="ident">bool</span> { <span class="self">self</span>.<span class="number">0</span> <span class="op">&amp;</span> <span class="number">0x0002</span> <span class="op">!</span><span class="op">=</span> <span class="number">0</span> }
-    <span class="attribute">#[<span class="ident">inline</span>]</span> <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ignore_ligatures</span>(<span class="self">self</span>) -&gt; <span class="ident">bool</span> { <span class="self">self</span>.<span class="number">0</span> <span class="op">&amp;</span> <span class="number">0x0004</span> <span class="op">!</span><span class="op">=</span> <span class="number">0</span> }
-    <span class="attribute">#[<span class="ident">inline</span>]</span> <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ignore_marks</span>(<span class="self">self</span>) -&gt; <span class="ident">bool</span> { <span class="self">self</span>.<span class="number">0</span> <span class="op">&amp;</span> <span class="number">0x0008</span> <span class="op">!</span><span class="op">=</span> <span class="number">0</span> }
-    <span class="attribute">#[<span class="ident">inline</span>]</span> <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ignore_flags</span>(<span class="self">self</span>) -&gt; <span class="ident">bool</span> { <span class="self">self</span>.<span class="number">0</span> <span class="op">&amp;</span> <span class="number">0x000E</span> <span class="op">!</span><span class="op">=</span> <span class="number">0</span> }
-    <span class="attribute">#[<span class="ident">inline</span>]</span> <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">use_mark_filtering_set</span>(<span class="self">self</span>) -&gt; <span class="ident">bool</span> { <span class="self">self</span>.<span class="number">0</span> <span class="op">&amp;</span> <span class="number">0x0010</span> <span class="op">!</span><span class="op">=</span> <span class="number">0</span> }
-    <span class="attribute">#[<span class="ident">inline</span>]</span> <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">mark_attachment_type</span>(<span class="self">self</span>) -&gt; <span class="ident">u8</span> { (<span class="self">self</span>.<span class="number">0</span> <span class="op">&amp;</span> <span class="number">0xFF00</span>) <span class="kw">as</span> <span class="ident">u8</span> }
+<span class="attribute">#[allow(missing_docs)]
+</span><span class="kw">impl </span>LookupFlags {
+    <span class="attribute">#[inline] </span><span class="kw">pub fn </span>right_to_left(<span class="self">self</span>) -&gt; bool { <span class="self">self</span>.<span class="number">0 </span>&amp; <span class="number">0x0001 </span>!= <span class="number">0 </span>}
+    <span class="attribute">#[inline] </span><span class="kw">pub fn </span>ignore_base_glyphs(<span class="self">self</span>) -&gt; bool { <span class="self">self</span>.<span class="number">0 </span>&amp; <span class="number">0x0002 </span>!= <span class="number">0 </span>}
+    <span class="attribute">#[inline] </span><span class="kw">pub fn </span>ignore_ligatures(<span class="self">self</span>) -&gt; bool { <span class="self">self</span>.<span class="number">0 </span>&amp; <span class="number">0x0004 </span>!= <span class="number">0 </span>}
+    <span class="attribute">#[inline] </span><span class="kw">pub fn </span>ignore_marks(<span class="self">self</span>) -&gt; bool { <span class="self">self</span>.<span class="number">0 </span>&amp; <span class="number">0x0008 </span>!= <span class="number">0 </span>}
+    <span class="attribute">#[inline] </span><span class="kw">pub fn </span>ignore_flags(<span class="self">self</span>) -&gt; bool { <span class="self">self</span>.<span class="number">0 </span>&amp; <span class="number">0x000E </span>!= <span class="number">0 </span>}
+    <span class="attribute">#[inline] </span><span class="kw">pub fn </span>use_mark_filtering_set(<span class="self">self</span>) -&gt; bool { <span class="self">self</span>.<span class="number">0 </span>&amp; <span class="number">0x0010 </span>!= <span class="number">0 </span>}
+    <span class="attribute">#[inline] </span><span class="kw">pub fn </span>mark_attachment_type(<span class="self">self</span>) -&gt; u8 { (<span class="self">self</span>.<span class="number">0 </span>&amp; <span class="number">0xFF00</span>) <span class="kw">as </span>u8 }
 }
 
-<span class="kw">impl</span> <span class="ident">FromData</span> <span class="kw">for</span> <span class="ident">LookupFlags</span> {
-    <span class="kw">const</span> <span class="ident">SIZE</span>: <span class="ident">usize</span> <span class="op">=</span> <span class="number">2</span>;
+<span class="kw">impl </span>FromData <span class="kw">for </span>LookupFlags {
+    <span class="kw">const </span>SIZE: usize = <span class="number">2</span>;
 
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">parse</span>(<span class="ident">data</span>: <span class="kw-2">&amp;</span>[<span class="ident">u8</span>]) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
-        <span class="ident">u16::parse</span>(<span class="ident">data</span>).<span class="ident">map</span>(<span class="self">Self</span>)
+    <span class="attribute">#[inline]
+    </span><span class="kw">fn </span>parse(data: <span class="kw-2">&amp;</span>[u8]) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="self">Self</span>&gt; {
+        u16::parse(data).map(<span class="self">Self</span>)
     }
 }
 
-<span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">parse_extension_lookup</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">T</span>: <span class="lifetime">&#39;a</span><span class="op">&gt;</span>(
-    <span class="ident">data</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>],
-    <span class="ident">parse</span>: <span class="kw">impl</span> <span class="ident">FnOnce</span>(<span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>], <span class="ident">u16</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>,
-) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> {
-    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">s</span> <span class="op">=</span> <span class="ident">Stream::new</span>(<span class="ident">data</span>);
-    <span class="kw">let</span> <span class="ident">format</span> <span class="op">=</span> <span class="ident">s</span>.<span class="ident">read</span>::<span class="op">&lt;</span><span class="ident">u16</span><span class="op">&gt;</span>()<span class="question-mark">?</span>;
-    <span class="kw">match</span> <span class="ident">format</span> {
-        <span class="number">1</span> =&gt; {
-            <span class="kw">let</span> <span class="ident">kind</span> <span class="op">=</span> <span class="ident">s</span>.<span class="ident">read</span>::<span class="op">&lt;</span><span class="ident">u16</span><span class="op">&gt;</span>()<span class="question-mark">?</span>;
-            <span class="kw">let</span> <span class="ident">offset</span> <span class="op">=</span> <span class="ident">s</span>.<span class="ident">read</span>::<span class="op">&lt;</span><span class="ident">Offset32</span><span class="op">&gt;</span>()<span class="question-mark">?</span>.<span class="ident">to_usize</span>();
-            <span class="ident">parse</span>(<span class="ident">data</span>.<span class="ident">get</span>(<span class="ident">offset</span>..)<span class="question-mark">?</span>, <span class="ident">kind</span>)
+<span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>parse_extension_lookup&lt;<span class="lifetime">&#39;a</span>, T: <span class="lifetime">&#39;a</span>&gt;(
+    data: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8],
+    parse: <span class="kw">impl </span>FnOnce(<span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8], u16) -&gt; <span class="prelude-ty">Option</span>&lt;T&gt;,
+) -&gt; <span class="prelude-ty">Option</span>&lt;T&gt; {
+    <span class="kw">let </span><span class="kw-2">mut </span>s = Stream::new(data);
+    <span class="kw">let </span>format = s.read::&lt;u16&gt;()<span class="question-mark">?</span>;
+    <span class="kw">match </span>format {
+        <span class="number">1 </span>=&gt; {
+            <span class="kw">let </span>kind = s.read::&lt;u16&gt;()<span class="question-mark">?</span>;
+            <span class="kw">let </span>offset = s.read::&lt;Offset32&gt;()<span class="question-mark">?</span>.to_usize();
+            parse(data.get(offset..)<span class="question-mark">?</span>, kind)
         }
-        <span class="kw">_</span> =&gt; <span class="prelude-val">None</span>,
+        <span class="kw">_ </span>=&gt; <span class="prelude-val">None</span>,
     }
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="ttf_parser" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0 (a55dd71d5 2022-09-19)" ></div></body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="ttf_parser" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.66.1 (90743e729 2023-01-10)" ></div></body></html>

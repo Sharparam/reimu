@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/egui-0.16.1/src/widgets/mod.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>mod.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../storage.js"></script><script defer src="../../../source-script.js"></script><script defer src="../../../source-files.js"></script><script defer src="../../../main.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../../egui/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../../egui/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../../egui/index.html"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/egui-0.16.1/src/widgets/mod.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>mod.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../../normalize.css"><link rel="stylesheet" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../../ayu.css" disabled><link rel="stylesheet" href="../../../dark.css" disabled><link rel="stylesheet" href="../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../storage.js"></script><script defer src="../../../source-script.js"></script><script defer src="../../../source-files.js"></script><script defer src="../../../main.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><div class="width-limiter"><nav class="sub"><a class="sub-logo-container" href="../../../egui/index.html"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../wheel.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -150,157 +150,157 @@
 <span id="150">150</span>
 <span id="151">151</span>
 <span id="152">152</span>
-</pre><pre class="rust"><code><span class="doccomment">//! Widgets are pieces of GUI such as [`Label`], [`Button`], [`Slider`] etc.</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! Example widget uses:</span>
-<span class="doccomment">//! * `ui.add(Label::new(&quot;Text&quot;).text_color(color::red));`</span>
-<span class="doccomment">//! * `if ui.add(Button::new(&quot;Click me&quot;)).clicked() { … }`</span>
+</pre><pre class="rust"><code><span class="doccomment">//! Widgets are pieces of GUI such as [`Label`], [`Button`], [`Slider`] etc.
+//!
+//! Example widget uses:
+//! * `ui.add(Label::new(&quot;Text&quot;).text_color(color::red));`
+//! * `if ui.add(Button::new(&quot;Click me&quot;)).clicked() { … }`
 
-<span class="kw">use</span> <span class="kw">crate</span>::<span class="kw-2">*</span>;
+</span><span class="kw">use crate</span>::<span class="kw-2">*</span>;
 
-<span class="kw">mod</span> <span class="ident">button</span>;
-<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">color_picker</span>;
-<span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">mod</span> <span class="ident">drag_value</span>;
-<span class="kw">mod</span> <span class="ident">hyperlink</span>;
-<span class="kw">mod</span> <span class="ident">image</span>;
-<span class="kw">mod</span> <span class="ident">label</span>;
-<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">plot</span>;
-<span class="kw">mod</span> <span class="ident">progress_bar</span>;
-<span class="kw">mod</span> <span class="ident">selected_label</span>;
-<span class="kw">mod</span> <span class="ident">separator</span>;
-<span class="kw">mod</span> <span class="ident">slider</span>;
-<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">text_edit</span>;
+<span class="kw">mod </span>button;
+<span class="kw">pub mod </span>color_picker;
+<span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">mod </span>drag_value;
+<span class="kw">mod </span>hyperlink;
+<span class="kw">mod </span>image;
+<span class="kw">mod </span>label;
+<span class="kw">pub mod </span>plot;
+<span class="kw">mod </span>progress_bar;
+<span class="kw">mod </span>selected_label;
+<span class="kw">mod </span>separator;
+<span class="kw">mod </span>slider;
+<span class="kw">pub mod </span>text_edit;
 
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">button</span>::<span class="kw-2">*</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">drag_value::DragValue</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">hyperlink</span>::<span class="kw-2">*</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">image::Image</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">label</span>::<span class="kw-2">*</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">progress_bar::ProgressBar</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">selected_label::SelectableLabel</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">separator::Separator</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">slider</span>::<span class="kw-2">*</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">text_edit</span>::{<span class="ident">TextBuffer</span>, <span class="ident">TextEdit</span>};
+<span class="kw">pub use </span>button::<span class="kw-2">*</span>;
+<span class="kw">pub use </span>drag_value::DragValue;
+<span class="kw">pub use </span>hyperlink::<span class="kw-2">*</span>;
+<span class="kw">pub use </span>image::Image;
+<span class="kw">pub use </span>label::<span class="kw-2">*</span>;
+<span class="kw">pub use </span>progress_bar::ProgressBar;
+<span class="kw">pub use </span>selected_label::SelectableLabel;
+<span class="kw">pub use </span>separator::Separator;
+<span class="kw">pub use </span>slider::<span class="kw-2">*</span>;
+<span class="kw">pub use </span>text_edit::{TextBuffer, TextEdit};
 
-<span class="comment">// ----------------------------------------------------------------------------</span>
+<span class="comment">// ----------------------------------------------------------------------------
 
-<span class="doccomment">/// Anything implementing Widget can be added to a [`Ui`] with [`Ui::add`].</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// [`Button`], [`Label`], [`Slider`], etc all implement the `Widget` trait.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// Note that the widgets (`Button`, `TextEdit` etc) are</span>
-<span class="doccomment">/// [builders](https://doc.rust-lang.org/1.0.0/style/ownership/builders.html),</span>
-<span class="doccomment">/// and not objects that hold state.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// Tip: you can `impl Widget for &amp;mut YourThing { }`.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// `|ui: &amp;mut Ui| -&gt; Response { … }` also implements `Widget`.</span>
-<span class="attribute">#[<span class="ident">must_use</span> <span class="op">=</span> <span class="string">&quot;You should put this widget in an ui with `ui.add(widget);`&quot;</span>]</span>
-<span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">Widget</span> {
-    <span class="doccomment">/// Allocate space, interact, paint, and return a [`Response`].</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// Note that this consumes `self`.</span>
-    <span class="doccomment">/// This is because most widgets ([`Button`], [`TextEdit`] etc) are</span>
-    <span class="doccomment">/// [builders](https://doc.rust-lang.org/1.0.0/style/ownership/builders.html)</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// Tip: you can `impl Widget for &amp;mut YourObject { }`.</span>
-    <span class="kw">fn</span> <span class="ident">ui</span>(<span class="self">self</span>, <span class="ident">ui</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Ui</span>) -&gt; <span class="ident">Response</span>;
+</span><span class="doccomment">/// Anything implementing Widget can be added to a [`Ui`] with [`Ui::add`].
+///
+/// [`Button`], [`Label`], [`Slider`], etc all implement the `Widget` trait.
+///
+/// Note that the widgets (`Button`, `TextEdit` etc) are
+/// [builders](https://doc.rust-lang.org/1.0.0/style/ownership/builders.html),
+/// and not objects that hold state.
+///
+/// Tip: you can `impl Widget for &amp;mut YourThing { }`.
+///
+/// `|ui: &amp;mut Ui| -&gt; Response { … }` also implements `Widget`.
+</span><span class="attribute">#[must_use = <span class="string">&quot;You should put this widget in an ui with `ui.add(widget);`&quot;</span>]
+</span><span class="kw">pub trait </span>Widget {
+    <span class="doccomment">/// Allocate space, interact, paint, and return a [`Response`].
+    ///
+    /// Note that this consumes `self`.
+    /// This is because most widgets ([`Button`], [`TextEdit`] etc) are
+    /// [builders](https://doc.rust-lang.org/1.0.0/style/ownership/builders.html)
+    ///
+    /// Tip: you can `impl Widget for &amp;mut YourObject { }`.
+    </span><span class="kw">fn </span>ui(<span class="self">self</span>, ui: <span class="kw-2">&amp;mut </span>Ui) -&gt; Response;
 }
 
-<span class="doccomment">/// This enables functions that return `impl Widget`, so that you can</span>
-<span class="doccomment">/// create a widget by just returning a lambda from a function.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// For instance: `ui.add(slider_vec2(&amp;mut vec2));` with:</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// ```</span>
-<span class="doccomment">/// pub fn slider_vec2(value: &amp;mut egui::Vec2) -&gt; impl egui::Widget + &#39;_ {</span>
-<span class="doccomment">///    move |ui: &amp;mut egui::Ui| {</span>
-<span class="doccomment">///        ui.horizontal(|ui| {</span>
-<span class="doccomment">///            ui.add(egui::Slider::new(&amp;mut value.x, 0.0..=1.0).text(&quot;x&quot;));</span>
-<span class="doccomment">///            ui.add(egui::Slider::new(&amp;mut value.y, 0.0..=1.0).text(&quot;y&quot;));</span>
-<span class="doccomment">///        })</span>
-<span class="doccomment">///        .response</span>
-<span class="doccomment">///    }</span>
-<span class="doccomment">/// }</span>
-<span class="doccomment">/// ```</span>
-<span class="kw">impl</span><span class="op">&lt;</span><span class="ident">F</span><span class="op">&gt;</span> <span class="ident">Widget</span> <span class="kw">for</span> <span class="ident">F</span>
-<span class="kw">where</span>
-    <span class="ident">F</span>: <span class="ident">FnOnce</span>(<span class="kw-2">&amp;mut</span> <span class="ident">Ui</span>) -&gt; <span class="ident">Response</span>,
+<span class="doccomment">/// This enables functions that return `impl Widget`, so that you can
+/// create a widget by just returning a lambda from a function.
+///
+/// For instance: `ui.add(slider_vec2(&amp;mut vec2));` with:
+///
+/// ```
+/// pub fn slider_vec2(value: &amp;mut egui::Vec2) -&gt; impl egui::Widget + &#39;_ {
+///    move |ui: &amp;mut egui::Ui| {
+///        ui.horizontal(|ui| {
+///            ui.add(egui::Slider::new(&amp;mut value.x, 0.0..=1.0).text(&quot;x&quot;));
+///            ui.add(egui::Slider::new(&amp;mut value.y, 0.0..=1.0).text(&quot;y&quot;));
+///        })
+///        .response
+///    }
+/// }
+/// ```
+</span><span class="kw">impl</span>&lt;F&gt; Widget <span class="kw">for </span>F
+<span class="kw">where
+    </span>F: FnOnce(<span class="kw-2">&amp;mut </span>Ui) -&gt; Response,
 {
-    <span class="kw">fn</span> <span class="ident">ui</span>(<span class="self">self</span>, <span class="ident">ui</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Ui</span>) -&gt; <span class="ident">Response</span> {
-        <span class="self">self</span>(<span class="ident">ui</span>)
+    <span class="kw">fn </span>ui(<span class="self">self</span>, ui: <span class="kw-2">&amp;mut </span>Ui) -&gt; Response {
+        <span class="self">self</span>(ui)
     }
 }
 
-<span class="doccomment">/// Helper so that you can do `TextEdit::State::read…`</span>
-<span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">WidgetWithState</span> {
-    <span class="kw">type</span> <span class="ident">State</span>;
+<span class="doccomment">/// Helper so that you can do `TextEdit::State::read…`
+</span><span class="kw">pub trait </span>WidgetWithState {
+    <span class="kw">type </span>State;
 }
 
-<span class="comment">// ----------------------------------------------------------------------------</span>
+<span class="comment">// ----------------------------------------------------------------------------
 
-<span class="doccomment">/// Show a button to reset a value to its default.</span>
-<span class="doccomment">/// The button is only enabled if the value does not already have its original value.</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">reset_button</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">Default</span> <span class="op">+</span> <span class="ident">PartialEq</span><span class="op">&gt;</span>(<span class="ident">ui</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Ui</span>, <span class="ident">value</span>: <span class="kw-2">&amp;mut</span> <span class="ident">T</span>) {
-    <span class="ident">reset_button_with</span>(<span class="ident">ui</span>, <span class="ident">value</span>, <span class="ident">T::default</span>());
+</span><span class="doccomment">/// Show a button to reset a value to its default.
+/// The button is only enabled if the value does not already have its original value.
+</span><span class="kw">pub fn </span>reset_button&lt;T: Default + PartialEq&gt;(ui: <span class="kw-2">&amp;mut </span>Ui, value: <span class="kw-2">&amp;mut </span>T) {
+    reset_button_with(ui, value, T::default());
 }
-<span class="doccomment">/// Show a button to reset a value to its default.</span>
-<span class="doccomment">/// The button is only enabled if the value does not already have its original value.</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">reset_button_with</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">PartialEq</span><span class="op">&gt;</span>(<span class="ident">ui</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Ui</span>, <span class="ident">value</span>: <span class="kw-2">&amp;mut</span> <span class="ident">T</span>, <span class="ident">reset_value</span>: <span class="ident">T</span>) {
-    <span class="kw">if</span> <span class="ident">ui</span>
-        .<span class="ident">add_enabled</span>(<span class="kw-2">*</span><span class="ident">value</span> <span class="op">!</span><span class="op">=</span> <span class="ident">reset_value</span>, <span class="ident">Button::new</span>(<span class="string">&quot;Reset&quot;</span>))
-        .<span class="ident">clicked</span>()
+<span class="doccomment">/// Show a button to reset a value to its default.
+/// The button is only enabled if the value does not already have its original value.
+</span><span class="kw">pub fn </span>reset_button_with&lt;T: PartialEq&gt;(ui: <span class="kw-2">&amp;mut </span>Ui, value: <span class="kw-2">&amp;mut </span>T, reset_value: T) {
+    <span class="kw">if </span>ui
+        .add_enabled(<span class="kw-2">*</span>value != reset_value, Button::new(<span class="string">&quot;Reset&quot;</span>))
+        .clicked()
     {
-        <span class="kw-2">*</span><span class="ident">value</span> <span class="op">=</span> <span class="ident">reset_value</span>;
+        <span class="kw-2">*</span>value = reset_value;
     }
 }
 
-<span class="comment">// ----------------------------------------------------------------------------</span>
+<span class="comment">// ----------------------------------------------------------------------------
 
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">stroke_ui</span>(<span class="ident">ui</span>: <span class="kw-2">&amp;mut</span> <span class="ident"><span class="kw">crate</span>::Ui</span>, <span class="ident">stroke</span>: <span class="kw-2">&amp;mut</span> <span class="ident">epaint::Stroke</span>, <span class="ident">text</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) {
-    <span class="kw">let</span> <span class="ident">epaint::Stroke</span> { <span class="ident">width</span>, <span class="ident">color</span> } <span class="op">=</span> <span class="ident">stroke</span>;
-    <span class="ident">ui</span>.<span class="ident">horizontal</span>(<span class="op">|</span><span class="ident">ui</span><span class="op">|</span> {
-        <span class="ident">ui</span>.<span class="ident">add</span>(<span class="ident">DragValue::new</span>(<span class="ident">width</span>).<span class="ident">speed</span>(<span class="number">0.1</span>).<span class="ident">clamp_range</span>(<span class="number">0.0</span>..<span class="op">=</span><span class="number">5.0</span>))
-            .<span class="ident">on_hover_text</span>(<span class="string">&quot;Width&quot;</span>);
-        <span class="ident">ui</span>.<span class="ident">color_edit_button_srgba</span>(<span class="ident">color</span>);
-        <span class="ident">ui</span>.<span class="ident">label</span>(<span class="ident">text</span>);
+</span><span class="kw">pub fn </span>stroke_ui(ui: <span class="kw-2">&amp;mut </span><span class="kw">crate</span>::Ui, stroke: <span class="kw-2">&amp;mut </span>epaint::Stroke, text: <span class="kw-2">&amp;</span>str) {
+    <span class="kw">let </span>epaint::Stroke { width, color } = stroke;
+    ui.horizontal(|ui| {
+        ui.add(DragValue::new(width).speed(<span class="number">0.1</span>).clamp_range(<span class="number">0.0</span>..=<span class="number">5.0</span>))
+            .on_hover_text(<span class="string">&quot;Width&quot;</span>);
+        ui.color_edit_button_srgba(color);
+        ui.label(text);
 
-        <span class="comment">// stroke preview:</span>
-        <span class="kw">let</span> (<span class="ident">_id</span>, <span class="ident">stroke_rect</span>) <span class="op">=</span> <span class="ident">ui</span>.<span class="ident">allocate_space</span>(<span class="ident">ui</span>.<span class="ident">spacing</span>().<span class="ident">interact_size</span>);
-        <span class="kw">let</span> <span class="ident">left</span> <span class="op">=</span> <span class="ident">stroke_rect</span>.<span class="ident">left_center</span>();
-        <span class="kw">let</span> <span class="ident">right</span> <span class="op">=</span> <span class="ident">stroke_rect</span>.<span class="ident">right_center</span>();
-        <span class="ident">ui</span>.<span class="ident">painter</span>().<span class="ident">line_segment</span>([<span class="ident">left</span>, <span class="ident">right</span>], (<span class="kw-2">*</span><span class="ident">width</span>, <span class="kw-2">*</span><span class="ident">color</span>));
+        <span class="comment">// stroke preview:
+        </span><span class="kw">let </span>(_id, stroke_rect) = ui.allocate_space(ui.spacing().interact_size);
+        <span class="kw">let </span>left = stroke_rect.left_center();
+        <span class="kw">let </span>right = stroke_rect.right_center();
+        ui.painter().line_segment([left, right], (<span class="kw-2">*</span>width, <span class="kw-2">*</span>color));
     });
 }
 
-<span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">shadow_ui</span>(<span class="ident">ui</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Ui</span>, <span class="ident">shadow</span>: <span class="kw-2">&amp;mut</span> <span class="ident">epaint::Shadow</span>, <span class="ident">text</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) {
-    <span class="kw">let</span> <span class="ident">epaint::Shadow</span> { <span class="ident">extrusion</span>, <span class="ident">color</span> } <span class="op">=</span> <span class="ident">shadow</span>;
-    <span class="ident">ui</span>.<span class="ident">horizontal</span>(<span class="op">|</span><span class="ident">ui</span><span class="op">|</span> {
-        <span class="ident">ui</span>.<span class="ident">label</span>(<span class="ident">text</span>);
-        <span class="ident">ui</span>.<span class="ident">add</span>(
-            <span class="ident">DragValue::new</span>(<span class="ident">extrusion</span>)
-                .<span class="ident">speed</span>(<span class="number">1.0</span>)
-                .<span class="ident">clamp_range</span>(<span class="number">0.0</span>..<span class="op">=</span><span class="number">100.0</span>),
+<span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>shadow_ui(ui: <span class="kw-2">&amp;mut </span>Ui, shadow: <span class="kw-2">&amp;mut </span>epaint::Shadow, text: <span class="kw-2">&amp;</span>str) {
+    <span class="kw">let </span>epaint::Shadow { extrusion, color } = shadow;
+    ui.horizontal(|ui| {
+        ui.label(text);
+        ui.add(
+            DragValue::new(extrusion)
+                .speed(<span class="number">1.0</span>)
+                .clamp_range(<span class="number">0.0</span>..=<span class="number">100.0</span>),
         )
-        .<span class="ident">on_hover_text</span>(<span class="string">&quot;Extrusion&quot;</span>);
-        <span class="ident">ui</span>.<span class="ident">color_edit_button_srgba</span>(<span class="ident">color</span>);
+        .on_hover_text(<span class="string">&quot;Extrusion&quot;</span>);
+        ui.color_edit_button_srgba(color);
     });
 }
 
-<span class="doccomment">/// Show a small button to switch to/from dark/light mode (globally).</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">global_dark_light_mode_switch</span>(<span class="ident">ui</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Ui</span>) {
-    <span class="kw">let</span> <span class="ident">style</span>: <span class="ident"><span class="kw">crate</span>::Style</span> <span class="op">=</span> (<span class="kw-2">*</span><span class="ident">ui</span>.<span class="ident">ctx</span>().<span class="ident">style</span>()).<span class="ident">clone</span>();
-    <span class="kw">let</span> <span class="ident">new_visuals</span> <span class="op">=</span> <span class="ident">style</span>.<span class="ident">visuals</span>.<span class="ident">light_dark_small_toggle_button</span>(<span class="ident">ui</span>);
-    <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">visuals</span>) <span class="op">=</span> <span class="ident">new_visuals</span> {
-        <span class="ident">ui</span>.<span class="ident">ctx</span>().<span class="ident">set_visuals</span>(<span class="ident">visuals</span>);
+<span class="doccomment">/// Show a small button to switch to/from dark/light mode (globally).
+</span><span class="kw">pub fn </span>global_dark_light_mode_switch(ui: <span class="kw-2">&amp;mut </span>Ui) {
+    <span class="kw">let </span>style: <span class="kw">crate</span>::Style = (<span class="kw-2">*</span>ui.ctx().style()).clone();
+    <span class="kw">let </span>new_visuals = style.visuals.light_dark_small_toggle_button(ui);
+    <span class="kw">if let </span><span class="prelude-val">Some</span>(visuals) = new_visuals {
+        ui.ctx().set_visuals(visuals);
     }
 }
 
-<span class="doccomment">/// Show larger buttons for switching between light and dark mode (globally).</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">global_dark_light_mode_buttons</span>(<span class="ident">ui</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Ui</span>) {
-    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">visuals</span> <span class="op">=</span> <span class="ident">ui</span>.<span class="ident">ctx</span>().<span class="ident">style</span>().<span class="ident">visuals</span>.<span class="ident">clone</span>();
-    <span class="ident">visuals</span>.<span class="ident">light_dark_radio_buttons</span>(<span class="ident">ui</span>);
-    <span class="ident">ui</span>.<span class="ident">ctx</span>().<span class="ident">set_visuals</span>(<span class="ident">visuals</span>);
+<span class="doccomment">/// Show larger buttons for switching between light and dark mode (globally).
+</span><span class="kw">pub fn </span>global_dark_light_mode_buttons(ui: <span class="kw-2">&amp;mut </span>Ui) {
+    <span class="kw">let </span><span class="kw-2">mut </span>visuals = ui.ctx().style().visuals.clone();
+    visuals.light_dark_radio_buttons(ui);
+    ui.ctx().set_visuals(visuals);
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="egui" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0 (a55dd71d5 2022-09-19)" ></div></body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="egui" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.66.1 (90743e729 2023-01-10)" ></div></body></html>

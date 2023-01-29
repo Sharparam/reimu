@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/egui-0.16.1/src/widgets/plot/items/box_elem.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>box_elem.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../../../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../../../storage.js"></script><script defer src="../../../../../source-script.js"></script><script defer src="../../../../../source-files.js"></script><script defer src="../../../../../main.js"></script><noscript><link rel="stylesheet" href="../../../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../../../../egui/index.html"><div class="logo-container"><img class="rust-logo" src="../../../../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../../../../egui/index.html"><div class="logo-container"><img class="rust-logo" src="../../../../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../../../../egui/index.html"><img class="rust-logo" src="../../../../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/egui-0.16.1/src/widgets/plot/items/box_elem.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>box_elem.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../../../../normalize.css"><link rel="stylesheet" href="../../../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../../../../ayu.css" disabled><link rel="stylesheet" href="../../../../../dark.css" disabled><link rel="stylesheet" href="../../../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../../../storage.js"></script><script defer src="../../../../../source-script.js"></script><script defer src="../../../../../source-files.js"></script><script defer src="../../../../../main.js"></script><noscript><link rel="stylesheet" href="../../../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><div class="width-limiter"><nav class="sub"><a class="sub-logo-container" href="../../../../../egui/index.html"><img class="rust-logo" src="../../../../../rust-logo.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../../../wheel.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -284,291 +284,291 @@
 <span id="284">284</span>
 <span id="285">285</span>
 <span id="286">286</span>
-</pre><pre class="rust"><code><span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::emath::NumExt</span>;
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::epaint</span>::{<span class="ident">Color32</span>, <span class="ident">RectShape</span>, <span class="ident">Shape</span>, <span class="ident">Stroke</span>};
+</pre><pre class="rust"><code><span class="kw">use </span><span class="kw">crate</span>::emath::NumExt;
+<span class="kw">use </span><span class="kw">crate</span>::epaint::{Color32, RectShape, Shape, Stroke};
 
-<span class="kw">use</span> <span class="kw">super</span>::{<span class="ident">add_rulers_and_text</span>, <span class="ident">highlighted_color</span>, <span class="ident">Orientation</span>, <span class="ident">PlotConfig</span>, <span class="ident">RectElement</span>};
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::plot</span>::{<span class="ident">BoxPlot</span>, <span class="ident">ScreenTransform</span>, <span class="ident">Value</span>};
+<span class="kw">use super</span>::{add_rulers_and_text, highlighted_color, Orientation, PlotConfig, RectElement};
+<span class="kw">use </span><span class="kw">crate</span>::plot::{BoxPlot, ScreenTransform, Value};
 
-<span class="doccomment">/// Contains the values of a single box in a box plot.</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">BoxSpread</span> {
-    <span class="doccomment">/// Value of lower whisker (typically minimum).</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// The whisker is not drawn if `lower_whisker &gt;= quartile1`.</span>
-    <span class="kw">pub</span> <span class="ident">lower_whisker</span>: <span class="ident">f64</span>,
+<span class="doccomment">/// Contains the values of a single box in a box plot.
+</span><span class="attribute">#[derive(Clone, Debug, PartialEq)]
+</span><span class="kw">pub struct </span>BoxSpread {
+    <span class="doccomment">/// Value of lower whisker (typically minimum).
+    ///
+    /// The whisker is not drawn if `lower_whisker &gt;= quartile1`.
+    </span><span class="kw">pub </span>lower_whisker: f64,
 
-    <span class="doccomment">/// Value of lower box threshold (typically 25% quartile)</span>
-    <span class="kw">pub</span> <span class="ident">quartile1</span>: <span class="ident">f64</span>,
+    <span class="doccomment">/// Value of lower box threshold (typically 25% quartile)
+    </span><span class="kw">pub </span>quartile1: f64,
 
-    <span class="doccomment">/// Value of middle line in box (typically median)</span>
-    <span class="kw">pub</span> <span class="ident">median</span>: <span class="ident">f64</span>,
+    <span class="doccomment">/// Value of middle line in box (typically median)
+    </span><span class="kw">pub </span>median: f64,
 
-    <span class="doccomment">/// Value of upper box threshold (typically 75% quartile)</span>
-    <span class="kw">pub</span> <span class="ident">quartile3</span>: <span class="ident">f64</span>,
+    <span class="doccomment">/// Value of upper box threshold (typically 75% quartile)
+    </span><span class="kw">pub </span>quartile3: f64,
 
-    <span class="doccomment">/// Value of upper whisker (typically maximum)</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// The whisker is not drawn if `upper_whisker &lt;= quartile3`.</span>
-    <span class="kw">pub</span> <span class="ident">upper_whisker</span>: <span class="ident">f64</span>,
+    <span class="doccomment">/// Value of upper whisker (typically maximum)
+    ///
+    /// The whisker is not drawn if `upper_whisker &lt;= quartile3`.
+    </span><span class="kw">pub </span>upper_whisker: f64,
 }
 
-<span class="kw">impl</span> <span class="ident">BoxSpread</span> {
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(
-        <span class="ident">lower_whisker</span>: <span class="ident">f64</span>,
-        <span class="ident">quartile1</span>: <span class="ident">f64</span>,
-        <span class="ident">median</span>: <span class="ident">f64</span>,
-        <span class="ident">quartile3</span>: <span class="ident">f64</span>,
-        <span class="ident">upper_whisker</span>: <span class="ident">f64</span>,
-    ) -&gt; <span class="self">Self</span> {
-        <span class="self">Self</span> {
-            <span class="ident">lower_whisker</span>,
-            <span class="ident">quartile1</span>,
-            <span class="ident">median</span>,
-            <span class="ident">quartile3</span>,
-            <span class="ident">upper_whisker</span>,
+<span class="kw">impl </span>BoxSpread {
+    <span class="kw">pub fn </span>new(
+        lower_whisker: f64,
+        quartile1: f64,
+        median: f64,
+        quartile3: f64,
+        upper_whisker: f64,
+    ) -&gt; <span class="self">Self </span>{
+        <span class="self">Self </span>{
+            lower_whisker,
+            quartile1,
+            median,
+            quartile3,
+            upper_whisker,
         }
     }
 }
 
-<span class="doccomment">/// A box in a [`BoxPlot`] diagram. This is a low level graphical element; it will not compute quartiles and whiskers,</span>
-<span class="doccomment">/// letting one use their preferred formula. Use [`Points`][`super::Points`] to draw the outliers.</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">BoxElem</span> {
-    <span class="doccomment">/// Name of plot element in the diagram (annotated by default formatter).</span>
-    <span class="kw">pub</span> <span class="ident">name</span>: <span class="ident">String</span>,
+<span class="doccomment">/// A box in a [`BoxPlot`] diagram. This is a low level graphical element; it will not compute quartiles and whiskers,
+/// letting one use their preferred formula. Use [`Points`][`super::Points`] to draw the outliers.
+</span><span class="attribute">#[derive(Clone, Debug, PartialEq)]
+</span><span class="kw">pub struct </span>BoxElem {
+    <span class="doccomment">/// Name of plot element in the diagram (annotated by default formatter).
+    </span><span class="kw">pub </span>name: String,
 
-    <span class="doccomment">/// Which direction the box faces in the diagram.</span>
-    <span class="kw">pub</span> <span class="ident">orientation</span>: <span class="ident">Orientation</span>,
+    <span class="doccomment">/// Which direction the box faces in the diagram.
+    </span><span class="kw">pub </span>orientation: Orientation,
 
-    <span class="doccomment">/// Position on the argument (input) axis -- X if vertical, Y if horizontal.</span>
-    <span class="kw">pub</span> <span class="ident">argument</span>: <span class="ident">f64</span>,
+    <span class="doccomment">/// Position on the argument (input) axis -- X if vertical, Y if horizontal.
+    </span><span class="kw">pub </span>argument: f64,
 
-    <span class="doccomment">/// Values of the box</span>
-    <span class="kw">pub</span> <span class="ident">spread</span>: <span class="ident">BoxSpread</span>,
+    <span class="doccomment">/// Values of the box
+    </span><span class="kw">pub </span>spread: BoxSpread,
 
-    <span class="doccomment">/// Thickness of the box</span>
-    <span class="kw">pub</span> <span class="ident">box_width</span>: <span class="ident">f64</span>,
+    <span class="doccomment">/// Thickness of the box
+    </span><span class="kw">pub </span>box_width: f64,
 
-    <span class="doccomment">/// Width of the whisker at minimum/maximum</span>
-    <span class="kw">pub</span> <span class="ident">whisker_width</span>: <span class="ident">f64</span>,
+    <span class="doccomment">/// Width of the whisker at minimum/maximum
+    </span><span class="kw">pub </span>whisker_width: f64,
 
-    <span class="doccomment">/// Line width and color</span>
-    <span class="kw">pub</span> <span class="ident">stroke</span>: <span class="ident">Stroke</span>,
+    <span class="doccomment">/// Line width and color
+    </span><span class="kw">pub </span>stroke: Stroke,
 
-    <span class="doccomment">/// Fill color</span>
-    <span class="kw">pub</span> <span class="ident">fill</span>: <span class="ident">Color32</span>,
+    <span class="doccomment">/// Fill color
+    </span><span class="kw">pub </span>fill: Color32,
 }
 
-<span class="kw">impl</span> <span class="ident">BoxElem</span> {
-    <span class="doccomment">/// Create a box element. Its `orientation` is set by its [`BoxPlot`] parent.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// Check [`BoxElem`] fields for detailed description.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">argument</span>: <span class="ident">f64</span>, <span class="ident">spread</span>: <span class="ident">BoxSpread</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">Self</span> {
-            <span class="ident">argument</span>,
-            <span class="ident">orientation</span>: <span class="ident">Orientation::default</span>(),
-            <span class="ident">name</span>: <span class="ident">String::default</span>(),
-            <span class="ident">spread</span>,
-            <span class="ident">box_width</span>: <span class="number">0.25</span>,
-            <span class="ident">whisker_width</span>: <span class="number">0.15</span>,
-            <span class="ident">stroke</span>: <span class="ident">Stroke::new</span>(<span class="number">1.0</span>, <span class="ident">Color32::TRANSPARENT</span>),
-            <span class="ident">fill</span>: <span class="ident">Color32::TRANSPARENT</span>,
+<span class="kw">impl </span>BoxElem {
+    <span class="doccomment">/// Create a box element. Its `orientation` is set by its [`BoxPlot`] parent.
+    ///
+    /// Check [`BoxElem`] fields for detailed description.
+    </span><span class="kw">pub fn </span>new(argument: f64, spread: BoxSpread) -&gt; <span class="self">Self </span>{
+        <span class="self">Self </span>{
+            argument,
+            orientation: Orientation::default(),
+            name: String::default(),
+            spread,
+            box_width: <span class="number">0.25</span>,
+            whisker_width: <span class="number">0.15</span>,
+            stroke: Stroke::new(<span class="number">1.0</span>, Color32::TRANSPARENT),
+            fill: Color32::TRANSPARENT,
         }
     }
 
-    <span class="doccomment">/// Name of this box element.</span>
-    <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">clippy::needless_pass_by_value</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">name</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">name</span>: <span class="kw">impl</span> <span class="ident">ToString</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">self</span>.<span class="ident">name</span> <span class="op">=</span> <span class="ident">name</span>.<span class="ident">to_string</span>();
-        <span class="self">self</span>
-    }
+    <span class="doccomment">/// Name of this box element.
+    </span><span class="attribute">#[allow(clippy::needless_pass_by_value)]
+    </span><span class="kw">pub fn </span>name(<span class="kw-2">mut </span><span class="self">self</span>, name: <span class="kw">impl </span>ToString) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.name = name.to_string();
+        <span class="self">self
+    </span>}
 
-    <span class="doccomment">/// Add a custom stroke.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">stroke</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">stroke</span>: <span class="kw">impl</span> <span class="ident">Into</span><span class="op">&lt;</span><span class="ident">Stroke</span><span class="op">&gt;</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">self</span>.<span class="ident">stroke</span> <span class="op">=</span> <span class="ident">stroke</span>.<span class="ident">into</span>();
-        <span class="self">self</span>
-    }
+    <span class="doccomment">/// Add a custom stroke.
+    </span><span class="kw">pub fn </span>stroke(<span class="kw-2">mut </span><span class="self">self</span>, stroke: <span class="kw">impl </span>Into&lt;Stroke&gt;) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.stroke = stroke.into();
+        <span class="self">self
+    </span>}
 
-    <span class="doccomment">/// Add a custom fill color.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">fill</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">color</span>: <span class="kw">impl</span> <span class="ident">Into</span><span class="op">&lt;</span><span class="ident">Color32</span><span class="op">&gt;</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">self</span>.<span class="ident">fill</span> <span class="op">=</span> <span class="ident">color</span>.<span class="ident">into</span>();
-        <span class="self">self</span>
-    }
+    <span class="doccomment">/// Add a custom fill color.
+    </span><span class="kw">pub fn </span>fill(<span class="kw-2">mut </span><span class="self">self</span>, color: <span class="kw">impl </span>Into&lt;Color32&gt;) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.fill = color.into();
+        <span class="self">self
+    </span>}
 
-    <span class="doccomment">/// Set the box width.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">box_width</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">width</span>: <span class="ident">f64</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">self</span>.<span class="ident">box_width</span> <span class="op">=</span> <span class="ident">width</span>;
-        <span class="self">self</span>
-    }
+    <span class="doccomment">/// Set the box width.
+    </span><span class="kw">pub fn </span>box_width(<span class="kw-2">mut </span><span class="self">self</span>, width: f64) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.box_width = width;
+        <span class="self">self
+    </span>}
 
-    <span class="doccomment">/// Set the whisker width.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">whisker_width</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">width</span>: <span class="ident">f64</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">self</span>.<span class="ident">whisker_width</span> <span class="op">=</span> <span class="ident">width</span>;
-        <span class="self">self</span>
-    }
+    <span class="doccomment">/// Set the whisker width.
+    </span><span class="kw">pub fn </span>whisker_width(<span class="kw-2">mut </span><span class="self">self</span>, width: f64) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.whisker_width = width;
+        <span class="self">self
+    </span>}
 
-    <span class="doccomment">/// Set orientation of the element as vertical. Argument axis is X.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">vertical</span>(<span class="kw-2">mut</span> <span class="self">self</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">self</span>.<span class="ident">orientation</span> <span class="op">=</span> <span class="ident">Orientation::Vertical</span>;
-        <span class="self">self</span>
-    }
+    <span class="doccomment">/// Set orientation of the element as vertical. Argument axis is X.
+    </span><span class="kw">pub fn </span>vertical(<span class="kw-2">mut </span><span class="self">self</span>) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.orientation = Orientation::Vertical;
+        <span class="self">self
+    </span>}
 
-    <span class="doccomment">/// Set orientation of the element as horizontal. Argument axis is Y.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">horizontal</span>(<span class="kw-2">mut</span> <span class="self">self</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">self</span>.<span class="ident">orientation</span> <span class="op">=</span> <span class="ident">Orientation::Horizontal</span>;
-        <span class="self">self</span>
-    }
+    <span class="doccomment">/// Set orientation of the element as horizontal. Argument axis is Y.
+    </span><span class="kw">pub fn </span>horizontal(<span class="kw-2">mut </span><span class="self">self</span>) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.orientation = Orientation::Horizontal;
+        <span class="self">self
+    </span>}
 
-    <span class="kw">pub</span>(<span class="kw">super</span>) <span class="kw">fn</span> <span class="ident">add_shapes</span>(
+    <span class="kw">pub</span>(<span class="kw">super</span>) <span class="kw">fn </span>add_shapes(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
-        <span class="ident">transform</span>: <span class="kw-2">&amp;</span><span class="ident">ScreenTransform</span>,
-        <span class="ident">highlighted</span>: <span class="ident">bool</span>,
-        <span class="ident">shapes</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Shape</span><span class="op">&gt;</span>,
+        transform: <span class="kw-2">&amp;</span>ScreenTransform,
+        highlighted: bool,
+        shapes: <span class="kw-2">&amp;mut </span>Vec&lt;Shape&gt;,
     ) {
-        <span class="kw">let</span> (<span class="ident">stroke</span>, <span class="ident">fill</span>) <span class="op">=</span> <span class="kw">if</span> <span class="ident">highlighted</span> {
-            <span class="ident">highlighted_color</span>(<span class="self">self</span>.<span class="ident">stroke</span>, <span class="self">self</span>.<span class="ident">fill</span>)
-        } <span class="kw">else</span> {
-            (<span class="self">self</span>.<span class="ident">stroke</span>, <span class="self">self</span>.<span class="ident">fill</span>)
+        <span class="kw">let </span>(stroke, fill) = <span class="kw">if </span>highlighted {
+            highlighted_color(<span class="self">self</span>.stroke, <span class="self">self</span>.fill)
+        } <span class="kw">else </span>{
+            (<span class="self">self</span>.stroke, <span class="self">self</span>.fill)
         };
 
-        <span class="kw">let</span> <span class="ident">rect</span> <span class="op">=</span> <span class="ident">transform</span>.<span class="ident">rect_from_values</span>(
-            <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">point_at</span>(<span class="self">self</span>.<span class="ident">argument</span> <span class="op">-</span> <span class="self">self</span>.<span class="ident">box_width</span> <span class="op">/</span> <span class="number">2.0</span>, <span class="self">self</span>.<span class="ident">spread</span>.<span class="ident">quartile1</span>),
-            <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">point_at</span>(<span class="self">self</span>.<span class="ident">argument</span> <span class="op">+</span> <span class="self">self</span>.<span class="ident">box_width</span> <span class="op">/</span> <span class="number">2.0</span>, <span class="self">self</span>.<span class="ident">spread</span>.<span class="ident">quartile3</span>),
+        <span class="kw">let </span>rect = transform.rect_from_values(
+            <span class="kw-2">&amp;</span><span class="self">self</span>.point_at(<span class="self">self</span>.argument - <span class="self">self</span>.box_width / <span class="number">2.0</span>, <span class="self">self</span>.spread.quartile1),
+            <span class="kw-2">&amp;</span><span class="self">self</span>.point_at(<span class="self">self</span>.argument + <span class="self">self</span>.box_width / <span class="number">2.0</span>, <span class="self">self</span>.spread.quartile3),
         );
-        <span class="kw">let</span> <span class="ident">rect</span> <span class="op">=</span> <span class="ident">Shape::Rect</span>(<span class="ident">RectShape</span> {
-            <span class="ident">rect</span>,
-            <span class="ident">corner_radius</span>: <span class="number">0.0</span>,
-            <span class="ident">fill</span>,
-            <span class="ident">stroke</span>,
+        <span class="kw">let </span>rect = Shape::Rect(RectShape {
+            rect,
+            corner_radius: <span class="number">0.0</span>,
+            fill,
+            stroke,
         });
-        <span class="ident">shapes</span>.<span class="ident">push</span>(<span class="ident">rect</span>);
+        shapes.push(rect);
 
-        <span class="kw">let</span> <span class="ident">line_between</span> <span class="op">=</span> <span class="op">|</span><span class="ident">v1</span>, <span class="ident">v2</span><span class="op">|</span> {
-            <span class="ident">Shape::line_segment</span>(
+        <span class="kw">let </span>line_between = |v1, v2| {
+            Shape::line_segment(
                 [
-                    <span class="ident">transform</span>.<span class="ident">position_from_value</span>(<span class="kw-2">&amp;</span><span class="ident">v1</span>),
-                    <span class="ident">transform</span>.<span class="ident">position_from_value</span>(<span class="kw-2">&amp;</span><span class="ident">v2</span>),
+                    transform.position_from_value(<span class="kw-2">&amp;</span>v1),
+                    transform.position_from_value(<span class="kw-2">&amp;</span>v2),
                 ],
-                <span class="ident">stroke</span>,
+                stroke,
             )
         };
-        <span class="kw">let</span> <span class="ident">median</span> <span class="op">=</span> <span class="ident">line_between</span>(
-            <span class="self">self</span>.<span class="ident">point_at</span>(<span class="self">self</span>.<span class="ident">argument</span> <span class="op">-</span> <span class="self">self</span>.<span class="ident">box_width</span> <span class="op">/</span> <span class="number">2.0</span>, <span class="self">self</span>.<span class="ident">spread</span>.<span class="ident">median</span>),
-            <span class="self">self</span>.<span class="ident">point_at</span>(<span class="self">self</span>.<span class="ident">argument</span> <span class="op">+</span> <span class="self">self</span>.<span class="ident">box_width</span> <span class="op">/</span> <span class="number">2.0</span>, <span class="self">self</span>.<span class="ident">spread</span>.<span class="ident">median</span>),
+        <span class="kw">let </span>median = line_between(
+            <span class="self">self</span>.point_at(<span class="self">self</span>.argument - <span class="self">self</span>.box_width / <span class="number">2.0</span>, <span class="self">self</span>.spread.median),
+            <span class="self">self</span>.point_at(<span class="self">self</span>.argument + <span class="self">self</span>.box_width / <span class="number">2.0</span>, <span class="self">self</span>.spread.median),
         );
-        <span class="ident">shapes</span>.<span class="ident">push</span>(<span class="ident">median</span>);
+        shapes.push(median);
 
-        <span class="kw">if</span> <span class="self">self</span>.<span class="ident">spread</span>.<span class="ident">upper_whisker</span> <span class="op">&gt;</span> <span class="self">self</span>.<span class="ident">spread</span>.<span class="ident">quartile3</span> {
-            <span class="kw">let</span> <span class="ident">high_whisker</span> <span class="op">=</span> <span class="ident">line_between</span>(
-                <span class="self">self</span>.<span class="ident">point_at</span>(<span class="self">self</span>.<span class="ident">argument</span>, <span class="self">self</span>.<span class="ident">spread</span>.<span class="ident">quartile3</span>),
-                <span class="self">self</span>.<span class="ident">point_at</span>(<span class="self">self</span>.<span class="ident">argument</span>, <span class="self">self</span>.<span class="ident">spread</span>.<span class="ident">upper_whisker</span>),
+        <span class="kw">if </span><span class="self">self</span>.spread.upper_whisker &gt; <span class="self">self</span>.spread.quartile3 {
+            <span class="kw">let </span>high_whisker = line_between(
+                <span class="self">self</span>.point_at(<span class="self">self</span>.argument, <span class="self">self</span>.spread.quartile3),
+                <span class="self">self</span>.point_at(<span class="self">self</span>.argument, <span class="self">self</span>.spread.upper_whisker),
             );
-            <span class="ident">shapes</span>.<span class="ident">push</span>(<span class="ident">high_whisker</span>);
-            <span class="kw">if</span> <span class="self">self</span>.<span class="ident">box_width</span> <span class="op">&gt;</span> <span class="number">0.0</span> {
-                <span class="kw">let</span> <span class="ident">high_whisker_end</span> <span class="op">=</span> <span class="ident">line_between</span>(
-                    <span class="self">self</span>.<span class="ident">point_at</span>(
-                        <span class="self">self</span>.<span class="ident">argument</span> <span class="op">-</span> <span class="self">self</span>.<span class="ident">whisker_width</span> <span class="op">/</span> <span class="number">2.0</span>,
-                        <span class="self">self</span>.<span class="ident">spread</span>.<span class="ident">upper_whisker</span>,
+            shapes.push(high_whisker);
+            <span class="kw">if </span><span class="self">self</span>.box_width &gt; <span class="number">0.0 </span>{
+                <span class="kw">let </span>high_whisker_end = line_between(
+                    <span class="self">self</span>.point_at(
+                        <span class="self">self</span>.argument - <span class="self">self</span>.whisker_width / <span class="number">2.0</span>,
+                        <span class="self">self</span>.spread.upper_whisker,
                     ),
-                    <span class="self">self</span>.<span class="ident">point_at</span>(
-                        <span class="self">self</span>.<span class="ident">argument</span> <span class="op">+</span> <span class="self">self</span>.<span class="ident">whisker_width</span> <span class="op">/</span> <span class="number">2.0</span>,
-                        <span class="self">self</span>.<span class="ident">spread</span>.<span class="ident">upper_whisker</span>,
+                    <span class="self">self</span>.point_at(
+                        <span class="self">self</span>.argument + <span class="self">self</span>.whisker_width / <span class="number">2.0</span>,
+                        <span class="self">self</span>.spread.upper_whisker,
                     ),
                 );
-                <span class="ident">shapes</span>.<span class="ident">push</span>(<span class="ident">high_whisker_end</span>);
+                shapes.push(high_whisker_end);
             }
         }
 
-        <span class="kw">if</span> <span class="self">self</span>.<span class="ident">spread</span>.<span class="ident">lower_whisker</span> <span class="op">&lt;</span> <span class="self">self</span>.<span class="ident">spread</span>.<span class="ident">quartile1</span> {
-            <span class="kw">let</span> <span class="ident">low_whisker</span> <span class="op">=</span> <span class="ident">line_between</span>(
-                <span class="self">self</span>.<span class="ident">point_at</span>(<span class="self">self</span>.<span class="ident">argument</span>, <span class="self">self</span>.<span class="ident">spread</span>.<span class="ident">quartile1</span>),
-                <span class="self">self</span>.<span class="ident">point_at</span>(<span class="self">self</span>.<span class="ident">argument</span>, <span class="self">self</span>.<span class="ident">spread</span>.<span class="ident">lower_whisker</span>),
+        <span class="kw">if </span><span class="self">self</span>.spread.lower_whisker &lt; <span class="self">self</span>.spread.quartile1 {
+            <span class="kw">let </span>low_whisker = line_between(
+                <span class="self">self</span>.point_at(<span class="self">self</span>.argument, <span class="self">self</span>.spread.quartile1),
+                <span class="self">self</span>.point_at(<span class="self">self</span>.argument, <span class="self">self</span>.spread.lower_whisker),
             );
-            <span class="ident">shapes</span>.<span class="ident">push</span>(<span class="ident">low_whisker</span>);
-            <span class="kw">if</span> <span class="self">self</span>.<span class="ident">box_width</span> <span class="op">&gt;</span> <span class="number">0.0</span> {
-                <span class="kw">let</span> <span class="ident">low_whisker_end</span> <span class="op">=</span> <span class="ident">line_between</span>(
-                    <span class="self">self</span>.<span class="ident">point_at</span>(
-                        <span class="self">self</span>.<span class="ident">argument</span> <span class="op">-</span> <span class="self">self</span>.<span class="ident">whisker_width</span> <span class="op">/</span> <span class="number">2.0</span>,
-                        <span class="self">self</span>.<span class="ident">spread</span>.<span class="ident">lower_whisker</span>,
+            shapes.push(low_whisker);
+            <span class="kw">if </span><span class="self">self</span>.box_width &gt; <span class="number">0.0 </span>{
+                <span class="kw">let </span>low_whisker_end = line_between(
+                    <span class="self">self</span>.point_at(
+                        <span class="self">self</span>.argument - <span class="self">self</span>.whisker_width / <span class="number">2.0</span>,
+                        <span class="self">self</span>.spread.lower_whisker,
                     ),
-                    <span class="self">self</span>.<span class="ident">point_at</span>(
-                        <span class="self">self</span>.<span class="ident">argument</span> <span class="op">+</span> <span class="self">self</span>.<span class="ident">whisker_width</span> <span class="op">/</span> <span class="number">2.0</span>,
-                        <span class="self">self</span>.<span class="ident">spread</span>.<span class="ident">lower_whisker</span>,
+                    <span class="self">self</span>.point_at(
+                        <span class="self">self</span>.argument + <span class="self">self</span>.whisker_width / <span class="number">2.0</span>,
+                        <span class="self">self</span>.spread.lower_whisker,
                     ),
                 );
-                <span class="ident">shapes</span>.<span class="ident">push</span>(<span class="ident">low_whisker_end</span>);
+                shapes.push(low_whisker_end);
             }
         }
     }
 
-    <span class="kw">pub</span>(<span class="kw">super</span>) <span class="kw">fn</span> <span class="ident">add_rulers_and_text</span>(
+    <span class="kw">pub</span>(<span class="kw">super</span>) <span class="kw">fn </span>add_rulers_and_text(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
-        <span class="ident">parent</span>: <span class="kw-2">&amp;</span><span class="ident">BoxPlot</span>,
-        <span class="ident">plot</span>: <span class="kw-2">&amp;</span><span class="ident">PlotConfig</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>,
-        <span class="ident">shapes</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Shape</span><span class="op">&gt;</span>,
+        parent: <span class="kw-2">&amp;</span>BoxPlot,
+        plot: <span class="kw-2">&amp;</span>PlotConfig&lt;<span class="lifetime">&#39;_</span>&gt;,
+        shapes: <span class="kw-2">&amp;mut </span>Vec&lt;Shape&gt;,
     ) {
-        <span class="kw">let</span> <span class="ident">text</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">parent</span>
-            .<span class="ident">element_formatter</span>
-            .<span class="ident">as_ref</span>()
-            .<span class="ident">map</span>(<span class="op">|</span><span class="ident">fmt</span><span class="op">|</span> <span class="ident">fmt</span>(<span class="self">self</span>, <span class="ident">parent</span>));
+        <span class="kw">let </span>text: <span class="prelude-ty">Option</span>&lt;String&gt; = parent
+            .element_formatter
+            .as_ref()
+            .map(|fmt| fmt(<span class="self">self</span>, parent));
 
-        <span class="ident">add_rulers_and_text</span>(<span class="self">self</span>, <span class="ident">plot</span>, <span class="ident">text</span>, <span class="ident">shapes</span>);
+        add_rulers_and_text(<span class="self">self</span>, plot, text, shapes);
     }
 }
 
-<span class="kw">impl</span> <span class="ident">RectElement</span> <span class="kw">for</span> <span class="ident">BoxElem</span> {
-    <span class="kw">fn</span> <span class="ident">name</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span><span class="ident">str</span> {
-        <span class="self">self</span>.<span class="ident">name</span>.<span class="ident">as_str</span>()
+<span class="kw">impl </span>RectElement <span class="kw">for </span>BoxElem {
+    <span class="kw">fn </span>name(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span>str {
+        <span class="self">self</span>.name.as_str()
     }
 
-    <span class="kw">fn</span> <span class="ident">bounds_min</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">Value</span> {
-        <span class="kw">let</span> <span class="ident">argument</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">argument</span> <span class="op">-</span> <span class="self">self</span>.<span class="ident">box_width</span>.<span class="ident">max</span>(<span class="self">self</span>.<span class="ident">whisker_width</span>) <span class="op">/</span> <span class="number">2.0</span>;
-        <span class="kw">let</span> <span class="ident">value</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">spread</span>.<span class="ident">lower_whisker</span>;
-        <span class="self">self</span>.<span class="ident">point_at</span>(<span class="ident">argument</span>, <span class="ident">value</span>)
+    <span class="kw">fn </span>bounds_min(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; Value {
+        <span class="kw">let </span>argument = <span class="self">self</span>.argument - <span class="self">self</span>.box_width.max(<span class="self">self</span>.whisker_width) / <span class="number">2.0</span>;
+        <span class="kw">let </span>value = <span class="self">self</span>.spread.lower_whisker;
+        <span class="self">self</span>.point_at(argument, value)
     }
 
-    <span class="kw">fn</span> <span class="ident">bounds_max</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">Value</span> {
-        <span class="kw">let</span> <span class="ident">argument</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">argument</span> <span class="op">+</span> <span class="self">self</span>.<span class="ident">box_width</span>.<span class="ident">max</span>(<span class="self">self</span>.<span class="ident">whisker_width</span>) <span class="op">/</span> <span class="number">2.0</span>;
-        <span class="kw">let</span> <span class="ident">value</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">spread</span>.<span class="ident">upper_whisker</span>;
-        <span class="self">self</span>.<span class="ident">point_at</span>(<span class="ident">argument</span>, <span class="ident">value</span>)
+    <span class="kw">fn </span>bounds_max(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; Value {
+        <span class="kw">let </span>argument = <span class="self">self</span>.argument + <span class="self">self</span>.box_width.max(<span class="self">self</span>.whisker_width) / <span class="number">2.0</span>;
+        <span class="kw">let </span>value = <span class="self">self</span>.spread.upper_whisker;
+        <span class="self">self</span>.point_at(argument, value)
     }
 
-    <span class="kw">fn</span> <span class="ident">values_with_ruler</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Value</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="ident">median</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">point_at</span>(<span class="self">self</span>.<span class="ident">argument</span>, <span class="self">self</span>.<span class="ident">spread</span>.<span class="ident">median</span>);
-        <span class="kw">let</span> <span class="ident">q1</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">point_at</span>(<span class="self">self</span>.<span class="ident">argument</span>, <span class="self">self</span>.<span class="ident">spread</span>.<span class="ident">quartile1</span>);
-        <span class="kw">let</span> <span class="ident">q3</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">point_at</span>(<span class="self">self</span>.<span class="ident">argument</span>, <span class="self">self</span>.<span class="ident">spread</span>.<span class="ident">quartile3</span>);
-        <span class="kw">let</span> <span class="ident">upper</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">point_at</span>(<span class="self">self</span>.<span class="ident">argument</span>, <span class="self">self</span>.<span class="ident">spread</span>.<span class="ident">upper_whisker</span>);
-        <span class="kw">let</span> <span class="ident">lower</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">point_at</span>(<span class="self">self</span>.<span class="ident">argument</span>, <span class="self">self</span>.<span class="ident">spread</span>.<span class="ident">lower_whisker</span>);
+    <span class="kw">fn </span>values_with_ruler(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; Vec&lt;Value&gt; {
+        <span class="kw">let </span>median = <span class="self">self</span>.point_at(<span class="self">self</span>.argument, <span class="self">self</span>.spread.median);
+        <span class="kw">let </span>q1 = <span class="self">self</span>.point_at(<span class="self">self</span>.argument, <span class="self">self</span>.spread.quartile1);
+        <span class="kw">let </span>q3 = <span class="self">self</span>.point_at(<span class="self">self</span>.argument, <span class="self">self</span>.spread.quartile3);
+        <span class="kw">let </span>upper = <span class="self">self</span>.point_at(<span class="self">self</span>.argument, <span class="self">self</span>.spread.upper_whisker);
+        <span class="kw">let </span>lower = <span class="self">self</span>.point_at(<span class="self">self</span>.argument, <span class="self">self</span>.spread.lower_whisker);
 
-        <span class="macro">vec!</span>[<span class="ident">median</span>, <span class="ident">q1</span>, <span class="ident">q3</span>, <span class="ident">upper</span>, <span class="ident">lower</span>]
+        <span class="macro">vec!</span>[median, q1, q3, upper, lower]
     }
 
-    <span class="kw">fn</span> <span class="ident">orientation</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">Orientation</span> {
-        <span class="self">self</span>.<span class="ident">orientation</span>
+    <span class="kw">fn </span>orientation(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; Orientation {
+        <span class="self">self</span>.orientation
     }
 
-    <span class="kw">fn</span> <span class="ident">corner_value</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">Value</span> {
-        <span class="self">self</span>.<span class="ident">point_at</span>(<span class="self">self</span>.<span class="ident">argument</span>, <span class="self">self</span>.<span class="ident">spread</span>.<span class="ident">upper_whisker</span>)
+    <span class="kw">fn </span>corner_value(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; Value {
+        <span class="self">self</span>.point_at(<span class="self">self</span>.argument, <span class="self">self</span>.spread.upper_whisker)
     }
 
-    <span class="kw">fn</span> <span class="ident">default_values_format</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">transform</span>: <span class="kw-2">&amp;</span><span class="ident">ScreenTransform</span>) -&gt; <span class="ident">String</span> {
-        <span class="kw">let</span> <span class="ident">scale</span> <span class="op">=</span> <span class="ident">transform</span>.<span class="ident">dvalue_dpos</span>();
-        <span class="kw">let</span> <span class="ident">y_decimals</span> <span class="op">=</span> ((<span class="op">-</span><span class="ident">scale</span>[<span class="number">1</span>].<span class="ident">abs</span>().<span class="ident">log10</span>()).<span class="ident">ceil</span>().<span class="ident">at_least</span>(<span class="number">0.0</span>) <span class="kw">as</span> <span class="ident">usize</span>).<span class="ident">at_most</span>(<span class="number">6</span>);
+    <span class="kw">fn </span>default_values_format(<span class="kw-2">&amp;</span><span class="self">self</span>, transform: <span class="kw-2">&amp;</span>ScreenTransform) -&gt; String {
+        <span class="kw">let </span>scale = transform.dvalue_dpos();
+        <span class="kw">let </span>y_decimals = ((-scale[<span class="number">1</span>].abs().log10()).ceil().at_least(<span class="number">0.0</span>) <span class="kw">as </span>usize).at_most(<span class="number">6</span>);
         <span class="macro">format!</span>(
             <span class="string">&quot;\nMax = {max:.decimals$}\
              \nQuartile 3 = {q3:.decimals$}\
              \nMedian = {med:.decimals$}\
              \nQuartile 1 = {q1:.decimals$}\
              \nMin = {min:.decimals$}&quot;</span>,
-            <span class="ident">max</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">spread</span>.<span class="ident">upper_whisker</span>,
-            <span class="ident">q3</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">spread</span>.<span class="ident">quartile3</span>,
-            <span class="ident">med</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">spread</span>.<span class="ident">median</span>,
-            <span class="ident">q1</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">spread</span>.<span class="ident">quartile1</span>,
-            <span class="ident">min</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">spread</span>.<span class="ident">lower_whisker</span>,
-            <span class="ident">decimals</span> <span class="op">=</span> <span class="ident">y_decimals</span>
+            max = <span class="self">self</span>.spread.upper_whisker,
+            q3 = <span class="self">self</span>.spread.quartile3,
+            med = <span class="self">self</span>.spread.median,
+            q1 = <span class="self">self</span>.spread.quartile1,
+            min = <span class="self">self</span>.spread.lower_whisker,
+            decimals = y_decimals
         )
     }
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../../../../" data-current-crate="egui" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0 (a55dd71d5 2022-09-19)" ></div></body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../../../../" data-current-crate="egui" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.66.1 (90743e729 2023-01-10)" ></div></body></html>

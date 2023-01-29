@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/egui-0.16.1/src/widgets/drag_value.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>drag_value.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../storage.js"></script><script defer src="../../../source-script.js"></script><script defer src="../../../source-files.js"></script><script defer src="../../../main.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../../egui/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../../egui/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../../egui/index.html"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/egui-0.16.1/src/widgets/drag_value.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>drag_value.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../../normalize.css"><link rel="stylesheet" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../../ayu.css" disabled><link rel="stylesheet" href="../../../dark.css" disabled><link rel="stylesheet" href="../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../storage.js"></script><script defer src="../../../source-script.js"></script><script defer src="../../../source-files.js"></script><script defer src="../../../main.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><div class="width-limiter"><nav class="sub"><a class="sub-logo-container" href="../../../egui/index.html"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../wheel.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -295,302 +295,302 @@
 <span id="295">295</span>
 <span id="296">296</span>
 <span id="297">297</span>
-</pre><pre class="rust"><code><span class="attribute">#![<span class="ident">allow</span>(<span class="ident">clippy::needless_pass_by_value</span>)]</span> <span class="comment">// False positives with `impl ToString`</span>
+</pre><pre class="rust"><code><span class="attribute">#![allow(clippy::needless_pass_by_value)] </span><span class="comment">// False positives with `impl ToString`
 
-<span class="kw">use</span> <span class="ident">std::ops::RangeInclusive</span>;
+</span><span class="kw">use </span>std::ops::RangeInclusive;
 
-<span class="kw">use</span> <span class="kw">crate</span>::<span class="kw-2">*</span>;
+<span class="kw">use crate</span>::<span class="kw-2">*</span>;
 
-<span class="comment">// ----------------------------------------------------------------------------</span>
+<span class="comment">// ----------------------------------------------------------------------------
 
-<span class="doccomment">/// Same state for all [`DragValue`]s.</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">Default</span>)]</span>
-<span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">struct</span> <span class="ident">MonoState</span> {
-    <span class="ident">last_dragged_id</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Id</span><span class="op">&gt;</span>,
-    <span class="ident">last_dragged_value</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">f64</span><span class="op">&gt;</span>,
-    <span class="doccomment">/// For temporary edit of a `DragValue` value.</span>
-    <span class="doccomment">/// Couples with the current focus id.</span>
-    <span class="ident">edit_string</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span>,
+</span><span class="doccomment">/// Same state for all [`DragValue`]s.
+</span><span class="attribute">#[derive(Clone, Debug, Default)]
+</span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">struct </span>MonoState {
+    last_dragged_id: <span class="prelude-ty">Option</span>&lt;Id&gt;,
+    last_dragged_value: <span class="prelude-ty">Option</span>&lt;f64&gt;,
+    <span class="doccomment">/// For temporary edit of a `DragValue` value.
+    /// Couples with the current focus id.
+    </span>edit_string: <span class="prelude-ty">Option</span>&lt;String&gt;,
 }
 
-<span class="kw">impl</span> <span class="ident">MonoState</span> {
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">end_frame</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">input</span>: <span class="kw-2">&amp;</span><span class="ident">InputState</span>) {
-        <span class="kw">if</span> <span class="ident">input</span>.<span class="ident">pointer</span>.<span class="ident">any_pressed</span>() <span class="op">|</span><span class="op">|</span> <span class="ident">input</span>.<span class="ident">pointer</span>.<span class="ident">any_released</span>() {
-            <span class="self">self</span>.<span class="ident">last_dragged_id</span> <span class="op">=</span> <span class="prelude-val">None</span>;
-            <span class="self">self</span>.<span class="ident">last_dragged_value</span> <span class="op">=</span> <span class="prelude-val">None</span>;
+<span class="kw">impl </span>MonoState {
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>end_frame(<span class="kw-2">&amp;mut </span><span class="self">self</span>, input: <span class="kw-2">&amp;</span>InputState) {
+        <span class="kw">if </span>input.pointer.any_pressed() || input.pointer.any_released() {
+            <span class="self">self</span>.last_dragged_id = <span class="prelude-val">None</span>;
+            <span class="self">self</span>.last_dragged_value = <span class="prelude-val">None</span>;
         }
     }
 }
 
-<span class="comment">// ----------------------------------------------------------------------------</span>
+<span class="comment">// ----------------------------------------------------------------------------
 
-<span class="doccomment">/// Combined into one function (rather than two) to make it easier</span>
-<span class="doccomment">/// for the borrow checker.</span>
-<span class="kw">type</span> <span class="ident">GetSetValue</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">Box</span><span class="op">&lt;</span><span class="kw">dyn</span> <span class="lifetime">&#39;a</span> <span class="op">+</span> <span class="ident">FnMut</span>(<span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">f64</span><span class="op">&gt;</span>) -&gt; <span class="ident">f64</span><span class="op">&gt;</span>;
+</span><span class="doccomment">/// Combined into one function (rather than two) to make it easier
+/// for the borrow checker.
+</span><span class="kw">type </span>GetSetValue&lt;<span class="lifetime">&#39;a</span>&gt; = Box&lt;<span class="kw">dyn </span><span class="lifetime">&#39;a </span>+ FnMut(<span class="prelude-ty">Option</span>&lt;f64&gt;) -&gt; f64&gt;;
 
-<span class="kw">fn</span> <span class="ident">get</span>(<span class="ident">get_set_value</span>: <span class="kw-2">&amp;mut</span> <span class="ident">GetSetValue</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>) -&gt; <span class="ident">f64</span> {
-    (<span class="ident">get_set_value</span>)(<span class="prelude-val">None</span>)
+<span class="kw">fn </span>get(get_set_value: <span class="kw-2">&amp;mut </span>GetSetValue&lt;<span class="lifetime">&#39;_</span>&gt;) -&gt; f64 {
+    (get_set_value)(<span class="prelude-val">None</span>)
 }
 
-<span class="kw">fn</span> <span class="ident">set</span>(<span class="ident">get_set_value</span>: <span class="kw-2">&amp;mut</span> <span class="ident">GetSetValue</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>, <span class="ident">value</span>: <span class="ident">f64</span>) {
-    (<span class="ident">get_set_value</span>)(<span class="prelude-val">Some</span>(<span class="ident">value</span>));
+<span class="kw">fn </span>set(get_set_value: <span class="kw-2">&amp;mut </span>GetSetValue&lt;<span class="lifetime">&#39;_</span>&gt;, value: f64) {
+    (get_set_value)(<span class="prelude-val">Some</span>(value));
 }
 
-<span class="doccomment">/// A numeric value that you can change by dragging the number. More compact than a [`Slider`].</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// ```</span>
-<span class="doccomment">/// # egui::__run_test_ui(|ui| {</span>
-<span class="doccomment">/// # let mut my_f32: f32 = 0.0;</span>
-<span class="doccomment">/// ui.add(egui::DragValue::new(&amp;mut my_f32).speed(0.1));</span>
-<span class="doccomment">/// # });</span>
-<span class="doccomment">/// ```</span>
-<span class="attribute">#[<span class="ident">must_use</span> <span class="op">=</span> <span class="string">&quot;You should put this widget in an ui with `ui.add(widget);`&quot;</span>]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">DragValue</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="ident">get_set_value</span>: <span class="ident">GetSetValue</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>,
-    <span class="ident">speed</span>: <span class="ident">f64</span>,
-    <span class="ident">prefix</span>: <span class="ident">String</span>,
-    <span class="ident">suffix</span>: <span class="ident">String</span>,
-    <span class="ident">clamp_range</span>: <span class="ident">RangeInclusive</span><span class="op">&lt;</span><span class="ident">f64</span><span class="op">&gt;</span>,
-    <span class="ident">min_decimals</span>: <span class="ident">usize</span>,
-    <span class="ident">max_decimals</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">usize</span><span class="op">&gt;</span>,
+<span class="doccomment">/// A numeric value that you can change by dragging the number. More compact than a [`Slider`].
+///
+/// ```
+/// # egui::__run_test_ui(|ui| {
+/// # let mut my_f32: f32 = 0.0;
+/// ui.add(egui::DragValue::new(&amp;mut my_f32).speed(0.1));
+/// # });
+/// ```
+</span><span class="attribute">#[must_use = <span class="string">&quot;You should put this widget in an ui with `ui.add(widget);`&quot;</span>]
+</span><span class="kw">pub struct </span>DragValue&lt;<span class="lifetime">&#39;a</span>&gt; {
+    get_set_value: GetSetValue&lt;<span class="lifetime">&#39;a</span>&gt;,
+    speed: f64,
+    prefix: String,
+    suffix: String,
+    clamp_range: RangeInclusive&lt;f64&gt;,
+    min_decimals: usize,
+    max_decimals: <span class="prelude-ty">Option</span>&lt;usize&gt;,
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">DragValue</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span><span class="op">&lt;</span><span class="ident">Num</span>: <span class="ident">emath::Numeric</span><span class="op">&gt;</span>(<span class="ident">value</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="kw-2">mut</span> <span class="ident">Num</span>) -&gt; <span class="self">Self</span> {
-        <span class="kw">let</span> <span class="ident">slf</span> <span class="op">=</span> <span class="ident"><span class="self">Self</span>::from_get_set</span>(<span class="kw">move</span> <span class="op">|</span><span class="ident">v</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">f64</span><span class="op">&gt;</span><span class="op">|</span> {
-            <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">v</span>) <span class="op">=</span> <span class="ident">v</span> {
-                <span class="kw-2">*</span><span class="ident">value</span> <span class="op">=</span> <span class="ident">Num::from_f64</span>(<span class="ident">v</span>);
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; DragValue&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="kw">pub fn </span>new&lt;Num: emath::Numeric&gt;(value: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span><span class="kw-2">mut </span>Num) -&gt; <span class="self">Self </span>{
+        <span class="kw">let </span>slf = <span class="self">Self</span>::from_get_set(<span class="kw">move </span>|v: <span class="prelude-ty">Option</span>&lt;f64&gt;| {
+            <span class="kw">if let </span><span class="prelude-val">Some</span>(v) = v {
+                <span class="kw-2">*</span>value = Num::from_f64(v);
             }
-            <span class="ident">value</span>.<span class="ident">to_f64</span>()
+            value.to_f64()
         });
 
-        <span class="kw">if</span> <span class="ident">Num::INTEGRAL</span> {
-            <span class="ident">slf</span>.<span class="ident">max_decimals</span>(<span class="number">0</span>)
-                .<span class="ident">clamp_range</span>(<span class="ident">Num::MIN</span>..<span class="op">=</span><span class="ident">Num::MAX</span>)
-                .<span class="ident">speed</span>(<span class="number">0.25</span>)
-        } <span class="kw">else</span> {
-            <span class="ident">slf</span>
+        <span class="kw">if </span>Num::INTEGRAL {
+            slf.max_decimals(<span class="number">0</span>)
+                .clamp_range(Num::MIN..=Num::MAX)
+                .speed(<span class="number">0.25</span>)
+        } <span class="kw">else </span>{
+            slf
         }
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">from_get_set</span>(<span class="ident">get_set_value</span>: <span class="kw">impl</span> <span class="lifetime">&#39;a</span> <span class="op">+</span> <span class="ident">FnMut</span>(<span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">f64</span><span class="op">&gt;</span>) -&gt; <span class="ident">f64</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">Self</span> {
-            <span class="ident">get_set_value</span>: <span class="ident">Box::new</span>(<span class="ident">get_set_value</span>),
-            <span class="ident">speed</span>: <span class="number">1.0</span>,
-            <span class="ident">prefix</span>: <span class="ident">Default::default</span>(),
-            <span class="ident">suffix</span>: <span class="ident">Default::default</span>(),
-            <span class="ident">clamp_range</span>: <span class="ident">f64::NEG_INFINITY</span>..<span class="op">=</span><span class="ident">f64::INFINITY</span>,
-            <span class="ident">min_decimals</span>: <span class="number">0</span>,
-            <span class="ident">max_decimals</span>: <span class="prelude-val">None</span>,
+    <span class="kw">pub fn </span>from_get_set(get_set_value: <span class="kw">impl </span><span class="lifetime">&#39;a </span>+ FnMut(<span class="prelude-ty">Option</span>&lt;f64&gt;) -&gt; f64) -&gt; <span class="self">Self </span>{
+        <span class="self">Self </span>{
+            get_set_value: Box::new(get_set_value),
+            speed: <span class="number">1.0</span>,
+            prefix: Default::default(),
+            suffix: Default::default(),
+            clamp_range: f64::NEG_INFINITY..=f64::INFINITY,
+            min_decimals: <span class="number">0</span>,
+            max_decimals: <span class="prelude-val">None</span>,
         }
     }
 
-    <span class="doccomment">/// How much the value changes when dragged one point (logical pixel).</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">speed</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">speed</span>: <span class="kw">impl</span> <span class="ident">Into</span><span class="op">&lt;</span><span class="ident">f64</span><span class="op">&gt;</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">self</span>.<span class="ident">speed</span> <span class="op">=</span> <span class="ident">speed</span>.<span class="ident">into</span>();
-        <span class="self">self</span>
-    }
+    <span class="doccomment">/// How much the value changes when dragged one point (logical pixel).
+    </span><span class="kw">pub fn </span>speed(<span class="kw-2">mut </span><span class="self">self</span>, speed: <span class="kw">impl </span>Into&lt;f64&gt;) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.speed = speed.into();
+        <span class="self">self
+    </span>}
 
-    <span class="doccomment">/// Clamp incoming and outgoing values to this range.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">clamp_range</span><span class="op">&lt;</span><span class="ident">Num</span>: <span class="ident">emath::Numeric</span><span class="op">&gt;</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">clamp_range</span>: <span class="ident">RangeInclusive</span><span class="op">&lt;</span><span class="ident">Num</span><span class="op">&gt;</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">self</span>.<span class="ident">clamp_range</span> <span class="op">=</span> <span class="ident">clamp_range</span>.<span class="ident">start</span>().<span class="ident">to_f64</span>()..<span class="op">=</span><span class="ident">clamp_range</span>.<span class="ident">end</span>().<span class="ident">to_f64</span>();
-        <span class="self">self</span>
-    }
+    <span class="doccomment">/// Clamp incoming and outgoing values to this range.
+    </span><span class="kw">pub fn </span>clamp_range&lt;Num: emath::Numeric&gt;(<span class="kw-2">mut </span><span class="self">self</span>, clamp_range: RangeInclusive&lt;Num&gt;) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.clamp_range = clamp_range.start().to_f64()..=clamp_range.end().to_f64();
+        <span class="self">self
+    </span>}
 
-    <span class="doccomment">/// Show a prefix before the number, e.g. &quot;x: &quot;</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">prefix</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">prefix</span>: <span class="kw">impl</span> <span class="ident">ToString</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">self</span>.<span class="ident">prefix</span> <span class="op">=</span> <span class="ident">prefix</span>.<span class="ident">to_string</span>();
-        <span class="self">self</span>
-    }
+    <span class="doccomment">/// Show a prefix before the number, e.g. &quot;x: &quot;
+    </span><span class="kw">pub fn </span>prefix(<span class="kw-2">mut </span><span class="self">self</span>, prefix: <span class="kw">impl </span>ToString) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.prefix = prefix.to_string();
+        <span class="self">self
+    </span>}
 
-    <span class="doccomment">/// Add a suffix to the number, this can be e.g. a unit (&quot;°&quot; or &quot; m&quot;)</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">suffix</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">suffix</span>: <span class="kw">impl</span> <span class="ident">ToString</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">self</span>.<span class="ident">suffix</span> <span class="op">=</span> <span class="ident">suffix</span>.<span class="ident">to_string</span>();
-        <span class="self">self</span>
-    }
+    <span class="doccomment">/// Add a suffix to the number, this can be e.g. a unit (&quot;°&quot; or &quot; m&quot;)
+    </span><span class="kw">pub fn </span>suffix(<span class="kw-2">mut </span><span class="self">self</span>, suffix: <span class="kw">impl </span>ToString) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.suffix = suffix.to_string();
+        <span class="self">self
+    </span>}
 
-    <span class="comment">// TODO: we should also have a &quot;min precision&quot;.</span>
-    <span class="doccomment">/// Set a minimum number of decimals to display.</span>
-    <span class="doccomment">/// Normally you don&#39;t need to pick a precision, as the slider will intelligently pick a precision for you.</span>
-    <span class="doccomment">/// Regardless of precision the slider will use &quot;smart aim&quot; to help the user select nice, round values.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">min_decimals</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">min_decimals</span>: <span class="ident">usize</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">self</span>.<span class="ident">min_decimals</span> <span class="op">=</span> <span class="ident">min_decimals</span>;
-        <span class="self">self</span>
-    }
+    <span class="comment">// TODO: we should also have a &quot;min precision&quot;.
+    </span><span class="doccomment">/// Set a minimum number of decimals to display.
+    /// Normally you don&#39;t need to pick a precision, as the slider will intelligently pick a precision for you.
+    /// Regardless of precision the slider will use &quot;smart aim&quot; to help the user select nice, round values.
+    </span><span class="kw">pub fn </span>min_decimals(<span class="kw-2">mut </span><span class="self">self</span>, min_decimals: usize) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.min_decimals = min_decimals;
+        <span class="self">self
+    </span>}
 
-    <span class="comment">// TODO: we should also have a &quot;max precision&quot;.</span>
-    <span class="doccomment">/// Set a maximum number of decimals to display.</span>
-    <span class="doccomment">/// Values will also be rounded to this number of decimals.</span>
-    <span class="doccomment">/// Normally you don&#39;t need to pick a precision, as the slider will intelligently pick a precision for you.</span>
-    <span class="doccomment">/// Regardless of precision the slider will use &quot;smart aim&quot; to help the user select nice, round values.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">max_decimals</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">max_decimals</span>: <span class="ident">usize</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">self</span>.<span class="ident">max_decimals</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">max_decimals</span>);
-        <span class="self">self</span>
-    }
+    <span class="comment">// TODO: we should also have a &quot;max precision&quot;.
+    </span><span class="doccomment">/// Set a maximum number of decimals to display.
+    /// Values will also be rounded to this number of decimals.
+    /// Normally you don&#39;t need to pick a precision, as the slider will intelligently pick a precision for you.
+    /// Regardless of precision the slider will use &quot;smart aim&quot; to help the user select nice, round values.
+    </span><span class="kw">pub fn </span>max_decimals(<span class="kw-2">mut </span><span class="self">self</span>, max_decimals: usize) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.max_decimals = <span class="prelude-val">Some</span>(max_decimals);
+        <span class="self">self
+    </span>}
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">max_decimals_opt</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">max_decimals</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">usize</span><span class="op">&gt;</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">self</span>.<span class="ident">max_decimals</span> <span class="op">=</span> <span class="ident">max_decimals</span>;
-        <span class="self">self</span>
-    }
+    <span class="kw">pub fn </span>max_decimals_opt(<span class="kw-2">mut </span><span class="self">self</span>, max_decimals: <span class="prelude-ty">Option</span>&lt;usize&gt;) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.max_decimals = max_decimals;
+        <span class="self">self
+    </span>}
 
-    <span class="doccomment">/// Set an exact number of decimals to display.</span>
-    <span class="doccomment">/// Values will also be rounded to this number of decimals.</span>
-    <span class="doccomment">/// Normally you don&#39;t need to pick a precision, as the slider will intelligently pick a precision for you.</span>
-    <span class="doccomment">/// Regardless of precision the slider will use &quot;smart aim&quot; to help the user select nice, round values.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">fixed_decimals</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">num_decimals</span>: <span class="ident">usize</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">self</span>.<span class="ident">min_decimals</span> <span class="op">=</span> <span class="ident">num_decimals</span>;
-        <span class="self">self</span>.<span class="ident">max_decimals</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">num_decimals</span>);
-        <span class="self">self</span>
-    }
+    <span class="doccomment">/// Set an exact number of decimals to display.
+    /// Values will also be rounded to this number of decimals.
+    /// Normally you don&#39;t need to pick a precision, as the slider will intelligently pick a precision for you.
+    /// Regardless of precision the slider will use &quot;smart aim&quot; to help the user select nice, round values.
+    </span><span class="kw">pub fn </span>fixed_decimals(<span class="kw-2">mut </span><span class="self">self</span>, num_decimals: usize) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.min_decimals = num_decimals;
+        <span class="self">self</span>.max_decimals = <span class="prelude-val">Some</span>(num_decimals);
+        <span class="self">self
+    </span>}
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">Widget</span> <span class="kw">for</span> <span class="ident">DragValue</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="kw">fn</span> <span class="ident">ui</span>(<span class="self">self</span>, <span class="ident">ui</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Ui</span>) -&gt; <span class="ident">Response</span> {
-        <span class="kw">let</span> <span class="self">Self</span> {
-            <span class="kw-2">mut</span> <span class="ident">get_set_value</span>,
-            <span class="ident">speed</span>,
-            <span class="ident">clamp_range</span>,
-            <span class="ident">prefix</span>,
-            <span class="ident">suffix</span>,
-            <span class="ident">min_decimals</span>,
-            <span class="ident">max_decimals</span>,
-        } <span class="op">=</span> <span class="self">self</span>;
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; Widget <span class="kw">for </span>DragValue&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="kw">fn </span>ui(<span class="self">self</span>, ui: <span class="kw-2">&amp;mut </span>Ui) -&gt; Response {
+        <span class="kw">let </span><span class="self">Self </span>{
+            <span class="kw-2">mut </span>get_set_value,
+            speed,
+            clamp_range,
+            prefix,
+            suffix,
+            min_decimals,
+            max_decimals,
+        } = <span class="self">self</span>;
 
-        <span class="kw">let</span> <span class="ident">is_slow_speed</span> <span class="op">=</span>
-            <span class="ident">ui</span>.<span class="ident">input</span>().<span class="ident">modifiers</span>.<span class="ident">shift_only</span>() <span class="op">&amp;&amp;</span> <span class="ident">ui</span>.<span class="ident">memory</span>().<span class="ident">is_being_dragged</span>(<span class="ident">ui</span>.<span class="ident">next_auto_id</span>());
+        <span class="kw">let </span>is_slow_speed =
+            ui.input().modifiers.shift_only() &amp;&amp; ui.memory().is_being_dragged(ui.next_auto_id());
 
-        <span class="kw">let</span> <span class="ident">old_value</span> <span class="op">=</span> <span class="ident">get</span>(<span class="kw-2">&amp;mut</span> <span class="ident">get_set_value</span>);
-        <span class="kw">let</span> <span class="ident">value</span> <span class="op">=</span> <span class="ident">clamp_to_range</span>(<span class="ident">old_value</span>, <span class="ident">clamp_range</span>.<span class="ident">clone</span>());
-        <span class="kw">if</span> <span class="ident">old_value</span> <span class="op">!</span><span class="op">=</span> <span class="ident">value</span> {
-            <span class="ident">set</span>(<span class="kw-2">&amp;mut</span> <span class="ident">get_set_value</span>, <span class="ident">value</span>);
+        <span class="kw">let </span>old_value = get(<span class="kw-2">&amp;mut </span>get_set_value);
+        <span class="kw">let </span>value = clamp_to_range(old_value, clamp_range.clone());
+        <span class="kw">if </span>old_value != value {
+            set(<span class="kw-2">&amp;mut </span>get_set_value, value);
         }
-        <span class="kw">let</span> <span class="ident">aim_rad</span> <span class="op">=</span> <span class="ident">ui</span>.<span class="ident">input</span>().<span class="ident">aim_radius</span>() <span class="kw">as</span> <span class="ident">f64</span>;
+        <span class="kw">let </span>aim_rad = ui.input().aim_radius() <span class="kw">as </span>f64;
 
-        <span class="kw">let</span> <span class="ident">auto_decimals</span> <span class="op">=</span> (<span class="ident">aim_rad</span> <span class="op">/</span> <span class="ident">speed</span>.<span class="ident">abs</span>()).<span class="ident">log10</span>().<span class="ident">ceil</span>().<span class="ident">clamp</span>(<span class="number">0.0</span>, <span class="number">15.0</span>) <span class="kw">as</span> <span class="ident">usize</span>;
-        <span class="kw">let</span> <span class="ident">auto_decimals</span> <span class="op">=</span> <span class="ident">auto_decimals</span> <span class="op">+</span> <span class="ident">is_slow_speed</span> <span class="kw">as</span> <span class="ident">usize</span>;
+        <span class="kw">let </span>auto_decimals = (aim_rad / speed.abs()).log10().ceil().clamp(<span class="number">0.0</span>, <span class="number">15.0</span>) <span class="kw">as </span>usize;
+        <span class="kw">let </span>auto_decimals = auto_decimals + is_slow_speed <span class="kw">as </span>usize;
 
-        <span class="kw">let</span> <span class="ident">max_decimals</span> <span class="op">=</span> <span class="ident">max_decimals</span>.<span class="ident">unwrap_or</span>(<span class="ident">auto_decimals</span> <span class="op">+</span> <span class="number">2</span>);
-        <span class="kw">let</span> <span class="ident">auto_decimals</span> <span class="op">=</span> <span class="ident">auto_decimals</span>.<span class="ident">clamp</span>(<span class="ident">min_decimals</span>, <span class="ident">max_decimals</span>);
-        <span class="kw">let</span> <span class="ident">value_text</span> <span class="op">=</span> <span class="kw">if</span> <span class="ident">value</span> <span class="op">==</span> <span class="number">0.0</span> {
-            <span class="string">&quot;0&quot;</span>.<span class="ident">to_owned</span>()
-        } <span class="kw">else</span> {
-            <span class="ident">emath::format_with_decimals_in_range</span>(<span class="ident">value</span>, <span class="ident">auto_decimals</span>..<span class="op">=</span><span class="ident">max_decimals</span>)
+        <span class="kw">let </span>max_decimals = max_decimals.unwrap_or(auto_decimals + <span class="number">2</span>);
+        <span class="kw">let </span>auto_decimals = auto_decimals.clamp(min_decimals, max_decimals);
+        <span class="kw">let </span>value_text = <span class="kw">if </span>value == <span class="number">0.0 </span>{
+            <span class="string">&quot;0&quot;</span>.to_owned()
+        } <span class="kw">else </span>{
+            emath::format_with_decimals_in_range(value, auto_decimals..=max_decimals)
         };
 
-        <span class="kw">let</span> <span class="ident">kb_edit_id</span> <span class="op">=</span> <span class="ident">ui</span>.<span class="ident">auto_id_with</span>(<span class="string">&quot;edit&quot;</span>);
-        <span class="kw">let</span> <span class="ident">is_kb_editing</span> <span class="op">=</span> <span class="ident">ui</span>.<span class="ident">memory</span>().<span class="ident">has_focus</span>(<span class="ident">kb_edit_id</span>);
+        <span class="kw">let </span>kb_edit_id = ui.auto_id_with(<span class="string">&quot;edit&quot;</span>);
+        <span class="kw">let </span>is_kb_editing = ui.memory().has_focus(kb_edit_id);
 
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">response</span> <span class="op">=</span> <span class="kw">if</span> <span class="ident">is_kb_editing</span> {
-            <span class="kw">let</span> <span class="ident">button_width</span> <span class="op">=</span> <span class="ident">ui</span>.<span class="ident">spacing</span>().<span class="ident">interact_size</span>.<span class="ident">x</span>;
-            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">value_text</span> <span class="op">=</span> <span class="ident">ui</span>
-                .<span class="ident">memory</span>()
-                .<span class="ident">drag_value</span>
-                .<span class="ident">edit_string</span>
-                .<span class="ident">take</span>()
-                .<span class="ident">unwrap_or</span>(<span class="ident">value_text</span>);
-            <span class="kw">let</span> <span class="ident">response</span> <span class="op">=</span> <span class="ident">ui</span>.<span class="ident">add</span>(
-                <span class="ident">TextEdit::singleline</span>(<span class="kw-2">&amp;mut</span> <span class="ident">value_text</span>)
-                    .<span class="ident">id</span>(<span class="ident">kb_edit_id</span>)
-                    .<span class="ident">desired_width</span>(<span class="ident">button_width</span>)
-                    .<span class="ident">text_style</span>(<span class="ident">TextStyle::Monospace</span>),
+        <span class="kw">let </span><span class="kw-2">mut </span>response = <span class="kw">if </span>is_kb_editing {
+            <span class="kw">let </span>button_width = ui.spacing().interact_size.x;
+            <span class="kw">let </span><span class="kw-2">mut </span>value_text = ui
+                .memory()
+                .drag_value
+                .edit_string
+                .take()
+                .unwrap_or(value_text);
+            <span class="kw">let </span>response = ui.add(
+                TextEdit::singleline(<span class="kw-2">&amp;mut </span>value_text)
+                    .id(kb_edit_id)
+                    .desired_width(button_width)
+                    .text_style(TextStyle::Monospace),
             );
-            <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Ok</span>(<span class="ident">parsed_value</span>) <span class="op">=</span> <span class="ident">value_text</span>.<span class="ident">parse</span>() {
-                <span class="kw">let</span> <span class="ident">parsed_value</span> <span class="op">=</span> <span class="ident">clamp_to_range</span>(<span class="ident">parsed_value</span>, <span class="ident">clamp_range</span>);
-                <span class="ident">set</span>(<span class="kw-2">&amp;mut</span> <span class="ident">get_set_value</span>, <span class="ident">parsed_value</span>);
+            <span class="kw">if let </span><span class="prelude-val">Ok</span>(parsed_value) = value_text.parse() {
+                <span class="kw">let </span>parsed_value = clamp_to_range(parsed_value, clamp_range);
+                set(<span class="kw-2">&amp;mut </span>get_set_value, parsed_value);
             }
-            <span class="kw">if</span> <span class="ident">ui</span>.<span class="ident">input</span>().<span class="ident">key_pressed</span>(<span class="ident">Key::Enter</span>) {
-                <span class="ident">ui</span>.<span class="ident">memory</span>().<span class="ident">surrender_focus</span>(<span class="ident">kb_edit_id</span>);
-                <span class="ident">ui</span>.<span class="ident">memory</span>().<span class="ident">drag_value</span>.<span class="ident">edit_string</span> <span class="op">=</span> <span class="prelude-val">None</span>;
-            } <span class="kw">else</span> {
-                <span class="ident">ui</span>.<span class="ident">memory</span>().<span class="ident">drag_value</span>.<span class="ident">edit_string</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">value_text</span>);
+            <span class="kw">if </span>ui.input().key_pressed(Key::Enter) {
+                ui.memory().surrender_focus(kb_edit_id);
+                ui.memory().drag_value.edit_string = <span class="prelude-val">None</span>;
+            } <span class="kw">else </span>{
+                ui.memory().drag_value.edit_string = <span class="prelude-val">Some</span>(value_text);
             }
-            <span class="ident">response</span>
-        } <span class="kw">else</span> {
-            <span class="kw">let</span> <span class="ident">button</span> <span class="op">=</span> <span class="ident">Button::new</span>(
-                <span class="ident">RichText::new</span>(<span class="macro">format!</span>(<span class="string">&quot;{}{}{}&quot;</span>, <span class="ident">prefix</span>, <span class="ident">value_text</span>, <span class="ident">suffix</span>)).<span class="ident">monospace</span>(),
+            response
+        } <span class="kw">else </span>{
+            <span class="kw">let </span>button = Button::new(
+                RichText::new(<span class="macro">format!</span>(<span class="string">&quot;{}{}{}&quot;</span>, prefix, value_text, suffix)).monospace(),
             )
-            .<span class="ident">wrap</span>(<span class="bool-val">false</span>)
-            .<span class="ident">sense</span>(<span class="ident">Sense::click_and_drag</span>())
-            .<span class="ident">min_size</span>(<span class="ident">ui</span>.<span class="ident">spacing</span>().<span class="ident">interact_size</span>); <span class="comment">// TODO: find some more generic solution to `min_size`</span>
+            .wrap(<span class="bool-val">false</span>)
+            .sense(Sense::click_and_drag())
+            .min_size(ui.spacing().interact_size); <span class="comment">// TODO: find some more generic solution to `min_size`
 
-            <span class="kw">let</span> <span class="ident">response</span> <span class="op">=</span> <span class="ident">ui</span>.<span class="ident">add</span>(<span class="ident">button</span>);
-            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">response</span> <span class="op">=</span> <span class="ident">response</span>.<span class="ident">on_hover_cursor</span>(<span class="ident">CursorIcon::ResizeHorizontal</span>);
+            </span><span class="kw">let </span>response = ui.add(button);
+            <span class="kw">let </span><span class="kw-2">mut </span>response = response.on_hover_cursor(CursorIcon::ResizeHorizontal);
 
-            <span class="kw">if</span> <span class="ident">ui</span>.<span class="ident">style</span>().<span class="ident">explanation_tooltips</span> {
-                <span class="ident">response</span> <span class="op">=</span> <span class="ident">response</span> .<span class="ident">on_hover_text</span>(<span class="macro">format!</span>(
+            <span class="kw">if </span>ui.style().explanation_tooltips {
+                response = response .on_hover_text(<span class="macro">format!</span>(
                     <span class="string">&quot;{}{}{}\nDrag to edit or click to enter a value.\nPress &#39;Shift&#39; while dragging for better control.&quot;</span>,
-                    <span class="ident">prefix</span>,
-                    <span class="ident">value</span> <span class="kw">as</span> <span class="ident">f32</span>, <span class="comment">// Show full precision value on-hover. TODO: figure out f64 vs f32</span>
-                    <span class="ident">suffix</span>
+                    prefix,
+                    value <span class="kw">as </span>f32, <span class="comment">// Show full precision value on-hover. TODO: figure out f64 vs f32
+                    </span>suffix
                 ));
             }
 
-            <span class="kw">if</span> <span class="ident">response</span>.<span class="ident">clicked</span>() {
-                <span class="ident">ui</span>.<span class="ident">memory</span>().<span class="ident">request_focus</span>(<span class="ident">kb_edit_id</span>);
-                <span class="ident">ui</span>.<span class="ident">memory</span>().<span class="ident">drag_value</span>.<span class="ident">edit_string</span> <span class="op">=</span> <span class="prelude-val">None</span>; <span class="comment">// Filled in next frame</span>
-            } <span class="kw">else</span> <span class="kw">if</span> <span class="ident">response</span>.<span class="ident">dragged</span>() {
-                <span class="ident">ui</span>.<span class="ident">output</span>().<span class="ident">cursor_icon</span> <span class="op">=</span> <span class="ident">CursorIcon::ResizeHorizontal</span>;
+            <span class="kw">if </span>response.clicked() {
+                ui.memory().request_focus(kb_edit_id);
+                ui.memory().drag_value.edit_string = <span class="prelude-val">None</span>; <span class="comment">// Filled in next frame
+            </span>} <span class="kw">else if </span>response.dragged() {
+                ui.output().cursor_icon = CursorIcon::ResizeHorizontal;
 
-                <span class="kw">let</span> <span class="ident">mdelta</span> <span class="op">=</span> <span class="ident">response</span>.<span class="ident">drag_delta</span>();
-                <span class="kw">let</span> <span class="ident">delta_points</span> <span class="op">=</span> <span class="ident">mdelta</span>.<span class="ident">x</span> <span class="op">-</span> <span class="ident">mdelta</span>.<span class="ident">y</span>; <span class="comment">// Increase to the right and up</span>
+                <span class="kw">let </span>mdelta = response.drag_delta();
+                <span class="kw">let </span>delta_points = mdelta.x - mdelta.y; <span class="comment">// Increase to the right and up
 
-                <span class="kw">let</span> <span class="ident">speed</span> <span class="op">=</span> <span class="kw">if</span> <span class="ident">is_slow_speed</span> { <span class="ident">speed</span> <span class="op">/</span> <span class="number">10.0</span> } <span class="kw">else</span> { <span class="ident">speed</span> };
+                </span><span class="kw">let </span>speed = <span class="kw">if </span>is_slow_speed { speed / <span class="number">10.0 </span>} <span class="kw">else </span>{ speed };
 
-                <span class="kw">let</span> <span class="ident">delta_value</span> <span class="op">=</span> <span class="ident">delta_points</span> <span class="kw">as</span> <span class="ident">f64</span> <span class="op">*</span> <span class="ident">speed</span>;
+                <span class="kw">let </span>delta_value = delta_points <span class="kw">as </span>f64 * speed;
 
-                <span class="kw">if</span> <span class="ident">delta_value</span> <span class="op">!</span><span class="op">=</span> <span class="number">0.0</span> {
-                    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">drag_state</span> <span class="op">=</span> <span class="ident">std::mem::take</span>(<span class="kw-2">&amp;mut</span> <span class="ident">ui</span>.<span class="ident">memory</span>().<span class="ident">drag_value</span>);
+                <span class="kw">if </span>delta_value != <span class="number">0.0 </span>{
+                    <span class="kw">let </span><span class="kw-2">mut </span>drag_state = std::mem::take(<span class="kw-2">&amp;mut </span>ui.memory().drag_value);
 
-                    <span class="comment">// Since we round the value being dragged, we need to store the full precision value in memory:</span>
-                    <span class="kw">let</span> <span class="ident">stored_value</span> <span class="op">=</span> (<span class="ident">drag_state</span>.<span class="ident">last_dragged_id</span> <span class="op">==</span> <span class="prelude-val">Some</span>(<span class="ident">response</span>.<span class="ident">id</span>))
-                        .<span class="ident">then</span>(<span class="op">|</span><span class="op">|</span> <span class="ident">drag_state</span>.<span class="ident">last_dragged_value</span>)
-                        .<span class="ident">flatten</span>();
-                    <span class="kw">let</span> <span class="ident">stored_value</span> <span class="op">=</span> <span class="ident">stored_value</span>.<span class="ident">unwrap_or</span>(<span class="ident">value</span>);
-                    <span class="kw">let</span> <span class="ident">stored_value</span> <span class="op">=</span> <span class="ident">stored_value</span> <span class="op">+</span> <span class="ident">delta_value</span> <span class="kw">as</span> <span class="ident">f64</span>;
+                    <span class="comment">// Since we round the value being dragged, we need to store the full precision value in memory:
+                    </span><span class="kw">let </span>stored_value = (drag_state.last_dragged_id == <span class="prelude-val">Some</span>(response.id))
+                        .then(|| drag_state.last_dragged_value)
+                        .flatten();
+                    <span class="kw">let </span>stored_value = stored_value.unwrap_or(value);
+                    <span class="kw">let </span>stored_value = stored_value + delta_value <span class="kw">as </span>f64;
 
-                    <span class="kw">let</span> <span class="ident">aim_delta</span> <span class="op">=</span> <span class="ident">aim_rad</span> <span class="op">*</span> <span class="ident">speed</span>;
-                    <span class="kw">let</span> <span class="ident">rounded_new_value</span> <span class="op">=</span> <span class="ident">emath::smart_aim::best_in_range_f64</span>(
-                        <span class="ident">stored_value</span> <span class="op">-</span> <span class="ident">aim_delta</span>,
-                        <span class="ident">stored_value</span> <span class="op">+</span> <span class="ident">aim_delta</span>,
+                    <span class="kw">let </span>aim_delta = aim_rad * speed;
+                    <span class="kw">let </span>rounded_new_value = emath::smart_aim::best_in_range_f64(
+                        stored_value - aim_delta,
+                        stored_value + aim_delta,
                     );
-                    <span class="kw">let</span> <span class="ident">rounded_new_value</span> <span class="op">=</span>
-                        <span class="ident">emath::round_to_decimals</span>(<span class="ident">rounded_new_value</span>, <span class="ident">auto_decimals</span>);
-                    <span class="kw">let</span> <span class="ident">rounded_new_value</span> <span class="op">=</span> <span class="ident">clamp_to_range</span>(<span class="ident">rounded_new_value</span>, <span class="ident">clamp_range</span>);
-                    <span class="ident">set</span>(<span class="kw-2">&amp;mut</span> <span class="ident">get_set_value</span>, <span class="ident">rounded_new_value</span>);
+                    <span class="kw">let </span>rounded_new_value =
+                        emath::round_to_decimals(rounded_new_value, auto_decimals);
+                    <span class="kw">let </span>rounded_new_value = clamp_to_range(rounded_new_value, clamp_range);
+                    set(<span class="kw-2">&amp;mut </span>get_set_value, rounded_new_value);
 
-                    <span class="ident">drag_state</span>.<span class="ident">last_dragged_id</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">response</span>.<span class="ident">id</span>);
-                    <span class="ident">drag_state</span>.<span class="ident">last_dragged_value</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">stored_value</span>);
-                    <span class="ident">ui</span>.<span class="ident">memory</span>().<span class="ident">drag_value</span> <span class="op">=</span> <span class="ident">drag_state</span>;
+                    drag_state.last_dragged_id = <span class="prelude-val">Some</span>(response.id);
+                    drag_state.last_dragged_value = <span class="prelude-val">Some</span>(stored_value);
+                    ui.memory().drag_value = drag_state;
                 }
-            } <span class="kw">else</span> <span class="kw">if</span> <span class="ident">response</span>.<span class="ident">has_focus</span>() {
-                <span class="kw">let</span> <span class="ident">change</span> <span class="op">=</span> <span class="ident">ui</span>.<span class="ident">input</span>().<span class="ident">num_presses</span>(<span class="ident">Key::ArrowUp</span>) <span class="kw">as</span> <span class="ident">f64</span>
-                    <span class="op">+</span> <span class="ident">ui</span>.<span class="ident">input</span>().<span class="ident">num_presses</span>(<span class="ident">Key::ArrowRight</span>) <span class="kw">as</span> <span class="ident">f64</span>
-                    <span class="op">-</span> <span class="ident">ui</span>.<span class="ident">input</span>().<span class="ident">num_presses</span>(<span class="ident">Key::ArrowDown</span>) <span class="kw">as</span> <span class="ident">f64</span>
-                    <span class="op">-</span> <span class="ident">ui</span>.<span class="ident">input</span>().<span class="ident">num_presses</span>(<span class="ident">Key::ArrowLeft</span>) <span class="kw">as</span> <span class="ident">f64</span>;
+            } <span class="kw">else if </span>response.has_focus() {
+                <span class="kw">let </span>change = ui.input().num_presses(Key::ArrowUp) <span class="kw">as </span>f64
+                    + ui.input().num_presses(Key::ArrowRight) <span class="kw">as </span>f64
+                    - ui.input().num_presses(Key::ArrowDown) <span class="kw">as </span>f64
+                    - ui.input().num_presses(Key::ArrowLeft) <span class="kw">as </span>f64;
 
-                <span class="kw">if</span> <span class="ident">change</span> <span class="op">!</span><span class="op">=</span> <span class="number">0.0</span> {
-                    <span class="kw">let</span> <span class="ident">new_value</span> <span class="op">=</span> <span class="ident">value</span> <span class="op">+</span> <span class="ident">speed</span> <span class="op">*</span> <span class="ident">change</span>;
-                    <span class="kw">let</span> <span class="ident">new_value</span> <span class="op">=</span> <span class="ident">emath::round_to_decimals</span>(<span class="ident">new_value</span>, <span class="ident">auto_decimals</span>);
-                    <span class="kw">let</span> <span class="ident">new_value</span> <span class="op">=</span> <span class="ident">clamp_to_range</span>(<span class="ident">new_value</span>, <span class="ident">clamp_range</span>);
-                    <span class="ident">set</span>(<span class="kw-2">&amp;mut</span> <span class="ident">get_set_value</span>, <span class="ident">new_value</span>);
+                <span class="kw">if </span>change != <span class="number">0.0 </span>{
+                    <span class="kw">let </span>new_value = value + speed * change;
+                    <span class="kw">let </span>new_value = emath::round_to_decimals(new_value, auto_decimals);
+                    <span class="kw">let </span>new_value = clamp_to_range(new_value, clamp_range);
+                    set(<span class="kw-2">&amp;mut </span>get_set_value, new_value);
                 }
             }
 
-            <span class="ident">response</span>
+            response
         };
 
-        <span class="ident">response</span>.<span class="ident">changed</span> <span class="op">=</span> <span class="ident">get</span>(<span class="kw-2">&amp;mut</span> <span class="ident">get_set_value</span>) <span class="op">!</span><span class="op">=</span> <span class="ident">old_value</span>;
+        response.changed = get(<span class="kw-2">&amp;mut </span>get_set_value) != old_value;
 
-        <span class="ident">response</span>.<span class="ident">widget_info</span>(<span class="op">|</span><span class="op">|</span> <span class="ident">WidgetInfo::drag_value</span>(<span class="ident">value</span>));
-        <span class="ident">response</span>
+        response.widget_info(|| WidgetInfo::drag_value(value));
+        response
     }
 }
 
-<span class="kw">fn</span> <span class="ident">clamp_to_range</span>(<span class="ident">x</span>: <span class="ident">f64</span>, <span class="ident">range</span>: <span class="ident">RangeInclusive</span><span class="op">&lt;</span><span class="ident">f64</span><span class="op">&gt;</span>) -&gt; <span class="ident">f64</span> {
-    <span class="ident">x</span>.<span class="ident">clamp</span>(
-        <span class="ident">range</span>.<span class="ident">start</span>().<span class="ident">min</span>(<span class="kw-2">*</span><span class="ident">range</span>.<span class="ident">end</span>()),
-        <span class="ident">range</span>.<span class="ident">start</span>().<span class="ident">max</span>(<span class="kw-2">*</span><span class="ident">range</span>.<span class="ident">end</span>()),
+<span class="kw">fn </span>clamp_to_range(x: f64, range: RangeInclusive&lt;f64&gt;) -&gt; f64 {
+    x.clamp(
+        range.start().min(<span class="kw-2">*</span>range.end()),
+        range.start().max(<span class="kw-2">*</span>range.end()),
     )
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="egui" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0 (a55dd71d5 2022-09-19)" ></div></body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="egui" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.66.1 (90743e729 2023-01-10)" ></div></body></html>

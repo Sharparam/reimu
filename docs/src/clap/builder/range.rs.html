@@ -1,6 +1,5 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/clap-4.0.18/src/builder/range.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>range.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../storage.js"></script><script defer src="../../../source-script.js"></script><script defer src="../../../source-files.js"></script><script defer src="../../../main.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../../clap/index.html"><div class="logo-container"><img src="https://raw.githubusercontent.com/clap-rs/clap/master/assets/clap.png" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../../clap/index.html"><div class="logo-container">
-                    <img src="https://raw.githubusercontent.com/clap-rs/clap/master/assets/clap.png" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../../clap/index.html">
-                        <img src="https://raw.githubusercontent.com/clap-rs/clap/master/assets/clap.png" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/clap-4.0.18/src/builder/range.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>range.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../../normalize.css"><link rel="stylesheet" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../../ayu.css" disabled><link rel="stylesheet" href="../../../dark.css" disabled><link rel="stylesheet" href="../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../storage.js"></script><script defer src="../../../source-script.js"></script><script defer src="../../../source-files.js"></script><script defer src="../../../main.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><div class="width-limiter"><nav class="sub"><a class="sub-logo-container" href="../../../clap/index.html">
+                        <img src="https://raw.githubusercontent.com/clap-rs/clap/master/assets/clap.png" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../wheel.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -283,288 +282,288 @@
 <span id="281">281</span>
 <span id="282">282</span>
 <span id="283">283</span>
-</pre><pre class="rust"><code><span class="doccomment">/// Values per occurrence for an argument</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>, <span class="ident">Hash</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ValueRange</span> {
-    <span class="ident">start_inclusive</span>: <span class="ident">usize</span>,
-    <span class="ident">end_inclusive</span>: <span class="ident">usize</span>,
+</pre><pre class="rust"><code><span class="doccomment">/// Values per occurrence for an argument
+</span><span class="attribute">#[derive(Copy, Clone, PartialEq, Eq, Hash)]
+</span><span class="kw">pub struct </span>ValueRange {
+    start_inclusive: usize,
+    end_inclusive: usize,
 }
 
-<span class="kw">impl</span> <span class="ident">ValueRange</span> {
-    <span class="doccomment">/// Nor argument values, or a flag</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EMPTY</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span> {
-        <span class="ident">start_inclusive</span>: <span class="number">0</span>,
-        <span class="ident">end_inclusive</span>: <span class="number">0</span>,
+<span class="kw">impl </span>ValueRange {
+    <span class="doccomment">/// Nor argument values, or a flag
+    </span><span class="kw">pub const </span>EMPTY: <span class="self">Self </span>= <span class="self">Self </span>{
+        start_inclusive: <span class="number">0</span>,
+        end_inclusive: <span class="number">0</span>,
     };
 
-    <span class="doccomment">/// A single argument value, the most common case for options</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">SINGLE</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span> {
-        <span class="ident">start_inclusive</span>: <span class="number">1</span>,
-        <span class="ident">end_inclusive</span>: <span class="number">1</span>,
+    <span class="doccomment">/// A single argument value, the most common case for options
+    </span><span class="kw">pub const </span>SINGLE: <span class="self">Self </span>= <span class="self">Self </span>{
+        start_inclusive: <span class="number">1</span>,
+        end_inclusive: <span class="number">1</span>,
     };
 
-    <span class="doccomment">/// Create a range</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// # Panics</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// If the end is less than the start</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// # Examples</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// ```</span>
-    <span class="doccomment">/// # use clap::builder::ValueRange;</span>
-    <span class="doccomment">/// let range = ValueRange::new(5);</span>
-    <span class="doccomment">/// let range = ValueRange::new(5..10);</span>
-    <span class="doccomment">/// let range = ValueRange::new(5..=10);</span>
-    <span class="doccomment">/// let range = ValueRange::new(5..);</span>
-    <span class="doccomment">/// let range = ValueRange::new(..10);</span>
-    <span class="doccomment">/// let range = ValueRange::new(..=10);</span>
-    <span class="doccomment">/// ```</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// While this will panic:</span>
-    <span class="doccomment">/// ```should_panic</span>
-    <span class="doccomment">/// # use clap::builder::ValueRange;</span>
-    <span class="doccomment">/// let range = ValueRange::new(10..5);  // Panics!</span>
-    <span class="doccomment">/// ```</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">range</span>: <span class="kw">impl</span> <span class="ident">Into</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>) -&gt; <span class="self">Self</span> {
-        <span class="ident">range</span>.<span class="ident">into</span>()
+    <span class="doccomment">/// Create a range
+    ///
+    /// # Panics
+    ///
+    /// If the end is less than the start
+    ///
+    /// # Examples
+    ///
+    /// ```
+    /// # use clap::builder::ValueRange;
+    /// let range = ValueRange::new(5);
+    /// let range = ValueRange::new(5..10);
+    /// let range = ValueRange::new(5..=10);
+    /// let range = ValueRange::new(5..);
+    /// let range = ValueRange::new(..10);
+    /// let range = ValueRange::new(..=10);
+    /// ```
+    ///
+    /// While this will panic:
+    /// ```should_panic
+    /// # use clap::builder::ValueRange;
+    /// let range = ValueRange::new(10..5);  // Panics!
+    /// ```
+    </span><span class="kw">pub fn </span>new(range: <span class="kw">impl </span>Into&lt;<span class="self">Self</span>&gt;) -&gt; <span class="self">Self </span>{
+        range.into()
     }
 
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">raw</span>(<span class="ident">start_inclusive</span>: <span class="ident">usize</span>, <span class="ident">end_inclusive</span>: <span class="ident">usize</span>) -&gt; <span class="self">Self</span> {
-        <span class="macro">debug_assert!</span>(<span class="ident">start_inclusive</span> <span class="op">&lt;</span><span class="op">=</span> <span class="ident">end_inclusive</span>);
-        <span class="self">Self</span> {
-            <span class="ident">start_inclusive</span>,
-            <span class="ident">end_inclusive</span>,
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>raw(start_inclusive: usize, end_inclusive: usize) -&gt; <span class="self">Self </span>{
+        <span class="macro">debug_assert!</span>(start_inclusive &lt;= end_inclusive);
+        <span class="self">Self </span>{
+            start_inclusive,
+            end_inclusive,
         }
     }
 
-    <span class="doccomment">/// Fewest number of values the argument accepts</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">min_values</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">usize</span> {
-        <span class="self">self</span>.<span class="ident">start_inclusive</span>
+    <span class="doccomment">/// Fewest number of values the argument accepts
+    </span><span class="kw">pub fn </span>min_values(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; usize {
+        <span class="self">self</span>.start_inclusive
     }
 
-    <span class="doccomment">/// Most number of values the argument accepts</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">max_values</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">usize</span> {
-        <span class="self">self</span>.<span class="ident">end_inclusive</span>
+    <span class="doccomment">/// Most number of values the argument accepts
+    </span><span class="kw">pub fn </span>max_values(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; usize {
+        <span class="self">self</span>.end_inclusive
     }
 
-    <span class="doccomment">/// Report whether the argument takes any values (ie is a flag)</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// # Examples</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// ```</span>
-    <span class="doccomment">/// # use clap::builder::ValueRange;</span>
-    <span class="doccomment">/// let range = ValueRange::new(5);</span>
-    <span class="doccomment">/// assert!(range.takes_values());</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// let range = ValueRange::new(0);</span>
-    <span class="doccomment">/// assert!(!range.takes_values());</span>
-    <span class="doccomment">/// ```</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">takes_values</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span> {
-        <span class="self">self</span>.<span class="ident">end_inclusive</span> <span class="op">!</span><span class="op">=</span> <span class="number">0</span>
+    <span class="doccomment">/// Report whether the argument takes any values (ie is a flag)
+    ///
+    /// # Examples
+    ///
+    /// ```
+    /// # use clap::builder::ValueRange;
+    /// let range = ValueRange::new(5);
+    /// assert!(range.takes_values());
+    ///
+    /// let range = ValueRange::new(0);
+    /// assert!(!range.takes_values());
+    /// ```
+    </span><span class="kw">pub fn </span>takes_values(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; bool {
+        <span class="self">self</span>.end_inclusive != <span class="number">0
+    </span>}
+
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>is_unbounded(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; bool {
+        <span class="self">self</span>.end_inclusive == usize::MAX
     }
 
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">is_unbounded</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span> {
-        <span class="self">self</span>.<span class="ident">end_inclusive</span> <span class="op">==</span> <span class="ident">usize::MAX</span>
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>is_fixed(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; bool {
+        <span class="self">self</span>.start_inclusive == <span class="self">self</span>.end_inclusive
     }
 
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">is_fixed</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span> {
-        <span class="self">self</span>.<span class="ident">start_inclusive</span> <span class="op">==</span> <span class="self">self</span>.<span class="ident">end_inclusive</span>
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>is_multiple(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; bool {
+        <span class="self">self</span>.start_inclusive != <span class="self">self</span>.end_inclusive || <span class="number">1 </span>&lt; <span class="self">self</span>.start_inclusive
     }
 
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">is_multiple</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span> {
-        <span class="self">self</span>.<span class="ident">start_inclusive</span> <span class="op">!</span><span class="op">=</span> <span class="self">self</span>.<span class="ident">end_inclusive</span> <span class="op">|</span><span class="op">|</span> <span class="number">1</span> <span class="op">&lt;</span> <span class="self">self</span>.<span class="ident">start_inclusive</span>
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>num_values(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;usize&gt; {
+        <span class="self">self</span>.is_fixed().then(|| <span class="self">self</span>.start_inclusive)
     }
 
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">num_values</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">usize</span><span class="op">&gt;</span> {
-        <span class="self">self</span>.<span class="ident">is_fixed</span>().<span class="ident">then</span>(<span class="op">|</span><span class="op">|</span> <span class="self">self</span>.<span class="ident">start_inclusive</span>)
-    }
-
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">accepts_more</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">current</span>: <span class="ident">usize</span>) -&gt; <span class="ident">bool</span> {
-        <span class="ident">current</span> <span class="op">&lt;</span> <span class="self">self</span>.<span class="ident">end_inclusive</span>
-    }
-}
-
-<span class="kw">impl</span> <span class="ident">std::ops::RangeBounds</span><span class="op">&lt;</span><span class="ident">usize</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">ValueRange</span> {
-    <span class="kw">fn</span> <span class="ident">start_bound</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">std::ops::Bound</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">usize</span><span class="op">&gt;</span> {
-        <span class="ident">std::ops::Bound::Included</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">start_inclusive</span>)
-    }
-
-    <span class="kw">fn</span> <span class="ident">end_bound</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">std::ops::Bound</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">usize</span><span class="op">&gt;</span> {
-        <span class="ident">std::ops::Bound::Included</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">end_inclusive</span>)
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>accepts_more(<span class="kw-2">&amp;</span><span class="self">self</span>, current: usize) -&gt; bool {
+        current &lt; <span class="self">self</span>.end_inclusive
     }
 }
 
-<span class="kw">impl</span> <span class="ident">Default</span> <span class="kw">for</span> <span class="ident">ValueRange</span> {
-    <span class="kw">fn</span> <span class="ident">default</span>() -&gt; <span class="self">Self</span> {
-        <span class="ident"><span class="self">Self</span>::SINGLE</span>
+<span class="kw">impl </span>std::ops::RangeBounds&lt;usize&gt; <span class="kw">for </span>ValueRange {
+    <span class="kw">fn </span>start_bound(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; std::ops::Bound&lt;<span class="kw-2">&amp;</span>usize&gt; {
+        std::ops::Bound::Included(<span class="kw-2">&amp;</span><span class="self">self</span>.start_inclusive)
+    }
+
+    <span class="kw">fn </span>end_bound(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; std::ops::Bound&lt;<span class="kw-2">&amp;</span>usize&gt; {
+        std::ops::Bound::Included(<span class="kw-2">&amp;</span><span class="self">self</span>.end_inclusive)
     }
 }
 
-<span class="kw">impl</span> <span class="ident">From</span><span class="op">&lt;</span><span class="ident">usize</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">ValueRange</span> {
-    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">fixed</span>: <span class="ident">usize</span>) -&gt; <span class="self">Self</span> {
-        (<span class="ident">fixed</span>..<span class="op">=</span><span class="ident">fixed</span>).<span class="ident">into</span>()
+<span class="kw">impl </span>Default <span class="kw">for </span>ValueRange {
+    <span class="kw">fn </span>default() -&gt; <span class="self">Self </span>{
+        <span class="self">Self</span>::SINGLE
     }
 }
 
-<span class="kw">impl</span> <span class="ident">From</span><span class="op">&lt;</span><span class="ident">std::ops::Range</span><span class="op">&lt;</span><span class="ident">usize</span><span class="op">&gt;</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">ValueRange</span> {
-    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">range</span>: <span class="ident">std::ops::Range</span><span class="op">&lt;</span><span class="ident">usize</span><span class="op">&gt;</span>) -&gt; <span class="self">Self</span> {
-        <span class="kw">let</span> <span class="ident">start_inclusive</span> <span class="op">=</span> <span class="ident">range</span>.<span class="ident">start</span>;
-        <span class="kw">let</span> <span class="ident">end_inclusive</span> <span class="op">=</span> <span class="ident">range</span>.<span class="ident">end</span>.<span class="ident">saturating_sub</span>(<span class="number">1</span>);
-        <span class="ident"><span class="self">Self</span>::raw</span>(<span class="ident">start_inclusive</span>, <span class="ident">end_inclusive</span>)
+<span class="kw">impl </span>From&lt;usize&gt; <span class="kw">for </span>ValueRange {
+    <span class="kw">fn </span>from(fixed: usize) -&gt; <span class="self">Self </span>{
+        (fixed..=fixed).into()
     }
 }
 
-<span class="kw">impl</span> <span class="ident">From</span><span class="op">&lt;</span><span class="ident">std::ops::RangeFull</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">ValueRange</span> {
-    <span class="kw">fn</span> <span class="ident">from</span>(<span class="kw">_</span>: <span class="ident">std::ops::RangeFull</span>) -&gt; <span class="self">Self</span> {
-        <span class="kw">let</span> <span class="ident">start_inclusive</span> <span class="op">=</span> <span class="number">0</span>;
-        <span class="kw">let</span> <span class="ident">end_inclusive</span> <span class="op">=</span> <span class="ident">usize::MAX</span>;
-        <span class="ident"><span class="self">Self</span>::raw</span>(<span class="ident">start_inclusive</span>, <span class="ident">end_inclusive</span>)
+<span class="kw">impl </span>From&lt;std::ops::Range&lt;usize&gt;&gt; <span class="kw">for </span>ValueRange {
+    <span class="kw">fn </span>from(range: std::ops::Range&lt;usize&gt;) -&gt; <span class="self">Self </span>{
+        <span class="kw">let </span>start_inclusive = range.start;
+        <span class="kw">let </span>end_inclusive = range.end.saturating_sub(<span class="number">1</span>);
+        <span class="self">Self</span>::raw(start_inclusive, end_inclusive)
     }
 }
 
-<span class="kw">impl</span> <span class="ident">From</span><span class="op">&lt;</span><span class="ident">std::ops::RangeFrom</span><span class="op">&lt;</span><span class="ident">usize</span><span class="op">&gt;</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">ValueRange</span> {
-    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">range</span>: <span class="ident">std::ops::RangeFrom</span><span class="op">&lt;</span><span class="ident">usize</span><span class="op">&gt;</span>) -&gt; <span class="self">Self</span> {
-        <span class="kw">let</span> <span class="ident">start_inclusive</span> <span class="op">=</span> <span class="ident">range</span>.<span class="ident">start</span>;
-        <span class="kw">let</span> <span class="ident">end_inclusive</span> <span class="op">=</span> <span class="ident">usize::MAX</span>;
-        <span class="ident"><span class="self">Self</span>::raw</span>(<span class="ident">start_inclusive</span>, <span class="ident">end_inclusive</span>)
+<span class="kw">impl </span>From&lt;std::ops::RangeFull&gt; <span class="kw">for </span>ValueRange {
+    <span class="kw">fn </span>from(<span class="kw">_</span>: std::ops::RangeFull) -&gt; <span class="self">Self </span>{
+        <span class="kw">let </span>start_inclusive = <span class="number">0</span>;
+        <span class="kw">let </span>end_inclusive = usize::MAX;
+        <span class="self">Self</span>::raw(start_inclusive, end_inclusive)
     }
 }
 
-<span class="kw">impl</span> <span class="ident">From</span><span class="op">&lt;</span><span class="ident">std::ops::RangeTo</span><span class="op">&lt;</span><span class="ident">usize</span><span class="op">&gt;</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">ValueRange</span> {
-    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">range</span>: <span class="ident">std::ops::RangeTo</span><span class="op">&lt;</span><span class="ident">usize</span><span class="op">&gt;</span>) -&gt; <span class="self">Self</span> {
-        <span class="kw">let</span> <span class="ident">start_inclusive</span> <span class="op">=</span> <span class="number">0</span>;
-        <span class="kw">let</span> <span class="ident">end_inclusive</span> <span class="op">=</span> <span class="ident">range</span>.<span class="ident">end</span>.<span class="ident">saturating_sub</span>(<span class="number">1</span>);
-        <span class="ident"><span class="self">Self</span>::raw</span>(<span class="ident">start_inclusive</span>, <span class="ident">end_inclusive</span>)
+<span class="kw">impl </span>From&lt;std::ops::RangeFrom&lt;usize&gt;&gt; <span class="kw">for </span>ValueRange {
+    <span class="kw">fn </span>from(range: std::ops::RangeFrom&lt;usize&gt;) -&gt; <span class="self">Self </span>{
+        <span class="kw">let </span>start_inclusive = range.start;
+        <span class="kw">let </span>end_inclusive = usize::MAX;
+        <span class="self">Self</span>::raw(start_inclusive, end_inclusive)
     }
 }
 
-<span class="kw">impl</span> <span class="ident">From</span><span class="op">&lt;</span><span class="ident">std::ops::RangeInclusive</span><span class="op">&lt;</span><span class="ident">usize</span><span class="op">&gt;</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">ValueRange</span> {
-    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">range</span>: <span class="ident">std::ops::RangeInclusive</span><span class="op">&lt;</span><span class="ident">usize</span><span class="op">&gt;</span>) -&gt; <span class="self">Self</span> {
-        <span class="kw">let</span> <span class="ident">start_inclusive</span> <span class="op">=</span> <span class="kw-2">*</span><span class="ident">range</span>.<span class="ident">start</span>();
-        <span class="kw">let</span> <span class="ident">end_inclusive</span> <span class="op">=</span> <span class="kw-2">*</span><span class="ident">range</span>.<span class="ident">end</span>();
-        <span class="ident"><span class="self">Self</span>::raw</span>(<span class="ident">start_inclusive</span>, <span class="ident">end_inclusive</span>)
+<span class="kw">impl </span>From&lt;std::ops::RangeTo&lt;usize&gt;&gt; <span class="kw">for </span>ValueRange {
+    <span class="kw">fn </span>from(range: std::ops::RangeTo&lt;usize&gt;) -&gt; <span class="self">Self </span>{
+        <span class="kw">let </span>start_inclusive = <span class="number">0</span>;
+        <span class="kw">let </span>end_inclusive = range.end.saturating_sub(<span class="number">1</span>);
+        <span class="self">Self</span>::raw(start_inclusive, end_inclusive)
     }
 }
 
-<span class="kw">impl</span> <span class="ident">From</span><span class="op">&lt;</span><span class="ident">std::ops::RangeToInclusive</span><span class="op">&lt;</span><span class="ident">usize</span><span class="op">&gt;</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">ValueRange</span> {
-    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">range</span>: <span class="ident">std::ops::RangeToInclusive</span><span class="op">&lt;</span><span class="ident">usize</span><span class="op">&gt;</span>) -&gt; <span class="self">Self</span> {
-        <span class="kw">let</span> <span class="ident">start_inclusive</span> <span class="op">=</span> <span class="number">0</span>;
-        <span class="kw">let</span> <span class="ident">end_inclusive</span> <span class="op">=</span> <span class="ident">range</span>.<span class="ident">end</span>;
-        <span class="ident"><span class="self">Self</span>::raw</span>(<span class="ident">start_inclusive</span>, <span class="ident">end_inclusive</span>)
+<span class="kw">impl </span>From&lt;std::ops::RangeInclusive&lt;usize&gt;&gt; <span class="kw">for </span>ValueRange {
+    <span class="kw">fn </span>from(range: std::ops::RangeInclusive&lt;usize&gt;) -&gt; <span class="self">Self </span>{
+        <span class="kw">let </span>start_inclusive = <span class="kw-2">*</span>range.start();
+        <span class="kw">let </span>end_inclusive = <span class="kw-2">*</span>range.end();
+        <span class="self">Self</span>::raw(start_inclusive, end_inclusive)
     }
 }
 
-<span class="kw">impl</span> <span class="ident">std::fmt::Display</span> <span class="kw">for</span> <span class="ident">ValueRange</span> {
-    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;mut</span> <span class="ident">std::fmt::Formatter</span>) -&gt; <span class="ident">std::fmt::Result</span> {
-        <span class="macro">ok!</span>(<span class="self">self</span>.<span class="ident">start_inclusive</span>.<span class="ident">fmt</span>(<span class="ident">f</span>));
-        <span class="kw">if</span> <span class="op">!</span><span class="self">self</span>.<span class="ident">is_fixed</span>() {
-            <span class="macro">ok!</span>(<span class="string">&quot;..=&quot;</span>.<span class="ident">fmt</span>(<span class="ident">f</span>));
-            <span class="macro">ok!</span>(<span class="self">self</span>.<span class="ident">end_inclusive</span>.<span class="ident">fmt</span>(<span class="ident">f</span>));
+<span class="kw">impl </span>From&lt;std::ops::RangeToInclusive&lt;usize&gt;&gt; <span class="kw">for </span>ValueRange {
+    <span class="kw">fn </span>from(range: std::ops::RangeToInclusive&lt;usize&gt;) -&gt; <span class="self">Self </span>{
+        <span class="kw">let </span>start_inclusive = <span class="number">0</span>;
+        <span class="kw">let </span>end_inclusive = range.end;
+        <span class="self">Self</span>::raw(start_inclusive, end_inclusive)
+    }
+}
+
+<span class="kw">impl </span>std::fmt::Display <span class="kw">for </span>ValueRange {
+    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>std::fmt::Formatter) -&gt; std::fmt::Result {
+        <span class="macro">ok!</span>(<span class="self">self</span>.start_inclusive.fmt(f));
+        <span class="kw">if </span>!<span class="self">self</span>.is_fixed() {
+            <span class="macro">ok!</span>(<span class="string">&quot;..=&quot;</span>.fmt(f));
+            <span class="macro">ok!</span>(<span class="self">self</span>.end_inclusive.fmt(f));
         }
         <span class="prelude-val">Ok</span>(())
     }
 }
 
-<span class="kw">impl</span> <span class="ident">std::fmt::Debug</span> <span class="kw">for</span> <span class="ident">ValueRange</span> {
-    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;mut</span> <span class="ident">std::fmt::Formatter</span>) -&gt; <span class="ident">std::fmt::Result</span> {
-        <span class="macro">write!</span>(<span class="ident">f</span>, <span class="string">&quot;{}&quot;</span>, <span class="self">self</span>)
+<span class="kw">impl </span>std::fmt::Debug <span class="kw">for </span>ValueRange {
+    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>std::fmt::Formatter) -&gt; std::fmt::Result {
+        <span class="macro">write!</span>(f, <span class="string">&quot;{}&quot;</span>, <span class="self">self</span>)
     }
 }
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">test</span>)]</span>
-<span class="kw">mod</span> <span class="ident">test</span> {
-    <span class="kw">use</span> <span class="kw">super</span>::<span class="kw-2">*</span>;
+<span class="attribute">#[cfg(test)]
+</span><span class="kw">mod </span>test {
+    <span class="kw">use super</span>::<span class="kw-2">*</span>;
 
-    <span class="kw">use</span> <span class="ident">std::ops::RangeBounds</span>;
+    <span class="kw">use </span>std::ops::RangeBounds;
 
-    <span class="attribute">#[<span class="ident">test</span>]</span>
-    <span class="kw">fn</span> <span class="ident">from_fixed</span>() {
-        <span class="kw">let</span> <span class="ident">range</span>: <span class="ident">ValueRange</span> <span class="op">=</span> <span class="number">5</span>.<span class="ident">into</span>();
-        <span class="macro">assert_eq!</span>(<span class="ident">range</span>.<span class="ident">start_bound</span>(), <span class="ident">std::ops::Bound::Included</span>(<span class="kw-2">&amp;</span><span class="number">5</span>));
-        <span class="macro">assert_eq!</span>(<span class="ident">range</span>.<span class="ident">end_bound</span>(), <span class="ident">std::ops::Bound::Included</span>(<span class="kw-2">&amp;</span><span class="number">5</span>));
-        <span class="macro">assert!</span>(<span class="ident">range</span>.<span class="ident">is_fixed</span>());
-        <span class="macro">assert!</span>(<span class="ident">range</span>.<span class="ident">is_multiple</span>());
-        <span class="macro">assert_eq!</span>(<span class="ident">range</span>.<span class="ident">num_values</span>(), <span class="prelude-val">Some</span>(<span class="number">5</span>));
-        <span class="macro">assert!</span>(<span class="ident">range</span>.<span class="ident">takes_values</span>());
+    <span class="attribute">#[test]
+    </span><span class="kw">fn </span>from_fixed() {
+        <span class="kw">let </span>range: ValueRange = <span class="number">5</span>.into();
+        <span class="macro">assert_eq!</span>(range.start_bound(), std::ops::Bound::Included(<span class="kw-2">&amp;</span><span class="number">5</span>));
+        <span class="macro">assert_eq!</span>(range.end_bound(), std::ops::Bound::Included(<span class="kw-2">&amp;</span><span class="number">5</span>));
+        <span class="macro">assert!</span>(range.is_fixed());
+        <span class="macro">assert!</span>(range.is_multiple());
+        <span class="macro">assert_eq!</span>(range.num_values(), <span class="prelude-val">Some</span>(<span class="number">5</span>));
+        <span class="macro">assert!</span>(range.takes_values());
     }
 
-    <span class="attribute">#[<span class="ident">test</span>]</span>
-    <span class="kw">fn</span> <span class="ident">from_fixed_empty</span>() {
-        <span class="kw">let</span> <span class="ident">range</span>: <span class="ident">ValueRange</span> <span class="op">=</span> <span class="number">0</span>.<span class="ident">into</span>();
-        <span class="macro">assert_eq!</span>(<span class="ident">range</span>.<span class="ident">start_bound</span>(), <span class="ident">std::ops::Bound::Included</span>(<span class="kw-2">&amp;</span><span class="number">0</span>));
-        <span class="macro">assert_eq!</span>(<span class="ident">range</span>.<span class="ident">end_bound</span>(), <span class="ident">std::ops::Bound::Included</span>(<span class="kw-2">&amp;</span><span class="number">0</span>));
-        <span class="macro">assert!</span>(<span class="ident">range</span>.<span class="ident">is_fixed</span>());
-        <span class="macro">assert!</span>(<span class="op">!</span><span class="ident">range</span>.<span class="ident">is_multiple</span>());
-        <span class="macro">assert_eq!</span>(<span class="ident">range</span>.<span class="ident">num_values</span>(), <span class="prelude-val">Some</span>(<span class="number">0</span>));
-        <span class="macro">assert!</span>(<span class="op">!</span><span class="ident">range</span>.<span class="ident">takes_values</span>());
+    <span class="attribute">#[test]
+    </span><span class="kw">fn </span>from_fixed_empty() {
+        <span class="kw">let </span>range: ValueRange = <span class="number">0</span>.into();
+        <span class="macro">assert_eq!</span>(range.start_bound(), std::ops::Bound::Included(<span class="kw-2">&amp;</span><span class="number">0</span>));
+        <span class="macro">assert_eq!</span>(range.end_bound(), std::ops::Bound::Included(<span class="kw-2">&amp;</span><span class="number">0</span>));
+        <span class="macro">assert!</span>(range.is_fixed());
+        <span class="macro">assert!</span>(!range.is_multiple());
+        <span class="macro">assert_eq!</span>(range.num_values(), <span class="prelude-val">Some</span>(<span class="number">0</span>));
+        <span class="macro">assert!</span>(!range.takes_values());
     }
 
-    <span class="attribute">#[<span class="ident">test</span>]</span>
-    <span class="kw">fn</span> <span class="ident">from_range</span>() {
-        <span class="kw">let</span> <span class="ident">range</span>: <span class="ident">ValueRange</span> <span class="op">=</span> (<span class="number">5</span>..<span class="number">10</span>).<span class="ident">into</span>();
-        <span class="macro">assert_eq!</span>(<span class="ident">range</span>.<span class="ident">start_bound</span>(), <span class="ident">std::ops::Bound::Included</span>(<span class="kw-2">&amp;</span><span class="number">5</span>));
-        <span class="macro">assert_eq!</span>(<span class="ident">range</span>.<span class="ident">end_bound</span>(), <span class="ident">std::ops::Bound::Included</span>(<span class="kw-2">&amp;</span><span class="number">9</span>));
-        <span class="macro">assert!</span>(<span class="op">!</span><span class="ident">range</span>.<span class="ident">is_fixed</span>());
-        <span class="macro">assert!</span>(<span class="ident">range</span>.<span class="ident">is_multiple</span>());
-        <span class="macro">assert_eq!</span>(<span class="ident">range</span>.<span class="ident">num_values</span>(), <span class="prelude-val">None</span>);
-        <span class="macro">assert!</span>(<span class="ident">range</span>.<span class="ident">takes_values</span>());
+    <span class="attribute">#[test]
+    </span><span class="kw">fn </span>from_range() {
+        <span class="kw">let </span>range: ValueRange = (<span class="number">5</span>..<span class="number">10</span>).into();
+        <span class="macro">assert_eq!</span>(range.start_bound(), std::ops::Bound::Included(<span class="kw-2">&amp;</span><span class="number">5</span>));
+        <span class="macro">assert_eq!</span>(range.end_bound(), std::ops::Bound::Included(<span class="kw-2">&amp;</span><span class="number">9</span>));
+        <span class="macro">assert!</span>(!range.is_fixed());
+        <span class="macro">assert!</span>(range.is_multiple());
+        <span class="macro">assert_eq!</span>(range.num_values(), <span class="prelude-val">None</span>);
+        <span class="macro">assert!</span>(range.takes_values());
     }
 
-    <span class="attribute">#[<span class="ident">test</span>]</span>
-    <span class="kw">fn</span> <span class="ident">from_range_inclusive</span>() {
-        <span class="kw">let</span> <span class="ident">range</span>: <span class="ident">ValueRange</span> <span class="op">=</span> (<span class="number">5</span>..<span class="op">=</span><span class="number">10</span>).<span class="ident">into</span>();
-        <span class="macro">assert_eq!</span>(<span class="ident">range</span>.<span class="ident">start_bound</span>(), <span class="ident">std::ops::Bound::Included</span>(<span class="kw-2">&amp;</span><span class="number">5</span>));
-        <span class="macro">assert_eq!</span>(<span class="ident">range</span>.<span class="ident">end_bound</span>(), <span class="ident">std::ops::Bound::Included</span>(<span class="kw-2">&amp;</span><span class="number">10</span>));
-        <span class="macro">assert!</span>(<span class="op">!</span><span class="ident">range</span>.<span class="ident">is_fixed</span>());
-        <span class="macro">assert!</span>(<span class="ident">range</span>.<span class="ident">is_multiple</span>());
-        <span class="macro">assert_eq!</span>(<span class="ident">range</span>.<span class="ident">num_values</span>(), <span class="prelude-val">None</span>);
-        <span class="macro">assert!</span>(<span class="ident">range</span>.<span class="ident">takes_values</span>());
+    <span class="attribute">#[test]
+    </span><span class="kw">fn </span>from_range_inclusive() {
+        <span class="kw">let </span>range: ValueRange = (<span class="number">5</span>..=<span class="number">10</span>).into();
+        <span class="macro">assert_eq!</span>(range.start_bound(), std::ops::Bound::Included(<span class="kw-2">&amp;</span><span class="number">5</span>));
+        <span class="macro">assert_eq!</span>(range.end_bound(), std::ops::Bound::Included(<span class="kw-2">&amp;</span><span class="number">10</span>));
+        <span class="macro">assert!</span>(!range.is_fixed());
+        <span class="macro">assert!</span>(range.is_multiple());
+        <span class="macro">assert_eq!</span>(range.num_values(), <span class="prelude-val">None</span>);
+        <span class="macro">assert!</span>(range.takes_values());
     }
 
-    <span class="attribute">#[<span class="ident">test</span>]</span>
-    <span class="kw">fn</span> <span class="ident">from_range_full</span>() {
-        <span class="kw">let</span> <span class="ident">range</span>: <span class="ident">ValueRange</span> <span class="op">=</span> (..).<span class="ident">into</span>();
-        <span class="macro">assert_eq!</span>(<span class="ident">range</span>.<span class="ident">start_bound</span>(), <span class="ident">std::ops::Bound::Included</span>(<span class="kw-2">&amp;</span><span class="number">0</span>));
-        <span class="macro">assert_eq!</span>(<span class="ident">range</span>.<span class="ident">end_bound</span>(), <span class="ident">std::ops::Bound::Included</span>(<span class="kw-2">&amp;</span><span class="ident">usize::MAX</span>));
-        <span class="macro">assert!</span>(<span class="op">!</span><span class="ident">range</span>.<span class="ident">is_fixed</span>());
-        <span class="macro">assert!</span>(<span class="ident">range</span>.<span class="ident">is_multiple</span>());
-        <span class="macro">assert_eq!</span>(<span class="ident">range</span>.<span class="ident">num_values</span>(), <span class="prelude-val">None</span>);
-        <span class="macro">assert!</span>(<span class="ident">range</span>.<span class="ident">takes_values</span>());
+    <span class="attribute">#[test]
+    </span><span class="kw">fn </span>from_range_full() {
+        <span class="kw">let </span>range: ValueRange = (..).into();
+        <span class="macro">assert_eq!</span>(range.start_bound(), std::ops::Bound::Included(<span class="kw-2">&amp;</span><span class="number">0</span>));
+        <span class="macro">assert_eq!</span>(range.end_bound(), std::ops::Bound::Included(<span class="kw-2">&amp;</span>usize::MAX));
+        <span class="macro">assert!</span>(!range.is_fixed());
+        <span class="macro">assert!</span>(range.is_multiple());
+        <span class="macro">assert_eq!</span>(range.num_values(), <span class="prelude-val">None</span>);
+        <span class="macro">assert!</span>(range.takes_values());
     }
 
-    <span class="attribute">#[<span class="ident">test</span>]</span>
-    <span class="kw">fn</span> <span class="ident">from_range_from</span>() {
-        <span class="kw">let</span> <span class="ident">range</span>: <span class="ident">ValueRange</span> <span class="op">=</span> (<span class="number">5</span>..).<span class="ident">into</span>();
-        <span class="macro">assert_eq!</span>(<span class="ident">range</span>.<span class="ident">start_bound</span>(), <span class="ident">std::ops::Bound::Included</span>(<span class="kw-2">&amp;</span><span class="number">5</span>));
-        <span class="macro">assert_eq!</span>(<span class="ident">range</span>.<span class="ident">end_bound</span>(), <span class="ident">std::ops::Bound::Included</span>(<span class="kw-2">&amp;</span><span class="ident">usize::MAX</span>));
-        <span class="macro">assert!</span>(<span class="op">!</span><span class="ident">range</span>.<span class="ident">is_fixed</span>());
-        <span class="macro">assert!</span>(<span class="ident">range</span>.<span class="ident">is_multiple</span>());
-        <span class="macro">assert_eq!</span>(<span class="ident">range</span>.<span class="ident">num_values</span>(), <span class="prelude-val">None</span>);
-        <span class="macro">assert!</span>(<span class="ident">range</span>.<span class="ident">takes_values</span>());
+    <span class="attribute">#[test]
+    </span><span class="kw">fn </span>from_range_from() {
+        <span class="kw">let </span>range: ValueRange = (<span class="number">5</span>..).into();
+        <span class="macro">assert_eq!</span>(range.start_bound(), std::ops::Bound::Included(<span class="kw-2">&amp;</span><span class="number">5</span>));
+        <span class="macro">assert_eq!</span>(range.end_bound(), std::ops::Bound::Included(<span class="kw-2">&amp;</span>usize::MAX));
+        <span class="macro">assert!</span>(!range.is_fixed());
+        <span class="macro">assert!</span>(range.is_multiple());
+        <span class="macro">assert_eq!</span>(range.num_values(), <span class="prelude-val">None</span>);
+        <span class="macro">assert!</span>(range.takes_values());
     }
 
-    <span class="attribute">#[<span class="ident">test</span>]</span>
-    <span class="kw">fn</span> <span class="ident">from_range_to</span>() {
-        <span class="kw">let</span> <span class="ident">range</span>: <span class="ident">ValueRange</span> <span class="op">=</span> (..<span class="number">10</span>).<span class="ident">into</span>();
-        <span class="macro">assert_eq!</span>(<span class="ident">range</span>.<span class="ident">start_bound</span>(), <span class="ident">std::ops::Bound::Included</span>(<span class="kw-2">&amp;</span><span class="number">0</span>));
-        <span class="macro">assert_eq!</span>(<span class="ident">range</span>.<span class="ident">end_bound</span>(), <span class="ident">std::ops::Bound::Included</span>(<span class="kw-2">&amp;</span><span class="number">9</span>));
-        <span class="macro">assert!</span>(<span class="op">!</span><span class="ident">range</span>.<span class="ident">is_fixed</span>());
-        <span class="macro">assert!</span>(<span class="ident">range</span>.<span class="ident">is_multiple</span>());
-        <span class="macro">assert_eq!</span>(<span class="ident">range</span>.<span class="ident">num_values</span>(), <span class="prelude-val">None</span>);
-        <span class="macro">assert!</span>(<span class="ident">range</span>.<span class="ident">takes_values</span>());
+    <span class="attribute">#[test]
+    </span><span class="kw">fn </span>from_range_to() {
+        <span class="kw">let </span>range: ValueRange = (..<span class="number">10</span>).into();
+        <span class="macro">assert_eq!</span>(range.start_bound(), std::ops::Bound::Included(<span class="kw-2">&amp;</span><span class="number">0</span>));
+        <span class="macro">assert_eq!</span>(range.end_bound(), std::ops::Bound::Included(<span class="kw-2">&amp;</span><span class="number">9</span>));
+        <span class="macro">assert!</span>(!range.is_fixed());
+        <span class="macro">assert!</span>(range.is_multiple());
+        <span class="macro">assert_eq!</span>(range.num_values(), <span class="prelude-val">None</span>);
+        <span class="macro">assert!</span>(range.takes_values());
     }
 
-    <span class="attribute">#[<span class="ident">test</span>]</span>
-    <span class="kw">fn</span> <span class="ident">from_range_to_inclusive</span>() {
-        <span class="kw">let</span> <span class="ident">range</span>: <span class="ident">ValueRange</span> <span class="op">=</span> (..<span class="op">=</span><span class="number">10</span>).<span class="ident">into</span>();
-        <span class="macro">assert_eq!</span>(<span class="ident">range</span>.<span class="ident">start_bound</span>(), <span class="ident">std::ops::Bound::Included</span>(<span class="kw-2">&amp;</span><span class="number">0</span>));
-        <span class="macro">assert_eq!</span>(<span class="ident">range</span>.<span class="ident">end_bound</span>(), <span class="ident">std::ops::Bound::Included</span>(<span class="kw-2">&amp;</span><span class="number">10</span>));
-        <span class="macro">assert!</span>(<span class="op">!</span><span class="ident">range</span>.<span class="ident">is_fixed</span>());
-        <span class="macro">assert!</span>(<span class="ident">range</span>.<span class="ident">is_multiple</span>());
-        <span class="macro">assert_eq!</span>(<span class="ident">range</span>.<span class="ident">num_values</span>(), <span class="prelude-val">None</span>);
-        <span class="macro">assert!</span>(<span class="ident">range</span>.<span class="ident">takes_values</span>());
+    <span class="attribute">#[test]
+    </span><span class="kw">fn </span>from_range_to_inclusive() {
+        <span class="kw">let </span>range: ValueRange = (..=<span class="number">10</span>).into();
+        <span class="macro">assert_eq!</span>(range.start_bound(), std::ops::Bound::Included(<span class="kw-2">&amp;</span><span class="number">0</span>));
+        <span class="macro">assert_eq!</span>(range.end_bound(), std::ops::Bound::Included(<span class="kw-2">&amp;</span><span class="number">10</span>));
+        <span class="macro">assert!</span>(!range.is_fixed());
+        <span class="macro">assert!</span>(range.is_multiple());
+        <span class="macro">assert_eq!</span>(range.num_values(), <span class="prelude-val">None</span>);
+        <span class="macro">assert!</span>(range.takes_values());
     }
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="clap" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0 (a55dd71d5 2022-09-19)" ></div></body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="clap" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.66.1 (90743e729 2023-01-10)" ></div></body></html>

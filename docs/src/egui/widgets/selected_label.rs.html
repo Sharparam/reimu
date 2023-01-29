@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/egui-0.16.1/src/widgets/selected_label.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>selected_label.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../storage.js"></script><script defer src="../../../source-script.js"></script><script defer src="../../../source-files.js"></script><script defer src="../../../main.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../../egui/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../../egui/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../../egui/index.html"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/egui-0.16.1/src/widgets/selected_label.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>selected_label.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../../normalize.css"><link rel="stylesheet" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../../ayu.css" disabled><link rel="stylesheet" href="../../../dark.css" disabled><link rel="stylesheet" href="../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../storage.js"></script><script defer src="../../../source-script.js"></script><script defer src="../../../source-files.js"></script><script defer src="../../../main.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><div class="width-limiter"><nav class="sub"><a class="sub-logo-container" href="../../../egui/index.html"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../wheel.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -81,88 +81,88 @@
 <span id="81">81</span>
 <span id="82">82</span>
 <span id="83">83</span>
-</pre><pre class="rust"><code><span class="kw">use</span> <span class="kw">crate</span>::<span class="kw-2">*</span>;
+</pre><pre class="rust"><code><span class="kw">use crate</span>::<span class="kw-2">*</span>;
 
-<span class="doccomment">/// One out of several alternatives, either selected or not.</span>
-<span class="doccomment">/// Will mark selected items with a different background color.</span>
-<span class="doccomment">/// An alternative to [`RadioButton`] and [`Checkbox`].</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// Usually you&#39;d use [`Ui::selectable_value`] or [`Ui::selectable_label`] instead.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// ```</span>
-<span class="doccomment">/// # egui::__run_test_ui(|ui| {</span>
-<span class="doccomment">/// #[derive(PartialEq)]</span>
-<span class="doccomment">/// enum Enum { First, Second, Third }</span>
-<span class="doccomment">/// let mut my_enum = Enum::First;</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// ui.selectable_value(&amp;mut my_enum, Enum::First, &quot;First&quot;);</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// // is equivalent to:</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// if ui.add(egui::SelectableLabel::new(my_enum == Enum::First, &quot;First&quot;)).clicked() {</span>
-<span class="doccomment">///     my_enum = Enum::First</span>
-<span class="doccomment">/// }</span>
-<span class="doccomment">/// # });</span>
-<span class="doccomment">/// ```</span>
-<span class="attribute">#[<span class="ident">must_use</span> <span class="op">=</span> <span class="string">&quot;You should put this widget in an ui with `ui.add(widget);`&quot;</span>]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">SelectableLabel</span> {
-    <span class="ident">selected</span>: <span class="ident">bool</span>,
-    <span class="ident">text</span>: <span class="ident">WidgetText</span>,
+<span class="doccomment">/// One out of several alternatives, either selected or not.
+/// Will mark selected items with a different background color.
+/// An alternative to [`RadioButton`] and [`Checkbox`].
+///
+/// Usually you&#39;d use [`Ui::selectable_value`] or [`Ui::selectable_label`] instead.
+///
+/// ```
+/// # egui::__run_test_ui(|ui| {
+/// #[derive(PartialEq)]
+/// enum Enum { First, Second, Third }
+/// let mut my_enum = Enum::First;
+///
+/// ui.selectable_value(&amp;mut my_enum, Enum::First, &quot;First&quot;);
+///
+/// // is equivalent to:
+///
+/// if ui.add(egui::SelectableLabel::new(my_enum == Enum::First, &quot;First&quot;)).clicked() {
+///     my_enum = Enum::First
+/// }
+/// # });
+/// ```
+</span><span class="attribute">#[must_use = <span class="string">&quot;You should put this widget in an ui with `ui.add(widget);`&quot;</span>]
+</span><span class="kw">pub struct </span>SelectableLabel {
+    selected: bool,
+    text: WidgetText,
 }
 
-<span class="kw">impl</span> <span class="ident">SelectableLabel</span> {
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">selected</span>: <span class="ident">bool</span>, <span class="ident">text</span>: <span class="kw">impl</span> <span class="ident">Into</span><span class="op">&lt;</span><span class="ident">WidgetText</span><span class="op">&gt;</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">Self</span> {
-            <span class="ident">selected</span>,
-            <span class="ident">text</span>: <span class="ident">text</span>.<span class="ident">into</span>(),
+<span class="kw">impl </span>SelectableLabel {
+    <span class="kw">pub fn </span>new(selected: bool, text: <span class="kw">impl </span>Into&lt;WidgetText&gt;) -&gt; <span class="self">Self </span>{
+        <span class="self">Self </span>{
+            selected,
+            text: text.into(),
         }
     }
 
-    <span class="attribute">#[<span class="ident">deprecated</span> <span class="op">=</span> <span class="string">&quot;Replaced by: Button::new(RichText::new(text).text_style(…))&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">text_style</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">text_style</span>: <span class="ident">TextStyle</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">self</span>.<span class="ident">text</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">text</span>.<span class="ident">text_style</span>(<span class="ident">text_style</span>);
-        <span class="self">self</span>
-    }
+    <span class="attribute">#[deprecated = <span class="string">&quot;Replaced by: Button::new(RichText::new(text).text_style(…))&quot;</span>]
+    </span><span class="kw">pub fn </span>text_style(<span class="kw-2">mut </span><span class="self">self</span>, text_style: TextStyle) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.text = <span class="self">self</span>.text.text_style(text_style);
+        <span class="self">self
+    </span>}
 }
 
-<span class="kw">impl</span> <span class="ident">Widget</span> <span class="kw">for</span> <span class="ident">SelectableLabel</span> {
-    <span class="kw">fn</span> <span class="ident">ui</span>(<span class="self">self</span>, <span class="ident">ui</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Ui</span>) -&gt; <span class="ident">Response</span> {
-        <span class="kw">let</span> <span class="self">Self</span> { <span class="ident">selected</span>, <span class="ident">text</span> } <span class="op">=</span> <span class="self">self</span>;
+<span class="kw">impl </span>Widget <span class="kw">for </span>SelectableLabel {
+    <span class="kw">fn </span>ui(<span class="self">self</span>, ui: <span class="kw-2">&amp;mut </span>Ui) -&gt; Response {
+        <span class="kw">let </span><span class="self">Self </span>{ selected, text } = <span class="self">self</span>;
 
-        <span class="kw">let</span> <span class="ident">button_padding</span> <span class="op">=</span> <span class="ident">ui</span>.<span class="ident">spacing</span>().<span class="ident">button_padding</span>;
-        <span class="kw">let</span> <span class="ident">total_extra</span> <span class="op">=</span> <span class="ident">button_padding</span> <span class="op">+</span> <span class="ident">button_padding</span>;
+        <span class="kw">let </span>button_padding = ui.spacing().button_padding;
+        <span class="kw">let </span>total_extra = button_padding + button_padding;
 
-        <span class="kw">let</span> <span class="ident">wrap_width</span> <span class="op">=</span> <span class="ident">ui</span>.<span class="ident">available_width</span>() <span class="op">-</span> <span class="ident">total_extra</span>.<span class="ident">x</span>;
-        <span class="kw">let</span> <span class="ident">text</span> <span class="op">=</span> <span class="ident">text</span>.<span class="ident">into_galley</span>(<span class="ident">ui</span>, <span class="prelude-val">None</span>, <span class="ident">wrap_width</span>, <span class="ident">TextStyle::Button</span>);
+        <span class="kw">let </span>wrap_width = ui.available_width() - total_extra.x;
+        <span class="kw">let </span>text = text.into_galley(ui, <span class="prelude-val">None</span>, wrap_width, TextStyle::Button);
 
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">desired_size</span> <span class="op">=</span> <span class="ident">total_extra</span> <span class="op">+</span> <span class="ident">text</span>.<span class="ident">size</span>();
-        <span class="ident">desired_size</span>.<span class="ident">y</span> <span class="op">=</span> <span class="ident">desired_size</span>.<span class="ident">y</span>.<span class="ident">at_least</span>(<span class="ident">ui</span>.<span class="ident">spacing</span>().<span class="ident">interact_size</span>.<span class="ident">y</span>);
-        <span class="kw">let</span> (<span class="ident">rect</span>, <span class="ident">response</span>) <span class="op">=</span> <span class="ident">ui</span>.<span class="ident">allocate_at_least</span>(<span class="ident">desired_size</span>, <span class="ident">Sense::click</span>());
-        <span class="ident">response</span>.<span class="ident">widget_info</span>(<span class="op">|</span><span class="op">|</span> {
-            <span class="ident">WidgetInfo::selected</span>(<span class="ident">WidgetType::SelectableLabel</span>, <span class="ident">selected</span>, <span class="ident">text</span>.<span class="ident">text</span>())
+        <span class="kw">let </span><span class="kw-2">mut </span>desired_size = total_extra + text.size();
+        desired_size.y = desired_size.y.at_least(ui.spacing().interact_size.y);
+        <span class="kw">let </span>(rect, response) = ui.allocate_at_least(desired_size, Sense::click());
+        response.widget_info(|| {
+            WidgetInfo::selected(WidgetType::SelectableLabel, selected, text.text())
         });
 
-        <span class="kw">if</span> <span class="ident">ui</span>.<span class="ident">is_rect_visible</span>(<span class="ident">response</span>.<span class="ident">rect</span>) {
-            <span class="kw">let</span> <span class="ident">text_pos</span> <span class="op">=</span> <span class="ident">ui</span>
-                .<span class="ident">layout</span>()
-                .<span class="ident">align_size_within_rect</span>(<span class="ident">text</span>.<span class="ident">size</span>(), <span class="ident">rect</span>.<span class="ident">shrink2</span>(<span class="ident">button_padding</span>))
-                .<span class="ident">min</span>;
+        <span class="kw">if </span>ui.is_rect_visible(response.rect) {
+            <span class="kw">let </span>text_pos = ui
+                .layout()
+                .align_size_within_rect(text.size(), rect.shrink2(button_padding))
+                .min;
 
-            <span class="kw">let</span> <span class="ident">visuals</span> <span class="op">=</span> <span class="ident">ui</span>.<span class="ident">style</span>().<span class="ident">interact_selectable</span>(<span class="kw-2">&amp;</span><span class="ident">response</span>, <span class="ident">selected</span>);
+            <span class="kw">let </span>visuals = ui.style().interact_selectable(<span class="kw-2">&amp;</span>response, selected);
 
-            <span class="kw">if</span> <span class="ident">selected</span> <span class="op">|</span><span class="op">|</span> <span class="ident">response</span>.<span class="ident">hovered</span>() <span class="op">|</span><span class="op">|</span> <span class="ident">response</span>.<span class="ident">has_focus</span>() {
-                <span class="kw">let</span> <span class="ident">rect</span> <span class="op">=</span> <span class="ident">rect</span>.<span class="ident">expand</span>(<span class="ident">visuals</span>.<span class="ident">expansion</span>);
+            <span class="kw">if </span>selected || response.hovered() || response.has_focus() {
+                <span class="kw">let </span>rect = rect.expand(visuals.expansion);
 
-                <span class="kw">let</span> <span class="ident">corner_radius</span> <span class="op">=</span> <span class="number">2.0</span>;
-                <span class="ident">ui</span>.<span class="ident">painter</span>()
-                    .<span class="ident">rect</span>(<span class="ident">rect</span>, <span class="ident">corner_radius</span>, <span class="ident">visuals</span>.<span class="ident">bg_fill</span>, <span class="ident">visuals</span>.<span class="ident">bg_stroke</span>);
+                <span class="kw">let </span>corner_radius = <span class="number">2.0</span>;
+                ui.painter()
+                    .rect(rect, corner_radius, visuals.bg_fill, visuals.bg_stroke);
             }
 
-            <span class="ident">text</span>.<span class="ident">paint_with_visuals</span>(<span class="ident">ui</span>.<span class="ident">painter</span>(), <span class="ident">text_pos</span>, <span class="kw-2">&amp;</span><span class="ident">visuals</span>);
+            text.paint_with_visuals(ui.painter(), text_pos, <span class="kw-2">&amp;</span>visuals);
         }
 
-        <span class="ident">response</span>
+        response
     }
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="egui" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0 (a55dd71d5 2022-09-19)" ></div></body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="egui" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.66.1 (90743e729 2023-01-10)" ></div></body></html>

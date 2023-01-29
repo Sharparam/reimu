@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/sdl2-0.35.2/src/sdl2/audio.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>audio.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../sdl2/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../sdl2/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../sdl2/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/sdl2-0.35.2/src/sdl2/audio.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>audio.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../normalize.css"><link rel="stylesheet" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../ayu.css" disabled><link rel="stylesheet" href="../../dark.css" disabled><link rel="stylesheet" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><div class="width-limiter"><nav class="sub"><a class="sub-logo-container" href="../../sdl2/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -1120,1127 +1120,1127 @@
 <span id="1120">1120</span>
 <span id="1121">1121</span>
 <span id="1122">1122</span>
-</pre><pre class="rust"><code><span class="doccomment">//! Audio Functions</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! # Example</span>
-<span class="doccomment">//! ```no_run</span>
-<span class="doccomment">//! use sdl2::audio::{AudioCallback, AudioSpecDesired};</span>
-<span class="doccomment">//! use std::time::Duration;</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! struct SquareWave {</span>
-<span class="doccomment">//!     phase_inc: f32,</span>
-<span class="doccomment">//!     phase: f32,</span>
-<span class="doccomment">//!     volume: f32</span>
-<span class="doccomment">//! }</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! impl AudioCallback for SquareWave {</span>
-<span class="doccomment">//!     type Channel = f32;</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//!     fn callback(&amp;mut self, out: &amp;mut [f32]) {</span>
-<span class="doccomment">//!         // Generate a square wave</span>
-<span class="doccomment">//!         for x in out.iter_mut() {</span>
-<span class="doccomment">//!             *x = if self.phase &lt;= 0.5 {</span>
-<span class="doccomment">//!                 self.volume</span>
-<span class="doccomment">//!             } else {</span>
-<span class="doccomment">//!                 -self.volume</span>
-<span class="doccomment">//!             };</span>
-<span class="doccomment">//!             self.phase = (self.phase + self.phase_inc) % 1.0;</span>
-<span class="doccomment">//!         }</span>
-<span class="doccomment">//!     }</span>
-<span class="doccomment">//! }</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! let sdl_context = sdl2::init().unwrap();</span>
-<span class="doccomment">//! let audio_subsystem = sdl_context.audio().unwrap();</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! let desired_spec = AudioSpecDesired {</span>
-<span class="doccomment">//!     freq: Some(44100),</span>
-<span class="doccomment">//!     channels: Some(1),  // mono</span>
-<span class="doccomment">//!     samples: None       // default sample size</span>
-<span class="doccomment">//! };</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! let device = audio_subsystem.open_playback(None, &amp;desired_spec, |spec| {</span>
-<span class="doccomment">//!     // initialize the audio callback</span>
-<span class="doccomment">//!     SquareWave {</span>
-<span class="doccomment">//!         phase_inc: 440.0 / spec.freq as f32,</span>
-<span class="doccomment">//!         phase: 0.0,</span>
-<span class="doccomment">//!         volume: 0.25</span>
-<span class="doccomment">//!     }</span>
-<span class="doccomment">//! }).unwrap();</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! // Start playback</span>
-<span class="doccomment">//! device.resume();</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! // Play for 2 seconds</span>
-<span class="doccomment">//! std::thread::sleep(Duration::from_millis(2000));</span>
-<span class="doccomment">//! ```</span>
+</pre><pre class="rust"><code><span class="doccomment">//! Audio Functions
+//!
+//! # Example
+//! ```no_run
+//! use sdl2::audio::{AudioCallback, AudioSpecDesired};
+//! use std::time::Duration;
+//!
+//! struct SquareWave {
+//!     phase_inc: f32,
+//!     phase: f32,
+//!     volume: f32
+//! }
+//!
+//! impl AudioCallback for SquareWave {
+//!     type Channel = f32;
+//!
+//!     fn callback(&amp;mut self, out: &amp;mut [f32]) {
+//!         // Generate a square wave
+//!         for x in out.iter_mut() {
+//!             *x = if self.phase &lt;= 0.5 {
+//!                 self.volume
+//!             } else {
+//!                 -self.volume
+//!             };
+//!             self.phase = (self.phase + self.phase_inc) % 1.0;
+//!         }
+//!     }
+//! }
+//!
+//! let sdl_context = sdl2::init().unwrap();
+//! let audio_subsystem = sdl_context.audio().unwrap();
+//!
+//! let desired_spec = AudioSpecDesired {
+//!     freq: Some(44100),
+//!     channels: Some(1),  // mono
+//!     samples: None       // default sample size
+//! };
+//!
+//! let device = audio_subsystem.open_playback(None, &amp;desired_spec, |spec| {
+//!     // initialize the audio callback
+//!     SquareWave {
+//!         phase_inc: 440.0 / spec.freq as f32,
+//!         phase: 0.0,
+//!         volume: 0.25
+//!     }
+//! }).unwrap();
+//!
+//! // Start playback
+//! device.resume();
+//!
+//! // Play for 2 seconds
+//! std::thread::sleep(Duration::from_millis(2000));
+//! ```
 
-<span class="kw">use</span> <span class="ident">libc</span>::{<span class="ident">c_char</span>, <span class="ident">c_int</span>, <span class="ident">c_void</span>};
-<span class="kw">use</span> <span class="ident">std::convert::TryFrom</span>;
-<span class="kw">use</span> <span class="ident">std::ffi</span>::{<span class="ident">CStr</span>, <span class="ident">CString</span>};
-<span class="kw">use</span> <span class="ident">std::marker::PhantomData</span>;
-<span class="kw">use</span> <span class="ident">std::mem</span>;
-<span class="kw">use</span> <span class="ident">std::ops</span>::{<span class="ident">Deref</span>, <span class="ident">DerefMut</span>};
-<span class="kw">use</span> <span class="ident">std::path::Path</span>;
-<span class="kw">use</span> <span class="ident">std::ptr</span>;
+</span><span class="kw">use </span>libc::{c_char, c_int, c_void};
+<span class="kw">use </span>std::convert::TryFrom;
+<span class="kw">use </span>std::ffi::{CStr, CString};
+<span class="kw">use </span>std::marker::PhantomData;
+<span class="kw">use </span>std::mem;
+<span class="kw">use </span>std::ops::{Deref, DerefMut};
+<span class="kw">use </span>std::path::Path;
+<span class="kw">use </span>std::ptr;
 
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::get_error</span>;
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::rwops::RWops</span>;
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::AudioSubsystem</span>;
+<span class="kw">use </span><span class="kw">crate</span>::get_error;
+<span class="kw">use </span><span class="kw">crate</span>::rwops::RWops;
+<span class="kw">use </span><span class="kw">crate</span>::AudioSubsystem;
 
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::sys</span>;
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::sys::SDL_AudioStatus</span>;
+<span class="kw">use </span><span class="kw">crate</span>::sys;
+<span class="kw">use </span><span class="kw">crate</span>::sys::SDL_AudioStatus;
 
-<span class="kw">impl</span> <span class="ident">AudioSubsystem</span> {
-    <span class="doccomment">/// Opens a new audio device given the desired parameters and callback.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// If you want to modify the callback-owned data at a later point (for example to update</span>
-    <span class="doccomment">/// its data buffer) you&#39;re likely to be interested in the</span>
-    <span class="doccomment">/// [AudioDevice.lock method](audio/struct.AudioDevice.html#method.lock).</span>
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">open_playback</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">CB</span>, <span class="ident">F</span>, <span class="ident">D</span><span class="op">&gt;</span>(
+<span class="kw">impl </span>AudioSubsystem {
+    <span class="doccomment">/// Opens a new audio device given the desired parameters and callback.
+    ///
+    /// If you want to modify the callback-owned data at a later point (for example to update
+    /// its data buffer) you&#39;re likely to be interested in the
+    /// [AudioDevice.lock method](audio/struct.AudioDevice.html#method.lock).
+    </span><span class="attribute">#[inline]
+    </span><span class="kw">pub fn </span>open_playback&lt;<span class="lifetime">&#39;a</span>, CB, F, D&gt;(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
-        <span class="ident">device</span>: <span class="ident">D</span>,
-        <span class="ident">spec</span>: <span class="kw-2">&amp;</span><span class="ident">AudioSpecDesired</span>,
-        <span class="ident">get_callback</span>: <span class="ident">F</span>,
-    ) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">AudioDevice</span><span class="op">&lt;</span><span class="ident">CB</span><span class="op">&gt;</span>, <span class="ident">String</span><span class="op">&gt;</span>
-    <span class="kw">where</span>
-        <span class="ident">CB</span>: <span class="ident">AudioCallback</span>,
-        <span class="ident">F</span>: <span class="ident">FnOnce</span>(<span class="ident">AudioSpec</span>) -&gt; <span class="ident">CB</span>,
-        <span class="ident">D</span>: <span class="ident">Into</span><span class="op">&lt;</span><span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">str</span><span class="op">&gt;</span><span class="op">&gt;</span>,
+        device: D,
+        spec: <span class="kw-2">&amp;</span>AudioSpecDesired,
+        get_callback: F,
+    ) -&gt; <span class="prelude-ty">Result</span>&lt;AudioDevice&lt;CB&gt;, String&gt;
+    <span class="kw">where
+        </span>CB: AudioCallback,
+        F: FnOnce(AudioSpec) -&gt; CB,
+        D: Into&lt;<span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>str&gt;&gt;,
     {
-        <span class="ident">AudioDevice::open_playback</span>(<span class="self">self</span>, <span class="ident">device</span>, <span class="ident">spec</span>, <span class="ident">get_callback</span>)
+        AudioDevice::open_playback(<span class="self">self</span>, device, spec, get_callback)
     }
 
-    <span class="doccomment">/// Opens a new audio device for capture (given the desired parameters and callback).</span>
-    <span class="doccomment">/// Supported since SDL 2.0.5</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// If you want to modify the callback-owned data at a later point (for example to update</span>
-    <span class="doccomment">/// its data buffer) you&#39;re likely to be interested in the</span>
-    <span class="doccomment">/// [AudioDevice.lock method](audio/struct.AudioDevice.html#method.lock).</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">open_capture</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">CB</span>, <span class="ident">F</span>, <span class="ident">D</span><span class="op">&gt;</span>(
+    <span class="doccomment">/// Opens a new audio device for capture (given the desired parameters and callback).
+    /// Supported since SDL 2.0.5
+    ///
+    /// If you want to modify the callback-owned data at a later point (for example to update
+    /// its data buffer) you&#39;re likely to be interested in the
+    /// [AudioDevice.lock method](audio/struct.AudioDevice.html#method.lock).
+    </span><span class="kw">pub fn </span>open_capture&lt;<span class="lifetime">&#39;a</span>, CB, F, D&gt;(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
-        <span class="ident">device</span>: <span class="ident">D</span>,
-        <span class="ident">spec</span>: <span class="kw-2">&amp;</span><span class="ident">AudioSpecDesired</span>,
-        <span class="ident">get_callback</span>: <span class="ident">F</span>,
-    ) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">AudioDevice</span><span class="op">&lt;</span><span class="ident">CB</span><span class="op">&gt;</span>, <span class="ident">String</span><span class="op">&gt;</span>
-    <span class="kw">where</span>
-        <span class="ident">CB</span>: <span class="ident">AudioCallback</span>,
-        <span class="ident">F</span>: <span class="ident">FnOnce</span>(<span class="ident">AudioSpec</span>) -&gt; <span class="ident">CB</span>,
-        <span class="ident">D</span>: <span class="ident">Into</span><span class="op">&lt;</span><span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">str</span><span class="op">&gt;</span><span class="op">&gt;</span>,
+        device: D,
+        spec: <span class="kw-2">&amp;</span>AudioSpecDesired,
+        get_callback: F,
+    ) -&gt; <span class="prelude-ty">Result</span>&lt;AudioDevice&lt;CB&gt;, String&gt;
+    <span class="kw">where
+        </span>CB: AudioCallback,
+        F: FnOnce(AudioSpec) -&gt; CB,
+        D: Into&lt;<span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>str&gt;&gt;,
     {
-        <span class="ident">AudioDevice::open_capture</span>(<span class="self">self</span>, <span class="ident">device</span>, <span class="ident">spec</span>, <span class="ident">get_callback</span>)
+        AudioDevice::open_capture(<span class="self">self</span>, device, spec, get_callback)
     }
 
-    <span class="doccomment">/// Opens a new audio device which uses queueing rather than older callback method.</span>
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">open_queue</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">Channel</span>, <span class="ident">D</span><span class="op">&gt;</span>(
+    <span class="doccomment">/// Opens a new audio device which uses queueing rather than older callback method.
+    </span><span class="attribute">#[inline]
+    </span><span class="kw">pub fn </span>open_queue&lt;<span class="lifetime">&#39;a</span>, Channel, D&gt;(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
-        <span class="ident">device</span>: <span class="ident">D</span>,
-        <span class="ident">spec</span>: <span class="kw-2">&amp;</span><span class="ident">AudioSpecDesired</span>,
-    ) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">AudioQueue</span><span class="op">&lt;</span><span class="ident">Channel</span><span class="op">&gt;</span>, <span class="ident">String</span><span class="op">&gt;</span>
-    <span class="kw">where</span>
-        <span class="ident">Channel</span>: <span class="ident">AudioFormatNum</span>,
-        <span class="ident">D</span>: <span class="ident">Into</span><span class="op">&lt;</span><span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">str</span><span class="op">&gt;</span><span class="op">&gt;</span>,
+        device: D,
+        spec: <span class="kw-2">&amp;</span>AudioSpecDesired,
+    ) -&gt; <span class="prelude-ty">Result</span>&lt;AudioQueue&lt;Channel&gt;, String&gt;
+    <span class="kw">where
+        </span>Channel: AudioFormatNum,
+        D: Into&lt;<span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>str&gt;&gt;,
     {
-        <span class="ident">AudioQueue::open_queue</span>(<span class="self">self</span>, <span class="ident">device</span>, <span class="ident">spec</span>)
+        AudioQueue::open_queue(<span class="self">self</span>, device, spec)
     }
 
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;SDL_GetCurrentAudioDriver&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">current_audio_driver</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> {
-        <span class="kw">unsafe</span> {
-            <span class="kw">let</span> <span class="ident">buf</span> <span class="op">=</span> <span class="ident">sys::SDL_GetCurrentAudioDriver</span>();
-            <span class="macro">assert!</span>(<span class="op">!</span><span class="ident">buf</span>.<span class="ident">is_null</span>());
+    <span class="attribute">#[doc(alias = <span class="string">&quot;SDL_GetCurrentAudioDriver&quot;</span>)]
+    </span><span class="kw">pub fn </span>current_audio_driver(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str {
+        <span class="kw">unsafe </span>{
+            <span class="kw">let </span>buf = sys::SDL_GetCurrentAudioDriver();
+            <span class="macro">assert!</span>(!buf.is_null());
 
-            <span class="ident">CStr::from_ptr</span>(<span class="ident">buf</span> <span class="kw">as</span> <span class="kw-2">*const</span> <span class="kw">_</span>).<span class="ident">to_str</span>().<span class="ident">unwrap</span>()
+            CStr::from_ptr(buf <span class="kw">as </span><span class="kw-2">*const </span><span class="kw">_</span>).to_str().unwrap()
         }
     }
 
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;SDL_GetNumAudioDevices&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">num_audio_playback_devices</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">u32</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="ident">result</span> <span class="op">=</span> <span class="kw">unsafe</span> { <span class="ident">sys::SDL_GetNumAudioDevices</span>(<span class="number">0</span>) };
-        <span class="kw">if</span> <span class="ident">result</span> <span class="op">&lt;</span> <span class="number">0</span> {
-            <span class="comment">// SDL cannot retrieve a list of audio devices. This is not necessarily an error (see the SDL2 docs).</span>
-            <span class="prelude-val">None</span>
-        } <span class="kw">else</span> {
-            <span class="prelude-val">Some</span>(<span class="ident">result</span> <span class="kw">as</span> <span class="ident">u32</span>)
+    <span class="attribute">#[doc(alias = <span class="string">&quot;SDL_GetNumAudioDevices&quot;</span>)]
+    </span><span class="kw">pub fn </span>num_audio_playback_devices(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;u32&gt; {
+        <span class="kw">let </span>result = <span class="kw">unsafe </span>{ sys::SDL_GetNumAudioDevices(<span class="number">0</span>) };
+        <span class="kw">if </span>result &lt; <span class="number">0 </span>{
+            <span class="comment">// SDL cannot retrieve a list of audio devices. This is not necessarily an error (see the SDL2 docs).
+            </span><span class="prelude-val">None
+        </span>} <span class="kw">else </span>{
+            <span class="prelude-val">Some</span>(result <span class="kw">as </span>u32)
         }
     }
 
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;SDL_GetNumAudioDevices&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">num_audio_capture_devices</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">u32</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="ident">result</span> <span class="op">=</span> <span class="kw">unsafe</span> { <span class="ident">sys::SDL_GetNumAudioDevices</span>(<span class="number">1</span>) };
-        <span class="kw">if</span> <span class="ident">result</span> <span class="op">&lt;</span> <span class="number">0</span> {
-            <span class="comment">// SDL cannot retrieve a list of audio devices. This is not necessarily an error (see the SDL2 docs).</span>
-            <span class="prelude-val">None</span>
-        } <span class="kw">else</span> {
-            <span class="prelude-val">Some</span>(<span class="ident">result</span> <span class="kw">as</span> <span class="ident">u32</span>)
+    <span class="attribute">#[doc(alias = <span class="string">&quot;SDL_GetNumAudioDevices&quot;</span>)]
+    </span><span class="kw">pub fn </span>num_audio_capture_devices(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;u32&gt; {
+        <span class="kw">let </span>result = <span class="kw">unsafe </span>{ sys::SDL_GetNumAudioDevices(<span class="number">1</span>) };
+        <span class="kw">if </span>result &lt; <span class="number">0 </span>{
+            <span class="comment">// SDL cannot retrieve a list of audio devices. This is not necessarily an error (see the SDL2 docs).
+            </span><span class="prelude-val">None
+        </span>} <span class="kw">else </span>{
+            <span class="prelude-val">Some</span>(result <span class="kw">as </span>u32)
         }
     }
 
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;SDL_GetAudioDeviceName&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">audio_playback_device_name</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">index</span>: <span class="ident">u32</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">String</span>, <span class="ident">String</span><span class="op">&gt;</span> {
-        <span class="kw">unsafe</span> {
-            <span class="kw">let</span> <span class="ident">dev_name</span> <span class="op">=</span> <span class="ident">sys::SDL_GetAudioDeviceName</span>(<span class="ident">index</span> <span class="kw">as</span> <span class="ident">c_int</span>, <span class="number">0</span>);
-            <span class="kw">if</span> <span class="ident">dev_name</span>.<span class="ident">is_null</span>() {
-                <span class="prelude-val">Err</span>(<span class="ident">get_error</span>())
-            } <span class="kw">else</span> {
-                <span class="kw">let</span> <span class="ident">cstr</span> <span class="op">=</span> <span class="ident">CStr::from_ptr</span>(<span class="ident">dev_name</span> <span class="kw">as</span> <span class="kw-2">*const</span> <span class="kw">_</span>);
-                <span class="prelude-val">Ok</span>(<span class="ident">cstr</span>.<span class="ident">to_str</span>().<span class="ident">unwrap</span>().<span class="ident">to_owned</span>())
+    <span class="attribute">#[doc(alias = <span class="string">&quot;SDL_GetAudioDeviceName&quot;</span>)]
+    </span><span class="kw">pub fn </span>audio_playback_device_name(<span class="kw-2">&amp;</span><span class="self">self</span>, index: u32) -&gt; <span class="prelude-ty">Result</span>&lt;String, String&gt; {
+        <span class="kw">unsafe </span>{
+            <span class="kw">let </span>dev_name = sys::SDL_GetAudioDeviceName(index <span class="kw">as </span>c_int, <span class="number">0</span>);
+            <span class="kw">if </span>dev_name.is_null() {
+                <span class="prelude-val">Err</span>(get_error())
+            } <span class="kw">else </span>{
+                <span class="kw">let </span>cstr = CStr::from_ptr(dev_name <span class="kw">as </span><span class="kw-2">*const </span><span class="kw">_</span>);
+                <span class="prelude-val">Ok</span>(cstr.to_str().unwrap().to_owned())
             }
         }
     }
 
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;SDL_GetAudioDeviceName&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">audio_capture_device_name</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">index</span>: <span class="ident">u32</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">String</span>, <span class="ident">String</span><span class="op">&gt;</span> {
-        <span class="kw">unsafe</span> {
-            <span class="kw">let</span> <span class="ident">dev_name</span> <span class="op">=</span> <span class="ident">sys::SDL_GetAudioDeviceName</span>(<span class="ident">index</span> <span class="kw">as</span> <span class="ident">c_int</span>, <span class="number">1</span>);
-            <span class="kw">if</span> <span class="ident">dev_name</span>.<span class="ident">is_null</span>() {
-                <span class="prelude-val">Err</span>(<span class="ident">get_error</span>())
-            } <span class="kw">else</span> {
-                <span class="kw">let</span> <span class="ident">cstr</span> <span class="op">=</span> <span class="ident">CStr::from_ptr</span>(<span class="ident">dev_name</span> <span class="kw">as</span> <span class="kw-2">*const</span> <span class="kw">_</span>);
-                <span class="prelude-val">Ok</span>(<span class="ident">cstr</span>.<span class="ident">to_str</span>().<span class="ident">unwrap</span>().<span class="ident">to_owned</span>())
+    <span class="attribute">#[doc(alias = <span class="string">&quot;SDL_GetAudioDeviceName&quot;</span>)]
+    </span><span class="kw">pub fn </span>audio_capture_device_name(<span class="kw-2">&amp;</span><span class="self">self</span>, index: u32) -&gt; <span class="prelude-ty">Result</span>&lt;String, String&gt; {
+        <span class="kw">unsafe </span>{
+            <span class="kw">let </span>dev_name = sys::SDL_GetAudioDeviceName(index <span class="kw">as </span>c_int, <span class="number">1</span>);
+            <span class="kw">if </span>dev_name.is_null() {
+                <span class="prelude-val">Err</span>(get_error())
+            } <span class="kw">else </span>{
+                <span class="kw">let </span>cstr = CStr::from_ptr(dev_name <span class="kw">as </span><span class="kw-2">*const </span><span class="kw">_</span>);
+                <span class="prelude-val">Ok</span>(cstr.to_str().unwrap().to_owned())
             }
         }
     }
 }
 
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">i32</span>)]</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Eq</span>, <span class="ident">PartialEq</span>, <span class="ident">Debug</span>, <span class="ident">Hash</span>)]</span>
-<span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">AudioFormat</span> {
-    <span class="doccomment">/// Unsigned 8-bit samples</span>
-    <span class="ident">U8</span> <span class="op">=</span> <span class="ident">sys::AUDIO_U8</span> <span class="kw">as</span> <span class="ident">i32</span>,
-    <span class="doccomment">/// Signed 8-bit samples</span>
-    <span class="ident">S8</span> <span class="op">=</span> <span class="ident">sys::AUDIO_S8</span> <span class="kw">as</span> <span class="ident">i32</span>,
-    <span class="doccomment">/// Unsigned 16-bit samples, little-endian</span>
-    <span class="ident">U16LSB</span> <span class="op">=</span> <span class="ident">sys::AUDIO_U16LSB</span> <span class="kw">as</span> <span class="ident">i32</span>,
-    <span class="doccomment">/// Unsigned 16-bit samples, big-endian</span>
-    <span class="ident">U16MSB</span> <span class="op">=</span> <span class="ident">sys::AUDIO_U16MSB</span> <span class="kw">as</span> <span class="ident">i32</span>,
-    <span class="doccomment">/// Signed 16-bit samples, little-endian</span>
-    <span class="ident">S16LSB</span> <span class="op">=</span> <span class="ident">sys::AUDIO_S16LSB</span> <span class="kw">as</span> <span class="ident">i32</span>,
-    <span class="doccomment">/// Signed 16-bit samples, big-endian</span>
-    <span class="ident">S16MSB</span> <span class="op">=</span> <span class="ident">sys::AUDIO_S16MSB</span> <span class="kw">as</span> <span class="ident">i32</span>,
-    <span class="doccomment">/// Signed 32-bit samples, little-endian</span>
-    <span class="ident">S32LSB</span> <span class="op">=</span> <span class="ident">sys::AUDIO_S32LSB</span> <span class="kw">as</span> <span class="ident">i32</span>,
-    <span class="doccomment">/// Signed 32-bit samples, big-endian</span>
-    <span class="ident">S32MSB</span> <span class="op">=</span> <span class="ident">sys::AUDIO_S32MSB</span> <span class="kw">as</span> <span class="ident">i32</span>,
-    <span class="doccomment">/// 32-bit floating point samples, little-endian</span>
-    <span class="ident">F32LSB</span> <span class="op">=</span> <span class="ident">sys::AUDIO_F32LSB</span> <span class="kw">as</span> <span class="ident">i32</span>,
-    <span class="doccomment">/// 32-bit floating point samples, big-endian</span>
-    <span class="ident">F32MSB</span> <span class="op">=</span> <span class="ident">sys::AUDIO_F32MSB</span> <span class="kw">as</span> <span class="ident">i32</span>,
+<span class="attribute">#[repr(i32)]
+#[derive(Copy, Clone, Eq, PartialEq, Debug, Hash)]
+</span><span class="kw">pub enum </span>AudioFormat {
+    <span class="doccomment">/// Unsigned 8-bit samples
+    </span>U8 = sys::AUDIO_U8 <span class="kw">as </span>i32,
+    <span class="doccomment">/// Signed 8-bit samples
+    </span>S8 = sys::AUDIO_S8 <span class="kw">as </span>i32,
+    <span class="doccomment">/// Unsigned 16-bit samples, little-endian
+    </span>U16LSB = sys::AUDIO_U16LSB <span class="kw">as </span>i32,
+    <span class="doccomment">/// Unsigned 16-bit samples, big-endian
+    </span>U16MSB = sys::AUDIO_U16MSB <span class="kw">as </span>i32,
+    <span class="doccomment">/// Signed 16-bit samples, little-endian
+    </span>S16LSB = sys::AUDIO_S16LSB <span class="kw">as </span>i32,
+    <span class="doccomment">/// Signed 16-bit samples, big-endian
+    </span>S16MSB = sys::AUDIO_S16MSB <span class="kw">as </span>i32,
+    <span class="doccomment">/// Signed 32-bit samples, little-endian
+    </span>S32LSB = sys::AUDIO_S32LSB <span class="kw">as </span>i32,
+    <span class="doccomment">/// Signed 32-bit samples, big-endian
+    </span>S32MSB = sys::AUDIO_S32MSB <span class="kw">as </span>i32,
+    <span class="doccomment">/// 32-bit floating point samples, little-endian
+    </span>F32LSB = sys::AUDIO_F32LSB <span class="kw">as </span>i32,
+    <span class="doccomment">/// 32-bit floating point samples, big-endian
+    </span>F32MSB = sys::AUDIO_F32MSB <span class="kw">as </span>i32,
 }
 
-<span class="kw">impl</span> <span class="ident">AudioFormat</span> {
-    <span class="kw">fn</span> <span class="ident">from_ll</span>(<span class="ident">raw</span>: <span class="ident">sys::SDL_AudioFormat</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">AudioFormat</span><span class="op">&gt;</span> {
-        <span class="kw">use</span> <span class="ident"><span class="self">self</span>::AudioFormat</span>::<span class="kw-2">*</span>;
-        <span class="kw">match</span> <span class="ident">raw</span> <span class="kw">as</span> <span class="ident">u32</span> {
-            <span class="ident">sys::AUDIO_U8</span> =&gt; <span class="prelude-val">Some</span>(<span class="ident">U8</span>),
-            <span class="ident">sys::AUDIO_S8</span> =&gt; <span class="prelude-val">Some</span>(<span class="ident">S8</span>),
-            <span class="ident">sys::AUDIO_U16LSB</span> =&gt; <span class="prelude-val">Some</span>(<span class="ident">U16LSB</span>),
-            <span class="ident">sys::AUDIO_U16MSB</span> =&gt; <span class="prelude-val">Some</span>(<span class="ident">U16MSB</span>),
-            <span class="ident">sys::AUDIO_S16LSB</span> =&gt; <span class="prelude-val">Some</span>(<span class="ident">S16LSB</span>),
-            <span class="ident">sys::AUDIO_S16MSB</span> =&gt; <span class="prelude-val">Some</span>(<span class="ident">S16MSB</span>),
-            <span class="ident">sys::AUDIO_S32LSB</span> =&gt; <span class="prelude-val">Some</span>(<span class="ident">S32LSB</span>),
-            <span class="ident">sys::AUDIO_S32MSB</span> =&gt; <span class="prelude-val">Some</span>(<span class="ident">S32MSB</span>),
-            <span class="ident">sys::AUDIO_F32LSB</span> =&gt; <span class="prelude-val">Some</span>(<span class="ident">F32LSB</span>),
-            <span class="ident">sys::AUDIO_F32MSB</span> =&gt; <span class="prelude-val">Some</span>(<span class="ident">F32MSB</span>),
-            <span class="kw">_</span> =&gt; <span class="prelude-val">None</span>,
+<span class="kw">impl </span>AudioFormat {
+    <span class="kw">fn </span>from_ll(raw: sys::SDL_AudioFormat) -&gt; <span class="prelude-ty">Option</span>&lt;AudioFormat&gt; {
+        <span class="kw">use </span><span class="self">self</span>::AudioFormat::<span class="kw-2">*</span>;
+        <span class="kw">match </span>raw <span class="kw">as </span>u32 {
+            sys::AUDIO_U8 =&gt; <span class="prelude-val">Some</span>(U8),
+            sys::AUDIO_S8 =&gt; <span class="prelude-val">Some</span>(S8),
+            sys::AUDIO_U16LSB =&gt; <span class="prelude-val">Some</span>(U16LSB),
+            sys::AUDIO_U16MSB =&gt; <span class="prelude-val">Some</span>(U16MSB),
+            sys::AUDIO_S16LSB =&gt; <span class="prelude-val">Some</span>(S16LSB),
+            sys::AUDIO_S16MSB =&gt; <span class="prelude-val">Some</span>(S16MSB),
+            sys::AUDIO_S32LSB =&gt; <span class="prelude-val">Some</span>(S32LSB),
+            sys::AUDIO_S32MSB =&gt; <span class="prelude-val">Some</span>(S32MSB),
+            sys::AUDIO_F32LSB =&gt; <span class="prelude-val">Some</span>(F32LSB),
+            sys::AUDIO_F32MSB =&gt; <span class="prelude-val">Some</span>(F32MSB),
+            <span class="kw">_ </span>=&gt; <span class="prelude-val">None</span>,
         }
     }
 
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;SDL_AudioFormat&quot;</span>)]</span>
-    <span class="kw">fn</span> <span class="ident">to_ll</span>(<span class="self">self</span>) -&gt; <span class="ident">sys::SDL_AudioFormat</span> {
-        <span class="self">self</span> <span class="kw">as</span> <span class="ident">sys::SDL_AudioFormat</span>
+    <span class="attribute">#[doc(alias = <span class="string">&quot;SDL_AudioFormat&quot;</span>)]
+    </span><span class="kw">fn </span>to_ll(<span class="self">self</span>) -&gt; sys::SDL_AudioFormat {
+        <span class="self">self </span><span class="kw">as </span>sys::SDL_AudioFormat
     }
 }
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">target_endian</span> <span class="op">=</span> <span class="string">&quot;little&quot;</span>)]</span>
-<span class="kw">impl</span> <span class="ident">AudioFormat</span> {
-    <span class="doccomment">/// Unsigned 16-bit samples, native endian</span>
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">u16_sys</span>() -&gt; <span class="ident">AudioFormat</span> {
-        <span class="ident">AudioFormat::U16LSB</span>
+<span class="attribute">#[cfg(target_endian = <span class="string">&quot;little&quot;</span>)]
+</span><span class="kw">impl </span>AudioFormat {
+    <span class="doccomment">/// Unsigned 16-bit samples, native endian
+    </span><span class="attribute">#[inline]
+    </span><span class="kw">pub const fn </span>u16_sys() -&gt; AudioFormat {
+        AudioFormat::U16LSB
     }
-    <span class="doccomment">/// Signed 16-bit samples, native endian</span>
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">s16_sys</span>() -&gt; <span class="ident">AudioFormat</span> {
-        <span class="ident">AudioFormat::S16LSB</span>
+    <span class="doccomment">/// Signed 16-bit samples, native endian
+    </span><span class="attribute">#[inline]
+    </span><span class="kw">pub const fn </span>s16_sys() -&gt; AudioFormat {
+        AudioFormat::S16LSB
     }
-    <span class="doccomment">/// Signed 32-bit samples, native endian</span>
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">s32_sys</span>() -&gt; <span class="ident">AudioFormat</span> {
-        <span class="ident">AudioFormat::S32LSB</span>
+    <span class="doccomment">/// Signed 32-bit samples, native endian
+    </span><span class="attribute">#[inline]
+    </span><span class="kw">pub const fn </span>s32_sys() -&gt; AudioFormat {
+        AudioFormat::S32LSB
     }
-    <span class="doccomment">/// 32-bit floating point samples, native endian</span>
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">f32_sys</span>() -&gt; <span class="ident">AudioFormat</span> {
-        <span class="ident">AudioFormat::F32LSB</span>
-    }
-}
-
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">target_endian</span> <span class="op">=</span> <span class="string">&quot;big&quot;</span>)]</span>
-<span class="kw">impl</span> <span class="ident">AudioFormat</span> {
-    <span class="doccomment">/// Unsigned 16-bit samples, native endian</span>
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">u16_sys</span>() -&gt; <span class="ident">AudioFormat</span> {
-        <span class="ident">AudioFormat::U16MSB</span>
-    }
-    <span class="doccomment">/// Signed 16-bit samples, native endian</span>
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">s16_sys</span>() -&gt; <span class="ident">AudioFormat</span> {
-        <span class="ident">AudioFormat::S16MSB</span>
-    }
-    <span class="doccomment">/// Signed 32-bit samples, native endian</span>
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">s32_sys</span>() -&gt; <span class="ident">AudioFormat</span> {
-        <span class="ident">AudioFormat::S32MSB</span>
-    }
-    <span class="doccomment">/// 32-bit floating point samples, native endian</span>
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">f32_sys</span>() -&gt; <span class="ident">AudioFormat</span> {
-        <span class="ident">AudioFormat::F32MSB</span>
+    <span class="doccomment">/// 32-bit floating point samples, native endian
+    </span><span class="attribute">#[inline]
+    </span><span class="kw">pub const fn </span>f32_sys() -&gt; AudioFormat {
+        AudioFormat::F32LSB
     }
 }
 
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">i32</span>)]</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Eq</span>, <span class="ident">PartialEq</span>, <span class="ident">Hash</span>, <span class="ident">Debug</span>)]</span>
-<span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">AudioStatus</span> {
-    <span class="ident">Stopped</span> <span class="op">=</span> <span class="ident">SDL_AudioStatus::SDL_AUDIO_STOPPED</span> <span class="kw">as</span> <span class="ident">i32</span>,
-    <span class="ident">Playing</span> <span class="op">=</span> <span class="ident">SDL_AudioStatus::SDL_AUDIO_PLAYING</span> <span class="kw">as</span> <span class="ident">i32</span>,
-    <span class="ident">Paused</span> <span class="op">=</span> <span class="ident">SDL_AudioStatus::SDL_AUDIO_PAUSED</span> <span class="kw">as</span> <span class="ident">i32</span>,
+<span class="attribute">#[cfg(target_endian = <span class="string">&quot;big&quot;</span>)]
+</span><span class="kw">impl </span>AudioFormat {
+    <span class="doccomment">/// Unsigned 16-bit samples, native endian
+    </span><span class="attribute">#[inline]
+    </span><span class="kw">pub const fn </span>u16_sys() -&gt; AudioFormat {
+        AudioFormat::U16MSB
+    }
+    <span class="doccomment">/// Signed 16-bit samples, native endian
+    </span><span class="attribute">#[inline]
+    </span><span class="kw">pub const fn </span>s16_sys() -&gt; AudioFormat {
+        AudioFormat::S16MSB
+    }
+    <span class="doccomment">/// Signed 32-bit samples, native endian
+    </span><span class="attribute">#[inline]
+    </span><span class="kw">pub const fn </span>s32_sys() -&gt; AudioFormat {
+        AudioFormat::S32MSB
+    }
+    <span class="doccomment">/// 32-bit floating point samples, native endian
+    </span><span class="attribute">#[inline]
+    </span><span class="kw">pub const fn </span>f32_sys() -&gt; AudioFormat {
+        AudioFormat::F32MSB
+    }
 }
 
-<span class="kw">impl</span> <span class="ident">TryFrom</span><span class="op">&lt;</span><span class="ident">u32</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">AudioStatus</span> {
-    <span class="kw">type</span> <span class="ident">Error</span> <span class="op">=</span> ();
+<span class="attribute">#[repr(i32)]
+#[derive(Copy, Clone, Eq, PartialEq, Hash, Debug)]
+</span><span class="kw">pub enum </span>AudioStatus {
+    Stopped = SDL_AudioStatus::SDL_AUDIO_STOPPED <span class="kw">as </span>i32,
+    Playing = SDL_AudioStatus::SDL_AUDIO_PLAYING <span class="kw">as </span>i32,
+    Paused = SDL_AudioStatus::SDL_AUDIO_PAUSED <span class="kw">as </span>i32,
+}
 
-    <span class="kw">fn</span> <span class="ident">try_from</span>(<span class="ident">n</span>: <span class="ident">u32</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="self">Self</span>, <span class="ident"><span class="self">Self</span>::Error</span><span class="op">&gt;</span> {
-        <span class="kw">use</span> <span class="ident"><span class="self">self</span>::AudioStatus</span>::<span class="kw-2">*</span>;
-        <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::sys::SDL_AudioStatus</span>::<span class="kw-2">*</span>;
+<span class="kw">impl </span>TryFrom&lt;u32&gt; <span class="kw">for </span>AudioStatus {
+    <span class="kw">type </span>Error = ();
 
-        <span class="prelude-val">Ok</span>(<span class="kw">match</span> <span class="kw">unsafe</span> { <span class="ident">mem::transmute</span>(<span class="ident">n</span>) } {
-            <span class="ident">SDL_AUDIO_STOPPED</span> =&gt; <span class="ident">Stopped</span>,
-            <span class="ident">SDL_AUDIO_PLAYING</span> =&gt; <span class="ident">Playing</span>,
-            <span class="ident">SDL_AUDIO_PAUSED</span> =&gt; <span class="ident">Paused</span>,
+    <span class="kw">fn </span>try_from(n: u32) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>, <span class="self">Self</span>::Error&gt; {
+        <span class="kw">use </span><span class="self">self</span>::AudioStatus::<span class="kw-2">*</span>;
+        <span class="kw">use </span><span class="kw">crate</span>::sys::SDL_AudioStatus::<span class="kw-2">*</span>;
+
+        <span class="prelude-val">Ok</span>(<span class="kw">match unsafe </span>{ mem::transmute(n) } {
+            SDL_AUDIO_STOPPED =&gt; Stopped,
+            SDL_AUDIO_PLAYING =&gt; Playing,
+            SDL_AUDIO_PAUSED =&gt; Paused,
         })
     }
 }
 
-<span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;SDL_GetAudioDriver&quot;</span>)]</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">DriverIterator</span> {
-    <span class="ident">length</span>: <span class="ident">i32</span>,
-    <span class="ident">index</span>: <span class="ident">i32</span>,
+<span class="attribute">#[doc(alias = <span class="string">&quot;SDL_GetAudioDriver&quot;</span>)]
+#[derive(Copy, Clone)]
+</span><span class="kw">pub struct </span>DriverIterator {
+    length: i32,
+    index: i32,
 }
 
-<span class="kw">impl</span> <span class="ident">Iterator</span> <span class="kw">for</span> <span class="ident">DriverIterator</span> {
-    <span class="kw">type</span> <span class="ident">Item</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span>;
+<span class="kw">impl </span>Iterator <span class="kw">for </span>DriverIterator {
+    <span class="kw">type </span>Item = <span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str;
 
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">next</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span><span class="op">&gt;</span> {
-        <span class="kw">if</span> <span class="self">self</span>.<span class="ident">index</span> <span class="op">&gt;</span><span class="op">=</span> <span class="self">self</span>.<span class="ident">length</span> {
-            <span class="prelude-val">None</span>
-        } <span class="kw">else</span> {
-            <span class="kw">unsafe</span> {
-                <span class="kw">let</span> <span class="ident">buf</span> <span class="op">=</span> <span class="ident">sys::SDL_GetAudioDriver</span>(<span class="self">self</span>.<span class="ident">index</span>);
-                <span class="macro">assert!</span>(<span class="op">!</span><span class="ident">buf</span>.<span class="ident">is_null</span>());
-                <span class="self">self</span>.<span class="ident">index</span> <span class="op">+</span><span class="op">=</span> <span class="number">1</span>;
+    <span class="attribute">#[inline]
+    </span><span class="kw">fn </span>next(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str&gt; {
+        <span class="kw">if </span><span class="self">self</span>.index &gt;= <span class="self">self</span>.length {
+            <span class="prelude-val">None
+        </span>} <span class="kw">else </span>{
+            <span class="kw">unsafe </span>{
+                <span class="kw">let </span>buf = sys::SDL_GetAudioDriver(<span class="self">self</span>.index);
+                <span class="macro">assert!</span>(!buf.is_null());
+                <span class="self">self</span>.index += <span class="number">1</span>;
 
-                <span class="prelude-val">Some</span>(<span class="ident">CStr::from_ptr</span>(<span class="ident">buf</span> <span class="kw">as</span> <span class="kw-2">*const</span> <span class="kw">_</span>).<span class="ident">to_str</span>().<span class="ident">unwrap</span>())
+                <span class="prelude-val">Some</span>(CStr::from_ptr(buf <span class="kw">as </span><span class="kw-2">*const </span><span class="kw">_</span>).to_str().unwrap())
             }
         }
     }
 
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">size_hint</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; (<span class="ident">usize</span>, <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">usize</span><span class="op">&gt;</span>) {
-        <span class="kw">let</span> <span class="ident">l</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">length</span> <span class="kw">as</span> <span class="ident">usize</span>;
-        (<span class="ident">l</span>, <span class="prelude-val">Some</span>(<span class="ident">l</span>))
+    <span class="attribute">#[inline]
+    </span><span class="kw">fn </span>size_hint(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; (usize, <span class="prelude-ty">Option</span>&lt;usize&gt;) {
+        <span class="kw">let </span>l = <span class="self">self</span>.length <span class="kw">as </span>usize;
+        (l, <span class="prelude-val">Some</span>(l))
     }
 }
 
-<span class="kw">impl</span> <span class="ident">ExactSizeIterator</span> <span class="kw">for</span> <span class="ident">DriverIterator</span> {}
+<span class="kw">impl </span>ExactSizeIterator <span class="kw">for </span>DriverIterator {}
 
-<span class="doccomment">/// Gets an iterator of all audio drivers compiled into the SDL2 library.</span>
-<span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;SDL_GetAudioDriver&quot;</span>)]</span>
-<span class="attribute">#[<span class="ident">inline</span>]</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">drivers</span>() -&gt; <span class="ident">DriverIterator</span> {
-    <span class="comment">// This function is thread-safe and doesn&#39;t require the audio subsystem to be initialized.</span>
-    <span class="comment">// The list of drivers are read-only and statically compiled into SDL2, varying by platform.</span>
+<span class="doccomment">/// Gets an iterator of all audio drivers compiled into the SDL2 library.
+</span><span class="attribute">#[doc(alias = <span class="string">&quot;SDL_GetAudioDriver&quot;</span>)]
+#[inline]
+</span><span class="kw">pub fn </span>drivers() -&gt; DriverIterator {
+    <span class="comment">// This function is thread-safe and doesn&#39;t require the audio subsystem to be initialized.
+    // The list of drivers are read-only and statically compiled into SDL2, varying by platform.
 
-    <span class="comment">// SDL_GetNumAudioDrivers can never return a negative value.</span>
-    <span class="ident">DriverIterator</span> {
-        <span class="ident">length</span>: <span class="kw">unsafe</span> { <span class="ident">sys::SDL_GetNumAudioDrivers</span>() },
-        <span class="ident">index</span>: <span class="number">0</span>,
+    // SDL_GetNumAudioDrivers can never return a negative value.
+    </span>DriverIterator {
+        length: <span class="kw">unsafe </span>{ sys::SDL_GetNumAudioDrivers() },
+        index: <span class="number">0</span>,
     }
 }
 
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">AudioSpecWAV</span> {
-    <span class="kw">pub</span> <span class="ident">freq</span>: <span class="ident">i32</span>,
-    <span class="kw">pub</span> <span class="ident">format</span>: <span class="ident">AudioFormat</span>,
-    <span class="kw">pub</span> <span class="ident">channels</span>: <span class="ident">u8</span>,
-    <span class="ident">audio_buf</span>: <span class="kw-2">*mut</span> <span class="ident">u8</span>,
-    <span class="ident">audio_len</span>: <span class="ident">u32</span>,
+<span class="kw">pub struct </span>AudioSpecWAV {
+    <span class="kw">pub </span>freq: i32,
+    <span class="kw">pub </span>format: AudioFormat,
+    <span class="kw">pub </span>channels: u8,
+    audio_buf: <span class="kw-2">*mut </span>u8,
+    audio_len: u32,
 }
 
-<span class="kw">impl</span> <span class="ident">AudioSpecWAV</span> {
-    <span class="doccomment">/// Loads a WAVE from the file path.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">load_wav</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">AsRef</span><span class="op">&lt;</span><span class="ident">Path</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="ident">path</span>: <span class="ident">P</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">AudioSpecWAV</span>, <span class="ident">String</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">file</span> <span class="op">=</span> <span class="ident">RWops::from_file</span>(<span class="ident">path</span>, <span class="string">&quot;rb&quot;</span>)<span class="question-mark">?</span>;
-        <span class="ident">AudioSpecWAV::load_wav_rw</span>(<span class="kw-2">&amp;mut</span> <span class="ident">file</span>)
+<span class="kw">impl </span>AudioSpecWAV {
+    <span class="doccomment">/// Loads a WAVE from the file path.
+    </span><span class="kw">pub fn </span>load_wav&lt;P: AsRef&lt;Path&gt;&gt;(path: P) -&gt; <span class="prelude-ty">Result</span>&lt;AudioSpecWAV, String&gt; {
+        <span class="kw">let </span><span class="kw-2">mut </span>file = RWops::from_file(path, <span class="string">&quot;rb&quot;</span>)<span class="question-mark">?</span>;
+        AudioSpecWAV::load_wav_rw(<span class="kw-2">&amp;mut </span>file)
     }
 
-    <span class="doccomment">/// Loads a WAVE from the data source.</span>
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;SDL_LoadWAV_RW&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">load_wav_rw</span>(<span class="ident">src</span>: <span class="kw-2">&amp;mut</span> <span class="ident">RWops</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">AudioSpecWAV</span>, <span class="ident">String</span><span class="op">&gt;</span> {
-        <span class="kw">use</span> <span class="ident">std::mem::MaybeUninit</span>;
-        <span class="kw">use</span> <span class="ident">std::ptr::null_mut</span>;
+    <span class="doccomment">/// Loads a WAVE from the data source.
+    </span><span class="attribute">#[doc(alias = <span class="string">&quot;SDL_LoadWAV_RW&quot;</span>)]
+    </span><span class="kw">pub fn </span>load_wav_rw(src: <span class="kw-2">&amp;mut </span>RWops) -&gt; <span class="prelude-ty">Result</span>&lt;AudioSpecWAV, String&gt; {
+        <span class="kw">use </span>std::mem::MaybeUninit;
+        <span class="kw">use </span>std::ptr::null_mut;
 
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">desired</span> <span class="op">=</span> <span class="ident">MaybeUninit::uninit</span>();
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">audio_buf</span>: <span class="kw-2">*mut</span> <span class="ident">u8</span> <span class="op">=</span> <span class="ident">null_mut</span>();
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">audio_len</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="number">0</span>;
-        <span class="kw">unsafe</span> {
-            <span class="kw">let</span> <span class="ident">ret</span> <span class="op">=</span> <span class="ident">sys::SDL_LoadWAV_RW</span>(
-                <span class="ident">src</span>.<span class="ident">raw</span>(),
+        <span class="kw">let </span><span class="kw-2">mut </span>desired = MaybeUninit::uninit();
+        <span class="kw">let </span><span class="kw-2">mut </span>audio_buf: <span class="kw-2">*mut </span>u8 = null_mut();
+        <span class="kw">let </span><span class="kw-2">mut </span>audio_len: u32 = <span class="number">0</span>;
+        <span class="kw">unsafe </span>{
+            <span class="kw">let </span>ret = sys::SDL_LoadWAV_RW(
+                src.raw(),
                 <span class="number">0</span>,
-                <span class="ident">desired</span>.<span class="ident">as_mut_ptr</span>(),
-                <span class="kw-2">&amp;mut</span> <span class="ident">audio_buf</span>,
-                <span class="kw-2">&amp;mut</span> <span class="ident">audio_len</span>,
+                desired.as_mut_ptr(),
+                <span class="kw-2">&amp;mut </span>audio_buf,
+                <span class="kw-2">&amp;mut </span>audio_len,
             );
-            <span class="kw">if</span> <span class="ident">ret</span>.<span class="ident">is_null</span>() {
-                <span class="prelude-val">Err</span>(<span class="ident">get_error</span>())
-            } <span class="kw">else</span> {
-                <span class="kw">let</span> <span class="ident">desired</span> <span class="op">=</span> <span class="ident">desired</span>.<span class="ident">assume_init</span>();
-                <span class="prelude-val">Ok</span>(<span class="ident">AudioSpecWAV</span> {
-                    <span class="ident">freq</span>: <span class="ident">desired</span>.<span class="ident">freq</span>,
-                    <span class="ident">format</span>: <span class="ident">AudioFormat::from_ll</span>(<span class="ident">desired</span>.<span class="ident">format</span>).<span class="ident">unwrap</span>(),
-                    <span class="ident">channels</span>: <span class="ident">desired</span>.<span class="ident">channels</span>,
-                    <span class="ident">audio_buf</span>,
-                    <span class="ident">audio_len</span>,
+            <span class="kw">if </span>ret.is_null() {
+                <span class="prelude-val">Err</span>(get_error())
+            } <span class="kw">else </span>{
+                <span class="kw">let </span>desired = desired.assume_init();
+                <span class="prelude-val">Ok</span>(AudioSpecWAV {
+                    freq: desired.freq,
+                    format: AudioFormat::from_ll(desired.format).unwrap(),
+                    channels: desired.channels,
+                    audio_buf,
+                    audio_len,
                 })
             }
         }
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">buffer</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span>[<span class="ident">u8</span>] {
-        <span class="kw">use</span> <span class="ident">std::slice::from_raw_parts</span>;
-        <span class="kw">unsafe</span> {
-            <span class="kw">let</span> <span class="ident">ptr</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">audio_buf</span> <span class="kw">as</span> <span class="kw-2">*const</span> <span class="ident">u8</span>;
-            <span class="kw">let</span> <span class="ident">len</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">audio_len</span> <span class="kw">as</span> <span class="ident">usize</span>;
-            <span class="ident">from_raw_parts</span>(<span class="ident">ptr</span>, <span class="ident">len</span>)
+    <span class="kw">pub fn </span>buffer(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span>[u8] {
+        <span class="kw">use </span>std::slice::from_raw_parts;
+        <span class="kw">unsafe </span>{
+            <span class="kw">let </span>ptr = <span class="self">self</span>.audio_buf <span class="kw">as </span><span class="kw-2">*const </span>u8;
+            <span class="kw">let </span>len = <span class="self">self</span>.audio_len <span class="kw">as </span>usize;
+            from_raw_parts(ptr, len)
         }
     }
 }
 
-<span class="kw">impl</span> <span class="ident">Drop</span> <span class="kw">for</span> <span class="ident">AudioSpecWAV</span> {
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;SDL_FreeWAV&quot;</span>)]</span>
-    <span class="kw">fn</span> <span class="ident">drop</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>) {
-        <span class="kw">unsafe</span> {
-            <span class="ident">sys::SDL_FreeWAV</span>(<span class="self">self</span>.<span class="ident">audio_buf</span>);
+<span class="kw">impl </span>Drop <span class="kw">for </span>AudioSpecWAV {
+    <span class="attribute">#[doc(alias = <span class="string">&quot;SDL_FreeWAV&quot;</span>)]
+    </span><span class="kw">fn </span>drop(<span class="kw-2">&amp;mut </span><span class="self">self</span>) {
+        <span class="kw">unsafe </span>{
+            sys::SDL_FreeWAV(<span class="self">self</span>.audio_buf);
         }
     }
 }
 
-<span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">AudioCallback</span>: <span class="ident">Send</span>
-<span class="kw">where</span>
-    <span class="ident"><span class="self">Self</span>::Channel</span>: <span class="ident">AudioFormatNum</span> <span class="op">+</span> <span class="lifetime">&#39;static</span>,
+<span class="kw">pub trait </span>AudioCallback: Send
+<span class="kw">where
+    </span><span class="self">Self</span>::Channel: AudioFormatNum + <span class="lifetime">&#39;static</span>,
 {
-    <span class="kw">type</span> <span class="ident">Channel</span>;
+    <span class="kw">type </span>Channel;
 
-    <span class="kw">fn</span> <span class="ident">callback</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="kw">_</span>: <span class="kw-2">&amp;mut</span> [<span class="ident"><span class="self">Self</span>::Channel</span>]);
-}
-
-<span class="doccomment">/// A phantom type for retrieving the `SDL_AudioFormat` of a given generic type.</span>
-<span class="doccomment">/// All format types are returned as native-endian.</span>
-<span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">AudioFormatNum</span> {
-    <span class="kw">fn</span> <span class="ident">audio_format</span>() -&gt; <span class="ident">AudioFormat</span>;
-
-    <span class="doccomment">/// The appropriately typed silence value for the audio format used.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// # Examples</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// ```</span>
-    <span class="doccomment">/// // The AudioFormatNum trait has to be imported for the Channel::SILENCE part to work.</span>
-    <span class="doccomment">/// use sdl2::audio::{AudioCallback, AudioFormatNum};</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// struct Silence;</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// impl AudioCallback for Silence {</span>
-    <span class="doccomment">///     type Channel = u16;</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">///     fn callback(&amp;mut self, out: &amp;mut [u16]) {</span>
-    <span class="doccomment">///         for dst in out.iter_mut() {</span>
-    <span class="doccomment">///             *dst = Self::Channel::SILENCE;</span>
-    <span class="doccomment">///         }</span>
-    <span class="doccomment">///     }</span>
-    <span class="doccomment">/// }</span>
-    <span class="doccomment">/// ```</span>
-    <span class="kw">const</span> <span class="ident">SILENCE</span>: <span class="self">Self</span>;
+    <span class="kw">fn </span>callback(<span class="kw-2">&amp;mut </span><span class="self">self</span>, <span class="kw">_</span>: <span class="kw-2">&amp;mut </span>[<span class="self">Self</span>::Channel]);
 }
 
-<span class="doccomment">/// `AUDIO_S8`</span>
-<span class="kw">impl</span> <span class="ident">AudioFormatNum</span> <span class="kw">for</span> <span class="ident">i8</span> {
-    <span class="kw">fn</span> <span class="ident">audio_format</span>() -&gt; <span class="ident">AudioFormat</span> {
-        <span class="ident">AudioFormat::S8</span>
-    }
-    <span class="kw">const</span> <span class="ident">SILENCE</span>: <span class="ident">i8</span> <span class="op">=</span> <span class="number">0</span>;
-}
-<span class="doccomment">/// `AUDIO_U8`</span>
-<span class="kw">impl</span> <span class="ident">AudioFormatNum</span> <span class="kw">for</span> <span class="ident">u8</span> {
-    <span class="kw">fn</span> <span class="ident">audio_format</span>() -&gt; <span class="ident">AudioFormat</span> {
-        <span class="ident">AudioFormat::U8</span>
-    }
-    <span class="kw">const</span> <span class="ident">SILENCE</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">0x80</span>;
-}
-<span class="doccomment">/// `AUDIO_S16`</span>
-<span class="kw">impl</span> <span class="ident">AudioFormatNum</span> <span class="kw">for</span> <span class="ident">i16</span> {
-    <span class="kw">fn</span> <span class="ident">audio_format</span>() -&gt; <span class="ident">AudioFormat</span> {
-        <span class="ident">AudioFormat::s16_sys</span>()
-    }
-    <span class="kw">const</span> <span class="ident">SILENCE</span>: <span class="ident">i16</span> <span class="op">=</span> <span class="number">0</span>;
-}
-<span class="doccomment">/// `AUDIO_U16`</span>
-<span class="kw">impl</span> <span class="ident">AudioFormatNum</span> <span class="kw">for</span> <span class="ident">u16</span> {
-    <span class="kw">fn</span> <span class="ident">audio_format</span>() -&gt; <span class="ident">AudioFormat</span> {
-        <span class="ident">AudioFormat::u16_sys</span>()
-    }
-    <span class="kw">const</span> <span class="ident">SILENCE</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">0x8000</span>;
-}
-<span class="doccomment">/// `AUDIO_S32`</span>
-<span class="kw">impl</span> <span class="ident">AudioFormatNum</span> <span class="kw">for</span> <span class="ident">i32</span> {
-    <span class="kw">fn</span> <span class="ident">audio_format</span>() -&gt; <span class="ident">AudioFormat</span> {
-        <span class="ident">AudioFormat::s32_sys</span>()
-    }
-    <span class="kw">const</span> <span class="ident">SILENCE</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="number">0</span>;
-}
-<span class="doccomment">/// `AUDIO_F32`</span>
-<span class="kw">impl</span> <span class="ident">AudioFormatNum</span> <span class="kw">for</span> <span class="ident">f32</span> {
-    <span class="kw">fn</span> <span class="ident">audio_format</span>() -&gt; <span class="ident">AudioFormat</span> {
-        <span class="ident">AudioFormat::f32_sys</span>()
-    }
-    <span class="kw">const</span> <span class="ident">SILENCE</span>: <span class="ident">f32</span> <span class="op">=</span> <span class="number">0.0</span>;
+<span class="doccomment">/// A phantom type for retrieving the `SDL_AudioFormat` of a given generic type.
+/// All format types are returned as native-endian.
+</span><span class="kw">pub trait </span>AudioFormatNum {
+    <span class="kw">fn </span>audio_format() -&gt; AudioFormat;
+
+    <span class="doccomment">/// The appropriately typed silence value for the audio format used.
+    ///
+    /// # Examples
+    ///
+    /// ```
+    /// // The AudioFormatNum trait has to be imported for the Channel::SILENCE part to work.
+    /// use sdl2::audio::{AudioCallback, AudioFormatNum};
+    ///
+    /// struct Silence;
+    ///
+    /// impl AudioCallback for Silence {
+    ///     type Channel = u16;
+    ///
+    ///     fn callback(&amp;mut self, out: &amp;mut [u16]) {
+    ///         for dst in out.iter_mut() {
+    ///             *dst = Self::Channel::SILENCE;
+    ///         }
+    ///     }
+    /// }
+    /// ```
+    </span><span class="kw">const </span>SILENCE: <span class="self">Self</span>;
 }
 
-<span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">audio_callback_marshall</span><span class="op">&lt;</span><span class="ident">CB</span>: <span class="ident">AudioCallback</span><span class="op">&gt;</span>(
-    <span class="ident">userdata</span>: <span class="kw-2">*mut</span> <span class="ident">c_void</span>,
-    <span class="ident">stream</span>: <span class="kw-2">*mut</span> <span class="ident">u8</span>,
-    <span class="ident">len</span>: <span class="ident">c_int</span>,
+<span class="doccomment">/// `AUDIO_S8`
+</span><span class="kw">impl </span>AudioFormatNum <span class="kw">for </span>i8 {
+    <span class="kw">fn </span>audio_format() -&gt; AudioFormat {
+        AudioFormat::S8
+    }
+    <span class="kw">const </span>SILENCE: i8 = <span class="number">0</span>;
+}
+<span class="doccomment">/// `AUDIO_U8`
+</span><span class="kw">impl </span>AudioFormatNum <span class="kw">for </span>u8 {
+    <span class="kw">fn </span>audio_format() -&gt; AudioFormat {
+        AudioFormat::U8
+    }
+    <span class="kw">const </span>SILENCE: u8 = <span class="number">0x80</span>;
+}
+<span class="doccomment">/// `AUDIO_S16`
+</span><span class="kw">impl </span>AudioFormatNum <span class="kw">for </span>i16 {
+    <span class="kw">fn </span>audio_format() -&gt; AudioFormat {
+        AudioFormat::s16_sys()
+    }
+    <span class="kw">const </span>SILENCE: i16 = <span class="number">0</span>;
+}
+<span class="doccomment">/// `AUDIO_U16`
+</span><span class="kw">impl </span>AudioFormatNum <span class="kw">for </span>u16 {
+    <span class="kw">fn </span>audio_format() -&gt; AudioFormat {
+        AudioFormat::u16_sys()
+    }
+    <span class="kw">const </span>SILENCE: u16 = <span class="number">0x8000</span>;
+}
+<span class="doccomment">/// `AUDIO_S32`
+</span><span class="kw">impl </span>AudioFormatNum <span class="kw">for </span>i32 {
+    <span class="kw">fn </span>audio_format() -&gt; AudioFormat {
+        AudioFormat::s32_sys()
+    }
+    <span class="kw">const </span>SILENCE: i32 = <span class="number">0</span>;
+}
+<span class="doccomment">/// `AUDIO_F32`
+</span><span class="kw">impl </span>AudioFormatNum <span class="kw">for </span>f32 {
+    <span class="kw">fn </span>audio_format() -&gt; AudioFormat {
+        AudioFormat::f32_sys()
+    }
+    <span class="kw">const </span>SILENCE: f32 = <span class="number">0.0</span>;
+}
+
+<span class="kw">extern </span><span class="string">&quot;C&quot; </span><span class="kw">fn </span>audio_callback_marshall&lt;CB: AudioCallback&gt;(
+    userdata: <span class="kw-2">*mut </span>c_void,
+    stream: <span class="kw-2">*mut </span>u8,
+    len: c_int,
 ) {
-    <span class="kw">use</span> <span class="ident">std::mem::size_of</span>;
-    <span class="kw">use</span> <span class="ident">std::slice::from_raw_parts_mut</span>;
-    <span class="kw">unsafe</span> {
-        <span class="kw">let</span> <span class="ident">cb_userdata</span>: <span class="kw-2">&amp;mut</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">CB</span><span class="op">&gt;</span> <span class="op">=</span> <span class="kw-2">&amp;mut</span> <span class="kw-2">*</span>(<span class="ident">userdata</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="kw">_</span>);
-        <span class="kw">let</span> <span class="ident">buf</span>: <span class="kw-2">&amp;mut</span> [<span class="ident">CB::Channel</span>] <span class="op">=</span> <span class="ident">from_raw_parts_mut</span>(
-            <span class="ident">stream</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">CB::Channel</span>,
-            <span class="ident">len</span> <span class="kw">as</span> <span class="ident">usize</span> <span class="op">/</span> <span class="ident">size_of</span>::<span class="op">&lt;</span><span class="ident">CB::Channel</span><span class="op">&gt;</span>(),
+    <span class="kw">use </span>std::mem::size_of;
+    <span class="kw">use </span>std::slice::from_raw_parts_mut;
+    <span class="kw">unsafe </span>{
+        <span class="kw">let </span>cb_userdata: <span class="kw-2">&amp;mut </span><span class="prelude-ty">Option</span>&lt;CB&gt; = <span class="kw-2">&amp;mut *</span>(userdata <span class="kw">as </span><span class="kw-2">*mut </span><span class="kw">_</span>);
+        <span class="kw">let </span>buf: <span class="kw-2">&amp;mut </span>[CB::Channel] = from_raw_parts_mut(
+            stream <span class="kw">as </span><span class="kw-2">*mut </span>CB::Channel,
+            len <span class="kw">as </span>usize / size_of::&lt;CB::Channel&gt;(),
         );
 
-        <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">cb</span>) <span class="op">=</span> <span class="ident">cb_userdata</span> {
-            <span class="ident">cb</span>.<span class="ident">callback</span>(<span class="ident">buf</span>);
+        <span class="kw">if let </span><span class="prelude-val">Some</span>(cb) = cb_userdata {
+            cb.callback(buf);
         }
     }
 }
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">AudioSpecDesired</span> {
-    <span class="doccomment">/// DSP frequency (samples per second). Set to None for the device&#39;s fallback frequency.</span>
-    <span class="kw">pub</span> <span class="ident">freq</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">i32</span><span class="op">&gt;</span>,
-    <span class="doccomment">/// Number of separate audio channels. Set to None for the device&#39;s fallback number of channels.</span>
-    <span class="kw">pub</span> <span class="ident">channels</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span>,
-    <span class="doccomment">/// Audio buffer size in samples (power of 2). Set to None for the device&#39;s fallback sample size.</span>
-    <span class="kw">pub</span> <span class="ident">samples</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">u16</span><span class="op">&gt;</span>,
+<span class="attribute">#[derive(Clone)]
+</span><span class="kw">pub struct </span>AudioSpecDesired {
+    <span class="doccomment">/// DSP frequency (samples per second). Set to None for the device&#39;s fallback frequency.
+    </span><span class="kw">pub </span>freq: <span class="prelude-ty">Option</span>&lt;i32&gt;,
+    <span class="doccomment">/// Number of separate audio channels. Set to None for the device&#39;s fallback number of channels.
+    </span><span class="kw">pub </span>channels: <span class="prelude-ty">Option</span>&lt;u8&gt;,
+    <span class="doccomment">/// Audio buffer size in samples (power of 2). Set to None for the device&#39;s fallback sample size.
+    </span><span class="kw">pub </span>samples: <span class="prelude-ty">Option</span>&lt;u16&gt;,
 }
 
-<span class="kw">impl</span> <span class="ident">AudioSpecDesired</span> {
-    <span class="kw">fn</span> <span class="ident">convert_to_ll</span><span class="op">&lt;</span><span class="ident">CB</span>, <span class="ident">F</span>, <span class="ident">C</span>, <span class="ident">S</span><span class="op">&gt;</span>(
-        <span class="ident">freq</span>: <span class="ident">F</span>,
-        <span class="ident">channels</span>: <span class="ident">C</span>,
-        <span class="ident">samples</span>: <span class="ident">S</span>,
-        <span class="ident">userdata</span>: <span class="kw-2">*mut</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">CB</span><span class="op">&gt;</span>,
-    ) -&gt; <span class="ident">sys::SDL_AudioSpec</span>
-    <span class="kw">where</span>
-        <span class="ident">CB</span>: <span class="ident">AudioCallback</span>,
-        <span class="ident">F</span>: <span class="ident">Into</span><span class="op">&lt;</span><span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">i32</span><span class="op">&gt;</span><span class="op">&gt;</span>,
-        <span class="ident">C</span>: <span class="ident">Into</span><span class="op">&lt;</span><span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span><span class="op">&gt;</span>,
-        <span class="ident">S</span>: <span class="ident">Into</span><span class="op">&lt;</span><span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">u16</span><span class="op">&gt;</span><span class="op">&gt;</span>,
+<span class="kw">impl </span>AudioSpecDesired {
+    <span class="kw">fn </span>convert_to_ll&lt;CB, F, C, S&gt;(
+        freq: F,
+        channels: C,
+        samples: S,
+        userdata: <span class="kw-2">*mut </span><span class="prelude-ty">Option</span>&lt;CB&gt;,
+    ) -&gt; sys::SDL_AudioSpec
+    <span class="kw">where
+        </span>CB: AudioCallback,
+        F: Into&lt;<span class="prelude-ty">Option</span>&lt;i32&gt;&gt;,
+        C: Into&lt;<span class="prelude-ty">Option</span>&lt;u8&gt;&gt;,
+        S: Into&lt;<span class="prelude-ty">Option</span>&lt;u16&gt;&gt;,
     {
-        <span class="kw">let</span> <span class="ident">freq</span> <span class="op">=</span> <span class="ident">freq</span>.<span class="ident">into</span>();
-        <span class="kw">let</span> <span class="ident">channels</span> <span class="op">=</span> <span class="ident">channels</span>.<span class="ident">into</span>();
-        <span class="kw">let</span> <span class="ident">samples</span> <span class="op">=</span> <span class="ident">samples</span>.<span class="ident">into</span>();
+        <span class="kw">let </span>freq = freq.into();
+        <span class="kw">let </span>channels = channels.into();
+        <span class="kw">let </span>samples = samples.into();
 
-        <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">freq</span>) <span class="op">=</span> <span class="ident">freq</span> {
-            <span class="macro">assert!</span>(<span class="ident">freq</span> <span class="op">&gt;</span> <span class="number">0</span>);
+        <span class="kw">if let </span><span class="prelude-val">Some</span>(freq) = freq {
+            <span class="macro">assert!</span>(freq &gt; <span class="number">0</span>);
         }
-        <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">channels</span>) <span class="op">=</span> <span class="ident">channels</span> {
-            <span class="macro">assert!</span>(<span class="ident">channels</span> <span class="op">&gt;</span> <span class="number">0</span>);
+        <span class="kw">if let </span><span class="prelude-val">Some</span>(channels) = channels {
+            <span class="macro">assert!</span>(channels &gt; <span class="number">0</span>);
         }
-        <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">samples</span>) <span class="op">=</span> <span class="ident">samples</span> {
-            <span class="macro">assert!</span>(<span class="ident">samples</span> <span class="op">&gt;</span> <span class="number">0</span>);
+        <span class="kw">if let </span><span class="prelude-val">Some</span>(samples) = samples {
+            <span class="macro">assert!</span>(samples &gt; <span class="number">0</span>);
         }
 
-        <span class="comment">// A value of 0 means &quot;fallback&quot; or &quot;default&quot;.</span>
+        <span class="comment">// A value of 0 means &quot;fallback&quot; or &quot;default&quot;.
 
-        <span class="ident">sys::SDL_AudioSpec</span> {
-            <span class="ident">freq</span>: <span class="ident">freq</span>.<span class="ident">unwrap_or</span>(<span class="number">0</span>),
-            <span class="ident">format</span>: <span class="op">&lt;</span><span class="ident">CB::Channel</span> <span class="kw">as</span> <span class="ident">AudioFormatNum</span><span class="op">&gt;</span><span class="ident">::audio_format</span>().<span class="ident">to_ll</span>(),
-            <span class="ident">channels</span>: <span class="ident">channels</span>.<span class="ident">unwrap_or</span>(<span class="number">0</span>),
-            <span class="ident">silence</span>: <span class="number">0</span>,
-            <span class="ident">samples</span>: <span class="ident">samples</span>.<span class="ident">unwrap_or</span>(<span class="number">0</span>),
-            <span class="ident">padding</span>: <span class="number">0</span>,
-            <span class="ident">size</span>: <span class="number">0</span>,
-            <span class="ident">callback</span>: <span class="prelude-val">Some</span>(
-                <span class="ident">audio_callback_marshall</span>::<span class="op">&lt;</span><span class="ident">CB</span><span class="op">&gt;</span>
-                    <span class="kw">as</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span>(<span class="ident">arg1</span>: <span class="kw-2">*mut</span> <span class="ident">c_void</span>, <span class="ident">arg2</span>: <span class="kw-2">*mut</span> <span class="ident">u8</span>, <span class="ident">arg3</span>: <span class="ident">c_int</span>),
+        </span>sys::SDL_AudioSpec {
+            freq: freq.unwrap_or(<span class="number">0</span>),
+            format: &lt;CB::Channel <span class="kw">as </span>AudioFormatNum&gt;::audio_format().to_ll(),
+            channels: channels.unwrap_or(<span class="number">0</span>),
+            silence: <span class="number">0</span>,
+            samples: samples.unwrap_or(<span class="number">0</span>),
+            padding: <span class="number">0</span>,
+            size: <span class="number">0</span>,
+            callback: <span class="prelude-val">Some</span>(
+                audio_callback_marshall::&lt;CB&gt;
+                    <span class="kw">as extern </span><span class="string">&quot;C&quot; </span><span class="kw">fn</span>(arg1: <span class="kw-2">*mut </span>c_void, arg2: <span class="kw-2">*mut </span>u8, arg3: c_int),
             ),
-            <span class="ident">userdata</span>: <span class="ident">userdata</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="kw">_</span>,
+            userdata: userdata <span class="kw">as </span><span class="kw-2">*mut </span><span class="kw">_</span>,
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">convert_queue_to_ll</span><span class="op">&lt;</span><span class="ident">Channel</span>, <span class="ident">F</span>, <span class="ident">C</span>, <span class="ident">S</span><span class="op">&gt;</span>(<span class="ident">freq</span>: <span class="ident">F</span>, <span class="ident">channels</span>: <span class="ident">C</span>, <span class="ident">samples</span>: <span class="ident">S</span>) -&gt; <span class="ident">sys::SDL_AudioSpec</span>
-    <span class="kw">where</span>
-        <span class="ident">Channel</span>: <span class="ident">AudioFormatNum</span>,
-        <span class="ident">F</span>: <span class="ident">Into</span><span class="op">&lt;</span><span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">i32</span><span class="op">&gt;</span><span class="op">&gt;</span>,
-        <span class="ident">C</span>: <span class="ident">Into</span><span class="op">&lt;</span><span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span><span class="op">&gt;</span>,
-        <span class="ident">S</span>: <span class="ident">Into</span><span class="op">&lt;</span><span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">u16</span><span class="op">&gt;</span><span class="op">&gt;</span>,
+    <span class="kw">fn </span>convert_queue_to_ll&lt;Channel, F, C, S&gt;(freq: F, channels: C, samples: S) -&gt; sys::SDL_AudioSpec
+    <span class="kw">where
+        </span>Channel: AudioFormatNum,
+        F: Into&lt;<span class="prelude-ty">Option</span>&lt;i32&gt;&gt;,
+        C: Into&lt;<span class="prelude-ty">Option</span>&lt;u8&gt;&gt;,
+        S: Into&lt;<span class="prelude-ty">Option</span>&lt;u16&gt;&gt;,
     {
-        <span class="kw">let</span> <span class="ident">freq</span> <span class="op">=</span> <span class="ident">freq</span>.<span class="ident">into</span>();
-        <span class="kw">let</span> <span class="ident">channels</span> <span class="op">=</span> <span class="ident">channels</span>.<span class="ident">into</span>();
-        <span class="kw">let</span> <span class="ident">samples</span> <span class="op">=</span> <span class="ident">samples</span>.<span class="ident">into</span>();
+        <span class="kw">let </span>freq = freq.into();
+        <span class="kw">let </span>channels = channels.into();
+        <span class="kw">let </span>samples = samples.into();
 
-        <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">freq</span>) <span class="op">=</span> <span class="ident">freq</span> {
-            <span class="macro">assert!</span>(<span class="ident">freq</span> <span class="op">&gt;</span> <span class="number">0</span>);
+        <span class="kw">if let </span><span class="prelude-val">Some</span>(freq) = freq {
+            <span class="macro">assert!</span>(freq &gt; <span class="number">0</span>);
         }
-        <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">channels</span>) <span class="op">=</span> <span class="ident">channels</span> {
-            <span class="macro">assert!</span>(<span class="ident">channels</span> <span class="op">&gt;</span> <span class="number">0</span>);
+        <span class="kw">if let </span><span class="prelude-val">Some</span>(channels) = channels {
+            <span class="macro">assert!</span>(channels &gt; <span class="number">0</span>);
         }
-        <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">samples</span>) <span class="op">=</span> <span class="ident">samples</span> {
-            <span class="macro">assert!</span>(<span class="ident">samples</span> <span class="op">&gt;</span> <span class="number">0</span>);
+        <span class="kw">if let </span><span class="prelude-val">Some</span>(samples) = samples {
+            <span class="macro">assert!</span>(samples &gt; <span class="number">0</span>);
         }
 
-        <span class="comment">// A value of 0 means &quot;fallback&quot; or &quot;default&quot;.</span>
+        <span class="comment">// A value of 0 means &quot;fallback&quot; or &quot;default&quot;.
 
-        <span class="ident">sys::SDL_AudioSpec</span> {
-            <span class="ident">freq</span>: <span class="ident">freq</span>.<span class="ident">unwrap_or</span>(<span class="number">0</span>),
-            <span class="ident">format</span>: <span class="op">&lt;</span><span class="ident">Channel</span> <span class="kw">as</span> <span class="ident">AudioFormatNum</span><span class="op">&gt;</span><span class="ident">::audio_format</span>().<span class="ident">to_ll</span>(),
-            <span class="ident">channels</span>: <span class="ident">channels</span>.<span class="ident">unwrap_or</span>(<span class="number">0</span>),
-            <span class="ident">silence</span>: <span class="number">0</span>,
-            <span class="ident">samples</span>: <span class="ident">samples</span>.<span class="ident">unwrap_or</span>(<span class="number">0</span>),
-            <span class="ident">padding</span>: <span class="number">0</span>,
-            <span class="ident">size</span>: <span class="number">0</span>,
-            <span class="ident">callback</span>: <span class="prelude-val">None</span>,
-            <span class="ident">userdata</span>: <span class="ident">ptr::null_mut</span>(),
-        }
-    }
-}
-
-<span class="attribute">#[<span class="ident">allow</span>(<span class="ident">missing_copy_implementations</span>)]</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Eq</span>, <span class="ident">PartialEq</span>, <span class="ident">Hash</span>, <span class="ident">Debug</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">AudioSpec</span> {
-    <span class="kw">pub</span> <span class="ident">freq</span>: <span class="ident">i32</span>,
-    <span class="kw">pub</span> <span class="ident">format</span>: <span class="ident">AudioFormat</span>,
-    <span class="kw">pub</span> <span class="ident">channels</span>: <span class="ident">u8</span>,
-    <span class="doccomment">/// The silence value calculated by SDL2. Note that it&#39;s inconvenient to use if your channel</span>
-    <span class="doccomment">/// type is not u8 and [incorrect in case of u16](https://bugzilla.libsdl.org/show_bug.cgi?id=4805).</span>
-    <span class="doccomment">/// You&#39;re likely to find [the `AudioFormatNum.SILENCE` associated constant](</span>
-    <span class="doccomment">/// trait.AudioFormatNum.html#associatedconstant.SILENCE) more useful.</span>
-    <span class="kw">pub</span> <span class="ident">silence</span>: <span class="ident">u8</span>,
-    <span class="kw">pub</span> <span class="ident">samples</span>: <span class="ident">u16</span>,
-    <span class="kw">pub</span> <span class="ident">size</span>: <span class="ident">u32</span>,
-}
-
-<span class="kw">impl</span> <span class="ident">AudioSpec</span> {
-    <span class="kw">fn</span> <span class="ident">convert_from_ll</span>(<span class="ident">spec</span>: <span class="ident">sys::SDL_AudioSpec</span>) -&gt; <span class="ident">AudioSpec</span> {
-        <span class="ident">AudioSpec</span> {
-            <span class="ident">freq</span>: <span class="ident">spec</span>.<span class="ident">freq</span>,
-            <span class="ident">format</span>: <span class="ident">AudioFormat::from_ll</span>(<span class="ident">spec</span>.<span class="ident">format</span>).<span class="ident">unwrap</span>(),
-            <span class="ident">channels</span>: <span class="ident">spec</span>.<span class="ident">channels</span>,
-            <span class="ident">silence</span>: <span class="ident">spec</span>.<span class="ident">silence</span>,
-            <span class="ident">samples</span>: <span class="ident">spec</span>.<span class="ident">samples</span>,
-            <span class="ident">size</span>: <span class="ident">spec</span>.<span class="ident">size</span>,
+        </span>sys::SDL_AudioSpec {
+            freq: freq.unwrap_or(<span class="number">0</span>),
+            format: &lt;Channel <span class="kw">as </span>AudioFormatNum&gt;::audio_format().to_ll(),
+            channels: channels.unwrap_or(<span class="number">0</span>),
+            silence: <span class="number">0</span>,
+            samples: samples.unwrap_or(<span class="number">0</span>),
+            padding: <span class="number">0</span>,
+            size: <span class="number">0</span>,
+            callback: <span class="prelude-val">None</span>,
+            userdata: ptr::null_mut(),
         }
     }
 }
 
-<span class="kw">enum</span> <span class="ident">AudioDeviceID</span> {
-    <span class="ident">PlaybackDevice</span>(<span class="ident">sys::SDL_AudioDeviceID</span>),
+<span class="attribute">#[allow(missing_copy_implementations)]
+#[derive(Copy, Clone, Eq, PartialEq, Hash, Debug)]
+</span><span class="kw">pub struct </span>AudioSpec {
+    <span class="kw">pub </span>freq: i32,
+    <span class="kw">pub </span>format: AudioFormat,
+    <span class="kw">pub </span>channels: u8,
+    <span class="doccomment">/// The silence value calculated by SDL2. Note that it&#39;s inconvenient to use if your channel
+    /// type is not u8 and [incorrect in case of u16](https://bugzilla.libsdl.org/show_bug.cgi?id=4805).
+    /// You&#39;re likely to find [the `AudioFormatNum.SILENCE` associated constant](
+    /// trait.AudioFormatNum.html#associatedconstant.SILENCE) more useful.
+    </span><span class="kw">pub </span>silence: u8,
+    <span class="kw">pub </span>samples: u16,
+    <span class="kw">pub </span>size: u32,
 }
 
-<span class="kw">impl</span> <span class="ident">AudioDeviceID</span> {
-    <span class="kw">fn</span> <span class="ident">id</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">sys::SDL_AudioDeviceID</span> {
-        <span class="kw">match</span> <span class="kw-2">*</span><span class="self">self</span> {
-            <span class="ident">AudioDeviceID::PlaybackDevice</span>(<span class="ident">id</span>) =&gt; <span class="ident">id</span>,
+<span class="kw">impl </span>AudioSpec {
+    <span class="kw">fn </span>convert_from_ll(spec: sys::SDL_AudioSpec) -&gt; AudioSpec {
+        AudioSpec {
+            freq: spec.freq,
+            format: AudioFormat::from_ll(spec.format).unwrap(),
+            channels: spec.channels,
+            silence: spec.silence,
+            samples: spec.samples,
+            size: spec.size,
         }
     }
 }
 
-<span class="kw">impl</span> <span class="ident">Drop</span> <span class="kw">for</span> <span class="ident">AudioDeviceID</span> {
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;SDL_CloseAudioDevice&quot;</span>)]</span>
-    <span class="kw">fn</span> <span class="ident">drop</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>) {
-        <span class="doccomment">//! Shut down audio processing and close the audio device.</span>
-        <span class="kw">unsafe</span> { <span class="ident">sys::SDL_CloseAudioDevice</span>(<span class="self">self</span>.<span class="ident">id</span>()) }
+<span class="kw">enum </span>AudioDeviceID {
+    PlaybackDevice(sys::SDL_AudioDeviceID),
+}
+
+<span class="kw">impl </span>AudioDeviceID {
+    <span class="kw">fn </span>id(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; sys::SDL_AudioDeviceID {
+        <span class="kw">match </span><span class="kw-2">*</span><span class="self">self </span>{
+            AudioDeviceID::PlaybackDevice(id) =&gt; id,
+        }
     }
 }
 
-<span class="doccomment">/// Wraps `SDL_AudioDeviceID` and owns the callback data used by the audio device.</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">AudioQueue</span><span class="op">&lt;</span><span class="ident">Channel</span>: <span class="ident">AudioFormatNum</span><span class="op">&gt;</span> {
-    <span class="ident">subsystem</span>: <span class="ident">AudioSubsystem</span>,
-    <span class="ident">device_id</span>: <span class="ident">AudioDeviceID</span>,
-    <span class="ident">phantom</span>: <span class="ident">PhantomData</span><span class="op">&lt;</span><span class="ident">Channel</span><span class="op">&gt;</span>,
-    <span class="ident">spec</span>: <span class="ident">AudioSpec</span>,
+<span class="kw">impl </span>Drop <span class="kw">for </span>AudioDeviceID {
+    <span class="attribute">#[doc(alias = <span class="string">&quot;SDL_CloseAudioDevice&quot;</span>)]
+    </span><span class="kw">fn </span>drop(<span class="kw-2">&amp;mut </span><span class="self">self</span>) {
+        <span class="doccomment">//! Shut down audio processing and close the audio device.
+        </span><span class="kw">unsafe </span>{ sys::SDL_CloseAudioDevice(<span class="self">self</span>.id()) }
+    }
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">Channel</span>: <span class="ident">AudioFormatNum</span><span class="op">&gt;</span> <span class="ident">AudioQueue</span><span class="op">&lt;</span><span class="ident">Channel</span><span class="op">&gt;</span> {
-    <span class="doccomment">/// Opens a new audio device given the desired parameters and callback.</span>
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;SDL_OpenAudioDevice&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">open_queue</span><span class="op">&lt;</span><span class="ident">D</span>: <span class="ident">Into</span><span class="op">&lt;</span><span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">str</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="op">&gt;</span>(
-        <span class="ident">a</span>: <span class="kw-2">&amp;</span><span class="ident">AudioSubsystem</span>,
-        <span class="ident">device</span>: <span class="ident">D</span>,
-        <span class="ident">spec</span>: <span class="kw-2">&amp;</span><span class="ident">AudioSpecDesired</span>,
-    ) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">AudioQueue</span><span class="op">&lt;</span><span class="ident">Channel</span><span class="op">&gt;</span>, <span class="ident">String</span><span class="op">&gt;</span> {
-        <span class="kw">use</span> <span class="ident">std::mem::MaybeUninit</span>;
+<span class="doccomment">/// Wraps `SDL_AudioDeviceID` and owns the callback data used by the audio device.
+</span><span class="kw">pub struct </span>AudioQueue&lt;Channel: AudioFormatNum&gt; {
+    subsystem: AudioSubsystem,
+    device_id: AudioDeviceID,
+    phantom: PhantomData&lt;Channel&gt;,
+    spec: AudioSpec,
+}
 
-        <span class="kw">let</span> <span class="ident">desired</span> <span class="op">=</span> <span class="ident">AudioSpecDesired::convert_queue_to_ll</span>::<span class="op">&lt;</span>
-            <span class="ident">Channel</span>,
-            <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">i32</span><span class="op">&gt;</span>,
-            <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span>,
-            <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">u16</span><span class="op">&gt;</span>,
-        <span class="op">&gt;</span>(<span class="ident">spec</span>.<span class="ident">freq</span>, <span class="ident">spec</span>.<span class="ident">channels</span>, <span class="ident">spec</span>.<span class="ident">samples</span>);
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>, Channel: AudioFormatNum&gt; AudioQueue&lt;Channel&gt; {
+    <span class="doccomment">/// Opens a new audio device given the desired parameters and callback.
+    </span><span class="attribute">#[doc(alias = <span class="string">&quot;SDL_OpenAudioDevice&quot;</span>)]
+    </span><span class="kw">pub fn </span>open_queue&lt;D: Into&lt;<span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>str&gt;&gt;&gt;(
+        a: <span class="kw-2">&amp;</span>AudioSubsystem,
+        device: D,
+        spec: <span class="kw-2">&amp;</span>AudioSpecDesired,
+    ) -&gt; <span class="prelude-ty">Result</span>&lt;AudioQueue&lt;Channel&gt;, String&gt; {
+        <span class="kw">use </span>std::mem::MaybeUninit;
 
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">obtained</span> <span class="op">=</span> <span class="ident">MaybeUninit::uninit</span>();
-        <span class="kw">unsafe</span> {
-            <span class="kw">let</span> <span class="ident">device</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">device</span>.<span class="ident">into</span>() {
-                <span class="prelude-val">Some</span>(<span class="ident">device</span>) =&gt; <span class="prelude-val">Some</span>(<span class="ident">CString::new</span>(<span class="ident">device</span>).<span class="ident">unwrap</span>()),
-                <span class="prelude-val">None</span> =&gt; <span class="prelude-val">None</span>,
+        <span class="kw">let </span>desired = AudioSpecDesired::convert_queue_to_ll::&lt;
+            Channel,
+            <span class="prelude-ty">Option</span>&lt;i32&gt;,
+            <span class="prelude-ty">Option</span>&lt;u8&gt;,
+            <span class="prelude-ty">Option</span>&lt;u16&gt;,
+        &gt;(spec.freq, spec.channels, spec.samples);
+
+        <span class="kw">let </span><span class="kw-2">mut </span>obtained = MaybeUninit::uninit();
+        <span class="kw">unsafe </span>{
+            <span class="kw">let </span>device = <span class="kw">match </span>device.into() {
+                <span class="prelude-val">Some</span>(device) =&gt; <span class="prelude-val">Some</span>(CString::new(device).unwrap()),
+                <span class="prelude-val">None </span>=&gt; <span class="prelude-val">None</span>,
             };
-            <span class="comment">// Warning: map_or consumes its argument; `device.map_or()` would therefore consume the</span>
-            <span class="comment">// CString and drop it, making device_ptr a dangling pointer! To avoid that we downgrade</span>
-            <span class="comment">// device to an Option&lt;&amp;_&gt; first.</span>
-            <span class="kw">let</span> <span class="ident">device_ptr</span> <span class="op">=</span> <span class="ident">device</span>.<span class="ident">as_ref</span>().<span class="ident">map_or</span>(<span class="ident">ptr::null</span>(), <span class="op">|</span><span class="ident">s</span><span class="op">|</span> <span class="ident">s</span>.<span class="ident">as_ptr</span>());
+            <span class="comment">// Warning: map_or consumes its argument; `device.map_or()` would therefore consume the
+            // CString and drop it, making device_ptr a dangling pointer! To avoid that we downgrade
+            // device to an Option&lt;&amp;_&gt; first.
+            </span><span class="kw">let </span>device_ptr = device.as_ref().map_or(ptr::null(), |s| s.as_ptr());
 
-            <span class="kw">let</span> <span class="ident">iscapture_flag</span> <span class="op">=</span> <span class="number">0</span>;
-            <span class="kw">let</span> <span class="ident">device_id</span> <span class="op">=</span> <span class="ident">sys::SDL_OpenAudioDevice</span>(
-                <span class="ident">device_ptr</span> <span class="kw">as</span> <span class="kw-2">*const</span> <span class="ident">c_char</span>,
-                <span class="ident">iscapture_flag</span>,
-                <span class="kw-2">&amp;</span><span class="ident">desired</span>,
-                <span class="ident">obtained</span>.<span class="ident">as_mut_ptr</span>(),
+            <span class="kw">let </span>iscapture_flag = <span class="number">0</span>;
+            <span class="kw">let </span>device_id = sys::SDL_OpenAudioDevice(
+                device_ptr <span class="kw">as </span><span class="kw-2">*const </span>c_char,
+                iscapture_flag,
+                <span class="kw-2">&amp;</span>desired,
+                obtained.as_mut_ptr(),
                 <span class="number">0</span>,
             );
-            <span class="kw">match</span> <span class="ident">device_id</span> {
-                <span class="number">0</span> =&gt; <span class="prelude-val">Err</span>(<span class="ident">get_error</span>()),
-                <span class="ident">id</span> =&gt; {
-                    <span class="kw">let</span> <span class="ident">obtained</span> <span class="op">=</span> <span class="ident">obtained</span>.<span class="ident">assume_init</span>();
-                    <span class="kw">let</span> <span class="ident">device_id</span> <span class="op">=</span> <span class="ident">AudioDeviceID::PlaybackDevice</span>(<span class="ident">id</span>);
-                    <span class="kw">let</span> <span class="ident">spec</span> <span class="op">=</span> <span class="ident">AudioSpec::convert_from_ll</span>(<span class="ident">obtained</span>);
+            <span class="kw">match </span>device_id {
+                <span class="number">0 </span>=&gt; <span class="prelude-val">Err</span>(get_error()),
+                id =&gt; {
+                    <span class="kw">let </span>obtained = obtained.assume_init();
+                    <span class="kw">let </span>device_id = AudioDeviceID::PlaybackDevice(id);
+                    <span class="kw">let </span>spec = AudioSpec::convert_from_ll(obtained);
 
-                    <span class="prelude-val">Ok</span>(<span class="ident">AudioQueue</span> {
-                        <span class="ident">subsystem</span>: <span class="ident">a</span>.<span class="ident">clone</span>(),
-                        <span class="ident">device_id</span>,
-                        <span class="ident">phantom</span>: <span class="ident">PhantomData::default</span>(),
-                        <span class="ident">spec</span>,
+                    <span class="prelude-val">Ok</span>(AudioQueue {
+                        subsystem: a.clone(),
+                        device_id,
+                        phantom: PhantomData::default(),
+                        spec,
                     })
                 }
             }
         }
     }
 
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;SDL_GetAudioDeviceStatus&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">subsystem</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span><span class="ident">AudioSubsystem</span> {
-        <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">subsystem</span>
+    <span class="attribute">#[inline]
+    #[doc(alias = <span class="string">&quot;SDL_GetAudioDeviceStatus&quot;</span>)]
+    </span><span class="kw">pub fn </span>subsystem(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span>AudioSubsystem {
+        <span class="kw-2">&amp;</span><span class="self">self</span>.subsystem
     }
 
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">spec</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span><span class="ident">AudioSpec</span> {
-        <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">spec</span>
+    <span class="attribute">#[inline]
+    </span><span class="kw">pub fn </span>spec(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span>AudioSpec {
+        <span class="kw-2">&amp;</span><span class="self">self</span>.spec
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">status</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">AudioStatus</span> {
-        <span class="kw">unsafe</span> {
-            <span class="kw">let</span> <span class="ident">status</span> <span class="op">=</span> <span class="ident">sys::SDL_GetAudioDeviceStatus</span>(<span class="self">self</span>.<span class="ident">device_id</span>.<span class="ident">id</span>());
-            <span class="ident">AudioStatus::try_from</span>(<span class="ident">status</span> <span class="kw">as</span> <span class="ident">u32</span>).<span class="ident">unwrap</span>()
+    <span class="kw">pub fn </span>status(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; AudioStatus {
+        <span class="kw">unsafe </span>{
+            <span class="kw">let </span>status = sys::SDL_GetAudioDeviceStatus(<span class="self">self</span>.device_id.id());
+            AudioStatus::try_from(status <span class="kw">as </span>u32).unwrap()
         }
     }
 
-    <span class="doccomment">/// Pauses playback of the audio device.</span>
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;SDL_PauseAudioDevice&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">pause</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) {
-        <span class="kw">unsafe</span> { <span class="ident">sys::SDL_PauseAudioDevice</span>(<span class="self">self</span>.<span class="ident">device_id</span>.<span class="ident">id</span>(), <span class="number">1</span>) }
+    <span class="doccomment">/// Pauses playback of the audio device.
+    </span><span class="attribute">#[doc(alias = <span class="string">&quot;SDL_PauseAudioDevice&quot;</span>)]
+    </span><span class="kw">pub fn </span>pause(<span class="kw-2">&amp;</span><span class="self">self</span>) {
+        <span class="kw">unsafe </span>{ sys::SDL_PauseAudioDevice(<span class="self">self</span>.device_id.id(), <span class="number">1</span>) }
     }
 
-    <span class="doccomment">/// Starts playback of the audio device.</span>
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;SDL_PauseAudioDevice&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">resume</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) {
-        <span class="kw">unsafe</span> { <span class="ident">sys::SDL_PauseAudioDevice</span>(<span class="self">self</span>.<span class="ident">device_id</span>.<span class="ident">id</span>(), <span class="number">0</span>) }
+    <span class="doccomment">/// Starts playback of the audio device.
+    </span><span class="attribute">#[doc(alias = <span class="string">&quot;SDL_PauseAudioDevice&quot;</span>)]
+    </span><span class="kw">pub fn </span>resume(<span class="kw-2">&amp;</span><span class="self">self</span>) {
+        <span class="kw">unsafe </span>{ sys::SDL_PauseAudioDevice(<span class="self">self</span>.device_id.id(), <span class="number">0</span>) }
     }
 
-    <span class="doccomment">/// Adds data to the audio queue.</span>
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;SDL_QueueAudio&quot;</span>)]</span>
-    <span class="attribute">#[<span class="ident">deprecated</span>(
-        <span class="ident">since</span> <span class="op">=</span> <span class="string">&quot;0.35.2&quot;</span>,
-        <span class="ident">note</span> <span class="op">=</span> <span class="string">&quot;Users should instead use AudioQueue::queue_audio&quot;</span>
-    )]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">queue</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">data</span>: <span class="kw-2">&amp;</span>[<span class="ident">Channel</span>]) -&gt; <span class="ident">bool</span> {
-        <span class="kw">let</span> <span class="ident">result</span> <span class="op">=</span> <span class="kw">unsafe</span> {
-            <span class="ident">sys::SDL_QueueAudio</span>(
-                <span class="self">self</span>.<span class="ident">device_id</span>.<span class="ident">id</span>(),
-                <span class="ident">data</span>.<span class="ident">as_ptr</span>() <span class="kw">as</span> <span class="kw-2">*const</span> <span class="ident">c_void</span>,
-                (<span class="ident">data</span>.<span class="ident">len</span>() <span class="op">*</span> <span class="ident">mem::size_of</span>::<span class="op">&lt;</span><span class="ident">Channel</span><span class="op">&gt;</span>()) <span class="kw">as</span> <span class="ident">u32</span>,
+    <span class="doccomment">/// Adds data to the audio queue.
+    </span><span class="attribute">#[doc(alias = <span class="string">&quot;SDL_QueueAudio&quot;</span>)]
+    #[deprecated(
+        since = <span class="string">&quot;0.35.2&quot;</span>,
+        note = <span class="string">&quot;Users should instead use AudioQueue::queue_audio&quot;
+    </span>)]
+    </span><span class="kw">pub fn </span>queue(<span class="kw-2">&amp;</span><span class="self">self</span>, data: <span class="kw-2">&amp;</span>[Channel]) -&gt; bool {
+        <span class="kw">let </span>result = <span class="kw">unsafe </span>{
+            sys::SDL_QueueAudio(
+                <span class="self">self</span>.device_id.id(),
+                data.as_ptr() <span class="kw">as </span><span class="kw-2">*const </span>c_void,
+                (data.len() * mem::size_of::&lt;Channel&gt;()) <span class="kw">as </span>u32,
             )
         };
-        <span class="ident">result</span> <span class="op">==</span> <span class="number">0</span>
-    }
+        result == <span class="number">0
+    </span>}
 
-    <span class="doccomment">/// Adds data to the audio queue.</span>
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;SDL_QueueAudio&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">queue_audio</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">data</span>: <span class="kw-2">&amp;</span>[<span class="ident">Channel</span>]) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">String</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="ident">result</span> <span class="op">=</span> <span class="kw">unsafe</span> {
-            <span class="ident">sys::SDL_QueueAudio</span>(
-                <span class="self">self</span>.<span class="ident">device_id</span>.<span class="ident">id</span>(),
-                <span class="ident">data</span>.<span class="ident">as_ptr</span>() <span class="kw">as</span> <span class="kw-2">*const</span> <span class="ident">c_void</span>,
-                (<span class="ident">data</span>.<span class="ident">len</span>() <span class="op">*</span> <span class="ident">mem::size_of</span>::<span class="op">&lt;</span><span class="ident">Channel</span><span class="op">&gt;</span>()) <span class="kw">as</span> <span class="ident">u32</span>,
+    <span class="doccomment">/// Adds data to the audio queue.
+    </span><span class="attribute">#[doc(alias = <span class="string">&quot;SDL_QueueAudio&quot;</span>)]
+    </span><span class="kw">pub fn </span>queue_audio(<span class="kw-2">&amp;</span><span class="self">self</span>, data: <span class="kw-2">&amp;</span>[Channel]) -&gt; <span class="prelude-ty">Result</span>&lt;(), String&gt; {
+        <span class="kw">let </span>result = <span class="kw">unsafe </span>{
+            sys::SDL_QueueAudio(
+                <span class="self">self</span>.device_id.id(),
+                data.as_ptr() <span class="kw">as </span><span class="kw-2">*const </span>c_void,
+                (data.len() * mem::size_of::&lt;Channel&gt;()) <span class="kw">as </span>u32,
             )
         };
-        <span class="kw">if</span> <span class="ident">result</span> <span class="op">==</span> <span class="number">0</span> {
+        <span class="kw">if </span>result == <span class="number">0 </span>{
             <span class="prelude-val">Ok</span>(())
-        } <span class="kw">else</span> {
-            <span class="prelude-val">Err</span>(<span class="ident">get_error</span>())
+        } <span class="kw">else </span>{
+            <span class="prelude-val">Err</span>(get_error())
         }
     }
 
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;SDL_GetQueuedAudioSize&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">size</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">u32</span> {
-        <span class="kw">unsafe</span> { <span class="ident">sys::SDL_GetQueuedAudioSize</span>(<span class="self">self</span>.<span class="ident">device_id</span>.<span class="ident">id</span>()) }
+    <span class="attribute">#[doc(alias = <span class="string">&quot;SDL_GetQueuedAudioSize&quot;</span>)]
+    </span><span class="kw">pub fn </span>size(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; u32 {
+        <span class="kw">unsafe </span>{ sys::SDL_GetQueuedAudioSize(<span class="self">self</span>.device_id.id()) }
     }
 
-    <span class="doccomment">/// Clears all data from the current audio queue.</span>
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;SDL_ClearQueuedAudio&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">clear</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) {
-        <span class="kw">unsafe</span> {
-            <span class="ident">sys::SDL_ClearQueuedAudio</span>(<span class="self">self</span>.<span class="ident">device_id</span>.<span class="ident">id</span>());
+    <span class="doccomment">/// Clears all data from the current audio queue.
+    </span><span class="attribute">#[doc(alias = <span class="string">&quot;SDL_ClearQueuedAudio&quot;</span>)]
+    </span><span class="kw">pub fn </span>clear(<span class="kw-2">&amp;</span><span class="self">self</span>) {
+        <span class="kw">unsafe </span>{
+            sys::SDL_ClearQueuedAudio(<span class="self">self</span>.device_id.id());
         }
     }
 }
 
-<span class="doccomment">/// Wraps `SDL_AudioDeviceID` and owns the callback data used by the audio device.</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">AudioDevice</span><span class="op">&lt;</span><span class="ident">CB</span>: <span class="ident">AudioCallback</span><span class="op">&gt;</span> {
-    <span class="ident">subsystem</span>: <span class="ident">AudioSubsystem</span>,
-    <span class="ident">device_id</span>: <span class="ident">AudioDeviceID</span>,
-    <span class="ident">spec</span>: <span class="ident">AudioSpec</span>,
-    <span class="doccomment">/// Store the callback to keep it alive for the entire duration of `AudioDevice`.</span>
-    <span class="ident">userdata</span>: <span class="ident">Box</span><span class="op">&lt;</span><span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">CB</span><span class="op">&gt;</span><span class="op">&gt;</span>,
+<span class="doccomment">/// Wraps `SDL_AudioDeviceID` and owns the callback data used by the audio device.
+</span><span class="kw">pub struct </span>AudioDevice&lt;CB: AudioCallback&gt; {
+    subsystem: AudioSubsystem,
+    device_id: AudioDeviceID,
+    spec: AudioSpec,
+    <span class="doccomment">/// Store the callback to keep it alive for the entire duration of `AudioDevice`.
+    </span>userdata: Box&lt;<span class="prelude-ty">Option</span>&lt;CB&gt;&gt;,
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="ident">CB</span>: <span class="ident">AudioCallback</span><span class="op">&gt;</span> <span class="ident">AudioDevice</span><span class="op">&lt;</span><span class="ident">CB</span><span class="op">&gt;</span> {
-    <span class="doccomment">/// Opens a new audio device for playback or capture (given the desired parameters and callback).</span>
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;SDL_OpenAudioDevice&quot;</span>)]</span>
-    <span class="kw">fn</span> <span class="ident">open</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">F</span>, <span class="ident">D</span><span class="op">&gt;</span>(
-        <span class="ident">a</span>: <span class="kw-2">&amp;</span><span class="ident">AudioSubsystem</span>,
-        <span class="ident">device</span>: <span class="ident">D</span>,
-        <span class="ident">spec</span>: <span class="kw-2">&amp;</span><span class="ident">AudioSpecDesired</span>,
-        <span class="ident">get_callback</span>: <span class="ident">F</span>,
-        <span class="ident">capture</span>: <span class="ident">bool</span>,
-    ) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">AudioDevice</span><span class="op">&lt;</span><span class="ident">CB</span><span class="op">&gt;</span>, <span class="ident">String</span><span class="op">&gt;</span>
-    <span class="kw">where</span>
-        <span class="ident">F</span>: <span class="ident">FnOnce</span>(<span class="ident">AudioSpec</span>) -&gt; <span class="ident">CB</span>,
-        <span class="ident">D</span>: <span class="ident">Into</span><span class="op">&lt;</span><span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">str</span><span class="op">&gt;</span><span class="op">&gt;</span>,
+<span class="kw">impl</span>&lt;CB: AudioCallback&gt; AudioDevice&lt;CB&gt; {
+    <span class="doccomment">/// Opens a new audio device for playback or capture (given the desired parameters and callback).
+    </span><span class="attribute">#[doc(alias = <span class="string">&quot;SDL_OpenAudioDevice&quot;</span>)]
+    </span><span class="kw">fn </span>open&lt;<span class="lifetime">&#39;a</span>, F, D&gt;(
+        a: <span class="kw-2">&amp;</span>AudioSubsystem,
+        device: D,
+        spec: <span class="kw-2">&amp;</span>AudioSpecDesired,
+        get_callback: F,
+        capture: bool,
+    ) -&gt; <span class="prelude-ty">Result</span>&lt;AudioDevice&lt;CB&gt;, String&gt;
+    <span class="kw">where
+        </span>F: FnOnce(AudioSpec) -&gt; CB,
+        D: Into&lt;<span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>str&gt;&gt;,
     {
-        <span class="kw">use</span> <span class="ident">std::mem::MaybeUninit</span>;
+        <span class="kw">use </span>std::mem::MaybeUninit;
 
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">userdata</span>: <span class="ident">Box</span><span class="op">&lt;</span><span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">CB</span><span class="op">&gt;</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">Box::new</span>(<span class="prelude-val">None</span>);
-        <span class="kw">let</span> <span class="ident">desired</span> <span class="op">=</span>
-            <span class="ident">AudioSpecDesired::convert_to_ll</span>(<span class="ident">spec</span>.<span class="ident">freq</span>, <span class="ident">spec</span>.<span class="ident">channels</span>, <span class="ident">spec</span>.<span class="ident">samples</span>, <span class="kw-2">&amp;mut</span> <span class="kw-2">*</span><span class="ident">userdata</span>);
+        <span class="kw">let </span><span class="kw-2">mut </span>userdata: Box&lt;<span class="prelude-ty">Option</span>&lt;CB&gt;&gt; = Box::new(<span class="prelude-val">None</span>);
+        <span class="kw">let </span>desired =
+            AudioSpecDesired::convert_to_ll(spec.freq, spec.channels, spec.samples, <span class="kw-2">&amp;mut *</span>userdata);
 
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">obtained</span> <span class="op">=</span> <span class="ident">MaybeUninit::uninit</span>();
-        <span class="kw">unsafe</span> {
-            <span class="kw">let</span> <span class="ident">device</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">device</span>.<span class="ident">into</span>() {
-                <span class="prelude-val">Some</span>(<span class="ident">device</span>) =&gt; <span class="prelude-val">Some</span>(<span class="ident">CString::new</span>(<span class="ident">device</span>).<span class="ident">unwrap</span>()),
-                <span class="prelude-val">None</span> =&gt; <span class="prelude-val">None</span>,
+        <span class="kw">let </span><span class="kw-2">mut </span>obtained = MaybeUninit::uninit();
+        <span class="kw">unsafe </span>{
+            <span class="kw">let </span>device = <span class="kw">match </span>device.into() {
+                <span class="prelude-val">Some</span>(device) =&gt; <span class="prelude-val">Some</span>(CString::new(device).unwrap()),
+                <span class="prelude-val">None </span>=&gt; <span class="prelude-val">None</span>,
             };
-            <span class="comment">// Warning: map_or consumes its argument; `device.map_or()` would therefore consume the</span>
-            <span class="comment">// CString and drop it, making device_ptr a dangling pointer! To avoid that we downgrade</span>
-            <span class="comment">// device to an Option&lt;&amp;_&gt; first.</span>
-            <span class="kw">let</span> <span class="ident">device_ptr</span> <span class="op">=</span> <span class="ident">device</span>.<span class="ident">as_ref</span>().<span class="ident">map_or</span>(<span class="ident">ptr::null</span>(), <span class="op">|</span><span class="ident">s</span><span class="op">|</span> <span class="ident">s</span>.<span class="ident">as_ptr</span>());
+            <span class="comment">// Warning: map_or consumes its argument; `device.map_or()` would therefore consume the
+            // CString and drop it, making device_ptr a dangling pointer! To avoid that we downgrade
+            // device to an Option&lt;&amp;_&gt; first.
+            </span><span class="kw">let </span>device_ptr = device.as_ref().map_or(ptr::null(), |s| s.as_ptr());
 
-            <span class="kw">let</span> <span class="ident">iscapture_flag</span> <span class="op">=</span> <span class="kw">if</span> <span class="ident">capture</span> { <span class="number">1</span> } <span class="kw">else</span> { <span class="number">0</span> };
-            <span class="kw">let</span> <span class="ident">device_id</span> <span class="op">=</span> <span class="ident">sys::SDL_OpenAudioDevice</span>(
-                <span class="ident">device_ptr</span> <span class="kw">as</span> <span class="kw-2">*const</span> <span class="ident">c_char</span>,
-                <span class="ident">iscapture_flag</span>,
-                <span class="kw-2">&amp;</span><span class="ident">desired</span>,
-                <span class="ident">obtained</span>.<span class="ident">as_mut_ptr</span>(),
+            <span class="kw">let </span>iscapture_flag = <span class="kw">if </span>capture { <span class="number">1 </span>} <span class="kw">else </span>{ <span class="number">0 </span>};
+            <span class="kw">let </span>device_id = sys::SDL_OpenAudioDevice(
+                device_ptr <span class="kw">as </span><span class="kw-2">*const </span>c_char,
+                iscapture_flag,
+                <span class="kw-2">&amp;</span>desired,
+                obtained.as_mut_ptr(),
                 <span class="number">0</span>,
             );
-            <span class="kw">match</span> <span class="ident">device_id</span> {
-                <span class="number">0</span> =&gt; <span class="prelude-val">Err</span>(<span class="ident">get_error</span>()),
-                <span class="ident">id</span> =&gt; {
-                    <span class="kw">let</span> <span class="ident">obtained</span> <span class="op">=</span> <span class="ident">obtained</span>.<span class="ident">assume_init</span>();
-                    <span class="kw">let</span> <span class="ident">device_id</span> <span class="op">=</span> <span class="ident">AudioDeviceID::PlaybackDevice</span>(<span class="ident">id</span>);
-                    <span class="kw">let</span> <span class="ident">spec</span> <span class="op">=</span> <span class="ident">AudioSpec::convert_from_ll</span>(<span class="ident">obtained</span>);
+            <span class="kw">match </span>device_id {
+                <span class="number">0 </span>=&gt; <span class="prelude-val">Err</span>(get_error()),
+                id =&gt; {
+                    <span class="kw">let </span>obtained = obtained.assume_init();
+                    <span class="kw">let </span>device_id = AudioDeviceID::PlaybackDevice(id);
+                    <span class="kw">let </span>spec = AudioSpec::convert_from_ll(obtained);
 
-                    <span class="kw-2">*</span><span class="ident">userdata</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">get_callback</span>(<span class="ident">spec</span>));
+                    <span class="kw-2">*</span>userdata = <span class="prelude-val">Some</span>(get_callback(spec));
 
-                    <span class="prelude-val">Ok</span>(<span class="ident">AudioDevice</span> {
-                        <span class="ident">subsystem</span>: <span class="ident">a</span>.<span class="ident">clone</span>(),
-                        <span class="ident">device_id</span>,
-                        <span class="ident">userdata</span>,
-                        <span class="ident">spec</span>,
+                    <span class="prelude-val">Ok</span>(AudioDevice {
+                        subsystem: a.clone(),
+                        device_id,
+                        userdata,
+                        spec,
                     })
                 }
             }
         }
     }
 
-    <span class="doccomment">/// Opens a new audio device for playback (given the desired parameters and callback).</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// If you want to modify the callback-owned data at a later point (for example to update</span>
-    <span class="doccomment">/// its data buffer) you&#39;re likely to be interested in the [lock method](#method.lock).</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">open_playback</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">F</span>, <span class="ident">D</span><span class="op">&gt;</span>(
-        <span class="ident">a</span>: <span class="kw-2">&amp;</span><span class="ident">AudioSubsystem</span>,
-        <span class="ident">device</span>: <span class="ident">D</span>,
-        <span class="ident">spec</span>: <span class="kw-2">&amp;</span><span class="ident">AudioSpecDesired</span>,
-        <span class="ident">get_callback</span>: <span class="ident">F</span>,
-    ) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">AudioDevice</span><span class="op">&lt;</span><span class="ident">CB</span><span class="op">&gt;</span>, <span class="ident">String</span><span class="op">&gt;</span>
-    <span class="kw">where</span>
-        <span class="ident">F</span>: <span class="ident">FnOnce</span>(<span class="ident">AudioSpec</span>) -&gt; <span class="ident">CB</span>,
-        <span class="ident">D</span>: <span class="ident">Into</span><span class="op">&lt;</span><span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">str</span><span class="op">&gt;</span><span class="op">&gt;</span>,
+    <span class="doccomment">/// Opens a new audio device for playback (given the desired parameters and callback).
+    ///
+    /// If you want to modify the callback-owned data at a later point (for example to update
+    /// its data buffer) you&#39;re likely to be interested in the [lock method](#method.lock).
+    </span><span class="kw">pub fn </span>open_playback&lt;<span class="lifetime">&#39;a</span>, F, D&gt;(
+        a: <span class="kw-2">&amp;</span>AudioSubsystem,
+        device: D,
+        spec: <span class="kw-2">&amp;</span>AudioSpecDesired,
+        get_callback: F,
+    ) -&gt; <span class="prelude-ty">Result</span>&lt;AudioDevice&lt;CB&gt;, String&gt;
+    <span class="kw">where
+        </span>F: FnOnce(AudioSpec) -&gt; CB,
+        D: Into&lt;<span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>str&gt;&gt;,
     {
-        <span class="ident">AudioDevice::open</span>(<span class="ident">a</span>, <span class="ident">device</span>, <span class="ident">spec</span>, <span class="ident">get_callback</span>, <span class="bool-val">false</span>)
+        AudioDevice::open(a, device, spec, get_callback, <span class="bool-val">false</span>)
     }
 
-    <span class="doccomment">/// Opens a new audio device for capture (given the desired parameters and callback).</span>
-    <span class="doccomment">/// Supported since SDL 2.0.5</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// If you want to modify the callback-owned data at a later point (for example to update</span>
-    <span class="doccomment">/// its data buffer) you&#39;re likely to be interested in the [lock method](#method.lock).</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">open_capture</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">F</span>, <span class="ident">D</span><span class="op">&gt;</span>(
-        <span class="ident">a</span>: <span class="kw-2">&amp;</span><span class="ident">AudioSubsystem</span>,
-        <span class="ident">device</span>: <span class="ident">D</span>,
-        <span class="ident">spec</span>: <span class="kw-2">&amp;</span><span class="ident">AudioSpecDesired</span>,
-        <span class="ident">get_callback</span>: <span class="ident">F</span>,
-    ) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">AudioDevice</span><span class="op">&lt;</span><span class="ident">CB</span><span class="op">&gt;</span>, <span class="ident">String</span><span class="op">&gt;</span>
-    <span class="kw">where</span>
-        <span class="ident">F</span>: <span class="ident">FnOnce</span>(<span class="ident">AudioSpec</span>) -&gt; <span class="ident">CB</span>,
-        <span class="ident">D</span>: <span class="ident">Into</span><span class="op">&lt;</span><span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">str</span><span class="op">&gt;</span><span class="op">&gt;</span>,
+    <span class="doccomment">/// Opens a new audio device for capture (given the desired parameters and callback).
+    /// Supported since SDL 2.0.5
+    ///
+    /// If you want to modify the callback-owned data at a later point (for example to update
+    /// its data buffer) you&#39;re likely to be interested in the [lock method](#method.lock).
+    </span><span class="kw">pub fn </span>open_capture&lt;<span class="lifetime">&#39;a</span>, F, D&gt;(
+        a: <span class="kw-2">&amp;</span>AudioSubsystem,
+        device: D,
+        spec: <span class="kw-2">&amp;</span>AudioSpecDesired,
+        get_callback: F,
+    ) -&gt; <span class="prelude-ty">Result</span>&lt;AudioDevice&lt;CB&gt;, String&gt;
+    <span class="kw">where
+        </span>F: FnOnce(AudioSpec) -&gt; CB,
+        D: Into&lt;<span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>str&gt;&gt;,
     {
-        <span class="ident">AudioDevice::open</span>(<span class="ident">a</span>, <span class="ident">device</span>, <span class="ident">spec</span>, <span class="ident">get_callback</span>, <span class="bool-val">true</span>)
+        AudioDevice::open(a, device, spec, get_callback, <span class="bool-val">true</span>)
     }
 
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;SDL_GetAudioDeviceStatus&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">subsystem</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span><span class="ident">AudioSubsystem</span> {
-        <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">subsystem</span>
+    <span class="attribute">#[inline]
+    #[doc(alias = <span class="string">&quot;SDL_GetAudioDeviceStatus&quot;</span>)]
+    </span><span class="kw">pub fn </span>subsystem(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span>AudioSubsystem {
+        <span class="kw-2">&amp;</span><span class="self">self</span>.subsystem
     }
 
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">spec</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span><span class="ident">AudioSpec</span> {
-        <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">spec</span>
+    <span class="attribute">#[inline]
+    </span><span class="kw">pub fn </span>spec(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span>AudioSpec {
+        <span class="kw-2">&amp;</span><span class="self">self</span>.spec
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">status</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">AudioStatus</span> {
-        <span class="kw">unsafe</span> {
-            <span class="kw">let</span> <span class="ident">status</span> <span class="op">=</span> <span class="ident">sys::SDL_GetAudioDeviceStatus</span>(<span class="self">self</span>.<span class="ident">device_id</span>.<span class="ident">id</span>());
-            <span class="ident">AudioStatus::try_from</span>(<span class="ident">status</span> <span class="kw">as</span> <span class="ident">u32</span>).<span class="ident">unwrap</span>()
+    <span class="kw">pub fn </span>status(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; AudioStatus {
+        <span class="kw">unsafe </span>{
+            <span class="kw">let </span>status = sys::SDL_GetAudioDeviceStatus(<span class="self">self</span>.device_id.id());
+            AudioStatus::try_from(status <span class="kw">as </span>u32).unwrap()
         }
     }
 
-    <span class="doccomment">/// Pauses playback of the audio device.</span>
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;SDL_PauseAudioDevice&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">pause</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) {
-        <span class="kw">unsafe</span> { <span class="ident">sys::SDL_PauseAudioDevice</span>(<span class="self">self</span>.<span class="ident">device_id</span>.<span class="ident">id</span>(), <span class="number">1</span>) }
+    <span class="doccomment">/// Pauses playback of the audio device.
+    </span><span class="attribute">#[doc(alias = <span class="string">&quot;SDL_PauseAudioDevice&quot;</span>)]
+    </span><span class="kw">pub fn </span>pause(<span class="kw-2">&amp;</span><span class="self">self</span>) {
+        <span class="kw">unsafe </span>{ sys::SDL_PauseAudioDevice(<span class="self">self</span>.device_id.id(), <span class="number">1</span>) }
     }
 
-    <span class="doccomment">/// Starts playback of the audio device.</span>
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;SDL_PauseAudioDevice&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">resume</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) {
-        <span class="kw">unsafe</span> { <span class="ident">sys::SDL_PauseAudioDevice</span>(<span class="self">self</span>.<span class="ident">device_id</span>.<span class="ident">id</span>(), <span class="number">0</span>) }
+    <span class="doccomment">/// Starts playback of the audio device.
+    </span><span class="attribute">#[doc(alias = <span class="string">&quot;SDL_PauseAudioDevice&quot;</span>)]
+    </span><span class="kw">pub fn </span>resume(<span class="kw-2">&amp;</span><span class="self">self</span>) {
+        <span class="kw">unsafe </span>{ sys::SDL_PauseAudioDevice(<span class="self">self</span>.device_id.id(), <span class="number">0</span>) }
     }
 
-    <span class="doccomment">/// Locks the audio device using `SDL_LockAudioDevice`.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// When the returned lock guard is dropped, `SDL_UnlockAudioDevice` is</span>
-    <span class="doccomment">/// called.</span>
-    <span class="doccomment">/// Use this method to read and mutate callback data.</span>
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;SDL_LockAudioDevice&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">lock</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>) -&gt; <span class="ident">AudioDeviceLockGuard</span><span class="op">&lt;</span><span class="ident">CB</span><span class="op">&gt;</span> {
-        <span class="kw">unsafe</span> { <span class="ident">sys::SDL_LockAudioDevice</span>(<span class="self">self</span>.<span class="ident">device_id</span>.<span class="ident">id</span>()) };
-        <span class="ident">AudioDeviceLockGuard</span> {
-            <span class="ident">device</span>: <span class="self">self</span>,
-            <span class="ident">_nosend</span>: <span class="ident">PhantomData</span>,
+    <span class="doccomment">/// Locks the audio device using `SDL_LockAudioDevice`.
+    ///
+    /// When the returned lock guard is dropped, `SDL_UnlockAudioDevice` is
+    /// called.
+    /// Use this method to read and mutate callback data.
+    </span><span class="attribute">#[doc(alias = <span class="string">&quot;SDL_LockAudioDevice&quot;</span>)]
+    </span><span class="kw">pub fn </span>lock(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; AudioDeviceLockGuard&lt;CB&gt; {
+        <span class="kw">unsafe </span>{ sys::SDL_LockAudioDevice(<span class="self">self</span>.device_id.id()) };
+        AudioDeviceLockGuard {
+            device: <span class="self">self</span>,
+            _nosend: PhantomData,
         }
     }
 
-    <span class="doccomment">/// Closes the audio device and saves the callback data from being dropped.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// Note that simply dropping `AudioDevice` will close the audio device,</span>
-    <span class="doccomment">/// but the callback data will be dropped.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">close_and_get_callback</span>(<span class="self">self</span>) -&gt; <span class="ident">CB</span> {
-        <span class="ident">drop</span>(<span class="self">self</span>.<span class="ident">device_id</span>);
-        <span class="self">self</span>.<span class="ident">userdata</span>.<span class="ident">expect</span>(<span class="string">&quot;Missing callback&quot;</span>)
+    <span class="doccomment">/// Closes the audio device and saves the callback data from being dropped.
+    ///
+    /// Note that simply dropping `AudioDevice` will close the audio device,
+    /// but the callback data will be dropped.
+    </span><span class="kw">pub fn </span>close_and_get_callback(<span class="self">self</span>) -&gt; CB {
+        drop(<span class="self">self</span>.device_id);
+        <span class="self">self</span>.userdata.expect(<span class="string">&quot;Missing callback&quot;</span>)
     }
 }
 
-<span class="doccomment">/// Similar to `std::sync::MutexGuard`, but for use with `AudioDevice::lock()`.</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">AudioDeviceLockGuard</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">CB</span><span class="op">&gt;</span>
-<span class="kw">where</span>
-    <span class="ident">CB</span>: <span class="ident">AudioCallback</span>,
-    <span class="ident">CB</span>: <span class="lifetime">&#39;a</span>,
+<span class="doccomment">/// Similar to `std::sync::MutexGuard`, but for use with `AudioDevice::lock()`.
+</span><span class="kw">pub struct </span>AudioDeviceLockGuard&lt;<span class="lifetime">&#39;a</span>, CB&gt;
+<span class="kw">where
+    </span>CB: AudioCallback,
+    CB: <span class="lifetime">&#39;a</span>,
 {
-    <span class="ident">device</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="kw-2">mut</span> <span class="ident">AudioDevice</span><span class="op">&lt;</span><span class="ident">CB</span><span class="op">&gt;</span>,
-    <span class="ident">_nosend</span>: <span class="ident">PhantomData</span><span class="op">&lt;</span><span class="kw-2">*mut</span> ()<span class="op">&gt;</span>,
+    device: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span><span class="kw-2">mut </span>AudioDevice&lt;CB&gt;,
+    _nosend: PhantomData&lt;<span class="kw-2">*mut </span>()&gt;,
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">CB</span>: <span class="ident">AudioCallback</span><span class="op">&gt;</span> <span class="ident">Deref</span> <span class="kw">for</span> <span class="ident">AudioDeviceLockGuard</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">CB</span><span class="op">&gt;</span> {
-    <span class="kw">type</span> <span class="ident">Target</span> <span class="op">=</span> <span class="ident">CB</span>;
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;SDL_UnlockAudioDevice&quot;</span>)]</span>
-    <span class="kw">fn</span> <span class="ident">deref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span><span class="ident">CB</span> {
-        (<span class="kw-2">*</span><span class="self">self</span>.<span class="ident">device</span>.<span class="ident">userdata</span>).<span class="ident">as_ref</span>().<span class="ident">expect</span>(<span class="string">&quot;Missing callback&quot;</span>)
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>, CB: AudioCallback&gt; Deref <span class="kw">for </span>AudioDeviceLockGuard&lt;<span class="lifetime">&#39;a</span>, CB&gt; {
+    <span class="kw">type </span>Target = CB;
+    <span class="attribute">#[doc(alias = <span class="string">&quot;SDL_UnlockAudioDevice&quot;</span>)]
+    </span><span class="kw">fn </span>deref(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span>CB {
+        (<span class="kw-2">*</span><span class="self">self</span>.device.userdata).as_ref().expect(<span class="string">&quot;Missing callback&quot;</span>)
     }
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">CB</span>: <span class="ident">AudioCallback</span><span class="op">&gt;</span> <span class="ident">DerefMut</span> <span class="kw">for</span> <span class="ident">AudioDeviceLockGuard</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">CB</span><span class="op">&gt;</span> {
-    <span class="kw">fn</span> <span class="ident">deref_mut</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>) -&gt; <span class="kw-2">&amp;mut</span> <span class="ident">CB</span> {
-        (<span class="kw-2">*</span><span class="self">self</span>.<span class="ident">device</span>.<span class="ident">userdata</span>).<span class="ident">as_mut</span>().<span class="ident">expect</span>(<span class="string">&quot;Missing callback&quot;</span>)
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>, CB: AudioCallback&gt; DerefMut <span class="kw">for </span>AudioDeviceLockGuard&lt;<span class="lifetime">&#39;a</span>, CB&gt; {
+    <span class="kw">fn </span>deref_mut(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;mut </span>CB {
+        (<span class="kw-2">*</span><span class="self">self</span>.device.userdata).as_mut().expect(<span class="string">&quot;Missing callback&quot;</span>)
     }
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">CB</span>: <span class="ident">AudioCallback</span><span class="op">&gt;</span> <span class="ident">Drop</span> <span class="kw">for</span> <span class="ident">AudioDeviceLockGuard</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">CB</span><span class="op">&gt;</span> {
-    <span class="kw">fn</span> <span class="ident">drop</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>) {
-        <span class="kw">unsafe</span> { <span class="ident">sys::SDL_UnlockAudioDevice</span>(<span class="self">self</span>.<span class="ident">device</span>.<span class="ident">device_id</span>.<span class="ident">id</span>()) }
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>, CB: AudioCallback&gt; Drop <span class="kw">for </span>AudioDeviceLockGuard&lt;<span class="lifetime">&#39;a</span>, CB&gt; {
+    <span class="kw">fn </span>drop(<span class="kw-2">&amp;mut </span><span class="self">self</span>) {
+        <span class="kw">unsafe </span>{ sys::SDL_UnlockAudioDevice(<span class="self">self</span>.device.device_id.id()) }
     }
 }
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">AudioCVT</span> {
-    <span class="ident">raw</span>: <span class="ident">sys::SDL_AudioCVT</span>,
+<span class="attribute">#[derive(Copy, Clone)]
+</span><span class="kw">pub struct </span>AudioCVT {
+    raw: sys::SDL_AudioCVT,
 }
 
-<span class="kw">impl</span> <span class="ident">AudioCVT</span> {
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;SDL_BuildAudioCVT&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(
-        <span class="ident">src_format</span>: <span class="ident">AudioFormat</span>,
-        <span class="ident">src_channels</span>: <span class="ident">u8</span>,
-        <span class="ident">src_rate</span>: <span class="ident">i32</span>,
-        <span class="ident">dst_format</span>: <span class="ident">AudioFormat</span>,
-        <span class="ident">dst_channels</span>: <span class="ident">u8</span>,
-        <span class="ident">dst_rate</span>: <span class="ident">i32</span>,
-    ) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">AudioCVT</span>, <span class="ident">String</span><span class="op">&gt;</span> {
-        <span class="kw">use</span> <span class="ident">std::mem::MaybeUninit</span>;
+<span class="kw">impl </span>AudioCVT {
+    <span class="attribute">#[doc(alias = <span class="string">&quot;SDL_BuildAudioCVT&quot;</span>)]
+    </span><span class="kw">pub fn </span>new(
+        src_format: AudioFormat,
+        src_channels: u8,
+        src_rate: i32,
+        dst_format: AudioFormat,
+        dst_channels: u8,
+        dst_rate: i32,
+    ) -&gt; <span class="prelude-ty">Result</span>&lt;AudioCVT, String&gt; {
+        <span class="kw">use </span>std::mem::MaybeUninit;
 
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">raw</span>: <span class="ident">MaybeUninit</span><span class="op">&lt;</span><span class="ident">sys::SDL_AudioCVT</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">mem::MaybeUninit::uninit</span>();
+        <span class="kw">let </span><span class="kw-2">mut </span>raw: MaybeUninit&lt;sys::SDL_AudioCVT&gt; = mem::MaybeUninit::uninit();
 
-        <span class="kw">unsafe</span> {
-            <span class="kw">let</span> <span class="ident">ret</span> <span class="op">=</span> <span class="ident">sys::SDL_BuildAudioCVT</span>(
-                <span class="ident">raw</span>.<span class="ident">as_mut_ptr</span>(),
-                <span class="ident">src_format</span>.<span class="ident">to_ll</span>(),
-                <span class="ident">src_channels</span>,
-                <span class="ident">src_rate</span> <span class="kw">as</span> <span class="ident">c_int</span>,
-                <span class="ident">dst_format</span>.<span class="ident">to_ll</span>(),
-                <span class="ident">dst_channels</span>,
-                <span class="ident">dst_rate</span> <span class="kw">as</span> <span class="ident">c_int</span>,
+        <span class="kw">unsafe </span>{
+            <span class="kw">let </span>ret = sys::SDL_BuildAudioCVT(
+                raw.as_mut_ptr(),
+                src_format.to_ll(),
+                src_channels,
+                src_rate <span class="kw">as </span>c_int,
+                dst_format.to_ll(),
+                dst_channels,
+                dst_rate <span class="kw">as </span>c_int,
             );
-            <span class="kw">if</span> <span class="ident">ret</span> <span class="op">==</span> <span class="number">1</span> <span class="op">|</span><span class="op">|</span> <span class="ident">ret</span> <span class="op">==</span> <span class="number">0</span> {
-                <span class="kw">let</span> <span class="ident">raw</span> <span class="op">=</span> <span class="ident">raw</span>.<span class="ident">assume_init</span>();
-                <span class="prelude-val">Ok</span>(<span class="ident">AudioCVT</span> { <span class="ident">raw</span> })
-            } <span class="kw">else</span> {
-                <span class="prelude-val">Err</span>(<span class="ident">get_error</span>())
+            <span class="kw">if </span>ret == <span class="number">1 </span>|| ret == <span class="number">0 </span>{
+                <span class="kw">let </span>raw = raw.assume_init();
+                <span class="prelude-val">Ok</span>(AudioCVT { raw })
+            } <span class="kw">else </span>{
+                <span class="prelude-val">Err</span>(get_error())
             }
         }
     }
 
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;SDL_ConvertAudio&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">convert</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="kw-2">mut</span> <span class="ident">src</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span>) -&gt; <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span> {
-        <span class="doccomment">//! Convert audio data to a desired audio format.</span>
-        <span class="doccomment">//!</span>
-        <span class="doccomment">//! Passes raw audio data from src to the SDL library for conversion, returning the result</span>
-        <span class="doccomment">//! of the conversion.</span>
-        <span class="kw">unsafe</span> {
-            <span class="kw">if</span> <span class="self">self</span>.<span class="ident">raw</span>.<span class="ident">needed</span> <span class="op">!</span><span class="op">=</span> <span class="number">0</span> {
-                <span class="kw">use</span> <span class="ident">std::convert::TryInto</span>;
-                <span class="kw">use</span> <span class="ident">std::slice::from_raw_parts_mut</span>;
+    <span class="attribute">#[doc(alias = <span class="string">&quot;SDL_ConvertAudio&quot;</span>)]
+    </span><span class="kw">pub fn </span>convert(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="kw-2">mut </span>src: Vec&lt;u8&gt;) -&gt; Vec&lt;u8&gt; {
+        <span class="doccomment">//! Convert audio data to a desired audio format.
+        //!
+        //! Passes raw audio data from src to the SDL library for conversion, returning the result
+        //! of the conversion.
+        </span><span class="kw">unsafe </span>{
+            <span class="kw">if </span><span class="self">self</span>.raw.needed != <span class="number">0 </span>{
+                <span class="kw">use </span>std::convert::TryInto;
+                <span class="kw">use </span>std::slice::from_raw_parts_mut;
 
-                <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">raw</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">raw</span>;
+                <span class="kw">let </span><span class="kw-2">mut </span>raw = <span class="self">self</span>.raw;
 
-                <span class="comment">// Calculate the size of the buffer we&#39;re handing to SDL.</span>
-                <span class="comment">// This is more a suggestion, and not really a guarantee...</span>
-                <span class="kw">let</span> <span class="ident">dst_size</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">capacity</span>(<span class="ident">src</span>.<span class="ident">len</span>());
+                <span class="comment">// Calculate the size of the buffer we&#39;re handing to SDL.
+                // This is more a suggestion, and not really a guarantee...
+                </span><span class="kw">let </span>dst_size = <span class="self">self</span>.capacity(src.len());
 
-                <span class="comment">// Bounce into SDL2 heap allocation as SDL_ConvertAudio may rewrite the pointer.</span>
-                <span class="ident">raw</span>.<span class="ident">len</span> <span class="op">=</span> <span class="ident">src</span>.<span class="ident">len</span>().<span class="ident">try_into</span>().<span class="ident">expect</span>(<span class="string">&quot;Buffer length overflow&quot;</span>);
-                <span class="ident">raw</span>.<span class="ident">buf</span> <span class="op">=</span> <span class="ident">sys::SDL_malloc</span>(<span class="ident">dst_size</span> <span class="kw">as</span> <span class="kw">_</span>) <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="kw">_</span>;
-                <span class="kw">if</span> <span class="ident">raw</span>.<span class="ident">buf</span>.<span class="ident">is_null</span>() {
+                <span class="comment">// Bounce into SDL2 heap allocation as SDL_ConvertAudio may rewrite the pointer.
+                </span>raw.len = src.len().try_into().expect(<span class="string">&quot;Buffer length overflow&quot;</span>);
+                raw.buf = sys::SDL_malloc(dst_size <span class="kw">as _</span>) <span class="kw">as </span><span class="kw-2">*mut </span><span class="kw">_</span>;
+                <span class="kw">if </span>raw.buf.is_null() {
                     <span class="macro">panic!</span>(<span class="string">&quot;Failed SDL_malloc needed for SDL_ConvertAudio&quot;</span>);
                 }
-                <span class="comment">// raw.buf is dst_size long, but we want to copy into only the first src.len bytes.</span>
-                <span class="macro">assert!</span>(<span class="ident">src</span>.<span class="ident">len</span>() <span class="op">&lt;</span><span class="op">=</span> <span class="ident">dst_size</span>);
-                <span class="ident">from_raw_parts_mut</span>(<span class="ident">raw</span>.<span class="ident">buf</span>, <span class="ident">src</span>.<span class="ident">len</span>()).<span class="ident">copy_from_slice</span>(<span class="ident">src</span>.<span class="ident">as_ref</span>());
+                <span class="comment">// raw.buf is dst_size long, but we want to copy into only the first src.len bytes.
+                </span><span class="macro">assert!</span>(src.len() &lt;= dst_size);
+                from_raw_parts_mut(raw.buf, src.len()).copy_from_slice(src.as_ref());
 
-                <span class="kw">let</span> <span class="ident">ret</span> <span class="op">=</span> <span class="ident">sys::SDL_ConvertAudio</span>(<span class="kw-2">&amp;mut</span> <span class="ident">raw</span>);
-                <span class="comment">// There&#39;s no reason for SDL_ConvertAudio to fail.</span>
-                <span class="comment">// The only time it can fail is if buf is NULL, which it never is.</span>
-                <span class="kw">if</span> <span class="ident">ret</span> <span class="op">!</span><span class="op">=</span> <span class="number">0</span> {
-                    <span class="macro">panic!</span>(<span class="string">&quot;{}&quot;</span>, <span class="ident">get_error</span>())
+                <span class="kw">let </span>ret = sys::SDL_ConvertAudio(<span class="kw-2">&amp;mut </span>raw);
+                <span class="comment">// There&#39;s no reason for SDL_ConvertAudio to fail.
+                // The only time it can fail is if buf is NULL, which it never is.
+                </span><span class="kw">if </span>ret != <span class="number">0 </span>{
+                    <span class="macro">panic!</span>(<span class="string">&quot;{}&quot;</span>, get_error())
                 }
 
-                <span class="comment">// Bounce back into src, trying to re-use the same buffer.</span>
-                <span class="kw">let</span> <span class="ident">outlen</span>: <span class="ident">usize</span> <span class="op">=</span> <span class="ident">raw</span>.<span class="ident">len_cvt</span>.<span class="ident">try_into</span>().<span class="ident">expect</span>(<span class="string">&quot;Buffer size rollover&quot;</span>);
-                <span class="macro">debug_assert!</span>(<span class="ident">outlen</span> <span class="op">&lt;</span><span class="op">=</span> <span class="ident">dst_size</span>);
-                <span class="ident">src</span>.<span class="ident">resize</span>(<span class="ident">outlen</span>, <span class="number">0</span>);
-                <span class="ident">src</span>.<span class="ident">copy_from_slice</span>(<span class="ident">from_raw_parts_mut</span>(<span class="ident">raw</span>.<span class="ident">buf</span>, <span class="ident">outlen</span>));
-                <span class="ident">sys::SDL_free</span>(<span class="ident">raw</span>.<span class="ident">buf</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="kw">_</span>);
+                <span class="comment">// Bounce back into src, trying to re-use the same buffer.
+                </span><span class="kw">let </span>outlen: usize = raw.len_cvt.try_into().expect(<span class="string">&quot;Buffer size rollover&quot;</span>);
+                <span class="macro">debug_assert!</span>(outlen &lt;= dst_size);
+                src.resize(outlen, <span class="number">0</span>);
+                src.copy_from_slice(from_raw_parts_mut(raw.buf, outlen));
+                sys::SDL_free(raw.buf <span class="kw">as </span><span class="kw-2">*mut </span><span class="kw">_</span>);
 
-                <span class="ident">src</span>
-            } <span class="kw">else</span> {
-                <span class="comment">// The buffer remains unmodified</span>
-                <span class="ident">src</span>
+                src
+            } <span class="kw">else </span>{
+                <span class="comment">// The buffer remains unmodified
+                </span>src
             }
         }
     }
 
-    <span class="doccomment">/// Checks if any conversion is needed. i.e. if the buffer that goes</span>
-    <span class="doccomment">/// into `convert()` is unchanged from the result.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_conversion_needed</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span> {
-        <span class="self">self</span>.<span class="ident">raw</span>.<span class="ident">needed</span> <span class="op">!</span><span class="op">=</span> <span class="number">0</span>
-    }
+    <span class="doccomment">/// Checks if any conversion is needed. i.e. if the buffer that goes
+    /// into `convert()` is unchanged from the result.
+    </span><span class="kw">pub fn </span>is_conversion_needed(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; bool {
+        <span class="self">self</span>.raw.needed != <span class="number">0
+    </span>}
 
-    <span class="doccomment">/// Gets the buffer capacity that can contain both the original and</span>
-    <span class="doccomment">/// converted data.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">capacity</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">src_len</span>: <span class="ident">usize</span>) -&gt; <span class="ident">usize</span> {
-        <span class="ident">src_len</span>
-            .<span class="ident">checked_mul</span>(<span class="self">self</span>.<span class="ident">raw</span>.<span class="ident">len_mult</span> <span class="kw">as</span> <span class="ident">usize</span>)
-            .<span class="ident">expect</span>(<span class="string">&quot;Integer overflow&quot;</span>)
+    <span class="doccomment">/// Gets the buffer capacity that can contain both the original and
+    /// converted data.
+    </span><span class="kw">pub fn </span>capacity(<span class="kw-2">&amp;</span><span class="self">self</span>, src_len: usize) -&gt; usize {
+        src_len
+            .checked_mul(<span class="self">self</span>.raw.len_mult <span class="kw">as </span>usize)
+            .expect(<span class="string">&quot;Integer overflow&quot;</span>)
     }
 }
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">test</span>)]</span>
-<span class="kw">mod</span> <span class="ident">test</span> {
-    <span class="kw">use</span> <span class="kw">super</span>::{<span class="ident">AudioCVT</span>, <span class="ident">AudioFormat</span>};
+<span class="attribute">#[cfg(test)]
+</span><span class="kw">mod </span>test {
+    <span class="kw">use super</span>::{AudioCVT, AudioFormat};
 
-    <span class="attribute">#[<span class="ident">test</span>]</span>
-    <span class="kw">fn</span> <span class="ident">test_audio_cvt</span>() {
-        <span class="kw">use</span> <span class="ident">std::iter::repeat</span>;
+    <span class="attribute">#[test]
+    </span><span class="kw">fn </span>test_audio_cvt() {
+        <span class="kw">use </span>std::iter::repeat;
 
-        <span class="comment">// 0,1,2,3, ...</span>
-        <span class="kw">let</span> <span class="ident">buffer</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span> <span class="op">=</span> (<span class="number">0</span>..<span class="number">255</span>).<span class="ident">collect</span>();
+        <span class="comment">// 0,1,2,3, ...
+        </span><span class="kw">let </span>buffer: Vec&lt;u8&gt; = (<span class="number">0</span>..<span class="number">255</span>).collect();
 
-        <span class="comment">// 0,0,1,1,2,2,3,3, ...</span>
-        <span class="kw">let</span> <span class="ident">new_buffer_expected</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span> <span class="op">=</span> (<span class="number">0</span>..<span class="number">255</span>).<span class="ident">flat_map</span>(<span class="op">|</span><span class="ident">v</span><span class="op">|</span> <span class="ident">repeat</span>(<span class="ident">v</span>).<span class="ident">take</span>(<span class="number">2</span>)).<span class="ident">collect</span>();
+        <span class="comment">// 0,0,1,1,2,2,3,3, ...
+        </span><span class="kw">let </span>new_buffer_expected: Vec&lt;u8&gt; = (<span class="number">0</span>..<span class="number">255</span>).flat_map(|v| repeat(v).take(<span class="number">2</span>)).collect();
 
-        <span class="kw">let</span> <span class="ident">cvt</span> <span class="op">=</span> <span class="ident">AudioCVT::new</span>(<span class="ident">AudioFormat::U8</span>, <span class="number">1</span>, <span class="number">44100</span>, <span class="ident">AudioFormat::U8</span>, <span class="number">2</span>, <span class="number">44100</span>).<span class="ident">unwrap</span>();
-        <span class="macro">assert!</span>(<span class="ident">cvt</span>.<span class="ident">is_conversion_needed</span>());
+        <span class="kw">let </span>cvt = AudioCVT::new(AudioFormat::U8, <span class="number">1</span>, <span class="number">44100</span>, AudioFormat::U8, <span class="number">2</span>, <span class="number">44100</span>).unwrap();
+        <span class="macro">assert!</span>(cvt.is_conversion_needed());
 
-        <span class="comment">// since we&#39;re going from mono to stereo, our capacity must be at least twice the original (255) vec size</span>
-        <span class="macro">assert!</span>(
-            <span class="ident">cvt</span>.<span class="ident">capacity</span>(<span class="number">255</span>) <span class="op">&gt;</span><span class="op">=</span> <span class="number">255</span> <span class="op">*</span> <span class="number">2</span>,
-            <span class="string">&quot;capacity must be able to hold the converted audio sample&quot;</span>
-        );
+        <span class="comment">// since we&#39;re going from mono to stereo, our capacity must be at least twice the original (255) vec size
+        </span><span class="macro">assert!</span>(
+            cvt.capacity(<span class="number">255</span>) &gt;= <span class="number">255 </span>* <span class="number">2</span>,
+            <span class="string">&quot;capacity must be able to hold the converted audio sample&quot;
+        </span>);
 
-        <span class="kw">let</span> <span class="ident">new_buffer</span> <span class="op">=</span> <span class="ident">cvt</span>.<span class="ident">convert</span>(<span class="ident">buffer</span>);
+        <span class="kw">let </span>new_buffer = cvt.convert(buffer);
         <span class="macro">assert_eq!</span>(
-            <span class="ident">new_buffer</span>.<span class="ident">len</span>(),
-            <span class="ident">new_buffer_expected</span>.<span class="ident">len</span>(),
-            <span class="string">&quot;capacity must be exactly equal to twice the original vec size&quot;</span>
-        );
+            new_buffer.len(),
+            new_buffer_expected.len(),
+            <span class="string">&quot;capacity must be exactly equal to twice the original vec size&quot;
+        </span>);
 
-        <span class="comment">// // this has been commented, see https://discourse.libsdl.org/t/change-of-behavior-in-audiocvt-sdl-convertaudio-from-2-0-5-to-2-0-6/24682</span>
-        <span class="comment">// // to maybe re-enable it someday</span>
-        <span class="comment">// assert_eq!(new_buffer, new_buffer_expected);</span>
-    }
+        <span class="comment">// // this has been commented, see https://discourse.libsdl.org/t/change-of-behavior-in-audiocvt-sdl-convertaudio-from-2-0-5-to-2-0-6/24682
+        // // to maybe re-enable it someday
+        // assert_eq!(new_buffer, new_buffer_expected);
+    </span>}
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="sdl2" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0 (a55dd71d5 2022-09-19)" ></div></body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="sdl2" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.66.1 (90743e729 2023-01-10)" ></div></body></html>

@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src/cpu.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>cpu.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../reimu/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../reimu/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../reimu/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src/cpu.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>cpu.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../normalize.css"><link rel="stylesheet" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../ayu.css" disabled><link rel="stylesheet" href="../../dark.css" disabled><link rel="stylesheet" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><div class="width-limiter"><nav class="sub"><a class="sub-logo-container" href="../../reimu/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -527,534 +527,534 @@
 <span id="527">527</span>
 <span id="528">528</span>
 <span id="529">529</span>
-</pre><pre class="rust"><code><span class="kw">use</span> <span class="ident">rand::prelude</span>::<span class="kw-2">*</span>;
+</pre><pre class="rust"><code><span class="kw">use </span>rand::prelude::<span class="kw-2">*</span>;
 
-<span class="kw">use</span> <span class="kw">crate</span>::{<span class="ident">cpu::instruction::Instruction</span>, <span class="ident">gpu::Gpu</span>};
+<span class="kw">use crate</span>::{cpu::instruction::Instruction, gpu::Gpu};
 
-<span class="kw">mod</span> <span class="ident">instruction</span>;
+<span class="kw">mod </span>instruction;
 
-<span class="kw">const</span> <span class="ident">MEMORY_SIZE</span>: <span class="ident">usize</span> <span class="op">=</span> <span class="number">4096</span>;
-<span class="kw">const</span> <span class="ident">REGISTER_COUNT</span>: <span class="ident">usize</span> <span class="op">=</span> <span class="number">16</span>;
-<span class="kw">const</span> <span class="ident">RESERVED_START</span>: <span class="ident">usize</span> <span class="op">=</span> <span class="number">0x200</span>;
-<span class="kw">const</span> <span class="ident">RESERVED_END</span>: <span class="ident">usize</span> <span class="op">=</span> <span class="number">352</span>;
-<span class="kw">const</span> <span class="ident">PROGRAM_START</span>: <span class="ident">usize</span> <span class="op">=</span> <span class="number">0x200</span>;
-<span class="kw">const</span> <span class="ident">STEP_SIZE</span>: <span class="ident">usize</span> <span class="op">=</span> <span class="number">2</span>;
-<span class="kw">const</span> <span class="ident">STACK_SIZE</span>: <span class="ident">usize</span> <span class="op">=</span> <span class="number">16</span>;
+<span class="kw">const </span>MEMORY_SIZE: usize = <span class="number">4096</span>;
+<span class="kw">const </span>REGISTER_COUNT: usize = <span class="number">16</span>;
+<span class="kw">const </span>RESERVED_START: usize = <span class="number">0x200</span>;
+<span class="kw">const </span>RESERVED_END: usize = <span class="number">352</span>;
+<span class="kw">const </span>PROGRAM_START: usize = <span class="number">0x200</span>;
+<span class="kw">const </span>STEP_SIZE: usize = <span class="number">2</span>;
+<span class="kw">const </span>STACK_SIZE: usize = <span class="number">16</span>;
 
-<span class="kw">const</span> <span class="ident">FONT_START_ADDR</span>: <span class="ident">usize</span> <span class="op">=</span> <span class="number">0x050</span>;
-<span class="kw">const</span> <span class="ident">FONT_SPRITE_SIZE</span>: <span class="ident">usize</span> <span class="op">=</span> <span class="number">5</span>;
-<span class="kw">const</span> <span class="ident">FONT_SPRITE_COUNT</span>: <span class="ident">usize</span> <span class="op">=</span> <span class="number">16</span>;
-<span class="kw">const</span> <span class="ident">FONT_BLOCK_SIZE</span>: <span class="ident">usize</span> <span class="op">=</span> <span class="ident">FONT_SPRITE_SIZE</span> <span class="op">*</span> <span class="ident">FONT_SPRITE_COUNT</span>;
-<span class="kw">const</span> <span class="ident">FONT</span>: [<span class="ident">u8</span>; <span class="ident">FONT_BLOCK_SIZE</span>] <span class="op">=</span> [
-    <span class="number">0xF0</span>, <span class="number">0x90</span>, <span class="number">0x90</span>, <span class="number">0x90</span>, <span class="number">0xF0</span>, <span class="comment">// 0</span>
-    <span class="number">0x20</span>, <span class="number">0x60</span>, <span class="number">0x20</span>, <span class="number">0x20</span>, <span class="number">0x70</span>, <span class="comment">// 1</span>
-    <span class="number">0xF0</span>, <span class="number">0x10</span>, <span class="number">0xF0</span>, <span class="number">0x80</span>, <span class="number">0xF0</span>, <span class="comment">// 2</span>
-    <span class="number">0xF0</span>, <span class="number">0x10</span>, <span class="number">0xF0</span>, <span class="number">0x10</span>, <span class="number">0xF0</span>, <span class="comment">// 3</span>
-    <span class="number">0x90</span>, <span class="number">0x90</span>, <span class="number">0xF0</span>, <span class="number">0x10</span>, <span class="number">0x10</span>, <span class="comment">// 4</span>
-    <span class="number">0xF0</span>, <span class="number">0x80</span>, <span class="number">0xF0</span>, <span class="number">0x10</span>, <span class="number">0xF0</span>, <span class="comment">// 5</span>
-    <span class="number">0xF0</span>, <span class="number">0x80</span>, <span class="number">0xF0</span>, <span class="number">0x90</span>, <span class="number">0xF0</span>, <span class="comment">// 6</span>
-    <span class="number">0xF0</span>, <span class="number">0x10</span>, <span class="number">0x20</span>, <span class="number">0x40</span>, <span class="number">0x40</span>, <span class="comment">// 7</span>
-    <span class="number">0xF0</span>, <span class="number">0x90</span>, <span class="number">0xF0</span>, <span class="number">0x90</span>, <span class="number">0xF0</span>, <span class="comment">// 8</span>
-    <span class="number">0xF0</span>, <span class="number">0x90</span>, <span class="number">0xF0</span>, <span class="number">0x10</span>, <span class="number">0xF0</span>, <span class="comment">// 9</span>
-    <span class="number">0xF0</span>, <span class="number">0x90</span>, <span class="number">0xF0</span>, <span class="number">0x90</span>, <span class="number">0x90</span>, <span class="comment">// A</span>
-    <span class="number">0xE0</span>, <span class="number">0x90</span>, <span class="number">0xE0</span>, <span class="number">0x90</span>, <span class="number">0xE0</span>, <span class="comment">// B</span>
-    <span class="number">0xF0</span>, <span class="number">0x80</span>, <span class="number">0x80</span>, <span class="number">0x80</span>, <span class="number">0xF0</span>, <span class="comment">// C</span>
-    <span class="number">0xE0</span>, <span class="number">0x90</span>, <span class="number">0x90</span>, <span class="number">0x90</span>, <span class="number">0xE0</span>, <span class="comment">// D</span>
-    <span class="number">0xF0</span>, <span class="number">0x80</span>, <span class="number">0xF0</span>, <span class="number">0x80</span>, <span class="number">0xF0</span>, <span class="comment">// E</span>
-    <span class="number">0xF0</span>, <span class="number">0x80</span>, <span class="number">0xF0</span>, <span class="number">0x80</span>, <span class="number">0x80</span>, <span class="comment">// F</span>
-];
+<span class="kw">const </span>FONT_START_ADDR: usize = <span class="number">0x050</span>;
+<span class="kw">const </span>FONT_SPRITE_SIZE: usize = <span class="number">5</span>;
+<span class="kw">const </span>FONT_SPRITE_COUNT: usize = <span class="number">16</span>;
+<span class="kw">const </span>FONT_BLOCK_SIZE: usize = FONT_SPRITE_SIZE * FONT_SPRITE_COUNT;
+<span class="kw">const </span>FONT: [u8; FONT_BLOCK_SIZE] = [
+    <span class="number">0xF0</span>, <span class="number">0x90</span>, <span class="number">0x90</span>, <span class="number">0x90</span>, <span class="number">0xF0</span>, <span class="comment">// 0
+    </span><span class="number">0x20</span>, <span class="number">0x60</span>, <span class="number">0x20</span>, <span class="number">0x20</span>, <span class="number">0x70</span>, <span class="comment">// 1
+    </span><span class="number">0xF0</span>, <span class="number">0x10</span>, <span class="number">0xF0</span>, <span class="number">0x80</span>, <span class="number">0xF0</span>, <span class="comment">// 2
+    </span><span class="number">0xF0</span>, <span class="number">0x10</span>, <span class="number">0xF0</span>, <span class="number">0x10</span>, <span class="number">0xF0</span>, <span class="comment">// 3
+    </span><span class="number">0x90</span>, <span class="number">0x90</span>, <span class="number">0xF0</span>, <span class="number">0x10</span>, <span class="number">0x10</span>, <span class="comment">// 4
+    </span><span class="number">0xF0</span>, <span class="number">0x80</span>, <span class="number">0xF0</span>, <span class="number">0x10</span>, <span class="number">0xF0</span>, <span class="comment">// 5
+    </span><span class="number">0xF0</span>, <span class="number">0x80</span>, <span class="number">0xF0</span>, <span class="number">0x90</span>, <span class="number">0xF0</span>, <span class="comment">// 6
+    </span><span class="number">0xF0</span>, <span class="number">0x10</span>, <span class="number">0x20</span>, <span class="number">0x40</span>, <span class="number">0x40</span>, <span class="comment">// 7
+    </span><span class="number">0xF0</span>, <span class="number">0x90</span>, <span class="number">0xF0</span>, <span class="number">0x90</span>, <span class="number">0xF0</span>, <span class="comment">// 8
+    </span><span class="number">0xF0</span>, <span class="number">0x90</span>, <span class="number">0xF0</span>, <span class="number">0x10</span>, <span class="number">0xF0</span>, <span class="comment">// 9
+    </span><span class="number">0xF0</span>, <span class="number">0x90</span>, <span class="number">0xF0</span>, <span class="number">0x90</span>, <span class="number">0x90</span>, <span class="comment">// A
+    </span><span class="number">0xE0</span>, <span class="number">0x90</span>, <span class="number">0xE0</span>, <span class="number">0x90</span>, <span class="number">0xE0</span>, <span class="comment">// B
+    </span><span class="number">0xF0</span>, <span class="number">0x80</span>, <span class="number">0x80</span>, <span class="number">0x80</span>, <span class="number">0xF0</span>, <span class="comment">// C
+    </span><span class="number">0xE0</span>, <span class="number">0x90</span>, <span class="number">0x90</span>, <span class="number">0x90</span>, <span class="number">0xE0</span>, <span class="comment">// D
+    </span><span class="number">0xF0</span>, <span class="number">0x80</span>, <span class="number">0xF0</span>, <span class="number">0x80</span>, <span class="number">0xF0</span>, <span class="comment">// E
+    </span><span class="number">0xF0</span>, <span class="number">0x80</span>, <span class="number">0xF0</span>, <span class="number">0x80</span>, <span class="number">0x80</span>, <span class="comment">// F
+</span>];
 
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Cpu</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="ident">gpu</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="kw-2">mut</span> <span class="ident">Gpu</span>,
-    <span class="kw">pub</span> <span class="ident">memory</span>: [<span class="ident">u8</span>; <span class="ident">MEMORY_SIZE</span>],
-    <span class="ident">registers</span>: [<span class="ident">u8</span>; <span class="ident">REGISTER_COUNT</span>],
-    <span class="kw">pub</span> <span class="ident">address_register</span>: <span class="ident">usize</span>,
-    <span class="kw">pub</span> <span class="ident">pc</span>: <span class="ident">usize</span>,
-    <span class="kw">pub</span> <span class="ident">stack</span>: [<span class="ident">usize</span>; <span class="ident">STACK_SIZE</span>],
-    <span class="kw">pub</span> <span class="ident">sp</span>: <span class="ident">usize</span>,
-    <span class="kw">pub</span> <span class="ident">delay_timer</span>: <span class="ident">u8</span>,
-    <span class="kw">pub</span> <span class="ident">sound_timer</span>: <span class="ident">u8</span>,
-    <span class="ident">keys</span>: <span class="ident">u16</span>,
-    <span class="ident">running</span>: <span class="ident">bool</span>,
-    <span class="kw">pub</span> <span class="ident">redraw</span>: <span class="ident">bool</span>,
+<span class="kw">pub struct </span>Cpu&lt;<span class="lifetime">&#39;a</span>&gt; {
+    gpu: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span><span class="kw-2">mut </span>Gpu,
+    <span class="kw">pub </span>memory: [u8; MEMORY_SIZE],
+    registers: [u8; REGISTER_COUNT],
+    <span class="kw">pub </span>address_register: usize,
+    <span class="kw">pub </span>pc: usize,
+    <span class="kw">pub </span>stack: [usize; STACK_SIZE],
+    <span class="kw">pub </span>sp: usize,
+    <span class="kw">pub </span>delay_timer: u8,
+    <span class="kw">pub </span>sound_timer: u8,
+    keys: u16,
+    running: bool,
+    <span class="kw">pub </span>redraw: bool,
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">Cpu</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">gpu</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="kw-2">mut</span> <span class="ident">Gpu</span>) -&gt; <span class="self">Self</span> {
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">cpu</span> <span class="op">=</span> <span class="self">Self</span> {
-            <span class="ident">gpu</span>,
-            <span class="ident">memory</span>: [<span class="number">0</span>; <span class="ident">MEMORY_SIZE</span>],
-            <span class="ident">registers</span>: [<span class="number">0</span>; <span class="ident">REGISTER_COUNT</span>],
-            <span class="ident">address_register</span>: <span class="number">0</span>,
-            <span class="ident">pc</span>: <span class="ident">PROGRAM_START</span>,
-            <span class="ident">stack</span>: [<span class="number">0</span>; <span class="ident">STACK_SIZE</span>],
-            <span class="ident">sp</span>: <span class="number">0</span>,
-            <span class="ident">delay_timer</span>: <span class="number">0</span>,
-            <span class="ident">sound_timer</span>: <span class="number">0</span>,
-            <span class="ident">keys</span>: <span class="number">0</span>,
-            <span class="ident">running</span>: <span class="bool-val">true</span>,
-            <span class="ident">redraw</span>: <span class="bool-val">false</span>,
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; Cpu&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="kw">pub fn </span>new(gpu: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span><span class="kw-2">mut </span>Gpu) -&gt; <span class="self">Self </span>{
+        <span class="kw">let </span><span class="kw-2">mut </span>cpu = <span class="self">Self </span>{
+            gpu,
+            memory: [<span class="number">0</span>; MEMORY_SIZE],
+            registers: [<span class="number">0</span>; REGISTER_COUNT],
+            address_register: <span class="number">0</span>,
+            pc: PROGRAM_START,
+            stack: [<span class="number">0</span>; STACK_SIZE],
+            sp: <span class="number">0</span>,
+            delay_timer: <span class="number">0</span>,
+            sound_timer: <span class="number">0</span>,
+            keys: <span class="number">0</span>,
+            running: <span class="bool-val">true</span>,
+            redraw: <span class="bool-val">false</span>,
         };
-        <span class="ident">cpu</span>.<span class="ident">reset</span>();
-        <span class="ident">cpu</span>
+        cpu.reset();
+        cpu
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">reset</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>) {
-        <span class="self">self</span>.<span class="ident">gpu</span>.<span class="ident">clear</span>();
-        <span class="self">self</span>.<span class="ident">registers</span>.<span class="ident">fill</span>(<span class="number">0</span>);
-        <span class="self">self</span>.<span class="ident">address_register</span> <span class="op">=</span> <span class="number">0</span>;
-        <span class="self">self</span>.<span class="ident">pc</span> <span class="op">=</span> <span class="ident">PROGRAM_START</span>;
-        <span class="self">self</span>.<span class="ident">stack</span>.<span class="ident">fill</span>(<span class="number">0</span>);
-        <span class="self">self</span>.<span class="ident">sp</span> <span class="op">=</span> <span class="number">0</span>;
-        <span class="self">self</span>.<span class="ident">delay_timer</span> <span class="op">=</span> <span class="number">0</span>;
-        <span class="self">self</span>.<span class="ident">sound_timer</span> <span class="op">=</span> <span class="number">0</span>;
-        <span class="self">self</span>.<span class="ident">keys</span> <span class="op">=</span> <span class="number">0</span>;
-        <span class="self">self</span>.<span class="ident">running</span> <span class="op">=</span> <span class="bool-val">true</span>;
-        <span class="self">self</span>.<span class="ident">redraw</span> <span class="op">=</span> <span class="bool-val">false</span>;
-        <span class="self">self</span>.<span class="ident">memory</span>[<span class="ident">FONT_START_ADDR</span>..(<span class="ident">FONT_START_ADDR</span> <span class="op">+</span> <span class="ident">FONT</span>.<span class="ident">len</span>())].<span class="ident">copy_from_slice</span>(<span class="kw-2">&amp;</span><span class="ident">FONT</span>);
+    <span class="kw">pub fn </span>reset(<span class="kw-2">&amp;mut </span><span class="self">self</span>) {
+        <span class="self">self</span>.gpu.clear();
+        <span class="self">self</span>.registers.fill(<span class="number">0</span>);
+        <span class="self">self</span>.address_register = <span class="number">0</span>;
+        <span class="self">self</span>.pc = PROGRAM_START;
+        <span class="self">self</span>.stack.fill(<span class="number">0</span>);
+        <span class="self">self</span>.sp = <span class="number">0</span>;
+        <span class="self">self</span>.delay_timer = <span class="number">0</span>;
+        <span class="self">self</span>.sound_timer = <span class="number">0</span>;
+        <span class="self">self</span>.keys = <span class="number">0</span>;
+        <span class="self">self</span>.running = <span class="bool-val">true</span>;
+        <span class="self">self</span>.redraw = <span class="bool-val">false</span>;
+        <span class="self">self</span>.memory[FONT_START_ADDR..(FONT_START_ADDR + FONT.len())].copy_from_slice(<span class="kw-2">&amp;</span>FONT);
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">register</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">idx</span>: <span class="ident">usize</span>) -&gt; <span class="ident">u8</span> {
-        <span class="self">self</span>.<span class="ident">registers</span>[<span class="ident">idx</span>]
+    <span class="kw">pub fn </span>register(<span class="kw-2">&amp;</span><span class="self">self</span>, idx: usize) -&gt; u8 {
+        <span class="self">self</span>.registers[idx]
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">load</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">program_bytes</span>: <span class="kw-2">&amp;</span>[<span class="ident">u8</span>]) {
-        <span class="kw">let</span> <span class="ident">available</span> <span class="op">=</span> <span class="ident">MEMORY_SIZE</span> <span class="op">-</span> <span class="ident">RESERVED_START</span> <span class="op">-</span> <span class="ident">RESERVED_END</span>;
-        <span class="kw">if</span> <span class="ident">program_bytes</span>.<span class="ident">len</span>() <span class="op">&gt;</span> <span class="ident">available</span> {
+    <span class="kw">pub fn </span>load(<span class="kw-2">&amp;mut </span><span class="self">self</span>, program_bytes: <span class="kw-2">&amp;</span>[u8]) {
+        <span class="kw">let </span>available = MEMORY_SIZE - RESERVED_START - RESERVED_END;
+        <span class="kw">if </span>program_bytes.len() &gt; available {
             <span class="macro">panic!</span>(
                 <span class="string">&quot;Program too large! ({} bytes, available: {} bytes)&quot;</span>,
-                <span class="ident">program_bytes</span>.<span class="ident">len</span>(),
-                <span class="ident">available</span>
+                program_bytes.len(),
+                available
             );
         }
-        <span class="kw">let</span> <span class="ident">start_addr</span> <span class="op">=</span> <span class="ident">RESERVED_START</span>;
-        <span class="kw">let</span> <span class="ident">end_addr</span> <span class="op">=</span> <span class="ident">MEMORY_SIZE</span> <span class="op">-</span> <span class="ident">RESERVED_END</span> <span class="op">-</span> <span class="number">1</span>;
-        <span class="macro">println!</span>(<span class="string">&quot;Loading program ({} bytes)&quot;</span>, <span class="ident">program_bytes</span>.<span class="ident">len</span>());
+        <span class="kw">let </span>start_addr = RESERVED_START;
+        <span class="kw">let </span>end_addr = MEMORY_SIZE - RESERVED_END - <span class="number">1</span>;
+        <span class="macro">println!</span>(<span class="string">&quot;Loading program ({} bytes)&quot;</span>, program_bytes.len());
         <span class="macro">println!</span>(
             <span class="string">&quot;Start addr: {:#04X}, end addr: {:#04X}&quot;</span>,
-            <span class="ident">start_addr</span>, <span class="ident">end_addr</span>
+            start_addr, end_addr
         );
-        <span class="self">self</span>.<span class="ident">memory</span>[<span class="ident">start_addr</span>..(<span class="ident">program_bytes</span>.<span class="ident">len</span>() <span class="op">+</span> <span class="ident">start_addr</span>)].<span class="ident">copy_from_slice</span>(<span class="ident">program_bytes</span>);
+        <span class="self">self</span>.memory[start_addr..(program_bytes.len() + start_addr)].copy_from_slice(program_bytes);
     }
 
-    <span class="kw">fn</span> <span class="ident">read16</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">addr</span>: <span class="ident">usize</span>) -&gt; <span class="ident">u16</span> {
-        <span class="kw">let</span> <span class="ident">hi</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">memory</span>[<span class="ident">addr</span>];
-        <span class="kw">let</span> <span class="ident">lo</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">memory</span>[<span class="ident">addr</span> <span class="op">+</span> <span class="number">1</span>];
-        ((<span class="ident">hi</span> <span class="kw">as</span> <span class="ident">u16</span>) <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">8</span>) <span class="op">|</span> (<span class="ident">lo</span> <span class="kw">as</span> <span class="ident">u16</span>)
+    <span class="kw">fn </span>read16(<span class="kw-2">&amp;</span><span class="self">self</span>, addr: usize) -&gt; u16 {
+        <span class="kw">let </span>hi = <span class="self">self</span>.memory[addr];
+        <span class="kw">let </span>lo = <span class="self">self</span>.memory[addr + <span class="number">1</span>];
+        ((hi <span class="kw">as </span>u16) &lt;&lt; <span class="number">8</span>) | (lo <span class="kw">as </span>u16)
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">screen</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span>[<span class="ident">bool</span>] {
-        <span class="self">self</span>.<span class="ident">gpu</span>.<span class="ident">screen</span>()
+    <span class="kw">pub fn </span>screen(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span>[bool] {
+        <span class="self">self</span>.gpu.screen()
     }
 
-    <span class="kw">fn</span> <span class="ident">stack_push</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">value</span>: <span class="ident">usize</span>) {
-        <span class="self">self</span>.<span class="ident">stack</span>[<span class="self">self</span>.<span class="ident">sp</span>] <span class="op">=</span> <span class="ident">value</span>;
-        <span class="self">self</span>.<span class="ident">sp</span> <span class="op">+</span><span class="op">=</span> <span class="number">1</span>;
+    <span class="kw">fn </span>stack_push(<span class="kw-2">&amp;mut </span><span class="self">self</span>, value: usize) {
+        <span class="self">self</span>.stack[<span class="self">self</span>.sp] = value;
+        <span class="self">self</span>.sp += <span class="number">1</span>;
     }
 
-    <span class="kw">fn</span> <span class="ident">stack_pop</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>) -&gt; <span class="ident">usize</span> {
-        <span class="self">self</span>.<span class="ident">sp</span> <span class="op">-</span><span class="op">=</span> <span class="number">1</span>;
-        <span class="self">self</span>.<span class="ident">stack</span>[<span class="self">self</span>.<span class="ident">sp</span>]
+    <span class="kw">fn </span>stack_pop(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; usize {
+        <span class="self">self</span>.sp -= <span class="number">1</span>;
+        <span class="self">self</span>.stack[<span class="self">self</span>.sp]
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">step</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>) {
-        <span class="kw">if</span> <span class="op">!</span><span class="self">self</span>.<span class="ident">running</span> {
+    <span class="kw">pub fn </span>step(<span class="kw-2">&amp;mut </span><span class="self">self</span>) {
+        <span class="kw">if </span>!<span class="self">self</span>.running {
             <span class="kw">return</span>;
         }
 
-        <span class="kw">let</span> <span class="ident">instr</span> <span class="op">=</span> <span class="ident">Instruction::new</span>(<span class="self">self</span>.<span class="ident">read16</span>(<span class="self">self</span>.<span class="ident">pc</span>));
-        <span class="self">self</span>.<span class="ident">pc</span> <span class="op">+</span><span class="op">=</span> <span class="ident">STEP_SIZE</span>;
-        <span class="self">self</span>.<span class="ident">decode</span>(<span class="kw-2">&amp;</span><span class="ident">instr</span>);
+        <span class="kw">let </span>instr = Instruction::new(<span class="self">self</span>.read16(<span class="self">self</span>.pc));
+        <span class="self">self</span>.pc += STEP_SIZE;
+        <span class="self">self</span>.decode(<span class="kw-2">&amp;</span>instr);
 
-        <span class="kw">if</span> <span class="self">self</span>.<span class="ident">pc</span> <span class="op">&gt;</span> <span class="ident">MEMORY_SIZE</span> {
+        <span class="kw">if </span><span class="self">self</span>.pc &gt; MEMORY_SIZE {
             <span class="macro">panic!</span>(<span class="string">&quot;PC outside of memory&quot;</span>);
         }
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">tick_timers</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>) {
-        <span class="kw">if</span> <span class="self">self</span>.<span class="ident">delay_timer</span> <span class="op">&gt;</span> <span class="number">0</span> {
-            <span class="self">self</span>.<span class="ident">delay_timer</span> <span class="op">-</span><span class="op">=</span> <span class="number">1</span>;
+    <span class="kw">pub fn </span>tick_timers(<span class="kw-2">&amp;mut </span><span class="self">self</span>) {
+        <span class="kw">if </span><span class="self">self</span>.delay_timer &gt; <span class="number">0 </span>{
+            <span class="self">self</span>.delay_timer -= <span class="number">1</span>;
         }
-        <span class="kw">if</span> <span class="self">self</span>.<span class="ident">sound_timer</span> <span class="op">&gt;</span> <span class="number">0</span> {
-            <span class="self">self</span>.<span class="ident">sound_timer</span> <span class="op">-</span><span class="op">=</span> <span class="number">1</span>;
+        <span class="kw">if </span><span class="self">self</span>.sound_timer &gt; <span class="number">0 </span>{
+            <span class="self">self</span>.sound_timer -= <span class="number">1</span>;
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">decode</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">instruction</span>: <span class="kw-2">&amp;</span><span class="ident">Instruction</span>) {
-        <span class="comment">// println!(&quot;Decoding instruction: {:04X}&quot;, instruction.value());</span>
-        <span class="kw">let</span> <span class="ident">opcode</span> <span class="op">=</span> <span class="ident">instruction</span>.<span class="ident">opcode</span>();
-        <span class="kw">let</span> <span class="ident">variant_1</span> <span class="op">=</span> <span class="ident">instruction</span>.<span class="ident">n</span>();
-        <span class="kw">let</span> <span class="ident">variant_2</span> <span class="op">=</span> <span class="ident">instruction</span>.<span class="ident">nn</span>();
-        <span class="kw">let</span> <span class="ident">variant_3</span> <span class="op">=</span> <span class="ident">instruction</span>.<span class="ident">nnn</span>();
-        <span class="kw">match</span> (<span class="ident">opcode</span>, <span class="ident">variant_1</span>, <span class="ident">variant_2</span>, <span class="ident">variant_3</span>) {
+    <span class="kw">fn </span>decode(<span class="kw-2">&amp;mut </span><span class="self">self</span>, instruction: <span class="kw-2">&amp;</span>Instruction) {
+        <span class="comment">// println!(&quot;Decoding instruction: {:04X}&quot;, instruction.value());
+        </span><span class="kw">let </span>opcode = instruction.opcode();
+        <span class="kw">let </span>variant_1 = instruction.n();
+        <span class="kw">let </span>variant_2 = instruction.nn();
+        <span class="kw">let </span>variant_3 = instruction.nnn();
+        <span class="kw">match </span>(opcode, variant_1, variant_2, variant_3) {
             (<span class="number">0</span>, <span class="kw">_</span>, <span class="kw">_</span>, <span class="number">0x0E0</span>) =&gt; {
-                <span class="comment">// CLR</span>
-                <span class="self">self</span>.<span class="ident">gpu</span>.<span class="ident">clear</span>();
-                <span class="self">self</span>.<span class="ident">redraw</span> <span class="op">=</span> <span class="bool-val">true</span>;
+                <span class="comment">// CLR
+                </span><span class="self">self</span>.gpu.clear();
+                <span class="self">self</span>.redraw = <span class="bool-val">true</span>;
             }
 
             (<span class="number">0</span>, <span class="kw">_</span>, <span class="kw">_</span>, <span class="number">0x0EE</span>) =&gt; {
-                <span class="comment">// RET</span>
-                <span class="kw">let</span> <span class="ident">return_addr</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">stack_pop</span>();
-                <span class="self">self</span>.<span class="ident">pc</span> <span class="op">=</span> <span class="ident">return_addr</span>;
+                <span class="comment">// RET
+                </span><span class="kw">let </span>return_addr = <span class="self">self</span>.stack_pop();
+                <span class="self">self</span>.pc = return_addr;
             }
 
             (<span class="number">0</span>, <span class="kw">_</span>, <span class="kw">_</span>, <span class="kw">_</span>) =&gt; {
-                <span class="comment">// SYS</span>
-                <span class="kw">let</span> <span class="ident">x</span> <span class="op">=</span> <span class="ident">instruction</span>.<span class="ident">x</span>();
-                <span class="kw">let</span> <span class="ident">nn</span> <span class="op">=</span> <span class="ident">instruction</span>.<span class="ident">nn</span>();
-                <span class="kw">if</span> <span class="ident">x</span> <span class="op">==</span> <span class="number">0xF</span> {
-                    <span class="macro">println!</span>(<span class="string">&quot;DBG:EXIT({})&quot;</span>, <span class="ident">nn</span>);
-                    <span class="comment">// exit(nn as i32);</span>
-                    <span class="self">self</span>.<span class="ident">running</span> <span class="op">=</span> <span class="bool-val">false</span>;
-                } <span class="kw">else</span> {
+                <span class="comment">// SYS
+                </span><span class="kw">let </span>x = instruction.x();
+                <span class="kw">let </span>nn = instruction.nn();
+                <span class="kw">if </span>x == <span class="number">0xF </span>{
+                    <span class="macro">println!</span>(<span class="string">&quot;DBG:EXIT({})&quot;</span>, nn);
+                    <span class="comment">// exit(nn as i32);
+                    </span><span class="self">self</span>.running = <span class="bool-val">false</span>;
+                } <span class="kw">else </span>{
                     <span class="macro">panic!</span>(<span class="string">&quot;Machine code subroutines are not supported&quot;</span>)
                 }
             }
 
             (<span class="number">1</span>, <span class="kw">_</span>, <span class="kw">_</span>, <span class="kw">_</span>) =&gt; {
-                <span class="comment">// JMP</span>
-                <span class="kw">let</span> <span class="ident">addr</span> <span class="op">=</span> <span class="ident">instruction</span>.<span class="ident">nnn</span>() <span class="kw">as</span> <span class="ident">usize</span>;
-                <span class="self">self</span>.<span class="ident">pc</span> <span class="op">=</span> <span class="ident">addr</span>;
+                <span class="comment">// JMP
+                </span><span class="kw">let </span>addr = instruction.nnn() <span class="kw">as </span>usize;
+                <span class="self">self</span>.pc = addr;
             }
 
             (<span class="number">2</span>, <span class="kw">_</span>, <span class="kw">_</span>, <span class="kw">_</span>) =&gt; {
-                <span class="comment">// CALL</span>
-                <span class="kw">let</span> <span class="ident">return_addr</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">pc</span>;
-                <span class="self">self</span>.<span class="ident">stack_push</span>(<span class="ident">return_addr</span>);
-                <span class="kw">let</span> <span class="ident">sub_addr</span> <span class="op">=</span> <span class="ident">instruction</span>.<span class="ident">nnn</span>() <span class="kw">as</span> <span class="ident">usize</span>;
-                <span class="self">self</span>.<span class="ident">pc</span> <span class="op">=</span> <span class="ident">sub_addr</span>;
+                <span class="comment">// CALL
+                </span><span class="kw">let </span>return_addr = <span class="self">self</span>.pc;
+                <span class="self">self</span>.stack_push(return_addr);
+                <span class="kw">let </span>sub_addr = instruction.nnn() <span class="kw">as </span>usize;
+                <span class="self">self</span>.pc = sub_addr;
             }
 
             (<span class="number">3</span>, <span class="kw">_</span>, <span class="kw">_</span>, <span class="kw">_</span>) =&gt; {
-                <span class="comment">// SEQ</span>
-                <span class="kw">let</span> <span class="ident">x_val</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">registers</span>[<span class="ident">instruction</span>.<span class="ident">x</span>() <span class="kw">as</span> <span class="ident">usize</span>];
-                <span class="kw">let</span> <span class="ident">nn</span> <span class="op">=</span> <span class="ident">instruction</span>.<span class="ident">nn</span>();
-                <span class="kw">if</span> <span class="ident">x_val</span> <span class="op">==</span> <span class="ident">nn</span> {
-                    <span class="self">self</span>.<span class="ident">pc</span> <span class="op">+</span><span class="op">=</span> <span class="ident">STEP_SIZE</span>;
+                <span class="comment">// SEQ
+                </span><span class="kw">let </span>x_val = <span class="self">self</span>.registers[instruction.x() <span class="kw">as </span>usize];
+                <span class="kw">let </span>nn = instruction.nn();
+                <span class="kw">if </span>x_val == nn {
+                    <span class="self">self</span>.pc += STEP_SIZE;
                 }
             }
 
             (<span class="number">4</span>, <span class="kw">_</span>, <span class="kw">_</span>, <span class="kw">_</span>) =&gt; {
-                <span class="comment">// SNE</span>
-                <span class="kw">let</span> <span class="ident">x_val</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">registers</span>[<span class="ident">instruction</span>.<span class="ident">x</span>() <span class="kw">as</span> <span class="ident">usize</span>];
-                <span class="kw">let</span> <span class="ident">nn</span> <span class="op">=</span> <span class="ident">instruction</span>.<span class="ident">nn</span>();
-                <span class="kw">if</span> <span class="ident">x_val</span> <span class="op">!</span><span class="op">=</span> <span class="ident">nn</span> {
-                    <span class="self">self</span>.<span class="ident">pc</span> <span class="op">+</span><span class="op">=</span> <span class="ident">STEP_SIZE</span>;
+                <span class="comment">// SNE
+                </span><span class="kw">let </span>x_val = <span class="self">self</span>.registers[instruction.x() <span class="kw">as </span>usize];
+                <span class="kw">let </span>nn = instruction.nn();
+                <span class="kw">if </span>x_val != nn {
+                    <span class="self">self</span>.pc += STEP_SIZE;
                 }
             }
 
             (<span class="number">5</span>, <span class="number">0</span>, <span class="kw">_</span>, <span class="kw">_</span>) =&gt; {
-                <span class="comment">// SEQ</span>
-                <span class="kw">let</span> <span class="ident">x_val</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">registers</span>[<span class="ident">instruction</span>.<span class="ident">x</span>() <span class="kw">as</span> <span class="ident">usize</span>];
-                <span class="kw">let</span> <span class="ident">y_val</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">registers</span>[<span class="ident">instruction</span>.<span class="ident">y</span>() <span class="kw">as</span> <span class="ident">usize</span>];
-                <span class="kw">if</span> <span class="ident">x_val</span> <span class="op">==</span> <span class="ident">y_val</span> {
-                    <span class="self">self</span>.<span class="ident">pc</span> <span class="op">+</span><span class="op">=</span> <span class="ident">STEP_SIZE</span>;
+                <span class="comment">// SEQ
+                </span><span class="kw">let </span>x_val = <span class="self">self</span>.registers[instruction.x() <span class="kw">as </span>usize];
+                <span class="kw">let </span>y_val = <span class="self">self</span>.registers[instruction.y() <span class="kw">as </span>usize];
+                <span class="kw">if </span>x_val == y_val {
+                    <span class="self">self</span>.pc += STEP_SIZE;
                 }
             }
 
             (<span class="number">6</span>, <span class="kw">_</span>, <span class="kw">_</span>, <span class="kw">_</span>) =&gt; {
-                <span class="comment">// SET</span>
-                <span class="self">self</span>.<span class="ident">registers</span>[<span class="ident">instruction</span>.<span class="ident">x</span>() <span class="kw">as</span> <span class="ident">usize</span>] <span class="op">=</span> <span class="ident">instruction</span>.<span class="ident">nn</span>();
+                <span class="comment">// SET
+                </span><span class="self">self</span>.registers[instruction.x() <span class="kw">as </span>usize] = instruction.nn();
             }
 
             (<span class="number">7</span>, <span class="kw">_</span>, <span class="kw">_</span>, <span class="kw">_</span>) =&gt; {
-                <span class="comment">// ADD</span>
-                <span class="kw">let</span> <span class="ident">x</span> <span class="op">=</span> <span class="ident">instruction</span>.<span class="ident">x</span>() <span class="kw">as</span> <span class="ident">usize</span>;
-                <span class="self">self</span>.<span class="ident">registers</span>[<span class="ident">x</span>] <span class="op">=</span> <span class="self">self</span>.<span class="ident">registers</span>[<span class="ident">x</span>].<span class="ident">wrapping_add</span>(<span class="ident">instruction</span>.<span class="ident">nn</span>());
+                <span class="comment">// ADD
+                </span><span class="kw">let </span>x = instruction.x() <span class="kw">as </span>usize;
+                <span class="self">self</span>.registers[x] = <span class="self">self</span>.registers[x].wrapping_add(instruction.nn());
             }
 
             (<span class="number">8</span>, <span class="number">0</span>, <span class="kw">_</span>, <span class="kw">_</span>) =&gt; {
-                <span class="comment">// SETR</span>
-                <span class="kw">let</span> <span class="ident">y_val</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">registers</span>[<span class="ident">instruction</span>.<span class="ident">y</span>() <span class="kw">as</span> <span class="ident">usize</span>];
-                <span class="self">self</span>.<span class="ident">registers</span>[<span class="ident">instruction</span>.<span class="ident">x</span>() <span class="kw">as</span> <span class="ident">usize</span>] <span class="op">=</span> <span class="ident">y_val</span>;
+                <span class="comment">// SETR
+                </span><span class="kw">let </span>y_val = <span class="self">self</span>.registers[instruction.y() <span class="kw">as </span>usize];
+                <span class="self">self</span>.registers[instruction.x() <span class="kw">as </span>usize] = y_val;
             }
 
             (<span class="number">8</span>, <span class="number">1</span>, <span class="kw">_</span>, <span class="kw">_</span>) =&gt; {
-                <span class="comment">// OR</span>
-                <span class="kw">let</span> <span class="ident">x_val</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">registers</span>[<span class="ident">instruction</span>.<span class="ident">x</span>() <span class="kw">as</span> <span class="ident">usize</span>];
-                <span class="kw">let</span> <span class="ident">y_val</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">registers</span>[<span class="ident">instruction</span>.<span class="ident">y</span>() <span class="kw">as</span> <span class="ident">usize</span>];
-                <span class="self">self</span>.<span class="ident">registers</span>[<span class="ident">instruction</span>.<span class="ident">x</span>() <span class="kw">as</span> <span class="ident">usize</span>] <span class="op">=</span> <span class="ident">x_val</span> <span class="op">|</span> <span class="ident">y_val</span>;
+                <span class="comment">// OR
+                </span><span class="kw">let </span>x_val = <span class="self">self</span>.registers[instruction.x() <span class="kw">as </span>usize];
+                <span class="kw">let </span>y_val = <span class="self">self</span>.registers[instruction.y() <span class="kw">as </span>usize];
+                <span class="self">self</span>.registers[instruction.x() <span class="kw">as </span>usize] = x_val | y_val;
             }
 
             (<span class="number">8</span>, <span class="number">2</span>, <span class="kw">_</span>, <span class="kw">_</span>) =&gt; {
-                <span class="comment">// AND</span>
-                <span class="kw">let</span> <span class="ident">x_val</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">registers</span>[<span class="ident">instruction</span>.<span class="ident">x</span>() <span class="kw">as</span> <span class="ident">usize</span>];
-                <span class="kw">let</span> <span class="ident">y_val</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">registers</span>[<span class="ident">instruction</span>.<span class="ident">y</span>() <span class="kw">as</span> <span class="ident">usize</span>];
-                <span class="self">self</span>.<span class="ident">registers</span>[<span class="ident">instruction</span>.<span class="ident">x</span>() <span class="kw">as</span> <span class="ident">usize</span>] <span class="op">=</span> <span class="ident">x_val</span> <span class="op">&amp;</span> <span class="ident">y_val</span>;
+                <span class="comment">// AND
+                </span><span class="kw">let </span>x_val = <span class="self">self</span>.registers[instruction.x() <span class="kw">as </span>usize];
+                <span class="kw">let </span>y_val = <span class="self">self</span>.registers[instruction.y() <span class="kw">as </span>usize];
+                <span class="self">self</span>.registers[instruction.x() <span class="kw">as </span>usize] = x_val &amp; y_val;
             }
 
             (<span class="number">8</span>, <span class="number">3</span>, <span class="kw">_</span>, <span class="kw">_</span>) =&gt; {
-                <span class="comment">// XOR</span>
-                <span class="kw">let</span> <span class="ident">x_val</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">registers</span>[<span class="ident">instruction</span>.<span class="ident">x</span>() <span class="kw">as</span> <span class="ident">usize</span>];
-                <span class="kw">let</span> <span class="ident">y_val</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">registers</span>[<span class="ident">instruction</span>.<span class="ident">y</span>() <span class="kw">as</span> <span class="ident">usize</span>];
-                <span class="self">self</span>.<span class="ident">registers</span>[<span class="ident">instruction</span>.<span class="ident">x</span>() <span class="kw">as</span> <span class="ident">usize</span>] <span class="op">=</span> <span class="ident">x_val</span> <span class="op">^</span> <span class="ident">y_val</span>;
+                <span class="comment">// XOR
+                </span><span class="kw">let </span>x_val = <span class="self">self</span>.registers[instruction.x() <span class="kw">as </span>usize];
+                <span class="kw">let </span>y_val = <span class="self">self</span>.registers[instruction.y() <span class="kw">as </span>usize];
+                <span class="self">self</span>.registers[instruction.x() <span class="kw">as </span>usize] = x_val ^ y_val;
             }
 
             (<span class="number">8</span>, <span class="number">4</span>, <span class="kw">_</span>, <span class="kw">_</span>) =&gt; {
-                <span class="comment">// ADC</span>
-                <span class="kw">let</span> <span class="ident">x</span> <span class="op">=</span> <span class="ident">instruction</span>.<span class="ident">x</span>() <span class="kw">as</span> <span class="ident">usize</span>;
-                <span class="kw">let</span> <span class="ident">x_val</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">registers</span>[<span class="ident">x</span>];
-                <span class="kw">let</span> <span class="ident">y_val</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">registers</span>[<span class="ident">instruction</span>.<span class="ident">y</span>() <span class="kw">as</span> <span class="ident">usize</span>];
-                <span class="kw">let</span> <span class="ident">new</span> <span class="op">=</span> <span class="ident">x_val</span>.<span class="ident">wrapping_add</span>(<span class="ident">y_val</span>);
-                <span class="self">self</span>.<span class="ident">registers</span>[<span class="ident">x</span>] <span class="op">=</span> <span class="ident">new</span>;
-                <span class="self">self</span>.<span class="ident">registers</span>[<span class="number">0xF</span>] <span class="op">=</span> <span class="kw">if</span> <span class="ident">new</span> <span class="op">&lt;</span> <span class="ident">x_val</span> { <span class="number">1</span> } <span class="kw">else</span> { <span class="number">0</span> };
+                <span class="comment">// ADC
+                </span><span class="kw">let </span>x = instruction.x() <span class="kw">as </span>usize;
+                <span class="kw">let </span>x_val = <span class="self">self</span>.registers[x];
+                <span class="kw">let </span>y_val = <span class="self">self</span>.registers[instruction.y() <span class="kw">as </span>usize];
+                <span class="kw">let </span>new = x_val.wrapping_add(y_val);
+                <span class="self">self</span>.registers[x] = new;
+                <span class="self">self</span>.registers[<span class="number">0xF</span>] = <span class="kw">if </span>new &lt; x_val { <span class="number">1 </span>} <span class="kw">else </span>{ <span class="number">0 </span>};
             }
 
             (<span class="number">8</span>, <span class="number">5</span>, <span class="kw">_</span>, <span class="kw">_</span>) =&gt; {
-                <span class="comment">// SUB</span>
-                <span class="kw">let</span> <span class="ident">x</span> <span class="op">=</span> <span class="ident">instruction</span>.<span class="ident">x</span>() <span class="kw">as</span> <span class="ident">usize</span>;
-                <span class="kw">let</span> <span class="ident">x_val</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">registers</span>[<span class="ident">x</span>];
-                <span class="kw">let</span> <span class="ident">y_val</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">registers</span>[<span class="ident">instruction</span>.<span class="ident">y</span>() <span class="kw">as</span> <span class="ident">usize</span>];
-                <span class="kw">let</span> <span class="ident">new</span> <span class="op">=</span> <span class="ident">x_val</span>.<span class="ident">wrapping_sub</span>(<span class="ident">y_val</span>);
-                <span class="self">self</span>.<span class="ident">registers</span>[<span class="ident">x</span>] <span class="op">=</span> <span class="ident">new</span>;
-                <span class="self">self</span>.<span class="ident">registers</span>[<span class="number">0xF</span>] <span class="op">=</span> <span class="kw">if</span> <span class="ident">new</span> <span class="op">&gt;</span> <span class="ident">x_val</span> { <span class="number">1</span> } <span class="kw">else</span> { <span class="number">0</span> };
+                <span class="comment">// SUB
+                </span><span class="kw">let </span>x = instruction.x() <span class="kw">as </span>usize;
+                <span class="kw">let </span>x_val = <span class="self">self</span>.registers[x];
+                <span class="kw">let </span>y_val = <span class="self">self</span>.registers[instruction.y() <span class="kw">as </span>usize];
+                <span class="kw">let </span>new = x_val.wrapping_sub(y_val);
+                <span class="self">self</span>.registers[x] = new;
+                <span class="self">self</span>.registers[<span class="number">0xF</span>] = <span class="kw">if </span>new &gt; x_val { <span class="number">1 </span>} <span class="kw">else </span>{ <span class="number">0 </span>};
             }
 
             (<span class="number">8</span>, <span class="number">6</span>, <span class="kw">_</span>, <span class="kw">_</span>) =&gt; {
-                <span class="comment">// SHR</span>
-                <span class="kw">let</span> <span class="ident">y_val</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">registers</span>[<span class="ident">instruction</span>.<span class="ident">y</span>() <span class="kw">as</span> <span class="ident">usize</span>];
-                <span class="self">self</span>.<span class="ident">registers</span>[<span class="number">0xF</span>] <span class="op">=</span> <span class="ident">y_val</span> <span class="op">&amp;</span> <span class="number">0x1</span>;
-                <span class="kw">let</span> <span class="ident">shifted</span> <span class="op">=</span> <span class="ident">y_val</span> <span class="op">&gt;</span><span class="op">&gt;</span> <span class="number">1</span>;
-                <span class="self">self</span>.<span class="ident">registers</span>[<span class="ident">instruction</span>.<span class="ident">x</span>() <span class="kw">as</span> <span class="ident">usize</span>] <span class="op">=</span> <span class="ident">shifted</span>;
+                <span class="comment">// SHR
+                </span><span class="kw">let </span>y_val = <span class="self">self</span>.registers[instruction.y() <span class="kw">as </span>usize];
+                <span class="self">self</span>.registers[<span class="number">0xF</span>] = y_val &amp; <span class="number">0x1</span>;
+                <span class="kw">let </span>shifted = y_val &gt;&gt; <span class="number">1</span>;
+                <span class="self">self</span>.registers[instruction.x() <span class="kw">as </span>usize] = shifted;
             }
 
             (<span class="number">8</span>, <span class="number">7</span>, <span class="kw">_</span>, <span class="kw">_</span>) =&gt; {
-                <span class="comment">// SUBN</span>
-                <span class="kw">let</span> <span class="ident">x</span> <span class="op">=</span> <span class="ident">instruction</span>.<span class="ident">x</span>() <span class="kw">as</span> <span class="ident">usize</span>;
-                <span class="kw">let</span> <span class="ident">x_val</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">registers</span>[<span class="ident">x</span>];
-                <span class="kw">let</span> <span class="ident">y_val</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">registers</span>[<span class="ident">instruction</span>.<span class="ident">y</span>() <span class="kw">as</span> <span class="ident">usize</span>];
-                <span class="kw">let</span> <span class="ident">new</span> <span class="op">=</span> <span class="ident">y_val</span>.<span class="ident">wrapping_sub</span>(<span class="ident">x_val</span>);
-                <span class="self">self</span>.<span class="ident">registers</span>[<span class="ident">x</span>] <span class="op">=</span> <span class="ident">new</span>;
-                <span class="self">self</span>.<span class="ident">registers</span>[<span class="number">0xF</span>] <span class="op">=</span> <span class="kw">if</span> <span class="ident">new</span> <span class="op">&gt;</span> <span class="ident">y_val</span> { <span class="number">1</span> } <span class="kw">else</span> { <span class="number">0</span> };
+                <span class="comment">// SUBN
+                </span><span class="kw">let </span>x = instruction.x() <span class="kw">as </span>usize;
+                <span class="kw">let </span>x_val = <span class="self">self</span>.registers[x];
+                <span class="kw">let </span>y_val = <span class="self">self</span>.registers[instruction.y() <span class="kw">as </span>usize];
+                <span class="kw">let </span>new = y_val.wrapping_sub(x_val);
+                <span class="self">self</span>.registers[x] = new;
+                <span class="self">self</span>.registers[<span class="number">0xF</span>] = <span class="kw">if </span>new &gt; y_val { <span class="number">1 </span>} <span class="kw">else </span>{ <span class="number">0 </span>};
             }
 
             (<span class="number">8</span>, <span class="number">0xE</span>, <span class="kw">_</span>, <span class="kw">_</span>) =&gt; {
-                <span class="comment">// SHL</span>
-                <span class="kw">let</span> <span class="ident">y_val</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">registers</span>[<span class="ident">instruction</span>.<span class="ident">y</span>() <span class="kw">as</span> <span class="ident">usize</span>];
-                <span class="self">self</span>.<span class="ident">registers</span>[<span class="number">0xF</span>] <span class="op">=</span> (<span class="ident">y_val</span> <span class="op">&gt;</span><span class="op">&gt;</span> <span class="number">7</span>) <span class="op">&amp;</span> <span class="number">0x1</span>;
-                <span class="kw">let</span> <span class="ident">shifted</span> <span class="op">=</span> <span class="ident">y_val</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">1</span>;
-                <span class="self">self</span>.<span class="ident">registers</span>[<span class="ident">instruction</span>.<span class="ident">x</span>() <span class="kw">as</span> <span class="ident">usize</span>] <span class="op">=</span> <span class="ident">shifted</span>;
+                <span class="comment">// SHL
+                </span><span class="kw">let </span>y_val = <span class="self">self</span>.registers[instruction.y() <span class="kw">as </span>usize];
+                <span class="self">self</span>.registers[<span class="number">0xF</span>] = (y_val &gt;&gt; <span class="number">7</span>) &amp; <span class="number">0x1</span>;
+                <span class="kw">let </span>shifted = y_val &lt;&lt; <span class="number">1</span>;
+                <span class="self">self</span>.registers[instruction.x() <span class="kw">as </span>usize] = shifted;
             }
 
             (<span class="number">9</span>, <span class="number">0</span>, <span class="kw">_</span>, <span class="kw">_</span>) =&gt; {
-                <span class="comment">// SNE</span>
-                <span class="kw">let</span> <span class="ident">x_val</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">registers</span>[<span class="ident">instruction</span>.<span class="ident">x</span>() <span class="kw">as</span> <span class="ident">usize</span>];
-                <span class="kw">let</span> <span class="ident">y_val</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">registers</span>[<span class="ident">instruction</span>.<span class="ident">y</span>() <span class="kw">as</span> <span class="ident">usize</span>];
-                <span class="kw">if</span> <span class="ident">x_val</span> <span class="op">!</span><span class="op">=</span> <span class="ident">y_val</span> {
-                    <span class="self">self</span>.<span class="ident">pc</span> <span class="op">+</span><span class="op">=</span> <span class="ident">STEP_SIZE</span>;
+                <span class="comment">// SNE
+                </span><span class="kw">let </span>x_val = <span class="self">self</span>.registers[instruction.x() <span class="kw">as </span>usize];
+                <span class="kw">let </span>y_val = <span class="self">self</span>.registers[instruction.y() <span class="kw">as </span>usize];
+                <span class="kw">if </span>x_val != y_val {
+                    <span class="self">self</span>.pc += STEP_SIZE;
                 }
             }
 
             (<span class="number">0xA</span>, <span class="kw">_</span>, <span class="kw">_</span>, <span class="kw">_</span>) =&gt; {
-                <span class="comment">// STO</span>
-                <span class="self">self</span>.<span class="ident">address_register</span> <span class="op">=</span> <span class="ident">instruction</span>.<span class="ident">nnn</span>() <span class="kw">as</span> <span class="ident">usize</span>;
+                <span class="comment">// STO
+                </span><span class="self">self</span>.address_register = instruction.nnn() <span class="kw">as </span>usize;
             }
 
             (<span class="number">0xB</span>, <span class="kw">_</span>, <span class="kw">_</span>, <span class="kw">_</span>) =&gt; {
-                <span class="comment">// JMPR</span>
-                <span class="self">self</span>.<span class="ident">pc</span> <span class="op">=</span> <span class="ident">instruction</span>.<span class="ident">nnn</span>() <span class="kw">as</span> <span class="ident">usize</span> <span class="op">+</span> <span class="self">self</span>.<span class="ident">registers</span>[<span class="number">0</span>] <span class="kw">as</span> <span class="ident">usize</span>;
+                <span class="comment">// JMPR
+                </span><span class="self">self</span>.pc = instruction.nnn() <span class="kw">as </span>usize + <span class="self">self</span>.registers[<span class="number">0</span>] <span class="kw">as </span>usize;
             }
 
             (<span class="number">0xC</span>, <span class="kw">_</span>, <span class="kw">_</span>, <span class="kw">_</span>) =&gt; {
-                <span class="comment">// RND</span>
-                <span class="kw">let</span> <span class="ident">num</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="ident">rand::thread_rng</span>().<span class="ident">gen</span>();
-                <span class="kw">let</span> <span class="ident">mask</span> <span class="op">=</span> <span class="ident">instruction</span>.<span class="ident">nn</span>();
-                <span class="kw">let</span> <span class="ident">masked</span> <span class="op">=</span> <span class="ident">num</span> <span class="op">&amp;</span> <span class="ident">mask</span>;
-                <span class="self">self</span>.<span class="ident">registers</span>[<span class="ident">instruction</span>.<span class="ident">x</span>() <span class="kw">as</span> <span class="ident">usize</span>] <span class="op">=</span> <span class="ident">masked</span>;
+                <span class="comment">// RND
+                </span><span class="kw">let </span>num: u8 = rand::thread_rng().gen();
+                <span class="kw">let </span>mask = instruction.nn();
+                <span class="kw">let </span>masked = num &amp; mask;
+                <span class="self">self</span>.registers[instruction.x() <span class="kw">as </span>usize] = masked;
             }
 
             (<span class="number">0xD</span>, <span class="kw">_</span>, <span class="kw">_</span>, <span class="kw">_</span>) =&gt; {
-                <span class="comment">// DRW</span>
-                <span class="kw">let</span> <span class="ident">x</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">registers</span>[<span class="ident">instruction</span>.<span class="ident">x</span>() <span class="kw">as</span> <span class="ident">usize</span>];
-                <span class="kw">let</span> <span class="ident">y</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">registers</span>[<span class="ident">instruction</span>.<span class="ident">y</span>() <span class="kw">as</span> <span class="ident">usize</span>];
-                <span class="kw">let</span> <span class="ident">size</span> <span class="op">=</span> <span class="ident">instruction</span>.<span class="ident">n</span>() <span class="kw">as</span> <span class="ident">usize</span>;
-                <span class="kw">let</span> <span class="ident">sprite</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">memory</span>[<span class="self">self</span>.<span class="ident">address_register</span>..(<span class="self">self</span>.<span class="ident">address_register</span> <span class="op">+</span> <span class="ident">size</span>)];
-                <span class="kw">let</span> <span class="ident">hit</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">gpu</span>.<span class="ident">draw_sprite</span>(<span class="ident">x</span> <span class="kw">as</span> <span class="ident">usize</span>, <span class="ident">y</span> <span class="kw">as</span> <span class="ident">usize</span>, <span class="ident">sprite</span>);
-                <span class="self">self</span>.<span class="ident">registers</span>[<span class="number">0xF</span>] <span class="op">=</span> <span class="kw">if</span> <span class="ident">hit</span> { <span class="number">1</span> } <span class="kw">else</span> { <span class="number">0</span> };
-                <span class="self">self</span>.<span class="ident">redraw</span> <span class="op">=</span> <span class="bool-val">true</span>;
+                <span class="comment">// DRW
+                </span><span class="kw">let </span>x = <span class="self">self</span>.registers[instruction.x() <span class="kw">as </span>usize];
+                <span class="kw">let </span>y = <span class="self">self</span>.registers[instruction.y() <span class="kw">as </span>usize];
+                <span class="kw">let </span>size = instruction.n() <span class="kw">as </span>usize;
+                <span class="kw">let </span>sprite = <span class="kw-2">&amp;</span><span class="self">self</span>.memory[<span class="self">self</span>.address_register..(<span class="self">self</span>.address_register + size)];
+                <span class="kw">let </span>hit = <span class="self">self</span>.gpu.draw_sprite(x <span class="kw">as </span>usize, y <span class="kw">as </span>usize, sprite);
+                <span class="self">self</span>.registers[<span class="number">0xF</span>] = <span class="kw">if </span>hit { <span class="number">1 </span>} <span class="kw">else </span>{ <span class="number">0 </span>};
+                <span class="self">self</span>.redraw = <span class="bool-val">true</span>;
             }
 
             (<span class="number">0xE</span>, <span class="kw">_</span>, <span class="number">0x9E</span>, <span class="kw">_</span>) =&gt; {
-                <span class="comment">// SKP</span>
-                <span class="kw">let</span> <span class="ident">key</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">registers</span>[<span class="ident">instruction</span>.<span class="ident">x</span>() <span class="kw">as</span> <span class="ident">usize</span>];
-                <span class="kw">let</span> <span class="ident">pressed</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">is_key_pressed</span>(<span class="ident">key</span>);
-                <span class="kw">if</span> <span class="ident">pressed</span> {
-                    <span class="self">self</span>.<span class="ident">pc</span> <span class="op">+</span><span class="op">=</span> <span class="ident">STEP_SIZE</span>;
+                <span class="comment">// SKP
+                </span><span class="kw">let </span>key = <span class="self">self</span>.registers[instruction.x() <span class="kw">as </span>usize];
+                <span class="kw">let </span>pressed = <span class="self">self</span>.is_key_pressed(key);
+                <span class="kw">if </span>pressed {
+                    <span class="self">self</span>.pc += STEP_SIZE;
                 }
             }
 
             (<span class="number">0xE</span>, <span class="kw">_</span>, <span class="number">0xA1</span>, <span class="kw">_</span>) =&gt; {
-                <span class="comment">// SKN</span>
-                <span class="kw">let</span> <span class="ident">key</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">registers</span>[<span class="ident">instruction</span>.<span class="ident">x</span>() <span class="kw">as</span> <span class="ident">usize</span>];
-                <span class="kw">let</span> <span class="ident">pressed</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">is_key_pressed</span>(<span class="ident">key</span>);
-                <span class="kw">if</span> <span class="op">!</span><span class="ident">pressed</span> {
-                    <span class="self">self</span>.<span class="ident">pc</span> <span class="op">+</span><span class="op">=</span> <span class="ident">STEP_SIZE</span>;
+                <span class="comment">// SKN
+                </span><span class="kw">let </span>key = <span class="self">self</span>.registers[instruction.x() <span class="kw">as </span>usize];
+                <span class="kw">let </span>pressed = <span class="self">self</span>.is_key_pressed(key);
+                <span class="kw">if </span>!pressed {
+                    <span class="self">self</span>.pc += STEP_SIZE;
                 }
             }
 
             (<span class="number">0xF</span>, <span class="kw">_</span>, <span class="number">0x07</span>, <span class="kw">_</span>) =&gt; {
-                <span class="comment">// LDT</span>
-                <span class="self">self</span>.<span class="ident">registers</span>[<span class="ident">instruction</span>.<span class="ident">x</span>() <span class="kw">as</span> <span class="ident">usize</span>] <span class="op">=</span> <span class="self">self</span>.<span class="ident">delay_timer</span>;
+                <span class="comment">// LDT
+                </span><span class="self">self</span>.registers[instruction.x() <span class="kw">as </span>usize] = <span class="self">self</span>.delay_timer;
             }
 
             (<span class="number">0xF</span>, <span class="kw">_</span>, <span class="number">0x0A</span>, <span class="kw">_</span>) =&gt; {
-                <span class="comment">// WFK</span>
-                <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">key</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">get_active_key</span>() {
-                    <span class="self">self</span>.<span class="ident">registers</span>[<span class="ident">instruction</span>.<span class="ident">x</span>() <span class="kw">as</span> <span class="ident">usize</span>] <span class="op">=</span> <span class="ident">key</span>;
-                } <span class="kw">else</span> {
-                    <span class="self">self</span>.<span class="ident">pc</span> <span class="op">-</span><span class="op">=</span> <span class="ident">STEP_SIZE</span>;
+                <span class="comment">// WFK
+                </span><span class="kw">if let </span><span class="prelude-val">Some</span>(key) = <span class="self">self</span>.get_active_key() {
+                    <span class="self">self</span>.registers[instruction.x() <span class="kw">as </span>usize] = key;
+                } <span class="kw">else </span>{
+                    <span class="self">self</span>.pc -= STEP_SIZE;
                 }
             }
 
             (<span class="number">0xF</span>, <span class="kw">_</span>, <span class="number">0x15</span>, <span class="kw">_</span>) =&gt; {
-                <span class="comment">// SDT</span>
-                <span class="self">self</span>.<span class="ident">delay_timer</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">registers</span>[<span class="ident">instruction</span>.<span class="ident">x</span>() <span class="kw">as</span> <span class="ident">usize</span>];
+                <span class="comment">// SDT
+                </span><span class="self">self</span>.delay_timer = <span class="self">self</span>.registers[instruction.x() <span class="kw">as </span>usize];
             }
 
             (<span class="number">0xF</span>, <span class="kw">_</span>, <span class="number">0x18</span>, <span class="kw">_</span>) =&gt; {
-                <span class="comment">// SST</span>
-                <span class="self">self</span>.<span class="ident">sound_timer</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">registers</span>[<span class="ident">instruction</span>.<span class="ident">x</span>() <span class="kw">as</span> <span class="ident">usize</span>];
+                <span class="comment">// SST
+                </span><span class="self">self</span>.sound_timer = <span class="self">self</span>.registers[instruction.x() <span class="kw">as </span>usize];
             }
 
             (<span class="number">0xF</span>, <span class="kw">_</span>, <span class="number">0x1E</span>, <span class="kw">_</span>) =&gt; {
-                <span class="self">self</span>.<span class="ident">address_register</span> <span class="op">+</span><span class="op">=</span> <span class="self">self</span>.<span class="ident">registers</span>[<span class="ident">instruction</span>.<span class="ident">x</span>() <span class="kw">as</span> <span class="ident">usize</span>] <span class="kw">as</span> <span class="ident">usize</span>;
+                <span class="self">self</span>.address_register += <span class="self">self</span>.registers[instruction.x() <span class="kw">as </span>usize] <span class="kw">as </span>usize;
             }
 
             (<span class="number">0xF</span>, <span class="kw">_</span>, <span class="number">0x29</span>, <span class="kw">_</span>) =&gt; {
-                <span class="kw">let</span> <span class="ident">digit</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">registers</span>[<span class="ident">instruction</span>.<span class="ident">x</span>() <span class="kw">as</span> <span class="ident">usize</span>];
-                <span class="kw">let</span> <span class="ident">offset</span> <span class="op">=</span> <span class="ident">digit</span> <span class="kw">as</span> <span class="ident">usize</span> <span class="op">*</span> <span class="ident">FONT_SPRITE_SIZE</span>;
-                <span class="kw">let</span> <span class="ident">addr</span> <span class="op">=</span> <span class="ident">FONT_START_ADDR</span> <span class="op">+</span> <span class="ident">offset</span>;
-                <span class="self">self</span>.<span class="ident">address_register</span> <span class="op">=</span> <span class="ident">addr</span>;
+                <span class="kw">let </span>digit = <span class="self">self</span>.registers[instruction.x() <span class="kw">as </span>usize];
+                <span class="kw">let </span>offset = digit <span class="kw">as </span>usize * FONT_SPRITE_SIZE;
+                <span class="kw">let </span>addr = FONT_START_ADDR + offset;
+                <span class="self">self</span>.address_register = addr;
             }
 
             (<span class="number">0xF</span>, <span class="kw">_</span>, <span class="number">0x33</span>, <span class="kw">_</span>) =&gt; {
-                <span class="comment">// BCD</span>
-                <span class="kw">let</span> <span class="ident">x_val</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">registers</span>[<span class="ident">instruction</span>.<span class="ident">x</span>() <span class="kw">as</span> <span class="ident">usize</span>];
-                <span class="kw">let</span> <span class="ident">store_idx</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">address_register</span>;
-                <span class="kw">let</span> <span class="ident">hundreds</span> <span class="op">=</span> <span class="ident">x_val</span> <span class="op">/</span> <span class="number">100</span>;
-                <span class="kw">let</span> <span class="ident">tens</span> <span class="op">=</span> (<span class="ident">x_val</span> <span class="op">/</span> <span class="number">10</span>) <span class="op">%</span> <span class="number">10</span>;
-                <span class="kw">let</span> <span class="ident">ones</span> <span class="op">=</span> <span class="ident">x_val</span> <span class="op">%</span> <span class="number">10</span>;
-                <span class="self">self</span>.<span class="ident">memory</span>[<span class="ident">store_idx</span>] <span class="op">=</span> <span class="ident">hundreds</span>;
-                <span class="self">self</span>.<span class="ident">memory</span>[<span class="ident">store_idx</span> <span class="op">+</span> <span class="number">1</span>] <span class="op">=</span> <span class="ident">tens</span>;
-                <span class="self">self</span>.<span class="ident">memory</span>[<span class="ident">store_idx</span> <span class="op">+</span> <span class="number">2</span>] <span class="op">=</span> <span class="ident">ones</span>;
+                <span class="comment">// BCD
+                </span><span class="kw">let </span>x_val = <span class="self">self</span>.registers[instruction.x() <span class="kw">as </span>usize];
+                <span class="kw">let </span>store_idx = <span class="self">self</span>.address_register;
+                <span class="kw">let </span>hundreds = x_val / <span class="number">100</span>;
+                <span class="kw">let </span>tens = (x_val / <span class="number">10</span>) % <span class="number">10</span>;
+                <span class="kw">let </span>ones = x_val % <span class="number">10</span>;
+                <span class="self">self</span>.memory[store_idx] = hundreds;
+                <span class="self">self</span>.memory[store_idx + <span class="number">1</span>] = tens;
+                <span class="self">self</span>.memory[store_idx + <span class="number">2</span>] = ones;
             }
 
             (<span class="number">0xF</span>, <span class="kw">_</span>, <span class="number">0x55</span>, <span class="kw">_</span>) =&gt; {
-                <span class="kw">let</span> <span class="ident">x_size</span> <span class="op">=</span> <span class="ident">instruction</span>.<span class="ident">x</span>() <span class="kw">as</span> <span class="ident">usize</span>;
-                <span class="kw">for</span> <span class="ident">reg_idx</span> <span class="kw">in</span> <span class="number">0</span>..<span class="op">=</span><span class="ident">x_size</span> {
-                    <span class="self">self</span>.<span class="ident">memory</span>[<span class="self">self</span>.<span class="ident">address_register</span> <span class="kw">as</span> <span class="ident">usize</span> <span class="op">+</span> <span class="ident">reg_idx</span>] <span class="op">=</span> <span class="self">self</span>.<span class="ident">registers</span>[<span class="ident">reg_idx</span>];
+                <span class="kw">let </span>x_size = instruction.x() <span class="kw">as </span>usize;
+                <span class="kw">for </span>reg_idx <span class="kw">in </span><span class="number">0</span>..=x_size {
+                    <span class="self">self</span>.memory[<span class="self">self</span>.address_register <span class="kw">as </span>usize + reg_idx] = <span class="self">self</span>.registers[reg_idx];
                 }
-                <span class="self">self</span>.<span class="ident">address_register</span> <span class="op">+</span><span class="op">=</span> <span class="ident">x_size</span> <span class="op">+</span> <span class="number">1</span>;
+                <span class="self">self</span>.address_register += x_size + <span class="number">1</span>;
             }
 
             (<span class="number">0xF</span>, <span class="kw">_</span>, <span class="number">0x65</span>, <span class="kw">_</span>) =&gt; {
-                <span class="kw">let</span> <span class="ident">x_size</span> <span class="op">=</span> <span class="ident">instruction</span>.<span class="ident">x</span>() <span class="kw">as</span> <span class="ident">usize</span>;
-                <span class="kw">for</span> <span class="ident">reg_idx</span> <span class="kw">in</span> <span class="number">0</span>..<span class="op">=</span><span class="ident">x_size</span> {
-                    <span class="self">self</span>.<span class="ident">registers</span>[<span class="ident">reg_idx</span>] <span class="op">=</span> <span class="self">self</span>.<span class="ident">memory</span>[<span class="self">self</span>.<span class="ident">address_register</span> <span class="kw">as</span> <span class="ident">usize</span> <span class="op">+</span> <span class="ident">reg_idx</span>];
+                <span class="kw">let </span>x_size = instruction.x() <span class="kw">as </span>usize;
+                <span class="kw">for </span>reg_idx <span class="kw">in </span><span class="number">0</span>..=x_size {
+                    <span class="self">self</span>.registers[reg_idx] = <span class="self">self</span>.memory[<span class="self">self</span>.address_register <span class="kw">as </span>usize + reg_idx];
                 }
-                <span class="self">self</span>.<span class="ident">address_register</span> <span class="op">+</span><span class="op">=</span> <span class="ident">x_size</span> <span class="op">+</span> <span class="number">1</span>;
+                <span class="self">self</span>.address_register += x_size + <span class="number">1</span>;
             }
 
-            <span class="kw">_</span> =&gt; {
-                <span class="macro">panic!</span>(<span class="string">&quot;Unknown instruction {:04X}&quot;</span>, <span class="ident">instruction</span>.<span class="ident">value</span>());
+            <span class="kw">_ </span>=&gt; {
+                <span class="macro">panic!</span>(<span class="string">&quot;Unknown instruction {:04X}&quot;</span>, instruction.value());
             }
+        }
+    }
+
+    <span class="kw">fn </span>is_key_pressed(<span class="kw-2">&amp;</span><span class="self">self</span>, key: u8) -&gt; bool {
+        <span class="kw">let </span>mask = <span class="number">1 </span>&lt;&lt; key;
+        <span class="kw">let </span>masked = <span class="self">self</span>.keys &amp; mask;
+        masked == mask
+    }
+
+    <span class="kw">fn </span>get_active_key(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;u8&gt; {
+        <span class="kw">for </span>i <span class="kw">in </span><span class="number">0</span>..<span class="number">0xF </span>{
+            <span class="kw">let </span>mask = <span class="number">1 </span>&lt;&lt; i;
+            <span class="kw">if </span><span class="self">self</span>.keys &amp; mask == mask {
+                <span class="kw">return </span><span class="prelude-val">Some</span>(i);
+            }
+        }
+
+        <span class="prelude-val">None
+    </span>}
+
+    <span class="kw">pub fn </span>set_key(<span class="kw-2">&amp;mut </span><span class="self">self</span>, key: u8, pressed: bool) {
+        <span class="kw">let </span>mask = <span class="number">1 </span>&lt;&lt; key;
+        <span class="kw">if </span>pressed {
+            <span class="self">self</span>.keys |= mask;
+        } <span class="kw">else </span>{
+            <span class="self">self</span>.keys &amp;= !mask;
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">is_key_pressed</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">key</span>: <span class="ident">u8</span>) -&gt; <span class="ident">bool</span> {
-        <span class="kw">let</span> <span class="ident">mask</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="ident">key</span>;
-        <span class="kw">let</span> <span class="ident">masked</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">keys</span> <span class="op">&amp;</span> <span class="ident">mask</span>;
-        <span class="ident">masked</span> <span class="op">==</span> <span class="ident">mask</span>
+    <span class="kw">pub fn </span>dump(<span class="kw-2">&amp;</span><span class="self">self</span>) {
+        <span class="self">self</span>.dump_memory();
+        <span class="self">self</span>.dump_registers();
+        <span class="macro">println!</span>(<span class="string">&quot;Addr reg (h)  {:04X}&quot;</span>, <span class="self">self</span>.address_register);
     }
 
-    <span class="kw">fn</span> <span class="ident">get_active_key</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span> {
-        <span class="kw">for</span> <span class="ident">i</span> <span class="kw">in</span> <span class="number">0</span>..<span class="number">0xF</span> {
-            <span class="kw">let</span> <span class="ident">mask</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="ident">i</span>;
-            <span class="kw">if</span> <span class="self">self</span>.<span class="ident">keys</span> <span class="op">&amp;</span> <span class="ident">mask</span> <span class="op">==</span> <span class="ident">mask</span> {
-                <span class="kw">return</span> <span class="prelude-val">Some</span>(<span class="ident">i</span>);
-            }
-        }
-
-        <span class="prelude-val">None</span>
-    }
-
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_key</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">key</span>: <span class="ident">u8</span>, <span class="ident">pressed</span>: <span class="ident">bool</span>) {
-        <span class="kw">let</span> <span class="ident">mask</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="ident">key</span>;
-        <span class="kw">if</span> <span class="ident">pressed</span> {
-            <span class="self">self</span>.<span class="ident">keys</span> <span class="op">|</span><span class="op">=</span> <span class="ident">mask</span>;
-        } <span class="kw">else</span> {
-            <span class="self">self</span>.<span class="ident">keys</span> <span class="op">&amp;=</span> <span class="op">!</span><span class="ident">mask</span>;
-        }
-    }
-
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">dump</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) {
-        <span class="self">self</span>.<span class="ident">dump_memory</span>();
-        <span class="self">self</span>.<span class="ident">dump_registers</span>();
-        <span class="macro">println!</span>(<span class="string">&quot;Addr reg (h)  {:04X}&quot;</span>, <span class="self">self</span>.<span class="ident">address_register</span>);
-    }
-
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">dump_memory</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) {
-        <span class="kw">const</span> <span class="ident">WIDTH</span>: <span class="ident">usize</span> <span class="op">=</span> <span class="number">16</span>;
+    <span class="kw">pub fn </span>dump_memory(<span class="kw-2">&amp;</span><span class="self">self</span>) {
+        <span class="kw">const </span>WIDTH: usize = <span class="number">16</span>;
         <span class="macro">print!</span>(<span class="string">&quot;Offset (h) &quot;</span>);
-        <span class="kw">for</span> <span class="ident">x</span> <span class="kw">in</span> <span class="number">0</span>..<span class="ident">WIDTH</span> {
-            <span class="macro">print!</span>(<span class="string">&quot; {:02X}&quot;</span>, <span class="ident">x</span>);
+        <span class="kw">for </span>x <span class="kw">in </span><span class="number">0</span>..WIDTH {
+            <span class="macro">print!</span>(<span class="string">&quot; {:02X}&quot;</span>, x);
         }
         <span class="macro">println!</span>();
-        <span class="kw">let</span> <span class="ident">lines</span> <span class="op">=</span> <span class="ident">MEMORY_SIZE</span> <span class="op">/</span> <span class="ident">WIDTH</span>;
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">last_zero</span> <span class="op">=</span> <span class="bool-val">false</span>;
-        <span class="kw">for</span> <span class="ident">l</span> <span class="kw">in</span> <span class="number">0</span>..<span class="ident">lines</span> {
-            <span class="kw">let</span> <span class="ident">offset</span> <span class="op">=</span> <span class="number">0x10</span> <span class="op">*</span> <span class="ident">l</span>;
-            <span class="kw">let</span> <span class="ident">next_row</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">memory</span>[<span class="ident">offset</span>..(<span class="ident">offset</span> <span class="op">+</span> <span class="ident">WIDTH</span>)];
-            <span class="kw">let</span> <span class="ident">all_zero</span> <span class="op">=</span> <span class="ident">next_row</span>.<span class="ident">iter</span>().<span class="ident">all</span>(<span class="op">|</span><span class="ident">b</span><span class="op">|</span> <span class="ident">b</span> <span class="op">==</span> <span class="kw-2">&amp;</span><span class="number">0</span>);
-            <span class="kw">if</span> <span class="ident">all_zero</span> {
-                <span class="kw">if</span> <span class="op">!</span><span class="ident">last_zero</span> {
+        <span class="kw">let </span>lines = MEMORY_SIZE / WIDTH;
+        <span class="kw">let </span><span class="kw-2">mut </span>last_zero = <span class="bool-val">false</span>;
+        <span class="kw">for </span>l <span class="kw">in </span><span class="number">0</span>..lines {
+            <span class="kw">let </span>offset = <span class="number">0x10 </span>* l;
+            <span class="kw">let </span>next_row = <span class="kw-2">&amp;</span><span class="self">self</span>.memory[offset..(offset + WIDTH)];
+            <span class="kw">let </span>all_zero = next_row.iter().all(|b| b == <span class="kw-2">&amp;</span><span class="number">0</span>);
+            <span class="kw">if </span>all_zero {
+                <span class="kw">if </span>!last_zero {
                     <span class="macro">println!</span>(<span class="string">&quot;  *  &quot;</span>);
                 }
-                <span class="ident">last_zero</span> <span class="op">=</span> <span class="bool-val">true</span>;
+                last_zero = <span class="bool-val">true</span>;
                 <span class="kw">continue</span>;
             }
-            <span class="ident">last_zero</span> <span class="op">=</span> <span class="bool-val">false</span>;
-            <span class="macro">print!</span>(<span class="string">&quot;{:08X}   &quot;</span>, <span class="ident">offset</span>);
-            <span class="kw">for</span> <span class="ident">i</span> <span class="kw">in</span> <span class="number">0</span>..<span class="ident">WIDTH</span> {
-                <span class="kw">let</span> <span class="ident">idx</span> <span class="op">=</span> <span class="ident">offset</span> <span class="op">+</span> <span class="ident">i</span>;
-                <span class="kw">if</span> <span class="ident">idx</span> <span class="op">&gt;</span><span class="op">=</span> <span class="ident">MEMORY_SIZE</span> {
+            last_zero = <span class="bool-val">false</span>;
+            <span class="macro">print!</span>(<span class="string">&quot;{:08X}   &quot;</span>, offset);
+            <span class="kw">for </span>i <span class="kw">in </span><span class="number">0</span>..WIDTH {
+                <span class="kw">let </span>idx = offset + i;
+                <span class="kw">if </span>idx &gt;= MEMORY_SIZE {
                     <span class="macro">print!</span>(<span class="string">&quot;   &quot;</span>);
-                } <span class="kw">else</span> {
-                    <span class="macro">print!</span>(<span class="string">&quot; {:02X}&quot;</span>, <span class="self">self</span>.<span class="ident">memory</span>[<span class="ident">offset</span> <span class="op">+</span> <span class="ident">i</span>])
+                } <span class="kw">else </span>{
+                    <span class="macro">print!</span>(<span class="string">&quot; {:02X}&quot;</span>, <span class="self">self</span>.memory[offset + i])
                 }
             }
             <span class="macro">println!</span>();
         }
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">dump_registers</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) {
+    <span class="kw">pub fn </span>dump_registers(<span class="kw-2">&amp;</span><span class="self">self</span>) {
         <span class="macro">print!</span>(<span class="string">&quot;Register (h) &quot;</span>);
-        <span class="kw">for</span> <span class="ident">x</span> <span class="kw">in</span> <span class="number">0</span>..<span class="ident">REGISTER_COUNT</span> {
-            <span class="macro">print!</span>(<span class="string">&quot; {:02X}&quot;</span>, <span class="ident">x</span>);
+        <span class="kw">for </span>x <span class="kw">in </span><span class="number">0</span>..REGISTER_COUNT {
+            <span class="macro">print!</span>(<span class="string">&quot; {:02X}&quot;</span>, x);
         }
         <span class="macro">println!</span>();
         <span class="macro">print!</span>(<span class="string">&quot;Value    (h) &quot;</span>);
-        <span class="kw">for</span> <span class="ident">i</span> <span class="kw">in</span> <span class="number">0</span>..<span class="ident">REGISTER_COUNT</span> {
-            <span class="macro">print!</span>(<span class="string">&quot; {:02X}&quot;</span>, <span class="self">self</span>.<span class="ident">registers</span>[<span class="ident">i</span>]);
+        <span class="kw">for </span>i <span class="kw">in </span><span class="number">0</span>..REGISTER_COUNT {
+            <span class="macro">print!</span>(<span class="string">&quot; {:02X}&quot;</span>, <span class="self">self</span>.registers[i]);
         }
         <span class="macro">println!</span>();
     }
 }
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">test</span>)]</span>
-<span class="kw">mod</span> <span class="ident">tests</span> {
-    <span class="kw">use</span> <span class="kw">super</span>::<span class="kw-2">*</span>;
+<span class="attribute">#[cfg(test)]
+</span><span class="kw">mod </span>tests {
+    <span class="kw">use super</span>::<span class="kw-2">*</span>;
 
-    <span class="attribute">#[<span class="ident">test</span>]</span>
-    <span class="kw">fn</span> <span class="ident">reads_16_correctly</span>() {
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">gpu</span> <span class="op">=</span> <span class="ident">Gpu::new</span>();
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">cpu</span> <span class="op">=</span> <span class="ident">Cpu::new</span>(<span class="kw-2">&amp;mut</span> <span class="ident">gpu</span>);
-        <span class="kw">let</span> <span class="ident">program</span> <span class="op">=</span> [<span class="number">0x01_u8</span>, <span class="number">0x02</span>, <span class="number">0x03</span>, <span class="number">0x04</span>];
-        <span class="ident">cpu</span>.<span class="ident">load</span>(<span class="kw-2">&amp;</span><span class="ident">program</span>);
-        <span class="kw">let</span> <span class="ident">val16</span> <span class="op">=</span> <span class="ident">cpu</span>.<span class="ident">read16</span>(<span class="number">0x200</span>);
-        <span class="macro">assert_eq!</span>(<span class="ident">val16</span>, <span class="number">0x0102</span>)
+    <span class="attribute">#[test]
+    </span><span class="kw">fn </span>reads_16_correctly() {
+        <span class="kw">let </span><span class="kw-2">mut </span>gpu = Gpu::new();
+        <span class="kw">let </span><span class="kw-2">mut </span>cpu = Cpu::new(<span class="kw-2">&amp;mut </span>gpu);
+        <span class="kw">let </span>program = [<span class="number">0x01_u8</span>, <span class="number">0x02</span>, <span class="number">0x03</span>, <span class="number">0x04</span>];
+        cpu.load(<span class="kw-2">&amp;</span>program);
+        <span class="kw">let </span>val16 = cpu.read16(<span class="number">0x200</span>);
+        <span class="macro">assert_eq!</span>(val16, <span class="number">0x0102</span>)
     }
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="reimu" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0 (a55dd71d5 2022-09-19)" ></div></body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="reimu" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.66.1 (90743e729 2023-01-10)" ></div></body></html>

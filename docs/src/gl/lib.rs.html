@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/gl-0.14.0/src/lib.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>lib.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../gl/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../gl/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../gl/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/gl-0.14.0/src/lib.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>lib.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../normalize.css"><link rel="stylesheet" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../ayu.css" disabled><link rel="stylesheet" href="../../dark.css" disabled><link rel="stylesheet" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><div class="width-limiter"><nav class="sub"><a class="sub-logo-container" href="../../gl/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -77,84 +77,84 @@
 <span id="77">77</span>
 <span id="78">78</span>
 <span id="79">79</span>
-</pre><pre class="rust"><code><span class="comment">// Copyright 2015 Brendan Zabarauskas and the gl-rs developers</span>
-<span class="comment">//</span>
-<span class="comment">// Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);</span>
-<span class="comment">// you may not use this file except in compliance with the License.</span>
-<span class="comment">// You may obtain a copy of the License at</span>
-<span class="comment">//</span>
-<span class="comment">//     http://www.apache.org/licenses/LICENSE-2.0</span>
-<span class="comment">//</span>
-<span class="comment">// Unless required by applicable law or agreed to in writing, software</span>
-<span class="comment">// distributed under the License is distributed on an &quot;AS IS&quot; BASIS,</span>
-<span class="comment">// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</span>
-<span class="comment">// See the License for the specific language governing permissions and</span>
-<span class="comment">// limitations under the License.</span>
+</pre><pre class="rust"><code><span class="comment">// Copyright 2015 Brendan Zabarauskas and the gl-rs developers
+//
+// Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
 
-<span class="doccomment">//! # Usage</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! You can import the pointer style loader and type aliases like so:</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! ~~~no_run</span>
-<span class="doccomment">//! # #![allow(unused_imports)]</span>
-<span class="doccomment">//! extern crate gl;</span>
-<span class="doccomment">//! # fn main() {</span>
-<span class="doccomment">//! // include the OpenGL type aliases</span>
-<span class="doccomment">//! use gl::types::*;</span>
-<span class="doccomment">//! # }</span>
-<span class="doccomment">//! ~~~</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! You can load the function pointers into their respective function pointers</span>
-<span class="doccomment">//! using the `load_with` function. You must supply a loader function from your</span>
-<span class="doccomment">//! context library, This is how it would look using [glfw-rs]</span>
-<span class="doccomment">//! (https://github.com/PistonDevelopers/glfw-rs):</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! ~~~ignore</span>
-<span class="doccomment">//! // the supplied function must be of the type:</span>
-<span class="doccomment">//! // `&amp;fn(symbol: &amp;&#39;static str) -&gt; *const std::os::raw::c_void`</span>
-<span class="doccomment">//! gl::load_with(|s| glfw.get_proc_address(s));</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! // loading a specific function pointer</span>
-<span class="doccomment">//! gl::Viewport::load_with(|s| glfw.get_proc_address(s));</span>
-<span class="doccomment">//! ~~~</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! Calling a function that has not been loaded will result in a failure like:</span>
-<span class="doccomment">//! `panic!(&quot;gl::Viewport was not loaded&quot;)`, which aviods a segfault. This feature</span>
-<span class="doccomment">//! does not cause any run time overhead because the failing functions are</span>
-<span class="doccomment">//! assigned only when `load_with` is called.</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! ~~~no_run</span>
-<span class="doccomment">//! # #![allow(path_statement)]</span>
-<span class="doccomment">//! # extern crate gl;</span>
-<span class="doccomment">//! # fn main() {</span>
-<span class="doccomment">//! // accessing an enum</span>
-<span class="doccomment">//! gl::TEXTURE_2D;</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! // calling a function</span>
-<span class="doccomment">//! unsafe { gl::DrawArrays(gl::TRIANGLES, 0, 3) };</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! // functions that take pointers are unsafe</span>
-<span class="doccomment">//! # let shader = 0;</span>
-<span class="doccomment">//! # let c_str: *const i8 = std::ptr::null();</span>
-<span class="doccomment">//! unsafe { gl::ShaderSource(shader, 1, &amp;c_str, std::ptr::null()) };</span>
-<span class="doccomment">//! # }</span>
-<span class="doccomment">//! ~~~</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! Each function pointer has an associated boolean value allowing you to</span>
-<span class="doccomment">//! check if a function has been loaded at run time. The function accesses a</span>
-<span class="doccomment">//! corresponding global boolean that is set when `load_with` is called, so there</span>
-<span class="doccomment">//! shouldn&#39;t be much overhead.</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! ~~~no_run</span>
-<span class="doccomment">//! if gl::Viewport::is_loaded() {</span>
-<span class="doccomment">//!     // do something...</span>
-<span class="doccomment">//! }</span>
-<span class="doccomment">//! ~~~</span>
-<span class="doccomment">//!</span>
+</span><span class="doccomment">//! # Usage
+//!
+//! You can import the pointer style loader and type aliases like so:
+//!
+//! ~~~no_run
+//! # #![allow(unused_imports)]
+//! extern crate gl;
+//! # fn main() {
+//! // include the OpenGL type aliases
+//! use gl::types::*;
+//! # }
+//! ~~~
+//!
+//! You can load the function pointers into their respective function pointers
+//! using the `load_with` function. You must supply a loader function from your
+//! context library, This is how it would look using [glfw-rs]
+//! (https://github.com/PistonDevelopers/glfw-rs):
+//!
+//! ~~~ignore
+//! // the supplied function must be of the type:
+//! // `&amp;fn(symbol: &amp;&#39;static str) -&gt; *const std::os::raw::c_void`
+//! gl::load_with(|s| glfw.get_proc_address(s));
+//!
+//! // loading a specific function pointer
+//! gl::Viewport::load_with(|s| glfw.get_proc_address(s));
+//! ~~~
+//!
+//! Calling a function that has not been loaded will result in a failure like:
+//! `panic!(&quot;gl::Viewport was not loaded&quot;)`, which aviods a segfault. This feature
+//! does not cause any run time overhead because the failing functions are
+//! assigned only when `load_with` is called.
+//!
+//! ~~~no_run
+//! # #![allow(path_statement)]
+//! # extern crate gl;
+//! # fn main() {
+//! // accessing an enum
+//! gl::TEXTURE_2D;
+//!
+//! // calling a function
+//! unsafe { gl::DrawArrays(gl::TRIANGLES, 0, 3) };
+//!
+//! // functions that take pointers are unsafe
+//! # let shader = 0;
+//! # let c_str: *const i8 = std::ptr::null();
+//! unsafe { gl::ShaderSource(shader, 1, &amp;c_str, std::ptr::null()) };
+//! # }
+//! ~~~
+//!
+//! Each function pointer has an associated boolean value allowing you to
+//! check if a function has been loaded at run time. The function accesses a
+//! corresponding global boolean that is set when `load_with` is called, so there
+//! shouldn&#39;t be much overhead.
+//!
+//! ~~~no_run
+//! if gl::Viewport::is_loaded() {
+//!     // do something...
+//! }
+//! ~~~
+//!
 
-<span class="attribute">#![<span class="ident">crate_name</span> <span class="op">=</span> <span class="string">&quot;gl&quot;</span>]</span>
-<span class="attribute">#![<span class="ident">crate_type</span> <span class="op">=</span> <span class="string">&quot;lib&quot;</span>]</span>
+</span><span class="attribute">#![crate_name = <span class="string">&quot;gl&quot;</span>]
+#![crate_type = <span class="string">&quot;lib&quot;</span>]
 
-<span class="macro">include!</span>(<span class="macro">concat!</span>(<span class="macro">env!</span>(<span class="string">&quot;OUT_DIR&quot;</span>), <span class="string">&quot;/bindings.rs&quot;</span>));
+</span><span class="macro">include!</span>(<span class="macro">concat!</span>(<span class="macro">env!</span>(<span class="string">&quot;OUT_DIR&quot;</span>), <span class="string">&quot;/bindings.rs&quot;</span>));
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="gl" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0 (a55dd71d5 2022-09-19)" ></div></body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="gl" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.66.1 (90743e729 2023-01-10)" ></div></body></html>

@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/egui-0.16.1/src/widgets/plot/mod.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>mod.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../../storage.js"></script><script defer src="../../../../source-script.js"></script><script defer src="../../../../source-files.js"></script><script defer src="../../../../main.js"></script><noscript><link rel="stylesheet" href="../../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../../../egui/index.html"><div class="logo-container"><img class="rust-logo" src="../../../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../../../egui/index.html"><div class="logo-container"><img class="rust-logo" src="../../../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../../../egui/index.html"><img class="rust-logo" src="../../../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/egui-0.16.1/src/widgets/plot/mod.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>mod.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../../../normalize.css"><link rel="stylesheet" href="../../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../../../ayu.css" disabled><link rel="stylesheet" href="../../../../dark.css" disabled><link rel="stylesheet" href="../../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../../storage.js"></script><script defer src="../../../../source-script.js"></script><script defer src="../../../../source-files.js"></script><script defer src="../../../../main.js"></script><noscript><link rel="stylesheet" href="../../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><div class="width-limiter"><nav class="sub"><a class="sub-logo-container" href="../../../../egui/index.html"><img class="rust-logo" src="../../../../rust-logo.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../../wheel.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -805,812 +805,812 @@
 <span id="805">805</span>
 <span id="806">806</span>
 <span id="807">807</span>
-</pre><pre class="rust"><code><span class="doccomment">//! Simple plotting library.</span>
+</pre><pre class="rust"><code><span class="doccomment">//! Simple plotting library.
 
-<span class="kw">use</span> <span class="kw">crate</span>::<span class="kw-2">*</span>;
-<span class="kw">use</span> <span class="ident">epaint::ahash::AHashSet</span>;
-<span class="kw">use</span> <span class="ident">epaint::color::Hsva</span>;
-<span class="kw">use</span> <span class="ident">epaint::util::FloatOrd</span>;
-<span class="kw">use</span> <span class="ident">items::PlotItem</span>;
-<span class="kw">use</span> <span class="ident">legend::LegendWidget</span>;
-<span class="kw">use</span> <span class="ident">transform</span>::{<span class="ident">PlotBounds</span>, <span class="ident">ScreenTransform</span>};
+</span><span class="kw">use crate</span>::<span class="kw-2">*</span>;
+<span class="kw">use </span>epaint::ahash::AHashSet;
+<span class="kw">use </span>epaint::color::Hsva;
+<span class="kw">use </span>epaint::util::FloatOrd;
+<span class="kw">use </span>items::PlotItem;
+<span class="kw">use </span>legend::LegendWidget;
+<span class="kw">use </span>transform::{PlotBounds, ScreenTransform};
 
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">items</span>::{
-    <span class="ident">Arrows</span>, <span class="ident">Bar</span>, <span class="ident">BarChart</span>, <span class="ident">BoxElem</span>, <span class="ident">BoxPlot</span>, <span class="ident">BoxSpread</span>, <span class="ident">HLine</span>, <span class="ident">Line</span>, <span class="ident">LineStyle</span>, <span class="ident">MarkerShape</span>,
-    <span class="ident">PlotImage</span>, <span class="ident">Points</span>, <span class="ident">Polygon</span>, <span class="ident">Text</span>, <span class="ident">VLine</span>, <span class="ident">Value</span>, <span class="ident">Values</span>,
+<span class="kw">pub use </span>items::{
+    Arrows, Bar, BarChart, BoxElem, BoxPlot, BoxSpread, HLine, Line, LineStyle, MarkerShape,
+    PlotImage, Points, Polygon, Text, VLine, Value, Values,
 };
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">legend</span>::{<span class="ident">Corner</span>, <span class="ident">Legend</span>};
+<span class="kw">pub use </span>legend::{Corner, Legend};
 
-<span class="kw">mod</span> <span class="ident">items</span>;
-<span class="kw">mod</span> <span class="ident">legend</span>;
-<span class="kw">mod</span> <span class="ident">transform</span>;
+<span class="kw">mod </span>items;
+<span class="kw">mod </span>legend;
+<span class="kw">mod </span>transform;
 
-<span class="kw">type</span> <span class="ident">CustomLabelFunc</span> <span class="op">=</span> <span class="kw">dyn</span> <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">str</span>, <span class="kw-2">&amp;</span><span class="ident">Value</span>) -&gt; <span class="ident">String</span>;
-<span class="kw">type</span> <span class="ident">CustomLabelFuncRef</span> <span class="op">=</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Box</span><span class="op">&lt;</span><span class="ident">CustomLabelFunc</span><span class="op">&gt;</span><span class="op">&gt;</span>;
+<span class="kw">type </span>CustomLabelFunc = <span class="kw">dyn </span>Fn(<span class="kw-2">&amp;</span>str, <span class="kw-2">&amp;</span>Value) -&gt; String;
+<span class="kw">type </span>CustomLabelFuncRef = <span class="prelude-ty">Option</span>&lt;Box&lt;CustomLabelFunc&gt;&gt;;
 
-<span class="comment">// ----------------------------------------------------------------------------</span>
+<span class="comment">// ----------------------------------------------------------------------------
 
-<span class="doccomment">/// Information about the plot that has to persist between frames.</span>
-<span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;serde&quot;</span>, <span class="ident">derive</span>(<span class="ident">serde::Deserialize</span>, <span class="ident">serde::Serialize</span>))]</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>)]</span>
-<span class="kw">struct</span> <span class="ident">PlotMemory</span> {
-    <span class="ident">auto_bounds</span>: <span class="ident">bool</span>,
-    <span class="ident">hovered_entry</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span>,
-    <span class="ident">hidden_items</span>: <span class="ident">AHashSet</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span>,
-    <span class="ident">min_auto_bounds</span>: <span class="ident">PlotBounds</span>,
-    <span class="ident">last_screen_transform</span>: <span class="ident">ScreenTransform</span>,
+</span><span class="doccomment">/// Information about the plot that has to persist between frames.
+</span><span class="attribute">#[cfg_attr(feature = <span class="string">&quot;serde&quot;</span>, derive(serde::Deserialize, serde::Serialize))]
+#[derive(Clone)]
+</span><span class="kw">struct </span>PlotMemory {
+    auto_bounds: bool,
+    hovered_entry: <span class="prelude-ty">Option</span>&lt;String&gt;,
+    hidden_items: AHashSet&lt;String&gt;,
+    min_auto_bounds: PlotBounds,
+    last_screen_transform: ScreenTransform,
 }
 
-<span class="kw">impl</span> <span class="ident">PlotMemory</span> {
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">load</span>(<span class="ident">ctx</span>: <span class="kw-2">&amp;</span><span class="ident">Context</span>, <span class="ident">id</span>: <span class="ident">Id</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
-        <span class="ident">ctx</span>.<span class="ident">memory</span>().<span class="ident">data</span>.<span class="ident">get_persisted</span>(<span class="ident">id</span>)
+<span class="kw">impl </span>PlotMemory {
+    <span class="kw">pub fn </span>load(ctx: <span class="kw-2">&amp;</span>Context, id: Id) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="self">Self</span>&gt; {
+        ctx.memory().data.get_persisted(id)
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">store</span>(<span class="self">self</span>, <span class="ident">ctx</span>: <span class="kw-2">&amp;</span><span class="ident">Context</span>, <span class="ident">id</span>: <span class="ident">Id</span>) {
-        <span class="ident">ctx</span>.<span class="ident">memory</span>().<span class="ident">data</span>.<span class="ident">insert_persisted</span>(<span class="ident">id</span>, <span class="self">self</span>);
+    <span class="kw">pub fn </span>store(<span class="self">self</span>, ctx: <span class="kw-2">&amp;</span>Context, id: Id) {
+        ctx.memory().data.insert_persisted(id, <span class="self">self</span>);
     }
 }
 
-<span class="comment">// ----------------------------------------------------------------------------</span>
+<span class="comment">// ----------------------------------------------------------------------------
 
-<span class="doccomment">/// A 2D plot, e.g. a graph of a function.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// `Plot` supports multiple lines and points.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// ```</span>
-<span class="doccomment">/// # egui::__run_test_ui(|ui| {</span>
-<span class="doccomment">/// use egui::plot::{Line, Plot, Value, Values};</span>
-<span class="doccomment">/// let sin = (0..1000).map(|i| {</span>
-<span class="doccomment">///     let x = i as f64 * 0.01;</span>
-<span class="doccomment">///     Value::new(x, x.sin())</span>
-<span class="doccomment">/// });</span>
-<span class="doccomment">/// let line = Line::new(Values::from_values_iter(sin));</span>
-<span class="doccomment">/// Plot::new(&quot;my_plot&quot;).view_aspect(2.0).show(ui, |plot_ui| plot_ui.line(line));</span>
-<span class="doccomment">/// # });</span>
-<span class="doccomment">/// ```</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Plot</span> {
-    <span class="ident">id_source</span>: <span class="ident">Id</span>,
+</span><span class="doccomment">/// A 2D plot, e.g. a graph of a function.
+///
+/// `Plot` supports multiple lines and points.
+///
+/// ```
+/// # egui::__run_test_ui(|ui| {
+/// use egui::plot::{Line, Plot, Value, Values};
+/// let sin = (0..1000).map(|i| {
+///     let x = i as f64 * 0.01;
+///     Value::new(x, x.sin())
+/// });
+/// let line = Line::new(Values::from_values_iter(sin));
+/// Plot::new(&quot;my_plot&quot;).view_aspect(2.0).show(ui, |plot_ui| plot_ui.line(line));
+/// # });
+/// ```
+</span><span class="kw">pub struct </span>Plot {
+    id_source: Id,
 
-    <span class="ident">center_x_axis</span>: <span class="ident">bool</span>,
-    <span class="ident">center_y_axis</span>: <span class="ident">bool</span>,
-    <span class="ident">allow_zoom</span>: <span class="ident">bool</span>,
-    <span class="ident">allow_drag</span>: <span class="ident">bool</span>,
-    <span class="ident">min_auto_bounds</span>: <span class="ident">PlotBounds</span>,
-    <span class="ident">margin_fraction</span>: <span class="ident">Vec2</span>,
+    center_x_axis: bool,
+    center_y_axis: bool,
+    allow_zoom: bool,
+    allow_drag: bool,
+    min_auto_bounds: PlotBounds,
+    margin_fraction: Vec2,
 
-    <span class="ident">min_size</span>: <span class="ident">Vec2</span>,
-    <span class="ident">width</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">f32</span><span class="op">&gt;</span>,
-    <span class="ident">height</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">f32</span><span class="op">&gt;</span>,
-    <span class="ident">data_aspect</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">f32</span><span class="op">&gt;</span>,
-    <span class="ident">view_aspect</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">f32</span><span class="op">&gt;</span>,
+    min_size: Vec2,
+    width: <span class="prelude-ty">Option</span>&lt;f32&gt;,
+    height: <span class="prelude-ty">Option</span>&lt;f32&gt;,
+    data_aspect: <span class="prelude-ty">Option</span>&lt;f32&gt;,
+    view_aspect: <span class="prelude-ty">Option</span>&lt;f32&gt;,
 
-    <span class="ident">show_x</span>: <span class="ident">bool</span>,
-    <span class="ident">show_y</span>: <span class="ident">bool</span>,
-    <span class="ident">custom_label_func</span>: <span class="ident">CustomLabelFuncRef</span>,
-    <span class="ident">legend_config</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Legend</span><span class="op">&gt;</span>,
-    <span class="ident">show_background</span>: <span class="ident">bool</span>,
-    <span class="ident">show_axes</span>: [<span class="ident">bool</span>; <span class="number">2</span>],
+    show_x: bool,
+    show_y: bool,
+    custom_label_func: CustomLabelFuncRef,
+    legend_config: <span class="prelude-ty">Option</span>&lt;Legend&gt;,
+    show_background: bool,
+    show_axes: [bool; <span class="number">2</span>],
 }
 
-<span class="kw">impl</span> <span class="ident">Plot</span> {
-    <span class="doccomment">/// Give a unique id for each plot within the same `Ui`.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">id_source</span>: <span class="kw">impl</span> <span class="ident">std::hash::Hash</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">Self</span> {
-            <span class="ident">id_source</span>: <span class="ident">Id::new</span>(<span class="ident">id_source</span>),
+<span class="kw">impl </span>Plot {
+    <span class="doccomment">/// Give a unique id for each plot within the same `Ui`.
+    </span><span class="kw">pub fn </span>new(id_source: <span class="kw">impl </span>std::hash::Hash) -&gt; <span class="self">Self </span>{
+        <span class="self">Self </span>{
+            id_source: Id::new(id_source),
 
-            <span class="ident">center_x_axis</span>: <span class="bool-val">false</span>,
-            <span class="ident">center_y_axis</span>: <span class="bool-val">false</span>,
-            <span class="ident">allow_zoom</span>: <span class="bool-val">true</span>,
-            <span class="ident">allow_drag</span>: <span class="bool-val">true</span>,
-            <span class="ident">min_auto_bounds</span>: <span class="ident">PlotBounds::NOTHING</span>,
-            <span class="ident">margin_fraction</span>: <span class="ident">Vec2::splat</span>(<span class="number">0.05</span>),
+            center_x_axis: <span class="bool-val">false</span>,
+            center_y_axis: <span class="bool-val">false</span>,
+            allow_zoom: <span class="bool-val">true</span>,
+            allow_drag: <span class="bool-val">true</span>,
+            min_auto_bounds: PlotBounds::NOTHING,
+            margin_fraction: Vec2::splat(<span class="number">0.05</span>),
 
-            <span class="ident">min_size</span>: <span class="ident">Vec2::splat</span>(<span class="number">64.0</span>),
-            <span class="ident">width</span>: <span class="prelude-val">None</span>,
-            <span class="ident">height</span>: <span class="prelude-val">None</span>,
-            <span class="ident">data_aspect</span>: <span class="prelude-val">None</span>,
-            <span class="ident">view_aspect</span>: <span class="prelude-val">None</span>,
+            min_size: Vec2::splat(<span class="number">64.0</span>),
+            width: <span class="prelude-val">None</span>,
+            height: <span class="prelude-val">None</span>,
+            data_aspect: <span class="prelude-val">None</span>,
+            view_aspect: <span class="prelude-val">None</span>,
 
-            <span class="ident">show_x</span>: <span class="bool-val">true</span>,
-            <span class="ident">show_y</span>: <span class="bool-val">true</span>,
-            <span class="ident">custom_label_func</span>: <span class="prelude-val">None</span>,
-            <span class="ident">legend_config</span>: <span class="prelude-val">None</span>,
-            <span class="ident">show_background</span>: <span class="bool-val">true</span>,
-            <span class="ident">show_axes</span>: [<span class="bool-val">true</span>; <span class="number">2</span>],
+            show_x: <span class="bool-val">true</span>,
+            show_y: <span class="bool-val">true</span>,
+            custom_label_func: <span class="prelude-val">None</span>,
+            legend_config: <span class="prelude-val">None</span>,
+            show_background: <span class="bool-val">true</span>,
+            show_axes: [<span class="bool-val">true</span>; <span class="number">2</span>],
         }
     }
 
-    <span class="doccomment">/// width / height ratio of the data.</span>
-    <span class="doccomment">/// For instance, it can be useful to set this to `1.0` for when the two axes show the same</span>
-    <span class="doccomment">/// unit.</span>
-    <span class="doccomment">/// By default the plot window&#39;s aspect ratio is used.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">data_aspect</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">data_aspect</span>: <span class="ident">f32</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">self</span>.<span class="ident">data_aspect</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">data_aspect</span>);
-        <span class="self">self</span>
-    }
+    <span class="doccomment">/// width / height ratio of the data.
+    /// For instance, it can be useful to set this to `1.0` for when the two axes show the same
+    /// unit.
+    /// By default the plot window&#39;s aspect ratio is used.
+    </span><span class="kw">pub fn </span>data_aspect(<span class="kw-2">mut </span><span class="self">self</span>, data_aspect: f32) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.data_aspect = <span class="prelude-val">Some</span>(data_aspect);
+        <span class="self">self
+    </span>}
 
-    <span class="doccomment">/// width / height ratio of the plot region.</span>
-    <span class="doccomment">/// By default no fixed aspect ratio is set (and width/height will fill the ui it is in).</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">view_aspect</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">view_aspect</span>: <span class="ident">f32</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">self</span>.<span class="ident">view_aspect</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">view_aspect</span>);
-        <span class="self">self</span>
-    }
+    <span class="doccomment">/// width / height ratio of the plot region.
+    /// By default no fixed aspect ratio is set (and width/height will fill the ui it is in).
+    </span><span class="kw">pub fn </span>view_aspect(<span class="kw-2">mut </span><span class="self">self</span>, view_aspect: f32) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.view_aspect = <span class="prelude-val">Some</span>(view_aspect);
+        <span class="self">self
+    </span>}
 
-    <span class="doccomment">/// Width of plot. By default a plot will fill the ui it is in.</span>
-    <span class="doccomment">/// If you set [`Self::view_aspect`], the width can be calculated from the height.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">width</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">width</span>: <span class="ident">f32</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">self</span>.<span class="ident">min_size</span>.<span class="ident">x</span> <span class="op">=</span> <span class="ident">width</span>;
-        <span class="self">self</span>.<span class="ident">width</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">width</span>);
-        <span class="self">self</span>
-    }
+    <span class="doccomment">/// Width of plot. By default a plot will fill the ui it is in.
+    /// If you set [`Self::view_aspect`], the width can be calculated from the height.
+    </span><span class="kw">pub fn </span>width(<span class="kw-2">mut </span><span class="self">self</span>, width: f32) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.min_size.x = width;
+        <span class="self">self</span>.width = <span class="prelude-val">Some</span>(width);
+        <span class="self">self
+    </span>}
 
-    <span class="doccomment">/// Height of plot. By default a plot will fill the ui it is in.</span>
-    <span class="doccomment">/// If you set [`Self::view_aspect`], the height can be calculated from the width.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">height</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">height</span>: <span class="ident">f32</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">self</span>.<span class="ident">min_size</span>.<span class="ident">y</span> <span class="op">=</span> <span class="ident">height</span>;
-        <span class="self">self</span>.<span class="ident">height</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">height</span>);
-        <span class="self">self</span>
-    }
+    <span class="doccomment">/// Height of plot. By default a plot will fill the ui it is in.
+    /// If you set [`Self::view_aspect`], the height can be calculated from the width.
+    </span><span class="kw">pub fn </span>height(<span class="kw-2">mut </span><span class="self">self</span>, height: f32) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.min_size.y = height;
+        <span class="self">self</span>.height = <span class="prelude-val">Some</span>(height);
+        <span class="self">self
+    </span>}
 
-    <span class="doccomment">/// Minimum size of the plot view.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">min_size</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">min_size</span>: <span class="ident">Vec2</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">self</span>.<span class="ident">min_size</span> <span class="op">=</span> <span class="ident">min_size</span>;
-        <span class="self">self</span>
-    }
+    <span class="doccomment">/// Minimum size of the plot view.
+    </span><span class="kw">pub fn </span>min_size(<span class="kw-2">mut </span><span class="self">self</span>, min_size: Vec2) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.min_size = min_size;
+        <span class="self">self
+    </span>}
 
-    <span class="doccomment">/// Show the x-value (e.g. when hovering). Default: `true`.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">show_x</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">show_x</span>: <span class="ident">bool</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">self</span>.<span class="ident">show_x</span> <span class="op">=</span> <span class="ident">show_x</span>;
-        <span class="self">self</span>
-    }
+    <span class="doccomment">/// Show the x-value (e.g. when hovering). Default: `true`.
+    </span><span class="kw">pub fn </span>show_x(<span class="kw-2">mut </span><span class="self">self</span>, show_x: bool) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.show_x = show_x;
+        <span class="self">self
+    </span>}
 
-    <span class="doccomment">/// Show the y-value (e.g. when hovering). Default: `true`.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">show_y</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">show_y</span>: <span class="ident">bool</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">self</span>.<span class="ident">show_y</span> <span class="op">=</span> <span class="ident">show_y</span>;
-        <span class="self">self</span>
-    }
+    <span class="doccomment">/// Show the y-value (e.g. when hovering). Default: `true`.
+    </span><span class="kw">pub fn </span>show_y(<span class="kw-2">mut </span><span class="self">self</span>, show_y: bool) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.show_y = show_y;
+        <span class="self">self
+    </span>}
 
-    <span class="doccomment">/// Always keep the x-axis centered. Default: `false`.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">center_x_axis</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">on</span>: <span class="ident">bool</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">self</span>.<span class="ident">center_x_axis</span> <span class="op">=</span> <span class="ident">on</span>;
-        <span class="self">self</span>
-    }
+    <span class="doccomment">/// Always keep the x-axis centered. Default: `false`.
+    </span><span class="kw">pub fn </span>center_x_axis(<span class="kw-2">mut </span><span class="self">self</span>, on: bool) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.center_x_axis = on;
+        <span class="self">self
+    </span>}
 
-    <span class="doccomment">/// Always keep the y-axis centered. Default: `false`.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">center_y_axis</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">on</span>: <span class="ident">bool</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">self</span>.<span class="ident">center_y_axis</span> <span class="op">=</span> <span class="ident">on</span>;
-        <span class="self">self</span>
-    }
+    <span class="doccomment">/// Always keep the y-axis centered. Default: `false`.
+    </span><span class="kw">pub fn </span>center_y_axis(<span class="kw-2">mut </span><span class="self">self</span>, on: bool) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.center_y_axis = on;
+        <span class="self">self
+    </span>}
 
-    <span class="doccomment">/// Whether to allow zooming in the plot. Default: `true`.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">allow_zoom</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">on</span>: <span class="ident">bool</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">self</span>.<span class="ident">allow_zoom</span> <span class="op">=</span> <span class="ident">on</span>;
-        <span class="self">self</span>
-    }
+    <span class="doccomment">/// Whether to allow zooming in the plot. Default: `true`.
+    </span><span class="kw">pub fn </span>allow_zoom(<span class="kw-2">mut </span><span class="self">self</span>, on: bool) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.allow_zoom = on;
+        <span class="self">self
+    </span>}
 
-    <span class="doccomment">/// Whether to allow dragging in the plot to move the bounds. Default: `true`.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">allow_drag</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">on</span>: <span class="ident">bool</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">self</span>.<span class="ident">allow_drag</span> <span class="op">=</span> <span class="ident">on</span>;
-        <span class="self">self</span>
-    }
+    <span class="doccomment">/// Whether to allow dragging in the plot to move the bounds. Default: `true`.
+    </span><span class="kw">pub fn </span>allow_drag(<span class="kw-2">mut </span><span class="self">self</span>, on: bool) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.allow_drag = on;
+        <span class="self">self
+    </span>}
 
-    <span class="doccomment">/// Provide a function to customize the on-hovel label for the x and y axis</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// ```</span>
-    <span class="doccomment">/// # egui::__run_test_ui(|ui| {</span>
-    <span class="doccomment">/// use egui::plot::{Line, Plot, Value, Values};</span>
-    <span class="doccomment">/// let sin = (0..1000).map(|i| {</span>
-    <span class="doccomment">///     let x = i as f64 * 0.01;</span>
-    <span class="doccomment">///     Value::new(x, x.sin())</span>
-    <span class="doccomment">/// });</span>
-    <span class="doccomment">/// let line = Line::new(Values::from_values_iter(sin));</span>
-    <span class="doccomment">/// Plot::new(&quot;my_plot&quot;).view_aspect(2.0)</span>
-    <span class="doccomment">/// .custom_label_func(|name, value| {</span>
-    <span class="doccomment">///     if !name.is_empty() {</span>
-    <span class="doccomment">///         format!(&quot;{}: {:.*}%&quot;, name, 1, value.y).to_string()</span>
-    <span class="doccomment">///     } else {</span>
-    <span class="doccomment">///         &quot;&quot;.to_string()</span>
-    <span class="doccomment">///     }</span>
-    <span class="doccomment">/// })</span>
-    <span class="doccomment">/// .show(ui, |plot_ui| plot_ui.line(line));</span>
-    <span class="doccomment">/// # });</span>
-    <span class="doccomment">/// ```</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">custom_label_func</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="lifetime">&#39;static</span> <span class="op">+</span> <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">str</span>, <span class="kw-2">&amp;</span><span class="ident">Value</span>) -&gt; <span class="ident">String</span><span class="op">&gt;</span>(
-        <span class="kw-2">mut</span> <span class="self">self</span>,
-        <span class="ident">custom_lebel_func</span>: <span class="ident">F</span>,
-    ) -&gt; <span class="self">Self</span> {
-        <span class="self">self</span>.<span class="ident">custom_label_func</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">Box::new</span>(<span class="ident">custom_lebel_func</span>));
-        <span class="self">self</span>
-    }
+    <span class="doccomment">/// Provide a function to customize the on-hovel label for the x and y axis
+    ///
+    /// ```
+    /// # egui::__run_test_ui(|ui| {
+    /// use egui::plot::{Line, Plot, Value, Values};
+    /// let sin = (0..1000).map(|i| {
+    ///     let x = i as f64 * 0.01;
+    ///     Value::new(x, x.sin())
+    /// });
+    /// let line = Line::new(Values::from_values_iter(sin));
+    /// Plot::new(&quot;my_plot&quot;).view_aspect(2.0)
+    /// .custom_label_func(|name, value| {
+    ///     if !name.is_empty() {
+    ///         format!(&quot;{}: {:.*}%&quot;, name, 1, value.y).to_string()
+    ///     } else {
+    ///         &quot;&quot;.to_string()
+    ///     }
+    /// })
+    /// .show(ui, |plot_ui| plot_ui.line(line));
+    /// # });
+    /// ```
+    </span><span class="kw">pub fn </span>custom_label_func&lt;F: <span class="lifetime">&#39;static </span>+ Fn(<span class="kw-2">&amp;</span>str, <span class="kw-2">&amp;</span>Value) -&gt; String&gt;(
+        <span class="kw-2">mut </span><span class="self">self</span>,
+        custom_lebel_func: F,
+    ) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.custom_label_func = <span class="prelude-val">Some</span>(Box::new(custom_lebel_func));
+        <span class="self">self
+    </span>}
 
-    <span class="doccomment">/// Expand bounds to include the given x value.</span>
-    <span class="doccomment">/// For instance, to always show the y axis, call `plot.include_x(0.0)`.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">include_x</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">x</span>: <span class="kw">impl</span> <span class="ident">Into</span><span class="op">&lt;</span><span class="ident">f64</span><span class="op">&gt;</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">self</span>.<span class="ident">min_auto_bounds</span>.<span class="ident">extend_with_x</span>(<span class="ident">x</span>.<span class="ident">into</span>());
-        <span class="self">self</span>
-    }
+    <span class="doccomment">/// Expand bounds to include the given x value.
+    /// For instance, to always show the y axis, call `plot.include_x(0.0)`.
+    </span><span class="kw">pub fn </span>include_x(<span class="kw-2">mut </span><span class="self">self</span>, x: <span class="kw">impl </span>Into&lt;f64&gt;) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.min_auto_bounds.extend_with_x(x.into());
+        <span class="self">self
+    </span>}
 
-    <span class="doccomment">/// Expand bounds to include the given y value.</span>
-    <span class="doccomment">/// For instance, to always show the x axis, call `plot.include_y(0.0)`.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">include_y</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">y</span>: <span class="kw">impl</span> <span class="ident">Into</span><span class="op">&lt;</span><span class="ident">f64</span><span class="op">&gt;</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">self</span>.<span class="ident">min_auto_bounds</span>.<span class="ident">extend_with_y</span>(<span class="ident">y</span>.<span class="ident">into</span>());
-        <span class="self">self</span>
-    }
+    <span class="doccomment">/// Expand bounds to include the given y value.
+    /// For instance, to always show the x axis, call `plot.include_y(0.0)`.
+    </span><span class="kw">pub fn </span>include_y(<span class="kw-2">mut </span><span class="self">self</span>, y: <span class="kw">impl </span>Into&lt;f64&gt;) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.min_auto_bounds.extend_with_y(y.into());
+        <span class="self">self
+    </span>}
 
-    <span class="doccomment">/// Show a legend including all named items.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">legend</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">legend</span>: <span class="ident">Legend</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">self</span>.<span class="ident">legend_config</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">legend</span>);
-        <span class="self">self</span>
-    }
+    <span class="doccomment">/// Show a legend including all named items.
+    </span><span class="kw">pub fn </span>legend(<span class="kw-2">mut </span><span class="self">self</span>, legend: Legend) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.legend_config = <span class="prelude-val">Some</span>(legend);
+        <span class="self">self
+    </span>}
 
-    <span class="doccomment">/// Whether or not to show the background `Rect`.</span>
-    <span class="doccomment">/// Can be useful to disable if the plot is overlaid over existing content.</span>
-    <span class="doccomment">/// Default: `true`.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">show_background</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">show</span>: <span class="ident">bool</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">self</span>.<span class="ident">show_background</span> <span class="op">=</span> <span class="ident">show</span>;
-        <span class="self">self</span>
-    }
+    <span class="doccomment">/// Whether or not to show the background `Rect`.
+    /// Can be useful to disable if the plot is overlaid over existing content.
+    /// Default: `true`.
+    </span><span class="kw">pub fn </span>show_background(<span class="kw-2">mut </span><span class="self">self</span>, show: bool) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.show_background = show;
+        <span class="self">self
+    </span>}
 
-    <span class="doccomment">/// Show the axes.</span>
-    <span class="doccomment">/// Can be useful to disable if the plot is overlaid over an existing grid or content.</span>
-    <span class="doccomment">/// Default: `[true; 2]`.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">show_axes</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">show</span>: [<span class="ident">bool</span>; <span class="number">2</span>]) -&gt; <span class="self">Self</span> {
-        <span class="self">self</span>.<span class="ident">show_axes</span> <span class="op">=</span> <span class="ident">show</span>;
-        <span class="self">self</span>
-    }
+    <span class="doccomment">/// Show the axes.
+    /// Can be useful to disable if the plot is overlaid over an existing grid or content.
+    /// Default: `[true; 2]`.
+    </span><span class="kw">pub fn </span>show_axes(<span class="kw-2">mut </span><span class="self">self</span>, show: [bool; <span class="number">2</span>]) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.show_axes = show;
+        <span class="self">self
+    </span>}
 
-    <span class="doccomment">/// Interact with and add items to the plot and finally draw it.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">show</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span>(<span class="self">self</span>, <span class="ident">ui</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Ui</span>, <span class="ident">build_fn</span>: <span class="kw">impl</span> <span class="ident">FnOnce</span>(<span class="kw-2">&amp;mut</span> <span class="ident">PlotUi</span>) -&gt; <span class="ident">R</span>) -&gt; <span class="ident">InnerResponse</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="self">Self</span> {
-            <span class="ident">id_source</span>,
-            <span class="ident">center_x_axis</span>,
-            <span class="ident">center_y_axis</span>,
-            <span class="ident">allow_zoom</span>,
-            <span class="ident">allow_drag</span>,
-            <span class="ident">min_auto_bounds</span>,
-            <span class="ident">margin_fraction</span>,
-            <span class="ident">width</span>,
-            <span class="ident">height</span>,
-            <span class="ident">min_size</span>,
-            <span class="ident">data_aspect</span>,
-            <span class="ident">view_aspect</span>,
-            <span class="kw-2">mut</span> <span class="ident">show_x</span>,
-            <span class="kw-2">mut</span> <span class="ident">show_y</span>,
-            <span class="ident">custom_label_func</span>,
-            <span class="ident">legend_config</span>,
-            <span class="ident">show_background</span>,
-            <span class="ident">show_axes</span>,
-        } <span class="op">=</span> <span class="self">self</span>;
+    <span class="doccomment">/// Interact with and add items to the plot and finally draw it.
+    </span><span class="kw">pub fn </span>show&lt;R&gt;(<span class="self">self</span>, ui: <span class="kw-2">&amp;mut </span>Ui, build_fn: <span class="kw">impl </span>FnOnce(<span class="kw-2">&amp;mut </span>PlotUi) -&gt; R) -&gt; InnerResponse&lt;R&gt; {
+        <span class="kw">let </span><span class="self">Self </span>{
+            id_source,
+            center_x_axis,
+            center_y_axis,
+            allow_zoom,
+            allow_drag,
+            min_auto_bounds,
+            margin_fraction,
+            width,
+            height,
+            min_size,
+            data_aspect,
+            view_aspect,
+            <span class="kw-2">mut </span>show_x,
+            <span class="kw-2">mut </span>show_y,
+            custom_label_func,
+            legend_config,
+            show_background,
+            show_axes,
+        } = <span class="self">self</span>;
 
-        <span class="comment">// Determine the size of the plot in the UI</span>
-        <span class="kw">let</span> <span class="ident">size</span> <span class="op">=</span> {
-            <span class="kw">let</span> <span class="ident">width</span> <span class="op">=</span> <span class="ident">width</span>
-                .<span class="ident">unwrap_or_else</span>(<span class="op">|</span><span class="op">|</span> {
-                    <span class="kw">if</span> <span class="kw">let</span> (<span class="prelude-val">Some</span>(<span class="ident">height</span>), <span class="prelude-val">Some</span>(<span class="ident">aspect</span>)) <span class="op">=</span> (<span class="ident">height</span>, <span class="ident">view_aspect</span>) {
-                        <span class="ident">height</span> <span class="op">*</span> <span class="ident">aspect</span>
-                    } <span class="kw">else</span> {
-                        <span class="ident">ui</span>.<span class="ident">available_size_before_wrap</span>().<span class="ident">x</span>
+        <span class="comment">// Determine the size of the plot in the UI
+        </span><span class="kw">let </span>size = {
+            <span class="kw">let </span>width = width
+                .unwrap_or_else(|| {
+                    <span class="kw">if let </span>(<span class="prelude-val">Some</span>(height), <span class="prelude-val">Some</span>(aspect)) = (height, view_aspect) {
+                        height * aspect
+                    } <span class="kw">else </span>{
+                        ui.available_size_before_wrap().x
                     }
                 })
-                .<span class="ident">at_least</span>(<span class="ident">min_size</span>.<span class="ident">x</span>);
+                .at_least(min_size.x);
 
-            <span class="kw">let</span> <span class="ident">height</span> <span class="op">=</span> <span class="ident">height</span>
-                .<span class="ident">unwrap_or_else</span>(<span class="op">|</span><span class="op">|</span> {
-                    <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">aspect</span>) <span class="op">=</span> <span class="ident">view_aspect</span> {
-                        <span class="ident">width</span> <span class="op">/</span> <span class="ident">aspect</span>
-                    } <span class="kw">else</span> {
-                        <span class="ident">ui</span>.<span class="ident">available_size_before_wrap</span>().<span class="ident">y</span>
+            <span class="kw">let </span>height = height
+                .unwrap_or_else(|| {
+                    <span class="kw">if let </span><span class="prelude-val">Some</span>(aspect) = view_aspect {
+                        width / aspect
+                    } <span class="kw">else </span>{
+                        ui.available_size_before_wrap().y
                     }
                 })
-                .<span class="ident">at_least</span>(<span class="ident">min_size</span>.<span class="ident">y</span>);
-            <span class="ident">vec2</span>(<span class="ident">width</span>, <span class="ident">height</span>)
+                .at_least(min_size.y);
+            vec2(width, height)
         };
 
-        <span class="comment">// Allocate the space.</span>
-        <span class="kw">let</span> (<span class="ident">rect</span>, <span class="ident">response</span>) <span class="op">=</span> <span class="ident">ui</span>.<span class="ident">allocate_exact_size</span>(<span class="ident">size</span>, <span class="ident">Sense::drag</span>());
+        <span class="comment">// Allocate the space.
+        </span><span class="kw">let </span>(rect, response) = ui.allocate_exact_size(size, Sense::drag());
 
-        <span class="comment">// Load or initialize the memory.</span>
-        <span class="kw">let</span> <span class="ident">plot_id</span> <span class="op">=</span> <span class="ident">ui</span>.<span class="ident">make_persistent_id</span>(<span class="ident">id_source</span>);
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">memory</span> <span class="op">=</span> <span class="ident">PlotMemory::load</span>(<span class="ident">ui</span>.<span class="ident">ctx</span>(), <span class="ident">plot_id</span>).<span class="ident">unwrap_or_else</span>(<span class="op">|</span><span class="op">|</span> <span class="ident">PlotMemory</span> {
-            <span class="ident">auto_bounds</span>: <span class="op">!</span><span class="ident">min_auto_bounds</span>.<span class="ident">is_valid</span>(),
-            <span class="ident">hovered_entry</span>: <span class="prelude-val">None</span>,
-            <span class="ident">hidden_items</span>: <span class="ident">Default::default</span>(),
-            <span class="ident">min_auto_bounds</span>,
-            <span class="ident">last_screen_transform</span>: <span class="ident">ScreenTransform::new</span>(
-                <span class="ident">rect</span>,
-                <span class="ident">min_auto_bounds</span>,
-                <span class="ident">center_x_axis</span>,
-                <span class="ident">center_y_axis</span>,
+        <span class="comment">// Load or initialize the memory.
+        </span><span class="kw">let </span>plot_id = ui.make_persistent_id(id_source);
+        <span class="kw">let </span><span class="kw-2">mut </span>memory = PlotMemory::load(ui.ctx(), plot_id).unwrap_or_else(|| PlotMemory {
+            auto_bounds: !min_auto_bounds.is_valid(),
+            hovered_entry: <span class="prelude-val">None</span>,
+            hidden_items: Default::default(),
+            min_auto_bounds,
+            last_screen_transform: ScreenTransform::new(
+                rect,
+                min_auto_bounds,
+                center_x_axis,
+                center_y_axis,
             ),
         });
 
-        <span class="comment">// If the min bounds changed, recalculate everything.</span>
-        <span class="kw">if</span> <span class="ident">min_auto_bounds</span> <span class="op">!</span><span class="op">=</span> <span class="ident">memory</span>.<span class="ident">min_auto_bounds</span> {
-            <span class="ident">memory</span> <span class="op">=</span> <span class="ident">PlotMemory</span> {
-                <span class="ident">auto_bounds</span>: <span class="op">!</span><span class="ident">min_auto_bounds</span>.<span class="ident">is_valid</span>(),
-                <span class="ident">hovered_entry</span>: <span class="prelude-val">None</span>,
-                <span class="ident">min_auto_bounds</span>,
-                ..<span class="ident">memory</span>
+        <span class="comment">// If the min bounds changed, recalculate everything.
+        </span><span class="kw">if </span>min_auto_bounds != memory.min_auto_bounds {
+            memory = PlotMemory {
+                auto_bounds: !min_auto_bounds.is_valid(),
+                hovered_entry: <span class="prelude-val">None</span>,
+                min_auto_bounds,
+                ..memory
             };
-            <span class="ident">memory</span>.<span class="ident">clone</span>().<span class="ident">store</span>(<span class="ident">ui</span>.<span class="ident">ctx</span>(), <span class="ident">plot_id</span>);
+            memory.clone().store(ui.ctx(), plot_id);
         }
 
-        <span class="kw">let</span> <span class="ident">PlotMemory</span> {
-            <span class="kw-2">mut</span> <span class="ident">auto_bounds</span>,
-            <span class="kw-2">mut</span> <span class="ident">hovered_entry</span>,
-            <span class="kw-2">mut</span> <span class="ident">hidden_items</span>,
-            <span class="ident">last_screen_transform</span>,
+        <span class="kw">let </span>PlotMemory {
+            <span class="kw-2">mut </span>auto_bounds,
+            <span class="kw-2">mut </span>hovered_entry,
+            <span class="kw-2">mut </span>hidden_items,
+            last_screen_transform,
             ..
-        } <span class="op">=</span> <span class="ident">memory</span>;
+        } = memory;
 
-        <span class="comment">// Call the plot build function.</span>
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">plot_ui</span> <span class="op">=</span> <span class="ident">PlotUi</span> {
-            <span class="ident">items</span>: <span class="ident">Vec::new</span>(),
-            <span class="ident">next_auto_color_idx</span>: <span class="number">0</span>,
-            <span class="ident">last_screen_transform</span>,
-            <span class="ident">response</span>,
-            <span class="ident">ctx</span>: <span class="ident">ui</span>.<span class="ident">ctx</span>().<span class="ident">clone</span>(),
+        <span class="comment">// Call the plot build function.
+        </span><span class="kw">let </span><span class="kw-2">mut </span>plot_ui = PlotUi {
+            items: Vec::new(),
+            next_auto_color_idx: <span class="number">0</span>,
+            last_screen_transform,
+            response,
+            ctx: ui.ctx().clone(),
         };
-        <span class="kw">let</span> <span class="ident">inner</span> <span class="op">=</span> <span class="ident">build_fn</span>(<span class="kw-2">&amp;mut</span> <span class="ident">plot_ui</span>);
-        <span class="kw">let</span> <span class="ident">PlotUi</span> {
-            <span class="kw-2">mut</span> <span class="ident">items</span>,
-            <span class="kw-2">mut</span> <span class="ident">response</span>,
-            <span class="ident">last_screen_transform</span>,
+        <span class="kw">let </span>inner = build_fn(<span class="kw-2">&amp;mut </span>plot_ui);
+        <span class="kw">let </span>PlotUi {
+            <span class="kw-2">mut </span>items,
+            <span class="kw-2">mut </span>response,
+            last_screen_transform,
             ..
-        } <span class="op">=</span> <span class="ident">plot_ui</span>;
+        } = plot_ui;
 
-        <span class="comment">// Background</span>
-        <span class="kw">if</span> <span class="ident">show_background</span> {
-            <span class="ident">ui</span>.<span class="ident">painter</span>().<span class="ident">sub_region</span>(<span class="ident">rect</span>).<span class="ident">add</span>(<span class="ident">epaint::RectShape</span> {
-                <span class="ident">rect</span>,
-                <span class="ident">corner_radius</span>: <span class="number">2.0</span>,
-                <span class="ident">fill</span>: <span class="ident">ui</span>.<span class="ident">visuals</span>().<span class="ident">extreme_bg_color</span>,
-                <span class="ident">stroke</span>: <span class="ident">ui</span>.<span class="ident">visuals</span>().<span class="ident">widgets</span>.<span class="ident">noninteractive</span>.<span class="ident">bg_stroke</span>,
+        <span class="comment">// Background
+        </span><span class="kw">if </span>show_background {
+            ui.painter().sub_region(rect).add(epaint::RectShape {
+                rect,
+                corner_radius: <span class="number">2.0</span>,
+                fill: ui.visuals().extreme_bg_color,
+                stroke: ui.visuals().widgets.noninteractive.bg_stroke,
             });
         }
 
-        <span class="comment">// --- Legend ---</span>
-        <span class="kw">let</span> <span class="ident">legend</span> <span class="op">=</span> <span class="ident">legend_config</span>
-            .<span class="ident">and_then</span>(<span class="op">|</span><span class="ident">config</span><span class="op">|</span> <span class="ident">LegendWidget::try_new</span>(<span class="ident">rect</span>, <span class="ident">config</span>, <span class="kw-2">&amp;</span><span class="ident">items</span>, <span class="kw-2">&amp;</span><span class="ident">hidden_items</span>));
-        <span class="comment">// Don&#39;t show hover cursor when hovering over legend.</span>
-        <span class="kw">if</span> <span class="ident">hovered_entry</span>.<span class="ident">is_some</span>() {
-            <span class="ident">show_x</span> <span class="op">=</span> <span class="bool-val">false</span>;
-            <span class="ident">show_y</span> <span class="op">=</span> <span class="bool-val">false</span>;
+        <span class="comment">// --- Legend ---
+        </span><span class="kw">let </span>legend = legend_config
+            .and_then(|config| LegendWidget::try_new(rect, config, <span class="kw-2">&amp;</span>items, <span class="kw-2">&amp;</span>hidden_items));
+        <span class="comment">// Don&#39;t show hover cursor when hovering over legend.
+        </span><span class="kw">if </span>hovered_entry.is_some() {
+            show_x = <span class="bool-val">false</span>;
+            show_y = <span class="bool-val">false</span>;
         }
-        <span class="comment">// Remove the deselected items.</span>
-        <span class="ident">items</span>.<span class="ident">retain</span>(<span class="op">|</span><span class="ident">item</span><span class="op">|</span> <span class="op">!</span><span class="ident">hidden_items</span>.<span class="ident">contains</span>(<span class="ident">item</span>.<span class="ident">name</span>()));
-        <span class="comment">// Highlight the hovered items.</span>
-        <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">hovered_name</span>) <span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">hovered_entry</span> {
-            <span class="ident">items</span>
-                .<span class="ident">iter_mut</span>()
-                .<span class="ident">filter</span>(<span class="op">|</span><span class="ident">entry</span><span class="op">|</span> <span class="ident">entry</span>.<span class="ident">name</span>() <span class="op">==</span> <span class="ident">hovered_name</span>)
-                .<span class="ident">for_each</span>(<span class="op">|</span><span class="ident">entry</span><span class="op">|</span> <span class="ident">entry</span>.<span class="ident">highlight</span>());
+        <span class="comment">// Remove the deselected items.
+        </span>items.retain(|item| !hidden_items.contains(item.name()));
+        <span class="comment">// Highlight the hovered items.
+        </span><span class="kw">if let </span><span class="prelude-val">Some</span>(hovered_name) = <span class="kw-2">&amp;</span>hovered_entry {
+            items
+                .iter_mut()
+                .filter(|entry| entry.name() == hovered_name)
+                .for_each(|entry| entry.highlight());
         }
-        <span class="comment">// Move highlighted items to front.</span>
-        <span class="ident">items</span>.<span class="ident">sort_by_key</span>(<span class="op">|</span><span class="ident">item</span><span class="op">|</span> <span class="ident">item</span>.<span class="ident">highlighted</span>());
+        <span class="comment">// Move highlighted items to front.
+        </span>items.sort_by_key(|item| item.highlighted());
 
-        <span class="comment">// --- Bound computation ---</span>
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">bounds</span> <span class="op">=</span> <span class="kw-2">*</span><span class="ident">last_screen_transform</span>.<span class="ident">bounds</span>();
+        <span class="comment">// --- Bound computation ---
+        </span><span class="kw">let </span><span class="kw-2">mut </span>bounds = <span class="kw-2">*</span>last_screen_transform.bounds();
 
-        <span class="comment">// Allow double clicking to reset to automatic bounds.</span>
-        <span class="ident">auto_bounds</span> <span class="op">|</span><span class="op">=</span> <span class="ident">response</span>.<span class="ident">double_clicked_by</span>(<span class="ident">PointerButton::Primary</span>);
+        <span class="comment">// Allow double clicking to reset to automatic bounds.
+        </span>auto_bounds |= response.double_clicked_by(PointerButton::Primary);
 
-        <span class="comment">// Set bounds automatically based on content.</span>
-        <span class="kw">if</span> <span class="ident">auto_bounds</span> <span class="op">|</span><span class="op">|</span> <span class="op">!</span><span class="ident">bounds</span>.<span class="ident">is_valid</span>() {
-            <span class="ident">bounds</span> <span class="op">=</span> <span class="ident">min_auto_bounds</span>;
-            <span class="ident">items</span>
-                .<span class="ident">iter</span>()
-                .<span class="ident">for_each</span>(<span class="op">|</span><span class="ident">item</span><span class="op">|</span> <span class="ident">bounds</span>.<span class="ident">merge</span>(<span class="kw-2">&amp;</span><span class="ident">item</span>.<span class="ident">get_bounds</span>()));
-            <span class="ident">bounds</span>.<span class="ident">add_relative_margin</span>(<span class="ident">margin_fraction</span>);
-        }
-
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">transform</span> <span class="op">=</span> <span class="ident">ScreenTransform::new</span>(<span class="ident">rect</span>, <span class="ident">bounds</span>, <span class="ident">center_x_axis</span>, <span class="ident">center_y_axis</span>);
-
-        <span class="comment">// Enforce equal aspect ratio.</span>
-        <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">data_aspect</span>) <span class="op">=</span> <span class="ident">data_aspect</span> {
-            <span class="ident">transform</span>.<span class="ident">set_aspect</span>(<span class="ident">data_aspect</span> <span class="kw">as</span> <span class="ident">f64</span>);
+        <span class="comment">// Set bounds automatically based on content.
+        </span><span class="kw">if </span>auto_bounds || !bounds.is_valid() {
+            bounds = min_auto_bounds;
+            items
+                .iter()
+                .for_each(|item| bounds.merge(<span class="kw-2">&amp;</span>item.get_bounds()));
+            bounds.add_relative_margin(margin_fraction);
         }
 
-        <span class="comment">// Dragging</span>
-        <span class="kw">if</span> <span class="ident">allow_drag</span> <span class="op">&amp;&amp;</span> <span class="ident">response</span>.<span class="ident">dragged_by</span>(<span class="ident">PointerButton::Primary</span>) {
-            <span class="ident">response</span> <span class="op">=</span> <span class="ident">response</span>.<span class="ident">on_hover_cursor</span>(<span class="ident">CursorIcon::Grabbing</span>);
-            <span class="ident">transform</span>.<span class="ident">translate_bounds</span>(<span class="op">-</span><span class="ident">response</span>.<span class="ident">drag_delta</span>());
-            <span class="ident">auto_bounds</span> <span class="op">=</span> <span class="bool-val">false</span>;
+        <span class="kw">let </span><span class="kw-2">mut </span>transform = ScreenTransform::new(rect, bounds, center_x_axis, center_y_axis);
+
+        <span class="comment">// Enforce equal aspect ratio.
+        </span><span class="kw">if let </span><span class="prelude-val">Some</span>(data_aspect) = data_aspect {
+            transform.set_aspect(data_aspect <span class="kw">as </span>f64);
         }
 
-        <span class="comment">// Zooming</span>
-        <span class="kw">if</span> <span class="ident">allow_zoom</span> {
-            <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">hover_pos</span>) <span class="op">=</span> <span class="ident">response</span>.<span class="ident">hover_pos</span>() {
-                <span class="kw">let</span> <span class="ident">zoom_factor</span> <span class="op">=</span> <span class="kw">if</span> <span class="ident">data_aspect</span>.<span class="ident">is_some</span>() {
-                    <span class="ident">Vec2::splat</span>(<span class="ident">ui</span>.<span class="ident">input</span>().<span class="ident">zoom_delta</span>())
-                } <span class="kw">else</span> {
-                    <span class="ident">ui</span>.<span class="ident">input</span>().<span class="ident">zoom_delta_2d</span>()
+        <span class="comment">// Dragging
+        </span><span class="kw">if </span>allow_drag &amp;&amp; response.dragged_by(PointerButton::Primary) {
+            response = response.on_hover_cursor(CursorIcon::Grabbing);
+            transform.translate_bounds(-response.drag_delta());
+            auto_bounds = <span class="bool-val">false</span>;
+        }
+
+        <span class="comment">// Zooming
+        </span><span class="kw">if </span>allow_zoom {
+            <span class="kw">if let </span><span class="prelude-val">Some</span>(hover_pos) = response.hover_pos() {
+                <span class="kw">let </span>zoom_factor = <span class="kw">if </span>data_aspect.is_some() {
+                    Vec2::splat(ui.input().zoom_delta())
+                } <span class="kw">else </span>{
+                    ui.input().zoom_delta_2d()
                 };
-                <span class="kw">if</span> <span class="ident">zoom_factor</span> <span class="op">!</span><span class="op">=</span> <span class="ident">Vec2::splat</span>(<span class="number">1.0</span>) {
-                    <span class="ident">transform</span>.<span class="ident">zoom</span>(<span class="ident">zoom_factor</span>, <span class="ident">hover_pos</span>);
-                    <span class="ident">auto_bounds</span> <span class="op">=</span> <span class="bool-val">false</span>;
+                <span class="kw">if </span>zoom_factor != Vec2::splat(<span class="number">1.0</span>) {
+                    transform.zoom(zoom_factor, hover_pos);
+                    auto_bounds = <span class="bool-val">false</span>;
                 }
 
-                <span class="kw">let</span> <span class="ident">scroll_delta</span> <span class="op">=</span> <span class="ident">ui</span>.<span class="ident">input</span>().<span class="ident">scroll_delta</span>;
-                <span class="kw">if</span> <span class="ident">scroll_delta</span> <span class="op">!</span><span class="op">=</span> <span class="ident">Vec2::ZERO</span> {
-                    <span class="ident">transform</span>.<span class="ident">translate_bounds</span>(<span class="op">-</span><span class="ident">scroll_delta</span>);
-                    <span class="ident">auto_bounds</span> <span class="op">=</span> <span class="bool-val">false</span>;
+                <span class="kw">let </span>scroll_delta = ui.input().scroll_delta;
+                <span class="kw">if </span>scroll_delta != Vec2::ZERO {
+                    transform.translate_bounds(-scroll_delta);
+                    auto_bounds = <span class="bool-val">false</span>;
                 }
             }
         }
 
-        <span class="comment">// Initialize values from functions.</span>
-        <span class="ident">items</span>
-            .<span class="ident">iter_mut</span>()
-            .<span class="ident">for_each</span>(<span class="op">|</span><span class="ident">item</span><span class="op">|</span> <span class="ident">item</span>.<span class="ident">initialize</span>(<span class="ident">transform</span>.<span class="ident">bounds</span>().<span class="ident">range_x</span>()));
+        <span class="comment">// Initialize values from functions.
+        </span>items
+            .iter_mut()
+            .for_each(|item| item.initialize(transform.bounds().range_x()));
 
-        <span class="kw">let</span> <span class="ident">prepared</span> <span class="op">=</span> <span class="ident">PreparedPlot</span> {
-            <span class="ident">items</span>,
-            <span class="ident">show_x</span>,
-            <span class="ident">show_y</span>,
-            <span class="ident">custom_label_func</span>,
-            <span class="ident">show_axes</span>,
-            <span class="ident">transform</span>: <span class="ident">transform</span>.<span class="ident">clone</span>(),
+        <span class="kw">let </span>prepared = PreparedPlot {
+            items,
+            show_x,
+            show_y,
+            custom_label_func,
+            show_axes,
+            transform: transform.clone(),
         };
-        <span class="ident">prepared</span>.<span class="ident">ui</span>(<span class="ident">ui</span>, <span class="kw-2">&amp;</span><span class="ident">response</span>);
+        prepared.ui(ui, <span class="kw-2">&amp;</span>response);
 
-        <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="kw-2">mut</span> <span class="ident">legend</span>) <span class="op">=</span> <span class="ident">legend</span> {
-            <span class="ident">ui</span>.<span class="ident">add</span>(<span class="kw-2">&amp;mut</span> <span class="ident">legend</span>);
-            <span class="ident">hidden_items</span> <span class="op">=</span> <span class="ident">legend</span>.<span class="ident">get_hidden_items</span>();
-            <span class="ident">hovered_entry</span> <span class="op">=</span> <span class="ident">legend</span>.<span class="ident">get_hovered_entry_name</span>();
+        <span class="kw">if let </span><span class="prelude-val">Some</span>(<span class="kw-2">mut </span>legend) = legend {
+            ui.add(<span class="kw-2">&amp;mut </span>legend);
+            hidden_items = legend.get_hidden_items();
+            hovered_entry = legend.get_hovered_entry_name();
         }
 
-        <span class="kw">let</span> <span class="ident">memory</span> <span class="op">=</span> <span class="ident">PlotMemory</span> {
-            <span class="ident">auto_bounds</span>,
-            <span class="ident">hovered_entry</span>,
-            <span class="ident">hidden_items</span>,
-            <span class="ident">min_auto_bounds</span>,
-            <span class="ident">last_screen_transform</span>: <span class="ident">transform</span>,
+        <span class="kw">let </span>memory = PlotMemory {
+            auto_bounds,
+            hovered_entry,
+            hidden_items,
+            min_auto_bounds,
+            last_screen_transform: transform,
         };
-        <span class="ident">memory</span>.<span class="ident">store</span>(<span class="ident">ui</span>.<span class="ident">ctx</span>(), <span class="ident">plot_id</span>);
+        memory.store(ui.ctx(), plot_id);
 
-        <span class="kw">let</span> <span class="ident">response</span> <span class="op">=</span> <span class="kw">if</span> <span class="ident">show_x</span> <span class="op">|</span><span class="op">|</span> <span class="ident">show_y</span> {
-            <span class="ident">response</span>.<span class="ident">on_hover_cursor</span>(<span class="ident">CursorIcon::Crosshair</span>)
-        } <span class="kw">else</span> {
-            <span class="ident">response</span>
+        <span class="kw">let </span>response = <span class="kw">if </span>show_x || show_y {
+            response.on_hover_cursor(CursorIcon::Crosshair)
+        } <span class="kw">else </span>{
+            response
         };
 
-        <span class="ident">InnerResponse</span> { <span class="ident">inner</span>, <span class="ident">response</span> }
+        InnerResponse { inner, response }
     }
 }
 
-<span class="doccomment">/// Provides methods to interact with a plot while building it. It is the single argument of the closure</span>
-<span class="doccomment">/// provided to `Plot::show`. See [`Plot`] for an example of how to use it.</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">PlotUi</span> {
-    <span class="ident">items</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Box</span><span class="op">&lt;</span><span class="kw">dyn</span> <span class="ident">PlotItem</span><span class="op">&gt;</span><span class="op">&gt;</span>,
-    <span class="ident">next_auto_color_idx</span>: <span class="ident">usize</span>,
-    <span class="ident">last_screen_transform</span>: <span class="ident">ScreenTransform</span>,
-    <span class="ident">response</span>: <span class="ident">Response</span>,
-    <span class="ident">ctx</span>: <span class="ident">CtxRef</span>,
+<span class="doccomment">/// Provides methods to interact with a plot while building it. It is the single argument of the closure
+/// provided to `Plot::show`. See [`Plot`] for an example of how to use it.
+</span><span class="kw">pub struct </span>PlotUi {
+    items: Vec&lt;Box&lt;<span class="kw">dyn </span>PlotItem&gt;&gt;,
+    next_auto_color_idx: usize,
+    last_screen_transform: ScreenTransform,
+    response: Response,
+    ctx: CtxRef,
 }
 
-<span class="kw">impl</span> <span class="ident">PlotUi</span> {
-    <span class="kw">fn</span> <span class="ident">auto_color</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>) -&gt; <span class="ident">Color32</span> {
-        <span class="kw">let</span> <span class="ident">i</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">next_auto_color_idx</span>;
-        <span class="self">self</span>.<span class="ident">next_auto_color_idx</span> <span class="op">+</span><span class="op">=</span> <span class="number">1</span>;
-        <span class="kw">let</span> <span class="ident">golden_ratio</span> <span class="op">=</span> (<span class="number">5.0_f32</span>.<span class="ident">sqrt</span>() <span class="op">-</span> <span class="number">1.0</span>) <span class="op">/</span> <span class="number">2.0</span>; <span class="comment">// 0.61803398875</span>
-        <span class="kw">let</span> <span class="ident">h</span> <span class="op">=</span> <span class="ident">i</span> <span class="kw">as</span> <span class="ident">f32</span> <span class="op">*</span> <span class="ident">golden_ratio</span>;
-        <span class="ident">Hsva::new</span>(<span class="ident">h</span>, <span class="number">0.85</span>, <span class="number">0.5</span>, <span class="number">1.0</span>).<span class="ident">into</span>() <span class="comment">// TODO: OkLab or some other perspective color space</span>
+<span class="kw">impl </span>PlotUi {
+    <span class="kw">fn </span>auto_color(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; Color32 {
+        <span class="kw">let </span>i = <span class="self">self</span>.next_auto_color_idx;
+        <span class="self">self</span>.next_auto_color_idx += <span class="number">1</span>;
+        <span class="kw">let </span>golden_ratio = (<span class="number">5.0_f32</span>.sqrt() - <span class="number">1.0</span>) / <span class="number">2.0</span>; <span class="comment">// 0.61803398875
+        </span><span class="kw">let </span>h = i <span class="kw">as </span>f32 * golden_ratio;
+        Hsva::new(h, <span class="number">0.85</span>, <span class="number">0.5</span>, <span class="number">1.0</span>).into() <span class="comment">// TODO: OkLab or some other perspective color space
+    </span>}
+
+    <span class="kw">pub fn </span>ctx(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span>CtxRef {
+        <span class="kw-2">&amp;</span><span class="self">self</span>.ctx
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ctx</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span><span class="ident">CtxRef</span> {
-        <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">ctx</span>
+    <span class="doccomment">/// The plot bounds as they were in the last frame. If called on the first frame and the bounds were not
+    /// further specified in the plot builder, this will return bounds centered on the origin. The bounds do
+    /// not change until the plot is drawn.
+    </span><span class="kw">pub fn </span>plot_bounds(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; PlotBounds {
+        <span class="kw-2">*</span><span class="self">self</span>.last_screen_transform.bounds()
     }
 
-    <span class="doccomment">/// The plot bounds as they were in the last frame. If called on the first frame and the bounds were not</span>
-    <span class="doccomment">/// further specified in the plot builder, this will return bounds centered on the origin. The bounds do</span>
-    <span class="doccomment">/// not change until the plot is drawn.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">plot_bounds</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">PlotBounds</span> {
-        <span class="kw-2">*</span><span class="self">self</span>.<span class="ident">last_screen_transform</span>.<span class="ident">bounds</span>()
+    <span class="doccomment">/// Returns `true` if the plot area is currently hovered.
+    </span><span class="kw">pub fn </span>plot_hovered(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; bool {
+        <span class="self">self</span>.response.hovered()
     }
 
-    <span class="doccomment">/// Returns `true` if the plot area is currently hovered.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">plot_hovered</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span> {
-        <span class="self">self</span>.<span class="ident">response</span>.<span class="ident">hovered</span>()
+    <span class="doccomment">/// The pointer position in plot coordinates. Independent of whether the pointer is in the plot area.
+    </span><span class="kw">pub fn </span>pointer_coordinate(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;Value&gt; {
+        <span class="comment">// We need to subtract the drag delta to keep in sync with the frame-delayed screen transform:
+        </span><span class="kw">let </span>last_pos = <span class="self">self</span>.ctx().input().pointer.latest_pos()<span class="question-mark">? </span>- <span class="self">self</span>.response.drag_delta();
+        <span class="kw">let </span>value = <span class="self">self</span>.plot_from_screen(last_pos);
+        <span class="prelude-val">Some</span>(value)
     }
 
-    <span class="doccomment">/// The pointer position in plot coordinates. Independent of whether the pointer is in the plot area.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">pointer_coordinate</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Value</span><span class="op">&gt;</span> {
-        <span class="comment">// We need to subtract the drag delta to keep in sync with the frame-delayed screen transform:</span>
-        <span class="kw">let</span> <span class="ident">last_pos</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">ctx</span>().<span class="ident">input</span>().<span class="ident">pointer</span>.<span class="ident">latest_pos</span>()<span class="question-mark">?</span> <span class="op">-</span> <span class="self">self</span>.<span class="ident">response</span>.<span class="ident">drag_delta</span>();
-        <span class="kw">let</span> <span class="ident">value</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">plot_from_screen</span>(<span class="ident">last_pos</span>);
-        <span class="prelude-val">Some</span>(<span class="ident">value</span>)
+    <span class="doccomment">/// The pointer drag delta in plot coordinates.
+    </span><span class="kw">pub fn </span>pointer_coordinate_drag_delta(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; Vec2 {
+        <span class="kw">let </span>delta = <span class="self">self</span>.response.drag_delta();
+        <span class="kw">let </span>dp_dv = <span class="self">self</span>.last_screen_transform.dpos_dvalue();
+        Vec2::new(delta.x / dp_dv[<span class="number">0</span>] <span class="kw">as </span>f32, delta.y / dp_dv[<span class="number">1</span>] <span class="kw">as </span>f32)
     }
 
-    <span class="doccomment">/// The pointer drag delta in plot coordinates.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">pointer_coordinate_drag_delta</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">Vec2</span> {
-        <span class="kw">let</span> <span class="ident">delta</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">response</span>.<span class="ident">drag_delta</span>();
-        <span class="kw">let</span> <span class="ident">dp_dv</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">last_screen_transform</span>.<span class="ident">dpos_dvalue</span>();
-        <span class="ident">Vec2::new</span>(<span class="ident">delta</span>.<span class="ident">x</span> <span class="op">/</span> <span class="ident">dp_dv</span>[<span class="number">0</span>] <span class="kw">as</span> <span class="ident">f32</span>, <span class="ident">delta</span>.<span class="ident">y</span> <span class="op">/</span> <span class="ident">dp_dv</span>[<span class="number">1</span>] <span class="kw">as</span> <span class="ident">f32</span>)
+    <span class="doccomment">/// Transform the plot coordinates to screen coordinates.
+    </span><span class="kw">pub fn </span>screen_from_plot(<span class="kw-2">&amp;</span><span class="self">self</span>, position: Value) -&gt; Pos2 {
+        <span class="self">self</span>.last_screen_transform.position_from_value(<span class="kw-2">&amp;</span>position)
     }
 
-    <span class="doccomment">/// Transform the plot coordinates to screen coordinates.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">screen_from_plot</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">position</span>: <span class="ident">Value</span>) -&gt; <span class="ident">Pos2</span> {
-        <span class="self">self</span>.<span class="ident">last_screen_transform</span>.<span class="ident">position_from_value</span>(<span class="kw-2">&amp;</span><span class="ident">position</span>)
+    <span class="doccomment">/// Transform the screen coordinates to plot coordinates.
+    </span><span class="kw">pub fn </span>plot_from_screen(<span class="kw-2">&amp;</span><span class="self">self</span>, position: Pos2) -&gt; Value {
+        <span class="self">self</span>.last_screen_transform.value_from_position(position)
     }
 
-    <span class="doccomment">/// Transform the screen coordinates to plot coordinates.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">plot_from_screen</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">position</span>: <span class="ident">Pos2</span>) -&gt; <span class="ident">Value</span> {
-        <span class="self">self</span>.<span class="ident">last_screen_transform</span>.<span class="ident">value_from_position</span>(<span class="ident">position</span>)
-    }
-
-    <span class="doccomment">/// Add a data line.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">line</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="kw-2">mut</span> <span class="ident">line</span>: <span class="ident">Line</span>) {
-        <span class="kw">if</span> <span class="ident">line</span>.<span class="ident">series</span>.<span class="ident">is_empty</span>() {
+    <span class="doccomment">/// Add a data line.
+    </span><span class="kw">pub fn </span>line(<span class="kw-2">&amp;mut </span><span class="self">self</span>, <span class="kw-2">mut </span>line: Line) {
+        <span class="kw">if </span>line.series.is_empty() {
             <span class="kw">return</span>;
         };
 
-        <span class="comment">// Give the stroke an automatic color if no color has been assigned.</span>
-        <span class="kw">if</span> <span class="ident">line</span>.<span class="ident">stroke</span>.<span class="ident">color</span> <span class="op">==</span> <span class="ident">Color32::TRANSPARENT</span> {
-            <span class="ident">line</span>.<span class="ident">stroke</span>.<span class="ident">color</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">auto_color</span>();
+        <span class="comment">// Give the stroke an automatic color if no color has been assigned.
+        </span><span class="kw">if </span>line.stroke.color == Color32::TRANSPARENT {
+            line.stroke.color = <span class="self">self</span>.auto_color();
         }
-        <span class="self">self</span>.<span class="ident">items</span>.<span class="ident">push</span>(<span class="ident">Box::new</span>(<span class="ident">line</span>));
+        <span class="self">self</span>.items.push(Box::new(line));
     }
 
-    <span class="doccomment">/// Add a polygon. The polygon has to be convex.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">polygon</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="kw-2">mut</span> <span class="ident">polygon</span>: <span class="ident">Polygon</span>) {
-        <span class="kw">if</span> <span class="ident">polygon</span>.<span class="ident">series</span>.<span class="ident">is_empty</span>() {
+    <span class="doccomment">/// Add a polygon. The polygon has to be convex.
+    </span><span class="kw">pub fn </span>polygon(<span class="kw-2">&amp;mut </span><span class="self">self</span>, <span class="kw-2">mut </span>polygon: Polygon) {
+        <span class="kw">if </span>polygon.series.is_empty() {
             <span class="kw">return</span>;
         };
 
-        <span class="comment">// Give the stroke an automatic color if no color has been assigned.</span>
-        <span class="kw">if</span> <span class="ident">polygon</span>.<span class="ident">stroke</span>.<span class="ident">color</span> <span class="op">==</span> <span class="ident">Color32::TRANSPARENT</span> {
-            <span class="ident">polygon</span>.<span class="ident">stroke</span>.<span class="ident">color</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">auto_color</span>();
+        <span class="comment">// Give the stroke an automatic color if no color has been assigned.
+        </span><span class="kw">if </span>polygon.stroke.color == Color32::TRANSPARENT {
+            polygon.stroke.color = <span class="self">self</span>.auto_color();
         }
-        <span class="self">self</span>.<span class="ident">items</span>.<span class="ident">push</span>(<span class="ident">Box::new</span>(<span class="ident">polygon</span>));
+        <span class="self">self</span>.items.push(Box::new(polygon));
     }
 
-    <span class="doccomment">/// Add a text.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">text</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">text</span>: <span class="ident">Text</span>) {
-        <span class="kw">if</span> <span class="ident">text</span>.<span class="ident">text</span>.<span class="ident">is_empty</span>() {
+    <span class="doccomment">/// Add a text.
+    </span><span class="kw">pub fn </span>text(<span class="kw-2">&amp;mut </span><span class="self">self</span>, text: Text) {
+        <span class="kw">if </span>text.text.is_empty() {
             <span class="kw">return</span>;
         };
 
-        <span class="self">self</span>.<span class="ident">items</span>.<span class="ident">push</span>(<span class="ident">Box::new</span>(<span class="ident">text</span>));
+        <span class="self">self</span>.items.push(Box::new(text));
     }
 
-    <span class="doccomment">/// Add data points.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">points</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="kw-2">mut</span> <span class="ident">points</span>: <span class="ident">Points</span>) {
-        <span class="kw">if</span> <span class="ident">points</span>.<span class="ident">series</span>.<span class="ident">is_empty</span>() {
+    <span class="doccomment">/// Add data points.
+    </span><span class="kw">pub fn </span>points(<span class="kw-2">&amp;mut </span><span class="self">self</span>, <span class="kw-2">mut </span>points: Points) {
+        <span class="kw">if </span>points.series.is_empty() {
             <span class="kw">return</span>;
         };
 
-        <span class="comment">// Give the points an automatic color if no color has been assigned.</span>
-        <span class="kw">if</span> <span class="ident">points</span>.<span class="ident">color</span> <span class="op">==</span> <span class="ident">Color32::TRANSPARENT</span> {
-            <span class="ident">points</span>.<span class="ident">color</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">auto_color</span>();
+        <span class="comment">// Give the points an automatic color if no color has been assigned.
+        </span><span class="kw">if </span>points.color == Color32::TRANSPARENT {
+            points.color = <span class="self">self</span>.auto_color();
         }
-        <span class="self">self</span>.<span class="ident">items</span>.<span class="ident">push</span>(<span class="ident">Box::new</span>(<span class="ident">points</span>));
+        <span class="self">self</span>.items.push(Box::new(points));
     }
 
-    <span class="doccomment">/// Add arrows.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">arrows</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="kw-2">mut</span> <span class="ident">arrows</span>: <span class="ident">Arrows</span>) {
-        <span class="kw">if</span> <span class="ident">arrows</span>.<span class="ident">origins</span>.<span class="ident">is_empty</span>() <span class="op">|</span><span class="op">|</span> <span class="ident">arrows</span>.<span class="ident">tips</span>.<span class="ident">is_empty</span>() {
+    <span class="doccomment">/// Add arrows.
+    </span><span class="kw">pub fn </span>arrows(<span class="kw-2">&amp;mut </span><span class="self">self</span>, <span class="kw-2">mut </span>arrows: Arrows) {
+        <span class="kw">if </span>arrows.origins.is_empty() || arrows.tips.is_empty() {
             <span class="kw">return</span>;
         };
 
-        <span class="comment">// Give the arrows an automatic color if no color has been assigned.</span>
-        <span class="kw">if</span> <span class="ident">arrows</span>.<span class="ident">color</span> <span class="op">==</span> <span class="ident">Color32::TRANSPARENT</span> {
-            <span class="ident">arrows</span>.<span class="ident">color</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">auto_color</span>();
+        <span class="comment">// Give the arrows an automatic color if no color has been assigned.
+        </span><span class="kw">if </span>arrows.color == Color32::TRANSPARENT {
+            arrows.color = <span class="self">self</span>.auto_color();
         }
-        <span class="self">self</span>.<span class="ident">items</span>.<span class="ident">push</span>(<span class="ident">Box::new</span>(<span class="ident">arrows</span>));
+        <span class="self">self</span>.items.push(Box::new(arrows));
     }
 
-    <span class="doccomment">/// Add an image.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">image</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">image</span>: <span class="ident">PlotImage</span>) {
-        <span class="self">self</span>.<span class="ident">items</span>.<span class="ident">push</span>(<span class="ident">Box::new</span>(<span class="ident">image</span>));
+    <span class="doccomment">/// Add an image.
+    </span><span class="kw">pub fn </span>image(<span class="kw-2">&amp;mut </span><span class="self">self</span>, image: PlotImage) {
+        <span class="self">self</span>.items.push(Box::new(image));
     }
 
-    <span class="doccomment">/// Add a horizontal line.</span>
-    <span class="doccomment">/// Can be useful e.g. to show min/max bounds or similar.</span>
-    <span class="doccomment">/// Always fills the full width of the plot.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">hline</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="kw-2">mut</span> <span class="ident">hline</span>: <span class="ident">HLine</span>) {
-        <span class="kw">if</span> <span class="ident">hline</span>.<span class="ident">stroke</span>.<span class="ident">color</span> <span class="op">==</span> <span class="ident">Color32::TRANSPARENT</span> {
-            <span class="ident">hline</span>.<span class="ident">stroke</span>.<span class="ident">color</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">auto_color</span>();
+    <span class="doccomment">/// Add a horizontal line.
+    /// Can be useful e.g. to show min/max bounds or similar.
+    /// Always fills the full width of the plot.
+    </span><span class="kw">pub fn </span>hline(<span class="kw-2">&amp;mut </span><span class="self">self</span>, <span class="kw-2">mut </span>hline: HLine) {
+        <span class="kw">if </span>hline.stroke.color == Color32::TRANSPARENT {
+            hline.stroke.color = <span class="self">self</span>.auto_color();
         }
-        <span class="self">self</span>.<span class="ident">items</span>.<span class="ident">push</span>(<span class="ident">Box::new</span>(<span class="ident">hline</span>));
+        <span class="self">self</span>.items.push(Box::new(hline));
     }
 
-    <span class="doccomment">/// Add a vertical line.</span>
-    <span class="doccomment">/// Can be useful e.g. to show min/max bounds or similar.</span>
-    <span class="doccomment">/// Always fills the full height of the plot.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">vline</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="kw-2">mut</span> <span class="ident">vline</span>: <span class="ident">VLine</span>) {
-        <span class="kw">if</span> <span class="ident">vline</span>.<span class="ident">stroke</span>.<span class="ident">color</span> <span class="op">==</span> <span class="ident">Color32::TRANSPARENT</span> {
-            <span class="ident">vline</span>.<span class="ident">stroke</span>.<span class="ident">color</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">auto_color</span>();
+    <span class="doccomment">/// Add a vertical line.
+    /// Can be useful e.g. to show min/max bounds or similar.
+    /// Always fills the full height of the plot.
+    </span><span class="kw">pub fn </span>vline(<span class="kw-2">&amp;mut </span><span class="self">self</span>, <span class="kw-2">mut </span>vline: VLine) {
+        <span class="kw">if </span>vline.stroke.color == Color32::TRANSPARENT {
+            vline.stroke.color = <span class="self">self</span>.auto_color();
         }
-        <span class="self">self</span>.<span class="ident">items</span>.<span class="ident">push</span>(<span class="ident">Box::new</span>(<span class="ident">vline</span>));
+        <span class="self">self</span>.items.push(Box::new(vline));
     }
 
-    <span class="doccomment">/// Add a box plot diagram.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">box_plot</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="kw-2">mut</span> <span class="ident">box_plot</span>: <span class="ident">BoxPlot</span>) {
-        <span class="kw">if</span> <span class="ident">box_plot</span>.<span class="ident">boxes</span>.<span class="ident">is_empty</span>() {
+    <span class="doccomment">/// Add a box plot diagram.
+    </span><span class="kw">pub fn </span>box_plot(<span class="kw-2">&amp;mut </span><span class="self">self</span>, <span class="kw-2">mut </span>box_plot: BoxPlot) {
+        <span class="kw">if </span>box_plot.boxes.is_empty() {
             <span class="kw">return</span>;
         }
 
-        <span class="comment">// Give the elements an automatic color if no color has been assigned.</span>
-        <span class="kw">if</span> <span class="ident">box_plot</span>.<span class="ident">default_color</span> <span class="op">==</span> <span class="ident">Color32::TRANSPARENT</span> {
-            <span class="ident">box_plot</span> <span class="op">=</span> <span class="ident">box_plot</span>.<span class="ident">color</span>(<span class="self">self</span>.<span class="ident">auto_color</span>());
+        <span class="comment">// Give the elements an automatic color if no color has been assigned.
+        </span><span class="kw">if </span>box_plot.default_color == Color32::TRANSPARENT {
+            box_plot = box_plot.color(<span class="self">self</span>.auto_color());
         }
-        <span class="self">self</span>.<span class="ident">items</span>.<span class="ident">push</span>(<span class="ident">Box::new</span>(<span class="ident">box_plot</span>));
+        <span class="self">self</span>.items.push(Box::new(box_plot));
     }
 
-    <span class="doccomment">/// Add a bar chart.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">bar_chart</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="kw-2">mut</span> <span class="ident">chart</span>: <span class="ident">BarChart</span>) {
-        <span class="kw">if</span> <span class="ident">chart</span>.<span class="ident">bars</span>.<span class="ident">is_empty</span>() {
+    <span class="doccomment">/// Add a bar chart.
+    </span><span class="kw">pub fn </span>bar_chart(<span class="kw-2">&amp;mut </span><span class="self">self</span>, <span class="kw-2">mut </span>chart: BarChart) {
+        <span class="kw">if </span>chart.bars.is_empty() {
             <span class="kw">return</span>;
         }
 
-        <span class="comment">// Give the elements an automatic color if no color has been assigned.</span>
-        <span class="kw">if</span> <span class="ident">chart</span>.<span class="ident">default_color</span> <span class="op">==</span> <span class="ident">Color32::TRANSPARENT</span> {
-            <span class="ident">chart</span> <span class="op">=</span> <span class="ident">chart</span>.<span class="ident">color</span>(<span class="self">self</span>.<span class="ident">auto_color</span>());
+        <span class="comment">// Give the elements an automatic color if no color has been assigned.
+        </span><span class="kw">if </span>chart.default_color == Color32::TRANSPARENT {
+            chart = chart.color(<span class="self">self</span>.auto_color());
         }
-        <span class="self">self</span>.<span class="ident">items</span>.<span class="ident">push</span>(<span class="ident">Box::new</span>(<span class="ident">chart</span>));
+        <span class="self">self</span>.items.push(Box::new(chart));
     }
 }
 
-<span class="kw">struct</span> <span class="ident">PreparedPlot</span> {
-    <span class="ident">items</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Box</span><span class="op">&lt;</span><span class="kw">dyn</span> <span class="ident">PlotItem</span><span class="op">&gt;</span><span class="op">&gt;</span>,
-    <span class="ident">show_x</span>: <span class="ident">bool</span>,
-    <span class="ident">show_y</span>: <span class="ident">bool</span>,
-    <span class="ident">custom_label_func</span>: <span class="ident">CustomLabelFuncRef</span>,
-    <span class="ident">show_axes</span>: [<span class="ident">bool</span>; <span class="number">2</span>],
-    <span class="ident">transform</span>: <span class="ident">ScreenTransform</span>,
+<span class="kw">struct </span>PreparedPlot {
+    items: Vec&lt;Box&lt;<span class="kw">dyn </span>PlotItem&gt;&gt;,
+    show_x: bool,
+    show_y: bool,
+    custom_label_func: CustomLabelFuncRef,
+    show_axes: [bool; <span class="number">2</span>],
+    transform: ScreenTransform,
 }
 
-<span class="kw">impl</span> <span class="ident">PreparedPlot</span> {
-    <span class="kw">fn</span> <span class="ident">ui</span>(<span class="self">self</span>, <span class="ident">ui</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Ui</span>, <span class="ident">response</span>: <span class="kw-2">&amp;</span><span class="ident">Response</span>) {
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">shapes</span> <span class="op">=</span> <span class="ident">Vec::new</span>();
+<span class="kw">impl </span>PreparedPlot {
+    <span class="kw">fn </span>ui(<span class="self">self</span>, ui: <span class="kw-2">&amp;mut </span>Ui, response: <span class="kw-2">&amp;</span>Response) {
+        <span class="kw">let </span><span class="kw-2">mut </span>shapes = Vec::new();
 
-        <span class="kw">for</span> <span class="ident">d</span> <span class="kw">in</span> <span class="number">0</span>..<span class="number">2</span> {
-            <span class="kw">if</span> <span class="self">self</span>.<span class="ident">show_axes</span>[<span class="ident">d</span>] {
-                <span class="self">self</span>.<span class="ident">paint_axis</span>(<span class="ident">ui</span>, <span class="ident">d</span>, <span class="kw-2">&amp;mut</span> <span class="ident">shapes</span>);
+        <span class="kw">for </span>d <span class="kw">in </span><span class="number">0</span>..<span class="number">2 </span>{
+            <span class="kw">if </span><span class="self">self</span>.show_axes[d] {
+                <span class="self">self</span>.paint_axis(ui, d, <span class="kw-2">&amp;mut </span>shapes);
             }
         }
 
-        <span class="kw">let</span> <span class="ident">transform</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">transform</span>;
+        <span class="kw">let </span>transform = <span class="kw-2">&amp;</span><span class="self">self</span>.transform;
 
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">plot_ui</span> <span class="op">=</span> <span class="ident">ui</span>.<span class="ident">child_ui</span>(<span class="kw-2">*</span><span class="ident">transform</span>.<span class="ident">frame</span>(), <span class="ident">Layout::default</span>());
-        <span class="ident">plot_ui</span>.<span class="ident">set_clip_rect</span>(<span class="kw-2">*</span><span class="ident">transform</span>.<span class="ident">frame</span>());
-        <span class="kw">for</span> <span class="ident">item</span> <span class="kw">in</span> <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">items</span> {
-            <span class="ident">item</span>.<span class="ident">get_shapes</span>(<span class="kw-2">&amp;mut</span> <span class="ident">plot_ui</span>, <span class="ident">transform</span>, <span class="kw-2">&amp;mut</span> <span class="ident">shapes</span>);
+        <span class="kw">let </span><span class="kw-2">mut </span>plot_ui = ui.child_ui(<span class="kw-2">*</span>transform.frame(), Layout::default());
+        plot_ui.set_clip_rect(<span class="kw-2">*</span>transform.frame());
+        <span class="kw">for </span>item <span class="kw">in </span><span class="kw-2">&amp;</span><span class="self">self</span>.items {
+            item.get_shapes(<span class="kw-2">&amp;mut </span>plot_ui, transform, <span class="kw-2">&amp;mut </span>shapes);
         }
 
-        <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">pointer</span>) <span class="op">=</span> <span class="ident">response</span>.<span class="ident">hover_pos</span>() {
-            <span class="self">self</span>.<span class="ident">hover</span>(<span class="ident">ui</span>, <span class="ident">pointer</span>, <span class="kw-2">&amp;mut</span> <span class="ident">shapes</span>);
+        <span class="kw">if let </span><span class="prelude-val">Some</span>(pointer) = response.hover_pos() {
+            <span class="self">self</span>.hover(ui, pointer, <span class="kw-2">&amp;mut </span>shapes);
         }
 
-        <span class="ident">ui</span>.<span class="ident">painter</span>().<span class="ident">sub_region</span>(<span class="kw-2">*</span><span class="ident">transform</span>.<span class="ident">frame</span>()).<span class="ident">extend</span>(<span class="ident">shapes</span>);
+        ui.painter().sub_region(<span class="kw-2">*</span>transform.frame()).extend(shapes);
     }
 
-    <span class="kw">fn</span> <span class="ident">paint_axis</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">ui</span>: <span class="kw-2">&amp;</span><span class="ident">Ui</span>, <span class="ident">axis</span>: <span class="ident">usize</span>, <span class="ident">shapes</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Shape</span><span class="op">&gt;</span>) {
-        <span class="kw">let</span> <span class="self">Self</span> { <span class="ident">transform</span>, .. } <span class="op">=</span> <span class="self">self</span>;
+    <span class="kw">fn </span>paint_axis(<span class="kw-2">&amp;</span><span class="self">self</span>, ui: <span class="kw-2">&amp;</span>Ui, axis: usize, shapes: <span class="kw-2">&amp;mut </span>Vec&lt;Shape&gt;) {
+        <span class="kw">let </span><span class="self">Self </span>{ transform, .. } = <span class="self">self</span>;
 
-        <span class="kw">let</span> <span class="ident">bounds</span> <span class="op">=</span> <span class="ident">transform</span>.<span class="ident">bounds</span>();
-        <span class="kw">let</span> <span class="ident">text_style</span> <span class="op">=</span> <span class="ident">TextStyle::Body</span>;
+        <span class="kw">let </span>bounds = transform.bounds();
+        <span class="kw">let </span>text_style = TextStyle::Body;
 
-        <span class="kw">let</span> <span class="ident">base</span>: <span class="ident">i64</span> <span class="op">=</span> <span class="number">10</span>;
-        <span class="kw">let</span> <span class="ident">basef</span> <span class="op">=</span> <span class="ident">base</span> <span class="kw">as</span> <span class="ident">f64</span>;
+        <span class="kw">let </span>base: i64 = <span class="number">10</span>;
+        <span class="kw">let </span>basef = base <span class="kw">as </span>f64;
 
-        <span class="kw">let</span> <span class="ident">min_line_spacing_in_points</span> <span class="op">=</span> <span class="number">6.0</span>; <span class="comment">// TODO: large enough for a wide label</span>
-        <span class="kw">let</span> <span class="ident">step_size</span> <span class="op">=</span> <span class="ident">transform</span>.<span class="ident">dvalue_dpos</span>()[<span class="ident">axis</span>] <span class="op">*</span> <span class="ident">min_line_spacing_in_points</span>;
-        <span class="kw">let</span> <span class="ident">step_size</span> <span class="op">=</span> <span class="ident">basef</span>.<span class="ident">powi</span>(<span class="ident">step_size</span>.<span class="ident">abs</span>().<span class="ident">log</span>(<span class="ident">basef</span>).<span class="ident">ceil</span>() <span class="kw">as</span> <span class="ident">i32</span>);
+        <span class="kw">let </span>min_line_spacing_in_points = <span class="number">6.0</span>; <span class="comment">// TODO: large enough for a wide label
+        </span><span class="kw">let </span>step_size = transform.dvalue_dpos()[axis] * min_line_spacing_in_points;
+        <span class="kw">let </span>step_size = basef.powi(step_size.abs().log(basef).ceil() <span class="kw">as </span>i32);
 
-        <span class="kw">let</span> <span class="ident">step_size_in_points</span> <span class="op">=</span> (<span class="ident">transform</span>.<span class="ident">dpos_dvalue</span>()[<span class="ident">axis</span>] <span class="op">*</span> <span class="ident">step_size</span>).<span class="ident">abs</span>() <span class="kw">as</span> <span class="ident">f32</span>;
+        <span class="kw">let </span>step_size_in_points = (transform.dpos_dvalue()[axis] * step_size).abs() <span class="kw">as </span>f32;
 
-        <span class="comment">// Where on the cross-dimension to show the label values</span>
-        <span class="kw">let</span> <span class="ident">value_cross</span> <span class="op">=</span> <span class="number">0.0_f64</span>.<span class="ident">clamp</span>(<span class="ident">bounds</span>.<span class="ident">min</span>[<span class="number">1</span> <span class="op">-</span> <span class="ident">axis</span>], <span class="ident">bounds</span>.<span class="ident">max</span>[<span class="number">1</span> <span class="op">-</span> <span class="ident">axis</span>]);
+        <span class="comment">// Where on the cross-dimension to show the label values
+        </span><span class="kw">let </span>value_cross = <span class="number">0.0_f64</span>.clamp(bounds.min[<span class="number">1 </span>- axis], bounds.max[<span class="number">1 </span>- axis]);
 
-        <span class="kw">for</span> <span class="ident">i</span> <span class="kw">in</span> <span class="number">0</span>.. {
-            <span class="kw">let</span> <span class="ident">value_main</span> <span class="op">=</span> <span class="ident">step_size</span> <span class="op">*</span> (<span class="ident">bounds</span>.<span class="ident">min</span>[<span class="ident">axis</span>] <span class="op">/</span> <span class="ident">step_size</span> <span class="op">+</span> <span class="ident">i</span> <span class="kw">as</span> <span class="ident">f64</span>).<span class="ident">floor</span>();
-            <span class="kw">if</span> <span class="ident">value_main</span> <span class="op">&gt;</span> <span class="ident">bounds</span>.<span class="ident">max</span>[<span class="ident">axis</span>] {
+        <span class="kw">for </span>i <span class="kw">in </span><span class="number">0</span>.. {
+            <span class="kw">let </span>value_main = step_size * (bounds.min[axis] / step_size + i <span class="kw">as </span>f64).floor();
+            <span class="kw">if </span>value_main &gt; bounds.max[axis] {
                 <span class="kw">break</span>;
             }
 
-            <span class="kw">let</span> <span class="ident">value</span> <span class="op">=</span> <span class="kw">if</span> <span class="ident">axis</span> <span class="op">==</span> <span class="number">0</span> {
-                <span class="ident">Value::new</span>(<span class="ident">value_main</span>, <span class="ident">value_cross</span>)
-            } <span class="kw">else</span> {
-                <span class="ident">Value::new</span>(<span class="ident">value_cross</span>, <span class="ident">value_main</span>)
+            <span class="kw">let </span>value = <span class="kw">if </span>axis == <span class="number">0 </span>{
+                Value::new(value_main, value_cross)
+            } <span class="kw">else </span>{
+                Value::new(value_cross, value_main)
             };
-            <span class="kw">let</span> <span class="ident">pos_in_gui</span> <span class="op">=</span> <span class="ident">transform</span>.<span class="ident">position_from_value</span>(<span class="kw-2">&amp;</span><span class="ident">value</span>);
+            <span class="kw">let </span>pos_in_gui = transform.position_from_value(<span class="kw-2">&amp;</span>value);
 
-            <span class="kw">let</span> <span class="ident">n</span> <span class="op">=</span> (<span class="ident">value_main</span> <span class="op">/</span> <span class="ident">step_size</span>).<span class="ident">round</span>() <span class="kw">as</span> <span class="ident">i64</span>;
-            <span class="kw">let</span> <span class="ident">spacing_in_points</span> <span class="op">=</span> <span class="kw">if</span> <span class="ident">n</span> <span class="op">%</span> (<span class="ident">base</span> <span class="op">*</span> <span class="ident">base</span>) <span class="op">==</span> <span class="number">0</span> {
-                <span class="ident">step_size_in_points</span> <span class="op">*</span> (<span class="ident">basef</span> <span class="op">*</span> <span class="ident">basef</span>) <span class="kw">as</span> <span class="ident">f32</span> <span class="comment">// think line (multiple of 100)</span>
-            } <span class="kw">else</span> <span class="kw">if</span> <span class="ident">n</span> <span class="op">%</span> <span class="ident">base</span> <span class="op">==</span> <span class="number">0</span> {
-                <span class="ident">step_size_in_points</span> <span class="op">*</span> <span class="ident">basef</span> <span class="kw">as</span> <span class="ident">f32</span> <span class="comment">// medium line (multiple of 10)</span>
-            } <span class="kw">else</span> {
-                <span class="ident">step_size_in_points</span> <span class="comment">// thin line</span>
-            };
+            <span class="kw">let </span>n = (value_main / step_size).round() <span class="kw">as </span>i64;
+            <span class="kw">let </span>spacing_in_points = <span class="kw">if </span>n % (base * base) == <span class="number">0 </span>{
+                step_size_in_points * (basef * basef) <span class="kw">as </span>f32 <span class="comment">// think line (multiple of 100)
+            </span>} <span class="kw">else if </span>n % base == <span class="number">0 </span>{
+                step_size_in_points * basef <span class="kw">as </span>f32 <span class="comment">// medium line (multiple of 10)
+            </span>} <span class="kw">else </span>{
+                step_size_in_points <span class="comment">// thin line
+            </span>};
 
-            <span class="kw">let</span> <span class="ident">line_alpha</span> <span class="op">=</span> <span class="ident">remap_clamp</span>(
-                <span class="ident">spacing_in_points</span>,
-                (<span class="ident">min_line_spacing_in_points</span> <span class="kw">as</span> <span class="ident">f32</span>)..<span class="op">=</span><span class="number">300.0</span>,
-                <span class="number">0.0</span>..<span class="op">=</span><span class="number">0.15</span>,
+            <span class="kw">let </span>line_alpha = remap_clamp(
+                spacing_in_points,
+                (min_line_spacing_in_points <span class="kw">as </span>f32)..=<span class="number">300.0</span>,
+                <span class="number">0.0</span>..=<span class="number">0.15</span>,
             );
 
-            <span class="kw">if</span> <span class="ident">line_alpha</span> <span class="op">&gt;</span> <span class="number">0.0</span> {
-                <span class="kw">let</span> <span class="ident">line_color</span> <span class="op">=</span> <span class="ident">color_from_alpha</span>(<span class="ident">ui</span>, <span class="ident">line_alpha</span>);
+            <span class="kw">if </span>line_alpha &gt; <span class="number">0.0 </span>{
+                <span class="kw">let </span>line_color = color_from_alpha(ui, line_alpha);
 
-                <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">p0</span> <span class="op">=</span> <span class="ident">pos_in_gui</span>;
-                <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">p1</span> <span class="op">=</span> <span class="ident">pos_in_gui</span>;
-                <span class="ident">p0</span>[<span class="number">1</span> <span class="op">-</span> <span class="ident">axis</span>] <span class="op">=</span> <span class="ident">transform</span>.<span class="ident">frame</span>().<span class="ident">min</span>[<span class="number">1</span> <span class="op">-</span> <span class="ident">axis</span>];
-                <span class="ident">p1</span>[<span class="number">1</span> <span class="op">-</span> <span class="ident">axis</span>] <span class="op">=</span> <span class="ident">transform</span>.<span class="ident">frame</span>().<span class="ident">max</span>[<span class="number">1</span> <span class="op">-</span> <span class="ident">axis</span>];
-                <span class="ident">shapes</span>.<span class="ident">push</span>(<span class="ident">Shape::line_segment</span>([<span class="ident">p0</span>, <span class="ident">p1</span>], <span class="ident">Stroke::new</span>(<span class="number">1.0</span>, <span class="ident">line_color</span>)));
+                <span class="kw">let </span><span class="kw-2">mut </span>p0 = pos_in_gui;
+                <span class="kw">let </span><span class="kw-2">mut </span>p1 = pos_in_gui;
+                p0[<span class="number">1 </span>- axis] = transform.frame().min[<span class="number">1 </span>- axis];
+                p1[<span class="number">1 </span>- axis] = transform.frame().max[<span class="number">1 </span>- axis];
+                shapes.push(Shape::line_segment([p0, p1], Stroke::new(<span class="number">1.0</span>, line_color)));
             }
 
-            <span class="kw">let</span> <span class="ident">text_alpha</span> <span class="op">=</span> <span class="ident">remap_clamp</span>(<span class="ident">spacing_in_points</span>, <span class="number">40.0</span>..<span class="op">=</span><span class="number">150.0</span>, <span class="number">0.0</span>..<span class="op">=</span><span class="number">0.4</span>);
+            <span class="kw">let </span>text_alpha = remap_clamp(spacing_in_points, <span class="number">40.0</span>..=<span class="number">150.0</span>, <span class="number">0.0</span>..=<span class="number">0.4</span>);
 
-            <span class="kw">if</span> <span class="ident">text_alpha</span> <span class="op">&gt;</span> <span class="number">0.0</span> {
-                <span class="kw">let</span> <span class="ident">color</span> <span class="op">=</span> <span class="ident">color_from_alpha</span>(<span class="ident">ui</span>, <span class="ident">text_alpha</span>);
-                <span class="kw">let</span> <span class="ident">text</span> <span class="op">=</span> <span class="ident">emath::round_to_decimals</span>(<span class="ident">value_main</span>, <span class="number">5</span>).<span class="ident">to_string</span>(); <span class="comment">// hack</span>
+            <span class="kw">if </span>text_alpha &gt; <span class="number">0.0 </span>{
+                <span class="kw">let </span>color = color_from_alpha(ui, text_alpha);
+                <span class="kw">let </span>text = emath::round_to_decimals(value_main, <span class="number">5</span>).to_string(); <span class="comment">// hack
 
-                <span class="kw">let</span> <span class="ident">galley</span> <span class="op">=</span> <span class="ident">ui</span>.<span class="ident">painter</span>().<span class="ident">layout_no_wrap</span>(<span class="ident">text</span>, <span class="ident">text_style</span>, <span class="ident">color</span>);
+                </span><span class="kw">let </span>galley = ui.painter().layout_no_wrap(text, text_style, color);
 
-                <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">text_pos</span> <span class="op">=</span> <span class="ident">pos_in_gui</span> <span class="op">+</span> <span class="ident">vec2</span>(<span class="number">1.0</span>, <span class="op">-</span><span class="ident">galley</span>.<span class="ident">size</span>().<span class="ident">y</span>);
+                <span class="kw">let </span><span class="kw-2">mut </span>text_pos = pos_in_gui + vec2(<span class="number">1.0</span>, -galley.size().y);
 
-                <span class="comment">// Make sure we see the labels, even if the axis is off-screen:</span>
-                <span class="ident">text_pos</span>[<span class="number">1</span> <span class="op">-</span> <span class="ident">axis</span>] <span class="op">=</span> <span class="ident">text_pos</span>[<span class="number">1</span> <span class="op">-</span> <span class="ident">axis</span>]
-                    .<span class="ident">at_most</span>(<span class="ident">transform</span>.<span class="ident">frame</span>().<span class="ident">max</span>[<span class="number">1</span> <span class="op">-</span> <span class="ident">axis</span>] <span class="op">-</span> <span class="ident">galley</span>.<span class="ident">size</span>()[<span class="number">1</span> <span class="op">-</span> <span class="ident">axis</span>] <span class="op">-</span> <span class="number">2.0</span>)
-                    .<span class="ident">at_least</span>(<span class="ident">transform</span>.<span class="ident">frame</span>().<span class="ident">min</span>[<span class="number">1</span> <span class="op">-</span> <span class="ident">axis</span>] <span class="op">+</span> <span class="number">1.0</span>);
+                <span class="comment">// Make sure we see the labels, even if the axis is off-screen:
+                </span>text_pos[<span class="number">1 </span>- axis] = text_pos[<span class="number">1 </span>- axis]
+                    .at_most(transform.frame().max[<span class="number">1 </span>- axis] - galley.size()[<span class="number">1 </span>- axis] - <span class="number">2.0</span>)
+                    .at_least(transform.frame().min[<span class="number">1 </span>- axis] + <span class="number">1.0</span>);
 
-                <span class="ident">shapes</span>.<span class="ident">push</span>(<span class="ident">Shape::galley</span>(<span class="ident">text_pos</span>, <span class="ident">galley</span>));
+                shapes.push(Shape::galley(text_pos, galley));
             }
         }
 
-        <span class="kw">fn</span> <span class="ident">color_from_alpha</span>(<span class="ident">ui</span>: <span class="kw-2">&amp;</span><span class="ident">Ui</span>, <span class="ident">alpha</span>: <span class="ident">f32</span>) -&gt; <span class="ident">Color32</span> {
-            <span class="kw">if</span> <span class="ident">ui</span>.<span class="ident">visuals</span>().<span class="ident">dark_mode</span> {
-                <span class="ident">Rgba::from_white_alpha</span>(<span class="ident">alpha</span>).<span class="ident">into</span>()
-            } <span class="kw">else</span> {
-                <span class="ident">Rgba::from_black_alpha</span>((<span class="number">4.0</span> <span class="op">*</span> <span class="ident">alpha</span>).<span class="ident">at_most</span>(<span class="number">1.0</span>)).<span class="ident">into</span>()
+        <span class="kw">fn </span>color_from_alpha(ui: <span class="kw-2">&amp;</span>Ui, alpha: f32) -&gt; Color32 {
+            <span class="kw">if </span>ui.visuals().dark_mode {
+                Rgba::from_white_alpha(alpha).into()
+            } <span class="kw">else </span>{
+                Rgba::from_black_alpha((<span class="number">4.0 </span>* alpha).at_most(<span class="number">1.0</span>)).into()
             }
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">hover</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">ui</span>: <span class="kw-2">&amp;</span><span class="ident">Ui</span>, <span class="ident">pointer</span>: <span class="ident">Pos2</span>, <span class="ident">shapes</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Shape</span><span class="op">&gt;</span>) {
-        <span class="kw">let</span> <span class="self">Self</span> {
-            <span class="ident">transform</span>,
-            <span class="ident">show_x</span>,
-            <span class="ident">show_y</span>,
-            <span class="ident">custom_label_func</span>,
-            <span class="ident">items</span>,
+    <span class="kw">fn </span>hover(<span class="kw-2">&amp;</span><span class="self">self</span>, ui: <span class="kw-2">&amp;</span>Ui, pointer: Pos2, shapes: <span class="kw-2">&amp;mut </span>Vec&lt;Shape&gt;) {
+        <span class="kw">let </span><span class="self">Self </span>{
+            transform,
+            show_x,
+            show_y,
+            custom_label_func,
+            items,
             ..
-        } <span class="op">=</span> <span class="self">self</span>;
+        } = <span class="self">self</span>;
 
-        <span class="kw">if</span> <span class="op">!</span><span class="ident">show_x</span> <span class="op">&amp;&amp;</span> <span class="op">!</span><span class="ident">show_y</span> {
+        <span class="kw">if </span>!show_x &amp;&amp; !show_y {
             <span class="kw">return</span>;
         }
 
-        <span class="kw">let</span> <span class="ident">interact_radius_sq</span>: <span class="ident">f32</span> <span class="op">=</span> (<span class="number">16.0f32</span>).<span class="ident">powi</span>(<span class="number">2</span>);
+        <span class="kw">let </span>interact_radius_sq: f32 = (<span class="number">16.0f32</span>).powi(<span class="number">2</span>);
 
-        <span class="kw">let</span> <span class="ident">candidates</span> <span class="op">=</span> <span class="ident">items</span>.<span class="ident">iter</span>().<span class="ident">filter_map</span>(<span class="op">|</span><span class="ident">item</span><span class="op">|</span> {
-            <span class="kw">let</span> <span class="ident">item</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span><span class="kw-2">*</span><span class="ident">item</span>;
-            <span class="kw">let</span> <span class="ident">closest</span> <span class="op">=</span> <span class="ident">item</span>.<span class="ident">find_closest</span>(<span class="ident">pointer</span>, <span class="ident">transform</span>);
+        <span class="kw">let </span>candidates = items.iter().filter_map(|item| {
+            <span class="kw">let </span>item = <span class="kw-2">&amp;**</span>item;
+            <span class="kw">let </span>closest = item.find_closest(pointer, transform);
 
-            <span class="prelude-val">Some</span>(<span class="ident">item</span>).<span class="ident">zip</span>(<span class="ident">closest</span>)
+            <span class="prelude-val">Some</span>(item).zip(closest)
         });
 
-        <span class="kw">let</span> <span class="ident">closest</span> <span class="op">=</span> <span class="ident">candidates</span>
-            .<span class="ident">min_by_key</span>(<span class="op">|</span>(<span class="kw">_</span>, <span class="ident">elem</span>)<span class="op">|</span> <span class="ident">elem</span>.<span class="ident">dist_sq</span>.<span class="ident">ord</span>())
-            .<span class="ident">filter</span>(<span class="op">|</span>(<span class="kw">_</span>, <span class="ident">elem</span>)<span class="op">|</span> <span class="ident">elem</span>.<span class="ident">dist_sq</span> <span class="op">&lt;</span><span class="op">=</span> <span class="ident">interact_radius_sq</span>);
+        <span class="kw">let </span>closest = candidates
+            .min_by_key(|(<span class="kw">_</span>, elem)| elem.dist_sq.ord())
+            .filter(|(<span class="kw">_</span>, elem)| elem.dist_sq &lt;= interact_radius_sq);
 
-        <span class="kw">let</span> <span class="ident">plot</span> <span class="op">=</span> <span class="ident">items::PlotConfig</span> {
-            <span class="ident">ui</span>,
-            <span class="ident">transform</span>,
-            <span class="ident">show_x</span>: <span class="kw-2">*</span><span class="ident">show_x</span>,
-            <span class="ident">show_y</span>: <span class="kw-2">*</span><span class="ident">show_y</span>,
+        <span class="kw">let </span>plot = items::PlotConfig {
+            ui,
+            transform,
+            show_x: <span class="kw-2">*</span>show_x,
+            show_y: <span class="kw-2">*</span>show_y,
         };
 
-        <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>((<span class="ident">item</span>, <span class="ident">elem</span>)) <span class="op">=</span> <span class="ident">closest</span> {
-            <span class="ident">item</span>.<span class="ident">on_hover</span>(<span class="ident">elem</span>, <span class="ident">shapes</span>, <span class="kw-2">&amp;</span><span class="ident">plot</span>, <span class="ident">custom_label_func</span>);
-        } <span class="kw">else</span> {
-            <span class="kw">let</span> <span class="ident">value</span> <span class="op">=</span> <span class="ident">transform</span>.<span class="ident">value_from_position</span>(<span class="ident">pointer</span>);
-            <span class="ident">items::rulers_at_value</span>(<span class="ident">pointer</span>, <span class="ident">value</span>, <span class="string">&quot;&quot;</span>, <span class="kw-2">&amp;</span><span class="ident">plot</span>, <span class="ident">shapes</span>, <span class="ident">custom_label_func</span>);
+        <span class="kw">if let </span><span class="prelude-val">Some</span>((item, elem)) = closest {
+            item.on_hover(elem, shapes, <span class="kw-2">&amp;</span>plot, custom_label_func);
+        } <span class="kw">else </span>{
+            <span class="kw">let </span>value = transform.value_from_position(pointer);
+            items::rulers_at_value(pointer, value, <span class="string">&quot;&quot;</span>, <span class="kw-2">&amp;</span>plot, shapes, custom_label_func);
         }
     }
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../../../" data-current-crate="egui" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0 (a55dd71d5 2022-09-19)" ></div></body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../../../" data-current-crate="egui" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.66.1 (90743e729 2023-01-10)" ></div></body></html>

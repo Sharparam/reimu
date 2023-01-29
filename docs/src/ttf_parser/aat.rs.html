@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/ttf-parser-0.15.2/src/aat.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>aat.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../ttf_parser/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../ttf_parser/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../ttf_parser/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/ttf-parser-0.15.2/src/aat.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>aat.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../normalize.css"><link rel="stylesheet" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../ayu.css" disabled><link rel="stylesheet" href="../../dark.css" disabled><link rel="stylesheet" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><div class="width-limiter"><nav class="sub"><a class="sub-logo-container" href="../../ttf_parser/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -559,558 +559,558 @@
 A collection of [Apple Advanced Typography](
 https://developer.apple.com/fonts/TrueType-Reference-Manual/RM06/Chap6AATIntro.html)
 related types.
-*/</span>
+*/
 
-<span class="kw">use</span> <span class="ident">core::num::NonZeroU16</span>;
+</span><span class="kw">use </span>core::num::NonZeroU16;
 
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::GlyphId</span>;
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::parser</span>::{<span class="ident">Stream</span>, <span class="ident">FromData</span>, <span class="ident">LazyArray16</span>, <span class="ident">Offset</span>, <span class="ident">Offset16</span>, <span class="ident">Offset32</span>, <span class="ident">NumFrom</span>};
+<span class="kw">use </span><span class="kw">crate</span>::GlyphId;
+<span class="kw">use </span><span class="kw">crate</span>::parser::{Stream, FromData, LazyArray16, Offset, Offset16, Offset32, NumFrom};
 
-<span class="doccomment">/// Predefined states.</span>
-<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">state</span> {
-    <span class="attribute">#![<span class="ident">allow</span>(<span class="ident">missing_docs</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">START_OF_TEXT</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">0</span>;
+<span class="doccomment">/// Predefined states.
+</span><span class="kw">pub mod </span>state {
+    <span class="attribute">#![allow(missing_docs)]
+    </span><span class="kw">pub const </span>START_OF_TEXT: u16 = <span class="number">0</span>;
 }
 
-<span class="doccomment">/// Predefined classes.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// Search for _Class Code_ in [Apple Advanced Typography Font Tables](</span>
-<span class="doccomment">/// https://developer.apple.com/fonts/TrueType-Reference-Manual/RM06/Chap6Tables.html).</span>
-<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">class</span> {
-    <span class="attribute">#![<span class="ident">allow</span>(<span class="ident">missing_docs</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">END_OF_TEXT</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">0</span>;
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">OUT_OF_BOUNDS</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">1</span>;
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">DELETED_GLYPH</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">2</span>;
+<span class="doccomment">/// Predefined classes.
+///
+/// Search for _Class Code_ in [Apple Advanced Typography Font Tables](
+/// https://developer.apple.com/fonts/TrueType-Reference-Manual/RM06/Chap6Tables.html).
+</span><span class="kw">pub mod </span>class {
+    <span class="attribute">#![allow(missing_docs)]
+    </span><span class="kw">pub const </span>END_OF_TEXT: u8 = <span class="number">0</span>;
+    <span class="kw">pub const </span>OUT_OF_BOUNDS: u8 = <span class="number">1</span>;
+    <span class="kw">pub const </span>DELETED_GLYPH: u8 = <span class="number">2</span>;
 }
 
-<span class="doccomment">/// A State Table entry.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// Used by legacy and extended tables.</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">Debug</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">GenericStateEntry</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">FromData</span><span class="op">&gt;</span> {
-    <span class="doccomment">/// A new state.</span>
-    <span class="kw">pub</span> <span class="ident">new_state</span>: <span class="ident">u16</span>,
-    <span class="doccomment">/// Entry flags.</span>
-    <span class="kw">pub</span> <span class="ident">flags</span>: <span class="ident">u16</span>,
-    <span class="doccomment">/// Additional data.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// Use `()` if no data expected.</span>
-    <span class="kw">pub</span> <span class="ident">extra</span>: <span class="ident">T</span>,
+<span class="doccomment">/// A State Table entry.
+///
+/// Used by legacy and extended tables.
+</span><span class="attribute">#[derive(Clone, Copy, Debug)]
+</span><span class="kw">pub struct </span>GenericStateEntry&lt;T: FromData&gt; {
+    <span class="doccomment">/// A new state.
+    </span><span class="kw">pub </span>new_state: u16,
+    <span class="doccomment">/// Entry flags.
+    </span><span class="kw">pub </span>flags: u16,
+    <span class="doccomment">/// Additional data.
+    ///
+    /// Use `()` if no data expected.
+    </span><span class="kw">pub </span>extra: T,
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">FromData</span><span class="op">&gt;</span> <span class="ident">FromData</span> <span class="kw">for</span> <span class="ident">GenericStateEntry</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> {
-    <span class="kw">const</span> <span class="ident">SIZE</span>: <span class="ident">usize</span> <span class="op">=</span> <span class="number">4</span> <span class="op">+</span> <span class="ident">T::SIZE</span>;
+<span class="kw">impl</span>&lt;T: FromData&gt; FromData <span class="kw">for </span>GenericStateEntry&lt;T&gt; {
+    <span class="kw">const </span>SIZE: usize = <span class="number">4 </span>+ T::SIZE;
 
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">parse</span>(<span class="ident">data</span>: <span class="kw-2">&amp;</span>[<span class="ident">u8</span>]) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">s</span> <span class="op">=</span> <span class="ident">Stream::new</span>(<span class="ident">data</span>);
-        <span class="prelude-val">Some</span>(<span class="ident">GenericStateEntry</span> {
-            <span class="ident">new_state</span>: <span class="ident">s</span>.<span class="ident">read</span>::<span class="op">&lt;</span><span class="ident">u16</span><span class="op">&gt;</span>()<span class="question-mark">?</span>,
-            <span class="ident">flags</span>: <span class="ident">s</span>.<span class="ident">read</span>::<span class="op">&lt;</span><span class="ident">u16</span><span class="op">&gt;</span>()<span class="question-mark">?</span>,
-            <span class="ident">extra</span>: <span class="ident">s</span>.<span class="ident">read</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>()<span class="question-mark">?</span>,
+    <span class="attribute">#[inline]
+    </span><span class="kw">fn </span>parse(data: <span class="kw-2">&amp;</span>[u8]) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="self">Self</span>&gt; {
+        <span class="kw">let </span><span class="kw-2">mut </span>s = Stream::new(data);
+        <span class="prelude-val">Some</span>(GenericStateEntry {
+            new_state: s.read::&lt;u16&gt;()<span class="question-mark">?</span>,
+            flags: s.read::&lt;u16&gt;()<span class="question-mark">?</span>,
+            extra: s.read::&lt;T&gt;()<span class="question-mark">?</span>,
         })
     }
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">FromData</span><span class="op">&gt;</span> <span class="ident">GenericStateEntry</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> {
-    <span class="doccomment">/// Checks that entry has an offset.</span>
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">has_offset</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span> {
-        <span class="self">self</span>.<span class="ident">flags</span> <span class="op">&amp;</span> <span class="number">0x3FFF</span> <span class="op">!</span><span class="op">=</span> <span class="number">0</span>
+<span class="kw">impl</span>&lt;T: FromData&gt; GenericStateEntry&lt;T&gt; {
+    <span class="doccomment">/// Checks that entry has an offset.
+    </span><span class="attribute">#[inline]
+    </span><span class="kw">pub fn </span>has_offset(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; bool {
+        <span class="self">self</span>.flags &amp; <span class="number">0x3FFF </span>!= <span class="number">0
+    </span>}
+
+    <span class="doccomment">/// Returns a value offset.
+    ///
+    /// Used by kern::format1 subtable.
+    </span><span class="attribute">#[inline]
+    </span><span class="kw">pub fn </span>value_offset(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; ValueOffset {
+        ValueOffset(<span class="self">self</span>.flags &amp; <span class="number">0x3FFF</span>)
     }
 
-    <span class="doccomment">/// Returns a value offset.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// Used by kern::format1 subtable.</span>
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">value_offset</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">ValueOffset</span> {
-        <span class="ident">ValueOffset</span>(<span class="self">self</span>.<span class="ident">flags</span> <span class="op">&amp;</span> <span class="number">0x3FFF</span>)
-    }
+    <span class="doccomment">/// If set, reset the kerning data (clear the stack).
+    </span><span class="attribute">#[inline]
+    </span><span class="kw">pub fn </span>has_reset(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; bool {
+        <span class="self">self</span>.flags &amp; <span class="number">0x2000 </span>!= <span class="number">0
+    </span>}
 
-    <span class="doccomment">/// If set, reset the kerning data (clear the stack).</span>
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">has_reset</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span> {
-        <span class="self">self</span>.<span class="ident">flags</span> <span class="op">&amp;</span> <span class="number">0x2000</span> <span class="op">!</span><span class="op">=</span> <span class="number">0</span>
-    }
+    <span class="doccomment">/// If set, advance to the next glyph before going to the new state.
+    </span><span class="attribute">#[inline]
+    </span><span class="kw">pub fn </span>has_advance(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; bool {
+        <span class="self">self</span>.flags &amp; <span class="number">0x4000 </span>== <span class="number">0
+    </span>}
 
-    <span class="doccomment">/// If set, advance to the next glyph before going to the new state.</span>
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">has_advance</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span> {
-        <span class="self">self</span>.<span class="ident">flags</span> <span class="op">&amp;</span> <span class="number">0x4000</span> <span class="op">==</span> <span class="number">0</span>
-    }
+    <span class="doccomment">/// If set, push this glyph on the kerning stack.
+    </span><span class="attribute">#[inline]
+    </span><span class="kw">pub fn </span>has_push(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; bool {
+        <span class="self">self</span>.flags &amp; <span class="number">0x8000 </span>!= <span class="number">0
+    </span>}
 
-    <span class="doccomment">/// If set, push this glyph on the kerning stack.</span>
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">has_push</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span> {
-        <span class="self">self</span>.<span class="ident">flags</span> <span class="op">&amp;</span> <span class="number">0x8000</span> <span class="op">!</span><span class="op">=</span> <span class="number">0</span>
-    }
+    <span class="doccomment">/// If set, remember this glyph as the marked glyph.
+    ///
+    /// Used by kerx::format4 subtable.
+    ///
+    /// Yes, the same as [`has_push`](Self::has_push).
+    </span><span class="attribute">#[inline]
+    </span><span class="kw">pub fn </span>has_mark(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; bool {
+        <span class="self">self</span>.flags &amp; <span class="number">0x8000 </span>!= <span class="number">0
+    </span>}
+}
 
-    <span class="doccomment">/// If set, remember this glyph as the marked glyph.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// Used by kerx::format4 subtable.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// Yes, the same as [`has_push`](Self::has_push).</span>
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">has_mark</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span> {
-        <span class="self">self</span>.<span class="ident">flags</span> <span class="op">&amp;</span> <span class="number">0x8000</span> <span class="op">!</span><span class="op">=</span> <span class="number">0</span>
+<span class="doccomment">/// A legacy state entry used by [StateTable].
+</span><span class="kw">pub type </span>StateEntry = GenericStateEntry&lt;()&gt;;
+
+<span class="doccomment">/// A type-safe wrapper for a kerning value offset.
+</span><span class="attribute">#[derive(Clone, Copy, Debug)]
+</span><span class="kw">pub struct </span>ValueOffset(u16);
+
+<span class="kw">impl </span>ValueOffset {
+    <span class="doccomment">/// Returns the next offset.
+    ///
+    /// After reaching u16::MAX will start from 0.
+    </span><span class="attribute">#[inline]
+    </span><span class="kw">pub fn </span>next(<span class="self">self</span>) -&gt; <span class="self">Self </span>{
+        ValueOffset(<span class="self">self</span>.<span class="number">0</span>.wrapping_add(u16::SIZE <span class="kw">as </span>u16))
     }
 }
 
-<span class="doccomment">/// A legacy state entry used by [StateTable].</span>
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">StateEntry</span> <span class="op">=</span> <span class="ident">GenericStateEntry</span><span class="op">&lt;</span>()<span class="op">&gt;</span>;
-
-<span class="doccomment">/// A type-safe wrapper for a kerning value offset.</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">Debug</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ValueOffset</span>(<span class="ident">u16</span>);
-
-<span class="kw">impl</span> <span class="ident">ValueOffset</span> {
-    <span class="doccomment">/// Returns the next offset.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// After reaching u16::MAX will start from 0.</span>
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">next</span>(<span class="self">self</span>) -&gt; <span class="self">Self</span> {
-        <span class="ident">ValueOffset</span>(<span class="self">self</span>.<span class="number">0</span>.<span class="ident">wrapping_add</span>(<span class="ident">u16::SIZE</span> <span class="kw">as</span> <span class="ident">u16</span>))
-    }
+<span class="doccomment">/// A [State Table](
+/// https://developer.apple.com/fonts/TrueType-Reference-Manual/RM06/Chap6Tables.html).
+///
+/// Also called `STHeader`.
+///
+/// Currently used by `kern` table.
+</span><span class="attribute">#[derive(Clone)]
+</span><span class="kw">pub struct </span>StateTable&lt;<span class="lifetime">&#39;a</span>&gt; {
+    number_of_classes: u16,
+    first_glyph: GlyphId,
+    class_table: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8],
+    state_array_offset: u16,
+    state_array: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8],
+    entry_table: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8],
+    actions: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8],
 }
 
-<span class="doccomment">/// A [State Table](</span>
-<span class="doccomment">/// https://developer.apple.com/fonts/TrueType-Reference-Manual/RM06/Chap6Tables.html).</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// Also called `STHeader`.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// Currently used by `kern` table.</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">StateTable</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="ident">number_of_classes</span>: <span class="ident">u16</span>,
-    <span class="ident">first_glyph</span>: <span class="ident">GlyphId</span>,
-    <span class="ident">class_table</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>],
-    <span class="ident">state_array_offset</span>: <span class="ident">u16</span>,
-    <span class="ident">state_array</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>],
-    <span class="ident">entry_table</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>],
-    <span class="ident">actions</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>],
-}
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; StateTable&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>parse(data: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8]) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="self">Self</span>&gt; {
+        <span class="kw">let </span><span class="kw-2">mut </span>s = Stream::new(data);
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">StateTable</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">parse</span>(<span class="ident">data</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>]) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">s</span> <span class="op">=</span> <span class="ident">Stream::new</span>(<span class="ident">data</span>);
+        <span class="kw">let </span>number_of_classes: u16 = s.read()<span class="question-mark">?</span>;
+        <span class="comment">// Note that in format1 subtable, offsets are not from the subtable start,
+        // but from subtable start + `header_size`.
+        // So there is not need to subtract the `header_size`.
+        </span><span class="kw">let </span>class_table_offset = s.read::&lt;Offset16&gt;()<span class="question-mark">?</span>.to_usize();
+        <span class="kw">let </span>state_array_offset = s.read::&lt;Offset16&gt;()<span class="question-mark">?</span>.to_usize();
+        <span class="kw">let </span>entry_table_offset = s.read::&lt;Offset16&gt;()<span class="question-mark">?</span>.to_usize();
+        <span class="comment">// Ignore `values_offset` since we don&#39;t use it.
 
-        <span class="kw">let</span> <span class="ident">number_of_classes</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="ident">s</span>.<span class="ident">read</span>()<span class="question-mark">?</span>;
-        <span class="comment">// Note that in format1 subtable, offsets are not from the subtable start,</span>
-        <span class="comment">// but from subtable start + `header_size`.</span>
-        <span class="comment">// So there is not need to subtract the `header_size`.</span>
-        <span class="kw">let</span> <span class="ident">class_table_offset</span> <span class="op">=</span> <span class="ident">s</span>.<span class="ident">read</span>::<span class="op">&lt;</span><span class="ident">Offset16</span><span class="op">&gt;</span>()<span class="question-mark">?</span>.<span class="ident">to_usize</span>();
-        <span class="kw">let</span> <span class="ident">state_array_offset</span> <span class="op">=</span> <span class="ident">s</span>.<span class="ident">read</span>::<span class="op">&lt;</span><span class="ident">Offset16</span><span class="op">&gt;</span>()<span class="question-mark">?</span>.<span class="ident">to_usize</span>();
-        <span class="kw">let</span> <span class="ident">entry_table_offset</span> <span class="op">=</span> <span class="ident">s</span>.<span class="ident">read</span>::<span class="op">&lt;</span><span class="ident">Offset16</span><span class="op">&gt;</span>()<span class="question-mark">?</span>.<span class="ident">to_usize</span>();
-        <span class="comment">// Ignore `values_offset` since we don&#39;t use it.</span>
+        // Parse class subtable.
+        </span><span class="kw">let </span><span class="kw-2">mut </span>s = Stream::new_at(data, class_table_offset)<span class="question-mark">?</span>;
+        <span class="kw">let </span>first_glyph: GlyphId = s.read()<span class="question-mark">?</span>;
+        <span class="kw">let </span>number_of_glyphs: u16 = s.read()<span class="question-mark">?</span>;
+        <span class="comment">// The class table contains u8, so it&#39;s easier to use just a slice
+        // instead of a LazyArray.
+        </span><span class="kw">let </span>class_table = s.read_bytes(usize::from(number_of_glyphs))<span class="question-mark">?</span>;
 
-        <span class="comment">// Parse class subtable.</span>
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">s</span> <span class="op">=</span> <span class="ident">Stream::new_at</span>(<span class="ident">data</span>, <span class="ident">class_table_offset</span>)<span class="question-mark">?</span>;
-        <span class="kw">let</span> <span class="ident">first_glyph</span>: <span class="ident">GlyphId</span> <span class="op">=</span> <span class="ident">s</span>.<span class="ident">read</span>()<span class="question-mark">?</span>;
-        <span class="kw">let</span> <span class="ident">number_of_glyphs</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="ident">s</span>.<span class="ident">read</span>()<span class="question-mark">?</span>;
-        <span class="comment">// The class table contains u8, so it&#39;s easier to use just a slice</span>
-        <span class="comment">// instead of a LazyArray.</span>
-        <span class="kw">let</span> <span class="ident">class_table</span> <span class="op">=</span> <span class="ident">s</span>.<span class="ident">read_bytes</span>(<span class="ident">usize::from</span>(<span class="ident">number_of_glyphs</span>))<span class="question-mark">?</span>;
-
-        <span class="prelude-val">Some</span>(<span class="ident">StateTable</span> {
-            <span class="ident">number_of_classes</span>,
-            <span class="ident">first_glyph</span>,
-            <span class="ident">class_table</span>,
-            <span class="ident">state_array_offset</span>: <span class="ident">state_array_offset</span> <span class="kw">as</span> <span class="ident">u16</span>,
-            <span class="comment">// We don&#39;t know the actual data size and it&#39;s kinda expensive to calculate.</span>
-            <span class="comment">// So we are simply storing all the data past the offset.</span>
-            <span class="comment">// Despite the fact that they may overlap.</span>
-            <span class="ident">state_array</span>: <span class="ident">data</span>.<span class="ident">get</span>(<span class="ident">state_array_offset</span>..)<span class="question-mark">?</span>,
-            <span class="ident">entry_table</span>: <span class="ident">data</span>.<span class="ident">get</span>(<span class="ident">entry_table_offset</span>..)<span class="question-mark">?</span>,
-            <span class="comment">// `ValueOffset` defines an offset from the start of the subtable data.</span>
-            <span class="comment">// We do not check that the provided offset is actually after `values_offset`.</span>
-            <span class="ident">actions</span>: <span class="ident">data</span>,
+        <span class="prelude-val">Some</span>(StateTable {
+            number_of_classes,
+            first_glyph,
+            class_table,
+            state_array_offset: state_array_offset <span class="kw">as </span>u16,
+            <span class="comment">// We don&#39;t know the actual data size and it&#39;s kinda expensive to calculate.
+            // So we are simply storing all the data past the offset.
+            // Despite the fact that they may overlap.
+            </span>state_array: data.get(state_array_offset..)<span class="question-mark">?</span>,
+            entry_table: data.get(entry_table_offset..)<span class="question-mark">?</span>,
+            <span class="comment">// `ValueOffset` defines an offset from the start of the subtable data.
+            // We do not check that the provided offset is actually after `values_offset`.
+            </span>actions: data,
         })
     }
 
-    <span class="doccomment">/// Returns a glyph class.</span>
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">class</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">glyph_id</span>: <span class="ident">GlyphId</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span> {
-        <span class="kw">if</span> <span class="ident">glyph_id</span>.<span class="number">0</span> <span class="op">==</span> <span class="number">0xFFFF</span> {
-            <span class="kw">return</span> <span class="prelude-val">Some</span>(<span class="ident">class::DELETED_GLYPH</span> <span class="kw">as</span> <span class="ident">u8</span>);
+    <span class="doccomment">/// Returns a glyph class.
+    </span><span class="attribute">#[inline]
+    </span><span class="kw">pub fn </span>class(<span class="kw-2">&amp;</span><span class="self">self</span>, glyph_id: GlyphId) -&gt; <span class="prelude-ty">Option</span>&lt;u8&gt; {
+        <span class="kw">if </span>glyph_id.<span class="number">0 </span>== <span class="number">0xFFFF </span>{
+            <span class="kw">return </span><span class="prelude-val">Some</span>(class::DELETED_GLYPH <span class="kw">as </span>u8);
         }
 
-        <span class="kw">let</span> <span class="ident">idx</span> <span class="op">=</span> <span class="ident">glyph_id</span>.<span class="number">0</span>.<span class="ident">checked_sub</span>(<span class="self">self</span>.<span class="ident">first_glyph</span>.<span class="number">0</span>)<span class="question-mark">?</span>;
-        <span class="self">self</span>.<span class="ident">class_table</span>.<span class="ident">get</span>(<span class="ident">usize::from</span>(<span class="ident">idx</span>)).<span class="ident">copied</span>()
+        <span class="kw">let </span>idx = glyph_id.<span class="number">0</span>.checked_sub(<span class="self">self</span>.first_glyph.<span class="number">0</span>)<span class="question-mark">?</span>;
+        <span class="self">self</span>.class_table.get(usize::from(idx)).copied()
     }
 
-    <span class="doccomment">/// Returns a class entry.</span>
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">entry</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">state</span>: <span class="ident">u16</span>, <span class="kw-2">mut</span> <span class="ident">class</span>: <span class="ident">u8</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">StateEntry</span><span class="op">&gt;</span> {
-        <span class="kw">if</span> <span class="ident">u16::from</span>(<span class="ident">class</span>) <span class="op">&gt;</span><span class="op">=</span> <span class="self">self</span>.<span class="ident">number_of_classes</span> {
-            <span class="ident">class</span> <span class="op">=</span> <span class="ident">class::OUT_OF_BOUNDS</span> <span class="kw">as</span> <span class="ident">u8</span>;
+    <span class="doccomment">/// Returns a class entry.
+    </span><span class="attribute">#[inline]
+    </span><span class="kw">pub fn </span>entry(<span class="kw-2">&amp;</span><span class="self">self</span>, state: u16, <span class="kw-2">mut </span>class: u8) -&gt; <span class="prelude-ty">Option</span>&lt;StateEntry&gt; {
+        <span class="kw">if </span>u16::from(class) &gt;= <span class="self">self</span>.number_of_classes {
+            class = class::OUT_OF_BOUNDS <span class="kw">as </span>u8;
         }
 
-        <span class="kw">let</span> <span class="ident">entry_idx</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">state_array</span>.<span class="ident">get</span>(
-            <span class="ident">usize::from</span>(<span class="ident">state</span>) <span class="op">*</span> <span class="ident">usize::from</span>(<span class="self">self</span>.<span class="ident">number_of_classes</span>) <span class="op">+</span> <span class="ident">usize::from</span>(<span class="ident">class</span>)
+        <span class="kw">let </span>entry_idx = <span class="self">self</span>.state_array.get(
+            usize::from(state) * usize::from(<span class="self">self</span>.number_of_classes) + usize::from(class)
         )<span class="question-mark">?</span>;
 
-        <span class="ident">Stream::read_at</span>(<span class="self">self</span>.<span class="ident">entry_table</span>, <span class="ident">usize::from</span>(<span class="kw-2">*</span><span class="ident">entry_idx</span>) <span class="op">*</span> <span class="ident">StateEntry::SIZE</span>)
+        Stream::read_at(<span class="self">self</span>.entry_table, usize::from(<span class="kw-2">*</span>entry_idx) * StateEntry::SIZE)
     }
 
-    <span class="doccomment">/// Returns kerning at offset.</span>
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">kerning</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">offset</span>: <span class="ident">ValueOffset</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">i16</span><span class="op">&gt;</span> {
-        <span class="ident">Stream::read_at</span>(<span class="self">self</span>.<span class="ident">actions</span>, <span class="ident">usize::from</span>(<span class="ident">offset</span>.<span class="number">0</span>))
+    <span class="doccomment">/// Returns kerning at offset.
+    </span><span class="attribute">#[inline]
+    </span><span class="kw">pub fn </span>kerning(<span class="kw-2">&amp;</span><span class="self">self</span>, offset: ValueOffset) -&gt; <span class="prelude-ty">Option</span>&lt;i16&gt; {
+        Stream::read_at(<span class="self">self</span>.actions, usize::from(offset.<span class="number">0</span>))
     }
 
-    <span class="doccomment">/// Produces a new state.</span>
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new_state</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">state</span>: <span class="ident">u16</span>) -&gt; <span class="ident">u16</span> {
-        <span class="kw">let</span> <span class="ident">n</span> <span class="op">=</span> (<span class="ident">i32::from</span>(<span class="ident">state</span>) <span class="op">-</span> <span class="ident">i32::from</span>(<span class="self">self</span>.<span class="ident">state_array_offset</span>))
-            <span class="op">/</span> <span class="ident">i32::from</span>(<span class="self">self</span>.<span class="ident">number_of_classes</span>);
+    <span class="doccomment">/// Produces a new state.
+    </span><span class="attribute">#[inline]
+    </span><span class="kw">pub fn </span>new_state(<span class="kw-2">&amp;</span><span class="self">self</span>, state: u16) -&gt; u16 {
+        <span class="kw">let </span>n = (i32::from(state) - i32::from(<span class="self">self</span>.state_array_offset))
+            / i32::from(<span class="self">self</span>.number_of_classes);
 
-        <span class="kw">use</span> <span class="ident">core::convert::TryFrom</span>;
-        <span class="ident">u16::try_from</span>(<span class="ident">n</span>).<span class="ident">unwrap_or</span>(<span class="number">0</span>)
-    }
-}
-
-<span class="kw">impl</span> <span class="ident">core::fmt::Debug</span> <span class="kw">for</span> <span class="ident">StateTable</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span> {
-    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;mut</span> <span class="ident">core::fmt::Formatter</span>) -&gt; <span class="ident">core::fmt::Result</span> {
-        <span class="macro">write!</span>(<span class="ident">f</span>, <span class="string">&quot;StateTable {{ ... }}&quot;</span>)
+        <span class="kw">use </span>core::convert::TryFrom;
+        u16::try_from(n).unwrap_or(<span class="number">0</span>)
     }
 }
 
-
-<span class="doccomment">/// An [Extended State Table](</span>
-<span class="doccomment">/// https://developer.apple.com/fonts/TrueType-Reference-Manual/RM06/Chap6Tables.html).</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// Also called `STXHeader`.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// Currently used by `kerx` and `morx` tables.</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ExtendedStateTable</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">T</span><span class="op">&gt;</span> {
-    <span class="ident">number_of_classes</span>: <span class="ident">u32</span>,
-    <span class="ident">lookup</span>: <span class="ident">Lookup</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>,
-    <span class="ident">state_array</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>],
-    <span class="ident">entry_table</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>],
-    <span class="ident">entry_type</span>: <span class="ident">core::marker::PhantomData</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>,
+<span class="kw">impl </span>core::fmt::Debug <span class="kw">for </span>StateTable&lt;<span class="lifetime">&#39;_</span>&gt; {
+    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>core::fmt::Formatter) -&gt; core::fmt::Result {
+        <span class="macro">write!</span>(f, <span class="string">&quot;StateTable {{ ... }}&quot;</span>)
+    }
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">T</span>: <span class="ident">FromData</span><span class="op">&gt;</span> <span class="ident">ExtendedStateTable</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">T</span><span class="op">&gt;</span> {
-    <span class="comment">// TODO: make private</span>
-    <span class="doccomment">/// Parses an Extended State Table from a stream.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// `number_of_glyphs` is from the `maxp` table.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">parse</span>(<span class="ident">number_of_glyphs</span>: <span class="ident">NonZeroU16</span>, <span class="ident">s</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Stream</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="ident">data</span> <span class="op">=</span> <span class="ident">s</span>.<span class="ident">tail</span>()<span class="question-mark">?</span>;
 
-        <span class="kw">let</span> <span class="ident">number_of_classes</span> <span class="op">=</span> <span class="ident">s</span>.<span class="ident">read</span>::<span class="op">&lt;</span><span class="ident">u32</span><span class="op">&gt;</span>()<span class="question-mark">?</span>;
-        <span class="comment">// Note that offsets are not from the subtable start,</span>
-        <span class="comment">// but from subtable start + `header_size`.</span>
-        <span class="comment">// So there is not need to subtract the `header_size`.</span>
-        <span class="kw">let</span> <span class="ident">lookup_table_offset</span> <span class="op">=</span> <span class="ident">s</span>.<span class="ident">read</span>::<span class="op">&lt;</span><span class="ident">Offset32</span><span class="op">&gt;</span>()<span class="question-mark">?</span>.<span class="ident">to_usize</span>();
-        <span class="kw">let</span> <span class="ident">state_array_offset</span> <span class="op">=</span> <span class="ident">s</span>.<span class="ident">read</span>::<span class="op">&lt;</span><span class="ident">Offset32</span><span class="op">&gt;</span>()<span class="question-mark">?</span>.<span class="ident">to_usize</span>();
-        <span class="kw">let</span> <span class="ident">entry_table_offset</span> <span class="op">=</span> <span class="ident">s</span>.<span class="ident">read</span>::<span class="op">&lt;</span><span class="ident">Offset32</span><span class="op">&gt;</span>()<span class="question-mark">?</span>.<span class="ident">to_usize</span>();
+<span class="doccomment">/// An [Extended State Table](
+/// https://developer.apple.com/fonts/TrueType-Reference-Manual/RM06/Chap6Tables.html).
+///
+/// Also called `STXHeader`.
+///
+/// Currently used by `kerx` and `morx` tables.
+</span><span class="attribute">#[derive(Clone)]
+</span><span class="kw">pub struct </span>ExtendedStateTable&lt;<span class="lifetime">&#39;a</span>, T&gt; {
+    number_of_classes: u32,
+    lookup: Lookup&lt;<span class="lifetime">&#39;a</span>&gt;,
+    state_array: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8],
+    entry_table: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8],
+    entry_type: core::marker::PhantomData&lt;T&gt;,
+}
 
-        <span class="prelude-val">Some</span>(<span class="ident">ExtendedStateTable</span> {
-            <span class="ident">number_of_classes</span>,
-            <span class="ident">lookup</span>: <span class="ident">Lookup::parse</span>(<span class="ident">number_of_glyphs</span>, <span class="ident">data</span>.<span class="ident">get</span>(<span class="ident">lookup_table_offset</span>..)<span class="question-mark">?</span>)<span class="question-mark">?</span>,
-            <span class="comment">// We don&#39;t know the actual data size and it&#39;s kinda expensive to calculate.</span>
-            <span class="comment">// So we are simply storing all the data past the offset.</span>
-            <span class="comment">// Despite the fact that they may overlap.</span>
-            <span class="ident">state_array</span>: <span class="ident">data</span>.<span class="ident">get</span>(<span class="ident">state_array_offset</span>..)<span class="question-mark">?</span>,
-            <span class="ident">entry_table</span>: <span class="ident">data</span>.<span class="ident">get</span>(<span class="ident">entry_table_offset</span>..)<span class="question-mark">?</span>,
-            <span class="ident">entry_type</span>: <span class="ident">core::marker::PhantomData</span>,
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>, T: FromData&gt; ExtendedStateTable&lt;<span class="lifetime">&#39;a</span>, T&gt; {
+    <span class="comment">// TODO: make private
+    </span><span class="doccomment">/// Parses an Extended State Table from a stream.
+    ///
+    /// `number_of_glyphs` is from the `maxp` table.
+    </span><span class="kw">pub fn </span>parse(number_of_glyphs: NonZeroU16, s: <span class="kw-2">&amp;mut </span>Stream&lt;<span class="lifetime">&#39;a</span>&gt;) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="self">Self</span>&gt; {
+        <span class="kw">let </span>data = s.tail()<span class="question-mark">?</span>;
+
+        <span class="kw">let </span>number_of_classes = s.read::&lt;u32&gt;()<span class="question-mark">?</span>;
+        <span class="comment">// Note that offsets are not from the subtable start,
+        // but from subtable start + `header_size`.
+        // So there is not need to subtract the `header_size`.
+        </span><span class="kw">let </span>lookup_table_offset = s.read::&lt;Offset32&gt;()<span class="question-mark">?</span>.to_usize();
+        <span class="kw">let </span>state_array_offset = s.read::&lt;Offset32&gt;()<span class="question-mark">?</span>.to_usize();
+        <span class="kw">let </span>entry_table_offset = s.read::&lt;Offset32&gt;()<span class="question-mark">?</span>.to_usize();
+
+        <span class="prelude-val">Some</span>(ExtendedStateTable {
+            number_of_classes,
+            lookup: Lookup::parse(number_of_glyphs, data.get(lookup_table_offset..)<span class="question-mark">?</span>)<span class="question-mark">?</span>,
+            <span class="comment">// We don&#39;t know the actual data size and it&#39;s kinda expensive to calculate.
+            // So we are simply storing all the data past the offset.
+            // Despite the fact that they may overlap.
+            </span>state_array: data.get(state_array_offset..)<span class="question-mark">?</span>,
+            entry_table: data.get(entry_table_offset..)<span class="question-mark">?</span>,
+            entry_type: core::marker::PhantomData,
         })
     }
 
-    <span class="doccomment">/// Returns a glyph class.</span>
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">class</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">glyph_id</span>: <span class="ident">GlyphId</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">u16</span><span class="op">&gt;</span> {
-        <span class="kw">if</span> <span class="ident">glyph_id</span>.<span class="number">0</span> <span class="op">==</span> <span class="number">0xFFFF</span> {
-            <span class="kw">return</span> <span class="prelude-val">Some</span>(<span class="ident">u16::from</span>(<span class="ident">class::DELETED_GLYPH</span>));
+    <span class="doccomment">/// Returns a glyph class.
+    </span><span class="attribute">#[inline]
+    </span><span class="kw">pub fn </span>class(<span class="kw-2">&amp;</span><span class="self">self</span>, glyph_id: GlyphId) -&gt; <span class="prelude-ty">Option</span>&lt;u16&gt; {
+        <span class="kw">if </span>glyph_id.<span class="number">0 </span>== <span class="number">0xFFFF </span>{
+            <span class="kw">return </span><span class="prelude-val">Some</span>(u16::from(class::DELETED_GLYPH));
         }
 
-        <span class="self">self</span>.<span class="ident">lookup</span>.<span class="ident">value</span>(<span class="ident">glyph_id</span>)
+        <span class="self">self</span>.lookup.value(glyph_id)
     }
 
-    <span class="doccomment">/// Returns a class entry.</span>
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">entry</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">state</span>: <span class="ident">u16</span>, <span class="kw-2">mut</span> <span class="ident">class</span>: <span class="ident">u16</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">GenericStateEntry</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span><span class="op">&gt;</span> {
-        <span class="kw">if</span> <span class="ident">u32::from</span>(<span class="ident">class</span>) <span class="op">&gt;</span><span class="op">=</span> <span class="self">self</span>.<span class="ident">number_of_classes</span> {
-            <span class="ident">class</span> <span class="op">=</span> <span class="ident">u16::from</span>(<span class="ident">class::OUT_OF_BOUNDS</span>);
+    <span class="doccomment">/// Returns a class entry.
+    </span><span class="attribute">#[inline]
+    </span><span class="kw">pub fn </span>entry(<span class="kw-2">&amp;</span><span class="self">self</span>, state: u16, <span class="kw-2">mut </span>class: u16) -&gt; <span class="prelude-ty">Option</span>&lt;GenericStateEntry&lt;T&gt;&gt; {
+        <span class="kw">if </span>u32::from(class) &gt;= <span class="self">self</span>.number_of_classes {
+            class = u16::from(class::OUT_OF_BOUNDS);
         }
 
-        <span class="kw">let</span> <span class="ident">state_idx</span> <span class="op">=</span>
-            <span class="ident">usize::from</span>(<span class="ident">state</span>) <span class="op">*</span> <span class="ident">usize::num_from</span>(<span class="self">self</span>.<span class="ident">number_of_classes</span>) <span class="op">+</span> <span class="ident">usize::from</span>(<span class="ident">class</span>);
+        <span class="kw">let </span>state_idx =
+            usize::from(state) * usize::num_from(<span class="self">self</span>.number_of_classes) + usize::from(class);
 
-        <span class="kw">let</span> <span class="ident">entry_idx</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="ident">Stream::read_at</span>(<span class="self">self</span>.<span class="ident">state_array</span>, <span class="ident">state_idx</span> <span class="op">*</span> <span class="ident">u16::SIZE</span>)<span class="question-mark">?</span>;
-        <span class="ident">Stream::read_at</span>(<span class="self">self</span>.<span class="ident">entry_table</span>, <span class="ident">usize::from</span>(<span class="ident">entry_idx</span>) <span class="op">*</span> <span class="ident">GenericStateEntry</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span><span class="ident">::SIZE</span>)
+        <span class="kw">let </span>entry_idx: u16 = Stream::read_at(<span class="self">self</span>.state_array, state_idx * u16::SIZE)<span class="question-mark">?</span>;
+        Stream::read_at(<span class="self">self</span>.entry_table, usize::from(entry_idx) * GenericStateEntry::&lt;T&gt;::SIZE)
     }
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> <span class="ident">core::fmt::Debug</span> <span class="kw">for</span> <span class="ident">ExtendedStateTable</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span>, <span class="ident">T</span><span class="op">&gt;</span> {
-    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;mut</span> <span class="ident">core::fmt::Formatter</span>) -&gt; <span class="ident">core::fmt::Result</span> {
-        <span class="macro">write!</span>(<span class="ident">f</span>, <span class="string">&quot;ExtendedStateTable {{ ... }}&quot;</span>)
-    }
-}
-
-
-<span class="doccomment">/// A [lookup table](</span>
-<span class="doccomment">/// https://developer.apple.com/fonts/TrueType-Reference-Manual/RM06/Chap6Tables.html).</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// u32 values in Format10 tables will be truncated to u16.</span>
-<span class="doccomment">/// u64 values in Format10 tables are not supported.</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Lookup</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="ident">data</span>: <span class="ident">LookupInner</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>,
-}
-
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">Lookup</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="doccomment">/// Parses a lookup table from raw data.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// `number_of_glyphs` is from the `maxp` table.</span>
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">parse</span>(<span class="ident">number_of_glyphs</span>: <span class="ident">NonZeroU16</span>, <span class="ident">data</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>]) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
-        <span class="ident">LookupInner::parse</span>(<span class="ident">number_of_glyphs</span>, <span class="ident">data</span>).<span class="ident">map</span>(<span class="op">|</span><span class="ident">data</span><span class="op">|</span> <span class="self">Self</span> { <span class="ident">data</span> })
-    }
-
-    <span class="doccomment">/// Returns a value associated with the specified glyph.</span>
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">value</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">glyph_id</span>: <span class="ident">GlyphId</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">u16</span><span class="op">&gt;</span> {
-        <span class="self">self</span>.<span class="ident">data</span>.<span class="ident">value</span>(<span class="ident">glyph_id</span>)
-    }
-}
-
-<span class="kw">impl</span> <span class="ident">core::fmt::Debug</span> <span class="kw">for</span> <span class="ident">Lookup</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span> {
-    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;mut</span> <span class="ident">core::fmt::Formatter</span>) -&gt; <span class="ident">core::fmt::Result</span> {
-        <span class="macro">write!</span>(<span class="ident">f</span>, <span class="string">&quot;Lookup {{ ... }}&quot;</span>)
+<span class="kw">impl</span>&lt;T&gt; core::fmt::Debug <span class="kw">for </span>ExtendedStateTable&lt;<span class="lifetime">&#39;_</span>, T&gt; {
+    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>core::fmt::Formatter) -&gt; core::fmt::Result {
+        <span class="macro">write!</span>(f, <span class="string">&quot;ExtendedStateTable {{ ... }}&quot;</span>)
     }
 }
 
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>)]</span>
-<span class="kw">enum</span> <span class="ident">LookupInner</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="ident">Format1</span>(<span class="ident">LazyArray16</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">u16</span><span class="op">&gt;</span>),
-    <span class="ident">Format2</span>(<span class="ident">BinarySearchTable</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">LookupSegment</span><span class="op">&gt;</span>),
-    <span class="ident">Format4</span>(<span class="ident">BinarySearchTable</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">LookupSegment</span><span class="op">&gt;</span>, <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>]),
-    <span class="ident">Format6</span>(<span class="ident">BinarySearchTable</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">LookupSingle</span><span class="op">&gt;</span>),
-    <span class="ident">Format8</span> {
-        <span class="ident">first_glyph</span>: <span class="ident">u16</span>,
-        <span class="ident">values</span>: <span class="ident">LazyArray16</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">u16</span><span class="op">&gt;</span>
+<span class="doccomment">/// A [lookup table](
+/// https://developer.apple.com/fonts/TrueType-Reference-Manual/RM06/Chap6Tables.html).
+///
+/// u32 values in Format10 tables will be truncated to u16.
+/// u64 values in Format10 tables are not supported.
+</span><span class="attribute">#[derive(Clone)]
+</span><span class="kw">pub struct </span>Lookup&lt;<span class="lifetime">&#39;a</span>&gt; {
+    data: LookupInner&lt;<span class="lifetime">&#39;a</span>&gt;,
+}
+
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; Lookup&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="doccomment">/// Parses a lookup table from raw data.
+    ///
+    /// `number_of_glyphs` is from the `maxp` table.
+    </span><span class="attribute">#[inline]
+    </span><span class="kw">pub fn </span>parse(number_of_glyphs: NonZeroU16, data: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8]) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="self">Self</span>&gt; {
+        LookupInner::parse(number_of_glyphs, data).map(|data| <span class="self">Self </span>{ data })
+    }
+
+    <span class="doccomment">/// Returns a value associated with the specified glyph.
+    </span><span class="attribute">#[inline]
+    </span><span class="kw">pub fn </span>value(<span class="kw-2">&amp;</span><span class="self">self</span>, glyph_id: GlyphId) -&gt; <span class="prelude-ty">Option</span>&lt;u16&gt; {
+        <span class="self">self</span>.data.value(glyph_id)
+    }
+}
+
+<span class="kw">impl </span>core::fmt::Debug <span class="kw">for </span>Lookup&lt;<span class="lifetime">&#39;_</span>&gt; {
+    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>core::fmt::Formatter) -&gt; core::fmt::Result {
+        <span class="macro">write!</span>(f, <span class="string">&quot;Lookup {{ ... }}&quot;</span>)
+    }
+}
+
+
+<span class="attribute">#[derive(Clone)]
+</span><span class="kw">enum </span>LookupInner&lt;<span class="lifetime">&#39;a</span>&gt; {
+    Format1(LazyArray16&lt;<span class="lifetime">&#39;a</span>, u16&gt;),
+    Format2(BinarySearchTable&lt;<span class="lifetime">&#39;a</span>, LookupSegment&gt;),
+    Format4(BinarySearchTable&lt;<span class="lifetime">&#39;a</span>, LookupSegment&gt;, <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8]),
+    Format6(BinarySearchTable&lt;<span class="lifetime">&#39;a</span>, LookupSingle&gt;),
+    Format8 {
+        first_glyph: u16,
+        values: LazyArray16&lt;<span class="lifetime">&#39;a</span>, u16&gt;
     },
-    <span class="ident">Format10</span> {
-        <span class="ident">value_size</span>: <span class="ident">u16</span>,
-        <span class="ident">first_glyph</span>: <span class="ident">u16</span>,
-        <span class="ident">glyph_count</span>: <span class="ident">u16</span>,
-        <span class="ident">data</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>],
+    Format10 {
+        value_size: u16,
+        first_glyph: u16,
+        glyph_count: u16,
+        data: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8],
     },
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">LookupInner</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="kw">fn</span> <span class="ident">parse</span>(<span class="ident">number_of_glyphs</span>: <span class="ident">NonZeroU16</span>, <span class="ident">data</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>]) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">s</span> <span class="op">=</span> <span class="ident">Stream::new</span>(<span class="ident">data</span>);
-        <span class="kw">let</span> <span class="ident">format</span> <span class="op">=</span> <span class="ident">s</span>.<span class="ident">read</span>::<span class="op">&lt;</span><span class="ident">u16</span><span class="op">&gt;</span>()<span class="question-mark">?</span>;
-        <span class="kw">match</span> <span class="ident">format</span> {
-            <span class="number">0</span> =&gt; {
-                <span class="kw">let</span> <span class="ident">values</span> <span class="op">=</span> <span class="ident">s</span>.<span class="ident">read_array16</span>::<span class="op">&lt;</span><span class="ident">u16</span><span class="op">&gt;</span>(<span class="ident">number_of_glyphs</span>.<span class="ident">get</span>())<span class="question-mark">?</span>;
-                <span class="prelude-val">Some</span>(<span class="ident"><span class="self">Self</span>::Format1</span>(<span class="ident">values</span>))
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; LookupInner&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="kw">fn </span>parse(number_of_glyphs: NonZeroU16, data: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8]) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="self">Self</span>&gt; {
+        <span class="kw">let </span><span class="kw-2">mut </span>s = Stream::new(data);
+        <span class="kw">let </span>format = s.read::&lt;u16&gt;()<span class="question-mark">?</span>;
+        <span class="kw">match </span>format {
+            <span class="number">0 </span>=&gt; {
+                <span class="kw">let </span>values = s.read_array16::&lt;u16&gt;(number_of_glyphs.get())<span class="question-mark">?</span>;
+                <span class="prelude-val">Some</span>(<span class="self">Self</span>::Format1(values))
             }
-            <span class="number">2</span> =&gt; {
-                <span class="kw">let</span> <span class="ident">bsearch</span> <span class="op">=</span> <span class="ident">BinarySearchTable</span>::<span class="op">&lt;</span><span class="ident">LookupSegment</span><span class="op">&gt;</span><span class="ident">::parse</span>(<span class="ident">s</span>.<span class="ident">tail</span>()<span class="question-mark">?</span>)<span class="question-mark">?</span>;
-                <span class="prelude-val">Some</span>(<span class="ident"><span class="self">Self</span>::Format2</span>(<span class="ident">bsearch</span>))
+            <span class="number">2 </span>=&gt; {
+                <span class="kw">let </span>bsearch = BinarySearchTable::&lt;LookupSegment&gt;::parse(s.tail()<span class="question-mark">?</span>)<span class="question-mark">?</span>;
+                <span class="prelude-val">Some</span>(<span class="self">Self</span>::Format2(bsearch))
             }
-            <span class="number">4</span> =&gt; {
-                <span class="kw">let</span> <span class="ident">bsearch</span> <span class="op">=</span> <span class="ident">BinarySearchTable</span>::<span class="op">&lt;</span><span class="ident">LookupSegment</span><span class="op">&gt;</span><span class="ident">::parse</span>(<span class="ident">s</span>.<span class="ident">tail</span>()<span class="question-mark">?</span>)<span class="question-mark">?</span>;
-                <span class="prelude-val">Some</span>(<span class="ident"><span class="self">Self</span>::Format4</span>(<span class="ident">bsearch</span>, <span class="ident">data</span>))
+            <span class="number">4 </span>=&gt; {
+                <span class="kw">let </span>bsearch = BinarySearchTable::&lt;LookupSegment&gt;::parse(s.tail()<span class="question-mark">?</span>)<span class="question-mark">?</span>;
+                <span class="prelude-val">Some</span>(<span class="self">Self</span>::Format4(bsearch, data))
             }
-            <span class="number">6</span> =&gt; {
-                <span class="kw">let</span> <span class="ident">bsearch</span> <span class="op">=</span> <span class="ident">BinarySearchTable</span>::<span class="op">&lt;</span><span class="ident">LookupSingle</span><span class="op">&gt;</span><span class="ident">::parse</span>(<span class="ident">s</span>.<span class="ident">tail</span>()<span class="question-mark">?</span>)<span class="question-mark">?</span>;
-                <span class="prelude-val">Some</span>(<span class="ident"><span class="self">Self</span>::Format6</span>(<span class="ident">bsearch</span>))
+            <span class="number">6 </span>=&gt; {
+                <span class="kw">let </span>bsearch = BinarySearchTable::&lt;LookupSingle&gt;::parse(s.tail()<span class="question-mark">?</span>)<span class="question-mark">?</span>;
+                <span class="prelude-val">Some</span>(<span class="self">Self</span>::Format6(bsearch))
             }
-            <span class="number">8</span> =&gt; {
-                <span class="kw">let</span> <span class="ident">first_glyph</span> <span class="op">=</span> <span class="ident">s</span>.<span class="ident">read</span>::<span class="op">&lt;</span><span class="ident">u16</span><span class="op">&gt;</span>()<span class="question-mark">?</span>;
-                <span class="kw">let</span> <span class="ident">glyph_count</span> <span class="op">=</span> <span class="ident">s</span>.<span class="ident">read</span>::<span class="op">&lt;</span><span class="ident">u16</span><span class="op">&gt;</span>()<span class="question-mark">?</span>;
-                <span class="kw">let</span> <span class="ident">values</span> <span class="op">=</span> <span class="ident">s</span>.<span class="ident">read_array16</span>::<span class="op">&lt;</span><span class="ident">u16</span><span class="op">&gt;</span>(<span class="ident">glyph_count</span>)<span class="question-mark">?</span>;
-                <span class="prelude-val">Some</span>(<span class="ident"><span class="self">Self</span>::Format8</span> { <span class="ident">first_glyph</span>, <span class="ident">values</span> })
+            <span class="number">8 </span>=&gt; {
+                <span class="kw">let </span>first_glyph = s.read::&lt;u16&gt;()<span class="question-mark">?</span>;
+                <span class="kw">let </span>glyph_count = s.read::&lt;u16&gt;()<span class="question-mark">?</span>;
+                <span class="kw">let </span>values = s.read_array16::&lt;u16&gt;(glyph_count)<span class="question-mark">?</span>;
+                <span class="prelude-val">Some</span>(<span class="self">Self</span>::Format8 { first_glyph, values })
             }
-            <span class="number">10</span> =&gt; {
-                <span class="kw">let</span> <span class="ident">value_size</span> <span class="op">=</span> <span class="ident">s</span>.<span class="ident">read</span>::<span class="op">&lt;</span><span class="ident">u16</span><span class="op">&gt;</span>()<span class="question-mark">?</span>;
-                <span class="kw">let</span> <span class="ident">first_glyph</span> <span class="op">=</span> <span class="ident">s</span>.<span class="ident">read</span>::<span class="op">&lt;</span><span class="ident">u16</span><span class="op">&gt;</span>()<span class="question-mark">?</span>;
-                <span class="kw">let</span> <span class="ident">glyph_count</span> <span class="op">=</span> <span class="ident">s</span>.<span class="ident">read</span>::<span class="op">&lt;</span><span class="ident">u16</span><span class="op">&gt;</span>()<span class="question-mark">?</span>;
-                <span class="prelude-val">Some</span>(<span class="ident"><span class="self">Self</span>::Format10</span> { <span class="ident">value_size</span>, <span class="ident">first_glyph</span>, <span class="ident">glyph_count</span>, <span class="ident">data</span>: <span class="ident">s</span>.<span class="ident">tail</span>()<span class="question-mark">?</span> })
+            <span class="number">10 </span>=&gt; {
+                <span class="kw">let </span>value_size = s.read::&lt;u16&gt;()<span class="question-mark">?</span>;
+                <span class="kw">let </span>first_glyph = s.read::&lt;u16&gt;()<span class="question-mark">?</span>;
+                <span class="kw">let </span>glyph_count = s.read::&lt;u16&gt;()<span class="question-mark">?</span>;
+                <span class="prelude-val">Some</span>(<span class="self">Self</span>::Format10 { value_size, first_glyph, glyph_count, data: s.tail()<span class="question-mark">? </span>})
             }
-            <span class="kw">_</span> =&gt; {
-                <span class="prelude-val">None</span>
-            }
+            <span class="kw">_ </span>=&gt; {
+                <span class="prelude-val">None
+            </span>}
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">value</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">glyph_id</span>: <span class="ident">GlyphId</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">u16</span><span class="op">&gt;</span> {
-        <span class="kw">match</span> <span class="self">self</span> {
-            <span class="ident"><span class="self">Self</span>::Format1</span>(<span class="ident">values</span>) =&gt; {
-                <span class="ident">values</span>.<span class="ident">get</span>(<span class="ident">glyph_id</span>.<span class="number">0</span>)
+    <span class="kw">fn </span>value(<span class="kw-2">&amp;</span><span class="self">self</span>, glyph_id: GlyphId) -&gt; <span class="prelude-ty">Option</span>&lt;u16&gt; {
+        <span class="kw">match </span><span class="self">self </span>{
+            <span class="self">Self</span>::Format1(values) =&gt; {
+                values.get(glyph_id.<span class="number">0</span>)
             }
-            <span class="ident"><span class="self">Self</span>::Format2</span>(<span class="kw-2">ref</span> <span class="ident">bsearch</span>) =&gt; {
-                <span class="ident">bsearch</span>.<span class="ident">get</span>(<span class="ident">glyph_id</span>).<span class="ident">map</span>(<span class="op">|</span><span class="ident">v</span><span class="op">|</span> <span class="ident">v</span>.<span class="ident">value</span>)
+            <span class="self">Self</span>::Format2(<span class="kw-2">ref </span>bsearch) =&gt; {
+                bsearch.get(glyph_id).map(|v| v.value)
             }
-            <span class="ident"><span class="self">Self</span>::Format4</span>(<span class="kw-2">ref</span> <span class="ident">bsearch</span>, <span class="ident">data</span>) =&gt; {
-                <span class="comment">// In format 4, LookupSegment contains an offset to a list of u16 values.</span>
-                <span class="comment">// One value for each glyph in the LookupSegment range.</span>
-                <span class="kw">let</span> <span class="ident">segment</span> <span class="op">=</span> <span class="ident">bsearch</span>.<span class="ident">get</span>(<span class="ident">glyph_id</span>)<span class="question-mark">?</span>;
-                <span class="kw">let</span> <span class="ident">index</span> <span class="op">=</span> <span class="ident">glyph_id</span>.<span class="number">0</span>.<span class="ident">checked_sub</span>(<span class="ident">segment</span>.<span class="ident">first_glyph</span>)<span class="question-mark">?</span>;
-                <span class="kw">let</span> <span class="ident">offset</span> <span class="op">=</span> <span class="ident">usize::from</span>(<span class="ident">segment</span>.<span class="ident">value</span>) <span class="op">+</span> <span class="ident">u16::SIZE</span> <span class="op">*</span> <span class="ident">usize::from</span>(<span class="ident">index</span>);
-                <span class="ident">Stream::read_at</span>::<span class="op">&lt;</span><span class="ident">u16</span><span class="op">&gt;</span>(<span class="ident">data</span>, <span class="ident">offset</span>)
+            <span class="self">Self</span>::Format4(<span class="kw-2">ref </span>bsearch, data) =&gt; {
+                <span class="comment">// In format 4, LookupSegment contains an offset to a list of u16 values.
+                // One value for each glyph in the LookupSegment range.
+                </span><span class="kw">let </span>segment = bsearch.get(glyph_id)<span class="question-mark">?</span>;
+                <span class="kw">let </span>index = glyph_id.<span class="number">0</span>.checked_sub(segment.first_glyph)<span class="question-mark">?</span>;
+                <span class="kw">let </span>offset = usize::from(segment.value) + u16::SIZE * usize::from(index);
+                Stream::read_at::&lt;u16&gt;(data, offset)
             }
-            <span class="ident"><span class="self">Self</span>::Format6</span>(<span class="kw-2">ref</span> <span class="ident">bsearch</span>) =&gt; {
-                <span class="ident">bsearch</span>.<span class="ident">get</span>(<span class="ident">glyph_id</span>).<span class="ident">map</span>(<span class="op">|</span><span class="ident">v</span><span class="op">|</span> <span class="ident">v</span>.<span class="ident">value</span>)
+            <span class="self">Self</span>::Format6(<span class="kw-2">ref </span>bsearch) =&gt; {
+                bsearch.get(glyph_id).map(|v| v.value)
             }
-            <span class="ident"><span class="self">Self</span>::Format8</span> { <span class="ident">first_glyph</span>, <span class="ident">values</span> } =&gt; {
-                <span class="kw">let</span> <span class="ident">idx</span> <span class="op">=</span> <span class="ident">glyph_id</span>.<span class="number">0</span>.<span class="ident">checked_sub</span>(<span class="kw-2">*</span><span class="ident">first_glyph</span>)<span class="question-mark">?</span>;
-                <span class="ident">values</span>.<span class="ident">get</span>(<span class="ident">idx</span>)
+            <span class="self">Self</span>::Format8 { first_glyph, values } =&gt; {
+                <span class="kw">let </span>idx = glyph_id.<span class="number">0</span>.checked_sub(<span class="kw-2">*</span>first_glyph)<span class="question-mark">?</span>;
+                values.get(idx)
             }
-            <span class="ident"><span class="self">Self</span>::Format10</span> { <span class="ident">value_size</span>, <span class="ident">first_glyph</span>, <span class="ident">glyph_count</span>, <span class="ident">data</span> } =&gt; {
-                <span class="kw">let</span> <span class="ident">idx</span> <span class="op">=</span> <span class="ident">glyph_id</span>.<span class="number">0</span>.<span class="ident">checked_sub</span>(<span class="kw-2">*</span><span class="ident">first_glyph</span>)<span class="question-mark">?</span>;
-                <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">s</span> <span class="op">=</span> <span class="ident">Stream::new</span>(<span class="ident">data</span>);
-                <span class="kw">match</span> <span class="ident">value_size</span> {
-                    <span class="number">1</span> =&gt; <span class="ident">s</span>.<span class="ident">read_array16</span>::<span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span>(<span class="kw-2">*</span><span class="ident">glyph_count</span>)<span class="question-mark">?</span>.<span class="ident">get</span>(<span class="ident">idx</span>).<span class="ident">map</span>(<span class="ident">u16::from</span>),
-                    <span class="number">2</span> =&gt; <span class="ident">s</span>.<span class="ident">read_array16</span>::<span class="op">&lt;</span><span class="ident">u16</span><span class="op">&gt;</span>(<span class="kw-2">*</span><span class="ident">glyph_count</span>)<span class="question-mark">?</span>.<span class="ident">get</span>(<span class="ident">idx</span>),
-                    <span class="comment">// TODO: we should return u32 here, but this is not supported yet</span>
-                    <span class="number">4</span> =&gt; <span class="ident">s</span>.<span class="ident">read_array16</span>::<span class="op">&lt;</span><span class="ident">u32</span><span class="op">&gt;</span>(<span class="kw-2">*</span><span class="ident">glyph_count</span>)<span class="question-mark">?</span>.<span class="ident">get</span>(<span class="ident">idx</span>).<span class="ident">map</span>(<span class="op">|</span><span class="ident">n</span><span class="op">|</span> <span class="ident">n</span> <span class="kw">as</span> <span class="ident">u16</span>),
-                    <span class="kw">_</span> =&gt; <span class="prelude-val">None</span>, <span class="comment">// 8 is also supported</span>
-                }
+            <span class="self">Self</span>::Format10 { value_size, first_glyph, glyph_count, data } =&gt; {
+                <span class="kw">let </span>idx = glyph_id.<span class="number">0</span>.checked_sub(<span class="kw-2">*</span>first_glyph)<span class="question-mark">?</span>;
+                <span class="kw">let </span><span class="kw-2">mut </span>s = Stream::new(data);
+                <span class="kw">match </span>value_size {
+                    <span class="number">1 </span>=&gt; s.read_array16::&lt;u8&gt;(<span class="kw-2">*</span>glyph_count)<span class="question-mark">?</span>.get(idx).map(u16::from),
+                    <span class="number">2 </span>=&gt; s.read_array16::&lt;u16&gt;(<span class="kw-2">*</span>glyph_count)<span class="question-mark">?</span>.get(idx),
+                    <span class="comment">// TODO: we should return u32 here, but this is not supported yet
+                    </span><span class="number">4 </span>=&gt; s.read_array16::&lt;u32&gt;(<span class="kw-2">*</span>glyph_count)<span class="question-mark">?</span>.get(idx).map(|n| n <span class="kw">as </span>u16),
+                    <span class="kw">_ </span>=&gt; <span class="prelude-val">None</span>, <span class="comment">// 8 is also supported
+                </span>}
             }
         }
     }
 }
 
-<span class="doccomment">/// A binary searching table as defined at</span>
-<span class="doccomment">/// https://developer.apple.com/fonts/TrueType-Reference-Manual/RM06/Chap6Tables.html</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>)]</span>
-<span class="kw">struct</span> <span class="ident">BinarySearchTable</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">T</span>: <span class="ident">BinarySearchValue</span><span class="op">&gt;</span> {
-    <span class="ident">values</span>: <span class="ident">LazyArray16</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">T</span><span class="op">&gt;</span>,
-    <span class="ident">len</span>: <span class="ident">NonZeroU16</span>, <span class="comment">// values length excluding termination segment</span>
-}
+<span class="doccomment">/// A binary searching table as defined at
+/// https://developer.apple.com/fonts/TrueType-Reference-Manual/RM06/Chap6Tables.html
+</span><span class="attribute">#[derive(Clone)]
+</span><span class="kw">struct </span>BinarySearchTable&lt;<span class="lifetime">&#39;a</span>, T: BinarySearchValue&gt; {
+    values: LazyArray16&lt;<span class="lifetime">&#39;a</span>, T&gt;,
+    len: NonZeroU16, <span class="comment">// values length excluding termination segment
+</span>}
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">T</span>: <span class="ident">BinarySearchValue</span> <span class="op">+</span> <span class="ident">core::fmt::Debug</span><span class="op">&gt;</span> <span class="ident">BinarySearchTable</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">T</span><span class="op">&gt;</span> {
-    <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">never</span>)]</span>
-    <span class="kw">fn</span> <span class="ident">parse</span>(<span class="ident">data</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>]) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">s</span> <span class="op">=</span> <span class="ident">Stream::new</span>(<span class="ident">data</span>);
-        <span class="kw">let</span> <span class="ident">segment_size</span> <span class="op">=</span> <span class="ident">s</span>.<span class="ident">read</span>::<span class="op">&lt;</span><span class="ident">u16</span><span class="op">&gt;</span>()<span class="question-mark">?</span>;
-        <span class="kw">let</span> <span class="ident">number_of_segments</span> <span class="op">=</span> <span class="ident">s</span>.<span class="ident">read</span>::<span class="op">&lt;</span><span class="ident">u16</span><span class="op">&gt;</span>()<span class="question-mark">?</span>;
-        <span class="ident">s</span>.<span class="ident">advance</span>(<span class="number">6</span>); <span class="comment">// search_range + entry_selector + range_shift</span>
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>, T: BinarySearchValue + core::fmt::Debug&gt; BinarySearchTable&lt;<span class="lifetime">&#39;a</span>, T&gt; {
+    <span class="attribute">#[inline(never)]
+    </span><span class="kw">fn </span>parse(data: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8]) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="self">Self</span>&gt; {
+        <span class="kw">let </span><span class="kw-2">mut </span>s = Stream::new(data);
+        <span class="kw">let </span>segment_size = s.read::&lt;u16&gt;()<span class="question-mark">?</span>;
+        <span class="kw">let </span>number_of_segments = s.read::&lt;u16&gt;()<span class="question-mark">?</span>;
+        s.advance(<span class="number">6</span>); <span class="comment">// search_range + entry_selector + range_shift
 
-        <span class="kw">if</span> <span class="ident">usize::from</span>(<span class="ident">segment_size</span>) <span class="op">!</span><span class="op">=</span> <span class="ident">T::SIZE</span> {
-            <span class="kw">return</span> <span class="prelude-val">None</span>;
+        </span><span class="kw">if </span>usize::from(segment_size) != T::SIZE {
+            <span class="kw">return </span><span class="prelude-val">None</span>;
         }
 
-        <span class="kw">if</span> <span class="ident">number_of_segments</span> <span class="op">==</span> <span class="number">0</span> {
-            <span class="kw">return</span> <span class="prelude-val">None</span>;
+        <span class="kw">if </span>number_of_segments == <span class="number">0 </span>{
+            <span class="kw">return </span><span class="prelude-val">None</span>;
         }
 
-        <span class="kw">let</span> <span class="ident">values</span> <span class="op">=</span> <span class="ident">s</span>.<span class="ident">read_array16</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>(<span class="ident">number_of_segments</span>)<span class="question-mark">?</span>;
+        <span class="kw">let </span>values = s.read_array16::&lt;T&gt;(number_of_segments)<span class="question-mark">?</span>;
 
-        <span class="comment">// &#39;The number of termination values that need to be included is table-specific.</span>
-        <span class="comment">// The value that indicates binary search termination is 0xFFFF.&#39;</span>
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">len</span> <span class="op">=</span> <span class="ident">number_of_segments</span>;
-        <span class="kw">if</span> <span class="ident">values</span>.<span class="ident">last</span>()<span class="question-mark">?</span>.<span class="ident">is_termination</span>() {
-            <span class="ident">len</span> <span class="op">=</span> <span class="ident">len</span>.<span class="ident">checked_sub</span>(<span class="number">1</span>)<span class="question-mark">?</span>;
+        <span class="comment">// &#39;The number of termination values that need to be included is table-specific.
+        // The value that indicates binary search termination is 0xFFFF.&#39;
+        </span><span class="kw">let </span><span class="kw-2">mut </span>len = number_of_segments;
+        <span class="kw">if </span>values.last()<span class="question-mark">?</span>.is_termination() {
+            len = len.checked_sub(<span class="number">1</span>)<span class="question-mark">?</span>;
         }
 
-        <span class="prelude-val">Some</span>(<span class="ident">BinarySearchTable</span> {
-            <span class="ident">len</span>: <span class="ident">NonZeroU16::new</span>(<span class="ident">len</span>)<span class="question-mark">?</span>,
-            <span class="ident">values</span>,
+        <span class="prelude-val">Some</span>(BinarySearchTable {
+            len: NonZeroU16::new(len)<span class="question-mark">?</span>,
+            values,
         })
     }
 
-    <span class="kw">fn</span> <span class="ident">get</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">key</span>: <span class="ident">GlyphId</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">min</span> <span class="op">=</span> <span class="number">0</span>;
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">max</span> <span class="op">=</span> (<span class="self">self</span>.<span class="ident">len</span>.<span class="ident">get</span>() <span class="kw">as</span> <span class="ident">isize</span>) <span class="op">-</span> <span class="number">1</span>;
-        <span class="kw">while</span> <span class="ident">min</span> <span class="op">&lt;</span><span class="op">=</span> <span class="ident">max</span> {
-            <span class="kw">let</span> <span class="ident">mid</span> <span class="op">=</span> (<span class="ident">min</span> <span class="op">+</span> <span class="ident">max</span>) <span class="op">/</span> <span class="number">2</span>;
-            <span class="kw">let</span> <span class="ident">v</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">values</span>.<span class="ident">get</span>(<span class="ident">mid</span> <span class="kw">as</span> <span class="ident">u16</span>)<span class="question-mark">?</span>;
-            <span class="kw">match</span> <span class="ident">v</span>.<span class="ident">contains</span>(<span class="ident">key</span>) {
-                <span class="ident">core::cmp::Ordering::Less</span>    =&gt; <span class="ident">max</span> <span class="op">=</span> <span class="ident">mid</span> <span class="op">-</span> <span class="number">1</span>,
-                <span class="ident">core::cmp::Ordering::Greater</span> =&gt; <span class="ident">min</span> <span class="op">=</span> <span class="ident">mid</span> <span class="op">+</span> <span class="number">1</span>,
-                <span class="ident">core::cmp::Ordering::Equal</span>   =&gt; <span class="kw">return</span> <span class="prelude-val">Some</span>(<span class="ident">v</span>),
+    <span class="kw">fn </span>get(<span class="kw-2">&amp;</span><span class="self">self</span>, key: GlyphId) -&gt; <span class="prelude-ty">Option</span>&lt;T&gt; {
+        <span class="kw">let </span><span class="kw-2">mut </span>min = <span class="number">0</span>;
+        <span class="kw">let </span><span class="kw-2">mut </span>max = (<span class="self">self</span>.len.get() <span class="kw">as </span>isize) - <span class="number">1</span>;
+        <span class="kw">while </span>min &lt;= max {
+            <span class="kw">let </span>mid = (min + max) / <span class="number">2</span>;
+            <span class="kw">let </span>v = <span class="self">self</span>.values.get(mid <span class="kw">as </span>u16)<span class="question-mark">?</span>;
+            <span class="kw">match </span>v.contains(key) {
+                core::cmp::Ordering::Less    =&gt; max = mid - <span class="number">1</span>,
+                core::cmp::Ordering::Greater =&gt; min = mid + <span class="number">1</span>,
+                core::cmp::Ordering::Equal   =&gt; <span class="kw">return </span><span class="prelude-val">Some</span>(v),
             }
         }
 
-        <span class="prelude-val">None</span>
-    }
+        <span class="prelude-val">None
+    </span>}
 }
 
 
-<span class="kw">trait</span> <span class="ident">BinarySearchValue</span>: <span class="ident">FromData</span> {
-    <span class="kw">fn</span> <span class="ident">is_termination</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span>;
-    <span class="kw">fn</span> <span class="ident">contains</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">glyph_id</span>: <span class="ident">GlyphId</span>) -&gt; <span class="ident">core::cmp::Ordering</span>;
+<span class="kw">trait </span>BinarySearchValue: FromData {
+    <span class="kw">fn </span>is_termination(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; bool;
+    <span class="kw">fn </span>contains(<span class="kw-2">&amp;</span><span class="self">self</span>, glyph_id: GlyphId) -&gt; core::cmp::Ordering;
 }
 
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">Debug</span>)]</span>
-<span class="kw">struct</span> <span class="ident">LookupSegment</span> {
-    <span class="ident">last_glyph</span>: <span class="ident">u16</span>,
-    <span class="ident">first_glyph</span>: <span class="ident">u16</span>,
-    <span class="ident">value</span>: <span class="ident">u16</span>,
+<span class="attribute">#[derive(Clone, Copy, Debug)]
+</span><span class="kw">struct </span>LookupSegment {
+    last_glyph: u16,
+    first_glyph: u16,
+    value: u16,
 }
 
-<span class="kw">impl</span> <span class="ident">FromData</span> <span class="kw">for</span> <span class="ident">LookupSegment</span> {
-    <span class="kw">const</span> <span class="ident">SIZE</span>: <span class="ident">usize</span> <span class="op">=</span> <span class="number">6</span>;
+<span class="kw">impl </span>FromData <span class="kw">for </span>LookupSegment {
+    <span class="kw">const </span>SIZE: usize = <span class="number">6</span>;
 
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">parse</span>(<span class="ident">data</span>: <span class="kw-2">&amp;</span>[<span class="ident">u8</span>]) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">s</span> <span class="op">=</span> <span class="ident">Stream::new</span>(<span class="ident">data</span>);
-        <span class="prelude-val">Some</span>(<span class="ident">LookupSegment</span> {
-            <span class="ident">last_glyph</span>: <span class="ident">s</span>.<span class="ident">read</span>::<span class="op">&lt;</span><span class="ident">u16</span><span class="op">&gt;</span>()<span class="question-mark">?</span>,
-            <span class="ident">first_glyph</span>: <span class="ident">s</span>.<span class="ident">read</span>::<span class="op">&lt;</span><span class="ident">u16</span><span class="op">&gt;</span>()<span class="question-mark">?</span>,
-            <span class="ident">value</span>: <span class="ident">s</span>.<span class="ident">read</span>::<span class="op">&lt;</span><span class="ident">u16</span><span class="op">&gt;</span>()<span class="question-mark">?</span>,
-        })
-    }
-}
-
-<span class="kw">impl</span> <span class="ident">BinarySearchValue</span> <span class="kw">for</span> <span class="ident">LookupSegment</span> {
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">is_termination</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span> {
-        <span class="self">self</span>.<span class="ident">last_glyph</span> <span class="op">==</span> <span class="number">0xFFFF</span> <span class="op">&amp;&amp;</span> <span class="self">self</span>.<span class="ident">first_glyph</span> <span class="op">==</span> <span class="number">0xFFFF</span>
-    }
-
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">contains</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">id</span>: <span class="ident">GlyphId</span>) -&gt; <span class="ident">core::cmp::Ordering</span> {
-        <span class="kw">if</span> <span class="ident">id</span>.<span class="number">0</span> <span class="op">&lt;</span> <span class="self">self</span>.<span class="ident">first_glyph</span> {
-            <span class="ident">core::cmp::Ordering::Less</span>
-        } <span class="kw">else</span> <span class="kw">if</span> <span class="ident">id</span>.<span class="number">0</span> <span class="op">&lt;</span><span class="op">=</span> <span class="self">self</span>.<span class="ident">last_glyph</span> {
-            <span class="ident">core::cmp::Ordering::Equal</span>
-        } <span class="kw">else</span> {
-            <span class="ident">core::cmp::Ordering::Greater</span>
-        }
-    }
-}
-
-
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">Debug</span>)]</span>
-<span class="kw">struct</span> <span class="ident">LookupSingle</span> {
-    <span class="ident">glyph</span>: <span class="ident">u16</span>,
-    <span class="ident">value</span>: <span class="ident">u16</span>,
-}
-
-<span class="kw">impl</span> <span class="ident">FromData</span> <span class="kw">for</span> <span class="ident">LookupSingle</span> {
-    <span class="kw">const</span> <span class="ident">SIZE</span>: <span class="ident">usize</span> <span class="op">=</span> <span class="number">4</span>;
-
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">parse</span>(<span class="ident">data</span>: <span class="kw-2">&amp;</span>[<span class="ident">u8</span>]) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">s</span> <span class="op">=</span> <span class="ident">Stream::new</span>(<span class="ident">data</span>);
-        <span class="prelude-val">Some</span>(<span class="ident">LookupSingle</span> {
-            <span class="ident">glyph</span>: <span class="ident">s</span>.<span class="ident">read</span>::<span class="op">&lt;</span><span class="ident">u16</span><span class="op">&gt;</span>()<span class="question-mark">?</span>,
-            <span class="ident">value</span>: <span class="ident">s</span>.<span class="ident">read</span>::<span class="op">&lt;</span><span class="ident">u16</span><span class="op">&gt;</span>()<span class="question-mark">?</span>,
+    <span class="attribute">#[inline]
+    </span><span class="kw">fn </span>parse(data: <span class="kw-2">&amp;</span>[u8]) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="self">Self</span>&gt; {
+        <span class="kw">let </span><span class="kw-2">mut </span>s = Stream::new(data);
+        <span class="prelude-val">Some</span>(LookupSegment {
+            last_glyph: s.read::&lt;u16&gt;()<span class="question-mark">?</span>,
+            first_glyph: s.read::&lt;u16&gt;()<span class="question-mark">?</span>,
+            value: s.read::&lt;u16&gt;()<span class="question-mark">?</span>,
         })
     }
 }
 
-<span class="kw">impl</span> <span class="ident">BinarySearchValue</span> <span class="kw">for</span> <span class="ident">LookupSingle</span> {
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">is_termination</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span> {
-        <span class="self">self</span>.<span class="ident">glyph</span> <span class="op">==</span> <span class="number">0xFFFF</span>
-    }
+<span class="kw">impl </span>BinarySearchValue <span class="kw">for </span>LookupSegment {
+    <span class="attribute">#[inline]
+    </span><span class="kw">fn </span>is_termination(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; bool {
+        <span class="self">self</span>.last_glyph == <span class="number">0xFFFF </span>&amp;&amp; <span class="self">self</span>.first_glyph == <span class="number">0xFFFF
+    </span>}
 
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">contains</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">id</span>: <span class="ident">GlyphId</span>) -&gt; <span class="ident">core::cmp::Ordering</span> {
-        <span class="ident">id</span>.<span class="number">0</span>.<span class="ident">cmp</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">glyph</span>)
+    <span class="attribute">#[inline]
+    </span><span class="kw">fn </span>contains(<span class="kw-2">&amp;</span><span class="self">self</span>, id: GlyphId) -&gt; core::cmp::Ordering {
+        <span class="kw">if </span>id.<span class="number">0 </span>&lt; <span class="self">self</span>.first_glyph {
+            core::cmp::Ordering::Less
+        } <span class="kw">else if </span>id.<span class="number">0 </span>&lt;= <span class="self">self</span>.last_glyph {
+            core::cmp::Ordering::Equal
+        } <span class="kw">else </span>{
+            core::cmp::Ordering::Greater
+        }
+    }
+}
+
+
+<span class="attribute">#[derive(Clone, Copy, Debug)]
+</span><span class="kw">struct </span>LookupSingle {
+    glyph: u16,
+    value: u16,
+}
+
+<span class="kw">impl </span>FromData <span class="kw">for </span>LookupSingle {
+    <span class="kw">const </span>SIZE: usize = <span class="number">4</span>;
+
+    <span class="attribute">#[inline]
+    </span><span class="kw">fn </span>parse(data: <span class="kw-2">&amp;</span>[u8]) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="self">Self</span>&gt; {
+        <span class="kw">let </span><span class="kw-2">mut </span>s = Stream::new(data);
+        <span class="prelude-val">Some</span>(LookupSingle {
+            glyph: s.read::&lt;u16&gt;()<span class="question-mark">?</span>,
+            value: s.read::&lt;u16&gt;()<span class="question-mark">?</span>,
+        })
+    }
+}
+
+<span class="kw">impl </span>BinarySearchValue <span class="kw">for </span>LookupSingle {
+    <span class="attribute">#[inline]
+    </span><span class="kw">fn </span>is_termination(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; bool {
+        <span class="self">self</span>.glyph == <span class="number">0xFFFF
+    </span>}
+
+    <span class="attribute">#[inline]
+    </span><span class="kw">fn </span>contains(<span class="kw-2">&amp;</span><span class="self">self</span>, id: GlyphId) -&gt; core::cmp::Ordering {
+        id.<span class="number">0</span>.cmp(<span class="kw-2">&amp;</span><span class="self">self</span>.glyph)
     }
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="ttf_parser" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0 (a55dd71d5 2022-09-19)" ></div></body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="ttf_parser" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.66.1 (90743e729 2023-01-10)" ></div></body></html>

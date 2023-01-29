@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/egui-0.16.1/src/painter.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>painter.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../egui/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../egui/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../egui/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/egui-0.16.1/src/painter.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>painter.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../normalize.css"><link rel="stylesheet" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../ayu.css" disabled><link rel="stylesheet" href="../../dark.css" disabled><link rel="stylesheet" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><div class="width-limiter"><nav class="sub"><a class="sub-logo-container" href="../../egui/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -412,419 +412,419 @@
 <span id="412">412</span>
 <span id="413">413</span>
 <span id="414">414</span>
-</pre><pre class="rust"><code><span class="kw">use</span> <span class="kw">crate</span>::{
-    <span class="ident">emath</span>::{<span class="ident">Align2</span>, <span class="ident">Pos2</span>, <span class="ident">Rect</span>, <span class="ident">Vec2</span>},
-    <span class="ident">layers</span>::{<span class="ident">LayerId</span>, <span class="ident">PaintList</span>, <span class="ident">ShapeIdx</span>},
-    <span class="ident">Color32</span>, <span class="ident">CtxRef</span>,
+</pre><pre class="rust"><code><span class="kw">use crate</span>::{
+    emath::{Align2, Pos2, Rect, Vec2},
+    layers::{LayerId, PaintList, ShapeIdx},
+    Color32, CtxRef,
 };
-<span class="kw">use</span> <span class="ident">epaint</span>::{
-    <span class="ident">mutex::Mutex</span>,
-    <span class="ident">text</span>::{<span class="ident">Fonts</span>, <span class="ident">Galley</span>, <span class="ident">TextStyle</span>},
-    <span class="ident">CircleShape</span>, <span class="ident">RectShape</span>, <span class="ident">Shape</span>, <span class="ident">Stroke</span>, <span class="ident">TextShape</span>,
+<span class="kw">use </span>epaint::{
+    mutex::Mutex,
+    text::{Fonts, Galley, TextStyle},
+    CircleShape, RectShape, Shape, Stroke, TextShape,
 };
 
-<span class="doccomment">/// Helper to paint shapes and text to a specific region on a specific layer.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// All coordinates are screen coordinates in the unit points (one point can consist of many physical pixels).</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Painter</span> {
-    <span class="doccomment">/// Source of fonts and destination of shapes</span>
-    <span class="ident">ctx</span>: <span class="ident">CtxRef</span>,
+<span class="doccomment">/// Helper to paint shapes and text to a specific region on a specific layer.
+///
+/// All coordinates are screen coordinates in the unit points (one point can consist of many physical pixels).
+</span><span class="attribute">#[derive(Clone)]
+</span><span class="kw">pub struct </span>Painter {
+    <span class="doccomment">/// Source of fonts and destination of shapes
+    </span>ctx: CtxRef,
 
-    <span class="doccomment">/// Where we paint</span>
-    <span class="ident">layer_id</span>: <span class="ident">LayerId</span>,
+    <span class="doccomment">/// Where we paint
+    </span>layer_id: LayerId,
 
-    <span class="ident">paint_list</span>: <span class="ident">std::sync::Arc</span><span class="op">&lt;</span><span class="ident">Mutex</span><span class="op">&lt;</span><span class="ident">PaintList</span><span class="op">&gt;</span><span class="op">&gt;</span>,
+    paint_list: std::sync::Arc&lt;Mutex&lt;PaintList&gt;&gt;,
 
-    <span class="doccomment">/// Everything painted in this `Painter` will be clipped against this.</span>
-    <span class="doccomment">/// This means nothing outside of this rectangle will be visible on screen.</span>
-    <span class="ident">clip_rect</span>: <span class="ident">Rect</span>,
+    <span class="doccomment">/// Everything painted in this `Painter` will be clipped against this.
+    /// This means nothing outside of this rectangle will be visible on screen.
+    </span>clip_rect: Rect,
 
-    <span class="doccomment">/// If set, all shapes will have their colors modified to be closer to this.</span>
-    <span class="doccomment">/// This is used to implement grayed out interfaces.</span>
-    <span class="ident">fade_to_color</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Color32</span><span class="op">&gt;</span>,
+    <span class="doccomment">/// If set, all shapes will have their colors modified to be closer to this.
+    /// This is used to implement grayed out interfaces.
+    </span>fade_to_color: <span class="prelude-ty">Option</span>&lt;Color32&gt;,
 }
 
-<span class="kw">impl</span> <span class="ident">Painter</span> {
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">ctx</span>: <span class="ident">CtxRef</span>, <span class="ident">layer_id</span>: <span class="ident">LayerId</span>, <span class="ident">clip_rect</span>: <span class="ident">Rect</span>) -&gt; <span class="self">Self</span> {
-        <span class="kw">let</span> <span class="ident">paint_list</span> <span class="op">=</span> <span class="ident">ctx</span>.<span class="ident">graphics</span>().<span class="ident">list</span>(<span class="ident">layer_id</span>).<span class="ident">clone</span>();
-        <span class="self">Self</span> {
-            <span class="ident">ctx</span>,
-            <span class="ident">layer_id</span>,
-            <span class="ident">paint_list</span>,
-            <span class="ident">clip_rect</span>,
-            <span class="ident">fade_to_color</span>: <span class="prelude-val">None</span>,
+<span class="kw">impl </span>Painter {
+    <span class="kw">pub fn </span>new(ctx: CtxRef, layer_id: LayerId, clip_rect: Rect) -&gt; <span class="self">Self </span>{
+        <span class="kw">let </span>paint_list = ctx.graphics().list(layer_id).clone();
+        <span class="self">Self </span>{
+            ctx,
+            layer_id,
+            paint_list,
+            clip_rect,
+            fade_to_color: <span class="prelude-val">None</span>,
         }
     }
 
-    <span class="attribute">#[<span class="ident">must_use</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">with_layer_id</span>(<span class="self">self</span>, <span class="ident">layer_id</span>: <span class="ident">LayerId</span>) -&gt; <span class="self">Self</span> {
-        <span class="kw">let</span> <span class="ident">paint_list</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">ctx</span>.<span class="ident">graphics</span>().<span class="ident">list</span>(<span class="ident">layer_id</span>).<span class="ident">clone</span>();
-        <span class="self">Self</span> {
-            <span class="ident">ctx</span>: <span class="self">self</span>.<span class="ident">ctx</span>,
-            <span class="ident">paint_list</span>,
-            <span class="ident">layer_id</span>,
-            <span class="ident">clip_rect</span>: <span class="self">self</span>.<span class="ident">clip_rect</span>,
-            <span class="ident">fade_to_color</span>: <span class="prelude-val">None</span>,
+    <span class="attribute">#[must_use]
+    </span><span class="kw">pub fn </span>with_layer_id(<span class="self">self</span>, layer_id: LayerId) -&gt; <span class="self">Self </span>{
+        <span class="kw">let </span>paint_list = <span class="self">self</span>.ctx.graphics().list(layer_id).clone();
+        <span class="self">Self </span>{
+            ctx: <span class="self">self</span>.ctx,
+            paint_list,
+            layer_id,
+            clip_rect: <span class="self">self</span>.clip_rect,
+            fade_to_color: <span class="prelude-val">None</span>,
         }
     }
 
-    <span class="doccomment">/// redirect</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_layer_id</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">layer_id</span>: <span class="ident">LayerId</span>) {
-        <span class="self">self</span>.<span class="ident">layer_id</span> <span class="op">=</span> <span class="ident">layer_id</span>;
-        <span class="self">self</span>.<span class="ident">paint_list</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">ctx</span>.<span class="ident">graphics</span>().<span class="ident">list</span>(<span class="self">self</span>.<span class="ident">layer_id</span>).<span class="ident">clone</span>();
+    <span class="doccomment">/// redirect
+    </span><span class="kw">pub fn </span>set_layer_id(<span class="kw-2">&amp;mut </span><span class="self">self</span>, layer_id: LayerId) {
+        <span class="self">self</span>.layer_id = layer_id;
+        <span class="self">self</span>.paint_list = <span class="self">self</span>.ctx.graphics().list(<span class="self">self</span>.layer_id).clone();
     }
 
-    <span class="doccomment">/// If set, colors will be modified to look like this</span>
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">set_fade_to_color</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">fade_to_color</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Color32</span><span class="op">&gt;</span>) {
-        <span class="self">self</span>.<span class="ident">fade_to_color</span> <span class="op">=</span> <span class="ident">fade_to_color</span>;
+    <span class="doccomment">/// If set, colors will be modified to look like this
+    </span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>set_fade_to_color(<span class="kw-2">&amp;mut </span><span class="self">self</span>, fade_to_color: <span class="prelude-ty">Option</span>&lt;Color32&gt;) {
+        <span class="self">self</span>.fade_to_color = fade_to_color;
     }
 
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">visible</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span> {
-        <span class="self">self</span>.<span class="ident">fade_to_color</span> <span class="op">!</span><span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">Color32::TRANSPARENT</span>)
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>visible(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; bool {
+        <span class="self">self</span>.fade_to_color != <span class="prelude-val">Some</span>(Color32::TRANSPARENT)
     }
 
-    <span class="doccomment">/// If `false`, nothing added to the painter will be visible</span>
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">set_invisible</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>) {
-        <span class="self">self</span>.<span class="ident">fade_to_color</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">Color32::TRANSPARENT</span>);
+    <span class="doccomment">/// If `false`, nothing added to the painter will be visible
+    </span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>set_invisible(<span class="kw-2">&amp;mut </span><span class="self">self</span>) {
+        <span class="self">self</span>.fade_to_color = <span class="prelude-val">Some</span>(Color32::TRANSPARENT);
     }
 
-    <span class="doccomment">/// Create a painter for a sub-region of this `Painter`.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// The clip-rect of the returned `Painter` will be the intersection</span>
-    <span class="doccomment">/// of the given rectangle and the `clip_rect()` of this `Painter`.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">sub_region</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">rect</span>: <span class="ident">Rect</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">Self</span> {
-            <span class="ident">ctx</span>: <span class="self">self</span>.<span class="ident">ctx</span>.<span class="ident">clone</span>(),
-            <span class="ident">layer_id</span>: <span class="self">self</span>.<span class="ident">layer_id</span>,
-            <span class="ident">paint_list</span>: <span class="self">self</span>.<span class="ident">paint_list</span>.<span class="ident">clone</span>(),
-            <span class="ident">clip_rect</span>: <span class="ident">rect</span>.<span class="ident">intersect</span>(<span class="self">self</span>.<span class="ident">clip_rect</span>),
-            <span class="ident">fade_to_color</span>: <span class="self">self</span>.<span class="ident">fade_to_color</span>,
+    <span class="doccomment">/// Create a painter for a sub-region of this `Painter`.
+    ///
+    /// The clip-rect of the returned `Painter` will be the intersection
+    /// of the given rectangle and the `clip_rect()` of this `Painter`.
+    </span><span class="kw">pub fn </span>sub_region(<span class="kw-2">&amp;</span><span class="self">self</span>, rect: Rect) -&gt; <span class="self">Self </span>{
+        <span class="self">Self </span>{
+            ctx: <span class="self">self</span>.ctx.clone(),
+            layer_id: <span class="self">self</span>.layer_id,
+            paint_list: <span class="self">self</span>.paint_list.clone(),
+            clip_rect: rect.intersect(<span class="self">self</span>.clip_rect),
+            fade_to_color: <span class="self">self</span>.fade_to_color,
         }
-    }
-}
-
-<span class="doccomment">/// ## Accessors etc</span>
-<span class="kw">impl</span> <span class="ident">Painter</span> {
-    <span class="doccomment">/// Get a reference to the parent [`CtxRef`].</span>
-    <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ctx</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span><span class="ident">CtxRef</span> {
-        <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">ctx</span>
-    }
-
-    <span class="doccomment">/// Available fonts.</span>
-    <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">fonts</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span><span class="ident">Fonts</span> {
-        <span class="self">self</span>.<span class="ident">ctx</span>.<span class="ident">fonts</span>()
-    }
-
-    <span class="doccomment">/// Where we paint</span>
-    <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">layer_id</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">LayerId</span> {
-        <span class="self">self</span>.<span class="ident">layer_id</span>
-    }
-
-    <span class="doccomment">/// Everything painted in this `Painter` will be clipped against this.</span>
-    <span class="doccomment">/// This means nothing outside of this rectangle will be visible on screen.</span>
-    <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">clip_rect</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">Rect</span> {
-        <span class="self">self</span>.<span class="ident">clip_rect</span>
-    }
-
-    <span class="doccomment">/// Everything painted in this `Painter` will be clipped against this.</span>
-    <span class="doccomment">/// This means nothing outside of this rectangle will be visible on screen.</span>
-    <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_clip_rect</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">clip_rect</span>: <span class="ident">Rect</span>) {
-        <span class="self">self</span>.<span class="ident">clip_rect</span> <span class="op">=</span> <span class="ident">clip_rect</span>;
-    }
-
-    <span class="doccomment">/// Useful for pixel-perfect rendering.</span>
-    <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">round_to_pixel</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">point</span>: <span class="ident">f32</span>) -&gt; <span class="ident">f32</span> {
-        <span class="self">self</span>.<span class="ident">ctx</span>().<span class="ident">round_to_pixel</span>(<span class="ident">point</span>)
-    }
-
-    <span class="doccomment">/// Useful for pixel-perfect rendering.</span>
-    <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">round_vec_to_pixels</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">vec</span>: <span class="ident">Vec2</span>) -&gt; <span class="ident">Vec2</span> {
-        <span class="self">self</span>.<span class="ident">ctx</span>().<span class="ident">round_vec_to_pixels</span>(<span class="ident">vec</span>)
-    }
-
-    <span class="doccomment">/// Useful for pixel-perfect rendering.</span>
-    <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">round_pos_to_pixels</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">pos</span>: <span class="ident">Pos2</span>) -&gt; <span class="ident">Pos2</span> {
-        <span class="self">self</span>.<span class="ident">ctx</span>().<span class="ident">round_pos_to_pixels</span>(<span class="ident">pos</span>)
     }
 }
 
-<span class="doccomment">/// ## Low level</span>
-<span class="kw">impl</span> <span class="ident">Painter</span> {
-    <span class="kw">fn</span> <span class="ident">transform_shape</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">shape</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Shape</span>) {
-        <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">fade_to_color</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">fade_to_color</span> {
-            <span class="ident">tint_shape_towards</span>(<span class="ident">shape</span>, <span class="ident">fade_to_color</span>);
+<span class="doccomment">/// ## Accessors etc
+</span><span class="kw">impl </span>Painter {
+    <span class="doccomment">/// Get a reference to the parent [`CtxRef`].
+    </span><span class="attribute">#[inline(always)]
+    </span><span class="kw">pub fn </span>ctx(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span>CtxRef {
+        <span class="kw-2">&amp;</span><span class="self">self</span>.ctx
+    }
+
+    <span class="doccomment">/// Available fonts.
+    </span><span class="attribute">#[inline(always)]
+    </span><span class="kw">pub fn </span>fonts(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span>Fonts {
+        <span class="self">self</span>.ctx.fonts()
+    }
+
+    <span class="doccomment">/// Where we paint
+    </span><span class="attribute">#[inline(always)]
+    </span><span class="kw">pub fn </span>layer_id(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; LayerId {
+        <span class="self">self</span>.layer_id
+    }
+
+    <span class="doccomment">/// Everything painted in this `Painter` will be clipped against this.
+    /// This means nothing outside of this rectangle will be visible on screen.
+    </span><span class="attribute">#[inline(always)]
+    </span><span class="kw">pub fn </span>clip_rect(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; Rect {
+        <span class="self">self</span>.clip_rect
+    }
+
+    <span class="doccomment">/// Everything painted in this `Painter` will be clipped against this.
+    /// This means nothing outside of this rectangle will be visible on screen.
+    </span><span class="attribute">#[inline(always)]
+    </span><span class="kw">pub fn </span>set_clip_rect(<span class="kw-2">&amp;mut </span><span class="self">self</span>, clip_rect: Rect) {
+        <span class="self">self</span>.clip_rect = clip_rect;
+    }
+
+    <span class="doccomment">/// Useful for pixel-perfect rendering.
+    </span><span class="attribute">#[inline(always)]
+    </span><span class="kw">pub fn </span>round_to_pixel(<span class="kw-2">&amp;</span><span class="self">self</span>, point: f32) -&gt; f32 {
+        <span class="self">self</span>.ctx().round_to_pixel(point)
+    }
+
+    <span class="doccomment">/// Useful for pixel-perfect rendering.
+    </span><span class="attribute">#[inline(always)]
+    </span><span class="kw">pub fn </span>round_vec_to_pixels(<span class="kw-2">&amp;</span><span class="self">self</span>, vec: Vec2) -&gt; Vec2 {
+        <span class="self">self</span>.ctx().round_vec_to_pixels(vec)
+    }
+
+    <span class="doccomment">/// Useful for pixel-perfect rendering.
+    </span><span class="attribute">#[inline(always)]
+    </span><span class="kw">pub fn </span>round_pos_to_pixels(<span class="kw-2">&amp;</span><span class="self">self</span>, pos: Pos2) -&gt; Pos2 {
+        <span class="self">self</span>.ctx().round_pos_to_pixels(pos)
+    }
+}
+
+<span class="doccomment">/// ## Low level
+</span><span class="kw">impl </span>Painter {
+    <span class="kw">fn </span>transform_shape(<span class="kw-2">&amp;</span><span class="self">self</span>, shape: <span class="kw-2">&amp;mut </span>Shape) {
+        <span class="kw">if let </span><span class="prelude-val">Some</span>(fade_to_color) = <span class="self">self</span>.fade_to_color {
+            tint_shape_towards(shape, fade_to_color);
         }
     }
 
-    <span class="doccomment">/// It is up to the caller to make sure there is room for this.</span>
-    <span class="doccomment">/// Can be used for free painting.</span>
-    <span class="doccomment">/// NOTE: all coordinates are screen coordinates!</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">add</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">shape</span>: <span class="kw">impl</span> <span class="ident">Into</span><span class="op">&lt;</span><span class="ident">Shape</span><span class="op">&gt;</span>) -&gt; <span class="ident">ShapeIdx</span> {
-        <span class="kw">if</span> <span class="self">self</span>.<span class="ident">fade_to_color</span> <span class="op">==</span> <span class="prelude-val">Some</span>(<span class="ident">Color32::TRANSPARENT</span>) {
-            <span class="self">self</span>.<span class="ident">paint_list</span>.<span class="ident">lock</span>().<span class="ident">add</span>(<span class="self">self</span>.<span class="ident">clip_rect</span>, <span class="ident">Shape::Noop</span>)
-        } <span class="kw">else</span> {
-            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">shape</span> <span class="op">=</span> <span class="ident">shape</span>.<span class="ident">into</span>();
-            <span class="self">self</span>.<span class="ident">transform_shape</span>(<span class="kw-2">&amp;mut</span> <span class="ident">shape</span>);
-            <span class="self">self</span>.<span class="ident">paint_list</span>.<span class="ident">lock</span>().<span class="ident">add</span>(<span class="self">self</span>.<span class="ident">clip_rect</span>, <span class="ident">shape</span>)
+    <span class="doccomment">/// It is up to the caller to make sure there is room for this.
+    /// Can be used for free painting.
+    /// NOTE: all coordinates are screen coordinates!
+    </span><span class="kw">pub fn </span>add(<span class="kw-2">&amp;</span><span class="self">self</span>, shape: <span class="kw">impl </span>Into&lt;Shape&gt;) -&gt; ShapeIdx {
+        <span class="kw">if </span><span class="self">self</span>.fade_to_color == <span class="prelude-val">Some</span>(Color32::TRANSPARENT) {
+            <span class="self">self</span>.paint_list.lock().add(<span class="self">self</span>.clip_rect, Shape::Noop)
+        } <span class="kw">else </span>{
+            <span class="kw">let </span><span class="kw-2">mut </span>shape = shape.into();
+            <span class="self">self</span>.transform_shape(<span class="kw-2">&amp;mut </span>shape);
+            <span class="self">self</span>.paint_list.lock().add(<span class="self">self</span>.clip_rect, shape)
         }
     }
 
-    <span class="doccomment">/// Add many shapes at once.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// Calling this once is generally faster than calling [`Self::add`] multiple times.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">extend</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="kw-2">mut</span> <span class="ident">shapes</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Shape</span><span class="op">&gt;</span>) {
-        <span class="kw">if</span> <span class="self">self</span>.<span class="ident">fade_to_color</span> <span class="op">==</span> <span class="prelude-val">Some</span>(<span class="ident">Color32::TRANSPARENT</span>) {
+    <span class="doccomment">/// Add many shapes at once.
+    ///
+    /// Calling this once is generally faster than calling [`Self::add`] multiple times.
+    </span><span class="kw">pub fn </span>extend(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="kw-2">mut </span>shapes: Vec&lt;Shape&gt;) {
+        <span class="kw">if </span><span class="self">self</span>.fade_to_color == <span class="prelude-val">Some</span>(Color32::TRANSPARENT) {
             <span class="kw">return</span>;
         }
-        <span class="kw">if</span> <span class="op">!</span><span class="ident">shapes</span>.<span class="ident">is_empty</span>() {
-            <span class="kw">if</span> <span class="self">self</span>.<span class="ident">fade_to_color</span>.<span class="ident">is_some</span>() {
-                <span class="kw">for</span> <span class="ident">shape</span> <span class="kw">in</span> <span class="kw-2">&amp;mut</span> <span class="ident">shapes</span> {
-                    <span class="self">self</span>.<span class="ident">transform_shape</span>(<span class="ident">shape</span>);
+        <span class="kw">if </span>!shapes.is_empty() {
+            <span class="kw">if </span><span class="self">self</span>.fade_to_color.is_some() {
+                <span class="kw">for </span>shape <span class="kw">in </span><span class="kw-2">&amp;mut </span>shapes {
+                    <span class="self">self</span>.transform_shape(shape);
                 }
             }
 
-            <span class="self">self</span>.<span class="ident">paint_list</span>.<span class="ident">lock</span>().<span class="ident">extend</span>(<span class="self">self</span>.<span class="ident">clip_rect</span>, <span class="ident">shapes</span>);
+            <span class="self">self</span>.paint_list.lock().extend(<span class="self">self</span>.clip_rect, shapes);
         }
     }
 
-    <span class="doccomment">/// Modify an existing [`Shape`].</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">idx</span>: <span class="ident">ShapeIdx</span>, <span class="ident">shape</span>: <span class="kw">impl</span> <span class="ident">Into</span><span class="op">&lt;</span><span class="ident">Shape</span><span class="op">&gt;</span>) {
-        <span class="kw">if</span> <span class="self">self</span>.<span class="ident">fade_to_color</span> <span class="op">==</span> <span class="prelude-val">Some</span>(<span class="ident">Color32::TRANSPARENT</span>) {
+    <span class="doccomment">/// Modify an existing [`Shape`].
+    </span><span class="kw">pub fn </span>set(<span class="kw-2">&amp;</span><span class="self">self</span>, idx: ShapeIdx, shape: <span class="kw">impl </span>Into&lt;Shape&gt;) {
+        <span class="kw">if </span><span class="self">self</span>.fade_to_color == <span class="prelude-val">Some</span>(Color32::TRANSPARENT) {
             <span class="kw">return</span>;
         }
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">shape</span> <span class="op">=</span> <span class="ident">shape</span>.<span class="ident">into</span>();
-        <span class="self">self</span>.<span class="ident">transform_shape</span>(<span class="kw-2">&amp;mut</span> <span class="ident">shape</span>);
-        <span class="self">self</span>.<span class="ident">paint_list</span>.<span class="ident">lock</span>().<span class="ident">set</span>(<span class="ident">idx</span>, <span class="self">self</span>.<span class="ident">clip_rect</span>, <span class="ident">shape</span>);
+        <span class="kw">let </span><span class="kw-2">mut </span>shape = shape.into();
+        <span class="self">self</span>.transform_shape(<span class="kw-2">&amp;mut </span>shape);
+        <span class="self">self</span>.paint_list.lock().set(idx, <span class="self">self</span>.clip_rect, shape);
     }
 }
 
-<span class="doccomment">/// ## Debug painting</span>
-<span class="kw">impl</span> <span class="ident">Painter</span> {
-    <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">clippy::needless_pass_by_value</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">debug_rect</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">rect</span>: <span class="ident">Rect</span>, <span class="ident">color</span>: <span class="ident">Color32</span>, <span class="ident">text</span>: <span class="kw">impl</span> <span class="ident">ToString</span>) {
-        <span class="self">self</span>.<span class="ident">rect_stroke</span>(<span class="ident">rect</span>, <span class="number">0.0</span>, (<span class="number">1.0</span>, <span class="ident">color</span>));
-        <span class="kw">let</span> <span class="ident">text_style</span> <span class="op">=</span> <span class="ident">TextStyle::Monospace</span>;
-        <span class="self">self</span>.<span class="ident">text</span>(
-            <span class="ident">rect</span>.<span class="ident">min</span>,
-            <span class="ident">Align2::LEFT_TOP</span>,
-            <span class="ident">text</span>.<span class="ident">to_string</span>(),
-            <span class="ident">text_style</span>,
-            <span class="ident">color</span>,
+<span class="doccomment">/// ## Debug painting
+</span><span class="kw">impl </span>Painter {
+    <span class="attribute">#[allow(clippy::needless_pass_by_value)]
+    </span><span class="kw">pub fn </span>debug_rect(<span class="kw-2">&amp;mut </span><span class="self">self</span>, rect: Rect, color: Color32, text: <span class="kw">impl </span>ToString) {
+        <span class="self">self</span>.rect_stroke(rect, <span class="number">0.0</span>, (<span class="number">1.0</span>, color));
+        <span class="kw">let </span>text_style = TextStyle::Monospace;
+        <span class="self">self</span>.text(
+            rect.min,
+            Align2::LEFT_TOP,
+            text.to_string(),
+            text_style,
+            color,
         );
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">error</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">pos</span>: <span class="ident">Pos2</span>, <span class="ident">text</span>: <span class="kw">impl</span> <span class="ident">std::fmt::Display</span>) -&gt; <span class="ident">Rect</span> {
-        <span class="self">self</span>.<span class="ident">debug_text</span>(<span class="ident">pos</span>, <span class="ident">Align2::LEFT_TOP</span>, <span class="ident">Color32::RED</span>, <span class="macro">format!</span>(<span class="string">&quot;🔥 {}&quot;</span>, <span class="ident">text</span>))
+    <span class="kw">pub fn </span>error(<span class="kw-2">&amp;</span><span class="self">self</span>, pos: Pos2, text: <span class="kw">impl </span>std::fmt::Display) -&gt; Rect {
+        <span class="self">self</span>.debug_text(pos, Align2::LEFT_TOP, Color32::RED, <span class="macro">format!</span>(<span class="string">&quot;🔥 {}&quot;</span>, text))
     }
 
-    <span class="doccomment">/// text with a background</span>
-    <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">clippy::needless_pass_by_value</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">debug_text</span>(
+    <span class="doccomment">/// text with a background
+    </span><span class="attribute">#[allow(clippy::needless_pass_by_value)]
+    </span><span class="kw">pub fn </span>debug_text(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
-        <span class="ident">pos</span>: <span class="ident">Pos2</span>,
-        <span class="ident">anchor</span>: <span class="ident">Align2</span>,
-        <span class="ident">color</span>: <span class="ident">Color32</span>,
-        <span class="ident">text</span>: <span class="kw">impl</span> <span class="ident">ToString</span>,
-    ) -&gt; <span class="ident">Rect</span> {
-        <span class="kw">let</span> <span class="ident">galley</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">layout_no_wrap</span>(<span class="ident">text</span>.<span class="ident">to_string</span>(), <span class="ident">TextStyle::Monospace</span>, <span class="ident">color</span>);
-        <span class="kw">let</span> <span class="ident">rect</span> <span class="op">=</span> <span class="ident">anchor</span>.<span class="ident">anchor_rect</span>(<span class="ident">Rect::from_min_size</span>(<span class="ident">pos</span>, <span class="ident">galley</span>.<span class="ident">size</span>()));
-        <span class="kw">let</span> <span class="ident">frame_rect</span> <span class="op">=</span> <span class="ident">rect</span>.<span class="ident">expand</span>(<span class="number">2.0</span>);
-        <span class="self">self</span>.<span class="ident">add</span>(<span class="ident">Shape::rect_filled</span>(
-            <span class="ident">frame_rect</span>,
+        pos: Pos2,
+        anchor: Align2,
+        color: Color32,
+        text: <span class="kw">impl </span>ToString,
+    ) -&gt; Rect {
+        <span class="kw">let </span>galley = <span class="self">self</span>.layout_no_wrap(text.to_string(), TextStyle::Monospace, color);
+        <span class="kw">let </span>rect = anchor.anchor_rect(Rect::from_min_size(pos, galley.size()));
+        <span class="kw">let </span>frame_rect = rect.expand(<span class="number">2.0</span>);
+        <span class="self">self</span>.add(Shape::rect_filled(
+            frame_rect,
             <span class="number">0.0</span>,
-            <span class="ident">Color32::from_black_alpha</span>(<span class="number">240</span>),
+            Color32::from_black_alpha(<span class="number">240</span>),
         ));
-        <span class="self">self</span>.<span class="ident">galley</span>(<span class="ident">rect</span>.<span class="ident">min</span>, <span class="ident">galley</span>);
-        <span class="ident">frame_rect</span>
+        <span class="self">self</span>.galley(rect.min, galley);
+        frame_rect
     }
 }
 
-<span class="doccomment">/// # Paint different primitives</span>
-<span class="kw">impl</span> <span class="ident">Painter</span> {
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">line_segment</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">points</span>: [<span class="ident">Pos2</span>; <span class="number">2</span>], <span class="ident">stroke</span>: <span class="kw">impl</span> <span class="ident">Into</span><span class="op">&lt;</span><span class="ident">Stroke</span><span class="op">&gt;</span>) {
-        <span class="self">self</span>.<span class="ident">add</span>(<span class="ident">Shape::LineSegment</span> {
-            <span class="ident">points</span>,
-            <span class="ident">stroke</span>: <span class="ident">stroke</span>.<span class="ident">into</span>(),
+<span class="doccomment">/// # Paint different primitives
+</span><span class="kw">impl </span>Painter {
+    <span class="kw">pub fn </span>line_segment(<span class="kw-2">&amp;</span><span class="self">self</span>, points: [Pos2; <span class="number">2</span>], stroke: <span class="kw">impl </span>Into&lt;Stroke&gt;) {
+        <span class="self">self</span>.add(Shape::LineSegment {
+            points,
+            stroke: stroke.into(),
         });
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">circle</span>(
+    <span class="kw">pub fn </span>circle(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
-        <span class="ident">center</span>: <span class="ident">Pos2</span>,
-        <span class="ident">radius</span>: <span class="ident">f32</span>,
-        <span class="ident">fill_color</span>: <span class="kw">impl</span> <span class="ident">Into</span><span class="op">&lt;</span><span class="ident">Color32</span><span class="op">&gt;</span>,
-        <span class="ident">stroke</span>: <span class="kw">impl</span> <span class="ident">Into</span><span class="op">&lt;</span><span class="ident">Stroke</span><span class="op">&gt;</span>,
+        center: Pos2,
+        radius: f32,
+        fill_color: <span class="kw">impl </span>Into&lt;Color32&gt;,
+        stroke: <span class="kw">impl </span>Into&lt;Stroke&gt;,
     ) {
-        <span class="self">self</span>.<span class="ident">add</span>(<span class="ident">CircleShape</span> {
-            <span class="ident">center</span>,
-            <span class="ident">radius</span>,
-            <span class="ident">fill</span>: <span class="ident">fill_color</span>.<span class="ident">into</span>(),
-            <span class="ident">stroke</span>: <span class="ident">stroke</span>.<span class="ident">into</span>(),
+        <span class="self">self</span>.add(CircleShape {
+            center,
+            radius,
+            fill: fill_color.into(),
+            stroke: stroke.into(),
         });
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">circle_filled</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">center</span>: <span class="ident">Pos2</span>, <span class="ident">radius</span>: <span class="ident">f32</span>, <span class="ident">fill_color</span>: <span class="kw">impl</span> <span class="ident">Into</span><span class="op">&lt;</span><span class="ident">Color32</span><span class="op">&gt;</span>) {
-        <span class="self">self</span>.<span class="ident">add</span>(<span class="ident">CircleShape</span> {
-            <span class="ident">center</span>,
-            <span class="ident">radius</span>,
-            <span class="ident">fill</span>: <span class="ident">fill_color</span>.<span class="ident">into</span>(),
-            <span class="ident">stroke</span>: <span class="ident">Default::default</span>(),
+    <span class="kw">pub fn </span>circle_filled(<span class="kw-2">&amp;</span><span class="self">self</span>, center: Pos2, radius: f32, fill_color: <span class="kw">impl </span>Into&lt;Color32&gt;) {
+        <span class="self">self</span>.add(CircleShape {
+            center,
+            radius,
+            fill: fill_color.into(),
+            stroke: Default::default(),
         });
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">circle_stroke</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">center</span>: <span class="ident">Pos2</span>, <span class="ident">radius</span>: <span class="ident">f32</span>, <span class="ident">stroke</span>: <span class="kw">impl</span> <span class="ident">Into</span><span class="op">&lt;</span><span class="ident">Stroke</span><span class="op">&gt;</span>) {
-        <span class="self">self</span>.<span class="ident">add</span>(<span class="ident">CircleShape</span> {
-            <span class="ident">center</span>,
-            <span class="ident">radius</span>,
-            <span class="ident">fill</span>: <span class="ident">Default::default</span>(),
-            <span class="ident">stroke</span>: <span class="ident">stroke</span>.<span class="ident">into</span>(),
+    <span class="kw">pub fn </span>circle_stroke(<span class="kw-2">&amp;</span><span class="self">self</span>, center: Pos2, radius: f32, stroke: <span class="kw">impl </span>Into&lt;Stroke&gt;) {
+        <span class="self">self</span>.add(CircleShape {
+            center,
+            radius,
+            fill: Default::default(),
+            stroke: stroke.into(),
         });
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">rect</span>(
+    <span class="kw">pub fn </span>rect(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
-        <span class="ident">rect</span>: <span class="ident">Rect</span>,
-        <span class="ident">corner_radius</span>: <span class="ident">f32</span>,
-        <span class="ident">fill_color</span>: <span class="kw">impl</span> <span class="ident">Into</span><span class="op">&lt;</span><span class="ident">Color32</span><span class="op">&gt;</span>,
-        <span class="ident">stroke</span>: <span class="kw">impl</span> <span class="ident">Into</span><span class="op">&lt;</span><span class="ident">Stroke</span><span class="op">&gt;</span>,
+        rect: Rect,
+        corner_radius: f32,
+        fill_color: <span class="kw">impl </span>Into&lt;Color32&gt;,
+        stroke: <span class="kw">impl </span>Into&lt;Stroke&gt;,
     ) {
-        <span class="self">self</span>.<span class="ident">add</span>(<span class="ident">RectShape</span> {
-            <span class="ident">rect</span>,
-            <span class="ident">corner_radius</span>,
-            <span class="ident">fill</span>: <span class="ident">fill_color</span>.<span class="ident">into</span>(),
-            <span class="ident">stroke</span>: <span class="ident">stroke</span>.<span class="ident">into</span>(),
+        <span class="self">self</span>.add(RectShape {
+            rect,
+            corner_radius,
+            fill: fill_color.into(),
+            stroke: stroke.into(),
         });
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">rect_filled</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">rect</span>: <span class="ident">Rect</span>, <span class="ident">corner_radius</span>: <span class="ident">f32</span>, <span class="ident">fill_color</span>: <span class="kw">impl</span> <span class="ident">Into</span><span class="op">&lt;</span><span class="ident">Color32</span><span class="op">&gt;</span>) {
-        <span class="self">self</span>.<span class="ident">add</span>(<span class="ident">RectShape</span> {
-            <span class="ident">rect</span>,
-            <span class="ident">corner_radius</span>,
-            <span class="ident">fill</span>: <span class="ident">fill_color</span>.<span class="ident">into</span>(),
-            <span class="ident">stroke</span>: <span class="ident">Default::default</span>(),
+    <span class="kw">pub fn </span>rect_filled(<span class="kw-2">&amp;</span><span class="self">self</span>, rect: Rect, corner_radius: f32, fill_color: <span class="kw">impl </span>Into&lt;Color32&gt;) {
+        <span class="self">self</span>.add(RectShape {
+            rect,
+            corner_radius,
+            fill: fill_color.into(),
+            stroke: Default::default(),
         });
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">rect_stroke</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">rect</span>: <span class="ident">Rect</span>, <span class="ident">corner_radius</span>: <span class="ident">f32</span>, <span class="ident">stroke</span>: <span class="kw">impl</span> <span class="ident">Into</span><span class="op">&lt;</span><span class="ident">Stroke</span><span class="op">&gt;</span>) {
-        <span class="self">self</span>.<span class="ident">add</span>(<span class="ident">RectShape</span> {
-            <span class="ident">rect</span>,
-            <span class="ident">corner_radius</span>,
-            <span class="ident">fill</span>: <span class="ident">Default::default</span>(),
-            <span class="ident">stroke</span>: <span class="ident">stroke</span>.<span class="ident">into</span>(),
+    <span class="kw">pub fn </span>rect_stroke(<span class="kw-2">&amp;</span><span class="self">self</span>, rect: Rect, corner_radius: f32, stroke: <span class="kw">impl </span>Into&lt;Stroke&gt;) {
+        <span class="self">self</span>.add(RectShape {
+            rect,
+            corner_radius,
+            fill: Default::default(),
+            stroke: stroke.into(),
         });
     }
 
-    <span class="doccomment">/// Show an arrow starting at `origin` and going in the direction of `vec`, with the length `vec.length()`.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">arrow</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">origin</span>: <span class="ident">Pos2</span>, <span class="ident">vec</span>: <span class="ident">Vec2</span>, <span class="ident">stroke</span>: <span class="ident">Stroke</span>) {
-        <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::emath</span>::<span class="kw-2">*</span>;
-        <span class="kw">let</span> <span class="ident">rot</span> <span class="op">=</span> <span class="ident">Rot2::from_angle</span>(<span class="ident">std::f32::consts::TAU</span> <span class="op">/</span> <span class="number">10.0</span>);
-        <span class="kw">let</span> <span class="ident">tip_length</span> <span class="op">=</span> <span class="ident">vec</span>.<span class="ident">length</span>() <span class="op">/</span> <span class="number">4.0</span>;
-        <span class="kw">let</span> <span class="ident">tip</span> <span class="op">=</span> <span class="ident">origin</span> <span class="op">+</span> <span class="ident">vec</span>;
-        <span class="kw">let</span> <span class="ident">dir</span> <span class="op">=</span> <span class="ident">vec</span>.<span class="ident">normalized</span>();
-        <span class="self">self</span>.<span class="ident">line_segment</span>([<span class="ident">origin</span>, <span class="ident">tip</span>], <span class="ident">stroke</span>);
-        <span class="self">self</span>.<span class="ident">line_segment</span>([<span class="ident">tip</span>, <span class="ident">tip</span> <span class="op">-</span> <span class="ident">tip_length</span> <span class="op">*</span> (<span class="ident">rot</span> <span class="op">*</span> <span class="ident">dir</span>)], <span class="ident">stroke</span>);
-        <span class="self">self</span>.<span class="ident">line_segment</span>([<span class="ident">tip</span>, <span class="ident">tip</span> <span class="op">-</span> <span class="ident">tip_length</span> <span class="op">*</span> (<span class="ident">rot</span>.<span class="ident">inverse</span>() <span class="op">*</span> <span class="ident">dir</span>)], <span class="ident">stroke</span>);
+    <span class="doccomment">/// Show an arrow starting at `origin` and going in the direction of `vec`, with the length `vec.length()`.
+    </span><span class="kw">pub fn </span>arrow(<span class="kw-2">&amp;</span><span class="self">self</span>, origin: Pos2, vec: Vec2, stroke: Stroke) {
+        <span class="kw">use </span><span class="kw">crate</span>::emath::<span class="kw-2">*</span>;
+        <span class="kw">let </span>rot = Rot2::from_angle(std::f32::consts::TAU / <span class="number">10.0</span>);
+        <span class="kw">let </span>tip_length = vec.length() / <span class="number">4.0</span>;
+        <span class="kw">let </span>tip = origin + vec;
+        <span class="kw">let </span>dir = vec.normalized();
+        <span class="self">self</span>.line_segment([origin, tip], stroke);
+        <span class="self">self</span>.line_segment([tip, tip - tip_length * (rot * dir)], stroke);
+        <span class="self">self</span>.line_segment([tip, tip - tip_length * (rot.inverse() * dir)], stroke);
     }
 }
 
-<span class="doccomment">/// ## Text</span>
-<span class="kw">impl</span> <span class="ident">Painter</span> {
-    <span class="doccomment">/// Lay out and paint some text.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// To center the text at the given position, use `anchor: (Center, Center)`.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// To find out the size of text before painting it, use</span>
-    <span class="doccomment">/// [`Self::layout`] or [`Self::layout_no_wrap`].</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// Returns where the text ended up.</span>
-    <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">clippy::needless_pass_by_value</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">text</span>(
+<span class="doccomment">/// ## Text
+</span><span class="kw">impl </span>Painter {
+    <span class="doccomment">/// Lay out and paint some text.
+    ///
+    /// To center the text at the given position, use `anchor: (Center, Center)`.
+    ///
+    /// To find out the size of text before painting it, use
+    /// [`Self::layout`] or [`Self::layout_no_wrap`].
+    ///
+    /// Returns where the text ended up.
+    </span><span class="attribute">#[allow(clippy::needless_pass_by_value)]
+    </span><span class="kw">pub fn </span>text(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
-        <span class="ident">pos</span>: <span class="ident">Pos2</span>,
-        <span class="ident">anchor</span>: <span class="ident">Align2</span>,
-        <span class="ident">text</span>: <span class="kw">impl</span> <span class="ident">ToString</span>,
-        <span class="ident">text_style</span>: <span class="ident">TextStyle</span>,
-        <span class="ident">text_color</span>: <span class="ident">Color32</span>,
-    ) -&gt; <span class="ident">Rect</span> {
-        <span class="kw">let</span> <span class="ident">galley</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">layout_no_wrap</span>(<span class="ident">text</span>.<span class="ident">to_string</span>(), <span class="ident">text_style</span>, <span class="ident">text_color</span>);
-        <span class="kw">let</span> <span class="ident">rect</span> <span class="op">=</span> <span class="ident">anchor</span>.<span class="ident">anchor_rect</span>(<span class="ident">Rect::from_min_size</span>(<span class="ident">pos</span>, <span class="ident">galley</span>.<span class="ident">size</span>()));
-        <span class="self">self</span>.<span class="ident">galley</span>(<span class="ident">rect</span>.<span class="ident">min</span>, <span class="ident">galley</span>);
-        <span class="ident">rect</span>
+        pos: Pos2,
+        anchor: Align2,
+        text: <span class="kw">impl </span>ToString,
+        text_style: TextStyle,
+        text_color: Color32,
+    ) -&gt; Rect {
+        <span class="kw">let </span>galley = <span class="self">self</span>.layout_no_wrap(text.to_string(), text_style, text_color);
+        <span class="kw">let </span>rect = anchor.anchor_rect(Rect::from_min_size(pos, galley.size()));
+        <span class="self">self</span>.galley(rect.min, galley);
+        rect
     }
 
-    <span class="doccomment">/// Will wrap text at the given width and line break at `\n`.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// Paint the results with [`Self::galley`].</span>
-    <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">layout</span>(
+    <span class="doccomment">/// Will wrap text at the given width and line break at `\n`.
+    ///
+    /// Paint the results with [`Self::galley`].
+    </span><span class="attribute">#[inline(always)]
+    </span><span class="kw">pub fn </span>layout(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
-        <span class="ident">text</span>: <span class="ident">String</span>,
-        <span class="ident">text_style</span>: <span class="ident">TextStyle</span>,
-        <span class="ident">color</span>: <span class="ident"><span class="kw">crate</span>::Color32</span>,
-        <span class="ident">wrap_width</span>: <span class="ident">f32</span>,
-    ) -&gt; <span class="ident">std::sync::Arc</span><span class="op">&lt;</span><span class="ident">Galley</span><span class="op">&gt;</span> {
-        <span class="self">self</span>.<span class="ident">fonts</span>().<span class="ident">layout</span>(<span class="ident">text</span>, <span class="ident">text_style</span>, <span class="ident">color</span>, <span class="ident">wrap_width</span>)
+        text: String,
+        text_style: TextStyle,
+        color: <span class="kw">crate</span>::Color32,
+        wrap_width: f32,
+    ) -&gt; std::sync::Arc&lt;Galley&gt; {
+        <span class="self">self</span>.fonts().layout(text, text_style, color, wrap_width)
     }
 
-    <span class="doccomment">/// Will line break at `\n`.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// Paint the results with [`Self::galley`].</span>
-    <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">layout_no_wrap</span>(
+    <span class="doccomment">/// Will line break at `\n`.
+    ///
+    /// Paint the results with [`Self::galley`].
+    </span><span class="attribute">#[inline(always)]
+    </span><span class="kw">pub fn </span>layout_no_wrap(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
-        <span class="ident">text</span>: <span class="ident">String</span>,
-        <span class="ident">text_style</span>: <span class="ident">TextStyle</span>,
-        <span class="ident">color</span>: <span class="ident"><span class="kw">crate</span>::Color32</span>,
-    ) -&gt; <span class="ident">std::sync::Arc</span><span class="op">&lt;</span><span class="ident">Galley</span><span class="op">&gt;</span> {
-        <span class="self">self</span>.<span class="ident">fonts</span>().<span class="ident">layout</span>(<span class="ident">text</span>, <span class="ident">text_style</span>, <span class="ident">color</span>, <span class="ident">f32::INFINITY</span>)
+        text: String,
+        text_style: TextStyle,
+        color: <span class="kw">crate</span>::Color32,
+    ) -&gt; std::sync::Arc&lt;Galley&gt; {
+        <span class="self">self</span>.fonts().layout(text, text_style, color, f32::INFINITY)
     }
 
-    <span class="doccomment">/// Paint text that has already been layed out in a [`Galley`].</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// You can create the `Galley` with [`Self::layout`].</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// If you want to change the color of the text, use [`Self::galley_with_color`].</span>
-    <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">galley</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">pos</span>: <span class="ident">Pos2</span>, <span class="ident">galley</span>: <span class="ident">std::sync::Arc</span><span class="op">&lt;</span><span class="ident">Galley</span><span class="op">&gt;</span>) {
-        <span class="kw">if</span> <span class="op">!</span><span class="ident">galley</span>.<span class="ident">is_empty</span>() {
-            <span class="self">self</span>.<span class="ident">add</span>(<span class="ident">Shape::galley</span>(<span class="ident">pos</span>, <span class="ident">galley</span>));
+    <span class="doccomment">/// Paint text that has already been layed out in a [`Galley`].
+    ///
+    /// You can create the `Galley` with [`Self::layout`].
+    ///
+    /// If you want to change the color of the text, use [`Self::galley_with_color`].
+    </span><span class="attribute">#[inline(always)]
+    </span><span class="kw">pub fn </span>galley(<span class="kw-2">&amp;</span><span class="self">self</span>, pos: Pos2, galley: std::sync::Arc&lt;Galley&gt;) {
+        <span class="kw">if </span>!galley.is_empty() {
+            <span class="self">self</span>.add(Shape::galley(pos, galley));
         }
     }
 
-    <span class="doccomment">/// Paint text that has already been layed out in a [`Galley`].</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// You can create the `Galley` with [`Self::layout`].</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// The text color in the [`Galley`] will be replaced with the given color.</span>
-    <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">galley_with_color</span>(
+    <span class="doccomment">/// Paint text that has already been layed out in a [`Galley`].
+    ///
+    /// You can create the `Galley` with [`Self::layout`].
+    ///
+    /// The text color in the [`Galley`] will be replaced with the given color.
+    </span><span class="attribute">#[inline(always)]
+    </span><span class="kw">pub fn </span>galley_with_color(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
-        <span class="ident">pos</span>: <span class="ident">Pos2</span>,
-        <span class="ident">galley</span>: <span class="ident">std::sync::Arc</span><span class="op">&lt;</span><span class="ident">Galley</span><span class="op">&gt;</span>,
-        <span class="ident">text_color</span>: <span class="ident">Color32</span>,
+        pos: Pos2,
+        galley: std::sync::Arc&lt;Galley&gt;,
+        text_color: Color32,
     ) {
-        <span class="kw">if</span> <span class="op">!</span><span class="ident">galley</span>.<span class="ident">is_empty</span>() {
-            <span class="self">self</span>.<span class="ident">add</span>(<span class="ident">TextShape</span> {
-                <span class="ident">override_text_color</span>: <span class="prelude-val">Some</span>(<span class="ident">text_color</span>),
-                ..<span class="ident">TextShape::new</span>(<span class="ident">pos</span>, <span class="ident">galley</span>)
+        <span class="kw">if </span>!galley.is_empty() {
+            <span class="self">self</span>.add(TextShape {
+                override_text_color: <span class="prelude-val">Some</span>(text_color),
+                ..TextShape::new(pos, galley)
             });
         }
     }
 }
 
-<span class="kw">fn</span> <span class="ident">tint_shape_towards</span>(<span class="ident">shape</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Shape</span>, <span class="ident">target</span>: <span class="ident">Color32</span>) {
-    <span class="ident">epaint::shape_transform::adjust_colors</span>(<span class="ident">shape</span>, <span class="kw-2">&amp;</span><span class="op">|</span><span class="ident">color</span><span class="op">|</span> {
-        <span class="kw-2">*</span><span class="ident">color</span> <span class="op">=</span> <span class="ident"><span class="kw">crate</span>::color::tint_color_towards</span>(<span class="kw-2">*</span><span class="ident">color</span>, <span class="ident">target</span>);
+<span class="kw">fn </span>tint_shape_towards(shape: <span class="kw-2">&amp;mut </span>Shape, target: Color32) {
+    epaint::shape_transform::adjust_colors(shape, <span class="kw-2">&amp;</span>|color| {
+        <span class="kw-2">*</span>color = <span class="kw">crate</span>::color::tint_color_towards(<span class="kw-2">*</span>color, target);
     });
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="egui" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0 (a55dd71d5 2022-09-19)" ></div></body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="egui" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.66.1 (90743e729 2023-01-10)" ></div></body></html>

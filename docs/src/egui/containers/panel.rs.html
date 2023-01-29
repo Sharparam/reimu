@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/egui-0.16.1/src/containers/panel.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>panel.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../storage.js"></script><script defer src="../../../source-script.js"></script><script defer src="../../../source-files.js"></script><script defer src="../../../main.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../../egui/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../../egui/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../../egui/index.html"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/egui-0.16.1/src/containers/panel.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>panel.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../../normalize.css"><link rel="stylesheet" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../../ayu.css" disabled><link rel="stylesheet" href="../../../dark.css" disabled><link rel="stylesheet" href="../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../storage.js"></script><script defer src="../../../source-script.js"></script><script defer src="../../../source-files.js"></script><script defer src="../../../main.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><div class="width-limiter"><nav class="sub"><a class="sub-logo-container" href="../../../egui/index.html"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../wheel.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -689,696 +689,696 @@
 <span id="689">689</span>
 <span id="690">690</span>
 <span id="691">691</span>
-</pre><pre class="rust"><code><span class="doccomment">//! Panels are [`Ui`] regions taking up e.g. the left side of a [`Ui`] or screen.</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! Panels can either be a child of a [`Ui`] (taking up a portion of the parent)</span>
-<span class="doccomment">//! or be top-level (taking up a portion of the whole screen).</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! Together with [`Window`] and [`Area`]:s, top-level panels are</span>
-<span class="doccomment">//! the only places where you can put you widgets.</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! The order in which you add panels matter!</span>
-<span class="doccomment">//! The first panel you add will always be the outermost, and the last you add will always be the innermost.</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! Always add any [`CentralPanel`] last.</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! Add your [`Window`]:s after any top-level panels.</span>
+</pre><pre class="rust"><code><span class="doccomment">//! Panels are [`Ui`] regions taking up e.g. the left side of a [`Ui`] or screen.
+//!
+//! Panels can either be a child of a [`Ui`] (taking up a portion of the parent)
+//! or be top-level (taking up a portion of the whole screen).
+//!
+//! Together with [`Window`] and [`Area`]:s, top-level panels are
+//! the only places where you can put you widgets.
+//!
+//! The order in which you add panels matter!
+//! The first panel you add will always be the outermost, and the last you add will always be the innermost.
+//!
+//! Always add any [`CentralPanel`] last.
+//!
+//! Add your [`Window`]:s after any top-level panels.
 
-<span class="kw">use</span> <span class="ident">std::ops::RangeInclusive</span>;
+</span><span class="kw">use </span>std::ops::RangeInclusive;
 
-<span class="kw">use</span> <span class="kw">crate</span>::<span class="kw-2">*</span>;
+<span class="kw">use crate</span>::<span class="kw-2">*</span>;
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">Debug</span>)]</span>
-<span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;serde&quot;</span>, <span class="ident">derive</span>(<span class="ident">serde::Deserialize</span>, <span class="ident">serde::Serialize</span>))]</span>
-<span class="kw">struct</span> <span class="ident">PanelState</span> {
-    <span class="ident">rect</span>: <span class="ident">Rect</span>,
+<span class="attribute">#[derive(Clone, Copy, Debug)]
+#[cfg_attr(feature = <span class="string">&quot;serde&quot;</span>, derive(serde::Deserialize, serde::Serialize))]
+</span><span class="kw">struct </span>PanelState {
+    rect: Rect,
 }
 
-<span class="kw">impl</span> <span class="ident">PanelState</span> {
-    <span class="kw">fn</span> <span class="ident">load</span>(<span class="ident">ctx</span>: <span class="kw-2">&amp;</span><span class="ident">Context</span>, <span class="ident">bar_id</span>: <span class="ident">Id</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
-        <span class="ident">ctx</span>.<span class="ident">memory</span>().<span class="ident">data</span>.<span class="ident">get_persisted</span>(<span class="ident">bar_id</span>)
+<span class="kw">impl </span>PanelState {
+    <span class="kw">fn </span>load(ctx: <span class="kw-2">&amp;</span>Context, bar_id: Id) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="self">Self</span>&gt; {
+        ctx.memory().data.get_persisted(bar_id)
     }
 
-    <span class="kw">fn</span> <span class="ident">store</span>(<span class="self">self</span>, <span class="ident">ctx</span>: <span class="kw-2">&amp;</span><span class="ident">Context</span>, <span class="ident">bar_id</span>: <span class="ident">Id</span>) {
-        <span class="ident">ctx</span>.<span class="ident">memory</span>().<span class="ident">data</span>.<span class="ident">insert_persisted</span>(<span class="ident">bar_id</span>, <span class="self">self</span>);
+    <span class="kw">fn </span>store(<span class="self">self</span>, ctx: <span class="kw-2">&amp;</span>Context, bar_id: Id) {
+        ctx.memory().data.insert_persisted(bar_id, <span class="self">self</span>);
     }
 }
 
-<span class="comment">// ----------------------------------------------------------------------------</span>
+<span class="comment">// ----------------------------------------------------------------------------
 
-<span class="doccomment">/// `Left` or `Right`</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>)]</span>
-<span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">Side</span> {
-    <span class="ident">Left</span>,
-    <span class="ident">Right</span>,
+</span><span class="doccomment">/// `Left` or `Right`
+</span><span class="attribute">#[derive(Clone, Copy, Debug, PartialEq)]
+</span><span class="kw">pub enum </span>Side {
+    Left,
+    Right,
 }
 
-<span class="kw">impl</span> <span class="ident">Side</span> {
-    <span class="kw">fn</span> <span class="ident">opposite</span>(<span class="self">self</span>) -&gt; <span class="self">Self</span> {
-        <span class="kw">match</span> <span class="self">self</span> {
-            <span class="ident">Side::Left</span> =&gt; <span class="ident"><span class="self">Self</span>::Right</span>,
-            <span class="ident">Side::Right</span> =&gt; <span class="ident"><span class="self">Self</span>::Left</span>,
+<span class="kw">impl </span>Side {
+    <span class="kw">fn </span>opposite(<span class="self">self</span>) -&gt; <span class="self">Self </span>{
+        <span class="kw">match </span><span class="self">self </span>{
+            Side::Left =&gt; <span class="self">Self</span>::Right,
+            Side::Right =&gt; <span class="self">Self</span>::Left,
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">set_rect_width</span>(<span class="self">self</span>, <span class="ident">rect</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Rect</span>, <span class="ident">width</span>: <span class="ident">f32</span>) {
-        <span class="kw">match</span> <span class="self">self</span> {
-            <span class="ident">Side::Left</span> =&gt; <span class="ident">rect</span>.<span class="ident">max</span>.<span class="ident">x</span> <span class="op">=</span> <span class="ident">rect</span>.<span class="ident">min</span>.<span class="ident">x</span> <span class="op">+</span> <span class="ident">width</span>,
-            <span class="ident">Side::Right</span> =&gt; <span class="ident">rect</span>.<span class="ident">min</span>.<span class="ident">x</span> <span class="op">=</span> <span class="ident">rect</span>.<span class="ident">max</span>.<span class="ident">x</span> <span class="op">-</span> <span class="ident">width</span>,
+    <span class="kw">fn </span>set_rect_width(<span class="self">self</span>, rect: <span class="kw-2">&amp;mut </span>Rect, width: f32) {
+        <span class="kw">match </span><span class="self">self </span>{
+            Side::Left =&gt; rect.max.x = rect.min.x + width,
+            Side::Right =&gt; rect.min.x = rect.max.x - width,
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">side_x</span>(<span class="self">self</span>, <span class="ident">rect</span>: <span class="ident">Rect</span>) -&gt; <span class="ident">f32</span> {
-        <span class="kw">match</span> <span class="self">self</span> {
-            <span class="ident">Side::Left</span> =&gt; <span class="ident">rect</span>.<span class="ident">left</span>(),
-            <span class="ident">Side::Right</span> =&gt; <span class="ident">rect</span>.<span class="ident">right</span>(),
+    <span class="kw">fn </span>side_x(<span class="self">self</span>, rect: Rect) -&gt; f32 {
+        <span class="kw">match </span><span class="self">self </span>{
+            Side::Left =&gt; rect.left(),
+            Side::Right =&gt; rect.right(),
         }
     }
 }
 
-<span class="doccomment">/// A panel that covers the entire left or right side of a [`Ui`] or screen.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// The order in which you add panels matter!</span>
-<span class="doccomment">/// The first panel you add will always be the outermost, and the last you add will always be the innermost.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// See the [module level docs](crate::containers::panel) for more details.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// ```</span>
-<span class="doccomment">/// # egui::__run_test_ctx(|ctx| {</span>
-<span class="doccomment">/// egui::SidePanel::left(&quot;my_left_panel&quot;).show(ctx, |ui| {</span>
-<span class="doccomment">///    ui.label(&quot;Hello World!&quot;);</span>
-<span class="doccomment">/// });</span>
-<span class="doccomment">/// # });</span>
-<span class="doccomment">/// ```</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// See also [`TopBottomPanel`].</span>
-<span class="attribute">#[<span class="ident">must_use</span> <span class="op">=</span> <span class="string">&quot;You should call .show()&quot;</span>]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">SidePanel</span> {
-    <span class="ident">side</span>: <span class="ident">Side</span>,
-    <span class="ident">id</span>: <span class="ident">Id</span>,
-    <span class="ident">frame</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Frame</span><span class="op">&gt;</span>,
-    <span class="ident">resizable</span>: <span class="ident">bool</span>,
-    <span class="ident">default_width</span>: <span class="ident">f32</span>,
-    <span class="ident">width_range</span>: <span class="ident">RangeInclusive</span><span class="op">&lt;</span><span class="ident">f32</span><span class="op">&gt;</span>,
+<span class="doccomment">/// A panel that covers the entire left or right side of a [`Ui`] or screen.
+///
+/// The order in which you add panels matter!
+/// The first panel you add will always be the outermost, and the last you add will always be the innermost.
+///
+/// See the [module level docs](crate::containers::panel) for more details.
+///
+/// ```
+/// # egui::__run_test_ctx(|ctx| {
+/// egui::SidePanel::left(&quot;my_left_panel&quot;).show(ctx, |ui| {
+///    ui.label(&quot;Hello World!&quot;);
+/// });
+/// # });
+/// ```
+///
+/// See also [`TopBottomPanel`].
+</span><span class="attribute">#[must_use = <span class="string">&quot;You should call .show()&quot;</span>]
+</span><span class="kw">pub struct </span>SidePanel {
+    side: Side,
+    id: Id,
+    frame: <span class="prelude-ty">Option</span>&lt;Frame&gt;,
+    resizable: bool,
+    default_width: f32,
+    width_range: RangeInclusive&lt;f32&gt;,
 }
 
-<span class="kw">impl</span> <span class="ident">SidePanel</span> {
-    <span class="doccomment">/// `id_source`: Something unique, e.g. `&quot;my_left_panel&quot;`.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">left</span>(<span class="ident">id_source</span>: <span class="kw">impl</span> <span class="ident">std::hash::Hash</span>) -&gt; <span class="self">Self</span> {
-        <span class="ident"><span class="self">Self</span>::new</span>(<span class="ident">Side::Left</span>, <span class="ident">id_source</span>)
+<span class="kw">impl </span>SidePanel {
+    <span class="doccomment">/// `id_source`: Something unique, e.g. `&quot;my_left_panel&quot;`.
+    </span><span class="kw">pub fn </span>left(id_source: <span class="kw">impl </span>std::hash::Hash) -&gt; <span class="self">Self </span>{
+        <span class="self">Self</span>::new(Side::Left, id_source)
     }
 
-    <span class="doccomment">/// `id_source`: Something unique, e.g. `&quot;my_right_panel&quot;`.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">right</span>(<span class="ident">id_source</span>: <span class="kw">impl</span> <span class="ident">std::hash::Hash</span>) -&gt; <span class="self">Self</span> {
-        <span class="ident"><span class="self">Self</span>::new</span>(<span class="ident">Side::Right</span>, <span class="ident">id_source</span>)
+    <span class="doccomment">/// `id_source`: Something unique, e.g. `&quot;my_right_panel&quot;`.
+    </span><span class="kw">pub fn </span>right(id_source: <span class="kw">impl </span>std::hash::Hash) -&gt; <span class="self">Self </span>{
+        <span class="self">Self</span>::new(Side::Right, id_source)
     }
 
-    <span class="doccomment">/// `id_source`: Something unique, e.g. `&quot;my_panel&quot;`.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">side</span>: <span class="ident">Side</span>, <span class="ident">id_source</span>: <span class="kw">impl</span> <span class="ident">std::hash::Hash</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">Self</span> {
-            <span class="ident">side</span>,
-            <span class="ident">id</span>: <span class="ident">Id::new</span>(<span class="ident">id_source</span>),
-            <span class="ident">frame</span>: <span class="prelude-val">None</span>,
-            <span class="ident">resizable</span>: <span class="bool-val">true</span>,
-            <span class="ident">default_width</span>: <span class="number">200.0</span>,
-            <span class="ident">width_range</span>: <span class="number">96.0</span>..<span class="op">=</span><span class="ident">f32::INFINITY</span>,
+    <span class="doccomment">/// `id_source`: Something unique, e.g. `&quot;my_panel&quot;`.
+    </span><span class="kw">pub fn </span>new(side: Side, id_source: <span class="kw">impl </span>std::hash::Hash) -&gt; <span class="self">Self </span>{
+        <span class="self">Self </span>{
+            side,
+            id: Id::new(id_source),
+            frame: <span class="prelude-val">None</span>,
+            resizable: <span class="bool-val">true</span>,
+            default_width: <span class="number">200.0</span>,
+            width_range: <span class="number">96.0</span>..=f32::INFINITY,
         }
     }
 
-    <span class="doccomment">/// Can panel be resized by dragging the edge of it?</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// Default is `true`.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">resizable</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">resizable</span>: <span class="ident">bool</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">self</span>.<span class="ident">resizable</span> <span class="op">=</span> <span class="ident">resizable</span>;
-        <span class="self">self</span>
-    }
+    <span class="doccomment">/// Can panel be resized by dragging the edge of it?
+    ///
+    /// Default is `true`.
+    </span><span class="kw">pub fn </span>resizable(<span class="kw-2">mut </span><span class="self">self</span>, resizable: bool) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.resizable = resizable;
+        <span class="self">self
+    </span>}
 
-    <span class="doccomment">/// The initial wrapping width of the `SidePanel`.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">default_width</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">default_width</span>: <span class="ident">f32</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">self</span>.<span class="ident">default_width</span> <span class="op">=</span> <span class="ident">default_width</span>;
-        <span class="self">self</span>
-    }
+    <span class="doccomment">/// The initial wrapping width of the `SidePanel`.
+    </span><span class="kw">pub fn </span>default_width(<span class="kw-2">mut </span><span class="self">self</span>, default_width: f32) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.default_width = default_width;
+        <span class="self">self
+    </span>}
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">min_width</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">min_width</span>: <span class="ident">f32</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">self</span>.<span class="ident">width_range</span> <span class="op">=</span> <span class="ident">min_width</span>..<span class="op">=</span>(<span class="kw-2">*</span><span class="self">self</span>.<span class="ident">width_range</span>.<span class="ident">end</span>());
-        <span class="self">self</span>
-    }
+    <span class="kw">pub fn </span>min_width(<span class="kw-2">mut </span><span class="self">self</span>, min_width: f32) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.width_range = min_width..=(<span class="kw-2">*</span><span class="self">self</span>.width_range.end());
+        <span class="self">self
+    </span>}
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">max_width</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">max_width</span>: <span class="ident">f32</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">self</span>.<span class="ident">width_range</span> <span class="op">=</span> (<span class="kw-2">*</span><span class="self">self</span>.<span class="ident">width_range</span>.<span class="ident">start</span>())..<span class="op">=</span><span class="ident">max_width</span>;
-        <span class="self">self</span>
-    }
+    <span class="kw">pub fn </span>max_width(<span class="kw-2">mut </span><span class="self">self</span>, max_width: f32) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.width_range = (<span class="kw-2">*</span><span class="self">self</span>.width_range.start())..=max_width;
+        <span class="self">self
+    </span>}
 
-    <span class="doccomment">/// The allowable width range for resizable panels.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">width_range</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">width_range</span>: <span class="ident">RangeInclusive</span><span class="op">&lt;</span><span class="ident">f32</span><span class="op">&gt;</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">self</span>.<span class="ident">width_range</span> <span class="op">=</span> <span class="ident">width_range</span>;
-        <span class="self">self</span>
-    }
+    <span class="doccomment">/// The allowable width range for resizable panels.
+    </span><span class="kw">pub fn </span>width_range(<span class="kw-2">mut </span><span class="self">self</span>, width_range: RangeInclusive&lt;f32&gt;) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.width_range = width_range;
+        <span class="self">self
+    </span>}
 
-    <span class="doccomment">/// Change the background color, margins, etc.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">frame</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">frame</span>: <span class="ident">Frame</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">self</span>.<span class="ident">frame</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">frame</span>);
-        <span class="self">self</span>
-    }
+    <span class="doccomment">/// Change the background color, margins, etc.
+    </span><span class="kw">pub fn </span>frame(<span class="kw-2">mut </span><span class="self">self</span>, frame: Frame) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.frame = <span class="prelude-val">Some</span>(frame);
+        <span class="self">self
+    </span>}
 }
 
-<span class="kw">impl</span> <span class="ident">SidePanel</span> {
-    <span class="doccomment">/// Show the panel inside a `Ui`.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">show_inside</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span>(
+<span class="kw">impl </span>SidePanel {
+    <span class="doccomment">/// Show the panel inside a `Ui`.
+    </span><span class="kw">pub fn </span>show_inside&lt;R&gt;(
         <span class="self">self</span>,
-        <span class="ident">ui</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Ui</span>,
-        <span class="ident">add_contents</span>: <span class="kw">impl</span> <span class="ident">FnOnce</span>(<span class="kw-2">&amp;mut</span> <span class="ident">Ui</span>) -&gt; <span class="ident">R</span>,
-    ) -&gt; <span class="ident">InnerResponse</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span> {
-        <span class="self">self</span>.<span class="ident">show_inside_dyn</span>(<span class="ident">ui</span>, <span class="ident">Box::new</span>(<span class="ident">add_contents</span>))
+        ui: <span class="kw-2">&amp;mut </span>Ui,
+        add_contents: <span class="kw">impl </span>FnOnce(<span class="kw-2">&amp;mut </span>Ui) -&gt; R,
+    ) -&gt; InnerResponse&lt;R&gt; {
+        <span class="self">self</span>.show_inside_dyn(ui, Box::new(add_contents))
     }
 
-    <span class="doccomment">/// Show the panel inside a `Ui`.</span>
-    <span class="kw">fn</span> <span class="ident">show_inside_dyn</span><span class="op">&lt;</span><span class="lifetime">&#39;c</span>, <span class="ident">R</span><span class="op">&gt;</span>(
+    <span class="doccomment">/// Show the panel inside a `Ui`.
+    </span><span class="kw">fn </span>show_inside_dyn&lt;<span class="lifetime">&#39;c</span>, R&gt;(
         <span class="self">self</span>,
-        <span class="ident">ui</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Ui</span>,
-        <span class="ident">add_contents</span>: <span class="ident">Box</span><span class="op">&lt;</span><span class="kw">dyn</span> <span class="ident">FnOnce</span>(<span class="kw-2">&amp;mut</span> <span class="ident">Ui</span>) -&gt; <span class="ident">R</span> <span class="op">+</span> <span class="lifetime">&#39;c</span><span class="op">&gt;</span>,
-    ) -&gt; <span class="ident">InnerResponse</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="self">Self</span> {
-            <span class="ident">side</span>,
-            <span class="ident">id</span>,
-            <span class="ident">frame</span>,
-            <span class="ident">resizable</span>,
-            <span class="ident">default_width</span>,
-            <span class="ident">width_range</span>,
-        } <span class="op">=</span> <span class="self">self</span>;
+        ui: <span class="kw-2">&amp;mut </span>Ui,
+        add_contents: Box&lt;<span class="kw">dyn </span>FnOnce(<span class="kw-2">&amp;mut </span>Ui) -&gt; R + <span class="lifetime">&#39;c</span>&gt;,
+    ) -&gt; InnerResponse&lt;R&gt; {
+        <span class="kw">let </span><span class="self">Self </span>{
+            side,
+            id,
+            frame,
+            resizable,
+            default_width,
+            width_range,
+        } = <span class="self">self</span>;
 
-        <span class="kw">let</span> <span class="ident">available_rect</span> <span class="op">=</span> <span class="ident">ui</span>.<span class="ident">available_rect_before_wrap</span>();
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">panel_rect</span> <span class="op">=</span> <span class="ident">available_rect</span>;
+        <span class="kw">let </span>available_rect = ui.available_rect_before_wrap();
+        <span class="kw">let </span><span class="kw-2">mut </span>panel_rect = available_rect;
         {
-            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">width</span> <span class="op">=</span> <span class="ident">default_width</span>;
-            <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">state</span>) <span class="op">=</span> <span class="ident">PanelState::load</span>(<span class="ident">ui</span>.<span class="ident">ctx</span>(), <span class="ident">id</span>) {
-                <span class="ident">width</span> <span class="op">=</span> <span class="ident">state</span>.<span class="ident">rect</span>.<span class="ident">width</span>();
+            <span class="kw">let </span><span class="kw-2">mut </span>width = default_width;
+            <span class="kw">if let </span><span class="prelude-val">Some</span>(state) = PanelState::load(ui.ctx(), id) {
+                width = state.rect.width();
             }
-            <span class="ident">width</span> <span class="op">=</span> <span class="ident">clamp_to_range</span>(<span class="ident">width</span>, <span class="ident">width_range</span>.<span class="ident">clone</span>()).<span class="ident">at_most</span>(<span class="ident">available_rect</span>.<span class="ident">width</span>());
-            <span class="ident">side</span>.<span class="ident">set_rect_width</span>(<span class="kw-2">&amp;mut</span> <span class="ident">panel_rect</span>, <span class="ident">width</span>);
+            width = clamp_to_range(width, width_range.clone()).at_most(available_rect.width());
+            side.set_rect_width(<span class="kw-2">&amp;mut </span>panel_rect, width);
         }
 
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">resize_hover</span> <span class="op">=</span> <span class="bool-val">false</span>;
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">is_resizing</span> <span class="op">=</span> <span class="bool-val">false</span>;
-        <span class="kw">if</span> <span class="ident">resizable</span> {
-            <span class="kw">let</span> <span class="ident">resize_id</span> <span class="op">=</span> <span class="ident">id</span>.<span class="ident">with</span>(<span class="string">&quot;__resize&quot;</span>);
-            <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">pointer</span>) <span class="op">=</span> <span class="ident">ui</span>.<span class="ident">input</span>().<span class="ident">pointer</span>.<span class="ident">latest_pos</span>() {
-                <span class="kw">let</span> <span class="ident">we_are_on_top</span> <span class="op">=</span> <span class="ident">ui</span>
-                    .<span class="ident">ctx</span>()
-                    .<span class="ident">layer_id_at</span>(<span class="ident">pointer</span>)
-                    .<span class="ident">map_or</span>(<span class="bool-val">true</span>, <span class="op">|</span><span class="ident">top_layer_id</span><span class="op">|</span> <span class="ident">top_layer_id</span> <span class="op">==</span> <span class="ident">ui</span>.<span class="ident">layer_id</span>());
+        <span class="kw">let </span><span class="kw-2">mut </span>resize_hover = <span class="bool-val">false</span>;
+        <span class="kw">let </span><span class="kw-2">mut </span>is_resizing = <span class="bool-val">false</span>;
+        <span class="kw">if </span>resizable {
+            <span class="kw">let </span>resize_id = id.with(<span class="string">&quot;__resize&quot;</span>);
+            <span class="kw">if let </span><span class="prelude-val">Some</span>(pointer) = ui.input().pointer.latest_pos() {
+                <span class="kw">let </span>we_are_on_top = ui
+                    .ctx()
+                    .layer_id_at(pointer)
+                    .map_or(<span class="bool-val">true</span>, |top_layer_id| top_layer_id == ui.layer_id());
 
-                <span class="kw">let</span> <span class="ident">resize_x</span> <span class="op">=</span> <span class="ident">side</span>.<span class="ident">opposite</span>().<span class="ident">side_x</span>(<span class="ident">panel_rect</span>);
-                <span class="kw">let</span> <span class="ident">mouse_over_resize_line</span> <span class="op">=</span> <span class="ident">we_are_on_top</span>
-                    <span class="op">&amp;&amp;</span> <span class="ident">panel_rect</span>.<span class="ident">y_range</span>().<span class="ident">contains</span>(<span class="kw-2">&amp;</span><span class="ident">pointer</span>.<span class="ident">y</span>)
-                    <span class="op">&amp;&amp;</span> (<span class="ident">resize_x</span> <span class="op">-</span> <span class="ident">pointer</span>.<span class="ident">x</span>).<span class="ident">abs</span>()
-                        <span class="op">&lt;</span><span class="op">=</span> <span class="ident">ui</span>.<span class="ident">style</span>().<span class="ident">interaction</span>.<span class="ident">resize_grab_radius_side</span>;
+                <span class="kw">let </span>resize_x = side.opposite().side_x(panel_rect);
+                <span class="kw">let </span>mouse_over_resize_line = we_are_on_top
+                    &amp;&amp; panel_rect.y_range().contains(<span class="kw-2">&amp;</span>pointer.y)
+                    &amp;&amp; (resize_x - pointer.x).abs()
+                        &lt;= ui.style().interaction.resize_grab_radius_side;
 
-                <span class="kw">if</span> <span class="ident">ui</span>.<span class="ident">input</span>().<span class="ident">pointer</span>.<span class="ident">any_pressed</span>()
-                    <span class="op">&amp;&amp;</span> <span class="ident">ui</span>.<span class="ident">input</span>().<span class="ident">pointer</span>.<span class="ident">any_down</span>()
-                    <span class="op">&amp;&amp;</span> <span class="ident">mouse_over_resize_line</span>
+                <span class="kw">if </span>ui.input().pointer.any_pressed()
+                    &amp;&amp; ui.input().pointer.any_down()
+                    &amp;&amp; mouse_over_resize_line
                 {
-                    <span class="ident">ui</span>.<span class="ident">memory</span>().<span class="ident">interaction</span>.<span class="ident">drag_id</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">resize_id</span>);
+                    ui.memory().interaction.drag_id = <span class="prelude-val">Some</span>(resize_id);
                 }
-                <span class="ident">is_resizing</span> <span class="op">=</span> <span class="ident">ui</span>.<span class="ident">memory</span>().<span class="ident">interaction</span>.<span class="ident">drag_id</span> <span class="op">==</span> <span class="prelude-val">Some</span>(<span class="ident">resize_id</span>);
-                <span class="kw">if</span> <span class="ident">is_resizing</span> {
-                    <span class="kw">let</span> <span class="ident">width</span> <span class="op">=</span> (<span class="ident">pointer</span>.<span class="ident">x</span> <span class="op">-</span> <span class="ident">side</span>.<span class="ident">side_x</span>(<span class="ident">panel_rect</span>)).<span class="ident">abs</span>();
-                    <span class="kw">let</span> <span class="ident">width</span> <span class="op">=</span>
-                        <span class="ident">clamp_to_range</span>(<span class="ident">width</span>, <span class="ident">width_range</span>.<span class="ident">clone</span>()).<span class="ident">at_most</span>(<span class="ident">available_rect</span>.<span class="ident">width</span>());
-                    <span class="ident">side</span>.<span class="ident">set_rect_width</span>(<span class="kw-2">&amp;mut</span> <span class="ident">panel_rect</span>, <span class="ident">width</span>);
+                is_resizing = ui.memory().interaction.drag_id == <span class="prelude-val">Some</span>(resize_id);
+                <span class="kw">if </span>is_resizing {
+                    <span class="kw">let </span>width = (pointer.x - side.side_x(panel_rect)).abs();
+                    <span class="kw">let </span>width =
+                        clamp_to_range(width, width_range.clone()).at_most(available_rect.width());
+                    side.set_rect_width(<span class="kw-2">&amp;mut </span>panel_rect, width);
                 }
 
-                <span class="kw">let</span> <span class="ident">dragging_something_else</span> <span class="op">=</span>
-                    <span class="ident">ui</span>.<span class="ident">input</span>().<span class="ident">pointer</span>.<span class="ident">any_down</span>() <span class="op">|</span><span class="op">|</span> <span class="ident">ui</span>.<span class="ident">input</span>().<span class="ident">pointer</span>.<span class="ident">any_pressed</span>();
-                <span class="ident">resize_hover</span> <span class="op">=</span> <span class="ident">mouse_over_resize_line</span> <span class="op">&amp;&amp;</span> <span class="op">!</span><span class="ident">dragging_something_else</span>;
+                <span class="kw">let </span>dragging_something_else =
+                    ui.input().pointer.any_down() || ui.input().pointer.any_pressed();
+                resize_hover = mouse_over_resize_line &amp;&amp; !dragging_something_else;
 
-                <span class="kw">if</span> <span class="ident">resize_hover</span> <span class="op">|</span><span class="op">|</span> <span class="ident">is_resizing</span> {
-                    <span class="ident">ui</span>.<span class="ident">output</span>().<span class="ident">cursor_icon</span> <span class="op">=</span> <span class="ident">CursorIcon::ResizeHorizontal</span>;
+                <span class="kw">if </span>resize_hover || is_resizing {
+                    ui.output().cursor_icon = CursorIcon::ResizeHorizontal;
                 }
             }
         }
 
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">panel_ui</span> <span class="op">=</span> <span class="ident">ui</span>.<span class="ident">child_ui_with_id_source</span>(<span class="ident">panel_rect</span>, <span class="ident">Layout::top_down</span>(<span class="ident">Align::Min</span>), <span class="ident">id</span>);
-        <span class="ident">panel_ui</span>.<span class="ident">expand_to_include_rect</span>(<span class="ident">panel_rect</span>);
-        <span class="kw">let</span> <span class="ident">frame</span> <span class="op">=</span> <span class="ident">frame</span>.<span class="ident">unwrap_or_else</span>(<span class="op">|</span><span class="op">|</span> <span class="ident">Frame::side_top_panel</span>(<span class="ident">ui</span>.<span class="ident">style</span>()));
-        <span class="kw">let</span> <span class="ident">inner_response</span> <span class="op">=</span> <span class="ident">frame</span>.<span class="ident">show</span>(<span class="kw-2">&amp;mut</span> <span class="ident">panel_ui</span>, <span class="op">|</span><span class="ident">ui</span><span class="op">|</span> {
-            <span class="ident">ui</span>.<span class="ident">set_min_height</span>(<span class="ident">ui</span>.<span class="ident">max_rect</span>().<span class="ident">height</span>()); <span class="comment">// Make sure the frame fills the full height</span>
-            <span class="ident">ui</span>.<span class="ident">set_min_width</span>(<span class="kw-2">*</span><span class="ident">width_range</span>.<span class="ident">start</span>());
-            <span class="ident">add_contents</span>(<span class="ident">ui</span>)
+        <span class="kw">let </span><span class="kw-2">mut </span>panel_ui = ui.child_ui_with_id_source(panel_rect, Layout::top_down(Align::Min), id);
+        panel_ui.expand_to_include_rect(panel_rect);
+        <span class="kw">let </span>frame = frame.unwrap_or_else(|| Frame::side_top_panel(ui.style()));
+        <span class="kw">let </span>inner_response = frame.show(<span class="kw-2">&amp;mut </span>panel_ui, |ui| {
+            ui.set_min_height(ui.max_rect().height()); <span class="comment">// Make sure the frame fills the full height
+            </span>ui.set_min_width(<span class="kw-2">*</span>width_range.start());
+            add_contents(ui)
         });
 
-        <span class="kw">let</span> <span class="ident">rect</span> <span class="op">=</span> <span class="ident">inner_response</span>.<span class="ident">response</span>.<span class="ident">rect</span>;
+        <span class="kw">let </span>rect = inner_response.response.rect;
 
         {
-            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">cursor</span> <span class="op">=</span> <span class="ident">ui</span>.<span class="ident">cursor</span>();
-            <span class="kw">match</span> <span class="ident">side</span> {
-                <span class="ident">Side::Left</span> =&gt; {
-                    <span class="ident">cursor</span>.<span class="ident">min</span>.<span class="ident">x</span> <span class="op">=</span> <span class="ident">rect</span>.<span class="ident">max</span>.<span class="ident">x</span> <span class="op">+</span> <span class="ident">ui</span>.<span class="ident">spacing</span>().<span class="ident">item_spacing</span>.<span class="ident">x</span>;
+            <span class="kw">let </span><span class="kw-2">mut </span>cursor = ui.cursor();
+            <span class="kw">match </span>side {
+                Side::Left =&gt; {
+                    cursor.min.x = rect.max.x + ui.spacing().item_spacing.x;
                 }
-                <span class="ident">Side::Right</span> =&gt; {
-                    <span class="ident">cursor</span>.<span class="ident">max</span>.<span class="ident">x</span> <span class="op">=</span> <span class="ident">rect</span>.<span class="ident">min</span>.<span class="ident">x</span> <span class="op">-</span> <span class="ident">ui</span>.<span class="ident">spacing</span>().<span class="ident">item_spacing</span>.<span class="ident">x</span>;
+                Side::Right =&gt; {
+                    cursor.max.x = rect.min.x - ui.spacing().item_spacing.x;
                 }
             }
-            <span class="ident">ui</span>.<span class="ident">set_cursor</span>(<span class="ident">cursor</span>);
+            ui.set_cursor(cursor);
         }
-        <span class="ident">ui</span>.<span class="ident">expand_to_include_rect</span>(<span class="ident">rect</span>);
+        ui.expand_to_include_rect(rect);
 
-        <span class="ident">PanelState</span> { <span class="ident">rect</span> }.<span class="ident">store</span>(<span class="ident">ui</span>.<span class="ident">ctx</span>(), <span class="ident">id</span>);
+        PanelState { rect }.store(ui.ctx(), id);
 
-        <span class="kw">if</span> <span class="ident">resize_hover</span> <span class="op">|</span><span class="op">|</span> <span class="ident">is_resizing</span> {
-            <span class="kw">let</span> <span class="ident">stroke</span> <span class="op">=</span> <span class="kw">if</span> <span class="ident">is_resizing</span> {
-                <span class="ident">ui</span>.<span class="ident">style</span>().<span class="ident">visuals</span>.<span class="ident">widgets</span>.<span class="ident">active</span>.<span class="ident">bg_stroke</span>
-            } <span class="kw">else</span> {
-                <span class="ident">ui</span>.<span class="ident">style</span>().<span class="ident">visuals</span>.<span class="ident">widgets</span>.<span class="ident">hovered</span>.<span class="ident">bg_stroke</span>
+        <span class="kw">if </span>resize_hover || is_resizing {
+            <span class="kw">let </span>stroke = <span class="kw">if </span>is_resizing {
+                ui.style().visuals.widgets.active.bg_stroke
+            } <span class="kw">else </span>{
+                ui.style().visuals.widgets.hovered.bg_stroke
             };
-            <span class="comment">// draw on top of ALL panels so that the resize line won&#39;t be covered by subsequent panels</span>
-            <span class="kw">let</span> <span class="ident">resize_layer</span> <span class="op">=</span> <span class="ident">LayerId::new</span>(<span class="ident">Order::Foreground</span>, <span class="ident">Id::new</span>(<span class="string">&quot;panel_resize&quot;</span>));
-            <span class="kw">let</span> <span class="ident">resize_x</span> <span class="op">=</span> <span class="ident">side</span>.<span class="ident">opposite</span>().<span class="ident">side_x</span>(<span class="ident">rect</span>);
-            <span class="kw">let</span> <span class="ident">top</span> <span class="op">=</span> <span class="ident">pos2</span>(<span class="ident">resize_x</span>, <span class="ident">rect</span>.<span class="ident">top</span>());
-            <span class="kw">let</span> <span class="ident">bottom</span> <span class="op">=</span> <span class="ident">pos2</span>(<span class="ident">resize_x</span>, <span class="ident">rect</span>.<span class="ident">bottom</span>());
-            <span class="ident">ui</span>.<span class="ident">ctx</span>()
-                .<span class="ident">layer_painter</span>(<span class="ident">resize_layer</span>)
-                .<span class="ident">line_segment</span>([<span class="ident">top</span>, <span class="ident">bottom</span>], <span class="ident">stroke</span>);
+            <span class="comment">// draw on top of ALL panels so that the resize line won&#39;t be covered by subsequent panels
+            </span><span class="kw">let </span>resize_layer = LayerId::new(Order::Foreground, Id::new(<span class="string">&quot;panel_resize&quot;</span>));
+            <span class="kw">let </span>resize_x = side.opposite().side_x(rect);
+            <span class="kw">let </span>top = pos2(resize_x, rect.top());
+            <span class="kw">let </span>bottom = pos2(resize_x, rect.bottom());
+            ui.ctx()
+                .layer_painter(resize_layer)
+                .line_segment([top, bottom], stroke);
         }
 
-        <span class="ident">inner_response</span>
+        inner_response
     }
 
-    <span class="doccomment">/// Show the panel at the top level.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">show</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span>(
+    <span class="doccomment">/// Show the panel at the top level.
+    </span><span class="kw">pub fn </span>show&lt;R&gt;(
         <span class="self">self</span>,
-        <span class="ident">ctx</span>: <span class="kw-2">&amp;</span><span class="ident">CtxRef</span>,
-        <span class="ident">add_contents</span>: <span class="kw">impl</span> <span class="ident">FnOnce</span>(<span class="kw-2">&amp;mut</span> <span class="ident">Ui</span>) -&gt; <span class="ident">R</span>,
-    ) -&gt; <span class="ident">InnerResponse</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span> {
-        <span class="self">self</span>.<span class="ident">show_dyn</span>(<span class="ident">ctx</span>, <span class="ident">Box::new</span>(<span class="ident">add_contents</span>))
+        ctx: <span class="kw-2">&amp;</span>CtxRef,
+        add_contents: <span class="kw">impl </span>FnOnce(<span class="kw-2">&amp;mut </span>Ui) -&gt; R,
+    ) -&gt; InnerResponse&lt;R&gt; {
+        <span class="self">self</span>.show_dyn(ctx, Box::new(add_contents))
     }
 
-    <span class="doccomment">/// Show the panel at the top level.</span>
-    <span class="kw">fn</span> <span class="ident">show_dyn</span><span class="op">&lt;</span><span class="lifetime">&#39;c</span>, <span class="ident">R</span><span class="op">&gt;</span>(
+    <span class="doccomment">/// Show the panel at the top level.
+    </span><span class="kw">fn </span>show_dyn&lt;<span class="lifetime">&#39;c</span>, R&gt;(
         <span class="self">self</span>,
-        <span class="ident">ctx</span>: <span class="kw-2">&amp;</span><span class="ident">CtxRef</span>,
-        <span class="ident">add_contents</span>: <span class="ident">Box</span><span class="op">&lt;</span><span class="kw">dyn</span> <span class="ident">FnOnce</span>(<span class="kw-2">&amp;mut</span> <span class="ident">Ui</span>) -&gt; <span class="ident">R</span> <span class="op">+</span> <span class="lifetime">&#39;c</span><span class="op">&gt;</span>,
-    ) -&gt; <span class="ident">InnerResponse</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="ident">layer_id</span> <span class="op">=</span> <span class="ident">LayerId::background</span>();
-        <span class="kw">let</span> <span class="ident">side</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">side</span>;
-        <span class="kw">let</span> <span class="ident">available_rect</span> <span class="op">=</span> <span class="ident">ctx</span>.<span class="ident">available_rect</span>();
-        <span class="kw">let</span> <span class="ident">clip_rect</span> <span class="op">=</span> <span class="ident">ctx</span>.<span class="ident">input</span>().<span class="ident">screen_rect</span>();
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">panel_ui</span> <span class="op">=</span> <span class="ident">Ui::new</span>(<span class="ident">ctx</span>.<span class="ident">clone</span>(), <span class="ident">layer_id</span>, <span class="self">self</span>.<span class="ident">id</span>, <span class="ident">available_rect</span>, <span class="ident">clip_rect</span>);
+        ctx: <span class="kw-2">&amp;</span>CtxRef,
+        add_contents: Box&lt;<span class="kw">dyn </span>FnOnce(<span class="kw-2">&amp;mut </span>Ui) -&gt; R + <span class="lifetime">&#39;c</span>&gt;,
+    ) -&gt; InnerResponse&lt;R&gt; {
+        <span class="kw">let </span>layer_id = LayerId::background();
+        <span class="kw">let </span>side = <span class="self">self</span>.side;
+        <span class="kw">let </span>available_rect = ctx.available_rect();
+        <span class="kw">let </span>clip_rect = ctx.input().screen_rect();
+        <span class="kw">let </span><span class="kw-2">mut </span>panel_ui = Ui::new(ctx.clone(), layer_id, <span class="self">self</span>.id, available_rect, clip_rect);
 
-        <span class="kw">let</span> <span class="ident">inner_response</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">show_inside_dyn</span>(<span class="kw-2">&amp;mut</span> <span class="ident">panel_ui</span>, <span class="ident">add_contents</span>);
-        <span class="kw">let</span> <span class="ident">rect</span> <span class="op">=</span> <span class="ident">inner_response</span>.<span class="ident">response</span>.<span class="ident">rect</span>;
+        <span class="kw">let </span>inner_response = <span class="self">self</span>.show_inside_dyn(<span class="kw-2">&amp;mut </span>panel_ui, add_contents);
+        <span class="kw">let </span>rect = inner_response.response.rect;
 
-        <span class="kw">match</span> <span class="ident">side</span> {
-            <span class="ident">Side::Left</span> =&gt; <span class="ident">ctx</span>
-                .<span class="ident">frame_state</span>()
-                .<span class="ident">allocate_left_panel</span>(<span class="ident">Rect::from_min_max</span>(<span class="ident">available_rect</span>.<span class="ident">min</span>, <span class="ident">rect</span>.<span class="ident">max</span>)),
-            <span class="ident">Side::Right</span> =&gt; <span class="ident">ctx</span>
-                .<span class="ident">frame_state</span>()
-                .<span class="ident">allocate_right_panel</span>(<span class="ident">Rect::from_min_max</span>(<span class="ident">rect</span>.<span class="ident">min</span>, <span class="ident">available_rect</span>.<span class="ident">max</span>)),
+        <span class="kw">match </span>side {
+            Side::Left =&gt; ctx
+                .frame_state()
+                .allocate_left_panel(Rect::from_min_max(available_rect.min, rect.max)),
+            Side::Right =&gt; ctx
+                .frame_state()
+                .allocate_right_panel(Rect::from_min_max(rect.min, available_rect.max)),
         }
-        <span class="ident">inner_response</span>
+        inner_response
     }
 }
 
-<span class="comment">// ----------------------------------------------------------------------------</span>
+<span class="comment">// ----------------------------------------------------------------------------
 
-<span class="doccomment">/// `Top` or `Bottom`</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>)]</span>
-<span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">TopBottomSide</span> {
-    <span class="ident">Top</span>,
-    <span class="ident">Bottom</span>,
+</span><span class="doccomment">/// `Top` or `Bottom`
+</span><span class="attribute">#[derive(Clone, Copy, Debug, PartialEq)]
+</span><span class="kw">pub enum </span>TopBottomSide {
+    Top,
+    Bottom,
 }
 
-<span class="kw">impl</span> <span class="ident">TopBottomSide</span> {
-    <span class="kw">fn</span> <span class="ident">opposite</span>(<span class="self">self</span>) -&gt; <span class="self">Self</span> {
-        <span class="kw">match</span> <span class="self">self</span> {
-            <span class="ident">TopBottomSide::Top</span> =&gt; <span class="ident"><span class="self">Self</span>::Bottom</span>,
-            <span class="ident">TopBottomSide::Bottom</span> =&gt; <span class="ident"><span class="self">Self</span>::Top</span>,
+<span class="kw">impl </span>TopBottomSide {
+    <span class="kw">fn </span>opposite(<span class="self">self</span>) -&gt; <span class="self">Self </span>{
+        <span class="kw">match </span><span class="self">self </span>{
+            TopBottomSide::Top =&gt; <span class="self">Self</span>::Bottom,
+            TopBottomSide::Bottom =&gt; <span class="self">Self</span>::Top,
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">set_rect_height</span>(<span class="self">self</span>, <span class="ident">rect</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Rect</span>, <span class="ident">height</span>: <span class="ident">f32</span>) {
-        <span class="kw">match</span> <span class="self">self</span> {
-            <span class="ident">TopBottomSide::Top</span> =&gt; <span class="ident">rect</span>.<span class="ident">max</span>.<span class="ident">y</span> <span class="op">=</span> <span class="ident">rect</span>.<span class="ident">min</span>.<span class="ident">y</span> <span class="op">+</span> <span class="ident">height</span>,
-            <span class="ident">TopBottomSide::Bottom</span> =&gt; <span class="ident">rect</span>.<span class="ident">min</span>.<span class="ident">y</span> <span class="op">=</span> <span class="ident">rect</span>.<span class="ident">max</span>.<span class="ident">y</span> <span class="op">-</span> <span class="ident">height</span>,
+    <span class="kw">fn </span>set_rect_height(<span class="self">self</span>, rect: <span class="kw-2">&amp;mut </span>Rect, height: f32) {
+        <span class="kw">match </span><span class="self">self </span>{
+            TopBottomSide::Top =&gt; rect.max.y = rect.min.y + height,
+            TopBottomSide::Bottom =&gt; rect.min.y = rect.max.y - height,
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">side_y</span>(<span class="self">self</span>, <span class="ident">rect</span>: <span class="ident">Rect</span>) -&gt; <span class="ident">f32</span> {
-        <span class="kw">match</span> <span class="self">self</span> {
-            <span class="ident">TopBottomSide::Top</span> =&gt; <span class="ident">rect</span>.<span class="ident">top</span>(),
-            <span class="ident">TopBottomSide::Bottom</span> =&gt; <span class="ident">rect</span>.<span class="ident">bottom</span>(),
+    <span class="kw">fn </span>side_y(<span class="self">self</span>, rect: Rect) -&gt; f32 {
+        <span class="kw">match </span><span class="self">self </span>{
+            TopBottomSide::Top =&gt; rect.top(),
+            TopBottomSide::Bottom =&gt; rect.bottom(),
         }
     }
 }
 
-<span class="doccomment">/// A panel that covers the entire top or bottom of a [`Ui`] or screen.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// The order in which you add panels matter!</span>
-<span class="doccomment">/// The first panel you add will always be the outermost, and the last you add will always be the innermost.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// See the [module level docs](crate::containers::panel) for more details.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// ```</span>
-<span class="doccomment">/// # egui::__run_test_ctx(|ctx| {</span>
-<span class="doccomment">/// egui::TopBottomPanel::top(&quot;my_panel&quot;).show(ctx, |ui| {</span>
-<span class="doccomment">///    ui.label(&quot;Hello World!&quot;);</span>
-<span class="doccomment">/// });</span>
-<span class="doccomment">/// # });</span>
-<span class="doccomment">/// ```</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// See also [`SidePanel`].</span>
-<span class="attribute">#[<span class="ident">must_use</span> <span class="op">=</span> <span class="string">&quot;You should call .show()&quot;</span>]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">TopBottomPanel</span> {
-    <span class="ident">side</span>: <span class="ident">TopBottomSide</span>,
-    <span class="ident">id</span>: <span class="ident">Id</span>,
-    <span class="ident">frame</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Frame</span><span class="op">&gt;</span>,
-    <span class="ident">resizable</span>: <span class="ident">bool</span>,
-    <span class="ident">default_height</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">f32</span><span class="op">&gt;</span>,
-    <span class="ident">height_range</span>: <span class="ident">RangeInclusive</span><span class="op">&lt;</span><span class="ident">f32</span><span class="op">&gt;</span>,
+<span class="doccomment">/// A panel that covers the entire top or bottom of a [`Ui`] or screen.
+///
+/// The order in which you add panels matter!
+/// The first panel you add will always be the outermost, and the last you add will always be the innermost.
+///
+/// See the [module level docs](crate::containers::panel) for more details.
+///
+/// ```
+/// # egui::__run_test_ctx(|ctx| {
+/// egui::TopBottomPanel::top(&quot;my_panel&quot;).show(ctx, |ui| {
+///    ui.label(&quot;Hello World!&quot;);
+/// });
+/// # });
+/// ```
+///
+/// See also [`SidePanel`].
+</span><span class="attribute">#[must_use = <span class="string">&quot;You should call .show()&quot;</span>]
+</span><span class="kw">pub struct </span>TopBottomPanel {
+    side: TopBottomSide,
+    id: Id,
+    frame: <span class="prelude-ty">Option</span>&lt;Frame&gt;,
+    resizable: bool,
+    default_height: <span class="prelude-ty">Option</span>&lt;f32&gt;,
+    height_range: RangeInclusive&lt;f32&gt;,
 }
 
-<span class="kw">impl</span> <span class="ident">TopBottomPanel</span> {
-    <span class="doccomment">/// `id_source`: Something unique, e.g. `&quot;my_top_panel&quot;`.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">top</span>(<span class="ident">id_source</span>: <span class="kw">impl</span> <span class="ident">std::hash::Hash</span>) -&gt; <span class="self">Self</span> {
-        <span class="ident"><span class="self">Self</span>::new</span>(<span class="ident">TopBottomSide::Top</span>, <span class="ident">id_source</span>)
+<span class="kw">impl </span>TopBottomPanel {
+    <span class="doccomment">/// `id_source`: Something unique, e.g. `&quot;my_top_panel&quot;`.
+    </span><span class="kw">pub fn </span>top(id_source: <span class="kw">impl </span>std::hash::Hash) -&gt; <span class="self">Self </span>{
+        <span class="self">Self</span>::new(TopBottomSide::Top, id_source)
     }
 
-    <span class="doccomment">/// `id_source`: Something unique, e.g. `&quot;my_bottom_panel&quot;`.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">bottom</span>(<span class="ident">id_source</span>: <span class="kw">impl</span> <span class="ident">std::hash::Hash</span>) -&gt; <span class="self">Self</span> {
-        <span class="ident"><span class="self">Self</span>::new</span>(<span class="ident">TopBottomSide::Bottom</span>, <span class="ident">id_source</span>)
+    <span class="doccomment">/// `id_source`: Something unique, e.g. `&quot;my_bottom_panel&quot;`.
+    </span><span class="kw">pub fn </span>bottom(id_source: <span class="kw">impl </span>std::hash::Hash) -&gt; <span class="self">Self </span>{
+        <span class="self">Self</span>::new(TopBottomSide::Bottom, id_source)
     }
 
-    <span class="doccomment">/// `id_source`: Something unique, e.g. `&quot;my_panel&quot;`.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">side</span>: <span class="ident">TopBottomSide</span>, <span class="ident">id_source</span>: <span class="kw">impl</span> <span class="ident">std::hash::Hash</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">Self</span> {
-            <span class="ident">side</span>,
-            <span class="ident">id</span>: <span class="ident">Id::new</span>(<span class="ident">id_source</span>),
-            <span class="ident">frame</span>: <span class="prelude-val">None</span>,
-            <span class="ident">resizable</span>: <span class="bool-val">false</span>,
-            <span class="ident">default_height</span>: <span class="prelude-val">None</span>,
-            <span class="ident">height_range</span>: <span class="number">20.0</span>..<span class="op">=</span><span class="ident">f32::INFINITY</span>,
+    <span class="doccomment">/// `id_source`: Something unique, e.g. `&quot;my_panel&quot;`.
+    </span><span class="kw">pub fn </span>new(side: TopBottomSide, id_source: <span class="kw">impl </span>std::hash::Hash) -&gt; <span class="self">Self </span>{
+        <span class="self">Self </span>{
+            side,
+            id: Id::new(id_source),
+            frame: <span class="prelude-val">None</span>,
+            resizable: <span class="bool-val">false</span>,
+            default_height: <span class="prelude-val">None</span>,
+            height_range: <span class="number">20.0</span>..=f32::INFINITY,
         }
     }
 
-    <span class="doccomment">/// Can panel be resized by dragging the edge of it?</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// Default is `false`.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">resizable</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">resizable</span>: <span class="ident">bool</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">self</span>.<span class="ident">resizable</span> <span class="op">=</span> <span class="ident">resizable</span>;
-        <span class="self">self</span>
-    }
+    <span class="doccomment">/// Can panel be resized by dragging the edge of it?
+    ///
+    /// Default is `false`.
+    </span><span class="kw">pub fn </span>resizable(<span class="kw-2">mut </span><span class="self">self</span>, resizable: bool) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.resizable = resizable;
+        <span class="self">self
+    </span>}
 
-    <span class="doccomment">/// The initial height of the `SidePanel`.</span>
-    <span class="doccomment">/// Defaults to [`style::Spacing::interact_size`].y.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">default_height</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">default_height</span>: <span class="ident">f32</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">self</span>.<span class="ident">default_height</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">default_height</span>);
-        <span class="self">self</span>
-    }
+    <span class="doccomment">/// The initial height of the `SidePanel`.
+    /// Defaults to [`style::Spacing::interact_size`].y.
+    </span><span class="kw">pub fn </span>default_height(<span class="kw-2">mut </span><span class="self">self</span>, default_height: f32) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.default_height = <span class="prelude-val">Some</span>(default_height);
+        <span class="self">self
+    </span>}
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">min_height</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">min_height</span>: <span class="ident">f32</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">self</span>.<span class="ident">height_range</span> <span class="op">=</span> <span class="ident">min_height</span>..<span class="op">=</span>(<span class="kw-2">*</span><span class="self">self</span>.<span class="ident">height_range</span>.<span class="ident">end</span>());
-        <span class="self">self</span>
-    }
+    <span class="kw">pub fn </span>min_height(<span class="kw-2">mut </span><span class="self">self</span>, min_height: f32) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.height_range = min_height..=(<span class="kw-2">*</span><span class="self">self</span>.height_range.end());
+        <span class="self">self
+    </span>}
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">max_height</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">max_height</span>: <span class="ident">f32</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">self</span>.<span class="ident">height_range</span> <span class="op">=</span> (<span class="kw-2">*</span><span class="self">self</span>.<span class="ident">height_range</span>.<span class="ident">start</span>())..<span class="op">=</span><span class="ident">max_height</span>;
-        <span class="self">self</span>
-    }
+    <span class="kw">pub fn </span>max_height(<span class="kw-2">mut </span><span class="self">self</span>, max_height: f32) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.height_range = (<span class="kw-2">*</span><span class="self">self</span>.height_range.start())..=max_height;
+        <span class="self">self
+    </span>}
 
-    <span class="doccomment">/// The allowable height range for resizable panels.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">height_range</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">height_range</span>: <span class="ident">RangeInclusive</span><span class="op">&lt;</span><span class="ident">f32</span><span class="op">&gt;</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">self</span>.<span class="ident">height_range</span> <span class="op">=</span> <span class="ident">height_range</span>;
-        <span class="self">self</span>
-    }
+    <span class="doccomment">/// The allowable height range for resizable panels.
+    </span><span class="kw">pub fn </span>height_range(<span class="kw-2">mut </span><span class="self">self</span>, height_range: RangeInclusive&lt;f32&gt;) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.height_range = height_range;
+        <span class="self">self
+    </span>}
 
-    <span class="doccomment">/// Change the background color, margins, etc.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">frame</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">frame</span>: <span class="ident">Frame</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">self</span>.<span class="ident">frame</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">frame</span>);
-        <span class="self">self</span>
-    }
+    <span class="doccomment">/// Change the background color, margins, etc.
+    </span><span class="kw">pub fn </span>frame(<span class="kw-2">mut </span><span class="self">self</span>, frame: Frame) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.frame = <span class="prelude-val">Some</span>(frame);
+        <span class="self">self
+    </span>}
 }
 
-<span class="kw">impl</span> <span class="ident">TopBottomPanel</span> {
-    <span class="doccomment">/// Show the panel inside a `Ui`.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">show_inside</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span>(
+<span class="kw">impl </span>TopBottomPanel {
+    <span class="doccomment">/// Show the panel inside a `Ui`.
+    </span><span class="kw">pub fn </span>show_inside&lt;R&gt;(
         <span class="self">self</span>,
-        <span class="ident">ui</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Ui</span>,
-        <span class="ident">add_contents</span>: <span class="kw">impl</span> <span class="ident">FnOnce</span>(<span class="kw-2">&amp;mut</span> <span class="ident">Ui</span>) -&gt; <span class="ident">R</span>,
-    ) -&gt; <span class="ident">InnerResponse</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span> {
-        <span class="self">self</span>.<span class="ident">show_inside_dyn</span>(<span class="ident">ui</span>, <span class="ident">Box::new</span>(<span class="ident">add_contents</span>))
+        ui: <span class="kw-2">&amp;mut </span>Ui,
+        add_contents: <span class="kw">impl </span>FnOnce(<span class="kw-2">&amp;mut </span>Ui) -&gt; R,
+    ) -&gt; InnerResponse&lt;R&gt; {
+        <span class="self">self</span>.show_inside_dyn(ui, Box::new(add_contents))
     }
 
-    <span class="doccomment">/// Show the panel inside a `Ui`.</span>
-    <span class="kw">fn</span> <span class="ident">show_inside_dyn</span><span class="op">&lt;</span><span class="lifetime">&#39;c</span>, <span class="ident">R</span><span class="op">&gt;</span>(
+    <span class="doccomment">/// Show the panel inside a `Ui`.
+    </span><span class="kw">fn </span>show_inside_dyn&lt;<span class="lifetime">&#39;c</span>, R&gt;(
         <span class="self">self</span>,
-        <span class="ident">ui</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Ui</span>,
-        <span class="ident">add_contents</span>: <span class="ident">Box</span><span class="op">&lt;</span><span class="kw">dyn</span> <span class="ident">FnOnce</span>(<span class="kw-2">&amp;mut</span> <span class="ident">Ui</span>) -&gt; <span class="ident">R</span> <span class="op">+</span> <span class="lifetime">&#39;c</span><span class="op">&gt;</span>,
-    ) -&gt; <span class="ident">InnerResponse</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="self">Self</span> {
-            <span class="ident">side</span>,
-            <span class="ident">id</span>,
-            <span class="ident">frame</span>,
-            <span class="ident">resizable</span>,
-            <span class="ident">default_height</span>,
-            <span class="ident">height_range</span>,
-        } <span class="op">=</span> <span class="self">self</span>;
+        ui: <span class="kw-2">&amp;mut </span>Ui,
+        add_contents: Box&lt;<span class="kw">dyn </span>FnOnce(<span class="kw-2">&amp;mut </span>Ui) -&gt; R + <span class="lifetime">&#39;c</span>&gt;,
+    ) -&gt; InnerResponse&lt;R&gt; {
+        <span class="kw">let </span><span class="self">Self </span>{
+            side,
+            id,
+            frame,
+            resizable,
+            default_height,
+            height_range,
+        } = <span class="self">self</span>;
 
-        <span class="kw">let</span> <span class="ident">available_rect</span> <span class="op">=</span> <span class="ident">ui</span>.<span class="ident">available_rect_before_wrap</span>();
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">panel_rect</span> <span class="op">=</span> <span class="ident">available_rect</span>;
+        <span class="kw">let </span>available_rect = ui.available_rect_before_wrap();
+        <span class="kw">let </span><span class="kw-2">mut </span>panel_rect = available_rect;
         {
-            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">height</span> <span class="op">=</span> <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">state</span>) <span class="op">=</span> <span class="ident">PanelState::load</span>(<span class="ident">ui</span>.<span class="ident">ctx</span>(), <span class="ident">id</span>) {
-                <span class="ident">state</span>.<span class="ident">rect</span>.<span class="ident">height</span>()
-            } <span class="kw">else</span> {
-                <span class="ident">default_height</span>.<span class="ident">unwrap_or_else</span>(<span class="op">|</span><span class="op">|</span> <span class="ident">ui</span>.<span class="ident">style</span>().<span class="ident">spacing</span>.<span class="ident">interact_size</span>.<span class="ident">y</span>)
+            <span class="kw">let </span><span class="kw-2">mut </span>height = <span class="kw">if let </span><span class="prelude-val">Some</span>(state) = PanelState::load(ui.ctx(), id) {
+                state.rect.height()
+            } <span class="kw">else </span>{
+                default_height.unwrap_or_else(|| ui.style().spacing.interact_size.y)
             };
-            <span class="ident">height</span> <span class="op">=</span> <span class="ident">clamp_to_range</span>(<span class="ident">height</span>, <span class="ident">height_range</span>.<span class="ident">clone</span>()).<span class="ident">at_most</span>(<span class="ident">available_rect</span>.<span class="ident">height</span>());
-            <span class="ident">side</span>.<span class="ident">set_rect_height</span>(<span class="kw-2">&amp;mut</span> <span class="ident">panel_rect</span>, <span class="ident">height</span>);
+            height = clamp_to_range(height, height_range.clone()).at_most(available_rect.height());
+            side.set_rect_height(<span class="kw-2">&amp;mut </span>panel_rect, height);
         }
 
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">resize_hover</span> <span class="op">=</span> <span class="bool-val">false</span>;
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">is_resizing</span> <span class="op">=</span> <span class="bool-val">false</span>;
-        <span class="kw">if</span> <span class="ident">resizable</span> {
-            <span class="kw">let</span> <span class="ident">resize_id</span> <span class="op">=</span> <span class="ident">id</span>.<span class="ident">with</span>(<span class="string">&quot;__resize&quot;</span>);
-            <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">pointer</span>) <span class="op">=</span> <span class="ident">ui</span>.<span class="ident">input</span>().<span class="ident">pointer</span>.<span class="ident">latest_pos</span>() {
-                <span class="kw">let</span> <span class="ident">we_are_on_top</span> <span class="op">=</span> <span class="ident">ui</span>
-                    .<span class="ident">ctx</span>()
-                    .<span class="ident">layer_id_at</span>(<span class="ident">pointer</span>)
-                    .<span class="ident">map_or</span>(<span class="bool-val">true</span>, <span class="op">|</span><span class="ident">top_layer_id</span><span class="op">|</span> <span class="ident">top_layer_id</span> <span class="op">==</span> <span class="ident">ui</span>.<span class="ident">layer_id</span>());
+        <span class="kw">let </span><span class="kw-2">mut </span>resize_hover = <span class="bool-val">false</span>;
+        <span class="kw">let </span><span class="kw-2">mut </span>is_resizing = <span class="bool-val">false</span>;
+        <span class="kw">if </span>resizable {
+            <span class="kw">let </span>resize_id = id.with(<span class="string">&quot;__resize&quot;</span>);
+            <span class="kw">if let </span><span class="prelude-val">Some</span>(pointer) = ui.input().pointer.latest_pos() {
+                <span class="kw">let </span>we_are_on_top = ui
+                    .ctx()
+                    .layer_id_at(pointer)
+                    .map_or(<span class="bool-val">true</span>, |top_layer_id| top_layer_id == ui.layer_id());
 
-                <span class="kw">let</span> <span class="ident">resize_y</span> <span class="op">=</span> <span class="ident">side</span>.<span class="ident">opposite</span>().<span class="ident">side_y</span>(<span class="ident">panel_rect</span>);
-                <span class="kw">let</span> <span class="ident">mouse_over_resize_line</span> <span class="op">=</span> <span class="ident">we_are_on_top</span>
-                    <span class="op">&amp;&amp;</span> <span class="ident">panel_rect</span>.<span class="ident">x_range</span>().<span class="ident">contains</span>(<span class="kw-2">&amp;</span><span class="ident">pointer</span>.<span class="ident">x</span>)
-                    <span class="op">&amp;&amp;</span> (<span class="ident">resize_y</span> <span class="op">-</span> <span class="ident">pointer</span>.<span class="ident">y</span>).<span class="ident">abs</span>()
-                        <span class="op">&lt;</span><span class="op">=</span> <span class="ident">ui</span>.<span class="ident">style</span>().<span class="ident">interaction</span>.<span class="ident">resize_grab_radius_side</span>;
+                <span class="kw">let </span>resize_y = side.opposite().side_y(panel_rect);
+                <span class="kw">let </span>mouse_over_resize_line = we_are_on_top
+                    &amp;&amp; panel_rect.x_range().contains(<span class="kw-2">&amp;</span>pointer.x)
+                    &amp;&amp; (resize_y - pointer.y).abs()
+                        &lt;= ui.style().interaction.resize_grab_radius_side;
 
-                <span class="kw">if</span> <span class="ident">ui</span>.<span class="ident">input</span>().<span class="ident">pointer</span>.<span class="ident">any_pressed</span>()
-                    <span class="op">&amp;&amp;</span> <span class="ident">ui</span>.<span class="ident">input</span>().<span class="ident">pointer</span>.<span class="ident">any_down</span>()
-                    <span class="op">&amp;&amp;</span> <span class="ident">mouse_over_resize_line</span>
+                <span class="kw">if </span>ui.input().pointer.any_pressed()
+                    &amp;&amp; ui.input().pointer.any_down()
+                    &amp;&amp; mouse_over_resize_line
                 {
-                    <span class="ident">ui</span>.<span class="ident">memory</span>().<span class="ident">interaction</span>.<span class="ident">drag_id</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">resize_id</span>);
+                    ui.memory().interaction.drag_id = <span class="prelude-val">Some</span>(resize_id);
                 }
-                <span class="ident">is_resizing</span> <span class="op">=</span> <span class="ident">ui</span>.<span class="ident">memory</span>().<span class="ident">interaction</span>.<span class="ident">drag_id</span> <span class="op">==</span> <span class="prelude-val">Some</span>(<span class="ident">resize_id</span>);
-                <span class="kw">if</span> <span class="ident">is_resizing</span> {
-                    <span class="kw">let</span> <span class="ident">height</span> <span class="op">=</span> (<span class="ident">pointer</span>.<span class="ident">y</span> <span class="op">-</span> <span class="ident">side</span>.<span class="ident">side_y</span>(<span class="ident">panel_rect</span>)).<span class="ident">abs</span>();
-                    <span class="kw">let</span> <span class="ident">height</span> <span class="op">=</span> <span class="ident">clamp_to_range</span>(<span class="ident">height</span>, <span class="ident">height_range</span>.<span class="ident">clone</span>())
-                        .<span class="ident">at_most</span>(<span class="ident">available_rect</span>.<span class="ident">height</span>());
-                    <span class="ident">side</span>.<span class="ident">set_rect_height</span>(<span class="kw-2">&amp;mut</span> <span class="ident">panel_rect</span>, <span class="ident">height</span>);
+                is_resizing = ui.memory().interaction.drag_id == <span class="prelude-val">Some</span>(resize_id);
+                <span class="kw">if </span>is_resizing {
+                    <span class="kw">let </span>height = (pointer.y - side.side_y(panel_rect)).abs();
+                    <span class="kw">let </span>height = clamp_to_range(height, height_range.clone())
+                        .at_most(available_rect.height());
+                    side.set_rect_height(<span class="kw-2">&amp;mut </span>panel_rect, height);
                 }
 
-                <span class="kw">let</span> <span class="ident">dragging_something_else</span> <span class="op">=</span>
-                    <span class="ident">ui</span>.<span class="ident">input</span>().<span class="ident">pointer</span>.<span class="ident">any_down</span>() <span class="op">|</span><span class="op">|</span> <span class="ident">ui</span>.<span class="ident">input</span>().<span class="ident">pointer</span>.<span class="ident">any_pressed</span>();
-                <span class="ident">resize_hover</span> <span class="op">=</span> <span class="ident">mouse_over_resize_line</span> <span class="op">&amp;&amp;</span> <span class="op">!</span><span class="ident">dragging_something_else</span>;
+                <span class="kw">let </span>dragging_something_else =
+                    ui.input().pointer.any_down() || ui.input().pointer.any_pressed();
+                resize_hover = mouse_over_resize_line &amp;&amp; !dragging_something_else;
 
-                <span class="kw">if</span> <span class="ident">resize_hover</span> <span class="op">|</span><span class="op">|</span> <span class="ident">is_resizing</span> {
-                    <span class="ident">ui</span>.<span class="ident">output</span>().<span class="ident">cursor_icon</span> <span class="op">=</span> <span class="ident">CursorIcon::ResizeVertical</span>;
+                <span class="kw">if </span>resize_hover || is_resizing {
+                    ui.output().cursor_icon = CursorIcon::ResizeVertical;
                 }
             }
         }
 
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">panel_ui</span> <span class="op">=</span> <span class="ident">ui</span>.<span class="ident">child_ui_with_id_source</span>(<span class="ident">panel_rect</span>, <span class="ident">Layout::top_down</span>(<span class="ident">Align::Min</span>), <span class="ident">id</span>);
-        <span class="ident">panel_ui</span>.<span class="ident">expand_to_include_rect</span>(<span class="ident">panel_rect</span>);
-        <span class="kw">let</span> <span class="ident">frame</span> <span class="op">=</span> <span class="ident">frame</span>.<span class="ident">unwrap_or_else</span>(<span class="op">|</span><span class="op">|</span> <span class="ident">Frame::side_top_panel</span>(<span class="ident">ui</span>.<span class="ident">style</span>()));
-        <span class="kw">let</span> <span class="ident">inner_response</span> <span class="op">=</span> <span class="ident">frame</span>.<span class="ident">show</span>(<span class="kw-2">&amp;mut</span> <span class="ident">panel_ui</span>, <span class="op">|</span><span class="ident">ui</span><span class="op">|</span> {
-            <span class="ident">ui</span>.<span class="ident">set_min_width</span>(<span class="ident">ui</span>.<span class="ident">max_rect</span>().<span class="ident">width</span>()); <span class="comment">// Make the frame fill full width</span>
-            <span class="ident">ui</span>.<span class="ident">set_min_height</span>(<span class="kw-2">*</span><span class="ident">height_range</span>.<span class="ident">start</span>());
-            <span class="ident">add_contents</span>(<span class="ident">ui</span>)
+        <span class="kw">let </span><span class="kw-2">mut </span>panel_ui = ui.child_ui_with_id_source(panel_rect, Layout::top_down(Align::Min), id);
+        panel_ui.expand_to_include_rect(panel_rect);
+        <span class="kw">let </span>frame = frame.unwrap_or_else(|| Frame::side_top_panel(ui.style()));
+        <span class="kw">let </span>inner_response = frame.show(<span class="kw-2">&amp;mut </span>panel_ui, |ui| {
+            ui.set_min_width(ui.max_rect().width()); <span class="comment">// Make the frame fill full width
+            </span>ui.set_min_height(<span class="kw-2">*</span>height_range.start());
+            add_contents(ui)
         });
 
-        <span class="kw">let</span> <span class="ident">rect</span> <span class="op">=</span> <span class="ident">inner_response</span>.<span class="ident">response</span>.<span class="ident">rect</span>;
+        <span class="kw">let </span>rect = inner_response.response.rect;
 
         {
-            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">cursor</span> <span class="op">=</span> <span class="ident">ui</span>.<span class="ident">cursor</span>();
-            <span class="kw">match</span> <span class="ident">side</span> {
-                <span class="ident">TopBottomSide::Top</span> =&gt; {
-                    <span class="ident">cursor</span>.<span class="ident">min</span>.<span class="ident">y</span> <span class="op">=</span> <span class="ident">rect</span>.<span class="ident">max</span>.<span class="ident">y</span> <span class="op">+</span> <span class="ident">ui</span>.<span class="ident">spacing</span>().<span class="ident">item_spacing</span>.<span class="ident">y</span>;
+            <span class="kw">let </span><span class="kw-2">mut </span>cursor = ui.cursor();
+            <span class="kw">match </span>side {
+                TopBottomSide::Top =&gt; {
+                    cursor.min.y = rect.max.y + ui.spacing().item_spacing.y;
                 }
-                <span class="ident">TopBottomSide::Bottom</span> =&gt; {
-                    <span class="ident">cursor</span>.<span class="ident">max</span>.<span class="ident">y</span> <span class="op">=</span> <span class="ident">rect</span>.<span class="ident">min</span>.<span class="ident">y</span> <span class="op">-</span> <span class="ident">ui</span>.<span class="ident">spacing</span>().<span class="ident">item_spacing</span>.<span class="ident">y</span>;
+                TopBottomSide::Bottom =&gt; {
+                    cursor.max.y = rect.min.y - ui.spacing().item_spacing.y;
                 }
             }
-            <span class="ident">ui</span>.<span class="ident">set_cursor</span>(<span class="ident">cursor</span>);
+            ui.set_cursor(cursor);
         }
-        <span class="ident">ui</span>.<span class="ident">expand_to_include_rect</span>(<span class="ident">rect</span>);
+        ui.expand_to_include_rect(rect);
 
-        <span class="ident">PanelState</span> { <span class="ident">rect</span> }.<span class="ident">store</span>(<span class="ident">ui</span>.<span class="ident">ctx</span>(), <span class="ident">id</span>);
+        PanelState { rect }.store(ui.ctx(), id);
 
-        <span class="kw">if</span> <span class="ident">resize_hover</span> <span class="op">|</span><span class="op">|</span> <span class="ident">is_resizing</span> {
-            <span class="kw">let</span> <span class="ident">stroke</span> <span class="op">=</span> <span class="kw">if</span> <span class="ident">is_resizing</span> {
-                <span class="ident">ui</span>.<span class="ident">style</span>().<span class="ident">visuals</span>.<span class="ident">widgets</span>.<span class="ident">active</span>.<span class="ident">bg_stroke</span>
-            } <span class="kw">else</span> {
-                <span class="ident">ui</span>.<span class="ident">style</span>().<span class="ident">visuals</span>.<span class="ident">widgets</span>.<span class="ident">hovered</span>.<span class="ident">bg_stroke</span>
+        <span class="kw">if </span>resize_hover || is_resizing {
+            <span class="kw">let </span>stroke = <span class="kw">if </span>is_resizing {
+                ui.style().visuals.widgets.active.bg_stroke
+            } <span class="kw">else </span>{
+                ui.style().visuals.widgets.hovered.bg_stroke
             };
-            <span class="comment">// draw on top of ALL panels so that the resize line won&#39;t be covered by subsequent panels</span>
-            <span class="kw">let</span> <span class="ident">resize_layer</span> <span class="op">=</span> <span class="ident">LayerId::new</span>(<span class="ident">Order::Foreground</span>, <span class="ident">Id::new</span>(<span class="string">&quot;panel_resize&quot;</span>));
-            <span class="kw">let</span> <span class="ident">resize_y</span> <span class="op">=</span> <span class="ident">side</span>.<span class="ident">opposite</span>().<span class="ident">side_y</span>(<span class="ident">rect</span>);
-            <span class="kw">let</span> <span class="ident">left</span> <span class="op">=</span> <span class="ident">pos2</span>(<span class="ident">rect</span>.<span class="ident">left</span>(), <span class="ident">resize_y</span>);
-            <span class="kw">let</span> <span class="ident">right</span> <span class="op">=</span> <span class="ident">pos2</span>(<span class="ident">rect</span>.<span class="ident">right</span>(), <span class="ident">resize_y</span>);
-            <span class="ident">ui</span>.<span class="ident">ctx</span>()
-                .<span class="ident">layer_painter</span>(<span class="ident">resize_layer</span>)
-                .<span class="ident">line_segment</span>([<span class="ident">left</span>, <span class="ident">right</span>], <span class="ident">stroke</span>);
+            <span class="comment">// draw on top of ALL panels so that the resize line won&#39;t be covered by subsequent panels
+            </span><span class="kw">let </span>resize_layer = LayerId::new(Order::Foreground, Id::new(<span class="string">&quot;panel_resize&quot;</span>));
+            <span class="kw">let </span>resize_y = side.opposite().side_y(rect);
+            <span class="kw">let </span>left = pos2(rect.left(), resize_y);
+            <span class="kw">let </span>right = pos2(rect.right(), resize_y);
+            ui.ctx()
+                .layer_painter(resize_layer)
+                .line_segment([left, right], stroke);
         }
 
-        <span class="ident">inner_response</span>
+        inner_response
     }
 
-    <span class="doccomment">/// Show the panel at the top level.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">show</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span>(
+    <span class="doccomment">/// Show the panel at the top level.
+    </span><span class="kw">pub fn </span>show&lt;R&gt;(
         <span class="self">self</span>,
-        <span class="ident">ctx</span>: <span class="kw-2">&amp;</span><span class="ident">CtxRef</span>,
-        <span class="ident">add_contents</span>: <span class="kw">impl</span> <span class="ident">FnOnce</span>(<span class="kw-2">&amp;mut</span> <span class="ident">Ui</span>) -&gt; <span class="ident">R</span>,
-    ) -&gt; <span class="ident">InnerResponse</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span> {
-        <span class="self">self</span>.<span class="ident">show_dyn</span>(<span class="ident">ctx</span>, <span class="ident">Box::new</span>(<span class="ident">add_contents</span>))
+        ctx: <span class="kw-2">&amp;</span>CtxRef,
+        add_contents: <span class="kw">impl </span>FnOnce(<span class="kw-2">&amp;mut </span>Ui) -&gt; R,
+    ) -&gt; InnerResponse&lt;R&gt; {
+        <span class="self">self</span>.show_dyn(ctx, Box::new(add_contents))
     }
 
-    <span class="doccomment">/// Show the panel at the top level.</span>
-    <span class="kw">fn</span> <span class="ident">show_dyn</span><span class="op">&lt;</span><span class="lifetime">&#39;c</span>, <span class="ident">R</span><span class="op">&gt;</span>(
+    <span class="doccomment">/// Show the panel at the top level.
+    </span><span class="kw">fn </span>show_dyn&lt;<span class="lifetime">&#39;c</span>, R&gt;(
         <span class="self">self</span>,
-        <span class="ident">ctx</span>: <span class="kw-2">&amp;</span><span class="ident">CtxRef</span>,
-        <span class="ident">add_contents</span>: <span class="ident">Box</span><span class="op">&lt;</span><span class="kw">dyn</span> <span class="ident">FnOnce</span>(<span class="kw-2">&amp;mut</span> <span class="ident">Ui</span>) -&gt; <span class="ident">R</span> <span class="op">+</span> <span class="lifetime">&#39;c</span><span class="op">&gt;</span>,
-    ) -&gt; <span class="ident">InnerResponse</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="ident">layer_id</span> <span class="op">=</span> <span class="ident">LayerId::background</span>();
-        <span class="kw">let</span> <span class="ident">available_rect</span> <span class="op">=</span> <span class="ident">ctx</span>.<span class="ident">available_rect</span>();
-        <span class="kw">let</span> <span class="ident">side</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">side</span>;
+        ctx: <span class="kw-2">&amp;</span>CtxRef,
+        add_contents: Box&lt;<span class="kw">dyn </span>FnOnce(<span class="kw-2">&amp;mut </span>Ui) -&gt; R + <span class="lifetime">&#39;c</span>&gt;,
+    ) -&gt; InnerResponse&lt;R&gt; {
+        <span class="kw">let </span>layer_id = LayerId::background();
+        <span class="kw">let </span>available_rect = ctx.available_rect();
+        <span class="kw">let </span>side = <span class="self">self</span>.side;
 
-        <span class="kw">let</span> <span class="ident">clip_rect</span> <span class="op">=</span> <span class="ident">ctx</span>.<span class="ident">input</span>().<span class="ident">screen_rect</span>();
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">panel_ui</span> <span class="op">=</span> <span class="ident">Ui::new</span>(<span class="ident">ctx</span>.<span class="ident">clone</span>(), <span class="ident">layer_id</span>, <span class="self">self</span>.<span class="ident">id</span>, <span class="ident">available_rect</span>, <span class="ident">clip_rect</span>);
+        <span class="kw">let </span>clip_rect = ctx.input().screen_rect();
+        <span class="kw">let </span><span class="kw-2">mut </span>panel_ui = Ui::new(ctx.clone(), layer_id, <span class="self">self</span>.id, available_rect, clip_rect);
 
-        <span class="kw">let</span> <span class="ident">inner_response</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">show_inside_dyn</span>(<span class="kw-2">&amp;mut</span> <span class="ident">panel_ui</span>, <span class="ident">add_contents</span>);
-        <span class="kw">let</span> <span class="ident">rect</span> <span class="op">=</span> <span class="ident">inner_response</span>.<span class="ident">response</span>.<span class="ident">rect</span>;
+        <span class="kw">let </span>inner_response = <span class="self">self</span>.show_inside_dyn(<span class="kw-2">&amp;mut </span>panel_ui, add_contents);
+        <span class="kw">let </span>rect = inner_response.response.rect;
 
-        <span class="kw">match</span> <span class="ident">side</span> {
-            <span class="ident">TopBottomSide::Top</span> =&gt; {
-                <span class="ident">ctx</span>.<span class="ident">frame_state</span>()
-                    .<span class="ident">allocate_top_panel</span>(<span class="ident">Rect::from_min_max</span>(<span class="ident">available_rect</span>.<span class="ident">min</span>, <span class="ident">rect</span>.<span class="ident">max</span>));
+        <span class="kw">match </span>side {
+            TopBottomSide::Top =&gt; {
+                ctx.frame_state()
+                    .allocate_top_panel(Rect::from_min_max(available_rect.min, rect.max));
             }
-            <span class="ident">TopBottomSide::Bottom</span> =&gt; {
-                <span class="ident">ctx</span>.<span class="ident">frame_state</span>()
-                    .<span class="ident">allocate_bottom_panel</span>(<span class="ident">Rect::from_min_max</span>(<span class="ident">rect</span>.<span class="ident">min</span>, <span class="ident">available_rect</span>.<span class="ident">max</span>));
+            TopBottomSide::Bottom =&gt; {
+                ctx.frame_state()
+                    .allocate_bottom_panel(Rect::from_min_max(rect.min, available_rect.max));
             }
         }
 
-        <span class="ident">inner_response</span>
+        inner_response
     }
 }
 
-<span class="comment">// ----------------------------------------------------------------------------</span>
+<span class="comment">// ----------------------------------------------------------------------------
 
-<span class="doccomment">/// A panel that covers the remainder of the screen,</span>
-<span class="doccomment">/// i.e. whatever area is left after adding other panels.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// `CentralPanel` must be added after all other panels.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// NOTE: Any [`Window`]s and [`Area`]s will cover the top-level `CentralPanel`.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// See the [module level docs](crate::containers::panel) for more details.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// ```</span>
-<span class="doccomment">/// # egui::__run_test_ctx(|ctx| {</span>
-<span class="doccomment">/// egui::CentralPanel::default().show(ctx, |ui| {</span>
-<span class="doccomment">///    ui.label(&quot;Hello World!&quot;);</span>
-<span class="doccomment">/// });</span>
-<span class="doccomment">/// # });</span>
-<span class="doccomment">/// ```</span>
-<span class="attribute">#[<span class="ident">must_use</span> <span class="op">=</span> <span class="string">&quot;You should call .show()&quot;</span>]</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Default</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">CentralPanel</span> {
-    <span class="ident">frame</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Frame</span><span class="op">&gt;</span>,
+</span><span class="doccomment">/// A panel that covers the remainder of the screen,
+/// i.e. whatever area is left after adding other panels.
+///
+/// `CentralPanel` must be added after all other panels.
+///
+/// NOTE: Any [`Window`]s and [`Area`]s will cover the top-level `CentralPanel`.
+///
+/// See the [module level docs](crate::containers::panel) for more details.
+///
+/// ```
+/// # egui::__run_test_ctx(|ctx| {
+/// egui::CentralPanel::default().show(ctx, |ui| {
+///    ui.label(&quot;Hello World!&quot;);
+/// });
+/// # });
+/// ```
+</span><span class="attribute">#[must_use = <span class="string">&quot;You should call .show()&quot;</span>]
+#[derive(Default)]
+</span><span class="kw">pub struct </span>CentralPanel {
+    frame: <span class="prelude-ty">Option</span>&lt;Frame&gt;,
 }
 
-<span class="kw">impl</span> <span class="ident">CentralPanel</span> {
-    <span class="doccomment">/// Change the background color, margins, etc.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">frame</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">frame</span>: <span class="ident">Frame</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">self</span>.<span class="ident">frame</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">frame</span>);
-        <span class="self">self</span>
-    }
+<span class="kw">impl </span>CentralPanel {
+    <span class="doccomment">/// Change the background color, margins, etc.
+    </span><span class="kw">pub fn </span>frame(<span class="kw-2">mut </span><span class="self">self</span>, frame: Frame) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.frame = <span class="prelude-val">Some</span>(frame);
+        <span class="self">self
+    </span>}
 }
 
-<span class="kw">impl</span> <span class="ident">CentralPanel</span> {
-    <span class="doccomment">/// Show the panel inside a `Ui`.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">show_inside</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span>(
+<span class="kw">impl </span>CentralPanel {
+    <span class="doccomment">/// Show the panel inside a `Ui`.
+    </span><span class="kw">pub fn </span>show_inside&lt;R&gt;(
         <span class="self">self</span>,
-        <span class="ident">ui</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Ui</span>,
-        <span class="ident">add_contents</span>: <span class="kw">impl</span> <span class="ident">FnOnce</span>(<span class="kw-2">&amp;mut</span> <span class="ident">Ui</span>) -&gt; <span class="ident">R</span>,
-    ) -&gt; <span class="ident">InnerResponse</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span> {
-        <span class="self">self</span>.<span class="ident">show_inside_dyn</span>(<span class="ident">ui</span>, <span class="ident">Box::new</span>(<span class="ident">add_contents</span>))
+        ui: <span class="kw-2">&amp;mut </span>Ui,
+        add_contents: <span class="kw">impl </span>FnOnce(<span class="kw-2">&amp;mut </span>Ui) -&gt; R,
+    ) -&gt; InnerResponse&lt;R&gt; {
+        <span class="self">self</span>.show_inside_dyn(ui, Box::new(add_contents))
     }
 
-    <span class="doccomment">/// Show the panel inside a `Ui`.</span>
-    <span class="kw">fn</span> <span class="ident">show_inside_dyn</span><span class="op">&lt;</span><span class="lifetime">&#39;c</span>, <span class="ident">R</span><span class="op">&gt;</span>(
+    <span class="doccomment">/// Show the panel inside a `Ui`.
+    </span><span class="kw">fn </span>show_inside_dyn&lt;<span class="lifetime">&#39;c</span>, R&gt;(
         <span class="self">self</span>,
-        <span class="ident">ui</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Ui</span>,
-        <span class="ident">add_contents</span>: <span class="ident">Box</span><span class="op">&lt;</span><span class="kw">dyn</span> <span class="ident">FnOnce</span>(<span class="kw-2">&amp;mut</span> <span class="ident">Ui</span>) -&gt; <span class="ident">R</span> <span class="op">+</span> <span class="lifetime">&#39;c</span><span class="op">&gt;</span>,
-    ) -&gt; <span class="ident">InnerResponse</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="self">Self</span> { <span class="ident">frame</span> } <span class="op">=</span> <span class="self">self</span>;
+        ui: <span class="kw-2">&amp;mut </span>Ui,
+        add_contents: Box&lt;<span class="kw">dyn </span>FnOnce(<span class="kw-2">&amp;mut </span>Ui) -&gt; R + <span class="lifetime">&#39;c</span>&gt;,
+    ) -&gt; InnerResponse&lt;R&gt; {
+        <span class="kw">let </span><span class="self">Self </span>{ frame } = <span class="self">self</span>;
 
-        <span class="kw">let</span> <span class="ident">panel_rect</span> <span class="op">=</span> <span class="ident">ui</span>.<span class="ident">available_rect_before_wrap</span>();
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">panel_ui</span> <span class="op">=</span> <span class="ident">ui</span>.<span class="ident">child_ui</span>(<span class="ident">panel_rect</span>, <span class="ident">Layout::top_down</span>(<span class="ident">Align::Min</span>));
+        <span class="kw">let </span>panel_rect = ui.available_rect_before_wrap();
+        <span class="kw">let </span><span class="kw-2">mut </span>panel_ui = ui.child_ui(panel_rect, Layout::top_down(Align::Min));
 
-        <span class="kw">let</span> <span class="ident">frame</span> <span class="op">=</span> <span class="ident">frame</span>.<span class="ident">unwrap_or_else</span>(<span class="op">|</span><span class="op">|</span> <span class="ident">Frame::central_panel</span>(<span class="ident">ui</span>.<span class="ident">style</span>()));
-        <span class="ident">frame</span>.<span class="ident">show</span>(<span class="kw-2">&amp;mut</span> <span class="ident">panel_ui</span>, <span class="op">|</span><span class="ident">ui</span><span class="op">|</span> {
-            <span class="ident">ui</span>.<span class="ident">expand_to_include_rect</span>(<span class="ident">ui</span>.<span class="ident">max_rect</span>()); <span class="comment">// Expand frame to include it all</span>
-            <span class="ident">add_contents</span>(<span class="ident">ui</span>)
+        <span class="kw">let </span>frame = frame.unwrap_or_else(|| Frame::central_panel(ui.style()));
+        frame.show(<span class="kw-2">&amp;mut </span>panel_ui, |ui| {
+            ui.expand_to_include_rect(ui.max_rect()); <span class="comment">// Expand frame to include it all
+            </span>add_contents(ui)
         })
     }
 
-    <span class="doccomment">/// Show the panel at the top level.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">show</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span>(
+    <span class="doccomment">/// Show the panel at the top level.
+    </span><span class="kw">pub fn </span>show&lt;R&gt;(
         <span class="self">self</span>,
-        <span class="ident">ctx</span>: <span class="kw-2">&amp;</span><span class="ident">CtxRef</span>,
-        <span class="ident">add_contents</span>: <span class="kw">impl</span> <span class="ident">FnOnce</span>(<span class="kw-2">&amp;mut</span> <span class="ident">Ui</span>) -&gt; <span class="ident">R</span>,
-    ) -&gt; <span class="ident">InnerResponse</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span> {
-        <span class="self">self</span>.<span class="ident">show_dyn</span>(<span class="ident">ctx</span>, <span class="ident">Box::new</span>(<span class="ident">add_contents</span>))
+        ctx: <span class="kw-2">&amp;</span>CtxRef,
+        add_contents: <span class="kw">impl </span>FnOnce(<span class="kw-2">&amp;mut </span>Ui) -&gt; R,
+    ) -&gt; InnerResponse&lt;R&gt; {
+        <span class="self">self</span>.show_dyn(ctx, Box::new(add_contents))
     }
 
-    <span class="doccomment">/// Show the panel at the top level.</span>
-    <span class="kw">fn</span> <span class="ident">show_dyn</span><span class="op">&lt;</span><span class="lifetime">&#39;c</span>, <span class="ident">R</span><span class="op">&gt;</span>(
+    <span class="doccomment">/// Show the panel at the top level.
+    </span><span class="kw">fn </span>show_dyn&lt;<span class="lifetime">&#39;c</span>, R&gt;(
         <span class="self">self</span>,
-        <span class="ident">ctx</span>: <span class="kw-2">&amp;</span><span class="ident">CtxRef</span>,
-        <span class="ident">add_contents</span>: <span class="ident">Box</span><span class="op">&lt;</span><span class="kw">dyn</span> <span class="ident">FnOnce</span>(<span class="kw-2">&amp;mut</span> <span class="ident">Ui</span>) -&gt; <span class="ident">R</span> <span class="op">+</span> <span class="lifetime">&#39;c</span><span class="op">&gt;</span>,
-    ) -&gt; <span class="ident">InnerResponse</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="ident">available_rect</span> <span class="op">=</span> <span class="ident">ctx</span>.<span class="ident">available_rect</span>();
-        <span class="kw">let</span> <span class="ident">layer_id</span> <span class="op">=</span> <span class="ident">LayerId::background</span>();
-        <span class="kw">let</span> <span class="ident">id</span> <span class="op">=</span> <span class="ident">Id::new</span>(<span class="string">&quot;central_panel&quot;</span>);
+        ctx: <span class="kw-2">&amp;</span>CtxRef,
+        add_contents: Box&lt;<span class="kw">dyn </span>FnOnce(<span class="kw-2">&amp;mut </span>Ui) -&gt; R + <span class="lifetime">&#39;c</span>&gt;,
+    ) -&gt; InnerResponse&lt;R&gt; {
+        <span class="kw">let </span>available_rect = ctx.available_rect();
+        <span class="kw">let </span>layer_id = LayerId::background();
+        <span class="kw">let </span>id = Id::new(<span class="string">&quot;central_panel&quot;</span>);
 
-        <span class="kw">let</span> <span class="ident">clip_rect</span> <span class="op">=</span> <span class="ident">ctx</span>.<span class="ident">input</span>().<span class="ident">screen_rect</span>();
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">panel_ui</span> <span class="op">=</span> <span class="ident">Ui::new</span>(<span class="ident">ctx</span>.<span class="ident">clone</span>(), <span class="ident">layer_id</span>, <span class="ident">id</span>, <span class="ident">available_rect</span>, <span class="ident">clip_rect</span>);
+        <span class="kw">let </span>clip_rect = ctx.input().screen_rect();
+        <span class="kw">let </span><span class="kw-2">mut </span>panel_ui = Ui::new(ctx.clone(), layer_id, id, available_rect, clip_rect);
 
-        <span class="kw">let</span> <span class="ident">inner_response</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">show_inside_dyn</span>(<span class="kw-2">&amp;mut</span> <span class="ident">panel_ui</span>, <span class="ident">add_contents</span>);
+        <span class="kw">let </span>inner_response = <span class="self">self</span>.show_inside_dyn(<span class="kw-2">&amp;mut </span>panel_ui, add_contents);
 
-        <span class="comment">// Only inform ctx about what we actually used, so we can shrink the native window to fit.</span>
-        <span class="ident">ctx</span>.<span class="ident">frame_state</span>()
-            .<span class="ident">allocate_central_panel</span>(<span class="ident">inner_response</span>.<span class="ident">response</span>.<span class="ident">rect</span>);
+        <span class="comment">// Only inform ctx about what we actually used, so we can shrink the native window to fit.
+        </span>ctx.frame_state()
+            .allocate_central_panel(inner_response.response.rect);
 
-        <span class="ident">inner_response</span>
+        inner_response
     }
 }
 
-<span class="kw">fn</span> <span class="ident">clamp_to_range</span>(<span class="ident">x</span>: <span class="ident">f32</span>, <span class="ident">range</span>: <span class="ident">RangeInclusive</span><span class="op">&lt;</span><span class="ident">f32</span><span class="op">&gt;</span>) -&gt; <span class="ident">f32</span> {
-    <span class="ident">x</span>.<span class="ident">clamp</span>(
-        <span class="ident">range</span>.<span class="ident">start</span>().<span class="ident">min</span>(<span class="kw-2">*</span><span class="ident">range</span>.<span class="ident">end</span>()),
-        <span class="ident">range</span>.<span class="ident">start</span>().<span class="ident">max</span>(<span class="kw-2">*</span><span class="ident">range</span>.<span class="ident">end</span>()),
+<span class="kw">fn </span>clamp_to_range(x: f32, range: RangeInclusive&lt;f32&gt;) -&gt; f32 {
+    x.clamp(
+        range.start().min(<span class="kw-2">*</span>range.end()),
+        range.start().max(<span class="kw-2">*</span>range.end()),
     )
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="egui" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0 (a55dd71d5 2022-09-19)" ></div></body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="egui" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.66.1 (90743e729 2023-01-10)" ></div></body></html>

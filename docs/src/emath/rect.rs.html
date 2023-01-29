@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/emath-0.16.0/src/rect.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>rect.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../emath/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../emath/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../emath/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/emath-0.16.0/src/rect.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>rect.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../normalize.css"><link rel="stylesheet" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../ayu.css" disabled><link rel="stylesheet" href="../../dark.css" disabled><link rel="stylesheet" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><div class="width-limiter"><nav class="sub"><a class="sub-logo-container" href="../../emath/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -489,496 +489,496 @@
 <span id="489">489</span>
 <span id="490">490</span>
 <span id="491">491</span>
-</pre><pre class="rust"><code><span class="kw">use</span> <span class="ident">std::f32::INFINITY</span>;
-<span class="kw">use</span> <span class="ident">std::ops::RangeInclusive</span>;
+</pre><pre class="rust"><code><span class="kw">use </span>std::f32::INFINITY;
+<span class="kw">use </span>std::ops::RangeInclusive;
 
-<span class="kw">use</span> <span class="kw">crate</span>::<span class="kw-2">*</span>;
+<span class="kw">use crate</span>::<span class="kw-2">*</span>;
 
-<span class="doccomment">/// A rectangular region of space.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// Normally given in points, e.g. logical pixels.</span>
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">Eq</span>, <span class="ident">PartialEq</span>)]</span>
-<span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;serde&quot;</span>, <span class="ident">derive</span>(<span class="ident">serde::Deserialize</span>, <span class="ident">serde::Serialize</span>))]</span>
-<span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;bytemuck&quot;</span>, <span class="ident">derive</span>(<span class="ident">bytemuck::Pod</span>, <span class="ident">bytemuck::Zeroable</span>))]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Rect</span> {
-    <span class="kw">pub</span> <span class="ident">min</span>: <span class="ident">Pos2</span>,
-    <span class="kw">pub</span> <span class="ident">max</span>: <span class="ident">Pos2</span>,
+<span class="doccomment">/// A rectangular region of space.
+///
+/// Normally given in points, e.g. logical pixels.
+</span><span class="attribute">#[repr(C)]
+#[derive(Clone, Copy, Eq, PartialEq)]
+#[cfg_attr(feature = <span class="string">&quot;serde&quot;</span>, derive(serde::Deserialize, serde::Serialize))]
+#[cfg_attr(feature = <span class="string">&quot;bytemuck&quot;</span>, derive(bytemuck::Pod, bytemuck::Zeroable))]
+</span><span class="kw">pub struct </span>Rect {
+    <span class="kw">pub </span>min: Pos2,
+    <span class="kw">pub </span>max: Pos2,
 }
 
-<span class="kw">impl</span> <span class="ident">Rect</span> {
-    <span class="doccomment">/// Infinite rectangle that contains everything.</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">EVERYTHING</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span> {
-        <span class="ident">min</span>: <span class="ident">pos2</span>(<span class="op">-</span><span class="ident">INFINITY</span>, <span class="op">-</span><span class="ident">INFINITY</span>),
-        <span class="ident">max</span>: <span class="ident">pos2</span>(<span class="ident">INFINITY</span>, <span class="ident">INFINITY</span>),
+<span class="kw">impl </span>Rect {
+    <span class="doccomment">/// Infinite rectangle that contains everything.
+    </span><span class="kw">pub const </span>EVERYTHING: <span class="self">Self </span>= <span class="self">Self </span>{
+        min: pos2(-INFINITY, -INFINITY),
+        max: pos2(INFINITY, INFINITY),
     };
 
-    <span class="doccomment">/// The inverse of [`Self::EVERYTHING`]: stretches from positive infinity to negative infinity.</span>
-    <span class="doccomment">/// Contains no points.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// This is useful as the seed for bounding bounding boxes.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// ```</span>
-    <span class="doccomment">/// # use emath::*;</span>
-    <span class="doccomment">/// let inf = f32::INFINITY;</span>
-    <span class="doccomment">/// assert!(Rect::NOTHING.size() == Vec2::splat(-inf));</span>
-    <span class="doccomment">/// assert!(Rect::NOTHING.contains(pos2(0.0, 0.0)) == false);</span>
-    <span class="doccomment">/// ```</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// # Example:</span>
-    <span class="doccomment">/// ```</span>
-    <span class="doccomment">/// # use emath::*;</span>
-    <span class="doccomment">/// let mut rect = Rect::NOTHING;</span>
-    <span class="doccomment">/// rect.extend_with(pos2(2.0, 1.0));</span>
-    <span class="doccomment">/// rect.extend_with(pos2(0.0, 3.0));</span>
-    <span class="doccomment">/// assert_eq!(rect, Rect::from_min_max(pos2(0.0, 1.0), pos2(2.0, 3.0)))</span>
-    <span class="doccomment">/// ```</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">NOTHING</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span> {
-        <span class="ident">min</span>: <span class="ident">pos2</span>(<span class="ident">INFINITY</span>, <span class="ident">INFINITY</span>),
-        <span class="ident">max</span>: <span class="ident">pos2</span>(<span class="op">-</span><span class="ident">INFINITY</span>, <span class="op">-</span><span class="ident">INFINITY</span>),
+    <span class="doccomment">/// The inverse of [`Self::EVERYTHING`]: stretches from positive infinity to negative infinity.
+    /// Contains no points.
+    ///
+    /// This is useful as the seed for bounding bounding boxes.
+    ///
+    /// ```
+    /// # use emath::*;
+    /// let inf = f32::INFINITY;
+    /// assert!(Rect::NOTHING.size() == Vec2::splat(-inf));
+    /// assert!(Rect::NOTHING.contains(pos2(0.0, 0.0)) == false);
+    /// ```
+    ///
+    /// # Example:
+    /// ```
+    /// # use emath::*;
+    /// let mut rect = Rect::NOTHING;
+    /// rect.extend_with(pos2(2.0, 1.0));
+    /// rect.extend_with(pos2(0.0, 3.0));
+    /// assert_eq!(rect, Rect::from_min_max(pos2(0.0, 1.0), pos2(2.0, 3.0)))
+    /// ```
+    </span><span class="kw">pub const </span>NOTHING: <span class="self">Self </span>= <span class="self">Self </span>{
+        min: pos2(INFINITY, INFINITY),
+        max: pos2(-INFINITY, -INFINITY),
     };
 
-    <span class="doccomment">/// An invalid `Rect` filled with [`f32::NAN`];</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">NAN</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span> {
-        <span class="ident">min</span>: <span class="ident">pos2</span>(<span class="ident">f32::NAN</span>, <span class="ident">f32::NAN</span>),
-        <span class="ident">max</span>: <span class="ident">pos2</span>(<span class="op">-</span><span class="ident">f32::NAN</span>, <span class="op">-</span><span class="ident">f32::NAN</span>),
+    <span class="doccomment">/// An invalid `Rect` filled with [`f32::NAN`];
+    </span><span class="kw">pub const </span>NAN: <span class="self">Self </span>= <span class="self">Self </span>{
+        min: pos2(f32::NAN, f32::NAN),
+        max: pos2(-f32::NAN, -f32::NAN),
     };
 
-    <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">from_min_max</span>(<span class="ident">min</span>: <span class="ident">Pos2</span>, <span class="ident">max</span>: <span class="ident">Pos2</span>) -&gt; <span class="self">Self</span> {
-        <span class="ident">Rect</span> { <span class="ident">min</span>, <span class="ident">max</span> }
+    <span class="attribute">#[inline(always)]
+    </span><span class="kw">pub const fn </span>from_min_max(min: Pos2, max: Pos2) -&gt; <span class="self">Self </span>{
+        Rect { min, max }
     }
 
-    <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">from_min_size</span>(<span class="ident">min</span>: <span class="ident">Pos2</span>, <span class="ident">size</span>: <span class="ident">Vec2</span>) -&gt; <span class="self">Self</span> {
-        <span class="ident">Rect</span> {
-            <span class="ident">min</span>,
-            <span class="ident">max</span>: <span class="ident">min</span> <span class="op">+</span> <span class="ident">size</span>,
+    <span class="attribute">#[inline(always)]
+    </span><span class="kw">pub fn </span>from_min_size(min: Pos2, size: Vec2) -&gt; <span class="self">Self </span>{
+        Rect {
+            min,
+            max: min + size,
         }
     }
 
-    <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">from_center_size</span>(<span class="ident">center</span>: <span class="ident">Pos2</span>, <span class="ident">size</span>: <span class="ident">Vec2</span>) -&gt; <span class="self">Self</span> {
-        <span class="ident">Rect</span> {
-            <span class="ident">min</span>: <span class="ident">center</span> <span class="op">-</span> <span class="ident">size</span> <span class="op">*</span> <span class="number">0.5</span>,
-            <span class="ident">max</span>: <span class="ident">center</span> <span class="op">+</span> <span class="ident">size</span> <span class="op">*</span> <span class="number">0.5</span>,
+    <span class="attribute">#[inline(always)]
+    </span><span class="kw">pub fn </span>from_center_size(center: Pos2, size: Vec2) -&gt; <span class="self">Self </span>{
+        Rect {
+            min: center - size * <span class="number">0.5</span>,
+            max: center + size * <span class="number">0.5</span>,
         }
     }
 
-    <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">from_x_y_ranges</span>(<span class="ident">x_range</span>: <span class="ident">RangeInclusive</span><span class="op">&lt;</span><span class="ident">f32</span><span class="op">&gt;</span>, <span class="ident">y_range</span>: <span class="ident">RangeInclusive</span><span class="op">&lt;</span><span class="ident">f32</span><span class="op">&gt;</span>) -&gt; <span class="self">Self</span> {
-        <span class="ident">Rect</span> {
-            <span class="ident">min</span>: <span class="ident">pos2</span>(<span class="kw-2">*</span><span class="ident">x_range</span>.<span class="ident">start</span>(), <span class="kw-2">*</span><span class="ident">y_range</span>.<span class="ident">start</span>()),
-            <span class="ident">max</span>: <span class="ident">pos2</span>(<span class="kw-2">*</span><span class="ident">x_range</span>.<span class="ident">end</span>(), <span class="kw-2">*</span><span class="ident">y_range</span>.<span class="ident">end</span>()),
+    <span class="attribute">#[inline(always)]
+    </span><span class="kw">pub fn </span>from_x_y_ranges(x_range: RangeInclusive&lt;f32&gt;, y_range: RangeInclusive&lt;f32&gt;) -&gt; <span class="self">Self </span>{
+        Rect {
+            min: pos2(<span class="kw-2">*</span>x_range.start(), <span class="kw-2">*</span>y_range.start()),
+            max: pos2(<span class="kw-2">*</span>x_range.end(), <span class="kw-2">*</span>y_range.end()),
         }
     }
 
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">from_two_pos</span>(<span class="ident">a</span>: <span class="ident">Pos2</span>, <span class="ident">b</span>: <span class="ident">Pos2</span>) -&gt; <span class="self">Self</span> {
-        <span class="ident">Rect</span> {
-            <span class="ident">min</span>: <span class="ident">pos2</span>(<span class="ident">a</span>.<span class="ident">x</span>.<span class="ident">min</span>(<span class="ident">b</span>.<span class="ident">x</span>), <span class="ident">a</span>.<span class="ident">y</span>.<span class="ident">min</span>(<span class="ident">b</span>.<span class="ident">y</span>)),
-            <span class="ident">max</span>: <span class="ident">pos2</span>(<span class="ident">a</span>.<span class="ident">x</span>.<span class="ident">max</span>(<span class="ident">b</span>.<span class="ident">x</span>), <span class="ident">a</span>.<span class="ident">y</span>.<span class="ident">max</span>(<span class="ident">b</span>.<span class="ident">y</span>)),
+    <span class="attribute">#[inline]
+    </span><span class="kw">pub fn </span>from_two_pos(a: Pos2, b: Pos2) -&gt; <span class="self">Self </span>{
+        Rect {
+            min: pos2(a.x.min(b.x), a.y.min(b.y)),
+            max: pos2(a.x.max(b.x), a.y.max(b.y)),
         }
     }
 
-    <span class="doccomment">/// Bounding-box around the points</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">from_points</span>(<span class="ident">points</span>: <span class="kw-2">&amp;</span>[<span class="ident">Pos2</span>]) -&gt; <span class="self">Self</span> {
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">rect</span> <span class="op">=</span> <span class="ident">Rect::NOTHING</span>;
-        <span class="kw">for</span> <span class="kw-2">&amp;</span><span class="ident">p</span> <span class="kw">in</span> <span class="ident">points</span> {
-            <span class="ident">rect</span>.<span class="ident">extend_with</span>(<span class="ident">p</span>);
+    <span class="doccomment">/// Bounding-box around the points
+    </span><span class="kw">pub fn </span>from_points(points: <span class="kw-2">&amp;</span>[Pos2]) -&gt; <span class="self">Self </span>{
+        <span class="kw">let </span><span class="kw-2">mut </span>rect = Rect::NOTHING;
+        <span class="kw">for </span><span class="kw-2">&amp;</span>p <span class="kw">in </span>points {
+            rect.extend_with(p);
         }
-        <span class="ident">rect</span>
+        rect
     }
 
-    <span class="doccomment">/// A `Rect` that contains every point to the right of the given X coordinate.</span>
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">everything_right_of</span>(<span class="ident">left_x</span>: <span class="ident">f32</span>) -&gt; <span class="self">Self</span> {
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">rect</span> <span class="op">=</span> <span class="ident"><span class="self">Self</span>::EVERYTHING</span>;
-        <span class="ident">rect</span>.<span class="ident">set_left</span>(<span class="ident">left_x</span>);
-        <span class="ident">rect</span>
+    <span class="doccomment">/// A `Rect` that contains every point to the right of the given X coordinate.
+    </span><span class="attribute">#[inline]
+    </span><span class="kw">pub fn </span>everything_right_of(left_x: f32) -&gt; <span class="self">Self </span>{
+        <span class="kw">let </span><span class="kw-2">mut </span>rect = <span class="self">Self</span>::EVERYTHING;
+        rect.set_left(left_x);
+        rect
     }
 
-    <span class="doccomment">/// A `Rect` that contains every point to the left of the given X coordinate.</span>
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">everything_left_of</span>(<span class="ident">right_x</span>: <span class="ident">f32</span>) -&gt; <span class="self">Self</span> {
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">rect</span> <span class="op">=</span> <span class="ident"><span class="self">Self</span>::EVERYTHING</span>;
-        <span class="ident">rect</span>.<span class="ident">set_right</span>(<span class="ident">right_x</span>);
-        <span class="ident">rect</span>
+    <span class="doccomment">/// A `Rect` that contains every point to the left of the given X coordinate.
+    </span><span class="attribute">#[inline]
+    </span><span class="kw">pub fn </span>everything_left_of(right_x: f32) -&gt; <span class="self">Self </span>{
+        <span class="kw">let </span><span class="kw-2">mut </span>rect = <span class="self">Self</span>::EVERYTHING;
+        rect.set_right(right_x);
+        rect
     }
 
-    <span class="doccomment">/// A `Rect` that contains every point below a certain y coordinate</span>
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">everything_below</span>(<span class="ident">top_y</span>: <span class="ident">f32</span>) -&gt; <span class="self">Self</span> {
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">rect</span> <span class="op">=</span> <span class="ident"><span class="self">Self</span>::EVERYTHING</span>;
-        <span class="ident">rect</span>.<span class="ident">set_top</span>(<span class="ident">top_y</span>);
-        <span class="ident">rect</span>
+    <span class="doccomment">/// A `Rect` that contains every point below a certain y coordinate
+    </span><span class="attribute">#[inline]
+    </span><span class="kw">pub fn </span>everything_below(top_y: f32) -&gt; <span class="self">Self </span>{
+        <span class="kw">let </span><span class="kw-2">mut </span>rect = <span class="self">Self</span>::EVERYTHING;
+        rect.set_top(top_y);
+        rect
     }
 
-    <span class="doccomment">/// A `Rect` that contains every point above a certain y coordinate</span>
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">everything_above</span>(<span class="ident">bottom_y</span>: <span class="ident">f32</span>) -&gt; <span class="self">Self</span> {
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">rect</span> <span class="op">=</span> <span class="ident"><span class="self">Self</span>::EVERYTHING</span>;
-        <span class="ident">rect</span>.<span class="ident">set_bottom</span>(<span class="ident">bottom_y</span>);
-        <span class="ident">rect</span>
+    <span class="doccomment">/// A `Rect` that contains every point above a certain y coordinate
+    </span><span class="attribute">#[inline]
+    </span><span class="kw">pub fn </span>everything_above(bottom_y: f32) -&gt; <span class="self">Self </span>{
+        <span class="kw">let </span><span class="kw-2">mut </span>rect = <span class="self">Self</span>::EVERYTHING;
+        rect.set_bottom(bottom_y);
+        rect
     }
 
-    <span class="doccomment">/// Expand by this much in each direction, keeping the center</span>
-    <span class="attribute">#[<span class="ident">must_use</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">expand</span>(<span class="self">self</span>, <span class="ident">amnt</span>: <span class="ident">f32</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">self</span>.<span class="ident">expand2</span>(<span class="ident">Vec2::splat</span>(<span class="ident">amnt</span>))
+    <span class="doccomment">/// Expand by this much in each direction, keeping the center
+    </span><span class="attribute">#[must_use]
+    </span><span class="kw">pub fn </span>expand(<span class="self">self</span>, amnt: f32) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.expand2(Vec2::splat(amnt))
     }
 
-    <span class="doccomment">/// Expand by this much in each direction, keeping the center</span>
-    <span class="attribute">#[<span class="ident">must_use</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">expand2</span>(<span class="self">self</span>, <span class="ident">amnt</span>: <span class="ident">Vec2</span>) -&gt; <span class="self">Self</span> {
-        <span class="ident">Rect::from_min_max</span>(<span class="self">self</span>.<span class="ident">min</span> <span class="op">-</span> <span class="ident">amnt</span>, <span class="self">self</span>.<span class="ident">max</span> <span class="op">+</span> <span class="ident">amnt</span>)
+    <span class="doccomment">/// Expand by this much in each direction, keeping the center
+    </span><span class="attribute">#[must_use]
+    </span><span class="kw">pub fn </span>expand2(<span class="self">self</span>, amnt: Vec2) -&gt; <span class="self">Self </span>{
+        Rect::from_min_max(<span class="self">self</span>.min - amnt, <span class="self">self</span>.max + amnt)
     }
 
-    <span class="doccomment">/// Shrink by this much in each direction, keeping the center</span>
-    <span class="attribute">#[<span class="ident">must_use</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">shrink</span>(<span class="self">self</span>, <span class="ident">amnt</span>: <span class="ident">f32</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">self</span>.<span class="ident">shrink2</span>(<span class="ident">Vec2::splat</span>(<span class="ident">amnt</span>))
+    <span class="doccomment">/// Shrink by this much in each direction, keeping the center
+    </span><span class="attribute">#[must_use]
+    </span><span class="kw">pub fn </span>shrink(<span class="self">self</span>, amnt: f32) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.shrink2(Vec2::splat(amnt))
     }
 
-    <span class="doccomment">/// Shrink by this much in each direction, keeping the center</span>
-    <span class="attribute">#[<span class="ident">must_use</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">shrink2</span>(<span class="self">self</span>, <span class="ident">amnt</span>: <span class="ident">Vec2</span>) -&gt; <span class="self">Self</span> {
-        <span class="ident">Rect::from_min_max</span>(<span class="self">self</span>.<span class="ident">min</span> <span class="op">+</span> <span class="ident">amnt</span>, <span class="self">self</span>.<span class="ident">max</span> <span class="op">-</span> <span class="ident">amnt</span>)
+    <span class="doccomment">/// Shrink by this much in each direction, keeping the center
+    </span><span class="attribute">#[must_use]
+    </span><span class="kw">pub fn </span>shrink2(<span class="self">self</span>, amnt: Vec2) -&gt; <span class="self">Self </span>{
+        Rect::from_min_max(<span class="self">self</span>.min + amnt, <span class="self">self</span>.max - amnt)
     }
 
-    <span class="attribute">#[<span class="ident">must_use</span>]</span>
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">translate</span>(<span class="self">self</span>, <span class="ident">amnt</span>: <span class="ident">Vec2</span>) -&gt; <span class="self">Self</span> {
-        <span class="ident">Rect::from_min_size</span>(<span class="self">self</span>.<span class="ident">min</span> <span class="op">+</span> <span class="ident">amnt</span>, <span class="self">self</span>.<span class="ident">size</span>())
+    <span class="attribute">#[must_use]
+    #[inline]
+    </span><span class="kw">pub fn </span>translate(<span class="self">self</span>, amnt: Vec2) -&gt; <span class="self">Self </span>{
+        Rect::from_min_size(<span class="self">self</span>.min + amnt, <span class="self">self</span>.size())
     }
 
-    <span class="doccomment">/// Rotate the bounds (will expand the `Rect`)</span>
-    <span class="attribute">#[<span class="ident">must_use</span>]</span>
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">rotate_bb</span>(<span class="self">self</span>, <span class="ident">rot</span>: <span class="ident"><span class="kw">crate</span>::Rot2</span>) -&gt; <span class="self">Self</span> {
-        <span class="kw">let</span> <span class="ident">a</span> <span class="op">=</span> <span class="ident">rot</span> <span class="op">*</span> <span class="self">self</span>.<span class="ident">left_top</span>().<span class="ident">to_vec2</span>();
-        <span class="kw">let</span> <span class="ident">b</span> <span class="op">=</span> <span class="ident">rot</span> <span class="op">*</span> <span class="self">self</span>.<span class="ident">right_top</span>().<span class="ident">to_vec2</span>();
-        <span class="kw">let</span> <span class="ident">c</span> <span class="op">=</span> <span class="ident">rot</span> <span class="op">*</span> <span class="self">self</span>.<span class="ident">left_bottom</span>().<span class="ident">to_vec2</span>();
-        <span class="kw">let</span> <span class="ident">d</span> <span class="op">=</span> <span class="ident">rot</span> <span class="op">*</span> <span class="self">self</span>.<span class="ident">right_bottom</span>().<span class="ident">to_vec2</span>();
+    <span class="doccomment">/// Rotate the bounds (will expand the `Rect`)
+    </span><span class="attribute">#[must_use]
+    #[inline]
+    </span><span class="kw">pub fn </span>rotate_bb(<span class="self">self</span>, rot: <span class="kw">crate</span>::Rot2) -&gt; <span class="self">Self </span>{
+        <span class="kw">let </span>a = rot * <span class="self">self</span>.left_top().to_vec2();
+        <span class="kw">let </span>b = rot * <span class="self">self</span>.right_top().to_vec2();
+        <span class="kw">let </span>c = rot * <span class="self">self</span>.left_bottom().to_vec2();
+        <span class="kw">let </span>d = rot * <span class="self">self</span>.right_bottom().to_vec2();
 
-        <span class="ident"><span class="self">Self</span>::from_min_max</span>(
-            <span class="ident">a</span>.<span class="ident">min</span>(<span class="ident">b</span>).<span class="ident">min</span>(<span class="ident">c</span>).<span class="ident">min</span>(<span class="ident">d</span>).<span class="ident">to_pos2</span>(),
-            <span class="ident">a</span>.<span class="ident">max</span>(<span class="ident">b</span>).<span class="ident">max</span>(<span class="ident">c</span>).<span class="ident">max</span>(<span class="ident">d</span>).<span class="ident">to_pos2</span>(),
+        <span class="self">Self</span>::from_min_max(
+            a.min(b).min(c).min(d).to_pos2(),
+            a.max(b).max(c).max(d).to_pos2(),
         )
     }
 
-    <span class="attribute">#[<span class="ident">must_use</span>]</span>
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">intersects</span>(<span class="self">self</span>, <span class="ident">other</span>: <span class="ident">Rect</span>) -&gt; <span class="ident">bool</span> {
-        <span class="self">self</span>.<span class="ident">min</span>.<span class="ident">x</span> <span class="op">&lt;</span><span class="op">=</span> <span class="ident">other</span>.<span class="ident">max</span>.<span class="ident">x</span>
-            <span class="op">&amp;&amp;</span> <span class="ident">other</span>.<span class="ident">min</span>.<span class="ident">x</span> <span class="op">&lt;</span><span class="op">=</span> <span class="self">self</span>.<span class="ident">max</span>.<span class="ident">x</span>
-            <span class="op">&amp;&amp;</span> <span class="self">self</span>.<span class="ident">min</span>.<span class="ident">y</span> <span class="op">&lt;</span><span class="op">=</span> <span class="ident">other</span>.<span class="ident">max</span>.<span class="ident">y</span>
-            <span class="op">&amp;&amp;</span> <span class="ident">other</span>.<span class="ident">min</span>.<span class="ident">y</span> <span class="op">&lt;</span><span class="op">=</span> <span class="self">self</span>.<span class="ident">max</span>.<span class="ident">y</span>
+    <span class="attribute">#[must_use]
+    #[inline]
+    </span><span class="kw">pub fn </span>intersects(<span class="self">self</span>, other: Rect) -&gt; bool {
+        <span class="self">self</span>.min.x &lt;= other.max.x
+            &amp;&amp; other.min.x &lt;= <span class="self">self</span>.max.x
+            &amp;&amp; <span class="self">self</span>.min.y &lt;= other.max.y
+            &amp;&amp; other.min.y &lt;= <span class="self">self</span>.max.y
     }
 
-    <span class="doccomment">/// keep min</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_width</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">w</span>: <span class="ident">f32</span>) {
-        <span class="self">self</span>.<span class="ident">max</span>.<span class="ident">x</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">min</span>.<span class="ident">x</span> <span class="op">+</span> <span class="ident">w</span>;
+    <span class="doccomment">/// keep min
+    </span><span class="kw">pub fn </span>set_width(<span class="kw-2">&amp;mut </span><span class="self">self</span>, w: f32) {
+        <span class="self">self</span>.max.x = <span class="self">self</span>.min.x + w;
     }
 
-    <span class="doccomment">/// keep min</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_height</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">h</span>: <span class="ident">f32</span>) {
-        <span class="self">self</span>.<span class="ident">max</span>.<span class="ident">y</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">min</span>.<span class="ident">y</span> <span class="op">+</span> <span class="ident">h</span>;
+    <span class="doccomment">/// keep min
+    </span><span class="kw">pub fn </span>set_height(<span class="kw-2">&amp;mut </span><span class="self">self</span>, h: f32) {
+        <span class="self">self</span>.max.y = <span class="self">self</span>.min.y + h;
     }
 
-    <span class="doccomment">/// Keep size</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_center</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">center</span>: <span class="ident">Pos2</span>) {
-        <span class="kw-2">*</span><span class="self">self</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">translate</span>(<span class="ident">center</span> <span class="op">-</span> <span class="self">self</span>.<span class="ident">center</span>());
+    <span class="doccomment">/// Keep size
+    </span><span class="kw">pub fn </span>set_center(<span class="kw-2">&amp;mut </span><span class="self">self</span>, center: Pos2) {
+        <span class="kw-2">*</span><span class="self">self </span>= <span class="self">self</span>.translate(center - <span class="self">self</span>.center());
     }
 
-    <span class="attribute">#[<span class="ident">must_use</span>]</span>
-    <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">contains</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">p</span>: <span class="ident">Pos2</span>) -&gt; <span class="ident">bool</span> {
-        <span class="self">self</span>.<span class="ident">min</span>.<span class="ident">x</span> <span class="op">&lt;</span><span class="op">=</span> <span class="ident">p</span>.<span class="ident">x</span> <span class="op">&amp;&amp;</span> <span class="ident">p</span>.<span class="ident">x</span> <span class="op">&lt;</span><span class="op">=</span> <span class="self">self</span>.<span class="ident">max</span>.<span class="ident">x</span> <span class="op">&amp;&amp;</span> <span class="self">self</span>.<span class="ident">min</span>.<span class="ident">y</span> <span class="op">&lt;</span><span class="op">=</span> <span class="ident">p</span>.<span class="ident">y</span> <span class="op">&amp;&amp;</span> <span class="ident">p</span>.<span class="ident">y</span> <span class="op">&lt;</span><span class="op">=</span> <span class="self">self</span>.<span class="ident">max</span>.<span class="ident">y</span>
+    <span class="attribute">#[must_use]
+    #[inline(always)]
+    </span><span class="kw">pub fn </span>contains(<span class="kw-2">&amp;</span><span class="self">self</span>, p: Pos2) -&gt; bool {
+        <span class="self">self</span>.min.x &lt;= p.x &amp;&amp; p.x &lt;= <span class="self">self</span>.max.x &amp;&amp; <span class="self">self</span>.min.y &lt;= p.y &amp;&amp; p.y &lt;= <span class="self">self</span>.max.y
     }
 
-    <span class="attribute">#[<span class="ident">must_use</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">contains_rect</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">other</span>: <span class="ident">Rect</span>) -&gt; <span class="ident">bool</span> {
-        <span class="self">self</span>.<span class="ident">contains</span>(<span class="ident">other</span>.<span class="ident">min</span>) <span class="op">&amp;&amp;</span> <span class="self">self</span>.<span class="ident">contains</span>(<span class="ident">other</span>.<span class="ident">max</span>)
+    <span class="attribute">#[must_use]
+    </span><span class="kw">pub fn </span>contains_rect(<span class="kw-2">&amp;</span><span class="self">self</span>, other: Rect) -&gt; bool {
+        <span class="self">self</span>.contains(other.min) &amp;&amp; <span class="self">self</span>.contains(other.max)
     }
 
-    <span class="doccomment">/// Return the given points clamped to be inside the rectangle</span>
-    <span class="doccomment">/// Panics if [`Self::is_negative`].</span>
-    <span class="attribute">#[<span class="ident">must_use</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">clamp</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">p</span>: <span class="ident">Pos2</span>) -&gt; <span class="ident">Pos2</span> {
-        <span class="ident">p</span>.<span class="ident">clamp</span>(<span class="self">self</span>.<span class="ident">min</span>, <span class="self">self</span>.<span class="ident">max</span>)
+    <span class="doccomment">/// Return the given points clamped to be inside the rectangle
+    /// Panics if [`Self::is_negative`].
+    </span><span class="attribute">#[must_use]
+    </span><span class="kw">pub fn </span>clamp(<span class="kw-2">&amp;</span><span class="self">self</span>, p: Pos2) -&gt; Pos2 {
+        p.clamp(<span class="self">self</span>.min, <span class="self">self</span>.max)
     }
 
-    <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">extend_with</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">p</span>: <span class="ident">Pos2</span>) {
-        <span class="self">self</span>.<span class="ident">min</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">min</span>.<span class="ident">min</span>(<span class="ident">p</span>);
-        <span class="self">self</span>.<span class="ident">max</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">max</span>.<span class="ident">max</span>(<span class="ident">p</span>);
+    <span class="attribute">#[inline(always)]
+    </span><span class="kw">pub fn </span>extend_with(<span class="kw-2">&amp;mut </span><span class="self">self</span>, p: Pos2) {
+        <span class="self">self</span>.min = <span class="self">self</span>.min.min(p);
+        <span class="self">self</span>.max = <span class="self">self</span>.max.max(p);
     }
 
-    <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-    <span class="doccomment">/// Expand to include the given x coordinate</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">extend_with_x</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">x</span>: <span class="ident">f32</span>) {
-        <span class="self">self</span>.<span class="ident">min</span>.<span class="ident">x</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">min</span>.<span class="ident">x</span>.<span class="ident">min</span>(<span class="ident">x</span>);
-        <span class="self">self</span>.<span class="ident">max</span>.<span class="ident">x</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">max</span>.<span class="ident">x</span>.<span class="ident">max</span>(<span class="ident">x</span>);
+    <span class="attribute">#[inline(always)]
+    </span><span class="doccomment">/// Expand to include the given x coordinate
+    </span><span class="kw">pub fn </span>extend_with_x(<span class="kw-2">&amp;mut </span><span class="self">self</span>, x: f32) {
+        <span class="self">self</span>.min.x = <span class="self">self</span>.min.x.min(x);
+        <span class="self">self</span>.max.x = <span class="self">self</span>.max.x.max(x);
     }
 
-    <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-    <span class="doccomment">/// Expand to include the given y coordinate</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">extend_with_y</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">y</span>: <span class="ident">f32</span>) {
-        <span class="self">self</span>.<span class="ident">min</span>.<span class="ident">y</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">min</span>.<span class="ident">y</span>.<span class="ident">min</span>(<span class="ident">y</span>);
-        <span class="self">self</span>.<span class="ident">max</span>.<span class="ident">y</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">max</span>.<span class="ident">y</span>.<span class="ident">max</span>(<span class="ident">y</span>);
+    <span class="attribute">#[inline(always)]
+    </span><span class="doccomment">/// Expand to include the given y coordinate
+    </span><span class="kw">pub fn </span>extend_with_y(<span class="kw-2">&amp;mut </span><span class="self">self</span>, y: f32) {
+        <span class="self">self</span>.min.y = <span class="self">self</span>.min.y.min(y);
+        <span class="self">self</span>.max.y = <span class="self">self</span>.max.y.max(y);
     }
 
-    <span class="doccomment">/// The union of two bounding rectangle, i.e. the minimum `Rect`</span>
-    <span class="doccomment">/// that contains both input rectangles.</span>
-    <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-    <span class="attribute">#[<span class="ident">must_use</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">union</span>(<span class="self">self</span>, <span class="ident">other</span>: <span class="ident">Rect</span>) -&gt; <span class="ident">Rect</span> {
-        <span class="ident">Rect</span> {
-            <span class="ident">min</span>: <span class="self">self</span>.<span class="ident">min</span>.<span class="ident">min</span>(<span class="ident">other</span>.<span class="ident">min</span>),
-            <span class="ident">max</span>: <span class="self">self</span>.<span class="ident">max</span>.<span class="ident">max</span>(<span class="ident">other</span>.<span class="ident">max</span>),
+    <span class="doccomment">/// The union of two bounding rectangle, i.e. the minimum `Rect`
+    /// that contains both input rectangles.
+    </span><span class="attribute">#[inline(always)]
+    #[must_use]
+    </span><span class="kw">pub fn </span>union(<span class="self">self</span>, other: Rect) -&gt; Rect {
+        Rect {
+            min: <span class="self">self</span>.min.min(other.min),
+            max: <span class="self">self</span>.max.max(other.max),
         }
     }
 
-    <span class="doccomment">/// The intersection of two `Rect`, i.e. the area covered by both.</span>
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="attribute">#[<span class="ident">must_use</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">intersect</span>(<span class="self">self</span>, <span class="ident">other</span>: <span class="ident">Rect</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">Self</span> {
-            <span class="ident">min</span>: <span class="self">self</span>.<span class="ident">min</span>.<span class="ident">max</span>(<span class="ident">other</span>.<span class="ident">min</span>),
-            <span class="ident">max</span>: <span class="self">self</span>.<span class="ident">max</span>.<span class="ident">min</span>(<span class="ident">other</span>.<span class="ident">max</span>),
+    <span class="doccomment">/// The intersection of two `Rect`, i.e. the area covered by both.
+    </span><span class="attribute">#[inline]
+    #[must_use]
+    </span><span class="kw">pub fn </span>intersect(<span class="self">self</span>, other: Rect) -&gt; <span class="self">Self </span>{
+        <span class="self">Self </span>{
+            min: <span class="self">self</span>.min.max(other.min),
+            max: <span class="self">self</span>.max.min(other.max),
         }
     }
 
-    <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">center</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">Pos2</span> {
-        <span class="ident">Pos2</span> {
-            <span class="ident">x</span>: (<span class="self">self</span>.<span class="ident">min</span>.<span class="ident">x</span> <span class="op">+</span> <span class="self">self</span>.<span class="ident">max</span>.<span class="ident">x</span>) <span class="op">/</span> <span class="number">2.0</span>,
-            <span class="ident">y</span>: (<span class="self">self</span>.<span class="ident">min</span>.<span class="ident">y</span> <span class="op">+</span> <span class="self">self</span>.<span class="ident">max</span>.<span class="ident">y</span>) <span class="op">/</span> <span class="number">2.0</span>,
+    <span class="attribute">#[inline(always)]
+    </span><span class="kw">pub fn </span>center(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; Pos2 {
+        Pos2 {
+            x: (<span class="self">self</span>.min.x + <span class="self">self</span>.max.x) / <span class="number">2.0</span>,
+            y: (<span class="self">self</span>.min.y + <span class="self">self</span>.max.y) / <span class="number">2.0</span>,
         }
     }
 
-    <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">size</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">Vec2</span> {
-        <span class="self">self</span>.<span class="ident">max</span> <span class="op">-</span> <span class="self">self</span>.<span class="ident">min</span>
+    <span class="attribute">#[inline(always)]
+    </span><span class="kw">pub fn </span>size(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; Vec2 {
+        <span class="self">self</span>.max - <span class="self">self</span>.min
     }
 
-    <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">width</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">f32</span> {
-        <span class="self">self</span>.<span class="ident">max</span>.<span class="ident">x</span> <span class="op">-</span> <span class="self">self</span>.<span class="ident">min</span>.<span class="ident">x</span>
+    <span class="attribute">#[inline(always)]
+    </span><span class="kw">pub fn </span>width(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; f32 {
+        <span class="self">self</span>.max.x - <span class="self">self</span>.min.x
     }
 
-    <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">height</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">f32</span> {
-        <span class="self">self</span>.<span class="ident">max</span>.<span class="ident">y</span> <span class="op">-</span> <span class="self">self</span>.<span class="ident">min</span>.<span class="ident">y</span>
+    <span class="attribute">#[inline(always)]
+    </span><span class="kw">pub fn </span>height(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; f32 {
+        <span class="self">self</span>.max.y - <span class="self">self</span>.min.y
     }
 
-    <span class="doccomment">/// Width / height</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// * `aspect_ratio &lt; 1`: portrait / high</span>
-    <span class="doccomment">/// * `aspect_ratio = 1`: square</span>
-    <span class="doccomment">/// * `aspect_ratio &gt; 1`: landscape / wide</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">aspect_ratio</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">f32</span> {
-        <span class="self">self</span>.<span class="ident">width</span>() <span class="op">/</span> <span class="self">self</span>.<span class="ident">height</span>()
+    <span class="doccomment">/// Width / height
+    ///
+    /// * `aspect_ratio &lt; 1`: portrait / high
+    /// * `aspect_ratio = 1`: square
+    /// * `aspect_ratio &gt; 1`: landscape / wide
+    </span><span class="kw">pub fn </span>aspect_ratio(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; f32 {
+        <span class="self">self</span>.width() / <span class="self">self</span>.height()
     }
 
-    <span class="doccomment">/// `[2, 1]` for wide screen, and `[1, 2]` for portrait, etc.</span>
-    <span class="doccomment">/// At least one dimension = 1, the other &gt;= 1</span>
-    <span class="doccomment">/// Returns the proportions required to letter-box a square view area.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">square_proportions</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">Vec2</span> {
-        <span class="kw">let</span> <span class="ident">w</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">width</span>();
-        <span class="kw">let</span> <span class="ident">h</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">height</span>();
-        <span class="kw">if</span> <span class="ident">w</span> <span class="op">&gt;</span> <span class="ident">h</span> {
-            <span class="ident">vec2</span>(<span class="ident">w</span> <span class="op">/</span> <span class="ident">h</span>, <span class="number">1.0</span>)
-        } <span class="kw">else</span> {
-            <span class="ident">vec2</span>(<span class="number">1.0</span>, <span class="ident">h</span> <span class="op">/</span> <span class="ident">w</span>)
+    <span class="doccomment">/// `[2, 1]` for wide screen, and `[1, 2]` for portrait, etc.
+    /// At least one dimension = 1, the other &gt;= 1
+    /// Returns the proportions required to letter-box a square view area.
+    </span><span class="kw">pub fn </span>square_proportions(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; Vec2 {
+        <span class="kw">let </span>w = <span class="self">self</span>.width();
+        <span class="kw">let </span>h = <span class="self">self</span>.height();
+        <span class="kw">if </span>w &gt; h {
+            vec2(w / h, <span class="number">1.0</span>)
+        } <span class="kw">else </span>{
+            vec2(<span class="number">1.0</span>, h / w)
         }
     }
 
-    <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">area</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">f32</span> {
-        <span class="self">self</span>.<span class="ident">width</span>() <span class="op">*</span> <span class="self">self</span>.<span class="ident">height</span>()
+    <span class="attribute">#[inline(always)]
+    </span><span class="kw">pub fn </span>area(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; f32 {
+        <span class="self">self</span>.width() * <span class="self">self</span>.height()
     }
 
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">distance_sq_to_pos</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">pos</span>: <span class="ident">Pos2</span>) -&gt; <span class="ident">f32</span> {
-        <span class="kw">let</span> <span class="ident">dx</span> <span class="op">=</span> <span class="kw">if</span> <span class="self">self</span>.<span class="ident">min</span>.<span class="ident">x</span> <span class="op">&gt;</span> <span class="ident">pos</span>.<span class="ident">x</span> {
-            <span class="self">self</span>.<span class="ident">min</span>.<span class="ident">x</span> <span class="op">-</span> <span class="ident">pos</span>.<span class="ident">x</span>
-        } <span class="kw">else</span> <span class="kw">if</span> <span class="ident">pos</span>.<span class="ident">x</span> <span class="op">&gt;</span> <span class="self">self</span>.<span class="ident">max</span>.<span class="ident">x</span> {
-            <span class="ident">pos</span>.<span class="ident">x</span> <span class="op">-</span> <span class="self">self</span>.<span class="ident">max</span>.<span class="ident">x</span>
-        } <span class="kw">else</span> {
-            <span class="number">0.0</span>
-        };
+    <span class="attribute">#[inline]
+    </span><span class="kw">pub fn </span>distance_sq_to_pos(<span class="kw-2">&amp;</span><span class="self">self</span>, pos: Pos2) -&gt; f32 {
+        <span class="kw">let </span>dx = <span class="kw">if </span><span class="self">self</span>.min.x &gt; pos.x {
+            <span class="self">self</span>.min.x - pos.x
+        } <span class="kw">else if </span>pos.x &gt; <span class="self">self</span>.max.x {
+            pos.x - <span class="self">self</span>.max.x
+        } <span class="kw">else </span>{
+            <span class="number">0.0
+        </span>};
 
-        <span class="kw">let</span> <span class="ident">dy</span> <span class="op">=</span> <span class="kw">if</span> <span class="self">self</span>.<span class="ident">min</span>.<span class="ident">y</span> <span class="op">&gt;</span> <span class="ident">pos</span>.<span class="ident">y</span> {
-            <span class="self">self</span>.<span class="ident">min</span>.<span class="ident">y</span> <span class="op">-</span> <span class="ident">pos</span>.<span class="ident">y</span>
-        } <span class="kw">else</span> <span class="kw">if</span> <span class="ident">pos</span>.<span class="ident">y</span> <span class="op">&gt;</span> <span class="self">self</span>.<span class="ident">max</span>.<span class="ident">y</span> {
-            <span class="ident">pos</span>.<span class="ident">y</span> <span class="op">-</span> <span class="self">self</span>.<span class="ident">max</span>.<span class="ident">y</span>
-        } <span class="kw">else</span> {
-            <span class="number">0.0</span>
-        };
+        <span class="kw">let </span>dy = <span class="kw">if </span><span class="self">self</span>.min.y &gt; pos.y {
+            <span class="self">self</span>.min.y - pos.y
+        } <span class="kw">else if </span>pos.y &gt; <span class="self">self</span>.max.y {
+            pos.y - <span class="self">self</span>.max.y
+        } <span class="kw">else </span>{
+            <span class="number">0.0
+        </span>};
 
-        <span class="ident">dx</span> <span class="op">*</span> <span class="ident">dx</span> <span class="op">+</span> <span class="ident">dy</span> <span class="op">*</span> <span class="ident">dy</span>
+        dx * dx + dy * dy
     }
 
-    <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">x_range</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">RangeInclusive</span><span class="op">&lt;</span><span class="ident">f32</span><span class="op">&gt;</span> {
-        <span class="self">self</span>.<span class="ident">min</span>.<span class="ident">x</span>..<span class="op">=</span><span class="self">self</span>.<span class="ident">max</span>.<span class="ident">x</span>
+    <span class="attribute">#[inline(always)]
+    </span><span class="kw">pub fn </span>x_range(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; RangeInclusive&lt;f32&gt; {
+        <span class="self">self</span>.min.x..=<span class="self">self</span>.max.x
     }
 
-    <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">y_range</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">RangeInclusive</span><span class="op">&lt;</span><span class="ident">f32</span><span class="op">&gt;</span> {
-        <span class="self">self</span>.<span class="ident">min</span>.<span class="ident">y</span>..<span class="op">=</span><span class="self">self</span>.<span class="ident">max</span>.<span class="ident">y</span>
+    <span class="attribute">#[inline(always)]
+    </span><span class="kw">pub fn </span>y_range(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; RangeInclusive&lt;f32&gt; {
+        <span class="self">self</span>.min.y..=<span class="self">self</span>.max.y
     }
 
-    <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">bottom_up_range</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">RangeInclusive</span><span class="op">&lt;</span><span class="ident">f32</span><span class="op">&gt;</span> {
-        <span class="self">self</span>.<span class="ident">max</span>.<span class="ident">y</span>..<span class="op">=</span><span class="self">self</span>.<span class="ident">min</span>.<span class="ident">y</span>
+    <span class="attribute">#[inline(always)]
+    </span><span class="kw">pub fn </span>bottom_up_range(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; RangeInclusive&lt;f32&gt; {
+        <span class="self">self</span>.max.y..=<span class="self">self</span>.min.y
     }
 
-    <span class="doccomment">/// `width &lt; 0 || height &lt; 0`</span>
-    <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_negative</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span> {
-        <span class="self">self</span>.<span class="ident">max</span>.<span class="ident">x</span> <span class="op">&lt;</span> <span class="self">self</span>.<span class="ident">min</span>.<span class="ident">x</span> <span class="op">|</span><span class="op">|</span> <span class="self">self</span>.<span class="ident">max</span>.<span class="ident">y</span> <span class="op">&lt;</span> <span class="self">self</span>.<span class="ident">min</span>.<span class="ident">y</span>
+    <span class="doccomment">/// `width &lt; 0 || height &lt; 0`
+    </span><span class="attribute">#[inline(always)]
+    </span><span class="kw">pub fn </span>is_negative(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; bool {
+        <span class="self">self</span>.max.x &lt; <span class="self">self</span>.min.x || <span class="self">self</span>.max.y &lt; <span class="self">self</span>.min.y
     }
 
-    <span class="doccomment">/// `width &gt; 0 &amp;&amp; height &gt; 0`</span>
-    <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_positive</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span> {
-        <span class="self">self</span>.<span class="ident">min</span>.<span class="ident">x</span> <span class="op">&lt;</span> <span class="self">self</span>.<span class="ident">max</span>.<span class="ident">x</span> <span class="op">&amp;&amp;</span> <span class="self">self</span>.<span class="ident">min</span>.<span class="ident">y</span> <span class="op">&lt;</span> <span class="self">self</span>.<span class="ident">max</span>.<span class="ident">y</span>
+    <span class="doccomment">/// `width &gt; 0 &amp;&amp; height &gt; 0`
+    </span><span class="attribute">#[inline(always)]
+    </span><span class="kw">pub fn </span>is_positive(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; bool {
+        <span class="self">self</span>.min.x &lt; <span class="self">self</span>.max.x &amp;&amp; <span class="self">self</span>.min.y &lt; <span class="self">self</span>.max.y
     }
 
-    <span class="doccomment">/// True if all members are also finite.</span>
-    <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_finite</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span> {
-        <span class="self">self</span>.<span class="ident">min</span>.<span class="ident">is_finite</span>() <span class="op">&amp;&amp;</span> <span class="self">self</span>.<span class="ident">max</span>.<span class="ident">is_finite</span>()
+    <span class="doccomment">/// True if all members are also finite.
+    </span><span class="attribute">#[inline(always)]
+    </span><span class="kw">pub fn </span>is_finite(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; bool {
+        <span class="self">self</span>.min.is_finite() &amp;&amp; <span class="self">self</span>.max.is_finite()
     }
 
-    <span class="doccomment">/// True if any member is NaN.</span>
-    <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">any_nan</span>(<span class="self">self</span>) -&gt; <span class="ident">bool</span> {
-        <span class="self">self</span>.<span class="ident">min</span>.<span class="ident">any_nan</span>() <span class="op">|</span><span class="op">|</span> <span class="self">self</span>.<span class="ident">max</span>.<span class="ident">any_nan</span>()
+    <span class="doccomment">/// True if any member is NaN.
+    </span><span class="attribute">#[inline(always)]
+    </span><span class="kw">pub fn </span>any_nan(<span class="self">self</span>) -&gt; bool {
+        <span class="self">self</span>.min.any_nan() || <span class="self">self</span>.max.any_nan()
     }
 }
 
-<span class="doccomment">/// ## Convenience functions (assumes origin is towards left top):</span>
-<span class="kw">impl</span> <span class="ident">Rect</span> {
-    <span class="doccomment">/// `min.x`</span>
-    <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">left</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">f32</span> {
-        <span class="self">self</span>.<span class="ident">min</span>.<span class="ident">x</span>
+<span class="doccomment">/// ## Convenience functions (assumes origin is towards left top):
+</span><span class="kw">impl </span>Rect {
+    <span class="doccomment">/// `min.x`
+    </span><span class="attribute">#[inline(always)]
+    </span><span class="kw">pub fn </span>left(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; f32 {
+        <span class="self">self</span>.min.x
     }
-    <span class="doccomment">/// `min.x`</span>
-    <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">left_mut</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>) -&gt; <span class="kw-2">&amp;mut</span> <span class="ident">f32</span> {
-        <span class="kw-2">&amp;mut</span> <span class="self">self</span>.<span class="ident">min</span>.<span class="ident">x</span>
+    <span class="doccomment">/// `min.x`
+    </span><span class="attribute">#[inline(always)]
+    </span><span class="kw">pub fn </span>left_mut(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;mut </span>f32 {
+        <span class="kw-2">&amp;mut </span><span class="self">self</span>.min.x
     }
-    <span class="doccomment">/// `min.x`</span>
-    <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_left</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">x</span>: <span class="ident">f32</span>) {
-        <span class="self">self</span>.<span class="ident">min</span>.<span class="ident">x</span> <span class="op">=</span> <span class="ident">x</span>;
-    }
-
-    <span class="doccomment">/// `max.x`</span>
-    <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">right</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">f32</span> {
-        <span class="self">self</span>.<span class="ident">max</span>.<span class="ident">x</span>
-    }
-    <span class="doccomment">/// `max.x`</span>
-    <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">right_mut</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>) -&gt; <span class="kw-2">&amp;mut</span> <span class="ident">f32</span> {
-        <span class="kw-2">&amp;mut</span> <span class="self">self</span>.<span class="ident">max</span>.<span class="ident">x</span>
-    }
-    <span class="doccomment">/// `max.x`</span>
-    <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_right</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">x</span>: <span class="ident">f32</span>) {
-        <span class="self">self</span>.<span class="ident">max</span>.<span class="ident">x</span> <span class="op">=</span> <span class="ident">x</span>;
+    <span class="doccomment">/// `min.x`
+    </span><span class="attribute">#[inline(always)]
+    </span><span class="kw">pub fn </span>set_left(<span class="kw-2">&amp;mut </span><span class="self">self</span>, x: f32) {
+        <span class="self">self</span>.min.x = x;
     }
 
-    <span class="doccomment">/// `min.y`</span>
-    <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">top</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">f32</span> {
-        <span class="self">self</span>.<span class="ident">min</span>.<span class="ident">y</span>
+    <span class="doccomment">/// `max.x`
+    </span><span class="attribute">#[inline(always)]
+    </span><span class="kw">pub fn </span>right(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; f32 {
+        <span class="self">self</span>.max.x
     }
-    <span class="doccomment">/// `min.y`</span>
-    <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">top_mut</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>) -&gt; <span class="kw-2">&amp;mut</span> <span class="ident">f32</span> {
-        <span class="kw-2">&amp;mut</span> <span class="self">self</span>.<span class="ident">min</span>.<span class="ident">y</span>
+    <span class="doccomment">/// `max.x`
+    </span><span class="attribute">#[inline(always)]
+    </span><span class="kw">pub fn </span>right_mut(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;mut </span>f32 {
+        <span class="kw-2">&amp;mut </span><span class="self">self</span>.max.x
     }
-    <span class="doccomment">/// `min.y`</span>
-    <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_top</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">y</span>: <span class="ident">f32</span>) {
-        <span class="self">self</span>.<span class="ident">min</span>.<span class="ident">y</span> <span class="op">=</span> <span class="ident">y</span>;
-    }
-
-    <span class="doccomment">/// `max.y`</span>
-    <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">bottom</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">f32</span> {
-        <span class="self">self</span>.<span class="ident">max</span>.<span class="ident">y</span>
-    }
-    <span class="doccomment">/// `max.y`</span>
-    <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">bottom_mut</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>) -&gt; <span class="kw-2">&amp;mut</span> <span class="ident">f32</span> {
-        <span class="kw-2">&amp;mut</span> <span class="self">self</span>.<span class="ident">max</span>.<span class="ident">y</span>
-    }
-    <span class="doccomment">/// `max.y`</span>
-    <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_bottom</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">y</span>: <span class="ident">f32</span>) {
-        <span class="self">self</span>.<span class="ident">max</span>.<span class="ident">y</span> <span class="op">=</span> <span class="ident">y</span>;
+    <span class="doccomment">/// `max.x`
+    </span><span class="attribute">#[inline(always)]
+    </span><span class="kw">pub fn </span>set_right(<span class="kw-2">&amp;mut </span><span class="self">self</span>, x: f32) {
+        <span class="self">self</span>.max.x = x;
     }
 
-    <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">left_top</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">Pos2</span> {
-        <span class="ident">pos2</span>(<span class="self">self</span>.<span class="ident">left</span>(), <span class="self">self</span>.<span class="ident">top</span>())
+    <span class="doccomment">/// `min.y`
+    </span><span class="attribute">#[inline(always)]
+    </span><span class="kw">pub fn </span>top(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; f32 {
+        <span class="self">self</span>.min.y
+    }
+    <span class="doccomment">/// `min.y`
+    </span><span class="attribute">#[inline(always)]
+    </span><span class="kw">pub fn </span>top_mut(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;mut </span>f32 {
+        <span class="kw-2">&amp;mut </span><span class="self">self</span>.min.y
+    }
+    <span class="doccomment">/// `min.y`
+    </span><span class="attribute">#[inline(always)]
+    </span><span class="kw">pub fn </span>set_top(<span class="kw-2">&amp;mut </span><span class="self">self</span>, y: f32) {
+        <span class="self">self</span>.min.y = y;
     }
 
-    <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">center_top</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">Pos2</span> {
-        <span class="ident">pos2</span>(<span class="self">self</span>.<span class="ident">center</span>().<span class="ident">x</span>, <span class="self">self</span>.<span class="ident">top</span>())
+    <span class="doccomment">/// `max.y`
+    </span><span class="attribute">#[inline(always)]
+    </span><span class="kw">pub fn </span>bottom(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; f32 {
+        <span class="self">self</span>.max.y
+    }
+    <span class="doccomment">/// `max.y`
+    </span><span class="attribute">#[inline(always)]
+    </span><span class="kw">pub fn </span>bottom_mut(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;mut </span>f32 {
+        <span class="kw-2">&amp;mut </span><span class="self">self</span>.max.y
+    }
+    <span class="doccomment">/// `max.y`
+    </span><span class="attribute">#[inline(always)]
+    </span><span class="kw">pub fn </span>set_bottom(<span class="kw-2">&amp;mut </span><span class="self">self</span>, y: f32) {
+        <span class="self">self</span>.max.y = y;
     }
 
-    <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">right_top</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">Pos2</span> {
-        <span class="ident">pos2</span>(<span class="self">self</span>.<span class="ident">right</span>(), <span class="self">self</span>.<span class="ident">top</span>())
+    <span class="attribute">#[inline(always)]
+    </span><span class="kw">pub fn </span>left_top(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; Pos2 {
+        pos2(<span class="self">self</span>.left(), <span class="self">self</span>.top())
     }
 
-    <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">left_center</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">Pos2</span> {
-        <span class="ident">pos2</span>(<span class="self">self</span>.<span class="ident">left</span>(), <span class="self">self</span>.<span class="ident">center</span>().<span class="ident">y</span>)
+    <span class="attribute">#[inline(always)]
+    </span><span class="kw">pub fn </span>center_top(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; Pos2 {
+        pos2(<span class="self">self</span>.center().x, <span class="self">self</span>.top())
     }
 
-    <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">right_center</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">Pos2</span> {
-        <span class="ident">pos2</span>(<span class="self">self</span>.<span class="ident">right</span>(), <span class="self">self</span>.<span class="ident">center</span>().<span class="ident">y</span>)
+    <span class="attribute">#[inline(always)]
+    </span><span class="kw">pub fn </span>right_top(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; Pos2 {
+        pos2(<span class="self">self</span>.right(), <span class="self">self</span>.top())
     }
 
-    <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">left_bottom</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">Pos2</span> {
-        <span class="ident">pos2</span>(<span class="self">self</span>.<span class="ident">left</span>(), <span class="self">self</span>.<span class="ident">bottom</span>())
+    <span class="attribute">#[inline(always)]
+    </span><span class="kw">pub fn </span>left_center(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; Pos2 {
+        pos2(<span class="self">self</span>.left(), <span class="self">self</span>.center().y)
     }
 
-    <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">center_bottom</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">Pos2</span> {
-        <span class="ident">pos2</span>(<span class="self">self</span>.<span class="ident">center</span>().<span class="ident">x</span>, <span class="self">self</span>.<span class="ident">bottom</span>())
+    <span class="attribute">#[inline(always)]
+    </span><span class="kw">pub fn </span>right_center(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; Pos2 {
+        pos2(<span class="self">self</span>.right(), <span class="self">self</span>.center().y)
     }
 
-    <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">right_bottom</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">Pos2</span> {
-        <span class="ident">pos2</span>(<span class="self">self</span>.<span class="ident">right</span>(), <span class="self">self</span>.<span class="ident">bottom</span>())
+    <span class="attribute">#[inline(always)]
+    </span><span class="kw">pub fn </span>left_bottom(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; Pos2 {
+        pos2(<span class="self">self</span>.left(), <span class="self">self</span>.bottom())
+    }
+
+    <span class="attribute">#[inline(always)]
+    </span><span class="kw">pub fn </span>center_bottom(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; Pos2 {
+        pos2(<span class="self">self</span>.center().x, <span class="self">self</span>.bottom())
+    }
+
+    <span class="attribute">#[inline(always)]
+    </span><span class="kw">pub fn </span>right_bottom(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; Pos2 {
+        pos2(<span class="self">self</span>.right(), <span class="self">self</span>.bottom())
     }
 }
 
-<span class="kw">impl</span> <span class="ident">std::fmt::Debug</span> <span class="kw">for</span> <span class="ident">Rect</span> {
-    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;mut</span> <span class="ident">std::fmt::Formatter</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>) -&gt; <span class="ident">std::fmt::Result</span> {
-        <span class="macro">write!</span>(<span class="ident">f</span>, <span class="string">&quot;[{:?} - {:?}]&quot;</span>, <span class="self">self</span>.<span class="ident">min</span>, <span class="self">self</span>.<span class="ident">max</span>)
+<span class="kw">impl </span>std::fmt::Debug <span class="kw">for </span>Rect {
+    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>std::fmt::Formatter&lt;<span class="lifetime">&#39;_</span>&gt;) -&gt; std::fmt::Result {
+        <span class="macro">write!</span>(f, <span class="string">&quot;[{:?} - {:?}]&quot;</span>, <span class="self">self</span>.min, <span class="self">self</span>.max)
     }
 }
 
-<span class="doccomment">/// from (min, max) or (left top, right bottom)</span>
-<span class="kw">impl</span> <span class="ident">From</span><span class="op">&lt;</span>[<span class="ident">Pos2</span>; <span class="number">2</span>]<span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Rect</span> {
-    <span class="kw">fn</span> <span class="ident">from</span>([<span class="ident">min</span>, <span class="ident">max</span>]: [<span class="ident">Pos2</span>; <span class="number">2</span>]) -&gt; <span class="self">Self</span> {
-        <span class="self">Self</span> { <span class="ident">min</span>, <span class="ident">max</span> }
+<span class="doccomment">/// from (min, max) or (left top, right bottom)
+</span><span class="kw">impl </span>From&lt;[Pos2; <span class="number">2</span>]&gt; <span class="kw">for </span>Rect {
+    <span class="kw">fn </span>from([min, max]: [Pos2; <span class="number">2</span>]) -&gt; <span class="self">Self </span>{
+        <span class="self">Self </span>{ min, max }
     }
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="emath" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0 (a55dd71d5 2022-09-19)" ></div></body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="emath" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.66.1 (90743e729 2023-01-10)" ></div></body></html>

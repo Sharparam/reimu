@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/egui-0.16.1/src/response.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>response.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../egui/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../egui/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../egui/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/egui-0.16.1/src/response.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>response.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../normalize.css"><link rel="stylesheet" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../ayu.css" disabled><link rel="stylesheet" href="../../dark.css" disabled><link rel="stylesheet" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><div class="width-limiter"><nav class="sub"><a class="sub-logo-container" href="../../egui/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -597,604 +597,604 @@
 <span id="597">597</span>
 <span id="598">598</span>
 <span id="599">599</span>
-</pre><pre class="rust"><code><span class="kw">use</span> <span class="kw">crate</span>::{
-    <span class="ident">emath</span>::{<span class="ident">lerp</span>, <span class="ident">Align</span>, <span class="ident">Pos2</span>, <span class="ident">Rect</span>, <span class="ident">Vec2</span>},
-    <span class="ident">CtxRef</span>, <span class="ident">CursorIcon</span>, <span class="ident">Id</span>, <span class="ident">LayerId</span>, <span class="ident">PointerButton</span>, <span class="ident">Sense</span>, <span class="ident">Ui</span>, <span class="ident">WidgetText</span>, <span class="ident">NUM_POINTER_BUTTONS</span>,
+</pre><pre class="rust"><code><span class="kw">use crate</span>::{
+    emath::{lerp, Align, Pos2, Rect, Vec2},
+    CtxRef, CursorIcon, Id, LayerId, PointerButton, Sense, Ui, WidgetText, NUM_POINTER_BUTTONS,
 };
 
-<span class="comment">// ----------------------------------------------------------------------------</span>
+<span class="comment">// ----------------------------------------------------------------------------
 
-<span class="doccomment">/// The result of adding a widget to a [`Ui`].</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// A `Response` lets you know whether or not a widget is being hovered, clicked or dragged.</span>
-<span class="doccomment">/// It also lets you easily show a tooltip on hover.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// Whenever something gets added to a `Ui`, a `Response` object is returned.</span>
-<span class="doccomment">/// [`ui.add`] returns a `Response`, as does [`ui.button`], and all similar shortcuts.</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Response</span> {
-    <span class="comment">// CONTEXT:</span>
-    <span class="doccomment">/// Used for optionally showing a tooltip and checking for more interactions.</span>
-    <span class="kw">pub</span> <span class="ident">ctx</span>: <span class="ident">CtxRef</span>,
+</span><span class="doccomment">/// The result of adding a widget to a [`Ui`].
+///
+/// A `Response` lets you know whether or not a widget is being hovered, clicked or dragged.
+/// It also lets you easily show a tooltip on hover.
+///
+/// Whenever something gets added to a `Ui`, a `Response` object is returned.
+/// [`ui.add`] returns a `Response`, as does [`ui.button`], and all similar shortcuts.
+</span><span class="attribute">#[derive(Clone)]
+</span><span class="kw">pub struct </span>Response {
+    <span class="comment">// CONTEXT:
+    </span><span class="doccomment">/// Used for optionally showing a tooltip and checking for more interactions.
+    </span><span class="kw">pub </span>ctx: CtxRef,
 
-    <span class="comment">// IN:</span>
-    <span class="doccomment">/// Which layer the widget is part of.</span>
-    <span class="kw">pub</span> <span class="ident">layer_id</span>: <span class="ident">LayerId</span>,
+    <span class="comment">// IN:
+    </span><span class="doccomment">/// Which layer the widget is part of.
+    </span><span class="kw">pub </span>layer_id: LayerId,
 
-    <span class="doccomment">/// The `Id` of the widget/area this response pertains.</span>
-    <span class="kw">pub</span> <span class="ident">id</span>: <span class="ident">Id</span>,
+    <span class="doccomment">/// The `Id` of the widget/area this response pertains.
+    </span><span class="kw">pub </span>id: Id,
 
-    <span class="doccomment">/// The area of the screen we are talking about.</span>
-    <span class="kw">pub</span> <span class="ident">rect</span>: <span class="ident">Rect</span>,
+    <span class="doccomment">/// The area of the screen we are talking about.
+    </span><span class="kw">pub </span>rect: Rect,
 
-    <span class="doccomment">/// The senses (click and/or drag) that the widget was interested in (if any).</span>
-    <span class="kw">pub</span> <span class="ident">sense</span>: <span class="ident">Sense</span>,
+    <span class="doccomment">/// The senses (click and/or drag) that the widget was interested in (if any).
+    </span><span class="kw">pub </span>sense: Sense,
 
-    <span class="doccomment">/// Was the widget enabled?</span>
-    <span class="doccomment">/// If `false`, there was no interaction attempted (not even hover).</span>
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">enabled</span>: <span class="ident">bool</span>,
+    <span class="doccomment">/// Was the widget enabled?
+    /// If `false`, there was no interaction attempted (not even hover).
+    </span><span class="kw">pub</span>(<span class="kw">crate</span>) enabled: bool,
 
-    <span class="comment">// OUT:</span>
-    <span class="doccomment">/// The pointer is hovering above this widget or the widget was clicked/tapped this frame.</span>
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">hovered</span>: <span class="ident">bool</span>,
+    <span class="comment">// OUT:
+    </span><span class="doccomment">/// The pointer is hovering above this widget or the widget was clicked/tapped this frame.
+    </span><span class="kw">pub</span>(<span class="kw">crate</span>) hovered: bool,
 
-    <span class="doccomment">/// The pointer clicked this thing this frame.</span>
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">clicked</span>: [<span class="ident">bool</span>; <span class="ident">NUM_POINTER_BUTTONS</span>],
+    <span class="doccomment">/// The pointer clicked this thing this frame.
+    </span><span class="kw">pub</span>(<span class="kw">crate</span>) clicked: [bool; NUM_POINTER_BUTTONS],
 
-    <span class="comment">// TODO: `released` for sliders</span>
-    <span class="doccomment">/// The thing was double-clicked.</span>
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">double_clicked</span>: [<span class="ident">bool</span>; <span class="ident">NUM_POINTER_BUTTONS</span>],
+    <span class="comment">// TODO: `released` for sliders
+    </span><span class="doccomment">/// The thing was double-clicked.
+    </span><span class="kw">pub</span>(<span class="kw">crate</span>) double_clicked: [bool; NUM_POINTER_BUTTONS],
 
-    <span class="doccomment">/// The widgets is being dragged</span>
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">dragged</span>: <span class="ident">bool</span>,
+    <span class="doccomment">/// The widgets is being dragged
+    </span><span class="kw">pub</span>(<span class="kw">crate</span>) dragged: bool,
 
-    <span class="doccomment">/// The widget was being dragged, but now it has been released.</span>
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">drag_released</span>: <span class="ident">bool</span>,
+    <span class="doccomment">/// The widget was being dragged, but now it has been released.
+    </span><span class="kw">pub</span>(<span class="kw">crate</span>) drag_released: bool,
 
-    <span class="doccomment">/// Is the pointer button currently down on this widget?</span>
-    <span class="doccomment">/// This is true if the pointer is pressing down or dragging a widget</span>
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">is_pointer_button_down_on</span>: <span class="ident">bool</span>,
+    <span class="doccomment">/// Is the pointer button currently down on this widget?
+    /// This is true if the pointer is pressing down or dragging a widget
+    </span><span class="kw">pub</span>(<span class="kw">crate</span>) is_pointer_button_down_on: bool,
 
-    <span class="doccomment">/// Where the pointer (mouse/touch) were when when this widget was clicked or dragged.</span>
-    <span class="doccomment">/// `None` if the widget is not being interacted with.</span>
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">interact_pointer_pos</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Pos2</span><span class="op">&gt;</span>,
+    <span class="doccomment">/// Where the pointer (mouse/touch) were when when this widget was clicked or dragged.
+    /// `None` if the widget is not being interacted with.
+    </span><span class="kw">pub</span>(<span class="kw">crate</span>) interact_pointer_pos: <span class="prelude-ty">Option</span>&lt;Pos2&gt;,
 
-    <span class="doccomment">/// What the underlying data changed?</span>
-    <span class="doccomment">/// e.g. the slider was dragged, text was entered in a `TextEdit` etc.</span>
-    <span class="doccomment">/// Always `false` for something like a `Button`.</span>
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">changed</span>: <span class="ident">bool</span>,
+    <span class="doccomment">/// What the underlying data changed?
+    /// e.g. the slider was dragged, text was entered in a `TextEdit` etc.
+    /// Always `false` for something like a `Button`.
+    </span><span class="kw">pub</span>(<span class="kw">crate</span>) changed: bool,
 }
 
-<span class="kw">impl</span> <span class="ident">std::fmt::Debug</span> <span class="kw">for</span> <span class="ident">Response</span> {
-    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;mut</span> <span class="ident">std::fmt::Formatter</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>) -&gt; <span class="ident">std::fmt::Result</span> {
-        <span class="kw">let</span> <span class="self">Self</span> {
-            <span class="ident">ctx</span>: <span class="kw">_</span>,
-            <span class="ident">layer_id</span>,
-            <span class="ident">id</span>,
-            <span class="ident">rect</span>,
-            <span class="ident">sense</span>,
-            <span class="ident">enabled</span>,
-            <span class="ident">hovered</span>,
-            <span class="ident">clicked</span>,
-            <span class="ident">double_clicked</span>,
-            <span class="ident">dragged</span>,
-            <span class="ident">drag_released</span>,
-            <span class="ident">is_pointer_button_down_on</span>,
-            <span class="ident">interact_pointer_pos</span>,
-            <span class="ident">changed</span>,
-        } <span class="op">=</span> <span class="self">self</span>;
-        <span class="ident">f</span>.<span class="ident">debug_struct</span>(<span class="string">&quot;Response&quot;</span>)
-            .<span class="ident">field</span>(<span class="string">&quot;layer_id&quot;</span>, <span class="ident">layer_id</span>)
-            .<span class="ident">field</span>(<span class="string">&quot;id&quot;</span>, <span class="ident">id</span>)
-            .<span class="ident">field</span>(<span class="string">&quot;rect&quot;</span>, <span class="ident">rect</span>)
-            .<span class="ident">field</span>(<span class="string">&quot;sense&quot;</span>, <span class="ident">sense</span>)
-            .<span class="ident">field</span>(<span class="string">&quot;enabled&quot;</span>, <span class="ident">enabled</span>)
-            .<span class="ident">field</span>(<span class="string">&quot;hovered&quot;</span>, <span class="ident">hovered</span>)
-            .<span class="ident">field</span>(<span class="string">&quot;clicked&quot;</span>, <span class="ident">clicked</span>)
-            .<span class="ident">field</span>(<span class="string">&quot;double_clicked&quot;</span>, <span class="ident">double_clicked</span>)
-            .<span class="ident">field</span>(<span class="string">&quot;dragged&quot;</span>, <span class="ident">dragged</span>)
-            .<span class="ident">field</span>(<span class="string">&quot;drag_released&quot;</span>, <span class="ident">drag_released</span>)
-            .<span class="ident">field</span>(<span class="string">&quot;is_pointer_button_down_on&quot;</span>, <span class="ident">is_pointer_button_down_on</span>)
-            .<span class="ident">field</span>(<span class="string">&quot;interact_pointer_pos&quot;</span>, <span class="ident">interact_pointer_pos</span>)
-            .<span class="ident">field</span>(<span class="string">&quot;changed&quot;</span>, <span class="ident">changed</span>)
-            .<span class="ident">finish</span>()
+<span class="kw">impl </span>std::fmt::Debug <span class="kw">for </span>Response {
+    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>std::fmt::Formatter&lt;<span class="lifetime">&#39;_</span>&gt;) -&gt; std::fmt::Result {
+        <span class="kw">let </span><span class="self">Self </span>{
+            ctx: <span class="kw">_</span>,
+            layer_id,
+            id,
+            rect,
+            sense,
+            enabled,
+            hovered,
+            clicked,
+            double_clicked,
+            dragged,
+            drag_released,
+            is_pointer_button_down_on,
+            interact_pointer_pos,
+            changed,
+        } = <span class="self">self</span>;
+        f.debug_struct(<span class="string">&quot;Response&quot;</span>)
+            .field(<span class="string">&quot;layer_id&quot;</span>, layer_id)
+            .field(<span class="string">&quot;id&quot;</span>, id)
+            .field(<span class="string">&quot;rect&quot;</span>, rect)
+            .field(<span class="string">&quot;sense&quot;</span>, sense)
+            .field(<span class="string">&quot;enabled&quot;</span>, enabled)
+            .field(<span class="string">&quot;hovered&quot;</span>, hovered)
+            .field(<span class="string">&quot;clicked&quot;</span>, clicked)
+            .field(<span class="string">&quot;double_clicked&quot;</span>, double_clicked)
+            .field(<span class="string">&quot;dragged&quot;</span>, dragged)
+            .field(<span class="string">&quot;drag_released&quot;</span>, drag_released)
+            .field(<span class="string">&quot;is_pointer_button_down_on&quot;</span>, is_pointer_button_down_on)
+            .field(<span class="string">&quot;interact_pointer_pos&quot;</span>, interact_pointer_pos)
+            .field(<span class="string">&quot;changed&quot;</span>, changed)
+            .finish()
     }
 }
 
-<span class="kw">impl</span> <span class="ident">Response</span> {
-    <span class="doccomment">/// Returns true if this widget was clicked this frame by the primary button.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// A click is registered when the mouse or touch is released within</span>
-    <span class="doccomment">/// a certain amount of time and distance from when and where it was pressed.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// Note that the widget must be sensing clicks with [`Sense::click`].</span>
-    <span class="doccomment">/// [`crate::Button`] senses clicks; [`crate::Label`] does not (unless you call [`crate::Label::sense`]).</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// You can use [`Self::interact`] to sense more things *after* adding a widget.</span>
-    <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">clicked</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span> {
-        <span class="self">self</span>.<span class="ident">clicked</span>[<span class="ident">PointerButton::Primary</span> <span class="kw">as</span> <span class="ident">usize</span>]
+<span class="kw">impl </span>Response {
+    <span class="doccomment">/// Returns true if this widget was clicked this frame by the primary button.
+    ///
+    /// A click is registered when the mouse or touch is released within
+    /// a certain amount of time and distance from when and where it was pressed.
+    ///
+    /// Note that the widget must be sensing clicks with [`Sense::click`].
+    /// [`crate::Button`] senses clicks; [`crate::Label`] does not (unless you call [`crate::Label::sense`]).
+    ///
+    /// You can use [`Self::interact`] to sense more things *after* adding a widget.
+    </span><span class="attribute">#[inline(always)]
+    </span><span class="kw">pub fn </span>clicked(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; bool {
+        <span class="self">self</span>.clicked[PointerButton::Primary <span class="kw">as </span>usize]
     }
 
-    <span class="doccomment">/// Returns true if this widget was clicked this frame by the given button.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">clicked_by</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">button</span>: <span class="ident">PointerButton</span>) -&gt; <span class="ident">bool</span> {
-        <span class="self">self</span>.<span class="ident">clicked</span>[<span class="ident">button</span> <span class="kw">as</span> <span class="ident">usize</span>]
+    <span class="doccomment">/// Returns true if this widget was clicked this frame by the given button.
+    </span><span class="kw">pub fn </span>clicked_by(<span class="kw-2">&amp;</span><span class="self">self</span>, button: PointerButton) -&gt; bool {
+        <span class="self">self</span>.clicked[button <span class="kw">as </span>usize]
     }
 
-    <span class="doccomment">/// Returns true if this widget was clicked this frame by the secondary mouse button (e.g. the right mouse button).</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">secondary_clicked</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span> {
-        <span class="self">self</span>.<span class="ident">clicked</span>[<span class="ident">PointerButton::Secondary</span> <span class="kw">as</span> <span class="ident">usize</span>]
+    <span class="doccomment">/// Returns true if this widget was clicked this frame by the secondary mouse button (e.g. the right mouse button).
+    </span><span class="kw">pub fn </span>secondary_clicked(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; bool {
+        <span class="self">self</span>.clicked[PointerButton::Secondary <span class="kw">as </span>usize]
     }
 
-    <span class="doccomment">/// Returns true if this widget was clicked this frame by the middle mouse button.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">middle_clicked</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span> {
-        <span class="self">self</span>.<span class="ident">clicked</span>[<span class="ident">PointerButton::Middle</span> <span class="kw">as</span> <span class="ident">usize</span>]
+    <span class="doccomment">/// Returns true if this widget was clicked this frame by the middle mouse button.
+    </span><span class="kw">pub fn </span>middle_clicked(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; bool {
+        <span class="self">self</span>.clicked[PointerButton::Middle <span class="kw">as </span>usize]
     }
 
-    <span class="doccomment">/// Returns true if this widget was double-clicked this frame by the primary button.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">double_clicked</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span> {
-        <span class="self">self</span>.<span class="ident">double_clicked</span>[<span class="ident">PointerButton::Primary</span> <span class="kw">as</span> <span class="ident">usize</span>]
+    <span class="doccomment">/// Returns true if this widget was double-clicked this frame by the primary button.
+    </span><span class="kw">pub fn </span>double_clicked(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; bool {
+        <span class="self">self</span>.double_clicked[PointerButton::Primary <span class="kw">as </span>usize]
     }
 
-    <span class="doccomment">/// Returns true if this widget was double-clicked this frame by the given button.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">double_clicked_by</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">button</span>: <span class="ident">PointerButton</span>) -&gt; <span class="ident">bool</span> {
-        <span class="self">self</span>.<span class="ident">double_clicked</span>[<span class="ident">button</span> <span class="kw">as</span> <span class="ident">usize</span>]
+    <span class="doccomment">/// Returns true if this widget was double-clicked this frame by the given button.
+    </span><span class="kw">pub fn </span>double_clicked_by(<span class="kw-2">&amp;</span><span class="self">self</span>, button: PointerButton) -&gt; bool {
+        <span class="self">self</span>.double_clicked[button <span class="kw">as </span>usize]
     }
 
-    <span class="doccomment">/// `true` if there was a click *outside* this widget this frame.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">clicked_elsewhere</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span> {
-        <span class="comment">// We do not use self.clicked(), because we want to catch all clicks within our frame,</span>
-        <span class="comment">// even if we aren&#39;t clickable (or even enabled).</span>
-        <span class="comment">// This is important for windows and such that should close then the user clicks elsewhere.</span>
-        <span class="kw">let</span> <span class="ident">pointer</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">ctx</span>.<span class="ident">input</span>().<span class="ident">pointer</span>;
+    <span class="doccomment">/// `true` if there was a click *outside* this widget this frame.
+    </span><span class="kw">pub fn </span>clicked_elsewhere(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; bool {
+        <span class="comment">// We do not use self.clicked(), because we want to catch all clicks within our frame,
+        // even if we aren&#39;t clickable (or even enabled).
+        // This is important for windows and such that should close then the user clicks elsewhere.
+        </span><span class="kw">let </span>pointer = <span class="kw-2">&amp;</span><span class="self">self</span>.ctx.input().pointer;
 
-        <span class="kw">if</span> <span class="ident">pointer</span>.<span class="ident">any_click</span>() {
-            <span class="comment">// We detect clicks/hover on a &quot;interact_rect&quot; that is slightly larger than</span>
-            <span class="comment">// self.rect. See Context::interact.</span>
-            <span class="comment">// This means we can be hovered and clicked even though `!self.rect.contains(pos)` is true,</span>
-            <span class="comment">// hence the extra complexity here.</span>
-            <span class="kw">if</span> <span class="self">self</span>.<span class="ident">hovered</span>() {
-                <span class="bool-val">false</span>
-            } <span class="kw">else</span> <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">pos</span>) <span class="op">=</span> <span class="ident">pointer</span>.<span class="ident">interact_pos</span>() {
-                <span class="op">!</span><span class="self">self</span>.<span class="ident">rect</span>.<span class="ident">contains</span>(<span class="ident">pos</span>)
-            } <span class="kw">else</span> {
-                <span class="bool-val">false</span> <span class="comment">// clicked without a pointer, weird</span>
-            }
-        } <span class="kw">else</span> {
-            <span class="bool-val">false</span>
+        <span class="kw">if </span>pointer.any_click() {
+            <span class="comment">// We detect clicks/hover on a &quot;interact_rect&quot; that is slightly larger than
+            // self.rect. See Context::interact.
+            // This means we can be hovered and clicked even though `!self.rect.contains(pos)` is true,
+            // hence the extra complexity here.
+            </span><span class="kw">if </span><span class="self">self</span>.hovered() {
+                <span class="bool-val">false
+            </span>} <span class="kw">else if let </span><span class="prelude-val">Some</span>(pos) = pointer.interact_pos() {
+                !<span class="self">self</span>.rect.contains(pos)
+            } <span class="kw">else </span>{
+                <span class="bool-val">false </span><span class="comment">// clicked without a pointer, weird
+            </span>}
+        } <span class="kw">else </span>{
+            <span class="bool-val">false
+        </span>}
+    }
+
+    <span class="doccomment">/// Was the widget enabled?
+    /// If false, there was no interaction attempted
+    /// and the widget should be drawn in a gray disabled look.
+    </span><span class="attribute">#[inline(always)]
+    </span><span class="kw">pub fn </span>enabled(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; bool {
+        <span class="self">self</span>.enabled
+    }
+
+    <span class="doccomment">/// The pointer is hovering above this widget or the widget was clicked/tapped this frame.
+    ///
+    /// Note that this is slightly different from checking `response.rect.contains(pointer_pos)`.
+    /// For one, the hover rectangle is slightly larger, by half of the current item spacing
+    /// (to make it easier to click things). But `hovered` also checks that no other area
+    /// is covering this response rectangle.
+    </span><span class="attribute">#[inline(always)]
+    </span><span class="kw">pub fn </span>hovered(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; bool {
+        <span class="self">self</span>.hovered
+    }
+
+    <span class="doccomment">/// This widget has the keyboard focus (i.e. is receiving key presses).
+    </span><span class="kw">pub fn </span>has_focus(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; bool {
+        <span class="self">self</span>.ctx.memory().has_focus(<span class="self">self</span>.id)
+    }
+
+    <span class="doccomment">/// True if this widget has keyboard focus this frame, but didn&#39;t last frame.
+    </span><span class="kw">pub fn </span>gained_focus(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; bool {
+        <span class="self">self</span>.ctx.memory().gained_focus(<span class="self">self</span>.id)
+    }
+
+    <span class="doccomment">/// The widget had keyboard focus and lost it,
+    /// either because the user pressed tab or clicked somewhere else,
+    /// or (in case of a [`crate::TextEdit`]) because the user pressed enter.
+    ///
+    /// ```
+    /// # egui::__run_test_ui(|ui| {
+    /// # let mut my_text = String::new();
+    /// # fn do_request(_: &amp;str) {}
+    /// let response = ui.text_edit_singleline(&amp;mut my_text);
+    /// if response.lost_focus() &amp;&amp; ui.input().key_pressed(egui::Key::Enter) {
+    ///     do_request(&amp;my_text);
+    /// }
+    /// # });
+    /// ```
+    </span><span class="kw">pub fn </span>lost_focus(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; bool {
+        <span class="self">self</span>.ctx.memory().lost_focus(<span class="self">self</span>.id)
+    }
+
+    <span class="doccomment">/// Request that this widget get keyboard focus.
+    </span><span class="kw">pub fn </span>request_focus(<span class="kw-2">&amp;</span><span class="self">self</span>) {
+        <span class="self">self</span>.ctx.memory().request_focus(<span class="self">self</span>.id);
+    }
+
+    <span class="doccomment">/// Surrender keyboard focus for this widget.
+    </span><span class="kw">pub fn </span>surrender_focus(<span class="kw-2">&amp;</span><span class="self">self</span>) {
+        <span class="self">self</span>.ctx.memory().surrender_focus(<span class="self">self</span>.id);
+    }
+
+    <span class="doccomment">/// The widgets is being dragged.
+    ///
+    /// To find out which button(s), query [`crate::PointerState::button_down`]
+    /// (`ui.input().pointer.button_down(…)`).
+    ///
+    /// Note that the widget must be sensing drags with [`Sense::drag`].
+    /// [`crate::DragValue`] senses drags; [`crate::Label`] does not (unless you call [`crate::Label::sense`]).
+    ///
+    /// You can use [`Self::interact`] to sense more things *after* adding a widget.
+    </span><span class="attribute">#[inline(always)]
+    </span><span class="kw">pub fn </span>dragged(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; bool {
+        <span class="self">self</span>.dragged
+    }
+
+    <span class="kw">pub fn </span>dragged_by(<span class="kw-2">&amp;</span><span class="self">self</span>, button: PointerButton) -&gt; bool {
+        <span class="self">self</span>.dragged() &amp;&amp; <span class="self">self</span>.ctx.input().pointer.button_down(button)
+    }
+
+    <span class="doccomment">/// Did a drag on this widgets begin this frame?
+    </span><span class="kw">pub fn </span>drag_started(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; bool {
+        <span class="self">self</span>.dragged &amp;&amp; <span class="self">self</span>.ctx.input().pointer.any_pressed()
+    }
+
+    <span class="doccomment">/// The widget was being dragged, but now it has been released.
+    </span><span class="kw">pub fn </span>drag_released(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; bool {
+        <span class="self">self</span>.drag_released
+    }
+
+    <span class="doccomment">/// If dragged, how many points were we dragged and in what direction?
+    </span><span class="kw">pub fn </span>drag_delta(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; Vec2 {
+        <span class="kw">if </span><span class="self">self</span>.dragged() {
+            <span class="self">self</span>.ctx.input().pointer.delta()
+        } <span class="kw">else </span>{
+            Vec2::ZERO
         }
     }
 
-    <span class="doccomment">/// Was the widget enabled?</span>
-    <span class="doccomment">/// If false, there was no interaction attempted</span>
-    <span class="doccomment">/// and the widget should be drawn in a gray disabled look.</span>
-    <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">enabled</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span> {
-        <span class="self">self</span>.<span class="ident">enabled</span>
+    <span class="doccomment">/// Where the pointer (mouse/touch) were when when this widget was clicked or dragged.
+    /// `None` if the widget is not being interacted with.
+    </span><span class="kw">pub fn </span>interact_pointer_pos(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;Pos2&gt; {
+        <span class="self">self</span>.interact_pointer_pos
     }
 
-    <span class="doccomment">/// The pointer is hovering above this widget or the widget was clicked/tapped this frame.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// Note that this is slightly different from checking `response.rect.contains(pointer_pos)`.</span>
-    <span class="doccomment">/// For one, the hover rectangle is slightly larger, by half of the current item spacing</span>
-    <span class="doccomment">/// (to make it easier to click things). But `hovered` also checks that no other area</span>
-    <span class="doccomment">/// is covering this response rectangle.</span>
-    <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">hovered</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span> {
-        <span class="self">self</span>.<span class="ident">hovered</span>
+    <span class="doccomment">/// If it is a good idea to show a tooltip, where is pointer?
+    /// None if the pointer is outside the response area.
+    </span><span class="kw">pub fn </span>hover_pos(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;Pos2&gt; {
+        <span class="kw">if </span><span class="self">self</span>.hovered() {
+            <span class="self">self</span>.ctx.input().pointer.hover_pos()
+        } <span class="kw">else </span>{
+            <span class="prelude-val">None
+        </span>}
     }
 
-    <span class="doccomment">/// This widget has the keyboard focus (i.e. is receiving key presses).</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">has_focus</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span> {
-        <span class="self">self</span>.<span class="ident">ctx</span>.<span class="ident">memory</span>().<span class="ident">has_focus</span>(<span class="self">self</span>.<span class="ident">id</span>)
+    <span class="doccomment">/// Is the pointer button currently down on this widget?
+    /// This is true if the pointer is pressing down or dragging a widget
+    </span><span class="attribute">#[inline(always)]
+    </span><span class="kw">pub fn </span>is_pointer_button_down_on(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; bool {
+        <span class="self">self</span>.is_pointer_button_down_on
     }
 
-    <span class="doccomment">/// True if this widget has keyboard focus this frame, but didn&#39;t last frame.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gained_focus</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span> {
-        <span class="self">self</span>.<span class="ident">ctx</span>.<span class="ident">memory</span>().<span class="ident">gained_focus</span>(<span class="self">self</span>.<span class="ident">id</span>)
+    <span class="doccomment">/// What the underlying data changed?
+    ///
+    /// e.g. the slider was dragged, text was entered in a `TextEdit` etc.
+    /// Always `false` for something like a `Button`.
+    ///
+    /// Can sometimes be `true` even though the data didn&#39;t changed
+    /// (e.g. if the user entered a character and erased it the same frame).
+    ///
+    /// This is not set if the *view* of the data was changed.
+    /// For instance, moving the cursor in a `TextEdit` does not set this to `true`.
+    </span><span class="attribute">#[inline(always)]
+    </span><span class="kw">pub fn </span>changed(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; bool {
+        <span class="self">self</span>.changed
     }
 
-    <span class="doccomment">/// The widget had keyboard focus and lost it,</span>
-    <span class="doccomment">/// either because the user pressed tab or clicked somewhere else,</span>
-    <span class="doccomment">/// or (in case of a [`crate::TextEdit`]) because the user pressed enter.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// ```</span>
-    <span class="doccomment">/// # egui::__run_test_ui(|ui| {</span>
-    <span class="doccomment">/// # let mut my_text = String::new();</span>
-    <span class="doccomment">/// # fn do_request(_: &amp;str) {}</span>
-    <span class="doccomment">/// let response = ui.text_edit_singleline(&amp;mut my_text);</span>
-    <span class="doccomment">/// if response.lost_focus() &amp;&amp; ui.input().key_pressed(egui::Key::Enter) {</span>
-    <span class="doccomment">///     do_request(&amp;my_text);</span>
-    <span class="doccomment">/// }</span>
-    <span class="doccomment">/// # });</span>
-    <span class="doccomment">/// ```</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">lost_focus</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span> {
-        <span class="self">self</span>.<span class="ident">ctx</span>.<span class="ident">memory</span>().<span class="ident">lost_focus</span>(<span class="self">self</span>.<span class="ident">id</span>)
+    <span class="doccomment">/// Report the data shown by this widget changed.
+    ///
+    /// This must be called by widgets that represent some mutable data,
+    /// e.g. checkboxes, sliders etc.
+    ///
+    /// This should be called when the *content* changes, but not when the view does.
+    /// So we call this when the text of a [`crate::TextEdit`], but not when the cursors changes.
+    </span><span class="attribute">#[inline(always)]
+    </span><span class="kw">pub fn </span>mark_changed(<span class="kw-2">&amp;mut </span><span class="self">self</span>) {
+        <span class="self">self</span>.changed = <span class="bool-val">true</span>;
     }
 
-    <span class="doccomment">/// Request that this widget get keyboard focus.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">request_focus</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) {
-        <span class="self">self</span>.<span class="ident">ctx</span>.<span class="ident">memory</span>().<span class="ident">request_focus</span>(<span class="self">self</span>.<span class="ident">id</span>);
-    }
-
-    <span class="doccomment">/// Surrender keyboard focus for this widget.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">surrender_focus</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) {
-        <span class="self">self</span>.<span class="ident">ctx</span>.<span class="ident">memory</span>().<span class="ident">surrender_focus</span>(<span class="self">self</span>.<span class="ident">id</span>);
-    }
-
-    <span class="doccomment">/// The widgets is being dragged.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// To find out which button(s), query [`crate::PointerState::button_down`]</span>
-    <span class="doccomment">/// (`ui.input().pointer.button_down(…)`).</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// Note that the widget must be sensing drags with [`Sense::drag`].</span>
-    <span class="doccomment">/// [`crate::DragValue`] senses drags; [`crate::Label`] does not (unless you call [`crate::Label::sense`]).</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// You can use [`Self::interact`] to sense more things *after* adding a widget.</span>
-    <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">dragged</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span> {
-        <span class="self">self</span>.<span class="ident">dragged</span>
-    }
-
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">dragged_by</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">button</span>: <span class="ident">PointerButton</span>) -&gt; <span class="ident">bool</span> {
-        <span class="self">self</span>.<span class="ident">dragged</span>() <span class="op">&amp;&amp;</span> <span class="self">self</span>.<span class="ident">ctx</span>.<span class="ident">input</span>().<span class="ident">pointer</span>.<span class="ident">button_down</span>(<span class="ident">button</span>)
-    }
-
-    <span class="doccomment">/// Did a drag on this widgets begin this frame?</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">drag_started</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span> {
-        <span class="self">self</span>.<span class="ident">dragged</span> <span class="op">&amp;&amp;</span> <span class="self">self</span>.<span class="ident">ctx</span>.<span class="ident">input</span>().<span class="ident">pointer</span>.<span class="ident">any_pressed</span>()
-    }
-
-    <span class="doccomment">/// The widget was being dragged, but now it has been released.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">drag_released</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span> {
-        <span class="self">self</span>.<span class="ident">drag_released</span>
-    }
-
-    <span class="doccomment">/// If dragged, how many points were we dragged and in what direction?</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">drag_delta</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">Vec2</span> {
-        <span class="kw">if</span> <span class="self">self</span>.<span class="ident">dragged</span>() {
-            <span class="self">self</span>.<span class="ident">ctx</span>.<span class="ident">input</span>().<span class="ident">pointer</span>.<span class="ident">delta</span>()
-        } <span class="kw">else</span> {
-            <span class="ident">Vec2::ZERO</span>
-        }
-    }
-
-    <span class="doccomment">/// Where the pointer (mouse/touch) were when when this widget was clicked or dragged.</span>
-    <span class="doccomment">/// `None` if the widget is not being interacted with.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">interact_pointer_pos</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Pos2</span><span class="op">&gt;</span> {
-        <span class="self">self</span>.<span class="ident">interact_pointer_pos</span>
-    }
-
-    <span class="doccomment">/// If it is a good idea to show a tooltip, where is pointer?</span>
-    <span class="doccomment">/// None if the pointer is outside the response area.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">hover_pos</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Pos2</span><span class="op">&gt;</span> {
-        <span class="kw">if</span> <span class="self">self</span>.<span class="ident">hovered</span>() {
-            <span class="self">self</span>.<span class="ident">ctx</span>.<span class="ident">input</span>().<span class="ident">pointer</span>.<span class="ident">hover_pos</span>()
-        } <span class="kw">else</span> {
-            <span class="prelude-val">None</span>
-        }
-    }
-
-    <span class="doccomment">/// Is the pointer button currently down on this widget?</span>
-    <span class="doccomment">/// This is true if the pointer is pressing down or dragging a widget</span>
-    <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_pointer_button_down_on</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span> {
-        <span class="self">self</span>.<span class="ident">is_pointer_button_down_on</span>
-    }
-
-    <span class="doccomment">/// What the underlying data changed?</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// e.g. the slider was dragged, text was entered in a `TextEdit` etc.</span>
-    <span class="doccomment">/// Always `false` for something like a `Button`.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// Can sometimes be `true` even though the data didn&#39;t changed</span>
-    <span class="doccomment">/// (e.g. if the user entered a character and erased it the same frame).</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// This is not set if the *view* of the data was changed.</span>
-    <span class="doccomment">/// For instance, moving the cursor in a `TextEdit` does not set this to `true`.</span>
-    <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">changed</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span> {
-        <span class="self">self</span>.<span class="ident">changed</span>
-    }
-
-    <span class="doccomment">/// Report the data shown by this widget changed.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// This must be called by widgets that represent some mutable data,</span>
-    <span class="doccomment">/// e.g. checkboxes, sliders etc.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// This should be called when the *content* changes, but not when the view does.</span>
-    <span class="doccomment">/// So we call this when the text of a [`crate::TextEdit`], but not when the cursors changes.</span>
-    <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">mark_changed</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>) {
-        <span class="self">self</span>.<span class="ident">changed</span> <span class="op">=</span> <span class="bool-val">true</span>;
-    }
-
-    <span class="doccomment">/// Show this UI if the widget was hovered (i.e. a tooltip).</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// The text will not be visible if the widget is not enabled.</span>
-    <span class="doccomment">/// For that, use [`Self::on_disabled_hover_ui`] instead.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// If you call this multiple times the tooltips will stack underneath the previous ones.</span>
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;tooltip&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">on_hover_ui</span>(<span class="self">self</span>, <span class="ident">add_contents</span>: <span class="kw">impl</span> <span class="ident">FnOnce</span>(<span class="kw-2">&amp;mut</span> <span class="ident">Ui</span>)) -&gt; <span class="self">Self</span> {
-        <span class="kw">if</span> <span class="self">self</span>.<span class="ident">should_show_hover_ui</span>() {
-            <span class="ident"><span class="kw">crate</span>::containers::show_tooltip_for</span>(
-                <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">ctx</span>,
-                <span class="self">self</span>.<span class="ident">id</span>.<span class="ident">with</span>(<span class="string">&quot;__tooltip&quot;</span>),
-                <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">rect</span>,
-                <span class="ident">add_contents</span>,
+    <span class="doccomment">/// Show this UI if the widget was hovered (i.e. a tooltip).
+    ///
+    /// The text will not be visible if the widget is not enabled.
+    /// For that, use [`Self::on_disabled_hover_ui`] instead.
+    ///
+    /// If you call this multiple times the tooltips will stack underneath the previous ones.
+    </span><span class="attribute">#[doc(alias = <span class="string">&quot;tooltip&quot;</span>)]
+    </span><span class="kw">pub fn </span>on_hover_ui(<span class="self">self</span>, add_contents: <span class="kw">impl </span>FnOnce(<span class="kw-2">&amp;mut </span>Ui)) -&gt; <span class="self">Self </span>{
+        <span class="kw">if </span><span class="self">self</span>.should_show_hover_ui() {
+            <span class="kw">crate</span>::containers::show_tooltip_for(
+                <span class="kw-2">&amp;</span><span class="self">self</span>.ctx,
+                <span class="self">self</span>.id.with(<span class="string">&quot;__tooltip&quot;</span>),
+                <span class="kw-2">&amp;</span><span class="self">self</span>.rect,
+                add_contents,
             );
         }
-        <span class="self">self</span>
-    }
+        <span class="self">self
+    </span>}
 
-    <span class="doccomment">/// Show this UI when hovering if the widget is disabled.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">on_disabled_hover_ui</span>(<span class="self">self</span>, <span class="ident">add_contents</span>: <span class="kw">impl</span> <span class="ident">FnOnce</span>(<span class="kw-2">&amp;mut</span> <span class="ident">Ui</span>)) -&gt; <span class="self">Self</span> {
-        <span class="kw">if</span> <span class="op">!</span><span class="self">self</span>.<span class="ident">enabled</span> <span class="op">&amp;&amp;</span> <span class="self">self</span>.<span class="ident">ctx</span>.<span class="ident">rect_contains_pointer</span>(<span class="self">self</span>.<span class="ident">layer_id</span>, <span class="self">self</span>.<span class="ident">rect</span>) {
-            <span class="ident"><span class="kw">crate</span>::containers::show_tooltip_for</span>(
-                <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">ctx</span>,
-                <span class="self">self</span>.<span class="ident">id</span>.<span class="ident">with</span>(<span class="string">&quot;__tooltip&quot;</span>),
-                <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">rect</span>,
-                <span class="ident">add_contents</span>,
+    <span class="doccomment">/// Show this UI when hovering if the widget is disabled.
+    </span><span class="kw">pub fn </span>on_disabled_hover_ui(<span class="self">self</span>, add_contents: <span class="kw">impl </span>FnOnce(<span class="kw-2">&amp;mut </span>Ui)) -&gt; <span class="self">Self </span>{
+        <span class="kw">if </span>!<span class="self">self</span>.enabled &amp;&amp; <span class="self">self</span>.ctx.rect_contains_pointer(<span class="self">self</span>.layer_id, <span class="self">self</span>.rect) {
+            <span class="kw">crate</span>::containers::show_tooltip_for(
+                <span class="kw-2">&amp;</span><span class="self">self</span>.ctx,
+                <span class="self">self</span>.id.with(<span class="string">&quot;__tooltip&quot;</span>),
+                <span class="kw-2">&amp;</span><span class="self">self</span>.rect,
+                add_contents,
             );
         }
-        <span class="self">self</span>
-    }
+        <span class="self">self
+    </span>}
 
-    <span class="doccomment">/// Like `on_hover_ui`, but show the ui next to cursor.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">on_hover_ui_at_pointer</span>(<span class="self">self</span>, <span class="ident">add_contents</span>: <span class="kw">impl</span> <span class="ident">FnOnce</span>(<span class="kw-2">&amp;mut</span> <span class="ident">Ui</span>)) -&gt; <span class="self">Self</span> {
-        <span class="kw">if</span> <span class="self">self</span>.<span class="ident">should_show_hover_ui</span>() {
-            <span class="ident"><span class="kw">crate</span>::containers::show_tooltip_at_pointer</span>(
-                <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">ctx</span>,
-                <span class="self">self</span>.<span class="ident">id</span>.<span class="ident">with</span>(<span class="string">&quot;__tooltip&quot;</span>),
-                <span class="ident">add_contents</span>,
+    <span class="doccomment">/// Like `on_hover_ui`, but show the ui next to cursor.
+    </span><span class="kw">pub fn </span>on_hover_ui_at_pointer(<span class="self">self</span>, add_contents: <span class="kw">impl </span>FnOnce(<span class="kw-2">&amp;mut </span>Ui)) -&gt; <span class="self">Self </span>{
+        <span class="kw">if </span><span class="self">self</span>.should_show_hover_ui() {
+            <span class="kw">crate</span>::containers::show_tooltip_at_pointer(
+                <span class="kw-2">&amp;</span><span class="self">self</span>.ctx,
+                <span class="self">self</span>.id.with(<span class="string">&quot;__tooltip&quot;</span>),
+                add_contents,
             );
         }
-        <span class="self">self</span>
-    }
+        <span class="self">self
+    </span>}
 
-    <span class="kw">fn</span> <span class="ident">should_show_hover_ui</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span> {
-        <span class="kw">if</span> <span class="self">self</span>.<span class="ident">ctx</span>.<span class="ident">memory</span>().<span class="ident">everything_is_visible</span>() {
-            <span class="kw">return</span> <span class="bool-val">true</span>;
+    <span class="kw">fn </span>should_show_hover_ui(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; bool {
+        <span class="kw">if </span><span class="self">self</span>.ctx.memory().everything_is_visible() {
+            <span class="kw">return </span><span class="bool-val">true</span>;
         }
 
-        <span class="kw">if</span> <span class="op">!</span><span class="self">self</span>.<span class="ident">hovered</span> <span class="op">|</span><span class="op">|</span> <span class="op">!</span><span class="self">self</span>.<span class="ident">ctx</span>.<span class="ident">input</span>().<span class="ident">pointer</span>.<span class="ident">has_pointer</span>() {
-            <span class="kw">return</span> <span class="bool-val">false</span>;
+        <span class="kw">if </span>!<span class="self">self</span>.hovered || !<span class="self">self</span>.ctx.input().pointer.has_pointer() {
+            <span class="kw">return </span><span class="bool-val">false</span>;
         }
 
-        <span class="kw">if</span> <span class="self">self</span>.<span class="ident">ctx</span>.<span class="ident">style</span>().<span class="ident">interaction</span>.<span class="ident">show_tooltips_only_when_still</span>
-            <span class="op">&amp;&amp;</span> <span class="op">!</span><span class="self">self</span>.<span class="ident">ctx</span>.<span class="ident">input</span>().<span class="ident">pointer</span>.<span class="ident">is_still</span>()
+        <span class="kw">if </span><span class="self">self</span>.ctx.style().interaction.show_tooltips_only_when_still
+            &amp;&amp; !<span class="self">self</span>.ctx.input().pointer.is_still()
         {
-            <span class="comment">// wait for mouse to stop</span>
-            <span class="self">self</span>.<span class="ident">ctx</span>.<span class="ident">request_repaint</span>();
-            <span class="kw">return</span> <span class="bool-val">false</span>;
+            <span class="comment">// wait for mouse to stop
+            </span><span class="self">self</span>.ctx.request_repaint();
+            <span class="kw">return </span><span class="bool-val">false</span>;
         }
 
-        <span class="comment">// We don&#39;t want tooltips of things while we are dragging them,</span>
-        <span class="comment">// but we do want tooltips while holding down on an item on a touch screen.</span>
-        <span class="kw">if</span> <span class="self">self</span>.<span class="ident">ctx</span>.<span class="ident">input</span>().<span class="ident">pointer</span>.<span class="ident">any_down</span>()
-            <span class="op">&amp;&amp;</span> <span class="self">self</span>.<span class="ident">ctx</span>.<span class="ident">input</span>().<span class="ident">pointer</span>.<span class="ident">has_moved_too_much_for_a_click</span>
+        <span class="comment">// We don&#39;t want tooltips of things while we are dragging them,
+        // but we do want tooltips while holding down on an item on a touch screen.
+        </span><span class="kw">if </span><span class="self">self</span>.ctx.input().pointer.any_down()
+            &amp;&amp; <span class="self">self</span>.ctx.input().pointer.has_moved_too_much_for_a_click
         {
-            <span class="kw">return</span> <span class="bool-val">false</span>;
+            <span class="kw">return </span><span class="bool-val">false</span>;
         }
 
-        <span class="bool-val">true</span>
-    }
+        <span class="bool-val">true
+    </span>}
 
-    <span class="doccomment">/// Show this text if the widget was hovered (i.e. a tooltip).</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// The text will not be visible if the widget is not enabled.</span>
-    <span class="doccomment">/// For that, use [`Self::on_disabled_hover_text`] instead.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// If you call this multiple times the tooltips will stack underneath the previous ones.</span>
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;tooltip&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">on_hover_text</span>(<span class="self">self</span>, <span class="ident">text</span>: <span class="kw">impl</span> <span class="ident">Into</span><span class="op">&lt;</span><span class="ident">WidgetText</span><span class="op">&gt;</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">self</span>.<span class="ident">on_hover_ui</span>(<span class="op">|</span><span class="ident">ui</span><span class="op">|</span> {
-            <span class="ident">ui</span>.<span class="ident">add</span>(<span class="ident"><span class="kw">crate</span>::widgets::Label::new</span>(<span class="ident">text</span>));
+    <span class="doccomment">/// Show this text if the widget was hovered (i.e. a tooltip).
+    ///
+    /// The text will not be visible if the widget is not enabled.
+    /// For that, use [`Self::on_disabled_hover_text`] instead.
+    ///
+    /// If you call this multiple times the tooltips will stack underneath the previous ones.
+    </span><span class="attribute">#[doc(alias = <span class="string">&quot;tooltip&quot;</span>)]
+    </span><span class="kw">pub fn </span>on_hover_text(<span class="self">self</span>, text: <span class="kw">impl </span>Into&lt;WidgetText&gt;) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.on_hover_ui(|ui| {
+            ui.add(<span class="kw">crate</span>::widgets::Label::new(text));
         })
     }
 
-    <span class="doccomment">/// Show this text when hovering if the widget is disabled.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">on_disabled_hover_text</span>(<span class="self">self</span>, <span class="ident">text</span>: <span class="kw">impl</span> <span class="ident">Into</span><span class="op">&lt;</span><span class="ident">WidgetText</span><span class="op">&gt;</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">self</span>.<span class="ident">on_disabled_hover_ui</span>(<span class="op">|</span><span class="ident">ui</span><span class="op">|</span> {
-            <span class="ident">ui</span>.<span class="ident">add</span>(<span class="ident"><span class="kw">crate</span>::widgets::Label::new</span>(<span class="ident">text</span>));
+    <span class="doccomment">/// Show this text when hovering if the widget is disabled.
+    </span><span class="kw">pub fn </span>on_disabled_hover_text(<span class="self">self</span>, text: <span class="kw">impl </span>Into&lt;WidgetText&gt;) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.on_disabled_hover_ui(|ui| {
+            ui.add(<span class="kw">crate</span>::widgets::Label::new(text));
         })
     }
 
-    <span class="doccomment">/// When hovered, use this icon for the mouse cursor.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">on_hover_cursor</span>(<span class="self">self</span>, <span class="ident">cursor</span>: <span class="ident">CursorIcon</span>) -&gt; <span class="self">Self</span> {
-        <span class="kw">if</span> <span class="self">self</span>.<span class="ident">hovered</span>() {
-            <span class="self">self</span>.<span class="ident">ctx</span>.<span class="ident">output</span>().<span class="ident">cursor_icon</span> <span class="op">=</span> <span class="ident">cursor</span>;
+    <span class="doccomment">/// When hovered, use this icon for the mouse cursor.
+    </span><span class="kw">pub fn </span>on_hover_cursor(<span class="self">self</span>, cursor: CursorIcon) -&gt; <span class="self">Self </span>{
+        <span class="kw">if </span><span class="self">self</span>.hovered() {
+            <span class="self">self</span>.ctx.output().cursor_icon = cursor;
         }
-        <span class="self">self</span>
-    }
+        <span class="self">self
+    </span>}
 
-    <span class="doccomment">/// Check for more interactions (e.g. sense clicks on a `Response` returned from a label).</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// Note that this call will not add any hover-effects to the widget, so when possible</span>
-    <span class="doccomment">/// it is better to give the widget a `Sense` instead, e.g. using [`crate::Label::sense`].</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// ```</span>
-    <span class="doccomment">/// # egui::__run_test_ui(|ui| {</span>
-    <span class="doccomment">/// let response = ui.label(&quot;hello&quot;);</span>
-    <span class="doccomment">/// assert!(!response.clicked()); // labels don&#39;t sense clicks by default</span>
-    <span class="doccomment">/// let response = response.interact(egui::Sense::click());</span>
-    <span class="doccomment">/// if response.clicked() { /* … */ }</span>
-    <span class="doccomment">/// # });</span>
-    <span class="doccomment">/// ```</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">interact</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">sense</span>: <span class="ident">Sense</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">self</span>.<span class="ident">ctx</span>.<span class="ident">interact_with_hovered</span>(
-            <span class="self">self</span>.<span class="ident">layer_id</span>,
-            <span class="self">self</span>.<span class="ident">id</span>,
-            <span class="self">self</span>.<span class="ident">rect</span>,
-            <span class="ident">sense</span>,
-            <span class="self">self</span>.<span class="ident">enabled</span>,
-            <span class="self">self</span>.<span class="ident">hovered</span>,
+    <span class="doccomment">/// Check for more interactions (e.g. sense clicks on a `Response` returned from a label).
+    ///
+    /// Note that this call will not add any hover-effects to the widget, so when possible
+    /// it is better to give the widget a `Sense` instead, e.g. using [`crate::Label::sense`].
+    ///
+    /// ```
+    /// # egui::__run_test_ui(|ui| {
+    /// let response = ui.label(&quot;hello&quot;);
+    /// assert!(!response.clicked()); // labels don&#39;t sense clicks by default
+    /// let response = response.interact(egui::Sense::click());
+    /// if response.clicked() { /* … */ }
+    /// # });
+    /// ```
+    </span><span class="kw">pub fn </span>interact(<span class="kw-2">&amp;</span><span class="self">self</span>, sense: Sense) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.ctx.interact_with_hovered(
+            <span class="self">self</span>.layer_id,
+            <span class="self">self</span>.id,
+            <span class="self">self</span>.rect,
+            sense,
+            <span class="self">self</span>.enabled,
+            <span class="self">self</span>.hovered,
         )
     }
 
-    <span class="doccomment">/// Move the scroll to this UI with the specified alignment.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// ```</span>
-    <span class="doccomment">/// # egui::__run_test_ui(|ui| {</span>
-    <span class="doccomment">/// egui::ScrollArea::vertical().show(ui, |ui| {</span>
-    <span class="doccomment">///     for i in 0..1000 {</span>
-    <span class="doccomment">///         let response = ui.button(&quot;Scroll to me&quot;);</span>
-    <span class="doccomment">///         if response.clicked() {</span>
-    <span class="doccomment">///             response.scroll_to_me(egui::Align::Center);</span>
-    <span class="doccomment">///         }</span>
-    <span class="doccomment">///     }</span>
-    <span class="doccomment">/// });</span>
-    <span class="doccomment">/// # });</span>
-    <span class="doccomment">/// ```</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">scroll_to_me</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">align</span>: <span class="ident">Align</span>) {
-        <span class="kw">let</span> <span class="ident">scroll_target</span> <span class="op">=</span> <span class="ident">lerp</span>(<span class="self">self</span>.<span class="ident">rect</span>.<span class="ident">x_range</span>(), <span class="ident">align</span>.<span class="ident">to_factor</span>());
-        <span class="self">self</span>.<span class="ident">ctx</span>.<span class="ident">frame_state</span>().<span class="ident">scroll_target</span>[<span class="number">0</span>] <span class="op">=</span> <span class="prelude-val">Some</span>((<span class="ident">scroll_target</span>, <span class="ident">align</span>));
+    <span class="doccomment">/// Move the scroll to this UI with the specified alignment.
+    ///
+    /// ```
+    /// # egui::__run_test_ui(|ui| {
+    /// egui::ScrollArea::vertical().show(ui, |ui| {
+    ///     for i in 0..1000 {
+    ///         let response = ui.button(&quot;Scroll to me&quot;);
+    ///         if response.clicked() {
+    ///             response.scroll_to_me(egui::Align::Center);
+    ///         }
+    ///     }
+    /// });
+    /// # });
+    /// ```
+    </span><span class="kw">pub fn </span>scroll_to_me(<span class="kw-2">&amp;</span><span class="self">self</span>, align: Align) {
+        <span class="kw">let </span>scroll_target = lerp(<span class="self">self</span>.rect.x_range(), align.to_factor());
+        <span class="self">self</span>.ctx.frame_state().scroll_target[<span class="number">0</span>] = <span class="prelude-val">Some</span>((scroll_target, align));
 
-        <span class="kw">let</span> <span class="ident">scroll_target</span> <span class="op">=</span> <span class="ident">lerp</span>(<span class="self">self</span>.<span class="ident">rect</span>.<span class="ident">y_range</span>(), <span class="ident">align</span>.<span class="ident">to_factor</span>());
-        <span class="self">self</span>.<span class="ident">ctx</span>.<span class="ident">frame_state</span>().<span class="ident">scroll_target</span>[<span class="number">1</span>] <span class="op">=</span> <span class="prelude-val">Some</span>((<span class="ident">scroll_target</span>, <span class="ident">align</span>));
+        <span class="kw">let </span>scroll_target = lerp(<span class="self">self</span>.rect.y_range(), align.to_factor());
+        <span class="self">self</span>.ctx.frame_state().scroll_target[<span class="number">1</span>] = <span class="prelude-val">Some</span>((scroll_target, align));
     }
 
-    <span class="doccomment">/// For accessibility.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// Call after interacting and potential calls to [`Self::mark_changed`].</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">widget_info</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">make_info</span>: <span class="kw">impl</span> <span class="ident">Fn</span>() -&gt; <span class="ident"><span class="kw">crate</span>::WidgetInfo</span>) {
-        <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::output::OutputEvent</span>;
-        <span class="kw">let</span> <span class="ident">event</span> <span class="op">=</span> <span class="kw">if</span> <span class="self">self</span>.<span class="ident">clicked</span>() {
-            <span class="prelude-val">Some</span>(<span class="ident">OutputEvent::Clicked</span>(<span class="ident">make_info</span>()))
-        } <span class="kw">else</span> <span class="kw">if</span> <span class="self">self</span>.<span class="ident">double_clicked</span>() {
-            <span class="prelude-val">Some</span>(<span class="ident">OutputEvent::DoubleClicked</span>(<span class="ident">make_info</span>()))
-        } <span class="kw">else</span> <span class="kw">if</span> <span class="self">self</span>.<span class="ident">gained_focus</span>() {
-            <span class="prelude-val">Some</span>(<span class="ident">OutputEvent::FocusGained</span>(<span class="ident">make_info</span>()))
-        } <span class="kw">else</span> <span class="kw">if</span> <span class="self">self</span>.<span class="ident">changed</span> {
-            <span class="prelude-val">Some</span>(<span class="ident">OutputEvent::ValueChanged</span>(<span class="ident">make_info</span>()))
-        } <span class="kw">else</span> {
-            <span class="prelude-val">None</span>
-        };
-        <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">event</span>) <span class="op">=</span> <span class="ident">event</span> {
-            <span class="self">self</span>.<span class="ident">ctx</span>.<span class="ident">output</span>().<span class="ident">events</span>.<span class="ident">push</span>(<span class="ident">event</span>);
+    <span class="doccomment">/// For accessibility.
+    ///
+    /// Call after interacting and potential calls to [`Self::mark_changed`].
+    </span><span class="kw">pub fn </span>widget_info(<span class="kw-2">&amp;</span><span class="self">self</span>, make_info: <span class="kw">impl </span>Fn() -&gt; <span class="kw">crate</span>::WidgetInfo) {
+        <span class="kw">use </span><span class="kw">crate</span>::output::OutputEvent;
+        <span class="kw">let </span>event = <span class="kw">if </span><span class="self">self</span>.clicked() {
+            <span class="prelude-val">Some</span>(OutputEvent::Clicked(make_info()))
+        } <span class="kw">else if </span><span class="self">self</span>.double_clicked() {
+            <span class="prelude-val">Some</span>(OutputEvent::DoubleClicked(make_info()))
+        } <span class="kw">else if </span><span class="self">self</span>.gained_focus() {
+            <span class="prelude-val">Some</span>(OutputEvent::FocusGained(make_info()))
+        } <span class="kw">else if </span><span class="self">self</span>.changed {
+            <span class="prelude-val">Some</span>(OutputEvent::ValueChanged(make_info()))
+        } <span class="kw">else </span>{
+            <span class="prelude-val">None
+        </span>};
+        <span class="kw">if let </span><span class="prelude-val">Some</span>(event) = event {
+            <span class="self">self</span>.ctx.output().events.push(event);
         }
     }
 
-    <span class="doccomment">/// Response to secondary clicks (right-clicks) by showing the given menu.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// ``` rust</span>
-    <span class="doccomment">/// # egui::__run_test_ui(|ui| {</span>
-    <span class="doccomment">/// let response = ui.label(&quot;Right-click me!&quot;);</span>
-    <span class="doccomment">/// response.context_menu(|ui| {</span>
-    <span class="doccomment">///     if ui.button(&quot;Close the menu&quot;).clicked() {</span>
-    <span class="doccomment">///         ui.close_menu();</span>
-    <span class="doccomment">///     }</span>
-    <span class="doccomment">/// });</span>
-    <span class="doccomment">/// # });</span>
-    <span class="doccomment">/// ```</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// See also: [`Ui::menu_button`] and [`Ui::close_menu`].</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">context_menu</span>(<span class="self">self</span>, <span class="ident">add_contents</span>: <span class="kw">impl</span> <span class="ident">FnOnce</span>(<span class="kw-2">&amp;mut</span> <span class="ident">Ui</span>)) -&gt; <span class="self">Self</span> {
-        <span class="self">self</span>.<span class="ident">ctx</span>
-            .<span class="ident">context_menu_system</span>()
-            .<span class="ident">context_menu</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">add_contents</span>);
-        <span class="self">self</span>
-    }
+    <span class="doccomment">/// Response to secondary clicks (right-clicks) by showing the given menu.
+    ///
+    /// ``` rust
+    /// # egui::__run_test_ui(|ui| {
+    /// let response = ui.label(&quot;Right-click me!&quot;);
+    /// response.context_menu(|ui| {
+    ///     if ui.button(&quot;Close the menu&quot;).clicked() {
+    ///         ui.close_menu();
+    ///     }
+    /// });
+    /// # });
+    /// ```
+    ///
+    /// See also: [`Ui::menu_button`] and [`Ui::close_menu`].
+    </span><span class="kw">pub fn </span>context_menu(<span class="self">self</span>, add_contents: <span class="kw">impl </span>FnOnce(<span class="kw-2">&amp;mut </span>Ui)) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.ctx
+            .context_menu_system()
+            .context_menu(<span class="kw-2">&amp;</span><span class="self">self</span>, add_contents);
+        <span class="self">self
+    </span>}
 }
 
-<span class="kw">impl</span> <span class="ident">Response</span> {
-    <span class="doccomment">/// A logical &quot;or&quot; operation.</span>
-    <span class="doccomment">/// For instance `a.union(b).hovered` means &quot;was either a or b hovered?&quot;.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">union</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">other</span>: <span class="self">Self</span>) -&gt; <span class="self">Self</span> {
-        <span class="macro">assert!</span>(<span class="self">self</span>.<span class="ident">ctx</span> <span class="op">==</span> <span class="ident">other</span>.<span class="ident">ctx</span>);
+<span class="kw">impl </span>Response {
+    <span class="doccomment">/// A logical &quot;or&quot; operation.
+    /// For instance `a.union(b).hovered` means &quot;was either a or b hovered?&quot;.
+    </span><span class="kw">pub fn </span>union(<span class="kw-2">&amp;</span><span class="self">self</span>, other: <span class="self">Self</span>) -&gt; <span class="self">Self </span>{
+        <span class="macro">assert!</span>(<span class="self">self</span>.ctx == other.ctx);
         <span class="macro">crate::egui_assert!</span>(
-            <span class="self">self</span>.<span class="ident">layer_id</span> <span class="op">==</span> <span class="ident">other</span>.<span class="ident">layer_id</span>,
-            <span class="string">&quot;It makes no sense to combine Responses from two different layers&quot;</span>
-        );
-        <span class="self">Self</span> {
-            <span class="ident">ctx</span>: <span class="ident">other</span>.<span class="ident">ctx</span>,
-            <span class="ident">layer_id</span>: <span class="self">self</span>.<span class="ident">layer_id</span>,
-            <span class="ident">id</span>: <span class="self">self</span>.<span class="ident">id</span>,
-            <span class="ident">rect</span>: <span class="self">self</span>.<span class="ident">rect</span>.<span class="ident">union</span>(<span class="ident">other</span>.<span class="ident">rect</span>),
-            <span class="ident">sense</span>: <span class="self">self</span>.<span class="ident">sense</span>.<span class="ident">union</span>(<span class="ident">other</span>.<span class="ident">sense</span>),
-            <span class="ident">enabled</span>: <span class="self">self</span>.<span class="ident">enabled</span> <span class="op">|</span><span class="op">|</span> <span class="ident">other</span>.<span class="ident">enabled</span>,
-            <span class="ident">hovered</span>: <span class="self">self</span>.<span class="ident">hovered</span> <span class="op">|</span><span class="op">|</span> <span class="ident">other</span>.<span class="ident">hovered</span>,
-            <span class="ident">clicked</span>: [
-                <span class="self">self</span>.<span class="ident">clicked</span>[<span class="number">0</span>] <span class="op">|</span><span class="op">|</span> <span class="ident">other</span>.<span class="ident">clicked</span>[<span class="number">0</span>],
-                <span class="self">self</span>.<span class="ident">clicked</span>[<span class="number">1</span>] <span class="op">|</span><span class="op">|</span> <span class="ident">other</span>.<span class="ident">clicked</span>[<span class="number">1</span>],
-                <span class="self">self</span>.<span class="ident">clicked</span>[<span class="number">2</span>] <span class="op">|</span><span class="op">|</span> <span class="ident">other</span>.<span class="ident">clicked</span>[<span class="number">2</span>],
+            <span class="self">self</span>.layer_id == other.layer_id,
+            <span class="string">&quot;It makes no sense to combine Responses from two different layers&quot;
+        </span>);
+        <span class="self">Self </span>{
+            ctx: other.ctx,
+            layer_id: <span class="self">self</span>.layer_id,
+            id: <span class="self">self</span>.id,
+            rect: <span class="self">self</span>.rect.union(other.rect),
+            sense: <span class="self">self</span>.sense.union(other.sense),
+            enabled: <span class="self">self</span>.enabled || other.enabled,
+            hovered: <span class="self">self</span>.hovered || other.hovered,
+            clicked: [
+                <span class="self">self</span>.clicked[<span class="number">0</span>] || other.clicked[<span class="number">0</span>],
+                <span class="self">self</span>.clicked[<span class="number">1</span>] || other.clicked[<span class="number">1</span>],
+                <span class="self">self</span>.clicked[<span class="number">2</span>] || other.clicked[<span class="number">2</span>],
             ],
-            <span class="ident">double_clicked</span>: [
-                <span class="self">self</span>.<span class="ident">double_clicked</span>[<span class="number">0</span>] <span class="op">|</span><span class="op">|</span> <span class="ident">other</span>.<span class="ident">double_clicked</span>[<span class="number">0</span>],
-                <span class="self">self</span>.<span class="ident">double_clicked</span>[<span class="number">1</span>] <span class="op">|</span><span class="op">|</span> <span class="ident">other</span>.<span class="ident">double_clicked</span>[<span class="number">1</span>],
-                <span class="self">self</span>.<span class="ident">double_clicked</span>[<span class="number">2</span>] <span class="op">|</span><span class="op">|</span> <span class="ident">other</span>.<span class="ident">double_clicked</span>[<span class="number">2</span>],
+            double_clicked: [
+                <span class="self">self</span>.double_clicked[<span class="number">0</span>] || other.double_clicked[<span class="number">0</span>],
+                <span class="self">self</span>.double_clicked[<span class="number">1</span>] || other.double_clicked[<span class="number">1</span>],
+                <span class="self">self</span>.double_clicked[<span class="number">2</span>] || other.double_clicked[<span class="number">2</span>],
             ],
-            <span class="ident">dragged</span>: <span class="self">self</span>.<span class="ident">dragged</span> <span class="op">|</span><span class="op">|</span> <span class="ident">other</span>.<span class="ident">dragged</span>,
-            <span class="ident">drag_released</span>: <span class="self">self</span>.<span class="ident">drag_released</span> <span class="op">|</span><span class="op">|</span> <span class="ident">other</span>.<span class="ident">drag_released</span>,
-            <span class="ident">is_pointer_button_down_on</span>: <span class="self">self</span>.<span class="ident">is_pointer_button_down_on</span>
-                <span class="op">|</span><span class="op">|</span> <span class="ident">other</span>.<span class="ident">is_pointer_button_down_on</span>,
-            <span class="ident">interact_pointer_pos</span>: <span class="self">self</span>.<span class="ident">interact_pointer_pos</span>.<span class="ident">or</span>(<span class="ident">other</span>.<span class="ident">interact_pointer_pos</span>),
-            <span class="ident">changed</span>: <span class="self">self</span>.<span class="ident">changed</span> <span class="op">|</span><span class="op">|</span> <span class="ident">other</span>.<span class="ident">changed</span>,
+            dragged: <span class="self">self</span>.dragged || other.dragged,
+            drag_released: <span class="self">self</span>.drag_released || other.drag_released,
+            is_pointer_button_down_on: <span class="self">self</span>.is_pointer_button_down_on
+                || other.is_pointer_button_down_on,
+            interact_pointer_pos: <span class="self">self</span>.interact_pointer_pos.or(other.interact_pointer_pos),
+            changed: <span class="self">self</span>.changed || other.changed,
         }
     }
 }
 
-<span class="doccomment">/// To summarize the response from many widgets you can use this pattern:</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// ```</span>
-<span class="doccomment">/// use egui::*;</span>
-<span class="doccomment">/// fn draw_vec2(ui: &amp;mut Ui, v: &amp;mut Vec2) -&gt; Response {</span>
-<span class="doccomment">///     ui.add(DragValue::new(&amp;mut v.x)) | ui.add(DragValue::new(&amp;mut v.y))</span>
-<span class="doccomment">/// }</span>
-<span class="doccomment">/// ```</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// Now `draw_vec2(ui, foo).hovered` is true if either `DragValue` were hovered.</span>
-<span class="kw">impl</span> <span class="ident">std::ops::BitOr</span> <span class="kw">for</span> <span class="ident">Response</span> {
-    <span class="kw">type</span> <span class="ident">Output</span> <span class="op">=</span> <span class="self">Self</span>;
-    <span class="kw">fn</span> <span class="ident">bitor</span>(<span class="self">self</span>, <span class="ident">rhs</span>: <span class="self">Self</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">self</span>.<span class="ident">union</span>(<span class="ident">rhs</span>)
+<span class="doccomment">/// To summarize the response from many widgets you can use this pattern:
+///
+/// ```
+/// use egui::*;
+/// fn draw_vec2(ui: &amp;mut Ui, v: &amp;mut Vec2) -&gt; Response {
+///     ui.add(DragValue::new(&amp;mut v.x)) | ui.add(DragValue::new(&amp;mut v.y))
+/// }
+/// ```
+///
+/// Now `draw_vec2(ui, foo).hovered` is true if either `DragValue` were hovered.
+</span><span class="kw">impl </span>std::ops::BitOr <span class="kw">for </span>Response {
+    <span class="kw">type </span>Output = <span class="self">Self</span>;
+    <span class="kw">fn </span>bitor(<span class="self">self</span>, rhs: <span class="self">Self</span>) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.union(rhs)
     }
 }
 
-<span class="doccomment">/// To summarize the response from many widgets you can use this pattern:</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// ```</span>
-<span class="doccomment">/// # egui::__run_test_ui(|ui| {</span>
-<span class="doccomment">/// # let (widget_a, widget_b, widget_c) = (egui::Label::new(&quot;a&quot;), egui::Label::new(&quot;b&quot;), egui::Label::new(&quot;c&quot;));</span>
-<span class="doccomment">/// let mut response = ui.add(widget_a);</span>
-<span class="doccomment">/// response |= ui.add(widget_b);</span>
-<span class="doccomment">/// response |= ui.add(widget_c);</span>
-<span class="doccomment">/// if response.hovered() { ui.label(&quot;You hovered at least one of the widgets&quot;); }</span>
-<span class="doccomment">/// # });</span>
-<span class="doccomment">/// ```</span>
-<span class="kw">impl</span> <span class="ident">std::ops::BitOrAssign</span> <span class="kw">for</span> <span class="ident">Response</span> {
-    <span class="kw">fn</span> <span class="ident">bitor_assign</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">rhs</span>: <span class="self">Self</span>) {
-        <span class="kw-2">*</span><span class="self">self</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">union</span>(<span class="ident">rhs</span>);
+<span class="doccomment">/// To summarize the response from many widgets you can use this pattern:
+///
+/// ```
+/// # egui::__run_test_ui(|ui| {
+/// # let (widget_a, widget_b, widget_c) = (egui::Label::new(&quot;a&quot;), egui::Label::new(&quot;b&quot;), egui::Label::new(&quot;c&quot;));
+/// let mut response = ui.add(widget_a);
+/// response |= ui.add(widget_b);
+/// response |= ui.add(widget_c);
+/// if response.hovered() { ui.label(&quot;You hovered at least one of the widgets&quot;); }
+/// # });
+/// ```
+</span><span class="kw">impl </span>std::ops::BitOrAssign <span class="kw">for </span>Response {
+    <span class="kw">fn </span>bitor_assign(<span class="kw-2">&amp;mut </span><span class="self">self</span>, rhs: <span class="self">Self</span>) {
+        <span class="kw-2">*</span><span class="self">self </span>= <span class="self">self</span>.union(rhs);
     }
 }
 
-<span class="comment">// ----------------------------------------------------------------------------</span>
+<span class="comment">// ----------------------------------------------------------------------------
 
-<span class="doccomment">/// Returned when we wrap some ui-code and want to return both</span>
-<span class="doccomment">/// the results of the inner function and the ui as a whole, e.g.:</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// ```</span>
-<span class="doccomment">/// # egui::__run_test_ui(|ui| {</span>
-<span class="doccomment">/// let inner_resp = ui.horizontal(|ui| {</span>
-<span class="doccomment">///     ui.label(&quot;Blah blah&quot;);</span>
-<span class="doccomment">///     42</span>
-<span class="doccomment">/// });</span>
-<span class="doccomment">/// inner_resp.response.on_hover_text(&quot;You hovered the horizontal layout&quot;);</span>
-<span class="doccomment">/// assert_eq!(inner_resp.inner, 42);</span>
-<span class="doccomment">/// # });</span>
-<span class="doccomment">/// ```</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">InnerResponse</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span> {
-    <span class="kw">pub</span> <span class="ident">inner</span>: <span class="ident">R</span>,
-    <span class="kw">pub</span> <span class="ident">response</span>: <span class="ident">Response</span>,
+</span><span class="doccomment">/// Returned when we wrap some ui-code and want to return both
+/// the results of the inner function and the ui as a whole, e.g.:
+///
+/// ```
+/// # egui::__run_test_ui(|ui| {
+/// let inner_resp = ui.horizontal(|ui| {
+///     ui.label(&quot;Blah blah&quot;);
+///     42
+/// });
+/// inner_resp.response.on_hover_text(&quot;You hovered the horizontal layout&quot;);
+/// assert_eq!(inner_resp.inner, 42);
+/// # });
+/// ```
+</span><span class="attribute">#[derive(Debug)]
+</span><span class="kw">pub struct </span>InnerResponse&lt;R&gt; {
+    <span class="kw">pub </span>inner: R,
+    <span class="kw">pub </span>response: Response,
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span> <span class="ident">InnerResponse</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span> {
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">inner</span>: <span class="ident">R</span>, <span class="ident">response</span>: <span class="ident">Response</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">Self</span> { <span class="ident">inner</span>, <span class="ident">response</span> }
+<span class="kw">impl</span>&lt;R&gt; InnerResponse&lt;R&gt; {
+    <span class="attribute">#[inline]
+    </span><span class="kw">pub fn </span>new(inner: R, response: Response) -&gt; <span class="self">Self </span>{
+        <span class="self">Self </span>{ inner, response }
     }
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="egui" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0 (a55dd71d5 2022-09-19)" ></div></body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="egui" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.66.1 (90743e729 2023-01-10)" ></div></body></html>

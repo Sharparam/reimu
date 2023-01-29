@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/epaint-0.16.0/src/shape.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>shape.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../epaint/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../epaint/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../epaint/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/epaint-0.16.0/src/shape.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>shape.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../normalize.css"><link rel="stylesheet" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../ayu.css" disabled><link rel="stylesheet" href="../../dark.css" disabled><link rel="stylesheet" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><div class="width-limiter"><nav class="sub"><a class="sub-logo-container" href="../../epaint/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -449,456 +449,456 @@
 <span id="449">449</span>
 <span id="450">450</span>
 <span id="451">451</span>
-</pre><pre class="rust"><code><span class="kw">use</span> <span class="kw">crate</span>::{
-    <span class="ident">text</span>::{<span class="ident">Fonts</span>, <span class="ident">Galley</span>, <span class="ident">TextStyle</span>},
-    <span class="ident">Color32</span>, <span class="ident">Mesh</span>, <span class="ident">Stroke</span>,
+</pre><pre class="rust"><code><span class="kw">use crate</span>::{
+    text::{Fonts, Galley, TextStyle},
+    Color32, Mesh, Stroke,
 };
-<span class="kw">use</span> <span class="ident">emath</span>::<span class="kw-2">*</span>;
+<span class="kw">use </span>emath::<span class="kw-2">*</span>;
 
-<span class="doccomment">/// A paint primitive such as a circle or a piece of text.</span>
-<span class="doccomment">/// Coordinates are all screen space points (not physical pixels).</span>
-<span class="attribute">#[<span class="ident">must_use</span> <span class="op">=</span> <span class="string">&quot;Add a Shape to a Painter&quot;</span>]</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>)]</span>
-<span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">Shape</span> {
-    <span class="doccomment">/// Paint nothing. This can be useful as a placeholder.</span>
-    <span class="ident">Noop</span>,
-    <span class="doccomment">/// Recursively nest more shapes - sometimes a convenience to be able to do.</span>
-    <span class="doccomment">/// For performance reasons it is better to avoid it.</span>
-    <span class="ident">Vec</span>(<span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Shape</span><span class="op">&gt;</span>),
-    <span class="ident">Circle</span>(<span class="ident">CircleShape</span>),
-    <span class="ident">LineSegment</span> {
-        <span class="ident">points</span>: [<span class="ident">Pos2</span>; <span class="number">2</span>],
-        <span class="ident">stroke</span>: <span class="ident">Stroke</span>,
+<span class="doccomment">/// A paint primitive such as a circle or a piece of text.
+/// Coordinates are all screen space points (not physical pixels).
+</span><span class="attribute">#[must_use = <span class="string">&quot;Add a Shape to a Painter&quot;</span>]
+#[derive(Clone, Debug, PartialEq)]
+</span><span class="kw">pub enum </span>Shape {
+    <span class="doccomment">/// Paint nothing. This can be useful as a placeholder.
+    </span>Noop,
+    <span class="doccomment">/// Recursively nest more shapes - sometimes a convenience to be able to do.
+    /// For performance reasons it is better to avoid it.
+    </span>Vec(Vec&lt;Shape&gt;),
+    Circle(CircleShape),
+    LineSegment {
+        points: [Pos2; <span class="number">2</span>],
+        stroke: Stroke,
     },
-    <span class="ident">Path</span>(<span class="ident">PathShape</span>),
-    <span class="ident">Rect</span>(<span class="ident">RectShape</span>),
-    <span class="ident">Text</span>(<span class="ident">TextShape</span>),
-    <span class="ident">Mesh</span>(<span class="ident">Mesh</span>),
+    Path(PathShape),
+    Rect(RectShape),
+    Text(TextShape),
+    Mesh(Mesh),
 }
 
-<span class="doccomment">/// ## Constructors</span>
-<span class="kw">impl</span> <span class="ident">Shape</span> {
-    <span class="doccomment">/// A line between two points.</span>
-    <span class="doccomment">/// More efficient than calling [`Self::line`].</span>
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">line_segment</span>(<span class="ident">points</span>: [<span class="ident">Pos2</span>; <span class="number">2</span>], <span class="ident">stroke</span>: <span class="kw">impl</span> <span class="ident">Into</span><span class="op">&lt;</span><span class="ident">Stroke</span><span class="op">&gt;</span>) -&gt; <span class="self">Self</span> {
-        <span class="ident"><span class="self">Self</span>::LineSegment</span> {
-            <span class="ident">points</span>,
-            <span class="ident">stroke</span>: <span class="ident">stroke</span>.<span class="ident">into</span>(),
+<span class="doccomment">/// ## Constructors
+</span><span class="kw">impl </span>Shape {
+    <span class="doccomment">/// A line between two points.
+    /// More efficient than calling [`Self::line`].
+    </span><span class="attribute">#[inline]
+    </span><span class="kw">pub fn </span>line_segment(points: [Pos2; <span class="number">2</span>], stroke: <span class="kw">impl </span>Into&lt;Stroke&gt;) -&gt; <span class="self">Self </span>{
+        <span class="self">Self</span>::LineSegment {
+            points,
+            stroke: stroke.into(),
         }
     }
 
-    <span class="doccomment">/// A line through many points.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// Use [`Self::line_segment`] instead if your line only connects two points.</span>
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">line</span>(<span class="ident">points</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Pos2</span><span class="op">&gt;</span>, <span class="ident">stroke</span>: <span class="kw">impl</span> <span class="ident">Into</span><span class="op">&lt;</span><span class="ident">Stroke</span><span class="op">&gt;</span>) -&gt; <span class="self">Self</span> {
-        <span class="ident"><span class="self">Self</span>::Path</span>(<span class="ident">PathShape::line</span>(<span class="ident">points</span>, <span class="ident">stroke</span>))
+    <span class="doccomment">/// A line through many points.
+    ///
+    /// Use [`Self::line_segment`] instead if your line only connects two points.
+    </span><span class="attribute">#[inline]
+    </span><span class="kw">pub fn </span>line(points: Vec&lt;Pos2&gt;, stroke: <span class="kw">impl </span>Into&lt;Stroke&gt;) -&gt; <span class="self">Self </span>{
+        <span class="self">Self</span>::Path(PathShape::line(points, stroke))
     }
 
-    <span class="doccomment">/// A line that closes back to the start point again.</span>
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">closed_line</span>(<span class="ident">points</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Pos2</span><span class="op">&gt;</span>, <span class="ident">stroke</span>: <span class="kw">impl</span> <span class="ident">Into</span><span class="op">&lt;</span><span class="ident">Stroke</span><span class="op">&gt;</span>) -&gt; <span class="self">Self</span> {
-        <span class="ident"><span class="self">Self</span>::Path</span>(<span class="ident">PathShape::closed_line</span>(<span class="ident">points</span>, <span class="ident">stroke</span>))
+    <span class="doccomment">/// A line that closes back to the start point again.
+    </span><span class="attribute">#[inline]
+    </span><span class="kw">pub fn </span>closed_line(points: Vec&lt;Pos2&gt;, stroke: <span class="kw">impl </span>Into&lt;Stroke&gt;) -&gt; <span class="self">Self </span>{
+        <span class="self">Self</span>::Path(PathShape::closed_line(points, stroke))
     }
 
-    <span class="doccomment">/// Turn a line into equally spaced dots.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">dotted_line</span>(
-        <span class="ident">points</span>: <span class="kw-2">&amp;</span>[<span class="ident">Pos2</span>],
-        <span class="ident">color</span>: <span class="kw">impl</span> <span class="ident">Into</span><span class="op">&lt;</span><span class="ident">Color32</span><span class="op">&gt;</span>,
-        <span class="ident">spacing</span>: <span class="ident">f32</span>,
-        <span class="ident">radius</span>: <span class="ident">f32</span>,
-    ) -&gt; <span class="ident">Vec</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">shapes</span> <span class="op">=</span> <span class="ident">Vec::new</span>();
-        <span class="ident">points_from_line</span>(<span class="ident">points</span>, <span class="ident">spacing</span>, <span class="ident">radius</span>, <span class="ident">color</span>.<span class="ident">into</span>(), <span class="kw-2">&amp;mut</span> <span class="ident">shapes</span>);
-        <span class="ident">shapes</span>
+    <span class="doccomment">/// Turn a line into equally spaced dots.
+    </span><span class="kw">pub fn </span>dotted_line(
+        points: <span class="kw-2">&amp;</span>[Pos2],
+        color: <span class="kw">impl </span>Into&lt;Color32&gt;,
+        spacing: f32,
+        radius: f32,
+    ) -&gt; Vec&lt;<span class="self">Self</span>&gt; {
+        <span class="kw">let </span><span class="kw-2">mut </span>shapes = Vec::new();
+        points_from_line(points, spacing, radius, color.into(), <span class="kw-2">&amp;mut </span>shapes);
+        shapes
     }
 
-    <span class="doccomment">/// Turn a line into dashes.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">dashed_line</span>(
-        <span class="ident">points</span>: <span class="kw-2">&amp;</span>[<span class="ident">Pos2</span>],
-        <span class="ident">stroke</span>: <span class="kw">impl</span> <span class="ident">Into</span><span class="op">&lt;</span><span class="ident">Stroke</span><span class="op">&gt;</span>,
-        <span class="ident">dash_length</span>: <span class="ident">f32</span>,
-        <span class="ident">gap_length</span>: <span class="ident">f32</span>,
-    ) -&gt; <span class="ident">Vec</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">shapes</span> <span class="op">=</span> <span class="ident">Vec::new</span>();
-        <span class="ident">dashes_from_line</span>(<span class="ident">points</span>, <span class="ident">stroke</span>.<span class="ident">into</span>(), <span class="ident">dash_length</span>, <span class="ident">gap_length</span>, <span class="kw-2">&amp;mut</span> <span class="ident">shapes</span>);
-        <span class="ident">shapes</span>
+    <span class="doccomment">/// Turn a line into dashes.
+    </span><span class="kw">pub fn </span>dashed_line(
+        points: <span class="kw-2">&amp;</span>[Pos2],
+        stroke: <span class="kw">impl </span>Into&lt;Stroke&gt;,
+        dash_length: f32,
+        gap_length: f32,
+    ) -&gt; Vec&lt;<span class="self">Self</span>&gt; {
+        <span class="kw">let </span><span class="kw-2">mut </span>shapes = Vec::new();
+        dashes_from_line(points, stroke.into(), dash_length, gap_length, <span class="kw-2">&amp;mut </span>shapes);
+        shapes
     }
 
-    <span class="doccomment">/// A convex polygon with a fill and optional stroke.</span>
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">convex_polygon</span>(
-        <span class="ident">points</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Pos2</span><span class="op">&gt;</span>,
-        <span class="ident">fill</span>: <span class="kw">impl</span> <span class="ident">Into</span><span class="op">&lt;</span><span class="ident">Color32</span><span class="op">&gt;</span>,
-        <span class="ident">stroke</span>: <span class="kw">impl</span> <span class="ident">Into</span><span class="op">&lt;</span><span class="ident">Stroke</span><span class="op">&gt;</span>,
-    ) -&gt; <span class="self">Self</span> {
-        <span class="ident"><span class="self">Self</span>::Path</span>(<span class="ident">PathShape::convex_polygon</span>(<span class="ident">points</span>, <span class="ident">fill</span>, <span class="ident">stroke</span>))
+    <span class="doccomment">/// A convex polygon with a fill and optional stroke.
+    </span><span class="attribute">#[inline]
+    </span><span class="kw">pub fn </span>convex_polygon(
+        points: Vec&lt;Pos2&gt;,
+        fill: <span class="kw">impl </span>Into&lt;Color32&gt;,
+        stroke: <span class="kw">impl </span>Into&lt;Stroke&gt;,
+    ) -&gt; <span class="self">Self </span>{
+        <span class="self">Self</span>::Path(PathShape::convex_polygon(points, fill, stroke))
     }
 
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">circle_filled</span>(<span class="ident">center</span>: <span class="ident">Pos2</span>, <span class="ident">radius</span>: <span class="ident">f32</span>, <span class="ident">fill_color</span>: <span class="kw">impl</span> <span class="ident">Into</span><span class="op">&lt;</span><span class="ident">Color32</span><span class="op">&gt;</span>) -&gt; <span class="self">Self</span> {
-        <span class="ident"><span class="self">Self</span>::Circle</span>(<span class="ident">CircleShape::filled</span>(<span class="ident">center</span>, <span class="ident">radius</span>, <span class="ident">fill_color</span>))
+    <span class="attribute">#[inline]
+    </span><span class="kw">pub fn </span>circle_filled(center: Pos2, radius: f32, fill_color: <span class="kw">impl </span>Into&lt;Color32&gt;) -&gt; <span class="self">Self </span>{
+        <span class="self">Self</span>::Circle(CircleShape::filled(center, radius, fill_color))
     }
 
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">circle_stroke</span>(<span class="ident">center</span>: <span class="ident">Pos2</span>, <span class="ident">radius</span>: <span class="ident">f32</span>, <span class="ident">stroke</span>: <span class="kw">impl</span> <span class="ident">Into</span><span class="op">&lt;</span><span class="ident">Stroke</span><span class="op">&gt;</span>) -&gt; <span class="self">Self</span> {
-        <span class="ident"><span class="self">Self</span>::Circle</span>(<span class="ident">CircleShape::stroke</span>(<span class="ident">center</span>, <span class="ident">radius</span>, <span class="ident">stroke</span>))
+    <span class="attribute">#[inline]
+    </span><span class="kw">pub fn </span>circle_stroke(center: Pos2, radius: f32, stroke: <span class="kw">impl </span>Into&lt;Stroke&gt;) -&gt; <span class="self">Self </span>{
+        <span class="self">Self</span>::Circle(CircleShape::stroke(center, radius, stroke))
     }
 
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">rect_filled</span>(<span class="ident">rect</span>: <span class="ident">Rect</span>, <span class="ident">corner_radius</span>: <span class="ident">f32</span>, <span class="ident">fill_color</span>: <span class="kw">impl</span> <span class="ident">Into</span><span class="op">&lt;</span><span class="ident">Color32</span><span class="op">&gt;</span>) -&gt; <span class="self">Self</span> {
-        <span class="ident"><span class="self">Self</span>::Rect</span>(<span class="ident">RectShape::filled</span>(<span class="ident">rect</span>, <span class="ident">corner_radius</span>, <span class="ident">fill_color</span>))
+    <span class="attribute">#[inline]
+    </span><span class="kw">pub fn </span>rect_filled(rect: Rect, corner_radius: f32, fill_color: <span class="kw">impl </span>Into&lt;Color32&gt;) -&gt; <span class="self">Self </span>{
+        <span class="self">Self</span>::Rect(RectShape::filled(rect, corner_radius, fill_color))
     }
 
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">rect_stroke</span>(<span class="ident">rect</span>: <span class="ident">Rect</span>, <span class="ident">corner_radius</span>: <span class="ident">f32</span>, <span class="ident">stroke</span>: <span class="kw">impl</span> <span class="ident">Into</span><span class="op">&lt;</span><span class="ident">Stroke</span><span class="op">&gt;</span>) -&gt; <span class="self">Self</span> {
-        <span class="ident"><span class="self">Self</span>::Rect</span>(<span class="ident">RectShape::stroke</span>(<span class="ident">rect</span>, <span class="ident">corner_radius</span>, <span class="ident">stroke</span>))
+    <span class="attribute">#[inline]
+    </span><span class="kw">pub fn </span>rect_stroke(rect: Rect, corner_radius: f32, stroke: <span class="kw">impl </span>Into&lt;Stroke&gt;) -&gt; <span class="self">Self </span>{
+        <span class="self">Self</span>::Rect(RectShape::stroke(rect, corner_radius, stroke))
     }
 
-    <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">clippy::needless_pass_by_value</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">text</span>(
-        <span class="ident">fonts</span>: <span class="kw-2">&amp;</span><span class="ident">Fonts</span>,
-        <span class="ident">pos</span>: <span class="ident">Pos2</span>,
-        <span class="ident">anchor</span>: <span class="ident">Align2</span>,
-        <span class="ident">text</span>: <span class="kw">impl</span> <span class="ident">ToString</span>,
-        <span class="ident">text_style</span>: <span class="ident">TextStyle</span>,
-        <span class="ident">color</span>: <span class="ident">Color32</span>,
-    ) -&gt; <span class="self">Self</span> {
-        <span class="kw">let</span> <span class="ident">galley</span> <span class="op">=</span> <span class="ident">fonts</span>.<span class="ident">layout_no_wrap</span>(<span class="ident">text</span>.<span class="ident">to_string</span>(), <span class="ident">text_style</span>, <span class="ident">color</span>);
-        <span class="kw">let</span> <span class="ident">rect</span> <span class="op">=</span> <span class="ident">anchor</span>.<span class="ident">anchor_rect</span>(<span class="ident">Rect::from_min_size</span>(<span class="ident">pos</span>, <span class="ident">galley</span>.<span class="ident">size</span>()));
-        <span class="ident"><span class="self">Self</span>::galley</span>(<span class="ident">rect</span>.<span class="ident">min</span>, <span class="ident">galley</span>)
+    <span class="attribute">#[allow(clippy::needless_pass_by_value)]
+    </span><span class="kw">pub fn </span>text(
+        fonts: <span class="kw-2">&amp;</span>Fonts,
+        pos: Pos2,
+        anchor: Align2,
+        text: <span class="kw">impl </span>ToString,
+        text_style: TextStyle,
+        color: Color32,
+    ) -&gt; <span class="self">Self </span>{
+        <span class="kw">let </span>galley = fonts.layout_no_wrap(text.to_string(), text_style, color);
+        <span class="kw">let </span>rect = anchor.anchor_rect(Rect::from_min_size(pos, galley.size()));
+        <span class="self">Self</span>::galley(rect.min, galley)
     }
 
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">galley</span>(<span class="ident">pos</span>: <span class="ident">Pos2</span>, <span class="ident">galley</span>: <span class="ident">std::sync::Arc</span><span class="op">&lt;</span><span class="ident">Galley</span><span class="op">&gt;</span>) -&gt; <span class="self">Self</span> {
-        <span class="ident">TextShape::new</span>(<span class="ident">pos</span>, <span class="ident">galley</span>).<span class="ident">into</span>()
+    <span class="attribute">#[inline]
+    </span><span class="kw">pub fn </span>galley(pos: Pos2, galley: std::sync::Arc&lt;Galley&gt;) -&gt; <span class="self">Self </span>{
+        TextShape::new(pos, galley).into()
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">mesh</span>(<span class="ident">mesh</span>: <span class="ident">Mesh</span>) -&gt; <span class="self">Self</span> {
-        <span class="macro">crate::epaint_assert!</span>(<span class="ident">mesh</span>.<span class="ident">is_valid</span>());
-        <span class="ident"><span class="self">Self</span>::Mesh</span>(<span class="ident">mesh</span>)
+    <span class="kw">pub fn </span>mesh(mesh: Mesh) -&gt; <span class="self">Self </span>{
+        <span class="macro">crate::epaint_assert!</span>(mesh.is_valid());
+        <span class="self">Self</span>::Mesh(mesh)
     }
 }
 
-<span class="doccomment">/// ## Inspection and transforms</span>
-<span class="kw">impl</span> <span class="ident">Shape</span> {
-    <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">texture_id</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident"><span class="kw">super</span>::TextureId</span> {
-        <span class="kw">if</span> <span class="kw">let</span> <span class="ident">Shape::Mesh</span>(<span class="ident">mesh</span>) <span class="op">=</span> <span class="self">self</span> {
-            <span class="ident">mesh</span>.<span class="ident">texture_id</span>
-        } <span class="kw">else</span> {
-            <span class="ident"><span class="kw">super</span>::TextureId::Egui</span>
+<span class="doccomment">/// ## Inspection and transforms
+</span><span class="kw">impl </span>Shape {
+    <span class="attribute">#[inline(always)]
+    </span><span class="kw">pub fn </span>texture_id(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw">super</span>::TextureId {
+        <span class="kw">if let </span>Shape::Mesh(mesh) = <span class="self">self </span>{
+            mesh.texture_id
+        } <span class="kw">else </span>{
+            <span class="kw">super</span>::TextureId::Egui
         }
     }
 
-    <span class="doccomment">/// Move the shape by this many points, in-place.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">translate</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">delta</span>: <span class="ident">Vec2</span>) {
-        <span class="kw">match</span> <span class="self">self</span> {
-            <span class="ident">Shape::Noop</span> =&gt; {}
-            <span class="ident">Shape::Vec</span>(<span class="ident">shapes</span>) =&gt; {
-                <span class="kw">for</span> <span class="ident">shape</span> <span class="kw">in</span> <span class="ident">shapes</span> {
-                    <span class="ident">shape</span>.<span class="ident">translate</span>(<span class="ident">delta</span>);
+    <span class="doccomment">/// Move the shape by this many points, in-place.
+    </span><span class="kw">pub fn </span>translate(<span class="kw-2">&amp;mut </span><span class="self">self</span>, delta: Vec2) {
+        <span class="kw">match </span><span class="self">self </span>{
+            Shape::Noop =&gt; {}
+            Shape::Vec(shapes) =&gt; {
+                <span class="kw">for </span>shape <span class="kw">in </span>shapes {
+                    shape.translate(delta);
                 }
             }
-            <span class="ident">Shape::Circle</span>(<span class="ident">circle_shape</span>) =&gt; {
-                <span class="ident">circle_shape</span>.<span class="ident">center</span> <span class="op">+</span><span class="op">=</span> <span class="ident">delta</span>;
+            Shape::Circle(circle_shape) =&gt; {
+                circle_shape.center += delta;
             }
-            <span class="ident">Shape::LineSegment</span> { <span class="ident">points</span>, .. } =&gt; {
-                <span class="kw">for</span> <span class="ident">p</span> <span class="kw">in</span> <span class="ident">points</span> {
-                    <span class="kw-2">*</span><span class="ident">p</span> <span class="op">+</span><span class="op">=</span> <span class="ident">delta</span>;
+            Shape::LineSegment { points, .. } =&gt; {
+                <span class="kw">for </span>p <span class="kw">in </span>points {
+                    <span class="kw-2">*</span>p += delta;
                 }
             }
-            <span class="ident">Shape::Path</span>(<span class="ident">path_shape</span>) =&gt; {
-                <span class="kw">for</span> <span class="ident">p</span> <span class="kw">in</span> <span class="kw-2">&amp;mut</span> <span class="ident">path_shape</span>.<span class="ident">points</span> {
-                    <span class="kw-2">*</span><span class="ident">p</span> <span class="op">+</span><span class="op">=</span> <span class="ident">delta</span>;
+            Shape::Path(path_shape) =&gt; {
+                <span class="kw">for </span>p <span class="kw">in </span><span class="kw-2">&amp;mut </span>path_shape.points {
+                    <span class="kw-2">*</span>p += delta;
                 }
             }
-            <span class="ident">Shape::Rect</span>(<span class="ident">rect_shape</span>) =&gt; {
-                <span class="ident">rect_shape</span>.<span class="ident">rect</span> <span class="op">=</span> <span class="ident">rect_shape</span>.<span class="ident">rect</span>.<span class="ident">translate</span>(<span class="ident">delta</span>);
+            Shape::Rect(rect_shape) =&gt; {
+                rect_shape.rect = rect_shape.rect.translate(delta);
             }
-            <span class="ident">Shape::Text</span>(<span class="ident">text_shape</span>) =&gt; {
-                <span class="ident">text_shape</span>.<span class="ident">pos</span> <span class="op">+</span><span class="op">=</span> <span class="ident">delta</span>;
+            Shape::Text(text_shape) =&gt; {
+                text_shape.pos += delta;
             }
-            <span class="ident">Shape::Mesh</span>(<span class="ident">mesh</span>) =&gt; {
-                <span class="ident">mesh</span>.<span class="ident">translate</span>(<span class="ident">delta</span>);
+            Shape::Mesh(mesh) =&gt; {
+                mesh.translate(delta);
             }
         }
     }
 }
 
-<span class="comment">// ----------------------------------------------------------------------------</span>
+<span class="comment">// ----------------------------------------------------------------------------
 
-<span class="doccomment">/// How to paint a circle.</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>)]</span>
-<span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;serde&quot;</span>, <span class="ident">derive</span>(<span class="ident">serde::Deserialize</span>, <span class="ident">serde::Serialize</span>))]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">CircleShape</span> {
-    <span class="kw">pub</span> <span class="ident">center</span>: <span class="ident">Pos2</span>,
-    <span class="kw">pub</span> <span class="ident">radius</span>: <span class="ident">f32</span>,
-    <span class="kw">pub</span> <span class="ident">fill</span>: <span class="ident">Color32</span>,
-    <span class="kw">pub</span> <span class="ident">stroke</span>: <span class="ident">Stroke</span>,
+</span><span class="doccomment">/// How to paint a circle.
+</span><span class="attribute">#[derive(Copy, Clone, Debug, PartialEq)]
+#[cfg_attr(feature = <span class="string">&quot;serde&quot;</span>, derive(serde::Deserialize, serde::Serialize))]
+</span><span class="kw">pub struct </span>CircleShape {
+    <span class="kw">pub </span>center: Pos2,
+    <span class="kw">pub </span>radius: f32,
+    <span class="kw">pub </span>fill: Color32,
+    <span class="kw">pub </span>stroke: Stroke,
 }
 
-<span class="kw">impl</span> <span class="ident">CircleShape</span> {
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">filled</span>(<span class="ident">center</span>: <span class="ident">Pos2</span>, <span class="ident">radius</span>: <span class="ident">f32</span>, <span class="ident">fill_color</span>: <span class="kw">impl</span> <span class="ident">Into</span><span class="op">&lt;</span><span class="ident">Color32</span><span class="op">&gt;</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">Self</span> {
-            <span class="ident">center</span>,
-            <span class="ident">radius</span>,
-            <span class="ident">fill</span>: <span class="ident">fill_color</span>.<span class="ident">into</span>(),
-            <span class="ident">stroke</span>: <span class="ident">Default::default</span>(),
+<span class="kw">impl </span>CircleShape {
+    <span class="attribute">#[inline]
+    </span><span class="kw">pub fn </span>filled(center: Pos2, radius: f32, fill_color: <span class="kw">impl </span>Into&lt;Color32&gt;) -&gt; <span class="self">Self </span>{
+        <span class="self">Self </span>{
+            center,
+            radius,
+            fill: fill_color.into(),
+            stroke: Default::default(),
         }
     }
 
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">stroke</span>(<span class="ident">center</span>: <span class="ident">Pos2</span>, <span class="ident">radius</span>: <span class="ident">f32</span>, <span class="ident">stroke</span>: <span class="kw">impl</span> <span class="ident">Into</span><span class="op">&lt;</span><span class="ident">Stroke</span><span class="op">&gt;</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">Self</span> {
-            <span class="ident">center</span>,
-            <span class="ident">radius</span>,
-            <span class="ident">fill</span>: <span class="ident">Default::default</span>(),
-            <span class="ident">stroke</span>: <span class="ident">stroke</span>.<span class="ident">into</span>(),
+    <span class="attribute">#[inline]
+    </span><span class="kw">pub fn </span>stroke(center: Pos2, radius: f32, stroke: <span class="kw">impl </span>Into&lt;Stroke&gt;) -&gt; <span class="self">Self </span>{
+        <span class="self">Self </span>{
+            center,
+            radius,
+            fill: Default::default(),
+            stroke: stroke.into(),
         }
     }
 }
 
-<span class="kw">impl</span> <span class="ident">From</span><span class="op">&lt;</span><span class="ident">CircleShape</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Shape</span> {
-    <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">shape</span>: <span class="ident">CircleShape</span>) -&gt; <span class="self">Self</span> {
-        <span class="ident"><span class="self">Self</span>::Circle</span>(<span class="ident">shape</span>)
+<span class="kw">impl </span>From&lt;CircleShape&gt; <span class="kw">for </span>Shape {
+    <span class="attribute">#[inline(always)]
+    </span><span class="kw">fn </span>from(shape: CircleShape) -&gt; <span class="self">Self </span>{
+        <span class="self">Self</span>::Circle(shape)
     }
 }
 
-<span class="comment">// ----------------------------------------------------------------------------</span>
+<span class="comment">// ----------------------------------------------------------------------------
 
-<span class="doccomment">/// A path which can be stroked and/or filled (if closed).</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>)]</span>
-<span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;serde&quot;</span>, <span class="ident">derive</span>(<span class="ident">serde::Deserialize</span>, <span class="ident">serde::Serialize</span>))]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">PathShape</span> {
-    <span class="kw">pub</span> <span class="ident">points</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Pos2</span><span class="op">&gt;</span>,
-    <span class="doccomment">/// If true, connect the first and last of the points together.</span>
-    <span class="doccomment">/// This is required if `fill != TRANSPARENT`.</span>
-    <span class="kw">pub</span> <span class="ident">closed</span>: <span class="ident">bool</span>,
-    <span class="doccomment">/// Fill is only supported for convex polygons.</span>
-    <span class="kw">pub</span> <span class="ident">fill</span>: <span class="ident">Color32</span>,
-    <span class="kw">pub</span> <span class="ident">stroke</span>: <span class="ident">Stroke</span>,
+</span><span class="doccomment">/// A path which can be stroked and/or filled (if closed).
+</span><span class="attribute">#[derive(Clone, Debug, PartialEq)]
+#[cfg_attr(feature = <span class="string">&quot;serde&quot;</span>, derive(serde::Deserialize, serde::Serialize))]
+</span><span class="kw">pub struct </span>PathShape {
+    <span class="kw">pub </span>points: Vec&lt;Pos2&gt;,
+    <span class="doccomment">/// If true, connect the first and last of the points together.
+    /// This is required if `fill != TRANSPARENT`.
+    </span><span class="kw">pub </span>closed: bool,
+    <span class="doccomment">/// Fill is only supported for convex polygons.
+    </span><span class="kw">pub </span>fill: Color32,
+    <span class="kw">pub </span>stroke: Stroke,
 }
 
-<span class="kw">impl</span> <span class="ident">PathShape</span> {
-    <span class="doccomment">/// A line through many points.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// Use [`Shape::line_segment`] instead if your line only connects two points.</span>
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">line</span>(<span class="ident">points</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Pos2</span><span class="op">&gt;</span>, <span class="ident">stroke</span>: <span class="kw">impl</span> <span class="ident">Into</span><span class="op">&lt;</span><span class="ident">Stroke</span><span class="op">&gt;</span>) -&gt; <span class="self">Self</span> {
-        <span class="ident">PathShape</span> {
-            <span class="ident">points</span>,
-            <span class="ident">closed</span>: <span class="bool-val">false</span>,
-            <span class="ident">fill</span>: <span class="ident">Default::default</span>(),
-            <span class="ident">stroke</span>: <span class="ident">stroke</span>.<span class="ident">into</span>(),
+<span class="kw">impl </span>PathShape {
+    <span class="doccomment">/// A line through many points.
+    ///
+    /// Use [`Shape::line_segment`] instead if your line only connects two points.
+    </span><span class="attribute">#[inline]
+    </span><span class="kw">pub fn </span>line(points: Vec&lt;Pos2&gt;, stroke: <span class="kw">impl </span>Into&lt;Stroke&gt;) -&gt; <span class="self">Self </span>{
+        PathShape {
+            points,
+            closed: <span class="bool-val">false</span>,
+            fill: Default::default(),
+            stroke: stroke.into(),
         }
     }
 
-    <span class="doccomment">/// A line that closes back to the start point again.</span>
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">closed_line</span>(<span class="ident">points</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Pos2</span><span class="op">&gt;</span>, <span class="ident">stroke</span>: <span class="kw">impl</span> <span class="ident">Into</span><span class="op">&lt;</span><span class="ident">Stroke</span><span class="op">&gt;</span>) -&gt; <span class="self">Self</span> {
-        <span class="ident">PathShape</span> {
-            <span class="ident">points</span>,
-            <span class="ident">closed</span>: <span class="bool-val">true</span>,
-            <span class="ident">fill</span>: <span class="ident">Default::default</span>(),
-            <span class="ident">stroke</span>: <span class="ident">stroke</span>.<span class="ident">into</span>(),
+    <span class="doccomment">/// A line that closes back to the start point again.
+    </span><span class="attribute">#[inline]
+    </span><span class="kw">pub fn </span>closed_line(points: Vec&lt;Pos2&gt;, stroke: <span class="kw">impl </span>Into&lt;Stroke&gt;) -&gt; <span class="self">Self </span>{
+        PathShape {
+            points,
+            closed: <span class="bool-val">true</span>,
+            fill: Default::default(),
+            stroke: stroke.into(),
         }
     }
 
-    <span class="doccomment">/// A convex polygon with a fill and optional stroke.</span>
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">convex_polygon</span>(
-        <span class="ident">points</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Pos2</span><span class="op">&gt;</span>,
-        <span class="ident">fill</span>: <span class="kw">impl</span> <span class="ident">Into</span><span class="op">&lt;</span><span class="ident">Color32</span><span class="op">&gt;</span>,
-        <span class="ident">stroke</span>: <span class="kw">impl</span> <span class="ident">Into</span><span class="op">&lt;</span><span class="ident">Stroke</span><span class="op">&gt;</span>,
-    ) -&gt; <span class="self">Self</span> {
-        <span class="ident">PathShape</span> {
-            <span class="ident">points</span>,
-            <span class="ident">closed</span>: <span class="bool-val">true</span>,
-            <span class="ident">fill</span>: <span class="ident">fill</span>.<span class="ident">into</span>(),
-            <span class="ident">stroke</span>: <span class="ident">stroke</span>.<span class="ident">into</span>(),
+    <span class="doccomment">/// A convex polygon with a fill and optional stroke.
+    </span><span class="attribute">#[inline]
+    </span><span class="kw">pub fn </span>convex_polygon(
+        points: Vec&lt;Pos2&gt;,
+        fill: <span class="kw">impl </span>Into&lt;Color32&gt;,
+        stroke: <span class="kw">impl </span>Into&lt;Stroke&gt;,
+    ) -&gt; <span class="self">Self </span>{
+        PathShape {
+            points,
+            closed: <span class="bool-val">true</span>,
+            fill: fill.into(),
+            stroke: stroke.into(),
         }
     }
 
-    <span class="doccomment">/// Screen-space bounding rectangle.</span>
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">bounding_rect</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">Rect</span> {
-        <span class="ident">Rect::from_points</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">points</span>).<span class="ident">expand</span>(<span class="self">self</span>.<span class="ident">stroke</span>.<span class="ident">width</span>)
+    <span class="doccomment">/// Screen-space bounding rectangle.
+    </span><span class="attribute">#[inline]
+    </span><span class="kw">pub fn </span>bounding_rect(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; Rect {
+        Rect::from_points(<span class="kw-2">&amp;</span><span class="self">self</span>.points).expand(<span class="self">self</span>.stroke.width)
     }
 }
 
-<span class="kw">impl</span> <span class="ident">From</span><span class="op">&lt;</span><span class="ident">PathShape</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Shape</span> {
-    <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">shape</span>: <span class="ident">PathShape</span>) -&gt; <span class="self">Self</span> {
-        <span class="ident"><span class="self">Self</span>::Path</span>(<span class="ident">shape</span>)
+<span class="kw">impl </span>From&lt;PathShape&gt; <span class="kw">for </span>Shape {
+    <span class="attribute">#[inline(always)]
+    </span><span class="kw">fn </span>from(shape: PathShape) -&gt; <span class="self">Self </span>{
+        <span class="self">Self</span>::Path(shape)
     }
 }
 
-<span class="comment">// ----------------------------------------------------------------------------</span>
+<span class="comment">// ----------------------------------------------------------------------------
 
-<span class="doccomment">/// How to paint a rectangle.</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>)]</span>
-<span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;serde&quot;</span>, <span class="ident">derive</span>(<span class="ident">serde::Deserialize</span>, <span class="ident">serde::Serialize</span>))]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">RectShape</span> {
-    <span class="kw">pub</span> <span class="ident">rect</span>: <span class="ident">Rect</span>,
-    <span class="doccomment">/// How rounded the corners are. Use `0.0` for no rounding.</span>
-    <span class="kw">pub</span> <span class="ident">corner_radius</span>: <span class="ident">f32</span>,
-    <span class="kw">pub</span> <span class="ident">fill</span>: <span class="ident">Color32</span>,
-    <span class="kw">pub</span> <span class="ident">stroke</span>: <span class="ident">Stroke</span>,
+</span><span class="doccomment">/// How to paint a rectangle.
+</span><span class="attribute">#[derive(Copy, Clone, Debug, PartialEq)]
+#[cfg_attr(feature = <span class="string">&quot;serde&quot;</span>, derive(serde::Deserialize, serde::Serialize))]
+</span><span class="kw">pub struct </span>RectShape {
+    <span class="kw">pub </span>rect: Rect,
+    <span class="doccomment">/// How rounded the corners are. Use `0.0` for no rounding.
+    </span><span class="kw">pub </span>corner_radius: f32,
+    <span class="kw">pub </span>fill: Color32,
+    <span class="kw">pub </span>stroke: Stroke,
 }
 
-<span class="kw">impl</span> <span class="ident">RectShape</span> {
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">filled</span>(<span class="ident">rect</span>: <span class="ident">Rect</span>, <span class="ident">corner_radius</span>: <span class="ident">f32</span>, <span class="ident">fill_color</span>: <span class="kw">impl</span> <span class="ident">Into</span><span class="op">&lt;</span><span class="ident">Color32</span><span class="op">&gt;</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">Self</span> {
-            <span class="ident">rect</span>,
-            <span class="ident">corner_radius</span>,
-            <span class="ident">fill</span>: <span class="ident">fill_color</span>.<span class="ident">into</span>(),
-            <span class="ident">stroke</span>: <span class="ident">Default::default</span>(),
+<span class="kw">impl </span>RectShape {
+    <span class="attribute">#[inline]
+    </span><span class="kw">pub fn </span>filled(rect: Rect, corner_radius: f32, fill_color: <span class="kw">impl </span>Into&lt;Color32&gt;) -&gt; <span class="self">Self </span>{
+        <span class="self">Self </span>{
+            rect,
+            corner_radius,
+            fill: fill_color.into(),
+            stroke: Default::default(),
         }
     }
 
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">stroke</span>(<span class="ident">rect</span>: <span class="ident">Rect</span>, <span class="ident">corner_radius</span>: <span class="ident">f32</span>, <span class="ident">stroke</span>: <span class="kw">impl</span> <span class="ident">Into</span><span class="op">&lt;</span><span class="ident">Stroke</span><span class="op">&gt;</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">Self</span> {
-            <span class="ident">rect</span>,
-            <span class="ident">corner_radius</span>,
-            <span class="ident">fill</span>: <span class="ident">Default::default</span>(),
-            <span class="ident">stroke</span>: <span class="ident">stroke</span>.<span class="ident">into</span>(),
+    <span class="attribute">#[inline]
+    </span><span class="kw">pub fn </span>stroke(rect: Rect, corner_radius: f32, stroke: <span class="kw">impl </span>Into&lt;Stroke&gt;) -&gt; <span class="self">Self </span>{
+        <span class="self">Self </span>{
+            rect,
+            corner_radius,
+            fill: Default::default(),
+            stroke: stroke.into(),
         }
     }
 
-    <span class="doccomment">/// Screen-space bounding rectangle.</span>
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">bounding_rect</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">Rect</span> {
-        <span class="self">self</span>.<span class="ident">rect</span>.<span class="ident">expand</span>(<span class="self">self</span>.<span class="ident">stroke</span>.<span class="ident">width</span>)
+    <span class="doccomment">/// Screen-space bounding rectangle.
+    </span><span class="attribute">#[inline]
+    </span><span class="kw">pub fn </span>bounding_rect(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; Rect {
+        <span class="self">self</span>.rect.expand(<span class="self">self</span>.stroke.width)
     }
 }
 
-<span class="kw">impl</span> <span class="ident">From</span><span class="op">&lt;</span><span class="ident">RectShape</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Shape</span> {
-    <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">shape</span>: <span class="ident">RectShape</span>) -&gt; <span class="self">Self</span> {
-        <span class="ident"><span class="self">Self</span>::Rect</span>(<span class="ident">shape</span>)
+<span class="kw">impl </span>From&lt;RectShape&gt; <span class="kw">for </span>Shape {
+    <span class="attribute">#[inline(always)]
+    </span><span class="kw">fn </span>from(shape: RectShape) -&gt; <span class="self">Self </span>{
+        <span class="self">Self</span>::Rect(shape)
     }
 }
 
-<span class="comment">// ----------------------------------------------------------------------------</span>
+<span class="comment">// ----------------------------------------------------------------------------
 
-<span class="doccomment">/// How to paint some text on screen.</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">TextShape</span> {
-    <span class="doccomment">/// Top left corner of the first character.</span>
-    <span class="kw">pub</span> <span class="ident">pos</span>: <span class="ident">Pos2</span>,
+</span><span class="doccomment">/// How to paint some text on screen.
+</span><span class="attribute">#[derive(Clone, Debug, PartialEq)]
+</span><span class="kw">pub struct </span>TextShape {
+    <span class="doccomment">/// Top left corner of the first character.
+    </span><span class="kw">pub </span>pos: Pos2,
 
-    <span class="doccomment">/// The layed out text, from [`Fonts::layout_job`].</span>
-    <span class="kw">pub</span> <span class="ident">galley</span>: <span class="ident">std::sync::Arc</span><span class="op">&lt;</span><span class="ident">Galley</span><span class="op">&gt;</span>,
+    <span class="doccomment">/// The layed out text, from [`Fonts::layout_job`].
+    </span><span class="kw">pub </span>galley: std::sync::Arc&lt;Galley&gt;,
 
-    <span class="doccomment">/// Add this underline to the whole text.</span>
-    <span class="doccomment">/// You can also set an underline when creating the galley.</span>
-    <span class="kw">pub</span> <span class="ident">underline</span>: <span class="ident">Stroke</span>,
+    <span class="doccomment">/// Add this underline to the whole text.
+    /// You can also set an underline when creating the galley.
+    </span><span class="kw">pub </span>underline: Stroke,
 
-    <span class="doccomment">/// If set, the text color in the galley will be ignored and replaced</span>
-    <span class="doccomment">/// with the given color.</span>
-    <span class="doccomment">/// This will NOT replace background color nor strikethrough/underline color.</span>
-    <span class="kw">pub</span> <span class="ident">override_text_color</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Color32</span><span class="op">&gt;</span>,
+    <span class="doccomment">/// If set, the text color in the galley will be ignored and replaced
+    /// with the given color.
+    /// This will NOT replace background color nor strikethrough/underline color.
+    </span><span class="kw">pub </span>override_text_color: <span class="prelude-ty">Option</span>&lt;Color32&gt;,
 
-    <span class="doccomment">/// Rotate text by this many radians clock-wise.</span>
-    <span class="doccomment">/// The pivot is `pos` (the upper left corner of the text).</span>
-    <span class="kw">pub</span> <span class="ident">angle</span>: <span class="ident">f32</span>,
+    <span class="doccomment">/// Rotate text by this many radians clock-wise.
+    /// The pivot is `pos` (the upper left corner of the text).
+    </span><span class="kw">pub </span>angle: f32,
 }
 
-<span class="kw">impl</span> <span class="ident">TextShape</span> {
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">pos</span>: <span class="ident">Pos2</span>, <span class="ident">galley</span>: <span class="ident">std::sync::Arc</span><span class="op">&lt;</span><span class="ident">Galley</span><span class="op">&gt;</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">Self</span> {
-            <span class="ident">pos</span>,
-            <span class="ident">galley</span>,
-            <span class="ident">underline</span>: <span class="ident">Stroke::none</span>(),
-            <span class="ident">override_text_color</span>: <span class="prelude-val">None</span>,
-            <span class="ident">angle</span>: <span class="number">0.0</span>,
+<span class="kw">impl </span>TextShape {
+    <span class="attribute">#[inline]
+    </span><span class="kw">pub fn </span>new(pos: Pos2, galley: std::sync::Arc&lt;Galley&gt;) -&gt; <span class="self">Self </span>{
+        <span class="self">Self </span>{
+            pos,
+            galley,
+            underline: Stroke::none(),
+            override_text_color: <span class="prelude-val">None</span>,
+            angle: <span class="number">0.0</span>,
         }
     }
 
-    <span class="doccomment">/// Screen-space bounding rectangle.</span>
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">bounding_rect</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">Rect</span> {
-        <span class="self">self</span>.<span class="ident">galley</span>.<span class="ident">mesh_bounds</span>.<span class="ident">translate</span>(<span class="self">self</span>.<span class="ident">pos</span>.<span class="ident">to_vec2</span>())
+    <span class="doccomment">/// Screen-space bounding rectangle.
+    </span><span class="attribute">#[inline]
+    </span><span class="kw">pub fn </span>bounding_rect(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; Rect {
+        <span class="self">self</span>.galley.mesh_bounds.translate(<span class="self">self</span>.pos.to_vec2())
     }
 }
 
-<span class="kw">impl</span> <span class="ident">From</span><span class="op">&lt;</span><span class="ident">TextShape</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Shape</span> {
-    <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">shape</span>: <span class="ident">TextShape</span>) -&gt; <span class="self">Self</span> {
-        <span class="ident"><span class="self">Self</span>::Text</span>(<span class="ident">shape</span>)
+<span class="kw">impl </span>From&lt;TextShape&gt; <span class="kw">for </span>Shape {
+    <span class="attribute">#[inline(always)]
+    </span><span class="kw">fn </span>from(shape: TextShape) -&gt; <span class="self">Self </span>{
+        <span class="self">Self</span>::Text(shape)
     }
 }
 
-<span class="comment">// ----------------------------------------------------------------------------</span>
+<span class="comment">// ----------------------------------------------------------------------------
 
-<span class="doccomment">/// Creates equally spaced filled circles from a line.</span>
-<span class="kw">fn</span> <span class="ident">points_from_line</span>(
-    <span class="ident">line</span>: <span class="kw-2">&amp;</span>[<span class="ident">Pos2</span>],
-    <span class="ident">spacing</span>: <span class="ident">f32</span>,
-    <span class="ident">radius</span>: <span class="ident">f32</span>,
-    <span class="ident">color</span>: <span class="ident">Color32</span>,
-    <span class="ident">shapes</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Shape</span><span class="op">&gt;</span>,
+</span><span class="doccomment">/// Creates equally spaced filled circles from a line.
+</span><span class="kw">fn </span>points_from_line(
+    line: <span class="kw-2">&amp;</span>[Pos2],
+    spacing: f32,
+    radius: f32,
+    color: Color32,
+    shapes: <span class="kw-2">&amp;mut </span>Vec&lt;Shape&gt;,
 ) {
-    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">position_on_segment</span> <span class="op">=</span> <span class="number">0.0</span>;
-    <span class="ident">line</span>.<span class="ident">windows</span>(<span class="number">2</span>).<span class="ident">for_each</span>(<span class="op">|</span><span class="ident">window</span><span class="op">|</span> {
-        <span class="kw">let</span> <span class="ident">start</span> <span class="op">=</span> <span class="ident">window</span>[<span class="number">0</span>];
-        <span class="kw">let</span> <span class="ident">end</span> <span class="op">=</span> <span class="ident">window</span>[<span class="number">1</span>];
-        <span class="kw">let</span> <span class="ident">vector</span> <span class="op">=</span> <span class="ident">end</span> <span class="op">-</span> <span class="ident">start</span>;
-        <span class="kw">let</span> <span class="ident">segment_length</span> <span class="op">=</span> <span class="ident">vector</span>.<span class="ident">length</span>();
-        <span class="kw">while</span> <span class="ident">position_on_segment</span> <span class="op">&lt;</span> <span class="ident">segment_length</span> {
-            <span class="kw">let</span> <span class="ident">new_point</span> <span class="op">=</span> <span class="ident">start</span> <span class="op">+</span> <span class="ident">vector</span> <span class="op">*</span> (<span class="ident">position_on_segment</span> <span class="op">/</span> <span class="ident">segment_length</span>);
-            <span class="ident">shapes</span>.<span class="ident">push</span>(<span class="ident">Shape::circle_filled</span>(<span class="ident">new_point</span>, <span class="ident">radius</span>, <span class="ident">color</span>));
-            <span class="ident">position_on_segment</span> <span class="op">+</span><span class="op">=</span> <span class="ident">spacing</span>;
+    <span class="kw">let </span><span class="kw-2">mut </span>position_on_segment = <span class="number">0.0</span>;
+    line.windows(<span class="number">2</span>).for_each(|window| {
+        <span class="kw">let </span>start = window[<span class="number">0</span>];
+        <span class="kw">let </span>end = window[<span class="number">1</span>];
+        <span class="kw">let </span>vector = end - start;
+        <span class="kw">let </span>segment_length = vector.length();
+        <span class="kw">while </span>position_on_segment &lt; segment_length {
+            <span class="kw">let </span>new_point = start + vector * (position_on_segment / segment_length);
+            shapes.push(Shape::circle_filled(new_point, radius, color));
+            position_on_segment += spacing;
         }
-        <span class="ident">position_on_segment</span> <span class="op">-</span><span class="op">=</span> <span class="ident">segment_length</span>;
+        position_on_segment -= segment_length;
     });
 }
 
-<span class="doccomment">/// Creates dashes from a line.</span>
-<span class="kw">fn</span> <span class="ident">dashes_from_line</span>(
-    <span class="ident">line</span>: <span class="kw-2">&amp;</span>[<span class="ident">Pos2</span>],
-    <span class="ident">stroke</span>: <span class="ident">Stroke</span>,
-    <span class="ident">dash_length</span>: <span class="ident">f32</span>,
-    <span class="ident">gap_length</span>: <span class="ident">f32</span>,
-    <span class="ident">shapes</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Shape</span><span class="op">&gt;</span>,
+<span class="doccomment">/// Creates dashes from a line.
+</span><span class="kw">fn </span>dashes_from_line(
+    line: <span class="kw-2">&amp;</span>[Pos2],
+    stroke: Stroke,
+    dash_length: f32,
+    gap_length: f32,
+    shapes: <span class="kw-2">&amp;mut </span>Vec&lt;Shape&gt;,
 ) {
-    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">position_on_segment</span> <span class="op">=</span> <span class="number">0.0</span>;
-    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">drawing_dash</span> <span class="op">=</span> <span class="bool-val">false</span>;
-    <span class="ident">line</span>.<span class="ident">windows</span>(<span class="number">2</span>).<span class="ident">for_each</span>(<span class="op">|</span><span class="ident">window</span><span class="op">|</span> {
-        <span class="kw">let</span> <span class="ident">start</span> <span class="op">=</span> <span class="ident">window</span>[<span class="number">0</span>];
-        <span class="kw">let</span> <span class="ident">end</span> <span class="op">=</span> <span class="ident">window</span>[<span class="number">1</span>];
-        <span class="kw">let</span> <span class="ident">vector</span> <span class="op">=</span> <span class="ident">end</span> <span class="op">-</span> <span class="ident">start</span>;
-        <span class="kw">let</span> <span class="ident">segment_length</span> <span class="op">=</span> <span class="ident">vector</span>.<span class="ident">length</span>();
-        <span class="kw">while</span> <span class="ident">position_on_segment</span> <span class="op">&lt;</span> <span class="ident">segment_length</span> {
-            <span class="kw">let</span> <span class="ident">new_point</span> <span class="op">=</span> <span class="ident">start</span> <span class="op">+</span> <span class="ident">vector</span> <span class="op">*</span> (<span class="ident">position_on_segment</span> <span class="op">/</span> <span class="ident">segment_length</span>);
-            <span class="kw">if</span> <span class="ident">drawing_dash</span> {
-                <span class="comment">// This is the end point.</span>
-                <span class="kw">if</span> <span class="kw">let</span> <span class="ident">Shape::Path</span>(<span class="ident">PathShape</span> { <span class="ident">points</span>, .. }) <span class="op">=</span> <span class="ident">shapes</span>.<span class="ident">last_mut</span>().<span class="ident">unwrap</span>() {
-                    <span class="ident">points</span>.<span class="ident">push</span>(<span class="ident">new_point</span>);
+    <span class="kw">let </span><span class="kw-2">mut </span>position_on_segment = <span class="number">0.0</span>;
+    <span class="kw">let </span><span class="kw-2">mut </span>drawing_dash = <span class="bool-val">false</span>;
+    line.windows(<span class="number">2</span>).for_each(|window| {
+        <span class="kw">let </span>start = window[<span class="number">0</span>];
+        <span class="kw">let </span>end = window[<span class="number">1</span>];
+        <span class="kw">let </span>vector = end - start;
+        <span class="kw">let </span>segment_length = vector.length();
+        <span class="kw">while </span>position_on_segment &lt; segment_length {
+            <span class="kw">let </span>new_point = start + vector * (position_on_segment / segment_length);
+            <span class="kw">if </span>drawing_dash {
+                <span class="comment">// This is the end point.
+                </span><span class="kw">if let </span>Shape::Path(PathShape { points, .. }) = shapes.last_mut().unwrap() {
+                    points.push(new_point);
                 }
-                <span class="ident">position_on_segment</span> <span class="op">+</span><span class="op">=</span> <span class="ident">gap_length</span>;
-            } <span class="kw">else</span> {
-                <span class="comment">// Start a new dash.</span>
-                <span class="ident">shapes</span>.<span class="ident">push</span>(<span class="ident">Shape::line</span>(<span class="macro">vec!</span>[<span class="ident">new_point</span>], <span class="ident">stroke</span>));
-                <span class="ident">position_on_segment</span> <span class="op">+</span><span class="op">=</span> <span class="ident">dash_length</span>;
+                position_on_segment += gap_length;
+            } <span class="kw">else </span>{
+                <span class="comment">// Start a new dash.
+                </span>shapes.push(Shape::line(<span class="macro">vec!</span>[new_point], stroke));
+                position_on_segment += dash_length;
             }
-            <span class="ident">drawing_dash</span> <span class="op">=</span> <span class="op">!</span><span class="ident">drawing_dash</span>;
+            drawing_dash = !drawing_dash;
         }
-        <span class="comment">// If the segment ends and the dash is not finished, add the segment&#39;s end point.</span>
-        <span class="kw">if</span> <span class="ident">drawing_dash</span> {
-            <span class="kw">if</span> <span class="kw">let</span> <span class="ident">Shape::Path</span>(<span class="ident">PathShape</span> { <span class="ident">points</span>, .. }) <span class="op">=</span> <span class="ident">shapes</span>.<span class="ident">last_mut</span>().<span class="ident">unwrap</span>() {
-                <span class="ident">points</span>.<span class="ident">push</span>(<span class="ident">end</span>);
+        <span class="comment">// If the segment ends and the dash is not finished, add the segment&#39;s end point.
+        </span><span class="kw">if </span>drawing_dash {
+            <span class="kw">if let </span>Shape::Path(PathShape { points, .. }) = shapes.last_mut().unwrap() {
+                points.push(end);
             }
         }
-        <span class="ident">position_on_segment</span> <span class="op">-</span><span class="op">=</span> <span class="ident">segment_length</span>;
+        position_on_segment -= segment_length;
     });
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="epaint" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0 (a55dd71d5 2022-09-19)" ></div></body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="epaint" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.66.1 (90743e729 2023-01-10)" ></div></body></html>

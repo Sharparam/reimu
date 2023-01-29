@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/ttf-parser-0.15.2/src/tables/gsub.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>gsub.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../storage.js"></script><script defer src="../../../source-script.js"></script><script defer src="../../../source-files.js"></script><script defer src="../../../main.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../../ttf_parser/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../../ttf_parser/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../../ttf_parser/index.html"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/ttf-parser-0.15.2/src/tables/gsub.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>gsub.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../../normalize.css"><link rel="stylesheet" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../../ayu.css" disabled><link rel="stylesheet" href="../../../dark.css" disabled><link rel="stylesheet" href="../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../storage.js"></script><script defer src="../../../source-script.js"></script><script defer src="../../../source-files.js"></script><script defer src="../../../main.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><div class="width-limiter"><nav class="sub"><a class="sub-logo-container" href="../../../ttf_parser/index.html"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../wheel.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -292,299 +292,299 @@
 <span id="292">292</span>
 <span id="293">293</span>
 <span id="294">294</span>
-</pre><pre class="rust"><code><span class="doccomment">//! A [Glyph Substitution Table](https://docs.microsoft.com/en-us/typography/opentype/spec/gsub)</span>
-<span class="doccomment">//! implementation.</span>
+</pre><pre class="rust"><code><span class="doccomment">//! A [Glyph Substitution Table](https://docs.microsoft.com/en-us/typography/opentype/spec/gsub)
+//! implementation.
 
-<span class="comment">// A heavily modified port of https://github.com/RazrFalcon/rustybuzz implementation</span>
-<span class="comment">// originally written by https://github.com/laurmaedje</span>
+</span><span class="comment">// A heavily modified port of https://github.com/RazrFalcon/rustybuzz implementation
+// originally written by https://github.com/laurmaedje
 
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::GlyphId</span>;
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::opentype_layout</span>::{<span class="ident">ChainedContextLookup</span>, <span class="ident">ContextLookup</span>, <span class="ident">Coverage</span>, <span class="ident">LookupSubtable</span>};
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::parser</span>::{<span class="ident">FromSlice</span>, <span class="ident">LazyArray16</span>, <span class="ident">LazyOffsetArray16</span>, <span class="ident">Stream</span>};
+</span><span class="kw">use </span><span class="kw">crate</span>::GlyphId;
+<span class="kw">use </span><span class="kw">crate</span>::opentype_layout::{ChainedContextLookup, ContextLookup, Coverage, LookupSubtable};
+<span class="kw">use </span><span class="kw">crate</span>::parser::{FromSlice, LazyArray16, LazyOffsetArray16, Stream};
 
-<span class="doccomment">/// A [Single Substitution Subtable](https://docs.microsoft.com/en-us/typography/opentype/spec/gsub#SS).</span>
-<span class="attribute">#[<span class="ident">allow</span>(<span class="ident">missing_docs</span>)]</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">Debug</span>)]</span>
-<span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">SingleSubstitution</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="ident">Format1</span> {
-        <span class="ident">coverage</span>: <span class="ident">Coverage</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>,
-        <span class="ident">delta</span>: <span class="ident">i16</span>,
+<span class="doccomment">/// A [Single Substitution Subtable](https://docs.microsoft.com/en-us/typography/opentype/spec/gsub#SS).
+</span><span class="attribute">#[allow(missing_docs)]
+#[derive(Clone, Copy, Debug)]
+</span><span class="kw">pub enum </span>SingleSubstitution&lt;<span class="lifetime">&#39;a</span>&gt; {
+    Format1 {
+        coverage: Coverage&lt;<span class="lifetime">&#39;a</span>&gt;,
+        delta: i16,
     },
-    <span class="ident">Format2</span> {
-        <span class="ident">coverage</span>: <span class="ident">Coverage</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>,
-        <span class="ident">substitutes</span>: <span class="ident">LazyArray16</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">GlyphId</span><span class="op">&gt;</span>,
+    Format2 {
+        coverage: Coverage&lt;<span class="lifetime">&#39;a</span>&gt;,
+        substitutes: LazyArray16&lt;<span class="lifetime">&#39;a</span>, GlyphId&gt;,
     },
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">SingleSubstitution</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="kw">fn</span> <span class="ident">parse</span>(<span class="ident">data</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>]) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">s</span> <span class="op">=</span> <span class="ident">Stream::new</span>(<span class="ident">data</span>);
-        <span class="kw">match</span> <span class="ident">s</span>.<span class="ident">read</span>::<span class="op">&lt;</span><span class="ident">u16</span><span class="op">&gt;</span>()<span class="question-mark">?</span> {
-            <span class="number">1</span> =&gt; {
-                <span class="kw">let</span> <span class="ident">coverage</span> <span class="op">=</span> <span class="ident">Coverage::parse</span>(<span class="ident">s</span>.<span class="ident">read_at_offset16</span>(<span class="ident">data</span>)<span class="question-mark">?</span>)<span class="question-mark">?</span>;
-                <span class="kw">let</span> <span class="ident">delta</span> <span class="op">=</span> <span class="ident">s</span>.<span class="ident">read</span>::<span class="op">&lt;</span><span class="ident">i16</span><span class="op">&gt;</span>()<span class="question-mark">?</span>;
-                <span class="prelude-val">Some</span>(<span class="ident"><span class="self">Self</span>::Format1</span> { <span class="ident">coverage</span>, <span class="ident">delta</span> })
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; SingleSubstitution&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="kw">fn </span>parse(data: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8]) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="self">Self</span>&gt; {
+        <span class="kw">let </span><span class="kw-2">mut </span>s = Stream::new(data);
+        <span class="kw">match </span>s.read::&lt;u16&gt;()<span class="question-mark">? </span>{
+            <span class="number">1 </span>=&gt; {
+                <span class="kw">let </span>coverage = Coverage::parse(s.read_at_offset16(data)<span class="question-mark">?</span>)<span class="question-mark">?</span>;
+                <span class="kw">let </span>delta = s.read::&lt;i16&gt;()<span class="question-mark">?</span>;
+                <span class="prelude-val">Some</span>(<span class="self">Self</span>::Format1 { coverage, delta })
             }
-            <span class="number">2</span> =&gt; {
-                <span class="kw">let</span> <span class="ident">coverage</span> <span class="op">=</span> <span class="ident">Coverage::parse</span>(<span class="ident">s</span>.<span class="ident">read_at_offset16</span>(<span class="ident">data</span>)<span class="question-mark">?</span>)<span class="question-mark">?</span>;
-                <span class="kw">let</span> <span class="ident">count</span> <span class="op">=</span> <span class="ident">s</span>.<span class="ident">read</span>::<span class="op">&lt;</span><span class="ident">u16</span><span class="op">&gt;</span>()<span class="question-mark">?</span>;
-                <span class="kw">let</span> <span class="ident">substitutes</span> <span class="op">=</span> <span class="ident">s</span>.<span class="ident">read_array16</span>(<span class="ident">count</span>)<span class="question-mark">?</span>;
-                <span class="prelude-val">Some</span>(<span class="ident"><span class="self">Self</span>::Format2</span> { <span class="ident">coverage</span>, <span class="ident">substitutes</span> })
+            <span class="number">2 </span>=&gt; {
+                <span class="kw">let </span>coverage = Coverage::parse(s.read_at_offset16(data)<span class="question-mark">?</span>)<span class="question-mark">?</span>;
+                <span class="kw">let </span>count = s.read::&lt;u16&gt;()<span class="question-mark">?</span>;
+                <span class="kw">let </span>substitutes = s.read_array16(count)<span class="question-mark">?</span>;
+                <span class="prelude-val">Some</span>(<span class="self">Self</span>::Format2 { coverage, substitutes })
             }
-            <span class="kw">_</span> =&gt; <span class="prelude-val">None</span>,
+            <span class="kw">_ </span>=&gt; <span class="prelude-val">None</span>,
         }
     }
 
-    <span class="doccomment">/// Returns the subtable coverage.</span>
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">coverage</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">Coverage</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-        <span class="kw">match</span> <span class="self">self</span> {
-            <span class="ident"><span class="self">Self</span>::Format1</span> { <span class="ident">coverage</span>, .. } =&gt; <span class="kw-2">*</span><span class="ident">coverage</span>,
-            <span class="ident"><span class="self">Self</span>::Format2</span> { <span class="ident">coverage</span>, .. } =&gt; <span class="kw-2">*</span><span class="ident">coverage</span>,
+    <span class="doccomment">/// Returns the subtable coverage.
+    </span><span class="attribute">#[inline]
+    </span><span class="kw">pub fn </span>coverage(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; Coverage&lt;<span class="lifetime">&#39;a</span>&gt; {
+        <span class="kw">match </span><span class="self">self </span>{
+            <span class="self">Self</span>::Format1 { coverage, .. } =&gt; <span class="kw-2">*</span>coverage,
+            <span class="self">Self</span>::Format2 { coverage, .. } =&gt; <span class="kw-2">*</span>coverage,
         }
     }
 }
 
 
-<span class="doccomment">/// A sequence of glyphs for</span>
-<span class="doccomment">/// [Multiple Substitution Subtable](https://docs.microsoft.com/en-us/typography/opentype/spec/gsub#MS).</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">Debug</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Sequence</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="doccomment">/// A list of substitute glyphs.</span>
-    <span class="kw">pub</span> <span class="ident">substitutes</span>: <span class="ident">LazyArray16</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">GlyphId</span><span class="op">&gt;</span>,
+<span class="doccomment">/// A sequence of glyphs for
+/// [Multiple Substitution Subtable](https://docs.microsoft.com/en-us/typography/opentype/spec/gsub#MS).
+</span><span class="attribute">#[derive(Clone, Copy, Debug)]
+</span><span class="kw">pub struct </span>Sequence&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="doccomment">/// A list of substitute glyphs.
+    </span><span class="kw">pub </span>substitutes: LazyArray16&lt;<span class="lifetime">&#39;a</span>, GlyphId&gt;,
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">FromSlice</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Sequence</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="kw">fn</span> <span class="ident">parse</span>(<span class="ident">data</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>]) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">s</span> <span class="op">=</span> <span class="ident">Stream::new</span>(<span class="ident">data</span>);
-        <span class="kw">let</span> <span class="ident">count</span> <span class="op">=</span> <span class="ident">s</span>.<span class="ident">read</span>::<span class="op">&lt;</span><span class="ident">u16</span><span class="op">&gt;</span>()<span class="question-mark">?</span>;
-        <span class="kw">let</span> <span class="ident">substitutes</span> <span class="op">=</span> <span class="ident">s</span>.<span class="ident">read_array16</span>(<span class="ident">count</span>)<span class="question-mark">?</span>;
-        <span class="prelude-val">Some</span>(<span class="self">Self</span> { <span class="ident">substitutes</span> })
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; FromSlice&lt;<span class="lifetime">&#39;a</span>&gt; <span class="kw">for </span>Sequence&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="kw">fn </span>parse(data: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8]) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="self">Self</span>&gt; {
+        <span class="kw">let </span><span class="kw-2">mut </span>s = Stream::new(data);
+        <span class="kw">let </span>count = s.read::&lt;u16&gt;()<span class="question-mark">?</span>;
+        <span class="kw">let </span>substitutes = s.read_array16(count)<span class="question-mark">?</span>;
+        <span class="prelude-val">Some</span>(<span class="self">Self </span>{ substitutes })
     }
 }
 
-<span class="doccomment">/// A list of [`Sequence`] tables.</span>
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">SequenceList</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">LazyOffsetArray16</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">Sequence</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span><span class="op">&gt;</span>;
+<span class="doccomment">/// A list of [`Sequence`] tables.
+</span><span class="kw">pub type </span>SequenceList&lt;<span class="lifetime">&#39;a</span>&gt; = LazyOffsetArray16&lt;<span class="lifetime">&#39;a</span>, Sequence&lt;<span class="lifetime">&#39;a</span>&gt;&gt;;
 
-<span class="doccomment">/// A [Multiple Substitution Subtable](https://docs.microsoft.com/en-us/typography/opentype/spec/gsub#MS).</span>
-<span class="attribute">#[<span class="ident">allow</span>(<span class="ident">missing_docs</span>)]</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">Debug</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">MultipleSubstitution</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="kw">pub</span> <span class="ident">coverage</span>: <span class="ident">Coverage</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>,
-    <span class="kw">pub</span> <span class="ident">sequences</span>: <span class="ident">SequenceList</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>,
+<span class="doccomment">/// A [Multiple Substitution Subtable](https://docs.microsoft.com/en-us/typography/opentype/spec/gsub#MS).
+</span><span class="attribute">#[allow(missing_docs)]
+#[derive(Clone, Copy, Debug)]
+</span><span class="kw">pub struct </span>MultipleSubstitution&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="kw">pub </span>coverage: Coverage&lt;<span class="lifetime">&#39;a</span>&gt;,
+    <span class="kw">pub </span>sequences: SequenceList&lt;<span class="lifetime">&#39;a</span>&gt;,
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">MultipleSubstitution</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="kw">fn</span> <span class="ident">parse</span>(<span class="ident">data</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>]) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">s</span> <span class="op">=</span> <span class="ident">Stream::new</span>(<span class="ident">data</span>);
-        <span class="kw">match</span> <span class="ident">s</span>.<span class="ident">read</span>::<span class="op">&lt;</span><span class="ident">u16</span><span class="op">&gt;</span>()<span class="question-mark">?</span> {
-            <span class="number">1</span> =&gt; {
-                <span class="kw">let</span> <span class="ident">coverage</span> <span class="op">=</span> <span class="ident">Coverage::parse</span>(<span class="ident">s</span>.<span class="ident">read_at_offset16</span>(<span class="ident">data</span>)<span class="question-mark">?</span>)<span class="question-mark">?</span>;
-                <span class="kw">let</span> <span class="ident">count</span> <span class="op">=</span> <span class="ident">s</span>.<span class="ident">read</span>::<span class="op">&lt;</span><span class="ident">u16</span><span class="op">&gt;</span>()<span class="question-mark">?</span>;
-                <span class="kw">let</span> <span class="ident">offsets</span> <span class="op">=</span> <span class="ident">s</span>.<span class="ident">read_array16</span>(<span class="ident">count</span>)<span class="question-mark">?</span>;
-                <span class="prelude-val">Some</span>(<span class="self">Self</span> {
-                    <span class="ident">coverage</span>,
-                    <span class="ident">sequences</span>: <span class="ident">SequenceList::new</span>(<span class="ident">data</span>, <span class="ident">offsets</span>),
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; MultipleSubstitution&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="kw">fn </span>parse(data: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8]) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="self">Self</span>&gt; {
+        <span class="kw">let </span><span class="kw-2">mut </span>s = Stream::new(data);
+        <span class="kw">match </span>s.read::&lt;u16&gt;()<span class="question-mark">? </span>{
+            <span class="number">1 </span>=&gt; {
+                <span class="kw">let </span>coverage = Coverage::parse(s.read_at_offset16(data)<span class="question-mark">?</span>)<span class="question-mark">?</span>;
+                <span class="kw">let </span>count = s.read::&lt;u16&gt;()<span class="question-mark">?</span>;
+                <span class="kw">let </span>offsets = s.read_array16(count)<span class="question-mark">?</span>;
+                <span class="prelude-val">Some</span>(<span class="self">Self </span>{
+                    coverage,
+                    sequences: SequenceList::new(data, offsets),
                 })
             }
-            <span class="kw">_</span> =&gt; <span class="prelude-val">None</span>,
+            <span class="kw">_ </span>=&gt; <span class="prelude-val">None</span>,
         }
     }
 }
 
 
-<span class="doccomment">/// A list of glyphs for</span>
-<span class="doccomment">/// [Alternate Substitution Subtable](https://docs.microsoft.com/en-us/typography/opentype/spec/gsub#AS).</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">Debug</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">AlternateSet</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="doccomment">/// Array of alternate glyph IDs, in arbitrary order.</span>
-    <span class="kw">pub</span> <span class="ident">alternates</span>: <span class="ident">LazyArray16</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">GlyphId</span><span class="op">&gt;</span>,
+<span class="doccomment">/// A list of glyphs for
+/// [Alternate Substitution Subtable](https://docs.microsoft.com/en-us/typography/opentype/spec/gsub#AS).
+</span><span class="attribute">#[derive(Clone, Copy, Debug)]
+</span><span class="kw">pub struct </span>AlternateSet&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="doccomment">/// Array of alternate glyph IDs, in arbitrary order.
+    </span><span class="kw">pub </span>alternates: LazyArray16&lt;<span class="lifetime">&#39;a</span>, GlyphId&gt;,
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">FromSlice</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">AlternateSet</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="kw">fn</span> <span class="ident">parse</span>(<span class="ident">data</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>]) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">s</span> <span class="op">=</span> <span class="ident">Stream::new</span>(<span class="ident">data</span>);
-        <span class="kw">let</span> <span class="ident">count</span> <span class="op">=</span> <span class="ident">s</span>.<span class="ident">read</span>::<span class="op">&lt;</span><span class="ident">u16</span><span class="op">&gt;</span>()<span class="question-mark">?</span>;
-        <span class="kw">let</span> <span class="ident">alternates</span> <span class="op">=</span> <span class="ident">s</span>.<span class="ident">read_array16</span>(<span class="ident">count</span>)<span class="question-mark">?</span>;
-        <span class="prelude-val">Some</span>(<span class="self">Self</span> { <span class="ident">alternates</span> })
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; FromSlice&lt;<span class="lifetime">&#39;a</span>&gt; <span class="kw">for </span>AlternateSet&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="kw">fn </span>parse(data: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8]) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="self">Self</span>&gt; {
+        <span class="kw">let </span><span class="kw-2">mut </span>s = Stream::new(data);
+        <span class="kw">let </span>count = s.read::&lt;u16&gt;()<span class="question-mark">?</span>;
+        <span class="kw">let </span>alternates = s.read_array16(count)<span class="question-mark">?</span>;
+        <span class="prelude-val">Some</span>(<span class="self">Self </span>{ alternates })
     }
 }
 
-<span class="doccomment">/// A set of [`AlternateSet`].</span>
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">AlternateSets</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">LazyOffsetArray16</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">AlternateSet</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span><span class="op">&gt;</span>;
+<span class="doccomment">/// A set of [`AlternateSet`].
+</span><span class="kw">pub type </span>AlternateSets&lt;<span class="lifetime">&#39;a</span>&gt; = LazyOffsetArray16&lt;<span class="lifetime">&#39;a</span>, AlternateSet&lt;<span class="lifetime">&#39;a</span>&gt;&gt;;
 
-<span class="doccomment">/// A [Alternate Substitution Subtable](https://docs.microsoft.com/en-us/typography/opentype/spec/gsub#AS).</span>
-<span class="attribute">#[<span class="ident">allow</span>(<span class="ident">missing_docs</span>)]</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">Debug</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">AlternateSubstitution</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="kw">pub</span> <span class="ident">coverage</span>: <span class="ident">Coverage</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>,
-    <span class="kw">pub</span> <span class="ident">alternate_sets</span>: <span class="ident">AlternateSets</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>,
+<span class="doccomment">/// A [Alternate Substitution Subtable](https://docs.microsoft.com/en-us/typography/opentype/spec/gsub#AS).
+</span><span class="attribute">#[allow(missing_docs)]
+#[derive(Clone, Copy, Debug)]
+</span><span class="kw">pub struct </span>AlternateSubstitution&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="kw">pub </span>coverage: Coverage&lt;<span class="lifetime">&#39;a</span>&gt;,
+    <span class="kw">pub </span>alternate_sets: AlternateSets&lt;<span class="lifetime">&#39;a</span>&gt;,
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">AlternateSubstitution</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="kw">fn</span> <span class="ident">parse</span>(<span class="ident">data</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>]) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">s</span> <span class="op">=</span> <span class="ident">Stream::new</span>(<span class="ident">data</span>);
-        <span class="kw">match</span> <span class="ident">s</span>.<span class="ident">read</span>::<span class="op">&lt;</span><span class="ident">u16</span><span class="op">&gt;</span>()<span class="question-mark">?</span> {
-            <span class="number">1</span> =&gt; {
-                <span class="kw">let</span> <span class="ident">coverage</span> <span class="op">=</span> <span class="ident">Coverage::parse</span>(<span class="ident">s</span>.<span class="ident">read_at_offset16</span>(<span class="ident">data</span>)<span class="question-mark">?</span>)<span class="question-mark">?</span>;
-                <span class="kw">let</span> <span class="ident">count</span> <span class="op">=</span> <span class="ident">s</span>.<span class="ident">read</span>::<span class="op">&lt;</span><span class="ident">u16</span><span class="op">&gt;</span>()<span class="question-mark">?</span>;
-                <span class="kw">let</span> <span class="ident">offsets</span> <span class="op">=</span> <span class="ident">s</span>.<span class="ident">read_array16</span>(<span class="ident">count</span>)<span class="question-mark">?</span>;
-                <span class="prelude-val">Some</span>(<span class="self">Self</span> {
-                    <span class="ident">coverage</span>,
-                    <span class="ident">alternate_sets</span>: <span class="ident">AlternateSets::new</span>(<span class="ident">data</span>, <span class="ident">offsets</span>),
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; AlternateSubstitution&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="kw">fn </span>parse(data: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8]) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="self">Self</span>&gt; {
+        <span class="kw">let </span><span class="kw-2">mut </span>s = Stream::new(data);
+        <span class="kw">match </span>s.read::&lt;u16&gt;()<span class="question-mark">? </span>{
+            <span class="number">1 </span>=&gt; {
+                <span class="kw">let </span>coverage = Coverage::parse(s.read_at_offset16(data)<span class="question-mark">?</span>)<span class="question-mark">?</span>;
+                <span class="kw">let </span>count = s.read::&lt;u16&gt;()<span class="question-mark">?</span>;
+                <span class="kw">let </span>offsets = s.read_array16(count)<span class="question-mark">?</span>;
+                <span class="prelude-val">Some</span>(<span class="self">Self </span>{
+                    coverage,
+                    alternate_sets: AlternateSets::new(data, offsets),
                 })
             }
-            <span class="kw">_</span> =&gt; <span class="prelude-val">None</span>,
+            <span class="kw">_ </span>=&gt; <span class="prelude-val">None</span>,
         }
     }
 }
 
 
-<span class="doccomment">/// Glyph components for one ligature.</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">Debug</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Ligature</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="doccomment">/// Ligature to substitute.</span>
-    <span class="kw">pub</span> <span class="ident">glyph</span>: <span class="ident">GlyphId</span>,
-    <span class="doccomment">/// Glyph components for one ligature.</span>
-    <span class="kw">pub</span> <span class="ident">components</span>: <span class="ident">LazyArray16</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">GlyphId</span><span class="op">&gt;</span>,
+<span class="doccomment">/// Glyph components for one ligature.
+</span><span class="attribute">#[derive(Clone, Copy, Debug)]
+</span><span class="kw">pub struct </span>Ligature&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="doccomment">/// Ligature to substitute.
+    </span><span class="kw">pub </span>glyph: GlyphId,
+    <span class="doccomment">/// Glyph components for one ligature.
+    </span><span class="kw">pub </span>components: LazyArray16&lt;<span class="lifetime">&#39;a</span>, GlyphId&gt;,
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">FromSlice</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Ligature</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="kw">fn</span> <span class="ident">parse</span>(<span class="ident">data</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>]) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">s</span> <span class="op">=</span> <span class="ident">Stream::new</span>(<span class="ident">data</span>);
-        <span class="kw">let</span> <span class="ident">glyph</span> <span class="op">=</span> <span class="ident">s</span>.<span class="ident">read</span>::<span class="op">&lt;</span><span class="ident">GlyphId</span><span class="op">&gt;</span>()<span class="question-mark">?</span>;
-        <span class="kw">let</span> <span class="ident">count</span> <span class="op">=</span> <span class="ident">s</span>.<span class="ident">read</span>::<span class="op">&lt;</span><span class="ident">u16</span><span class="op">&gt;</span>()<span class="question-mark">?</span>;
-        <span class="kw">let</span> <span class="ident">components</span> <span class="op">=</span> <span class="ident">s</span>.<span class="ident">read_array16</span>(<span class="ident">count</span>.<span class="ident">checked_sub</span>(<span class="number">1</span>)<span class="question-mark">?</span>)<span class="question-mark">?</span>;
-        <span class="prelude-val">Some</span>(<span class="self">Self</span> { <span class="ident">glyph</span>, <span class="ident">components</span> })
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; FromSlice&lt;<span class="lifetime">&#39;a</span>&gt; <span class="kw">for </span>Ligature&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="kw">fn </span>parse(data: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8]) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="self">Self</span>&gt; {
+        <span class="kw">let </span><span class="kw-2">mut </span>s = Stream::new(data);
+        <span class="kw">let </span>glyph = s.read::&lt;GlyphId&gt;()<span class="question-mark">?</span>;
+        <span class="kw">let </span>count = s.read::&lt;u16&gt;()<span class="question-mark">?</span>;
+        <span class="kw">let </span>components = s.read_array16(count.checked_sub(<span class="number">1</span>)<span class="question-mark">?</span>)<span class="question-mark">?</span>;
+        <span class="prelude-val">Some</span>(<span class="self">Self </span>{ glyph, components })
     }
 }
 
-<span class="doccomment">/// A [`Ligature`] set.</span>
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">LigatureSet</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">LazyOffsetArray16</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">Ligature</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span><span class="op">&gt;</span>;
+<span class="doccomment">/// A [`Ligature`] set.
+</span><span class="kw">pub type </span>LigatureSet&lt;<span class="lifetime">&#39;a</span>&gt; = LazyOffsetArray16&lt;<span class="lifetime">&#39;a</span>, Ligature&lt;<span class="lifetime">&#39;a</span>&gt;&gt;;
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">FromSlice</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">LigatureSet</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="kw">fn</span> <span class="ident">parse</span>(<span class="ident">data</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>]) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
-        <span class="ident"><span class="self">Self</span>::parse</span>(<span class="ident">data</span>)
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; FromSlice&lt;<span class="lifetime">&#39;a</span>&gt; <span class="kw">for </span>LigatureSet&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="kw">fn </span>parse(data: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8]) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="self">Self</span>&gt; {
+        <span class="self">Self</span>::parse(data)
     }
 }
 
-<span class="doccomment">/// A list of [`Ligature`] sets.</span>
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">LigatureSets</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">LazyOffsetArray16</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">LigatureSet</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span><span class="op">&gt;</span>;
+<span class="doccomment">/// A list of [`Ligature`] sets.
+</span><span class="kw">pub type </span>LigatureSets&lt;<span class="lifetime">&#39;a</span>&gt; = LazyOffsetArray16&lt;<span class="lifetime">&#39;a</span>, LigatureSet&lt;<span class="lifetime">&#39;a</span>&gt;&gt;;
 
-<span class="doccomment">/// A [Ligature Substitution Subtable](https://docs.microsoft.com/en-us/typography/opentype/spec/gsub#LS).</span>
-<span class="attribute">#[<span class="ident">allow</span>(<span class="ident">missing_docs</span>)]</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">Debug</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">LigatureSubstitution</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="kw">pub</span> <span class="ident">coverage</span>: <span class="ident">Coverage</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>,
-    <span class="kw">pub</span> <span class="ident">ligature_sets</span>: <span class="ident">LigatureSets</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>,
+<span class="doccomment">/// A [Ligature Substitution Subtable](https://docs.microsoft.com/en-us/typography/opentype/spec/gsub#LS).
+</span><span class="attribute">#[allow(missing_docs)]
+#[derive(Clone, Copy, Debug)]
+</span><span class="kw">pub struct </span>LigatureSubstitution&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="kw">pub </span>coverage: Coverage&lt;<span class="lifetime">&#39;a</span>&gt;,
+    <span class="kw">pub </span>ligature_sets: LigatureSets&lt;<span class="lifetime">&#39;a</span>&gt;,
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">LigatureSubstitution</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="kw">fn</span> <span class="ident">parse</span>(<span class="ident">data</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>]) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">s</span> <span class="op">=</span> <span class="ident">Stream::new</span>(<span class="ident">data</span>);
-        <span class="kw">match</span> <span class="ident">s</span>.<span class="ident">read</span>::<span class="op">&lt;</span><span class="ident">u16</span><span class="op">&gt;</span>()<span class="question-mark">?</span> {
-            <span class="number">1</span> =&gt; {
-                <span class="kw">let</span> <span class="ident">coverage</span> <span class="op">=</span> <span class="ident">Coverage::parse</span>(<span class="ident">s</span>.<span class="ident">read_at_offset16</span>(<span class="ident">data</span>)<span class="question-mark">?</span>)<span class="question-mark">?</span>;
-                <span class="kw">let</span> <span class="ident">count</span> <span class="op">=</span> <span class="ident">s</span>.<span class="ident">read</span>::<span class="op">&lt;</span><span class="ident">u16</span><span class="op">&gt;</span>()<span class="question-mark">?</span>;
-                <span class="kw">let</span> <span class="ident">offsets</span> <span class="op">=</span> <span class="ident">s</span>.<span class="ident">read_array16</span>(<span class="ident">count</span>)<span class="question-mark">?</span>;
-                <span class="prelude-val">Some</span>(<span class="self">Self</span> {
-                    <span class="ident">coverage</span>,
-                    <span class="ident">ligature_sets</span>: <span class="ident">LigatureSets::new</span>(<span class="ident">data</span>, <span class="ident">offsets</span>),
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; LigatureSubstitution&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="kw">fn </span>parse(data: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8]) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="self">Self</span>&gt; {
+        <span class="kw">let </span><span class="kw-2">mut </span>s = Stream::new(data);
+        <span class="kw">match </span>s.read::&lt;u16&gt;()<span class="question-mark">? </span>{
+            <span class="number">1 </span>=&gt; {
+                <span class="kw">let </span>coverage = Coverage::parse(s.read_at_offset16(data)<span class="question-mark">?</span>)<span class="question-mark">?</span>;
+                <span class="kw">let </span>count = s.read::&lt;u16&gt;()<span class="question-mark">?</span>;
+                <span class="kw">let </span>offsets = s.read_array16(count)<span class="question-mark">?</span>;
+                <span class="prelude-val">Some</span>(<span class="self">Self </span>{
+                    coverage,
+                    ligature_sets: LigatureSets::new(data, offsets),
                 })
             }
-            <span class="kw">_</span> =&gt; <span class="prelude-val">None</span>,
+            <span class="kw">_ </span>=&gt; <span class="prelude-val">None</span>,
         }
     }
 }
 
 
-<span class="doccomment">/// A [Reverse Chaining Contextual Single Substitution Subtable](</span>
-<span class="doccomment">/// https://docs.microsoft.com/en-us/typography/opentype/spec/gsub#RCCS).</span>
-<span class="attribute">#[<span class="ident">allow</span>(<span class="ident">missing_docs</span>)]</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">Debug</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ReverseChainSingleSubstitution</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="kw">pub</span> <span class="ident">coverage</span>: <span class="ident">Coverage</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>,
-    <span class="kw">pub</span> <span class="ident">backtrack_coverages</span>: <span class="ident">LazyOffsetArray16</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">Coverage</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span><span class="op">&gt;</span>,
-    <span class="kw">pub</span> <span class="ident">lookahead_coverages</span>: <span class="ident">LazyOffsetArray16</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">Coverage</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span><span class="op">&gt;</span>,
-    <span class="kw">pub</span> <span class="ident">substitutes</span>: <span class="ident">LazyArray16</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">GlyphId</span><span class="op">&gt;</span>,
+<span class="doccomment">/// A [Reverse Chaining Contextual Single Substitution Subtable](
+/// https://docs.microsoft.com/en-us/typography/opentype/spec/gsub#RCCS).
+</span><span class="attribute">#[allow(missing_docs)]
+#[derive(Clone, Copy, Debug)]
+</span><span class="kw">pub struct </span>ReverseChainSingleSubstitution&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="kw">pub </span>coverage: Coverage&lt;<span class="lifetime">&#39;a</span>&gt;,
+    <span class="kw">pub </span>backtrack_coverages: LazyOffsetArray16&lt;<span class="lifetime">&#39;a</span>, Coverage&lt;<span class="lifetime">&#39;a</span>&gt;&gt;,
+    <span class="kw">pub </span>lookahead_coverages: LazyOffsetArray16&lt;<span class="lifetime">&#39;a</span>, Coverage&lt;<span class="lifetime">&#39;a</span>&gt;&gt;,
+    <span class="kw">pub </span>substitutes: LazyArray16&lt;<span class="lifetime">&#39;a</span>, GlyphId&gt;,
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">ReverseChainSingleSubstitution</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="kw">fn</span> <span class="ident">parse</span>(<span class="ident">data</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>]) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">s</span> <span class="op">=</span> <span class="ident">Stream::new</span>(<span class="ident">data</span>);
-        <span class="kw">match</span> <span class="ident">s</span>.<span class="ident">read</span>::<span class="op">&lt;</span><span class="ident">u16</span><span class="op">&gt;</span>()<span class="question-mark">?</span> {
-            <span class="number">1</span> =&gt; {
-                <span class="kw">let</span> <span class="ident">coverage</span> <span class="op">=</span> <span class="ident">Coverage::parse</span>(<span class="ident">s</span>.<span class="ident">read_at_offset16</span>(<span class="ident">data</span>)<span class="question-mark">?</span>)<span class="question-mark">?</span>;
-                <span class="kw">let</span> <span class="ident">backtrack_count</span> <span class="op">=</span> <span class="ident">s</span>.<span class="ident">read</span>::<span class="op">&lt;</span><span class="ident">u16</span><span class="op">&gt;</span>()<span class="question-mark">?</span>;
-                <span class="kw">let</span> <span class="ident">backtrack_coverages</span> <span class="op">=</span> <span class="ident">s</span>.<span class="ident">read_array16</span>(<span class="ident">backtrack_count</span>)<span class="question-mark">?</span>;
-                <span class="kw">let</span> <span class="ident">lookahead_count</span> <span class="op">=</span> <span class="ident">s</span>.<span class="ident">read</span>::<span class="op">&lt;</span><span class="ident">u16</span><span class="op">&gt;</span>()<span class="question-mark">?</span>;
-                <span class="kw">let</span> <span class="ident">lookahead_coverages</span> <span class="op">=</span> <span class="ident">s</span>.<span class="ident">read_array16</span>(<span class="ident">lookahead_count</span>)<span class="question-mark">?</span>;
-                <span class="kw">let</span> <span class="ident">substitute_count</span> <span class="op">=</span> <span class="ident">s</span>.<span class="ident">read</span>::<span class="op">&lt;</span><span class="ident">u16</span><span class="op">&gt;</span>()<span class="question-mark">?</span>;
-                <span class="kw">let</span> <span class="ident">substitutes</span> <span class="op">=</span> <span class="ident">s</span>.<span class="ident">read_array16</span>(<span class="ident">substitute_count</span>)<span class="question-mark">?</span>;
-                <span class="prelude-val">Some</span>(<span class="self">Self</span> {
-                    <span class="ident">coverage</span>,
-                    <span class="ident">backtrack_coverages</span>: <span class="ident">LazyOffsetArray16::new</span>(<span class="ident">data</span>, <span class="ident">backtrack_coverages</span>),
-                    <span class="ident">lookahead_coverages</span>: <span class="ident">LazyOffsetArray16::new</span>(<span class="ident">data</span>, <span class="ident">lookahead_coverages</span>),
-                    <span class="ident">substitutes</span>,
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; ReverseChainSingleSubstitution&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="kw">fn </span>parse(data: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8]) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="self">Self</span>&gt; {
+        <span class="kw">let </span><span class="kw-2">mut </span>s = Stream::new(data);
+        <span class="kw">match </span>s.read::&lt;u16&gt;()<span class="question-mark">? </span>{
+            <span class="number">1 </span>=&gt; {
+                <span class="kw">let </span>coverage = Coverage::parse(s.read_at_offset16(data)<span class="question-mark">?</span>)<span class="question-mark">?</span>;
+                <span class="kw">let </span>backtrack_count = s.read::&lt;u16&gt;()<span class="question-mark">?</span>;
+                <span class="kw">let </span>backtrack_coverages = s.read_array16(backtrack_count)<span class="question-mark">?</span>;
+                <span class="kw">let </span>lookahead_count = s.read::&lt;u16&gt;()<span class="question-mark">?</span>;
+                <span class="kw">let </span>lookahead_coverages = s.read_array16(lookahead_count)<span class="question-mark">?</span>;
+                <span class="kw">let </span>substitute_count = s.read::&lt;u16&gt;()<span class="question-mark">?</span>;
+                <span class="kw">let </span>substitutes = s.read_array16(substitute_count)<span class="question-mark">?</span>;
+                <span class="prelude-val">Some</span>(<span class="self">Self </span>{
+                    coverage,
+                    backtrack_coverages: LazyOffsetArray16::new(data, backtrack_coverages),
+                    lookahead_coverages: LazyOffsetArray16::new(data, lookahead_coverages),
+                    substitutes,
                 })
             }
-            <span class="kw">_</span> =&gt; <span class="prelude-val">None</span>,
+            <span class="kw">_ </span>=&gt; <span class="prelude-val">None</span>,
         }
     }
 }
 
 
-<span class="doccomment">/// A glyph substitution</span>
-<span class="doccomment">/// [lookup subtable](https://docs.microsoft.com/en-us/typography/opentype/spec/gsub#table-organization)</span>
-<span class="doccomment">/// enumeration.</span>
-<span class="attribute">#[<span class="ident">allow</span>(<span class="ident">missing_docs</span>)]</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">Debug</span>)]</span>
-<span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">SubstitutionSubtable</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="ident">Single</span>(<span class="ident">SingleSubstitution</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>),
-    <span class="ident">Multiple</span>(<span class="ident">MultipleSubstitution</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>),
-    <span class="ident">Alternate</span>(<span class="ident">AlternateSubstitution</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>),
-    <span class="ident">Ligature</span>(<span class="ident">LigatureSubstitution</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>),
-    <span class="ident">Context</span>(<span class="ident">ContextLookup</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>),
-    <span class="ident">ChainContext</span>(<span class="ident">ChainedContextLookup</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>),
-    <span class="ident">ReverseChainSingle</span>(<span class="ident">ReverseChainSingleSubstitution</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>),
+<span class="doccomment">/// A glyph substitution
+/// [lookup subtable](https://docs.microsoft.com/en-us/typography/opentype/spec/gsub#table-organization)
+/// enumeration.
+</span><span class="attribute">#[allow(missing_docs)]
+#[derive(Clone, Copy, Debug)]
+</span><span class="kw">pub enum </span>SubstitutionSubtable&lt;<span class="lifetime">&#39;a</span>&gt; {
+    Single(SingleSubstitution&lt;<span class="lifetime">&#39;a</span>&gt;),
+    Multiple(MultipleSubstitution&lt;<span class="lifetime">&#39;a</span>&gt;),
+    Alternate(AlternateSubstitution&lt;<span class="lifetime">&#39;a</span>&gt;),
+    Ligature(LigatureSubstitution&lt;<span class="lifetime">&#39;a</span>&gt;),
+    Context(ContextLookup&lt;<span class="lifetime">&#39;a</span>&gt;),
+    ChainContext(ChainedContextLookup&lt;<span class="lifetime">&#39;a</span>&gt;),
+    ReverseChainSingle(ReverseChainSingleSubstitution&lt;<span class="lifetime">&#39;a</span>&gt;),
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">LookupSubtable</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">SubstitutionSubtable</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="kw">fn</span> <span class="ident">parse</span>(<span class="ident">data</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>], <span class="ident">kind</span>: <span class="ident">u16</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
-        <span class="kw">match</span> <span class="ident">kind</span> {
-            <span class="number">1</span> =&gt; <span class="ident">SingleSubstitution::parse</span>(<span class="ident">data</span>).<span class="ident">map</span>(<span class="ident"><span class="self">Self</span>::Single</span>),
-            <span class="number">2</span> =&gt; <span class="ident">MultipleSubstitution::parse</span>(<span class="ident">data</span>).<span class="ident">map</span>(<span class="ident"><span class="self">Self</span>::Multiple</span>),
-            <span class="number">3</span> =&gt; <span class="ident">AlternateSubstitution::parse</span>(<span class="ident">data</span>).<span class="ident">map</span>(<span class="ident"><span class="self">Self</span>::Alternate</span>),
-            <span class="number">4</span> =&gt; <span class="ident">LigatureSubstitution::parse</span>(<span class="ident">data</span>).<span class="ident">map</span>(<span class="ident"><span class="self">Self</span>::Ligature</span>),
-            <span class="number">5</span> =&gt; <span class="ident">ContextLookup::parse</span>(<span class="ident">data</span>).<span class="ident">map</span>(<span class="ident"><span class="self">Self</span>::Context</span>),
-            <span class="number">6</span> =&gt; <span class="ident">ChainedContextLookup::parse</span>(<span class="ident">data</span>).<span class="ident">map</span>(<span class="ident"><span class="self">Self</span>::ChainContext</span>),
-            <span class="number">7</span> =&gt; <span class="ident"><span class="kw">crate</span>::ggg::parse_extension_lookup</span>(<span class="ident">data</span>, <span class="ident"><span class="self">Self</span>::parse</span>),
-            <span class="number">8</span> =&gt; <span class="ident">ReverseChainSingleSubstitution::parse</span>(<span class="ident">data</span>).<span class="ident">map</span>(<span class="ident"><span class="self">Self</span>::ReverseChainSingle</span>),
-            <span class="kw">_</span> =&gt; <span class="prelude-val">None</span>,
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; LookupSubtable&lt;<span class="lifetime">&#39;a</span>&gt; <span class="kw">for </span>SubstitutionSubtable&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="kw">fn </span>parse(data: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8], kind: u16) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="self">Self</span>&gt; {
+        <span class="kw">match </span>kind {
+            <span class="number">1 </span>=&gt; SingleSubstitution::parse(data).map(<span class="self">Self</span>::Single),
+            <span class="number">2 </span>=&gt; MultipleSubstitution::parse(data).map(<span class="self">Self</span>::Multiple),
+            <span class="number">3 </span>=&gt; AlternateSubstitution::parse(data).map(<span class="self">Self</span>::Alternate),
+            <span class="number">4 </span>=&gt; LigatureSubstitution::parse(data).map(<span class="self">Self</span>::Ligature),
+            <span class="number">5 </span>=&gt; ContextLookup::parse(data).map(<span class="self">Self</span>::Context),
+            <span class="number">6 </span>=&gt; ChainedContextLookup::parse(data).map(<span class="self">Self</span>::ChainContext),
+            <span class="number">7 </span>=&gt; <span class="kw">crate</span>::ggg::parse_extension_lookup(data, <span class="self">Self</span>::parse),
+            <span class="number">8 </span>=&gt; ReverseChainSingleSubstitution::parse(data).map(<span class="self">Self</span>::ReverseChainSingle),
+            <span class="kw">_ </span>=&gt; <span class="prelude-val">None</span>,
         }
     }
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">SubstitutionSubtable</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="doccomment">/// Returns the subtable coverage.</span>
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">coverage</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">Coverage</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-        <span class="kw">match</span> <span class="self">self</span> {
-            <span class="ident"><span class="self">Self</span>::Single</span>(<span class="ident">t</span>) =&gt; <span class="ident">t</span>.<span class="ident">coverage</span>(),
-            <span class="ident"><span class="self">Self</span>::Multiple</span>(<span class="ident">t</span>) =&gt; <span class="ident">t</span>.<span class="ident">coverage</span>,
-            <span class="ident"><span class="self">Self</span>::Alternate</span>(<span class="ident">t</span>) =&gt; <span class="ident">t</span>.<span class="ident">coverage</span>,
-            <span class="ident"><span class="self">Self</span>::Ligature</span>(<span class="ident">t</span>) =&gt; <span class="ident">t</span>.<span class="ident">coverage</span>,
-            <span class="ident"><span class="self">Self</span>::Context</span>(<span class="ident">t</span>) =&gt; <span class="ident">t</span>.<span class="ident">coverage</span>(),
-            <span class="ident"><span class="self">Self</span>::ChainContext</span>(<span class="ident">t</span>) =&gt; <span class="ident">t</span>.<span class="ident">coverage</span>(),
-            <span class="ident"><span class="self">Self</span>::ReverseChainSingle</span>(<span class="ident">t</span>) =&gt; <span class="ident">t</span>.<span class="ident">coverage</span>,
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; SubstitutionSubtable&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="doccomment">/// Returns the subtable coverage.
+    </span><span class="attribute">#[inline]
+    </span><span class="kw">pub fn </span>coverage(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; Coverage&lt;<span class="lifetime">&#39;a</span>&gt; {
+        <span class="kw">match </span><span class="self">self </span>{
+            <span class="self">Self</span>::Single(t) =&gt; t.coverage(),
+            <span class="self">Self</span>::Multiple(t) =&gt; t.coverage,
+            <span class="self">Self</span>::Alternate(t) =&gt; t.coverage,
+            <span class="self">Self</span>::Ligature(t) =&gt; t.coverage,
+            <span class="self">Self</span>::Context(t) =&gt; t.coverage(),
+            <span class="self">Self</span>::ChainContext(t) =&gt; t.coverage(),
+            <span class="self">Self</span>::ReverseChainSingle(t) =&gt; t.coverage,
         }
     }
 
-    <span class="doccomment">/// Checks that the current subtable is *Reverse Chaining Contextual Single*.</span>
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_reverse</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span> {
-        <span class="macro">matches!</span>(<span class="self">self</span>, <span class="ident"><span class="self">Self</span>::ReverseChainSingle</span>(<span class="kw">_</span>))
+    <span class="doccomment">/// Checks that the current subtable is *Reverse Chaining Contextual Single*.
+    </span><span class="attribute">#[inline]
+    </span><span class="kw">pub fn </span>is_reverse(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; bool {
+        <span class="macro">matches!</span>(<span class="self">self</span>, <span class="self">Self</span>::ReverseChainSingle(<span class="kw">_</span>))
     }
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="ttf_parser" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0 (a55dd71d5 2022-09-19)" ></div></body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="ttf_parser" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.66.1 (90743e729 2023-01-10)" ></div></body></html>

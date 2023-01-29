@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/ab_glyph-0.2.15/src/ttfp.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>ttfp.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../ab_glyph/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../ab_glyph/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../ab_glyph/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/ab_glyph-0.2.15/src/ttfp.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>ttfp.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../normalize.css"><link rel="stylesheet" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../ayu.css" disabled><link rel="stylesheet" href="../../dark.css" disabled><link rel="stylesheet" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><div class="width-limiter"><nav class="sub"><a class="sub-logo-container" href="../../ab_glyph/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -332,339 +332,339 @@
 <span id="332">332</span>
 <span id="333">333</span>
 <span id="334">334</span>
-</pre><pre class="rust"><code><span class="doccomment">//! ttf-parser crate specific code. ttf-parser types should not be leaked publicly.</span>
-<span class="kw">mod</span> <span class="ident">outliner</span>;
+</pre><pre class="rust"><code><span class="doccomment">//! ttf-parser crate specific code. ttf-parser types should not be leaked publicly.
+</span><span class="kw">mod </span>outliner;
 
-<span class="kw">use</span> <span class="kw">crate</span>::{<span class="ident">point</span>, <span class="ident">Font</span>, <span class="ident">GlyphId</span>, <span class="ident">InvalidFont</span>, <span class="ident">Outline</span>, <span class="ident">Point</span>, <span class="ident">Rect</span>};
-<span class="kw">use</span> <span class="ident">alloc::boxed::Box</span>;
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">not</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;std&quot;</span>))]</span>
-<span class="kw">use</span> <span class="ident">alloc::vec::Vec</span>;
-<span class="kw">use</span> <span class="ident">core::convert::TryFrom</span>;
-<span class="kw">use</span> <span class="ident">core::fmt</span>;
-<span class="kw">use</span> <span class="ident">owned_ttf_parser</span>::{<span class="self">self</span> <span class="kw">as</span> <span class="ident">ttfp</span>, <span class="ident">AsFaceRef</span>};
+<span class="kw">use crate</span>::{point, Font, GlyphId, InvalidFont, Outline, Point, Rect};
+<span class="kw">use </span>alloc::boxed::Box;
+<span class="attribute">#[cfg(not(feature = <span class="string">&quot;std&quot;</span>))]
+</span><span class="kw">use </span>alloc::vec::Vec;
+<span class="kw">use </span>core::convert::TryFrom;
+<span class="kw">use </span>core::fmt;
+<span class="kw">use </span>owned_ttf_parser::{<span class="self">self </span><span class="kw">as </span>ttfp, AsFaceRef};
 
-<span class="kw">impl</span> <span class="ident">From</span><span class="op">&lt;</span><span class="ident">GlyphId</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">ttfp::GlyphId</span> {
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">id</span>: <span class="ident">GlyphId</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">Self</span>(<span class="ident">id</span>.<span class="number">0</span>)
+<span class="kw">impl </span>From&lt;GlyphId&gt; <span class="kw">for </span>ttfp::GlyphId {
+    <span class="attribute">#[inline]
+    </span><span class="kw">fn </span>from(id: GlyphId) -&gt; <span class="self">Self </span>{
+        <span class="self">Self</span>(id.<span class="number">0</span>)
     }
 }
 
-<span class="doccomment">/// A pre-rendered image of a glyph, usually used for emojis or other glyphs</span>
-<span class="doccomment">/// that can&#39;t be represented only using an outline.</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">GlyphImage</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="doccomment">/// Offset of the image from the normal origin (top at the baseline plus</span>
-    <span class="doccomment">/// ascent), measured in pixels at the image&#39;s current scale.</span>
-    <span class="kw">pub</span> <span class="ident">origin</span>: <span class="ident">Point</span>,
-    <span class="doccomment">/// Current scale of the image in pixels per em.</span>
-    <span class="kw">pub</span> <span class="ident">scale</span>: <span class="ident">f32</span>,
-    <span class="doccomment">/// Raw image data (not a bitmap).</span>
-    <span class="kw">pub</span> <span class="ident">data</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>],
-    <span class="doccomment">/// Format of the raw data.</span>
-    <span class="kw">pub</span> <span class="ident">format</span>: <span class="ident">GlyphImageFormat</span>,
+<span class="doccomment">/// A pre-rendered image of a glyph, usually used for emojis or other glyphs
+/// that can&#39;t be represented only using an outline.
+</span><span class="attribute">#[derive(Debug, Clone)]
+</span><span class="kw">pub struct </span>GlyphImage&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="doccomment">/// Offset of the image from the normal origin (top at the baseline plus
+    /// ascent), measured in pixels at the image&#39;s current scale.
+    </span><span class="kw">pub </span>origin: Point,
+    <span class="doccomment">/// Current scale of the image in pixels per em.
+    </span><span class="kw">pub </span>scale: f32,
+    <span class="doccomment">/// Raw image data (not a bitmap).
+    </span><span class="kw">pub </span>data: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8],
+    <span class="doccomment">/// Format of the raw data.
+    </span><span class="kw">pub </span>format: GlyphImageFormat,
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">From</span><span class="op">&lt;</span><span class="ident">ttfp::RasterGlyphImage</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">GlyphImage</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">img</span>: <span class="ident">ttfp::RasterGlyphImage</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>) -&gt; <span class="self">Self</span> {
-        <span class="ident">GlyphImage</span> {
-            <span class="ident">origin</span>: <span class="ident">point</span>(<span class="ident">img</span>.<span class="ident">x</span>.<span class="ident">into</span>(), <span class="ident">img</span>.<span class="ident">y</span>.<span class="ident">into</span>()),
-            <span class="ident">scale</span>: <span class="ident">img</span>.<span class="ident">pixels_per_em</span>.<span class="ident">into</span>(),
-            <span class="ident">data</span>: <span class="ident">img</span>.<span class="ident">data</span>,
-            <span class="ident">format</span>: <span class="kw">match</span> <span class="ident">img</span>.<span class="ident">format</span> {
-                <span class="ident">ttfp::RasterImageFormat::PNG</span> =&gt; <span class="ident">GlyphImageFormat::Png</span>,
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; From&lt;ttfp::RasterGlyphImage&lt;<span class="lifetime">&#39;a</span>&gt;&gt; <span class="kw">for </span>GlyphImage&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="kw">fn </span>from(img: ttfp::RasterGlyphImage&lt;<span class="lifetime">&#39;a</span>&gt;) -&gt; <span class="self">Self </span>{
+        GlyphImage {
+            origin: point(img.x.into(), img.y.into()),
+            scale: img.pixels_per_em.into(),
+            data: img.data,
+            format: <span class="kw">match </span>img.format {
+                ttfp::RasterImageFormat::PNG =&gt; GlyphImageFormat::Png,
             },
         }
     }
 }
 
-<span class="doccomment">/// Valid formats for a [`GlyphImage`].</span>
-<span class="comment">// Possible future formats:  SVG, JPEG, TIFF</span>
-<span class="attribute">#[<span class="ident">non_exhaustive</span>]</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>)]</span>
-<span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">GlyphImageFormat</span> {
-    <span class="ident">Png</span>,
+<span class="doccomment">/// Valid formats for a [`GlyphImage`].
+</span><span class="comment">// Possible future formats:  SVG, JPEG, TIFF
+</span><span class="attribute">#[non_exhaustive]
+#[derive(Debug, Clone)]
+</span><span class="kw">pub enum </span>GlyphImageFormat {
+    Png,
 }
 
-<span class="doccomment">/// Font data handle stored as a `&amp;[u8]` + parsed data.</span>
-<span class="doccomment">/// See [`Font`](trait.Font.html) for more methods.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// Also see the owned version [`FontVec`](struct.FontVec.html).</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// # Example</span>
-<span class="doccomment">/// ```</span>
-<span class="doccomment">/// use ab_glyph::{Font, FontRef};</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// # fn main() -&gt; Result&lt;(), ab_glyph::InvalidFont&gt; {</span>
-<span class="doccomment">/// let font = FontRef::try_from_slice(include_bytes!(&quot;../../dev/fonts/Exo2-Light.otf&quot;))?;</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// assert_eq!(font.glyph_id(&#39;s&#39;), ab_glyph::GlyphId(56));</span>
-<span class="doccomment">/// # Ok(()) }</span>
-<span class="doccomment">/// ```</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">FontRef</span><span class="op">&lt;</span><span class="lifetime">&#39;font</span><span class="op">&gt;</span>(<span class="ident">ttfp::PreParsedSubtables</span><span class="op">&lt;</span><span class="lifetime">&#39;font</span>, <span class="ident">ttfp::Face</span><span class="op">&lt;</span><span class="lifetime">&#39;font</span><span class="op">&gt;</span><span class="op">&gt;</span>);
+<span class="doccomment">/// Font data handle stored as a `&amp;[u8]` + parsed data.
+/// See [`Font`](trait.Font.html) for more methods.
+///
+/// Also see the owned version [`FontVec`](struct.FontVec.html).
+///
+/// # Example
+/// ```
+/// use ab_glyph::{Font, FontRef};
+///
+/// # fn main() -&gt; Result&lt;(), ab_glyph::InvalidFont&gt; {
+/// let font = FontRef::try_from_slice(include_bytes!(&quot;../../dev/fonts/Exo2-Light.otf&quot;))?;
+///
+/// assert_eq!(font.glyph_id(&#39;s&#39;), ab_glyph::GlyphId(56));
+/// # Ok(()) }
+/// ```
+</span><span class="attribute">#[derive(Clone)]
+</span><span class="kw">pub struct </span>FontRef&lt;<span class="lifetime">&#39;font</span>&gt;(ttfp::PreParsedSubtables&lt;<span class="lifetime">&#39;font</span>, ttfp::Face&lt;<span class="lifetime">&#39;font</span>&gt;&gt;);
 
-<span class="kw">impl</span> <span class="ident">fmt::Debug</span> <span class="kw">for</span> <span class="ident">FontRef</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span> {
-    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;mut</span> <span class="ident">fmt::Formatter</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>) -&gt; <span class="ident">fmt::Result</span> {
-        <span class="macro">write!</span>(<span class="ident">f</span>, <span class="string">&quot;FontRef&quot;</span>)
+<span class="kw">impl </span>fmt::Debug <span class="kw">for </span>FontRef&lt;<span class="lifetime">&#39;_</span>&gt; {
+    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>fmt::Formatter&lt;<span class="lifetime">&#39;_</span>&gt;) -&gt; fmt::Result {
+        <span class="macro">write!</span>(f, <span class="string">&quot;FontRef&quot;</span>)
     }
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;font</span><span class="op">&gt;</span> <span class="ident">FontRef</span><span class="op">&lt;</span><span class="lifetime">&#39;font</span><span class="op">&gt;</span> {
-    <span class="doccomment">/// Creates an `FontRef` from a byte-slice.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// For font collections see</span>
-    <span class="doccomment">/// [`FontRef::try_from_slice_and_index`](#method.try_from_slice_and_index).</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// # Example</span>
-    <span class="doccomment">/// ```</span>
-    <span class="doccomment">/// # use ab_glyph::*;</span>
-    <span class="doccomment">/// # fn main() -&gt; Result&lt;(), InvalidFont&gt; {</span>
-    <span class="doccomment">/// let font = FontRef::try_from_slice(include_bytes!(&quot;../../dev/fonts/Exo2-Light.otf&quot;))?;</span>
-    <span class="doccomment">/// # Ok(()) }</span>
-    <span class="doccomment">/// ```</span>
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">try_from_slice</span>(<span class="ident">data</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;font</span> [<span class="ident">u8</span>]) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="self">Self</span>, <span class="ident">InvalidFont</span><span class="op">&gt;</span> {
-        <span class="ident"><span class="self">Self</span>::try_from_slice_and_index</span>(<span class="ident">data</span>, <span class="number">0</span>)
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;font</span>&gt; FontRef&lt;<span class="lifetime">&#39;font</span>&gt; {
+    <span class="doccomment">/// Creates an `FontRef` from a byte-slice.
+    ///
+    /// For font collections see
+    /// [`FontRef::try_from_slice_and_index`](#method.try_from_slice_and_index).
+    ///
+    /// # Example
+    /// ```
+    /// # use ab_glyph::*;
+    /// # fn main() -&gt; Result&lt;(), InvalidFont&gt; {
+    /// let font = FontRef::try_from_slice(include_bytes!(&quot;../../dev/fonts/Exo2-Light.otf&quot;))?;
+    /// # Ok(()) }
+    /// ```
+    </span><span class="attribute">#[inline]
+    </span><span class="kw">pub fn </span>try_from_slice(data: <span class="kw-2">&amp;</span><span class="lifetime">&#39;font </span>[u8]) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>, InvalidFont&gt; {
+        <span class="self">Self</span>::try_from_slice_and_index(data, <span class="number">0</span>)
     }
 
-    <span class="doccomment">/// Creates an `FontRef` from byte-slice.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// You can set index for font collections. For simple fonts use `0` or</span>
-    <span class="doccomment">/// [`FontRef::try_from_slice`](#method.try_from_slice).</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// # Example</span>
-    <span class="doccomment">/// ```</span>
-    <span class="doccomment">/// # use ab_glyph::*;</span>
-    <span class="doccomment">/// # fn main() -&gt; Result&lt;(), InvalidFont&gt; {</span>
-    <span class="doccomment">/// let font =</span>
-    <span class="doccomment">///     FontRef::try_from_slice_and_index(include_bytes!(&quot;../../dev/fonts/Exo2-Light.otf&quot;), 0)?;</span>
-    <span class="doccomment">/// # Ok(()) }</span>
-    <span class="doccomment">/// ```</span>
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">try_from_slice_and_index</span>(<span class="ident">data</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;font</span> [<span class="ident">u8</span>], <span class="ident">index</span>: <span class="ident">u32</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="self">Self</span>, <span class="ident">InvalidFont</span><span class="op">&gt;</span> {
-        <span class="prelude-val">Ok</span>(<span class="self">Self</span>(<span class="ident">ttfp::PreParsedSubtables::from</span>(
-            <span class="ident">ttfp::Face::from_slice</span>(<span class="ident">data</span>, <span class="ident">index</span>).<span class="ident">map_err</span>(<span class="op">|</span><span class="kw">_</span><span class="op">|</span> <span class="ident">InvalidFont</span>)<span class="question-mark">?</span>,
+    <span class="doccomment">/// Creates an `FontRef` from byte-slice.
+    ///
+    /// You can set index for font collections. For simple fonts use `0` or
+    /// [`FontRef::try_from_slice`](#method.try_from_slice).
+    ///
+    /// # Example
+    /// ```
+    /// # use ab_glyph::*;
+    /// # fn main() -&gt; Result&lt;(), InvalidFont&gt; {
+    /// let font =
+    ///     FontRef::try_from_slice_and_index(include_bytes!(&quot;../../dev/fonts/Exo2-Light.otf&quot;), 0)?;
+    /// # Ok(()) }
+    /// ```
+    </span><span class="attribute">#[inline]
+    </span><span class="kw">pub fn </span>try_from_slice_and_index(data: <span class="kw-2">&amp;</span><span class="lifetime">&#39;font </span>[u8], index: u32) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>, InvalidFont&gt; {
+        <span class="prelude-val">Ok</span>(<span class="self">Self</span>(ttfp::PreParsedSubtables::from(
+            ttfp::Face::from_slice(data, index).map_err(|<span class="kw">_</span>| InvalidFont)<span class="question-mark">?</span>,
         )))
     }
 }
 
-<span class="doccomment">/// Font data handle stored in a `Vec&lt;u8&gt;`  + parsed data.</span>
-<span class="doccomment">/// See [`Font`](trait.Font.html) for more methods.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// Also see [`FontRef`](struct.FontRef.html).</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// # Example</span>
-<span class="doccomment">/// ```</span>
-<span class="doccomment">/// use ab_glyph::{Font, FontVec};</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// # fn main() -&gt; Result&lt;(), ab_glyph::InvalidFont&gt; {</span>
-<span class="doccomment">/// # let owned_font_data = include_bytes!(&quot;../../dev/fonts/Exo2-Light.otf&quot;).to_vec();</span>
-<span class="doccomment">/// let font = FontVec::try_from_vec_and_index(owned_font_data, 0)?;</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// assert_eq!(font.glyph_id(&#39;s&#39;), ab_glyph::GlyphId(56));</span>
-<span class="doccomment">/// # Ok(()) }</span>
-<span class="doccomment">/// ```</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">FontVec</span>(<span class="ident">ttfp::PreParsedSubtables</span><span class="op">&lt;</span><span class="lifetime">&#39;static</span>, <span class="ident">ttfp::OwnedFace</span><span class="op">&gt;</span>);
+<span class="doccomment">/// Font data handle stored in a `Vec&lt;u8&gt;`  + parsed data.
+/// See [`Font`](trait.Font.html) for more methods.
+///
+/// Also see [`FontRef`](struct.FontRef.html).
+///
+/// # Example
+/// ```
+/// use ab_glyph::{Font, FontVec};
+///
+/// # fn main() -&gt; Result&lt;(), ab_glyph::InvalidFont&gt; {
+/// # let owned_font_data = include_bytes!(&quot;../../dev/fonts/Exo2-Light.otf&quot;).to_vec();
+/// let font = FontVec::try_from_vec_and_index(owned_font_data, 0)?;
+///
+/// assert_eq!(font.glyph_id(&#39;s&#39;), ab_glyph::GlyphId(56));
+/// # Ok(()) }
+/// ```
+</span><span class="kw">pub struct </span>FontVec(ttfp::PreParsedSubtables&lt;<span class="lifetime">&#39;static</span>, ttfp::OwnedFace&gt;);
 
-<span class="kw">impl</span> <span class="ident">fmt::Debug</span> <span class="kw">for</span> <span class="ident">FontVec</span> {
-    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;mut</span> <span class="ident">fmt::Formatter</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>) -&gt; <span class="ident">fmt::Result</span> {
-        <span class="macro">write!</span>(<span class="ident">f</span>, <span class="string">&quot;FontVec&quot;</span>)
+<span class="kw">impl </span>fmt::Debug <span class="kw">for </span>FontVec {
+    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>fmt::Formatter&lt;<span class="lifetime">&#39;_</span>&gt;) -&gt; fmt::Result {
+        <span class="macro">write!</span>(f, <span class="string">&quot;FontVec&quot;</span>)
     }
 }
 
-<span class="kw">impl</span> <span class="ident">FontVec</span> {
-    <span class="doccomment">/// Creates an `FontVec` from owned data.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// For font collections see</span>
-    <span class="doccomment">/// [`FontVec::try_from_vec_and_index`](#method.try_from_vec_and_index).</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// # Example</span>
-    <span class="doccomment">/// ```</span>
-    <span class="doccomment">/// # use ab_glyph::*;</span>
-    <span class="doccomment">/// # fn main() -&gt; Result&lt;(), InvalidFont&gt; {</span>
-    <span class="doccomment">/// # let owned_font_data = include_bytes!(&quot;../../dev/fonts/Exo2-Light.otf&quot;).to_vec();</span>
-    <span class="doccomment">/// let font = FontVec::try_from_vec(owned_font_data)?;</span>
-    <span class="doccomment">/// # Ok(()) }</span>
-    <span class="doccomment">/// ```</span>
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">try_from_vec</span>(<span class="ident">data</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="self">Self</span>, <span class="ident">InvalidFont</span><span class="op">&gt;</span> {
-        <span class="ident"><span class="self">Self</span>::try_from_vec_and_index</span>(<span class="ident">data</span>, <span class="number">0</span>)
+<span class="kw">impl </span>FontVec {
+    <span class="doccomment">/// Creates an `FontVec` from owned data.
+    ///
+    /// For font collections see
+    /// [`FontVec::try_from_vec_and_index`](#method.try_from_vec_and_index).
+    ///
+    /// # Example
+    /// ```
+    /// # use ab_glyph::*;
+    /// # fn main() -&gt; Result&lt;(), InvalidFont&gt; {
+    /// # let owned_font_data = include_bytes!(&quot;../../dev/fonts/Exo2-Light.otf&quot;).to_vec();
+    /// let font = FontVec::try_from_vec(owned_font_data)?;
+    /// # Ok(()) }
+    /// ```
+    </span><span class="attribute">#[inline]
+    </span><span class="kw">pub fn </span>try_from_vec(data: Vec&lt;u8&gt;) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>, InvalidFont&gt; {
+        <span class="self">Self</span>::try_from_vec_and_index(data, <span class="number">0</span>)
     }
 
-    <span class="doccomment">/// Creates an `FontVec` from owned data.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// You can set index for font collections. For simple fonts use `0` or</span>
-    <span class="doccomment">/// [`FontVec::try_from_vec`](#method.try_from_vec).</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// # Example</span>
-    <span class="doccomment">/// ```</span>
-    <span class="doccomment">/// # use ab_glyph::*;</span>
-    <span class="doccomment">/// # fn main() -&gt; Result&lt;(), InvalidFont&gt; {</span>
-    <span class="doccomment">/// # let owned_font_data = include_bytes!(&quot;../../dev/fonts/Exo2-Light.otf&quot;).to_vec();</span>
-    <span class="doccomment">/// let font = FontVec::try_from_vec_and_index(owned_font_data, 0)?;</span>
-    <span class="doccomment">/// # Ok(()) }</span>
-    <span class="doccomment">/// ```</span>
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">try_from_vec_and_index</span>(<span class="ident">data</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span>, <span class="ident">index</span>: <span class="ident">u32</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="self">Self</span>, <span class="ident">InvalidFont</span><span class="op">&gt;</span> {
-        <span class="prelude-val">Ok</span>(<span class="self">Self</span>(<span class="ident">ttfp::PreParsedSubtables::from</span>(
-            <span class="ident">ttfp::OwnedFace::from_vec</span>(<span class="ident">data</span>, <span class="ident">index</span>).<span class="ident">map_err</span>(<span class="op">|</span><span class="kw">_</span><span class="op">|</span> <span class="ident">InvalidFont</span>)<span class="question-mark">?</span>,
+    <span class="doccomment">/// Creates an `FontVec` from owned data.
+    ///
+    /// You can set index for font collections. For simple fonts use `0` or
+    /// [`FontVec::try_from_vec`](#method.try_from_vec).
+    ///
+    /// # Example
+    /// ```
+    /// # use ab_glyph::*;
+    /// # fn main() -&gt; Result&lt;(), InvalidFont&gt; {
+    /// # let owned_font_data = include_bytes!(&quot;../../dev/fonts/Exo2-Light.otf&quot;).to_vec();
+    /// let font = FontVec::try_from_vec_and_index(owned_font_data, 0)?;
+    /// # Ok(()) }
+    /// ```
+    </span><span class="attribute">#[inline]
+    </span><span class="kw">pub fn </span>try_from_vec_and_index(data: Vec&lt;u8&gt;, index: u32) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>, InvalidFont&gt; {
+        <span class="prelude-val">Ok</span>(<span class="self">Self</span>(ttfp::PreParsedSubtables::from(
+            ttfp::OwnedFace::from_vec(data, index).map_err(|<span class="kw">_</span>| InvalidFont)<span class="question-mark">?</span>,
         )))
     }
 }
 
-<span class="doccomment">/// Implement `Font` for `Self(AsFontRef)` types.</span>
-<span class="macro">macro_rules!</span> <span class="ident">impl_font</span> {
-    (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">font</span>:<span class="ident">ty</span>) =&gt; {
-        <span class="kw">impl</span> <span class="ident">Font</span> <span class="kw">for</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">font</span> {
-            <span class="attribute">#[<span class="ident">inline</span>]</span>
-            <span class="kw">fn</span> <span class="ident">units_per_em</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">f32</span><span class="op">&gt;</span> {
-                <span class="comment">// TODO unwrap signature when making next breaking change</span>
-                <span class="prelude-val">Some</span>(<span class="self">self</span>.<span class="number">0</span>.<span class="ident">as_face_ref</span>().<span class="ident">units_per_em</span>().<span class="ident">into</span>())
+<span class="doccomment">/// Implement `Font` for `Self(AsFontRef)` types.
+</span><span class="macro">macro_rules! </span>impl_font {
+    (<span class="macro-nonterminal">$font</span>:ty) =&gt; {
+        <span class="kw">impl </span>Font <span class="kw">for </span><span class="macro-nonterminal">$font </span>{
+            <span class="attribute">#[inline]
+            </span><span class="kw">fn </span>units_per_em(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;f32&gt; {
+                <span class="comment">// TODO unwrap signature when making next breaking change
+                </span><span class="prelude-val">Some</span>(<span class="self">self</span>.<span class="number">0</span>.as_face_ref().units_per_em().into())
             }
 
-            <span class="attribute">#[<span class="ident">inline</span>]</span>
-            <span class="kw">fn</span> <span class="ident">ascent_unscaled</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">f32</span> {
-                <span class="self">self</span>.<span class="number">0</span>.<span class="ident">as_face_ref</span>().<span class="ident">ascender</span>().<span class="ident">into</span>()
+            <span class="attribute">#[inline]
+            </span><span class="kw">fn </span>ascent_unscaled(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; f32 {
+                <span class="self">self</span>.<span class="number">0</span>.as_face_ref().ascender().into()
             }
 
-            <span class="attribute">#[<span class="ident">inline</span>]</span>
-            <span class="kw">fn</span> <span class="ident">descent_unscaled</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">f32</span> {
-                <span class="self">self</span>.<span class="number">0</span>.<span class="ident">as_face_ref</span>().<span class="ident">descender</span>().<span class="ident">into</span>()
+            <span class="attribute">#[inline]
+            </span><span class="kw">fn </span>descent_unscaled(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; f32 {
+                <span class="self">self</span>.<span class="number">0</span>.as_face_ref().descender().into()
             }
 
-            <span class="attribute">#[<span class="ident">inline</span>]</span>
-            <span class="kw">fn</span> <span class="ident">line_gap_unscaled</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">f32</span> {
-                <span class="self">self</span>.<span class="number">0</span>.<span class="ident">as_face_ref</span>().<span class="ident">line_gap</span>().<span class="ident">into</span>()
+            <span class="attribute">#[inline]
+            </span><span class="kw">fn </span>line_gap_unscaled(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; f32 {
+                <span class="self">self</span>.<span class="number">0</span>.as_face_ref().line_gap().into()
             }
 
-            <span class="attribute">#[<span class="ident">inline</span>]</span>
-            <span class="kw">fn</span> <span class="ident">glyph_id</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">c</span>: <span class="ident">char</span>) -&gt; <span class="ident">GlyphId</span> {
-                <span class="comment">// Note: Using `PreParsedSubtables` method for better performance.</span>
-                <span class="kw">let</span> <span class="ident">index</span> <span class="op">=</span> <span class="self">self</span>.<span class="number">0</span>.<span class="ident">glyph_index</span>(<span class="ident">c</span>).<span class="ident">map</span>(<span class="op">|</span><span class="ident">id</span><span class="op">|</span> <span class="ident">id</span>.<span class="number">0</span>).<span class="ident">unwrap_or</span>(<span class="number">0</span>);
-                <span class="ident">GlyphId</span>(<span class="ident">index</span>)
+            <span class="attribute">#[inline]
+            </span><span class="kw">fn </span>glyph_id(<span class="kw-2">&amp;</span><span class="self">self</span>, c: char) -&gt; GlyphId {
+                <span class="comment">// Note: Using `PreParsedSubtables` method for better performance.
+                </span><span class="kw">let </span>index = <span class="self">self</span>.<span class="number">0</span>.glyph_index(c).map(|id| id.<span class="number">0</span>).unwrap_or(<span class="number">0</span>);
+                GlyphId(index)
             }
 
-            <span class="attribute">#[<span class="ident">inline</span>]</span>
-            <span class="kw">fn</span> <span class="ident">h_advance_unscaled</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">id</span>: <span class="ident">GlyphId</span>) -&gt; <span class="ident">f32</span> {
-                <span class="self">self</span>.<span class="number">0</span>
-                    .<span class="ident">as_face_ref</span>()
-                    .<span class="ident">glyph_hor_advance</span>(<span class="ident">id</span>.<span class="ident">into</span>())
-                    .<span class="ident">expect</span>(<span class="string">&quot;Invalid glyph_hor_advance&quot;</span>)
-                    .<span class="ident">into</span>()
+            <span class="attribute">#[inline]
+            </span><span class="kw">fn </span>h_advance_unscaled(<span class="kw-2">&amp;</span><span class="self">self</span>, id: GlyphId) -&gt; f32 {
+                <span class="self">self</span>.<span class="number">0
+                    </span>.as_face_ref()
+                    .glyph_hor_advance(id.into())
+                    .expect(<span class="string">&quot;Invalid glyph_hor_advance&quot;</span>)
+                    .into()
             }
 
-            <span class="attribute">#[<span class="ident">inline</span>]</span>
-            <span class="kw">fn</span> <span class="ident">h_side_bearing_unscaled</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">id</span>: <span class="ident">GlyphId</span>) -&gt; <span class="ident">f32</span> {
-                <span class="self">self</span>.<span class="number">0</span>
-                    .<span class="ident">as_face_ref</span>()
-                    .<span class="ident">glyph_hor_side_bearing</span>(<span class="ident">id</span>.<span class="ident">into</span>())
-                    .<span class="ident">expect</span>(<span class="string">&quot;Invalid glyph_hor_side_bearing&quot;</span>)
-                    .<span class="ident">into</span>()
+            <span class="attribute">#[inline]
+            </span><span class="kw">fn </span>h_side_bearing_unscaled(<span class="kw-2">&amp;</span><span class="self">self</span>, id: GlyphId) -&gt; f32 {
+                <span class="self">self</span>.<span class="number">0
+                    </span>.as_face_ref()
+                    .glyph_hor_side_bearing(id.into())
+                    .expect(<span class="string">&quot;Invalid glyph_hor_side_bearing&quot;</span>)
+                    .into()
             }
 
-            <span class="attribute">#[<span class="ident">inline</span>]</span>
-            <span class="kw">fn</span> <span class="ident">v_advance_unscaled</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">id</span>: <span class="ident">GlyphId</span>) -&gt; <span class="ident">f32</span> {
-                <span class="self">self</span>.<span class="number">0</span>
-                    .<span class="ident">as_face_ref</span>()
-                    .<span class="ident">glyph_ver_advance</span>(<span class="ident">id</span>.<span class="ident">into</span>())
-                    .<span class="ident">expect</span>(<span class="string">&quot;Invalid glyph_ver_advance&quot;</span>)
-                    .<span class="ident">into</span>()
+            <span class="attribute">#[inline]
+            </span><span class="kw">fn </span>v_advance_unscaled(<span class="kw-2">&amp;</span><span class="self">self</span>, id: GlyphId) -&gt; f32 {
+                <span class="self">self</span>.<span class="number">0
+                    </span>.as_face_ref()
+                    .glyph_ver_advance(id.into())
+                    .expect(<span class="string">&quot;Invalid glyph_ver_advance&quot;</span>)
+                    .into()
             }
 
-            <span class="attribute">#[<span class="ident">inline</span>]</span>
-            <span class="kw">fn</span> <span class="ident">v_side_bearing_unscaled</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">id</span>: <span class="ident">GlyphId</span>) -&gt; <span class="ident">f32</span> {
-                <span class="self">self</span>.<span class="number">0</span>
-                    .<span class="ident">as_face_ref</span>()
-                    .<span class="ident">glyph_ver_side_bearing</span>(<span class="ident">id</span>.<span class="ident">into</span>())
-                    .<span class="ident">expect</span>(<span class="string">&quot;Invalid glyph_ver_side_bearing&quot;</span>)
-                    .<span class="ident">into</span>()
+            <span class="attribute">#[inline]
+            </span><span class="kw">fn </span>v_side_bearing_unscaled(<span class="kw-2">&amp;</span><span class="self">self</span>, id: GlyphId) -&gt; f32 {
+                <span class="self">self</span>.<span class="number">0
+                    </span>.as_face_ref()
+                    .glyph_ver_side_bearing(id.into())
+                    .expect(<span class="string">&quot;Invalid glyph_ver_side_bearing&quot;</span>)
+                    .into()
             }
 
-            <span class="attribute">#[<span class="ident">inline</span>]</span>
-            <span class="kw">fn</span> <span class="ident">kern_unscaled</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">first</span>: <span class="ident">GlyphId</span>, <span class="ident">second</span>: <span class="ident">GlyphId</span>) -&gt; <span class="ident">f32</span> {
-                <span class="comment">// Note: Using `PreParsedSubtables` method for better performance.</span>
-                <span class="self">self</span>.<span class="number">0</span>
-                    .<span class="ident">glyphs_hor_kerning</span>(<span class="ident">first</span>.<span class="ident">into</span>(), <span class="ident">second</span>.<span class="ident">into</span>())
-                    .<span class="ident">map</span>(<span class="ident">f32::from</span>)
-                    .<span class="ident">unwrap_or_default</span>()
+            <span class="attribute">#[inline]
+            </span><span class="kw">fn </span>kern_unscaled(<span class="kw-2">&amp;</span><span class="self">self</span>, first: GlyphId, second: GlyphId) -&gt; f32 {
+                <span class="comment">// Note: Using `PreParsedSubtables` method for better performance.
+                </span><span class="self">self</span>.<span class="number">0
+                    </span>.glyphs_hor_kerning(first.into(), second.into())
+                    .map(f32::from)
+                    .unwrap_or_default()
             }
 
-            <span class="kw">fn</span> <span class="ident">outline</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">id</span>: <span class="ident">GlyphId</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Outline</span><span class="op">&gt;</span> {
-                <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">outliner</span> <span class="op">=</span> <span class="ident">outliner::OutlineCurveBuilder::default</span>();
+            <span class="kw">fn </span>outline(<span class="kw-2">&amp;</span><span class="self">self</span>, id: GlyphId) -&gt; <span class="prelude-ty">Option</span>&lt;Outline&gt; {
+                <span class="kw">let </span><span class="kw-2">mut </span>outliner = outliner::OutlineCurveBuilder::default();
 
-                <span class="kw">let</span> <span class="ident">ttfp::Rect</span> {
-                    <span class="ident">x_min</span>,
-                    <span class="ident">x_max</span>,
-                    <span class="ident">y_min</span>,
-                    <span class="ident">y_max</span>,
-                } <span class="op">=</span> <span class="self">self</span>
-                    .<span class="number">0</span>
-                    .<span class="ident">as_face_ref</span>()
-                    .<span class="ident">outline_glyph</span>(<span class="ident">id</span>.<span class="ident">into</span>(), <span class="kw-2">&amp;mut</span> <span class="ident">outliner</span>)
-                    <span class="comment">// invalid bounds are treated as having no outline</span>
-                    .<span class="ident">filter</span>(<span class="op">|</span><span class="ident">b</span><span class="op">|</span> <span class="ident">b</span>.<span class="ident">x_min</span> <span class="op">&lt;</span> <span class="ident">b</span>.<span class="ident">x_max</span> <span class="op">&amp;&amp;</span> <span class="ident">b</span>.<span class="ident">y_min</span> <span class="op">&lt;</span> <span class="ident">b</span>.<span class="ident">y_max</span>)<span class="question-mark">?</span>;
+                <span class="kw">let </span>ttfp::Rect {
+                    x_min,
+                    x_max,
+                    y_min,
+                    y_max,
+                } = <span class="self">self
+                    </span>.<span class="number">0
+                    </span>.as_face_ref()
+                    .outline_glyph(id.into(), <span class="kw-2">&amp;mut </span>outliner)
+                    <span class="comment">// invalid bounds are treated as having no outline
+                    </span>.filter(|b| b.x_min &lt; b.x_max &amp;&amp; b.y_min &lt; b.y_max)<span class="question-mark">?</span>;
 
-                <span class="kw">let</span> <span class="ident">curves</span> <span class="op">=</span> <span class="ident">outliner</span>.<span class="ident">take_outline</span>();
+                <span class="kw">let </span>curves = outliner.take_outline();
 
-                <span class="kw">let</span> <span class="ident">bounds</span> <span class="op">=</span> <span class="ident">Rect</span> {
-                    <span class="ident">min</span>: <span class="ident">point</span>(<span class="ident">x_min</span>.<span class="ident">into</span>(), <span class="ident">y_max</span>.<span class="ident">into</span>()),
-                    <span class="ident">max</span>: <span class="ident">point</span>(<span class="ident">x_max</span>.<span class="ident">into</span>(), <span class="ident">y_min</span>.<span class="ident">into</span>()),
+                <span class="kw">let </span>bounds = Rect {
+                    min: point(x_min.into(), y_max.into()),
+                    max: point(x_max.into(), y_min.into()),
                 };
 
-                <span class="prelude-val">Some</span>(<span class="ident">Outline</span> { <span class="ident">bounds</span>, <span class="ident">curves</span> })
+                <span class="prelude-val">Some</span>(Outline { bounds, curves })
             }
 
-            <span class="attribute">#[<span class="ident">inline</span>]</span>
-            <span class="kw">fn</span> <span class="ident">glyph_count</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">usize</span> {
-                <span class="self">self</span>.<span class="number">0</span>.<span class="ident">as_face_ref</span>().<span class="ident">number_of_glyphs</span>() <span class="kw">as</span> <span class="kw">_</span>
-            }
+            <span class="attribute">#[inline]
+            </span><span class="kw">fn </span>glyph_count(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; usize {
+                <span class="self">self</span>.<span class="number">0</span>.as_face_ref().number_of_glyphs() <span class="kw">as _
+            </span>}
 
-            <span class="kw">fn</span> <span class="ident">codepoint_ids</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="self">self</span>) -&gt; <span class="ident"><span class="kw">crate</span>::CodepointIdIter</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-                <span class="kw">let</span> <span class="ident">face_ref</span> <span class="op">=</span> <span class="self">self</span>.<span class="number">0</span>.<span class="ident">as_face_ref</span>();
+            <span class="kw">fn </span>codepoint_ids&lt;<span class="lifetime">&#39;a</span>&gt;(<span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span><span class="self">self</span>) -&gt; <span class="kw">crate</span>::CodepointIdIter&lt;<span class="lifetime">&#39;a</span>&gt; {
+                <span class="kw">let </span>face_ref = <span class="self">self</span>.<span class="number">0</span>.as_face_ref();
 
-                <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;std&quot;</span>)]</span>
-                <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">used_indices</span> <span class="op">=</span>
-                    <span class="ident">std::collections::HashSet::with_capacity</span>(<span class="ident">face_ref</span>.<span class="ident">number_of_glyphs</span>() <span class="kw">as</span> <span class="kw">_</span>);
-                <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">not</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;std&quot;</span>))]</span>
-                <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">used_indices</span> <span class="op">=</span> <span class="ident">alloc::collections::BTreeSet::new</span>();
+                <span class="attribute">#[cfg(feature = <span class="string">&quot;std&quot;</span>)]
+                </span><span class="kw">let </span><span class="kw-2">mut </span>used_indices =
+                    std::collections::HashSet::with_capacity(face_ref.number_of_glyphs() <span class="kw">as _</span>);
+                <span class="attribute">#[cfg(not(feature = <span class="string">&quot;std&quot;</span>))]
+                </span><span class="kw">let </span><span class="kw-2">mut </span>used_indices = alloc::collections::BTreeSet::new();
 
-                <span class="kw">let</span> <span class="ident">inner</span> <span class="op">=</span> <span class="ident">Box::new</span>(
-                    <span class="ident">face_ref</span>
-                        .<span class="ident">tables</span>()
-                        .<span class="ident">cmap</span>
-                        .<span class="ident">iter</span>()
-                        .<span class="ident">flat_map</span>(<span class="op">|</span><span class="ident">c</span><span class="op">|</span> <span class="ident">c</span>.<span class="ident">subtables</span>)
-                        .<span class="ident">filter</span>(<span class="op">|</span><span class="ident">s</span><span class="op">|</span> <span class="ident">s</span>.<span class="ident">is_unicode</span>())
-                        .<span class="ident">flat_map</span>(<span class="kw">move</span> <span class="op">|</span><span class="ident">subtable</span><span class="op">|</span> {
-                            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">pairs</span> <span class="op">=</span> <span class="ident">Vec::new</span>();
-                            <span class="ident">subtable</span>.<span class="ident">codepoints</span>(<span class="op">|</span><span class="ident">c</span><span class="op">|</span> {
-                                <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Ok</span>(<span class="ident">ch</span>) <span class="op">=</span> <span class="ident">char::try_from</span>(<span class="ident">c</span>) {
-                                    <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">idx</span>) <span class="op">=</span> <span class="ident">subtable</span>.<span class="ident">glyph_index</span>(<span class="ident">c</span>).<span class="ident">filter</span>(<span class="op">|</span><span class="ident">i</span><span class="op">|</span> <span class="ident">i</span>.<span class="number">0</span> <span class="op">&gt;</span> <span class="number">0</span>) {
-                                        <span class="kw">if</span> <span class="ident">used_indices</span>.<span class="ident">insert</span>(<span class="ident">idx</span>.<span class="number">0</span>) {
-                                            <span class="ident">pairs</span>.<span class="ident">push</span>((<span class="ident">GlyphId</span>(<span class="ident">idx</span>.<span class="number">0</span>), <span class="ident">ch</span>));
+                <span class="kw">let </span>inner = Box::new(
+                    face_ref
+                        .tables()
+                        .cmap
+                        .iter()
+                        .flat_map(|c| c.subtables)
+                        .filter(|s| s.is_unicode())
+                        .flat_map(<span class="kw">move </span>|subtable| {
+                            <span class="kw">let </span><span class="kw-2">mut </span>pairs = Vec::new();
+                            subtable.codepoints(|c| {
+                                <span class="kw">if let </span><span class="prelude-val">Ok</span>(ch) = char::try_from(c) {
+                                    <span class="kw">if let </span><span class="prelude-val">Some</span>(idx) = subtable.glyph_index(c).filter(|i| i.<span class="number">0 </span>&gt; <span class="number">0</span>) {
+                                        <span class="kw">if </span>used_indices.insert(idx.<span class="number">0</span>) {
+                                            pairs.push((GlyphId(idx.<span class="number">0</span>), ch));
                                         }
                                     }
                                 }
                             });
-                            <span class="ident">pairs</span>
+                            pairs
                         }),
                 );
 
-                <span class="ident"><span class="kw">crate</span>::CodepointIdIter</span> { <span class="ident">inner</span> }
+                <span class="kw">crate</span>::CodepointIdIter { inner }
             }
 
-            <span class="kw">fn</span> <span class="ident">glyph_raster_image</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">id</span>: <span class="ident">GlyphId</span>, <span class="ident">size</span>: <span class="ident">u16</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">GlyphImage</span><span class="op">&gt;</span> {
-                <span class="self">self</span>.<span class="number">0</span>
-                    .<span class="ident">as_face_ref</span>()
-                    .<span class="ident">glyph_raster_image</span>(<span class="ident">id</span>.<span class="ident">into</span>(), <span class="ident">size</span>)
-                    .<span class="ident">map</span>(<span class="ident">Into::into</span>)
+            <span class="kw">fn </span>glyph_raster_image(<span class="kw-2">&amp;</span><span class="self">self</span>, id: GlyphId, size: u16) -&gt; <span class="prelude-ty">Option</span>&lt;GlyphImage&gt; {
+                <span class="self">self</span>.<span class="number">0
+                    </span>.as_face_ref()
+                    .glyph_raster_image(id.into(), size)
+                    .map(Into::into)
             }
         }
     };
 }
 
-<span class="macro">impl_font!</span>(<span class="ident">FontRef</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>);
-<span class="macro">impl_font!</span>(<span class="ident">FontVec</span>);
+<span class="macro">impl_font!</span>(FontRef&lt;<span class="lifetime">&#39;_</span>&gt;);
+<span class="macro">impl_font!</span>(FontVec);
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="ab_glyph" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0 (a55dd71d5 2022-09-19)" ></div></body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="ab_glyph" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.66.1 (90743e729 2023-01-10)" ></div></body></html>

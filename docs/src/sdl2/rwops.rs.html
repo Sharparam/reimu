@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/sdl2-0.35.2/src/sdl2/rwops.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>rwops.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../sdl2/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../sdl2/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../sdl2/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/sdl2-0.35.2/src/sdl2/rwops.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>rwops.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../normalize.css"><link rel="stylesheet" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../ayu.css" disabled><link rel="stylesheet" href="../../dark.css" disabled><link rel="stylesheet" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><div class="width-limiter"><nav class="sub"><a class="sub-logo-container" href="../../sdl2/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -187,194 +187,194 @@
 <span id="187">187</span>
 <span id="188">188</span>
 <span id="189">189</span>
-</pre><pre class="rust"><code><span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::get_error</span>;
-<span class="kw">use</span> <span class="ident">libc::c_void</span>;
-<span class="kw">use</span> <span class="ident">libc</span>::{<span class="ident">c_char</span>, <span class="ident">c_int</span>, <span class="ident">size_t</span>};
-<span class="kw">use</span> <span class="ident">std::ffi::CString</span>;
-<span class="kw">use</span> <span class="ident">std::io</span>;
-<span class="kw">use</span> <span class="ident">std::marker::PhantomData</span>;
-<span class="kw">use</span> <span class="ident">std::mem::transmute</span>;
-<span class="kw">use</span> <span class="ident">std::path::Path</span>;
+</pre><pre class="rust"><code><span class="kw">use </span><span class="kw">crate</span>::get_error;
+<span class="kw">use </span>libc::c_void;
+<span class="kw">use </span>libc::{c_char, c_int, size_t};
+<span class="kw">use </span>std::ffi::CString;
+<span class="kw">use </span>std::io;
+<span class="kw">use </span>std::marker::PhantomData;
+<span class="kw">use </span>std::mem::transmute;
+<span class="kw">use </span>std::path::Path;
 
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::sys</span>;
+<span class="kw">use </span><span class="kw">crate</span>::sys;
 
-<span class="doccomment">/// A structure that provides an abstract interface to stream I/O.</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">RWops</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="ident">raw</span>: <span class="kw-2">*mut</span> <span class="ident">sys::SDL_RWops</span>,
-    <span class="ident">_marker</span>: <span class="ident">PhantomData</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> ()<span class="op">&gt;</span>,
+<span class="doccomment">/// A structure that provides an abstract interface to stream I/O.
+</span><span class="kw">pub struct </span>RWops&lt;<span class="lifetime">&#39;a</span>&gt; {
+    raw: <span class="kw-2">*mut </span>sys::SDL_RWops,
+    _marker: PhantomData&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>()&gt;,
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">RWops</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="comment">// this can prevent introducing UB until</span>
-    <span class="comment">// https://github.com/rust-lang/rust-clippy/issues/5953 is fixed</span>
-    <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">clippy::trivially_copy_pass_by_ref</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">raw</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">*mut</span> <span class="ident">sys::SDL_RWops</span> {
-        <span class="self">self</span>.<span class="ident">raw</span>
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; RWops&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="comment">// this can prevent introducing UB until
+    // https://github.com/rust-lang/rust-clippy/issues/5953 is fixed
+    </span><span class="attribute">#[allow(clippy::trivially_copy_pass_by_ref)]
+    </span><span class="kw">pub unsafe fn </span>raw(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">*mut </span>sys::SDL_RWops {
+        <span class="self">self</span>.raw
     }
 
-    <span class="kw">pub</span> <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_ll</span><span class="op">&lt;</span><span class="lifetime">&#39;b</span><span class="op">&gt;</span>(<span class="ident">raw</span>: <span class="kw-2">*mut</span> <span class="ident">sys::SDL_RWops</span>) -&gt; <span class="ident">RWops</span><span class="op">&lt;</span><span class="lifetime">&#39;b</span><span class="op">&gt;</span> {
-        <span class="ident">RWops</span> {
-            <span class="ident">raw</span>,
-            <span class="ident">_marker</span>: <span class="ident">PhantomData</span>,
+    <span class="kw">pub unsafe fn </span>from_ll&lt;<span class="lifetime">&#39;b</span>&gt;(raw: <span class="kw-2">*mut </span>sys::SDL_RWops) -&gt; RWops&lt;<span class="lifetime">&#39;b</span>&gt; {
+        RWops {
+            raw,
+            _marker: PhantomData,
         }
     }
 
-    <span class="doccomment">/// Creates an SDL file stream.</span>
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;SDL_RWFromFile&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">from_file</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">AsRef</span><span class="op">&lt;</span><span class="ident">Path</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="ident">path</span>: <span class="ident">P</span>, <span class="ident">mode</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">RWops</span><span class="op">&lt;</span><span class="lifetime">&#39;static</span><span class="op">&gt;</span>, <span class="ident">String</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="ident">raw</span> <span class="op">=</span> <span class="kw">unsafe</span> {
-            <span class="kw">let</span> <span class="ident">path_c</span> <span class="op">=</span> <span class="ident">CString::new</span>(<span class="ident">path</span>.<span class="ident">as_ref</span>().<span class="ident">to_str</span>().<span class="ident">unwrap</span>()).<span class="ident">unwrap</span>();
-            <span class="kw">let</span> <span class="ident">mode_c</span> <span class="op">=</span> <span class="ident">CString::new</span>(<span class="ident">mode</span>).<span class="ident">unwrap</span>();
-            <span class="ident">sys::SDL_RWFromFile</span>(
-                <span class="ident">path_c</span>.<span class="ident">as_ptr</span>() <span class="kw">as</span> <span class="kw-2">*const</span> <span class="ident">c_char</span>,
-                <span class="ident">mode_c</span>.<span class="ident">as_ptr</span>() <span class="kw">as</span> <span class="kw-2">*const</span> <span class="ident">c_char</span>,
+    <span class="doccomment">/// Creates an SDL file stream.
+    </span><span class="attribute">#[doc(alias = <span class="string">&quot;SDL_RWFromFile&quot;</span>)]
+    </span><span class="kw">pub fn </span>from_file&lt;P: AsRef&lt;Path&gt;&gt;(path: P, mode: <span class="kw-2">&amp;</span>str) -&gt; <span class="prelude-ty">Result</span>&lt;RWops&lt;<span class="lifetime">&#39;static</span>&gt;, String&gt; {
+        <span class="kw">let </span>raw = <span class="kw">unsafe </span>{
+            <span class="kw">let </span>path_c = CString::new(path.as_ref().to_str().unwrap()).unwrap();
+            <span class="kw">let </span>mode_c = CString::new(mode).unwrap();
+            sys::SDL_RWFromFile(
+                path_c.as_ptr() <span class="kw">as </span><span class="kw-2">*const </span>c_char,
+                mode_c.as_ptr() <span class="kw">as </span><span class="kw-2">*const </span>c_char,
             )
         };
 
-        <span class="kw">if</span> <span class="ident">raw</span>.<span class="ident">is_null</span>() {
-            <span class="prelude-val">Err</span>(<span class="ident">get_error</span>())
-        } <span class="kw">else</span> {
-            <span class="prelude-val">Ok</span>(<span class="ident">RWops</span> {
-                <span class="ident">raw</span>,
-                <span class="ident">_marker</span>: <span class="ident">PhantomData</span>,
+        <span class="kw">if </span>raw.is_null() {
+            <span class="prelude-val">Err</span>(get_error())
+        } <span class="kw">else </span>{
+            <span class="prelude-val">Ok</span>(RWops {
+                raw,
+                _marker: PhantomData,
             })
         }
     }
 
-    <span class="doccomment">/// Prepares a read-only memory buffer for use with `RWops`.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// This method can only fail if the buffer size is zero.</span>
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;SDL_RWFromConstMem&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">from_bytes</span>(<span class="ident">buf</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>]) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">RWops</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>, <span class="ident">String</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="ident">raw</span> <span class="op">=</span>
-            <span class="kw">unsafe</span> { <span class="ident">sys::SDL_RWFromConstMem</span>(<span class="ident">buf</span>.<span class="ident">as_ptr</span>() <span class="kw">as</span> <span class="kw-2">*const</span> <span class="ident">c_void</span>, <span class="ident">buf</span>.<span class="ident">len</span>() <span class="kw">as</span> <span class="ident">c_int</span>) };
+    <span class="doccomment">/// Prepares a read-only memory buffer for use with `RWops`.
+    ///
+    /// This method can only fail if the buffer size is zero.
+    </span><span class="attribute">#[doc(alias = <span class="string">&quot;SDL_RWFromConstMem&quot;</span>)]
+    </span><span class="kw">pub fn </span>from_bytes(buf: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8]) -&gt; <span class="prelude-ty">Result</span>&lt;RWops&lt;<span class="lifetime">&#39;a</span>&gt;, String&gt; {
+        <span class="kw">let </span>raw =
+            <span class="kw">unsafe </span>{ sys::SDL_RWFromConstMem(buf.as_ptr() <span class="kw">as </span><span class="kw-2">*const </span>c_void, buf.len() <span class="kw">as </span>c_int) };
 
-        <span class="kw">if</span> <span class="ident">raw</span>.<span class="ident">is_null</span>() {
-            <span class="prelude-val">Err</span>(<span class="ident">get_error</span>())
-        } <span class="kw">else</span> {
-            <span class="prelude-val">Ok</span>(<span class="ident">RWops</span> {
-                <span class="ident">raw</span>,
-                <span class="ident">_marker</span>: <span class="ident">PhantomData</span>,
+        <span class="kw">if </span>raw.is_null() {
+            <span class="prelude-val">Err</span>(get_error())
+        } <span class="kw">else </span>{
+            <span class="prelude-val">Ok</span>(RWops {
+                raw,
+                _marker: PhantomData,
             })
         }
     }
 
-    <span class="doccomment">/// Reads a `Read` object into a buffer and then passes it to `RWops.from_bytes`.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// The buffer must be provided to this function and must live as long as the</span>
-    <span class="doccomment">/// `RWops`, but the `RWops` does not take ownership of it.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">from_read</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>(<span class="ident">r</span>: <span class="kw-2">&amp;mut</span> <span class="ident">T</span>, <span class="ident">buffer</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="kw-2">mut</span> <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">RWops</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>, <span class="ident">String</span><span class="op">&gt;</span>
-    <span class="kw">where</span>
-        <span class="ident">T</span>: <span class="ident">io::Read</span> <span class="op">+</span> <span class="ident">Sized</span>,
+    <span class="doccomment">/// Reads a `Read` object into a buffer and then passes it to `RWops.from_bytes`.
+    ///
+    /// The buffer must be provided to this function and must live as long as the
+    /// `RWops`, but the `RWops` does not take ownership of it.
+    </span><span class="kw">pub fn </span>from_read&lt;T&gt;(r: <span class="kw-2">&amp;mut </span>T, buffer: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span><span class="kw-2">mut </span>Vec&lt;u8&gt;) -&gt; <span class="prelude-ty">Result</span>&lt;RWops&lt;<span class="lifetime">&#39;a</span>&gt;, String&gt;
+    <span class="kw">where
+        </span>T: io::Read + Sized,
     {
-        <span class="kw">match</span> <span class="ident">r</span>.<span class="ident">read_to_end</span>(<span class="ident">buffer</span>) {
-            <span class="prelude-val">Ok</span>(<span class="ident">_size</span>) =&gt; <span class="ident">RWops::from_bytes</span>(<span class="ident">buffer</span>),
-            <span class="prelude-val">Err</span>(<span class="ident">ioerror</span>) =&gt; {
-                <span class="kw">let</span> <span class="ident">msg</span> <span class="op">=</span> <span class="macro">format!</span>(<span class="string">&quot;IO error: {}&quot;</span>, <span class="ident">ioerror</span>);
-                <span class="prelude-val">Err</span>(<span class="ident">msg</span>)
+        <span class="kw">match </span>r.read_to_end(buffer) {
+            <span class="prelude-val">Ok</span>(_size) =&gt; RWops::from_bytes(buffer),
+            <span class="prelude-val">Err</span>(ioerror) =&gt; {
+                <span class="kw">let </span>msg = <span class="macro">format!</span>(<span class="string">&quot;IO error: {}&quot;</span>, ioerror);
+                <span class="prelude-val">Err</span>(msg)
             }
         }
     }
 
-    <span class="doccomment">/// Prepares a read-write memory buffer for use with `RWops`.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// This method can only fail if the buffer size is zero.</span>
-    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;SDL_RWFromMem&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">from_bytes_mut</span>(<span class="ident">buf</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="kw-2">mut</span> [<span class="ident">u8</span>]) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">RWops</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>, <span class="ident">String</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="ident">raw</span> <span class="op">=</span> <span class="kw">unsafe</span> { <span class="ident">sys::SDL_RWFromMem</span>(<span class="ident">buf</span>.<span class="ident">as_ptr</span>() <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">c_void</span>, <span class="ident">buf</span>.<span class="ident">len</span>() <span class="kw">as</span> <span class="ident">c_int</span>) };
+    <span class="doccomment">/// Prepares a read-write memory buffer for use with `RWops`.
+    ///
+    /// This method can only fail if the buffer size is zero.
+    </span><span class="attribute">#[doc(alias = <span class="string">&quot;SDL_RWFromMem&quot;</span>)]
+    </span><span class="kw">pub fn </span>from_bytes_mut(buf: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span><span class="kw-2">mut </span>[u8]) -&gt; <span class="prelude-ty">Result</span>&lt;RWops&lt;<span class="lifetime">&#39;a</span>&gt;, String&gt; {
+        <span class="kw">let </span>raw = <span class="kw">unsafe </span>{ sys::SDL_RWFromMem(buf.as_ptr() <span class="kw">as </span><span class="kw-2">*mut </span>c_void, buf.len() <span class="kw">as </span>c_int) };
 
-        <span class="kw">if</span> <span class="ident">raw</span>.<span class="ident">is_null</span>() {
-            <span class="prelude-val">Err</span>(<span class="ident">get_error</span>())
-        } <span class="kw">else</span> {
-            <span class="prelude-val">Ok</span>(<span class="ident">RWops</span> {
-                <span class="ident">raw</span>,
-                <span class="ident">_marker</span>: <span class="ident">PhantomData</span>,
+        <span class="kw">if </span>raw.is_null() {
+            <span class="prelude-val">Err</span>(get_error())
+        } <span class="kw">else </span>{
+            <span class="prelude-val">Ok</span>(RWops {
+                raw,
+                _marker: PhantomData,
             })
         }
     }
 
-    <span class="doccomment">/// Gets the stream&#39;s total size in bytes.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// Returns `None` if the stream size can&#39;t be determined</span>
-    <span class="doccomment">/// (either because it doesn&#39;t make sense for the stream type, or there was an error).</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">len</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">usize</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="ident">result</span> <span class="op">=</span> <span class="kw">unsafe</span> { ((<span class="kw-2">*</span><span class="self">self</span>.<span class="ident">raw</span>).<span class="ident">size</span>.<span class="ident">unwrap</span>())(<span class="self">self</span>.<span class="ident">raw</span>) };
+    <span class="doccomment">/// Gets the stream&#39;s total size in bytes.
+    ///
+    /// Returns `None` if the stream size can&#39;t be determined
+    /// (either because it doesn&#39;t make sense for the stream type, or there was an error).
+    </span><span class="kw">pub fn </span>len(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;usize&gt; {
+        <span class="kw">let </span>result = <span class="kw">unsafe </span>{ ((<span class="kw-2">*</span><span class="self">self</span>.raw).size.unwrap())(<span class="self">self</span>.raw) };
 
-        <span class="kw">match</span> <span class="ident">result</span> {
-            <span class="op">-</span><span class="number">1</span> =&gt; <span class="prelude-val">None</span>,
-            <span class="ident">v</span> =&gt; <span class="prelude-val">Some</span>(<span class="ident">v</span> <span class="kw">as</span> <span class="ident">usize</span>),
+        <span class="kw">match </span>result {
+            -<span class="number">1 </span>=&gt; <span class="prelude-val">None</span>,
+            v =&gt; <span class="prelude-val">Some</span>(v <span class="kw">as </span>usize),
         }
     }
 
-    <span class="comment">// Tells if the stream is empty</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_empty</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span> {
-        <span class="kw">match</span> <span class="self">self</span>.<span class="ident">len</span>() {
-            <span class="prelude-val">Some</span>(<span class="ident">s</span>) =&gt; <span class="ident">s</span> <span class="op">==</span> <span class="number">0</span>,
-            <span class="prelude-val">None</span> =&gt; <span class="bool-val">true</span>,
-        }
-    }
-}
-
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">Drop</span> <span class="kw">for</span> <span class="ident">RWops</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="kw">fn</span> <span class="ident">drop</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>) {
-        <span class="kw">let</span> <span class="ident">ret</span> <span class="op">=</span> <span class="kw">unsafe</span> { ((<span class="kw-2">*</span><span class="self">self</span>.<span class="ident">raw</span>).<span class="ident">close</span>.<span class="ident">unwrap</span>())(<span class="self">self</span>.<span class="ident">raw</span>) };
-        <span class="kw">if</span> <span class="ident">ret</span> <span class="op">!</span><span class="op">=</span> <span class="number">0</span> {
-            <span class="macro">panic!</span>(<span class="string">&quot;{}&quot;</span>, <span class="ident">get_error</span>());
+    <span class="comment">// Tells if the stream is empty
+    </span><span class="kw">pub fn </span>is_empty(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; bool {
+        <span class="kw">match </span><span class="self">self</span>.len() {
+            <span class="prelude-val">Some</span>(s) =&gt; s == <span class="number">0</span>,
+            <span class="prelude-val">None </span>=&gt; <span class="bool-val">true</span>,
         }
     }
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">io::Read</span> <span class="kw">for</span> <span class="ident">RWops</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="kw">fn</span> <span class="ident">read</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">buf</span>: <span class="kw-2">&amp;mut</span> [<span class="ident">u8</span>]) -&gt; <span class="ident">io::Result</span><span class="op">&lt;</span><span class="ident">usize</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="ident">out_len</span> <span class="op">=</span> <span class="ident">buf</span>.<span class="ident">len</span>() <span class="kw">as</span> <span class="ident">size_t</span>;
-        <span class="comment">// FIXME: it&#39;s better to use as_mut_ptr().</span>
-        <span class="comment">// number of objects read, or 0 at error or end of file.</span>
-        <span class="kw">let</span> <span class="ident">ret</span> <span class="op">=</span> <span class="kw">unsafe</span> {
-            ((<span class="kw-2">*</span><span class="self">self</span>.<span class="ident">raw</span>).<span class="ident">read</span>.<span class="ident">unwrap</span>())(
-                <span class="self">self</span>.<span class="ident">raw</span>,
-                <span class="ident">buf</span>.<span class="ident">as_ptr</span>() <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">c_void</span>,
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; Drop <span class="kw">for </span>RWops&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="kw">fn </span>drop(<span class="kw-2">&amp;mut </span><span class="self">self</span>) {
+        <span class="kw">let </span>ret = <span class="kw">unsafe </span>{ ((<span class="kw-2">*</span><span class="self">self</span>.raw).close.unwrap())(<span class="self">self</span>.raw) };
+        <span class="kw">if </span>ret != <span class="number">0 </span>{
+            <span class="macro">panic!</span>(<span class="string">&quot;{}&quot;</span>, get_error());
+        }
+    }
+}
+
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; io::Read <span class="kw">for </span>RWops&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="kw">fn </span>read(<span class="kw-2">&amp;mut </span><span class="self">self</span>, buf: <span class="kw-2">&amp;mut </span>[u8]) -&gt; io::Result&lt;usize&gt; {
+        <span class="kw">let </span>out_len = buf.len() <span class="kw">as </span>size_t;
+        <span class="comment">// FIXME: it&#39;s better to use as_mut_ptr().
+        // number of objects read, or 0 at error or end of file.
+        </span><span class="kw">let </span>ret = <span class="kw">unsafe </span>{
+            ((<span class="kw-2">*</span><span class="self">self</span>.raw).read.unwrap())(
+                <span class="self">self</span>.raw,
+                buf.as_ptr() <span class="kw">as </span><span class="kw-2">*mut </span>c_void,
                 <span class="number">1</span>,
-                <span class="ident">out_len</span> <span class="kw">as</span> <span class="ident">sys::size_t</span>,
+                out_len <span class="kw">as </span>sys::size_t,
             )
         };
-        <span class="prelude-val">Ok</span>(<span class="ident">ret</span> <span class="kw">as</span> <span class="ident">usize</span>)
+        <span class="prelude-val">Ok</span>(ret <span class="kw">as </span>usize)
     }
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">io::Write</span> <span class="kw">for</span> <span class="ident">RWops</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="kw">fn</span> <span class="ident">write</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">buf</span>: <span class="kw-2">&amp;</span>[<span class="ident">u8</span>]) -&gt; <span class="ident">io::Result</span><span class="op">&lt;</span><span class="ident">usize</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="ident">in_len</span> <span class="op">=</span> <span class="ident">buf</span>.<span class="ident">len</span>() <span class="kw">as</span> <span class="ident">size_t</span>;
-        <span class="kw">let</span> <span class="ident">ret</span> <span class="op">=</span> <span class="kw">unsafe</span> {
-            ((<span class="kw-2">*</span><span class="self">self</span>.<span class="ident">raw</span>).<span class="ident">write</span>.<span class="ident">unwrap</span>())(
-                <span class="self">self</span>.<span class="ident">raw</span>,
-                <span class="ident">buf</span>.<span class="ident">as_ptr</span>() <span class="kw">as</span> <span class="kw-2">*const</span> <span class="ident">c_void</span>,
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; io::Write <span class="kw">for </span>RWops&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="kw">fn </span>write(<span class="kw-2">&amp;mut </span><span class="self">self</span>, buf: <span class="kw-2">&amp;</span>[u8]) -&gt; io::Result&lt;usize&gt; {
+        <span class="kw">let </span>in_len = buf.len() <span class="kw">as </span>size_t;
+        <span class="kw">let </span>ret = <span class="kw">unsafe </span>{
+            ((<span class="kw-2">*</span><span class="self">self</span>.raw).write.unwrap())(
+                <span class="self">self</span>.raw,
+                buf.as_ptr() <span class="kw">as </span><span class="kw-2">*const </span>c_void,
                 <span class="number">1</span>,
-                <span class="ident">in_len</span> <span class="kw">as</span> <span class="ident">sys::size_t</span>,
+                in_len <span class="kw">as </span>sys::size_t,
             )
         };
-        <span class="prelude-val">Ok</span>(<span class="ident">ret</span> <span class="kw">as</span> <span class="ident">usize</span>)
+        <span class="prelude-val">Ok</span>(ret <span class="kw">as </span>usize)
     }
 
-    <span class="kw">fn</span> <span class="ident">flush</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>) -&gt; <span class="ident">io::Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
+    <span class="kw">fn </span>flush(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; io::Result&lt;()&gt; {
         <span class="prelude-val">Ok</span>(())
     }
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">io::Seek</span> <span class="kw">for</span> <span class="ident">RWops</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="kw">fn</span> <span class="ident">seek</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">pos</span>: <span class="ident">io::SeekFrom</span>) -&gt; <span class="ident">io::Result</span><span class="op">&lt;</span><span class="ident">u64</span><span class="op">&gt;</span> {
-        <span class="comment">// whence code is different from SeekStyle</span>
-        <span class="kw">let</span> (<span class="ident">whence</span>, <span class="ident">offset</span>) <span class="op">=</span> <span class="kw">match</span> <span class="ident">pos</span> {
-            <span class="ident">io::SeekFrom::Start</span>(<span class="ident">pos</span>) =&gt; (<span class="ident">sys::RW_SEEK_SET</span>, <span class="ident">pos</span> <span class="kw">as</span> <span class="ident">i64</span>),
-            <span class="ident">io::SeekFrom::End</span>(<span class="ident">pos</span>) =&gt; (<span class="ident">sys::RW_SEEK_END</span>, <span class="ident">pos</span>),
-            <span class="ident">io::SeekFrom::Current</span>(<span class="ident">pos</span>) =&gt; (<span class="ident">sys::RW_SEEK_CUR</span>, <span class="ident">pos</span>),
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; io::Seek <span class="kw">for </span>RWops&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="kw">fn </span>seek(<span class="kw-2">&amp;mut </span><span class="self">self</span>, pos: io::SeekFrom) -&gt; io::Result&lt;u64&gt; {
+        <span class="comment">// whence code is different from SeekStyle
+        </span><span class="kw">let </span>(whence, offset) = <span class="kw">match </span>pos {
+            io::SeekFrom::Start(pos) =&gt; (sys::RW_SEEK_SET, pos <span class="kw">as </span>i64),
+            io::SeekFrom::End(pos) =&gt; (sys::RW_SEEK_END, pos),
+            io::SeekFrom::Current(pos) =&gt; (sys::RW_SEEK_CUR, pos),
         };
-        <span class="kw">let</span> <span class="ident">ret</span> <span class="op">=</span> <span class="kw">unsafe</span> { ((<span class="kw-2">*</span><span class="self">self</span>.<span class="ident">raw</span>).<span class="ident">seek</span>.<span class="ident">unwrap</span>())(<span class="self">self</span>.<span class="ident">raw</span>, <span class="ident">offset</span>, <span class="ident">transmute</span>(<span class="ident">whence</span>)) };
-        <span class="kw">if</span> <span class="ident">ret</span> <span class="op">==</span> <span class="op">-</span><span class="number">1</span> {
-            <span class="prelude-val">Err</span>(<span class="ident">io::Error::last_os_error</span>())
-        } <span class="kw">else</span> {
-            <span class="prelude-val">Ok</span>(<span class="ident">ret</span> <span class="kw">as</span> <span class="ident">u64</span>)
+        <span class="kw">let </span>ret = <span class="kw">unsafe </span>{ ((<span class="kw-2">*</span><span class="self">self</span>.raw).seek.unwrap())(<span class="self">self</span>.raw, offset, transmute(whence)) };
+        <span class="kw">if </span>ret == -<span class="number">1 </span>{
+            <span class="prelude-val">Err</span>(io::Error::last_os_error())
+        } <span class="kw">else </span>{
+            <span class="prelude-val">Ok</span>(ret <span class="kw">as </span>u64)
         }
     }
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="sdl2" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0 (a55dd71d5 2022-09-19)" ></div></body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="sdl2" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.66.1 (90743e729 2023-01-10)" ></div></body></html>

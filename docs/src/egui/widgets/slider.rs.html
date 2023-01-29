@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/egui-0.16.1/src/widgets/slider.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>slider.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../storage.js"></script><script defer src="../../../source-script.js"></script><script defer src="../../../source-files.js"></script><script defer src="../../../main.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../../egui/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../../egui/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../../egui/index.html"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/egui-0.16.1/src/widgets/slider.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>slider.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../../normalize.css"><link rel="stylesheet" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../../ayu.css" disabled><link rel="stylesheet" href="../../../dark.css" disabled><link rel="stylesheet" href="../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../storage.js"></script><script defer src="../../../source-script.js"></script><script defer src="../../../source-files.js"></script><script defer src="../../../main.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><div class="width-limiter"><nav class="sub"><a class="sub-logo-container" href="../../../egui/index.html"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../wheel.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -654,661 +654,661 @@
 <span id="654">654</span>
 <span id="655">655</span>
 <span id="656">656</span>
-</pre><pre class="rust"><code><span class="attribute">#![<span class="ident">allow</span>(<span class="ident">clippy::needless_pass_by_value</span>)]</span> <span class="comment">// False positives with `impl ToString`</span>
+</pre><pre class="rust"><code><span class="attribute">#![allow(clippy::needless_pass_by_value)] </span><span class="comment">// False positives with `impl ToString`
 
-<span class="kw">use</span> <span class="ident">std::ops::RangeInclusive</span>;
+</span><span class="kw">use </span>std::ops::RangeInclusive;
 
-<span class="kw">use</span> <span class="kw">crate</span>::<span class="kw-2">*</span>;
+<span class="kw">use crate</span>::<span class="kw-2">*</span>;
 
-<span class="comment">// ----------------------------------------------------------------------------</span>
+<span class="comment">// ----------------------------------------------------------------------------
 
-<span class="doccomment">/// Combined into one function (rather than two) to make it easier</span>
-<span class="doccomment">/// for the borrow checker.</span>
-<span class="kw">type</span> <span class="ident">GetSetValue</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">Box</span><span class="op">&lt;</span><span class="kw">dyn</span> <span class="lifetime">&#39;a</span> <span class="op">+</span> <span class="ident">FnMut</span>(<span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">f64</span><span class="op">&gt;</span>) -&gt; <span class="ident">f64</span><span class="op">&gt;</span>;
+</span><span class="doccomment">/// Combined into one function (rather than two) to make it easier
+/// for the borrow checker.
+</span><span class="kw">type </span>GetSetValue&lt;<span class="lifetime">&#39;a</span>&gt; = Box&lt;<span class="kw">dyn </span><span class="lifetime">&#39;a </span>+ FnMut(<span class="prelude-ty">Option</span>&lt;f64&gt;) -&gt; f64&gt;;
 
-<span class="kw">fn</span> <span class="ident">get</span>(<span class="ident">get_set_value</span>: <span class="kw-2">&amp;mut</span> <span class="ident">GetSetValue</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>) -&gt; <span class="ident">f64</span> {
-    (<span class="ident">get_set_value</span>)(<span class="prelude-val">None</span>)
+<span class="kw">fn </span>get(get_set_value: <span class="kw-2">&amp;mut </span>GetSetValue&lt;<span class="lifetime">&#39;_</span>&gt;) -&gt; f64 {
+    (get_set_value)(<span class="prelude-val">None</span>)
 }
 
-<span class="kw">fn</span> <span class="ident">set</span>(<span class="ident">get_set_value</span>: <span class="kw-2">&amp;mut</span> <span class="ident">GetSetValue</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>, <span class="ident">value</span>: <span class="ident">f64</span>) {
-    (<span class="ident">get_set_value</span>)(<span class="prelude-val">Some</span>(<span class="ident">value</span>));
+<span class="kw">fn </span>set(get_set_value: <span class="kw-2">&amp;mut </span>GetSetValue&lt;<span class="lifetime">&#39;_</span>&gt;, value: f64) {
+    (get_set_value)(<span class="prelude-val">Some</span>(value));
 }
 
-<span class="comment">// ----------------------------------------------------------------------------</span>
+<span class="comment">// ----------------------------------------------------------------------------
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>)]</span>
-<span class="kw">struct</span> <span class="ident">SliderSpec</span> {
-    <span class="ident">logarithmic</span>: <span class="ident">bool</span>,
-    <span class="doccomment">/// For logarithmic sliders, the smallest positive value we are interested in.</span>
-    <span class="doccomment">/// 1 for integer sliders, maybe 1e-6 for others.</span>
-    <span class="ident">smallest_positive</span>: <span class="ident">f64</span>,
-    <span class="doccomment">/// For logarithmic sliders, the largest positive value we are interested in</span>
-    <span class="doccomment">/// before the slider switches to `INFINITY`, if that is the higher end.</span>
-    <span class="doccomment">/// Default: INFINITY.</span>
-    <span class="ident">largest_finite</span>: <span class="ident">f64</span>,
+</span><span class="attribute">#[derive(Clone)]
+</span><span class="kw">struct </span>SliderSpec {
+    logarithmic: bool,
+    <span class="doccomment">/// For logarithmic sliders, the smallest positive value we are interested in.
+    /// 1 for integer sliders, maybe 1e-6 for others.
+    </span>smallest_positive: f64,
+    <span class="doccomment">/// For logarithmic sliders, the largest positive value we are interested in
+    /// before the slider switches to `INFINITY`, if that is the higher end.
+    /// Default: INFINITY.
+    </span>largest_finite: f64,
 }
 
-<span class="doccomment">/// Specifies the orientation of a [`Slider`].</span>
-<span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">SliderOrientation</span> {
-    <span class="ident">Horizontal</span>,
-    <span class="ident">Vertical</span>,
+<span class="doccomment">/// Specifies the orientation of a [`Slider`].
+</span><span class="kw">pub enum </span>SliderOrientation {
+    Horizontal,
+    Vertical,
 }
 
-<span class="doccomment">/// Control a number with a slider.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// The slider range defines the values you get when pulling the slider to the far edges.</span>
-<span class="doccomment">/// By default, the slider can still show values outside this range,</span>
-<span class="doccomment">/// and still allows users to enter values outside the range by clicking the slider value and editing it.</span>
-<span class="doccomment">/// If you want to clamp incoming and outgoing values, use [`Slider::clamp_to_range`].</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// The range can include any numbers, and go from low-to-high or from high-to-low.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// The slider consists of three parts: a slider, a value display, and an optional text.</span>
-<span class="doccomment">/// The user can click the value display to edit its value. It can be turned off with `.show_value(false)`.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// ```</span>
-<span class="doccomment">/// # egui::__run_test_ui(|ui| {</span>
-<span class="doccomment">/// # let mut my_f32: f32 = 0.0;</span>
-<span class="doccomment">/// ui.add(egui::Slider::new(&amp;mut my_f32, 0.0..=100.0).text(&quot;My value&quot;));</span>
-<span class="doccomment">/// # });</span>
-<span class="doccomment">/// ```</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// The default `Slider` size is set by [`crate::style::Spacing::slider_width`].</span>
-<span class="attribute">#[<span class="ident">must_use</span> <span class="op">=</span> <span class="string">&quot;You should put this widget in an ui with `ui.add(widget);`&quot;</span>]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Slider</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="ident">get_set_value</span>: <span class="ident">GetSetValue</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>,
-    <span class="ident">range</span>: <span class="ident">RangeInclusive</span><span class="op">&lt;</span><span class="ident">f64</span><span class="op">&gt;</span>,
-    <span class="ident">spec</span>: <span class="ident">SliderSpec</span>,
-    <span class="ident">clamp_to_range</span>: <span class="ident">bool</span>,
-    <span class="ident">smart_aim</span>: <span class="ident">bool</span>,
-    <span class="ident">show_value</span>: <span class="ident">bool</span>,
-    <span class="ident">orientation</span>: <span class="ident">SliderOrientation</span>,
-    <span class="ident">prefix</span>: <span class="ident">String</span>,
-    <span class="ident">suffix</span>: <span class="ident">String</span>,
-    <span class="ident">text</span>: <span class="ident">String</span>,
-    <span class="ident">text_color</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Color32</span><span class="op">&gt;</span>,
-    <span class="ident">min_decimals</span>: <span class="ident">usize</span>,
-    <span class="ident">max_decimals</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">usize</span><span class="op">&gt;</span>,
+<span class="doccomment">/// Control a number with a slider.
+///
+/// The slider range defines the values you get when pulling the slider to the far edges.
+/// By default, the slider can still show values outside this range,
+/// and still allows users to enter values outside the range by clicking the slider value and editing it.
+/// If you want to clamp incoming and outgoing values, use [`Slider::clamp_to_range`].
+///
+/// The range can include any numbers, and go from low-to-high or from high-to-low.
+///
+/// The slider consists of three parts: a slider, a value display, and an optional text.
+/// The user can click the value display to edit its value. It can be turned off with `.show_value(false)`.
+///
+/// ```
+/// # egui::__run_test_ui(|ui| {
+/// # let mut my_f32: f32 = 0.0;
+/// ui.add(egui::Slider::new(&amp;mut my_f32, 0.0..=100.0).text(&quot;My value&quot;));
+/// # });
+/// ```
+///
+/// The default `Slider` size is set by [`crate::style::Spacing::slider_width`].
+</span><span class="attribute">#[must_use = <span class="string">&quot;You should put this widget in an ui with `ui.add(widget);`&quot;</span>]
+</span><span class="kw">pub struct </span>Slider&lt;<span class="lifetime">&#39;a</span>&gt; {
+    get_set_value: GetSetValue&lt;<span class="lifetime">&#39;a</span>&gt;,
+    range: RangeInclusive&lt;f64&gt;,
+    spec: SliderSpec,
+    clamp_to_range: bool,
+    smart_aim: bool,
+    show_value: bool,
+    orientation: SliderOrientation,
+    prefix: String,
+    suffix: String,
+    text: String,
+    text_color: <span class="prelude-ty">Option</span>&lt;Color32&gt;,
+    min_decimals: usize,
+    max_decimals: <span class="prelude-ty">Option</span>&lt;usize&gt;,
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">Slider</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="doccomment">/// Creates a new horizontal slider.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span><span class="op">&lt;</span><span class="ident">Num</span>: <span class="ident">emath::Numeric</span><span class="op">&gt;</span>(<span class="ident">value</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="kw-2">mut</span> <span class="ident">Num</span>, <span class="ident">range</span>: <span class="ident">RangeInclusive</span><span class="op">&lt;</span><span class="ident">Num</span><span class="op">&gt;</span>) -&gt; <span class="self">Self</span> {
-        <span class="kw">let</span> <span class="ident">range_f64</span> <span class="op">=</span> <span class="ident">range</span>.<span class="ident">start</span>().<span class="ident">to_f64</span>()..<span class="op">=</span><span class="ident">range</span>.<span class="ident">end</span>().<span class="ident">to_f64</span>();
-        <span class="kw">let</span> <span class="ident">slf</span> <span class="op">=</span> <span class="ident"><span class="self">Self</span>::from_get_set</span>(<span class="ident">range_f64</span>, <span class="kw">move</span> <span class="op">|</span><span class="ident">v</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">f64</span><span class="op">&gt;</span><span class="op">|</span> {
-            <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">v</span>) <span class="op">=</span> <span class="ident">v</span> {
-                <span class="kw-2">*</span><span class="ident">value</span> <span class="op">=</span> <span class="ident">Num::from_f64</span>(<span class="ident">v</span>);
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; Slider&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="doccomment">/// Creates a new horizontal slider.
+    </span><span class="kw">pub fn </span>new&lt;Num: emath::Numeric&gt;(value: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span><span class="kw-2">mut </span>Num, range: RangeInclusive&lt;Num&gt;) -&gt; <span class="self">Self </span>{
+        <span class="kw">let </span>range_f64 = range.start().to_f64()..=range.end().to_f64();
+        <span class="kw">let </span>slf = <span class="self">Self</span>::from_get_set(range_f64, <span class="kw">move </span>|v: <span class="prelude-ty">Option</span>&lt;f64&gt;| {
+            <span class="kw">if let </span><span class="prelude-val">Some</span>(v) = v {
+                <span class="kw-2">*</span>value = Num::from_f64(v);
             }
-            <span class="ident">value</span>.<span class="ident">to_f64</span>()
+            value.to_f64()
         });
 
-        <span class="kw">if</span> <span class="ident">Num::INTEGRAL</span> {
-            <span class="ident">slf</span>.<span class="ident">integer</span>()
-        } <span class="kw">else</span> {
-            <span class="ident">slf</span>
+        <span class="kw">if </span>Num::INTEGRAL {
+            slf.integer()
+        } <span class="kw">else </span>{
+            slf
         }
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">from_get_set</span>(
-        <span class="ident">range</span>: <span class="ident">RangeInclusive</span><span class="op">&lt;</span><span class="ident">f64</span><span class="op">&gt;</span>,
-        <span class="ident">get_set_value</span>: <span class="kw">impl</span> <span class="lifetime">&#39;a</span> <span class="op">+</span> <span class="ident">FnMut</span>(<span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">f64</span><span class="op">&gt;</span>) -&gt; <span class="ident">f64</span>,
-    ) -&gt; <span class="self">Self</span> {
-        <span class="self">Self</span> {
-            <span class="ident">get_set_value</span>: <span class="ident">Box::new</span>(<span class="ident">get_set_value</span>),
-            <span class="ident">range</span>,
-            <span class="ident">spec</span>: <span class="ident">SliderSpec</span> {
-                <span class="ident">logarithmic</span>: <span class="bool-val">false</span>,
-                <span class="ident">smallest_positive</span>: <span class="number">1e-6</span>,
-                <span class="ident">largest_finite</span>: <span class="ident">f64::INFINITY</span>,
+    <span class="kw">pub fn </span>from_get_set(
+        range: RangeInclusive&lt;f64&gt;,
+        get_set_value: <span class="kw">impl </span><span class="lifetime">&#39;a </span>+ FnMut(<span class="prelude-ty">Option</span>&lt;f64&gt;) -&gt; f64,
+    ) -&gt; <span class="self">Self </span>{
+        <span class="self">Self </span>{
+            get_set_value: Box::new(get_set_value),
+            range,
+            spec: SliderSpec {
+                logarithmic: <span class="bool-val">false</span>,
+                smallest_positive: <span class="number">1e-6</span>,
+                largest_finite: f64::INFINITY,
             },
-            <span class="ident">clamp_to_range</span>: <span class="bool-val">true</span>,
-            <span class="ident">smart_aim</span>: <span class="bool-val">true</span>,
-            <span class="ident">show_value</span>: <span class="bool-val">true</span>,
-            <span class="ident">orientation</span>: <span class="ident">SliderOrientation::Horizontal</span>,
-            <span class="ident">prefix</span>: <span class="ident">Default::default</span>(),
-            <span class="ident">suffix</span>: <span class="ident">Default::default</span>(),
-            <span class="ident">text</span>: <span class="ident">Default::default</span>(),
-            <span class="ident">text_color</span>: <span class="prelude-val">None</span>,
-            <span class="ident">min_decimals</span>: <span class="number">0</span>,
-            <span class="ident">max_decimals</span>: <span class="prelude-val">None</span>,
+            clamp_to_range: <span class="bool-val">true</span>,
+            smart_aim: <span class="bool-val">true</span>,
+            show_value: <span class="bool-val">true</span>,
+            orientation: SliderOrientation::Horizontal,
+            prefix: Default::default(),
+            suffix: Default::default(),
+            text: Default::default(),
+            text_color: <span class="prelude-val">None</span>,
+            min_decimals: <span class="number">0</span>,
+            max_decimals: <span class="prelude-val">None</span>,
         }
     }
 
-    <span class="doccomment">/// Control whether or not the slider shows the current value.</span>
-    <span class="doccomment">/// Default: `true`.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">show_value</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">show_value</span>: <span class="ident">bool</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">self</span>.<span class="ident">show_value</span> <span class="op">=</span> <span class="ident">show_value</span>;
-        <span class="self">self</span>
+    <span class="doccomment">/// Control whether or not the slider shows the current value.
+    /// Default: `true`.
+    </span><span class="kw">pub fn </span>show_value(<span class="kw-2">mut </span><span class="self">self</span>, show_value: bool) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.show_value = show_value;
+        <span class="self">self
+    </span>}
+
+    <span class="doccomment">/// Show a prefix before the number, e.g. &quot;x: &quot;
+    </span><span class="kw">pub fn </span>prefix(<span class="kw-2">mut </span><span class="self">self</span>, prefix: <span class="kw">impl </span>ToString) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.prefix = prefix.to_string();
+        <span class="self">self
+    </span>}
+
+    <span class="doccomment">/// Add a suffix to the number, this can be e.g. a unit (&quot;°&quot; or &quot; m&quot;)
+    </span><span class="kw">pub fn </span>suffix(<span class="kw-2">mut </span><span class="self">self</span>, suffix: <span class="kw">impl </span>ToString) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.suffix = suffix.to_string();
+        <span class="self">self
+    </span>}
+
+    <span class="doccomment">/// Show a text next to the slider (e.g. explaining what the slider controls).
+    </span><span class="kw">pub fn </span>text(<span class="kw-2">mut </span><span class="self">self</span>, text: <span class="kw">impl </span>ToString) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.text = text.to_string();
+        <span class="self">self
+    </span>}
+
+    <span class="kw">pub fn </span>text_color(<span class="kw-2">mut </span><span class="self">self</span>, text_color: Color32) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.text_color = <span class="prelude-val">Some</span>(text_color);
+        <span class="self">self
+    </span>}
+
+    <span class="doccomment">/// Vertical or horizontal slider? The default is horizontal.
+    </span><span class="kw">pub fn </span>orientation(<span class="kw-2">mut </span><span class="self">self</span>, orientation: SliderOrientation) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.orientation = orientation;
+        <span class="self">self
+    </span>}
+
+    <span class="doccomment">/// Make this a vertical slider.
+    </span><span class="kw">pub fn </span>vertical(<span class="kw-2">mut </span><span class="self">self</span>) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.orientation = SliderOrientation::Vertical;
+        <span class="self">self
+    </span>}
+
+    <span class="doccomment">/// Make this a logarithmic slider.
+    /// This is great for when the slider spans a huge range,
+    /// e.g. from one to a million.
+    /// The default is OFF.
+    </span><span class="kw">pub fn </span>logarithmic(<span class="kw-2">mut </span><span class="self">self</span>, logarithmic: bool) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.spec.logarithmic = logarithmic;
+        <span class="self">self
+    </span>}
+
+    <span class="doccomment">/// For logarithmic sliders that includes zero:
+    /// what is the smallest positive value you want to be able to select?
+    /// The default is `1` for integer sliders and `1e-6` for real sliders.
+    </span><span class="kw">pub fn </span>smallest_positive(<span class="kw-2">mut </span><span class="self">self</span>, smallest_positive: f64) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.spec.smallest_positive = smallest_positive;
+        <span class="self">self
+    </span>}
+
+    <span class="doccomment">/// For logarithmic sliders, the largest positive value we are interested in
+    /// before the slider switches to `INFINITY`, if that is the higher end.
+    /// Default: INFINITY.
+    </span><span class="kw">pub fn </span>largest_finite(<span class="kw-2">mut </span><span class="self">self</span>, largest_finite: f64) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.spec.largest_finite = largest_finite;
+        <span class="self">self
+    </span>}
+
+    <span class="doccomment">/// If set to `true`, all incoming and outgoing values will be clamped to the slider range.
+    /// Default: `true`.
+    </span><span class="kw">pub fn </span>clamp_to_range(<span class="kw-2">mut </span><span class="self">self</span>, clamp_to_range: bool) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.clamp_to_range = clamp_to_range;
+        <span class="self">self
+    </span>}
+
+    <span class="doccomment">/// Turn smart aim on/off. Default is ON.
+    /// There is almost no point in turning this off.
+    </span><span class="kw">pub fn </span>smart_aim(<span class="kw-2">mut </span><span class="self">self</span>, smart_aim: bool) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.smart_aim = smart_aim;
+        <span class="self">self
+    </span>}
+
+    <span class="comment">// TODO: we should also have a &quot;min precision&quot;.
+    </span><span class="doccomment">/// Set a minimum number of decimals to display.
+    /// Normally you don&#39;t need to pick a precision, as the slider will intelligently pick a precision for you.
+    /// Regardless of precision the slider will use &quot;smart aim&quot; to help the user select nice, round values.
+    </span><span class="kw">pub fn </span>min_decimals(<span class="kw-2">mut </span><span class="self">self</span>, min_decimals: usize) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.min_decimals = min_decimals;
+        <span class="self">self
+    </span>}
+
+    <span class="comment">// TODO: we should also have a &quot;max precision&quot;.
+    </span><span class="doccomment">/// Set a maximum number of decimals to display.
+    /// Values will also be rounded to this number of decimals.
+    /// Normally you don&#39;t need to pick a precision, as the slider will intelligently pick a precision for you.
+    /// Regardless of precision the slider will use &quot;smart aim&quot; to help the user select nice, round values.
+    </span><span class="kw">pub fn </span>max_decimals(<span class="kw-2">mut </span><span class="self">self</span>, max_decimals: usize) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.max_decimals = <span class="prelude-val">Some</span>(max_decimals);
+        <span class="self">self
+    </span>}
+
+    <span class="doccomment">/// Set an exact number of decimals to display.
+    /// Values will also be rounded to this number of decimals.
+    /// Normally you don&#39;t need to pick a precision, as the slider will intelligently pick a precision for you.
+    /// Regardless of precision the slider will use &quot;smart aim&quot; to help the user select nice, round values.
+    </span><span class="kw">pub fn </span>fixed_decimals(<span class="kw-2">mut </span><span class="self">self</span>, num_decimals: usize) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.min_decimals = num_decimals;
+        <span class="self">self</span>.max_decimals = <span class="prelude-val">Some</span>(num_decimals);
+        <span class="self">self
+    </span>}
+
+    <span class="doccomment">/// Helper: equivalent to `self.precision(0).smallest_positive(1.0)`.
+    /// If you use one of the integer constructors (e.g. `Slider::i32`) this is called for you,
+    /// but if you want to have a slider for picking integer values in an `Slider::f64`, use this.
+    </span><span class="kw">pub fn </span>integer(<span class="self">self</span>) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.fixed_decimals(<span class="number">0</span>).smallest_positive(<span class="number">1.0</span>)
     }
 
-    <span class="doccomment">/// Show a prefix before the number, e.g. &quot;x: &quot;</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">prefix</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">prefix</span>: <span class="kw">impl</span> <span class="ident">ToString</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">self</span>.<span class="ident">prefix</span> <span class="op">=</span> <span class="ident">prefix</span>.<span class="ident">to_string</span>();
-        <span class="self">self</span>
-    }
-
-    <span class="doccomment">/// Add a suffix to the number, this can be e.g. a unit (&quot;°&quot; or &quot; m&quot;)</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">suffix</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">suffix</span>: <span class="kw">impl</span> <span class="ident">ToString</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">self</span>.<span class="ident">suffix</span> <span class="op">=</span> <span class="ident">suffix</span>.<span class="ident">to_string</span>();
-        <span class="self">self</span>
-    }
-
-    <span class="doccomment">/// Show a text next to the slider (e.g. explaining what the slider controls).</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">text</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">text</span>: <span class="kw">impl</span> <span class="ident">ToString</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">self</span>.<span class="ident">text</span> <span class="op">=</span> <span class="ident">text</span>.<span class="ident">to_string</span>();
-        <span class="self">self</span>
-    }
-
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">text_color</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">text_color</span>: <span class="ident">Color32</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">self</span>.<span class="ident">text_color</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">text_color</span>);
-        <span class="self">self</span>
-    }
-
-    <span class="doccomment">/// Vertical or horizontal slider? The default is horizontal.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">orientation</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">orientation</span>: <span class="ident">SliderOrientation</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">self</span>.<span class="ident">orientation</span> <span class="op">=</span> <span class="ident">orientation</span>;
-        <span class="self">self</span>
-    }
-
-    <span class="doccomment">/// Make this a vertical slider.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">vertical</span>(<span class="kw-2">mut</span> <span class="self">self</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">self</span>.<span class="ident">orientation</span> <span class="op">=</span> <span class="ident">SliderOrientation::Vertical</span>;
-        <span class="self">self</span>
-    }
-
-    <span class="doccomment">/// Make this a logarithmic slider.</span>
-    <span class="doccomment">/// This is great for when the slider spans a huge range,</span>
-    <span class="doccomment">/// e.g. from one to a million.</span>
-    <span class="doccomment">/// The default is OFF.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">logarithmic</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">logarithmic</span>: <span class="ident">bool</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">self</span>.<span class="ident">spec</span>.<span class="ident">logarithmic</span> <span class="op">=</span> <span class="ident">logarithmic</span>;
-        <span class="self">self</span>
-    }
-
-    <span class="doccomment">/// For logarithmic sliders that includes zero:</span>
-    <span class="doccomment">/// what is the smallest positive value you want to be able to select?</span>
-    <span class="doccomment">/// The default is `1` for integer sliders and `1e-6` for real sliders.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">smallest_positive</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">smallest_positive</span>: <span class="ident">f64</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">self</span>.<span class="ident">spec</span>.<span class="ident">smallest_positive</span> <span class="op">=</span> <span class="ident">smallest_positive</span>;
-        <span class="self">self</span>
-    }
-
-    <span class="doccomment">/// For logarithmic sliders, the largest positive value we are interested in</span>
-    <span class="doccomment">/// before the slider switches to `INFINITY`, if that is the higher end.</span>
-    <span class="doccomment">/// Default: INFINITY.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">largest_finite</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">largest_finite</span>: <span class="ident">f64</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">self</span>.<span class="ident">spec</span>.<span class="ident">largest_finite</span> <span class="op">=</span> <span class="ident">largest_finite</span>;
-        <span class="self">self</span>
-    }
-
-    <span class="doccomment">/// If set to `true`, all incoming and outgoing values will be clamped to the slider range.</span>
-    <span class="doccomment">/// Default: `true`.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">clamp_to_range</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">clamp_to_range</span>: <span class="ident">bool</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">self</span>.<span class="ident">clamp_to_range</span> <span class="op">=</span> <span class="ident">clamp_to_range</span>;
-        <span class="self">self</span>
-    }
-
-    <span class="doccomment">/// Turn smart aim on/off. Default is ON.</span>
-    <span class="doccomment">/// There is almost no point in turning this off.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">smart_aim</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">smart_aim</span>: <span class="ident">bool</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">self</span>.<span class="ident">smart_aim</span> <span class="op">=</span> <span class="ident">smart_aim</span>;
-        <span class="self">self</span>
-    }
-
-    <span class="comment">// TODO: we should also have a &quot;min precision&quot;.</span>
-    <span class="doccomment">/// Set a minimum number of decimals to display.</span>
-    <span class="doccomment">/// Normally you don&#39;t need to pick a precision, as the slider will intelligently pick a precision for you.</span>
-    <span class="doccomment">/// Regardless of precision the slider will use &quot;smart aim&quot; to help the user select nice, round values.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">min_decimals</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">min_decimals</span>: <span class="ident">usize</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">self</span>.<span class="ident">min_decimals</span> <span class="op">=</span> <span class="ident">min_decimals</span>;
-        <span class="self">self</span>
-    }
-
-    <span class="comment">// TODO: we should also have a &quot;max precision&quot;.</span>
-    <span class="doccomment">/// Set a maximum number of decimals to display.</span>
-    <span class="doccomment">/// Values will also be rounded to this number of decimals.</span>
-    <span class="doccomment">/// Normally you don&#39;t need to pick a precision, as the slider will intelligently pick a precision for you.</span>
-    <span class="doccomment">/// Regardless of precision the slider will use &quot;smart aim&quot; to help the user select nice, round values.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">max_decimals</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">max_decimals</span>: <span class="ident">usize</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">self</span>.<span class="ident">max_decimals</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">max_decimals</span>);
-        <span class="self">self</span>
-    }
-
-    <span class="doccomment">/// Set an exact number of decimals to display.</span>
-    <span class="doccomment">/// Values will also be rounded to this number of decimals.</span>
-    <span class="doccomment">/// Normally you don&#39;t need to pick a precision, as the slider will intelligently pick a precision for you.</span>
-    <span class="doccomment">/// Regardless of precision the slider will use &quot;smart aim&quot; to help the user select nice, round values.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">fixed_decimals</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">num_decimals</span>: <span class="ident">usize</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">self</span>.<span class="ident">min_decimals</span> <span class="op">=</span> <span class="ident">num_decimals</span>;
-        <span class="self">self</span>.<span class="ident">max_decimals</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">num_decimals</span>);
-        <span class="self">self</span>
-    }
-
-    <span class="doccomment">/// Helper: equivalent to `self.precision(0).smallest_positive(1.0)`.</span>
-    <span class="doccomment">/// If you use one of the integer constructors (e.g. `Slider::i32`) this is called for you,</span>
-    <span class="doccomment">/// but if you want to have a slider for picking integer values in an `Slider::f64`, use this.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">integer</span>(<span class="self">self</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">self</span>.<span class="ident">fixed_decimals</span>(<span class="number">0</span>).<span class="ident">smallest_positive</span>(<span class="number">1.0</span>)
-    }
-
-    <span class="kw">fn</span> <span class="ident">get_value</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>) -&gt; <span class="ident">f64</span> {
-        <span class="kw">let</span> <span class="ident">value</span> <span class="op">=</span> <span class="ident">get</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>.<span class="ident">get_set_value</span>);
-        <span class="kw">if</span> <span class="self">self</span>.<span class="ident">clamp_to_range</span> {
-            <span class="kw">let</span> <span class="ident">start</span> <span class="op">=</span> <span class="kw-2">*</span><span class="self">self</span>.<span class="ident">range</span>.<span class="ident">start</span>();
-            <span class="kw">let</span> <span class="ident">end</span> <span class="op">=</span> <span class="kw-2">*</span><span class="self">self</span>.<span class="ident">range</span>.<span class="ident">end</span>();
-            <span class="ident">value</span>.<span class="ident">clamp</span>(<span class="ident">start</span>.<span class="ident">min</span>(<span class="ident">end</span>), <span class="ident">start</span>.<span class="ident">max</span>(<span class="ident">end</span>))
-        } <span class="kw">else</span> {
-            <span class="ident">value</span>
+    <span class="kw">fn </span>get_value(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; f64 {
+        <span class="kw">let </span>value = get(<span class="kw-2">&amp;mut </span><span class="self">self</span>.get_set_value);
+        <span class="kw">if </span><span class="self">self</span>.clamp_to_range {
+            <span class="kw">let </span>start = <span class="kw-2">*</span><span class="self">self</span>.range.start();
+            <span class="kw">let </span>end = <span class="kw-2">*</span><span class="self">self</span>.range.end();
+            value.clamp(start.min(end), start.max(end))
+        } <span class="kw">else </span>{
+            value
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">set_value</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="kw-2">mut</span> <span class="ident">value</span>: <span class="ident">f64</span>) {
-        <span class="kw">if</span> <span class="self">self</span>.<span class="ident">clamp_to_range</span> {
-            <span class="kw">let</span> <span class="ident">start</span> <span class="op">=</span> <span class="kw-2">*</span><span class="self">self</span>.<span class="ident">range</span>.<span class="ident">start</span>();
-            <span class="kw">let</span> <span class="ident">end</span> <span class="op">=</span> <span class="kw-2">*</span><span class="self">self</span>.<span class="ident">range</span>.<span class="ident">end</span>();
-            <span class="ident">value</span> <span class="op">=</span> <span class="ident">value</span>.<span class="ident">clamp</span>(<span class="ident">start</span>.<span class="ident">min</span>(<span class="ident">end</span>), <span class="ident">start</span>.<span class="ident">max</span>(<span class="ident">end</span>));
+    <span class="kw">fn </span>set_value(<span class="kw-2">&amp;mut </span><span class="self">self</span>, <span class="kw-2">mut </span>value: f64) {
+        <span class="kw">if </span><span class="self">self</span>.clamp_to_range {
+            <span class="kw">let </span>start = <span class="kw-2">*</span><span class="self">self</span>.range.start();
+            <span class="kw">let </span>end = <span class="kw-2">*</span><span class="self">self</span>.range.end();
+            value = value.clamp(start.min(end), start.max(end));
         }
-        <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">max_decimals</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">max_decimals</span> {
-            <span class="ident">value</span> <span class="op">=</span> <span class="ident">emath::round_to_decimals</span>(<span class="ident">value</span>, <span class="ident">max_decimals</span>);
+        <span class="kw">if let </span><span class="prelude-val">Some</span>(max_decimals) = <span class="self">self</span>.max_decimals {
+            value = emath::round_to_decimals(value, max_decimals);
         }
-        <span class="ident">set</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>.<span class="ident">get_set_value</span>, <span class="ident">value</span>);
+        set(<span class="kw-2">&amp;mut </span><span class="self">self</span>.get_set_value, value);
     }
 
-    <span class="kw">fn</span> <span class="ident">clamp_range</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">RangeInclusive</span><span class="op">&lt;</span><span class="ident">f64</span><span class="op">&gt;</span> {
-        <span class="kw">if</span> <span class="self">self</span>.<span class="ident">clamp_to_range</span> {
-            <span class="self">self</span>.<span class="ident">range</span>()
-        } <span class="kw">else</span> {
-            <span class="ident">f64::NEG_INFINITY</span>..<span class="op">=</span><span class="ident">f64::INFINITY</span>
+    <span class="kw">fn </span>clamp_range(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; RangeInclusive&lt;f64&gt; {
+        <span class="kw">if </span><span class="self">self</span>.clamp_to_range {
+            <span class="self">self</span>.range()
+        } <span class="kw">else </span>{
+            f64::NEG_INFINITY..=f64::INFINITY
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">range</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">RangeInclusive</span><span class="op">&lt;</span><span class="ident">f64</span><span class="op">&gt;</span> {
-        <span class="self">self</span>.<span class="ident">range</span>.<span class="ident">clone</span>()
+    <span class="kw">fn </span>range(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; RangeInclusive&lt;f64&gt; {
+        <span class="self">self</span>.range.clone()
     }
 
-    <span class="doccomment">/// For instance, `position` is the mouse position and `position_range` is the physical location of the slider on the screen.</span>
-    <span class="kw">fn</span> <span class="ident">value_from_position</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">position</span>: <span class="ident">f32</span>, <span class="ident">position_range</span>: <span class="ident">RangeInclusive</span><span class="op">&lt;</span><span class="ident">f32</span><span class="op">&gt;</span>) -&gt; <span class="ident">f64</span> {
-        <span class="kw">let</span> <span class="ident">normalized</span> <span class="op">=</span> <span class="ident">remap_clamp</span>(<span class="ident">position</span>, <span class="ident">position_range</span>, <span class="number">0.0</span>..<span class="op">=</span><span class="number">1.0</span>) <span class="kw">as</span> <span class="ident">f64</span>;
-        <span class="ident">value_from_normalized</span>(<span class="ident">normalized</span>, <span class="self">self</span>.<span class="ident">range</span>(), <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">spec</span>)
+    <span class="doccomment">/// For instance, `position` is the mouse position and `position_range` is the physical location of the slider on the screen.
+    </span><span class="kw">fn </span>value_from_position(<span class="kw-2">&amp;</span><span class="self">self</span>, position: f32, position_range: RangeInclusive&lt;f32&gt;) -&gt; f64 {
+        <span class="kw">let </span>normalized = remap_clamp(position, position_range, <span class="number">0.0</span>..=<span class="number">1.0</span>) <span class="kw">as </span>f64;
+        value_from_normalized(normalized, <span class="self">self</span>.range(), <span class="kw-2">&amp;</span><span class="self">self</span>.spec)
     }
 
-    <span class="kw">fn</span> <span class="ident">position_from_value</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">value</span>: <span class="ident">f64</span>, <span class="ident">position_range</span>: <span class="ident">RangeInclusive</span><span class="op">&lt;</span><span class="ident">f32</span><span class="op">&gt;</span>) -&gt; <span class="ident">f32</span> {
-        <span class="kw">let</span> <span class="ident">normalized</span> <span class="op">=</span> <span class="ident">normalized_from_value</span>(<span class="ident">value</span>, <span class="self">self</span>.<span class="ident">range</span>(), <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">spec</span>);
-        <span class="ident">lerp</span>(<span class="ident">position_range</span>, <span class="ident">normalized</span> <span class="kw">as</span> <span class="ident">f32</span>)
+    <span class="kw">fn </span>position_from_value(<span class="kw-2">&amp;</span><span class="self">self</span>, value: f64, position_range: RangeInclusive&lt;f32&gt;) -&gt; f32 {
+        <span class="kw">let </span>normalized = normalized_from_value(value, <span class="self">self</span>.range(), <span class="kw-2">&amp;</span><span class="self">self</span>.spec);
+        lerp(position_range, normalized <span class="kw">as </span>f32)
     }
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">Slider</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="doccomment">/// Just the slider, no text</span>
-    <span class="kw">fn</span> <span class="ident">allocate_slider_space</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">ui</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Ui</span>, <span class="ident">perpendicular</span>: <span class="ident">f32</span>) -&gt; <span class="ident">Response</span> {
-        <span class="kw">let</span> <span class="ident">desired_size</span> <span class="op">=</span> <span class="kw">match</span> <span class="self">self</span>.<span class="ident">orientation</span> {
-            <span class="ident">SliderOrientation::Horizontal</span> =&gt; <span class="ident">vec2</span>(<span class="ident">ui</span>.<span class="ident">spacing</span>().<span class="ident">slider_width</span>, <span class="ident">perpendicular</span>),
-            <span class="ident">SliderOrientation::Vertical</span> =&gt; <span class="ident">vec2</span>(<span class="ident">perpendicular</span>, <span class="ident">ui</span>.<span class="ident">spacing</span>().<span class="ident">slider_width</span>),
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; Slider&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="doccomment">/// Just the slider, no text
+    </span><span class="kw">fn </span>allocate_slider_space(<span class="kw-2">&amp;</span><span class="self">self</span>, ui: <span class="kw-2">&amp;mut </span>Ui, perpendicular: f32) -&gt; Response {
+        <span class="kw">let </span>desired_size = <span class="kw">match </span><span class="self">self</span>.orientation {
+            SliderOrientation::Horizontal =&gt; vec2(ui.spacing().slider_width, perpendicular),
+            SliderOrientation::Vertical =&gt; vec2(perpendicular, ui.spacing().slider_width),
         };
-        <span class="ident">ui</span>.<span class="ident">allocate_response</span>(<span class="ident">desired_size</span>, <span class="ident">Sense::click_and_drag</span>())
+        ui.allocate_response(desired_size, Sense::click_and_drag())
     }
 
-    <span class="doccomment">/// Just the slider, no text</span>
-    <span class="kw">fn</span> <span class="ident">slider_ui</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">ui</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Ui</span>, <span class="ident">response</span>: <span class="kw-2">&amp;</span><span class="ident">Response</span>) {
-        <span class="kw">let</span> <span class="ident">rect</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">response</span>.<span class="ident">rect</span>;
-        <span class="kw">let</span> <span class="ident">position_range</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">position_range</span>(<span class="ident">rect</span>);
+    <span class="doccomment">/// Just the slider, no text
+    </span><span class="kw">fn </span>slider_ui(<span class="kw-2">&amp;mut </span><span class="self">self</span>, ui: <span class="kw-2">&amp;mut </span>Ui, response: <span class="kw-2">&amp;</span>Response) {
+        <span class="kw">let </span>rect = <span class="kw-2">&amp;</span>response.rect;
+        <span class="kw">let </span>position_range = <span class="self">self</span>.position_range(rect);
 
-        <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">pointer_position_2d</span>) <span class="op">=</span> <span class="ident">response</span>.<span class="ident">interact_pointer_pos</span>() {
-            <span class="kw">let</span> <span class="ident">position</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">pointer_position</span>(<span class="ident">pointer_position_2d</span>);
-            <span class="kw">let</span> <span class="ident">new_value</span> <span class="op">=</span> <span class="kw">if</span> <span class="self">self</span>.<span class="ident">smart_aim</span> {
-                <span class="kw">let</span> <span class="ident">aim_radius</span> <span class="op">=</span> <span class="ident">ui</span>.<span class="ident">input</span>().<span class="ident">aim_radius</span>();
-                <span class="ident">emath::smart_aim::best_in_range_f64</span>(
-                    <span class="self">self</span>.<span class="ident">value_from_position</span>(<span class="ident">position</span> <span class="op">-</span> <span class="ident">aim_radius</span>, <span class="ident">position_range</span>.<span class="ident">clone</span>()),
-                    <span class="self">self</span>.<span class="ident">value_from_position</span>(<span class="ident">position</span> <span class="op">+</span> <span class="ident">aim_radius</span>, <span class="ident">position_range</span>.<span class="ident">clone</span>()),
+        <span class="kw">if let </span><span class="prelude-val">Some</span>(pointer_position_2d) = response.interact_pointer_pos() {
+            <span class="kw">let </span>position = <span class="self">self</span>.pointer_position(pointer_position_2d);
+            <span class="kw">let </span>new_value = <span class="kw">if </span><span class="self">self</span>.smart_aim {
+                <span class="kw">let </span>aim_radius = ui.input().aim_radius();
+                emath::smart_aim::best_in_range_f64(
+                    <span class="self">self</span>.value_from_position(position - aim_radius, position_range.clone()),
+                    <span class="self">self</span>.value_from_position(position + aim_radius, position_range.clone()),
                 )
-            } <span class="kw">else</span> {
-                <span class="self">self</span>.<span class="ident">value_from_position</span>(<span class="ident">position</span>, <span class="ident">position_range</span>.<span class="ident">clone</span>())
+            } <span class="kw">else </span>{
+                <span class="self">self</span>.value_from_position(position, position_range.clone())
             };
-            <span class="self">self</span>.<span class="ident">set_value</span>(<span class="ident">new_value</span>);
+            <span class="self">self</span>.set_value(new_value);
         }
 
-        <span class="kw">let</span> <span class="ident">value</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">get_value</span>();
-        <span class="ident">response</span>.<span class="ident">widget_info</span>(<span class="op">|</span><span class="op">|</span> <span class="ident">WidgetInfo::slider</span>(<span class="ident">value</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">text</span>));
+        <span class="kw">let </span>value = <span class="self">self</span>.get_value();
+        response.widget_info(|| WidgetInfo::slider(value, <span class="kw-2">&amp;</span><span class="self">self</span>.text));
 
-        <span class="kw">if</span> <span class="ident">response</span>.<span class="ident">has_focus</span>() {
-            <span class="kw">let</span> (<span class="ident">dec_key</span>, <span class="ident">inc_key</span>) <span class="op">=</span> <span class="kw">match</span> <span class="self">self</span>.<span class="ident">orientation</span> {
-                <span class="ident">SliderOrientation::Horizontal</span> =&gt; (<span class="ident">Key::ArrowLeft</span>, <span class="ident">Key::ArrowRight</span>),
-                <span class="comment">// Note that this is for moving the slider position,</span>
-                <span class="comment">// so up = decrement y coordinate:</span>
-                <span class="ident">SliderOrientation::Vertical</span> =&gt; (<span class="ident">Key::ArrowUp</span>, <span class="ident">Key::ArrowDown</span>),
+        <span class="kw">if </span>response.has_focus() {
+            <span class="kw">let </span>(dec_key, inc_key) = <span class="kw">match </span><span class="self">self</span>.orientation {
+                SliderOrientation::Horizontal =&gt; (Key::ArrowLeft, Key::ArrowRight),
+                <span class="comment">// Note that this is for moving the slider position,
+                // so up = decrement y coordinate:
+                </span>SliderOrientation::Vertical =&gt; (Key::ArrowUp, Key::ArrowDown),
             };
 
-            <span class="kw">let</span> <span class="ident">decrement</span> <span class="op">=</span> <span class="ident">ui</span>.<span class="ident">input</span>().<span class="ident">num_presses</span>(<span class="ident">dec_key</span>);
-            <span class="kw">let</span> <span class="ident">increment</span> <span class="op">=</span> <span class="ident">ui</span>.<span class="ident">input</span>().<span class="ident">num_presses</span>(<span class="ident">inc_key</span>);
-            <span class="kw">let</span> <span class="ident">kb_step</span> <span class="op">=</span> <span class="ident">increment</span> <span class="kw">as</span> <span class="ident">f32</span> <span class="op">-</span> <span class="ident">decrement</span> <span class="kw">as</span> <span class="ident">f32</span>;
+            <span class="kw">let </span>decrement = ui.input().num_presses(dec_key);
+            <span class="kw">let </span>increment = ui.input().num_presses(inc_key);
+            <span class="kw">let </span>kb_step = increment <span class="kw">as </span>f32 - decrement <span class="kw">as </span>f32;
 
-            <span class="kw">if</span> <span class="ident">kb_step</span> <span class="op">!</span><span class="op">=</span> <span class="number">0.0</span> {
-                <span class="kw">let</span> <span class="ident">prev_value</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">get_value</span>();
-                <span class="kw">let</span> <span class="ident">prev_position</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">position_from_value</span>(<span class="ident">prev_value</span>, <span class="ident">position_range</span>.<span class="ident">clone</span>());
-                <span class="kw">let</span> <span class="ident">new_position</span> <span class="op">=</span> <span class="ident">prev_position</span> <span class="op">+</span> <span class="ident">kb_step</span>;
-                <span class="kw">let</span> <span class="ident">new_value</span> <span class="op">=</span> <span class="kw">if</span> <span class="self">self</span>.<span class="ident">smart_aim</span> {
-                    <span class="kw">let</span> <span class="ident">aim_radius</span> <span class="op">=</span> <span class="ident">ui</span>.<span class="ident">input</span>().<span class="ident">aim_radius</span>();
-                    <span class="ident">emath::smart_aim::best_in_range_f64</span>(
-                        <span class="self">self</span>.<span class="ident">value_from_position</span>(<span class="ident">new_position</span> <span class="op">-</span> <span class="ident">aim_radius</span>, <span class="ident">position_range</span>.<span class="ident">clone</span>()),
-                        <span class="self">self</span>.<span class="ident">value_from_position</span>(<span class="ident">new_position</span> <span class="op">+</span> <span class="ident">aim_radius</span>, <span class="ident">position_range</span>.<span class="ident">clone</span>()),
+            <span class="kw">if </span>kb_step != <span class="number">0.0 </span>{
+                <span class="kw">let </span>prev_value = <span class="self">self</span>.get_value();
+                <span class="kw">let </span>prev_position = <span class="self">self</span>.position_from_value(prev_value, position_range.clone());
+                <span class="kw">let </span>new_position = prev_position + kb_step;
+                <span class="kw">let </span>new_value = <span class="kw">if </span><span class="self">self</span>.smart_aim {
+                    <span class="kw">let </span>aim_radius = ui.input().aim_radius();
+                    emath::smart_aim::best_in_range_f64(
+                        <span class="self">self</span>.value_from_position(new_position - aim_radius, position_range.clone()),
+                        <span class="self">self</span>.value_from_position(new_position + aim_radius, position_range.clone()),
                     )
-                } <span class="kw">else</span> {
-                    <span class="self">self</span>.<span class="ident">value_from_position</span>(<span class="ident">new_position</span>, <span class="ident">position_range</span>.<span class="ident">clone</span>())
+                } <span class="kw">else </span>{
+                    <span class="self">self</span>.value_from_position(new_position, position_range.clone())
                 };
-                <span class="self">self</span>.<span class="ident">set_value</span>(<span class="ident">new_value</span>);
+                <span class="self">self</span>.set_value(new_value);
             }
         }
 
-        <span class="comment">// Paint it:</span>
-        <span class="kw">if</span> <span class="ident">ui</span>.<span class="ident">is_rect_visible</span>(<span class="ident">response</span>.<span class="ident">rect</span>) {
-            <span class="kw">let</span> <span class="ident">value</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">get_value</span>();
+        <span class="comment">// Paint it:
+        </span><span class="kw">if </span>ui.is_rect_visible(response.rect) {
+            <span class="kw">let </span>value = <span class="self">self</span>.get_value();
 
-            <span class="kw">let</span> <span class="ident">rail_radius</span> <span class="op">=</span> <span class="ident">ui</span>.<span class="ident">painter</span>().<span class="ident">round_to_pixel</span>(<span class="self">self</span>.<span class="ident">rail_radius_limit</span>(<span class="ident">rect</span>));
-            <span class="kw">let</span> <span class="ident">rail_rect</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">rail_rect</span>(<span class="ident">rect</span>, <span class="ident">rail_radius</span>);
+            <span class="kw">let </span>rail_radius = ui.painter().round_to_pixel(<span class="self">self</span>.rail_radius_limit(rect));
+            <span class="kw">let </span>rail_rect = <span class="self">self</span>.rail_rect(rect, rail_radius);
 
-            <span class="kw">let</span> <span class="ident">position_1d</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">position_from_value</span>(<span class="ident">value</span>, <span class="ident">position_range</span>);
+            <span class="kw">let </span>position_1d = <span class="self">self</span>.position_from_value(value, position_range);
 
-            <span class="kw">let</span> <span class="ident">visuals</span> <span class="op">=</span> <span class="ident">ui</span>.<span class="ident">style</span>().<span class="ident">interact</span>(<span class="ident">response</span>);
-            <span class="ident">ui</span>.<span class="ident">painter</span>().<span class="ident">add</span>(<span class="ident">epaint::RectShape</span> {
-                <span class="ident">rect</span>: <span class="ident">rail_rect</span>,
-                <span class="ident">corner_radius</span>: <span class="ident">ui</span>.<span class="ident">visuals</span>().<span class="ident">widgets</span>.<span class="ident">inactive</span>.<span class="ident">corner_radius</span>,
-                <span class="ident">fill</span>: <span class="ident">ui</span>.<span class="ident">visuals</span>().<span class="ident">widgets</span>.<span class="ident">inactive</span>.<span class="ident">bg_fill</span>,
-                <span class="comment">// fill: visuals.bg_fill,</span>
-                <span class="comment">// fill: ui.visuals().extreme_bg_color,</span>
-                <span class="ident">stroke</span>: <span class="ident">Default::default</span>(),
-                <span class="comment">// stroke: visuals.bg_stroke,</span>
-                <span class="comment">// stroke: ui.visuals().widgets.inactive.bg_stroke,</span>
+            <span class="kw">let </span>visuals = ui.style().interact(response);
+            ui.painter().add(epaint::RectShape {
+                rect: rail_rect,
+                corner_radius: ui.visuals().widgets.inactive.corner_radius,
+                fill: ui.visuals().widgets.inactive.bg_fill,
+                <span class="comment">// fill: visuals.bg_fill,
+                // fill: ui.visuals().extreme_bg_color,
+                </span>stroke: Default::default(),
+                <span class="comment">// stroke: visuals.bg_stroke,
+                // stroke: ui.visuals().widgets.inactive.bg_stroke,
+            </span>});
+
+            <span class="kw">let </span>center = <span class="self">self</span>.marker_center(position_1d, <span class="kw-2">&amp;</span>rail_rect);
+
+            ui.painter().add(epaint::CircleShape {
+                center,
+                radius: <span class="self">self</span>.handle_radius(rect) + visuals.expansion,
+                fill: visuals.bg_fill,
+                stroke: visuals.fg_stroke,
             });
-
-            <span class="kw">let</span> <span class="ident">center</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">marker_center</span>(<span class="ident">position_1d</span>, <span class="kw-2">&amp;</span><span class="ident">rail_rect</span>);
-
-            <span class="ident">ui</span>.<span class="ident">painter</span>().<span class="ident">add</span>(<span class="ident">epaint::CircleShape</span> {
-                <span class="ident">center</span>,
-                <span class="ident">radius</span>: <span class="self">self</span>.<span class="ident">handle_radius</span>(<span class="ident">rect</span>) <span class="op">+</span> <span class="ident">visuals</span>.<span class="ident">expansion</span>,
-                <span class="ident">fill</span>: <span class="ident">visuals</span>.<span class="ident">bg_fill</span>,
-                <span class="ident">stroke</span>: <span class="ident">visuals</span>.<span class="ident">fg_stroke</span>,
-            });
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">marker_center</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">position_1d</span>: <span class="ident">f32</span>, <span class="ident">rail_rect</span>: <span class="kw-2">&amp;</span><span class="ident">Rect</span>) -&gt; <span class="ident">Pos2</span> {
-        <span class="kw">match</span> <span class="self">self</span>.<span class="ident">orientation</span> {
-            <span class="ident">SliderOrientation::Horizontal</span> =&gt; <span class="ident">pos2</span>(<span class="ident">position_1d</span>, <span class="ident">rail_rect</span>.<span class="ident">center</span>().<span class="ident">y</span>),
-            <span class="ident">SliderOrientation::Vertical</span> =&gt; <span class="ident">pos2</span>(<span class="ident">rail_rect</span>.<span class="ident">center</span>().<span class="ident">x</span>, <span class="ident">position_1d</span>),
+    <span class="kw">fn </span>marker_center(<span class="kw-2">&amp;</span><span class="self">self</span>, position_1d: f32, rail_rect: <span class="kw-2">&amp;</span>Rect) -&gt; Pos2 {
+        <span class="kw">match </span><span class="self">self</span>.orientation {
+            SliderOrientation::Horizontal =&gt; pos2(position_1d, rail_rect.center().y),
+            SliderOrientation::Vertical =&gt; pos2(rail_rect.center().x, position_1d),
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">pointer_position</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">pointer_position_2d</span>: <span class="ident">Pos2</span>) -&gt; <span class="ident">f32</span> {
-        <span class="kw">match</span> <span class="self">self</span>.<span class="ident">orientation</span> {
-            <span class="ident">SliderOrientation::Horizontal</span> =&gt; <span class="ident">pointer_position_2d</span>.<span class="ident">x</span>,
-            <span class="ident">SliderOrientation::Vertical</span> =&gt; <span class="ident">pointer_position_2d</span>.<span class="ident">y</span>,
+    <span class="kw">fn </span>pointer_position(<span class="kw-2">&amp;</span><span class="self">self</span>, pointer_position_2d: Pos2) -&gt; f32 {
+        <span class="kw">match </span><span class="self">self</span>.orientation {
+            SliderOrientation::Horizontal =&gt; pointer_position_2d.x,
+            SliderOrientation::Vertical =&gt; pointer_position_2d.y,
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">position_range</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">rect</span>: <span class="kw-2">&amp;</span><span class="ident">Rect</span>) -&gt; <span class="ident">RangeInclusive</span><span class="op">&lt;</span><span class="ident">f32</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="ident">handle_radius</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">handle_radius</span>(<span class="ident">rect</span>);
-        <span class="kw">match</span> <span class="self">self</span>.<span class="ident">orientation</span> {
-            <span class="ident">SliderOrientation::Horizontal</span> =&gt; {
-                (<span class="ident">rect</span>.<span class="ident">left</span>() <span class="op">+</span> <span class="ident">handle_radius</span>)..<span class="op">=</span>(<span class="ident">rect</span>.<span class="ident">right</span>() <span class="op">-</span> <span class="ident">handle_radius</span>)
+    <span class="kw">fn </span>position_range(<span class="kw-2">&amp;</span><span class="self">self</span>, rect: <span class="kw-2">&amp;</span>Rect) -&gt; RangeInclusive&lt;f32&gt; {
+        <span class="kw">let </span>handle_radius = <span class="self">self</span>.handle_radius(rect);
+        <span class="kw">match </span><span class="self">self</span>.orientation {
+            SliderOrientation::Horizontal =&gt; {
+                (rect.left() + handle_radius)..=(rect.right() - handle_radius)
             }
-            <span class="ident">SliderOrientation::Vertical</span> =&gt; {
-                (<span class="ident">rect</span>.<span class="ident">bottom</span>() <span class="op">-</span> <span class="ident">handle_radius</span>)..<span class="op">=</span>(<span class="ident">rect</span>.<span class="ident">top</span>() <span class="op">+</span> <span class="ident">handle_radius</span>)
+            SliderOrientation::Vertical =&gt; {
+                (rect.bottom() - handle_radius)..=(rect.top() + handle_radius)
             }
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">rail_rect</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">rect</span>: <span class="kw-2">&amp;</span><span class="ident">Rect</span>, <span class="ident">radius</span>: <span class="ident">f32</span>) -&gt; <span class="ident">Rect</span> {
-        <span class="kw">match</span> <span class="self">self</span>.<span class="ident">orientation</span> {
-            <span class="ident">SliderOrientation::Horizontal</span> =&gt; <span class="ident">Rect::from_min_max</span>(
-                <span class="ident">pos2</span>(<span class="ident">rect</span>.<span class="ident">left</span>(), <span class="ident">rect</span>.<span class="ident">center</span>().<span class="ident">y</span> <span class="op">-</span> <span class="ident">radius</span>),
-                <span class="ident">pos2</span>(<span class="ident">rect</span>.<span class="ident">right</span>(), <span class="ident">rect</span>.<span class="ident">center</span>().<span class="ident">y</span> <span class="op">+</span> <span class="ident">radius</span>),
+    <span class="kw">fn </span>rail_rect(<span class="kw-2">&amp;</span><span class="self">self</span>, rect: <span class="kw-2">&amp;</span>Rect, radius: f32) -&gt; Rect {
+        <span class="kw">match </span><span class="self">self</span>.orientation {
+            SliderOrientation::Horizontal =&gt; Rect::from_min_max(
+                pos2(rect.left(), rect.center().y - radius),
+                pos2(rect.right(), rect.center().y + radius),
             ),
-            <span class="ident">SliderOrientation::Vertical</span> =&gt; <span class="ident">Rect::from_min_max</span>(
-                <span class="ident">pos2</span>(<span class="ident">rect</span>.<span class="ident">center</span>().<span class="ident">x</span> <span class="op">-</span> <span class="ident">radius</span>, <span class="ident">rect</span>.<span class="ident">top</span>()),
-                <span class="ident">pos2</span>(<span class="ident">rect</span>.<span class="ident">center</span>().<span class="ident">x</span> <span class="op">+</span> <span class="ident">radius</span>, <span class="ident">rect</span>.<span class="ident">bottom</span>()),
+            SliderOrientation::Vertical =&gt; Rect::from_min_max(
+                pos2(rect.center().x - radius, rect.top()),
+                pos2(rect.center().x + radius, rect.bottom()),
             ),
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">handle_radius</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">rect</span>: <span class="kw-2">&amp;</span><span class="ident">Rect</span>) -&gt; <span class="ident">f32</span> {
-        <span class="kw">let</span> <span class="ident">limit</span> <span class="op">=</span> <span class="kw">match</span> <span class="self">self</span>.<span class="ident">orientation</span> {
-            <span class="ident">SliderOrientation::Horizontal</span> =&gt; <span class="ident">rect</span>.<span class="ident">height</span>(),
-            <span class="ident">SliderOrientation::Vertical</span> =&gt; <span class="ident">rect</span>.<span class="ident">width</span>(),
+    <span class="kw">fn </span>handle_radius(<span class="kw-2">&amp;</span><span class="self">self</span>, rect: <span class="kw-2">&amp;</span>Rect) -&gt; f32 {
+        <span class="kw">let </span>limit = <span class="kw">match </span><span class="self">self</span>.orientation {
+            SliderOrientation::Horizontal =&gt; rect.height(),
+            SliderOrientation::Vertical =&gt; rect.width(),
         };
-        <span class="ident">limit</span> <span class="op">/</span> <span class="number">2.5</span>
-    }
+        limit / <span class="number">2.5
+    </span>}
 
-    <span class="kw">fn</span> <span class="ident">rail_radius_limit</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">rect</span>: <span class="kw-2">&amp;</span><span class="ident">Rect</span>) -&gt; <span class="ident">f32</span> {
-        <span class="kw">match</span> <span class="self">self</span>.<span class="ident">orientation</span> {
-            <span class="ident">SliderOrientation::Horizontal</span> =&gt; (<span class="ident">rect</span>.<span class="ident">height</span>() <span class="op">/</span> <span class="number">4.0</span>).<span class="ident">at_least</span>(<span class="number">2.0</span>),
-            <span class="ident">SliderOrientation::Vertical</span> =&gt; (<span class="ident">rect</span>.<span class="ident">width</span>() <span class="op">/</span> <span class="number">4.0</span>).<span class="ident">at_least</span>(<span class="number">2.0</span>),
+    <span class="kw">fn </span>rail_radius_limit(<span class="kw-2">&amp;</span><span class="self">self</span>, rect: <span class="kw-2">&amp;</span>Rect) -&gt; f32 {
+        <span class="kw">match </span><span class="self">self</span>.orientation {
+            SliderOrientation::Horizontal =&gt; (rect.height() / <span class="number">4.0</span>).at_least(<span class="number">2.0</span>),
+            SliderOrientation::Vertical =&gt; (rect.width() / <span class="number">4.0</span>).at_least(<span class="number">2.0</span>),
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">label_ui</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">ui</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Ui</span>) {
-        <span class="kw">if</span> <span class="op">!</span><span class="self">self</span>.<span class="ident">text</span>.<span class="ident">is_empty</span>() {
-            <span class="kw">let</span> <span class="ident">text_color</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">text_color</span>.<span class="ident">unwrap_or_else</span>(<span class="op">|</span><span class="op">|</span> <span class="ident">ui</span>.<span class="ident">visuals</span>().<span class="ident">text_color</span>());
-            <span class="kw">let</span> <span class="ident">text</span> <span class="op">=</span> <span class="ident">RichText::new</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">text</span>).<span class="ident">color</span>(<span class="ident">text_color</span>);
-            <span class="ident">ui</span>.<span class="ident">add</span>(<span class="ident">Label::new</span>(<span class="ident">text</span>).<span class="ident">wrap</span>(<span class="bool-val">false</span>));
+    <span class="kw">fn </span>label_ui(<span class="kw-2">&amp;mut </span><span class="self">self</span>, ui: <span class="kw-2">&amp;mut </span>Ui) {
+        <span class="kw">if </span>!<span class="self">self</span>.text.is_empty() {
+            <span class="kw">let </span>text_color = <span class="self">self</span>.text_color.unwrap_or_else(|| ui.visuals().text_color());
+            <span class="kw">let </span>text = RichText::new(<span class="kw-2">&amp;</span><span class="self">self</span>.text).color(text_color);
+            ui.add(Label::new(text).wrap(<span class="bool-val">false</span>));
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">value_ui</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">ui</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Ui</span>, <span class="ident">position_range</span>: <span class="ident">RangeInclusive</span><span class="op">&lt;</span><span class="ident">f32</span><span class="op">&gt;</span>) {
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">value</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">get_value</span>();
-        <span class="ident">ui</span>.<span class="ident">add</span>(
-            <span class="ident">DragValue::new</span>(<span class="kw-2">&amp;mut</span> <span class="ident">value</span>)
-                .<span class="ident">speed</span>(<span class="self">self</span>.<span class="ident">current_gradient</span>(<span class="kw-2">&amp;</span><span class="ident">position_range</span>))
-                .<span class="ident">clamp_range</span>(<span class="self">self</span>.<span class="ident">clamp_range</span>())
-                .<span class="ident">min_decimals</span>(<span class="self">self</span>.<span class="ident">min_decimals</span>)
-                .<span class="ident">max_decimals_opt</span>(<span class="self">self</span>.<span class="ident">max_decimals</span>)
-                .<span class="ident">suffix</span>(<span class="self">self</span>.<span class="ident">suffix</span>.<span class="ident">clone</span>())
-                .<span class="ident">prefix</span>(<span class="self">self</span>.<span class="ident">prefix</span>.<span class="ident">clone</span>()),
+    <span class="kw">fn </span>value_ui(<span class="kw-2">&amp;mut </span><span class="self">self</span>, ui: <span class="kw-2">&amp;mut </span>Ui, position_range: RangeInclusive&lt;f32&gt;) {
+        <span class="kw">let </span><span class="kw-2">mut </span>value = <span class="self">self</span>.get_value();
+        ui.add(
+            DragValue::new(<span class="kw-2">&amp;mut </span>value)
+                .speed(<span class="self">self</span>.current_gradient(<span class="kw-2">&amp;</span>position_range))
+                .clamp_range(<span class="self">self</span>.clamp_range())
+                .min_decimals(<span class="self">self</span>.min_decimals)
+                .max_decimals_opt(<span class="self">self</span>.max_decimals)
+                .suffix(<span class="self">self</span>.suffix.clone())
+                .prefix(<span class="self">self</span>.prefix.clone()),
         );
-        <span class="kw">if</span> <span class="ident">value</span> <span class="op">!</span><span class="op">=</span> <span class="self">self</span>.<span class="ident">get_value</span>() {
-            <span class="self">self</span>.<span class="ident">set_value</span>(<span class="ident">value</span>);
+        <span class="kw">if </span>value != <span class="self">self</span>.get_value() {
+            <span class="self">self</span>.set_value(value);
         }
     }
 
-    <span class="doccomment">/// delta(value) / delta(points)</span>
-    <span class="kw">fn</span> <span class="ident">current_gradient</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">position_range</span>: <span class="kw-2">&amp;</span><span class="ident">RangeInclusive</span><span class="op">&lt;</span><span class="ident">f32</span><span class="op">&gt;</span>) -&gt; <span class="ident">f64</span> {
-        <span class="comment">// TODO: handle clamping</span>
-        <span class="kw">let</span> <span class="ident">value</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">get_value</span>();
-        <span class="kw">let</span> <span class="ident">value_from_pos</span> <span class="op">=</span>
-            <span class="op">|</span><span class="ident">position</span>: <span class="ident">f32</span><span class="op">|</span> <span class="self">self</span>.<span class="ident">value_from_position</span>(<span class="ident">position</span>, <span class="ident">position_range</span>.<span class="ident">clone</span>());
-        <span class="kw">let</span> <span class="ident">pos_from_value</span> <span class="op">=</span> <span class="op">|</span><span class="ident">value</span>: <span class="ident">f64</span><span class="op">|</span> <span class="self">self</span>.<span class="ident">position_from_value</span>(<span class="ident">value</span>, <span class="ident">position_range</span>.<span class="ident">clone</span>());
-        <span class="kw">let</span> <span class="ident">left_value</span> <span class="op">=</span> <span class="ident">value_from_pos</span>(<span class="ident">pos_from_value</span>(<span class="ident">value</span>) <span class="op">-</span> <span class="number">0.5</span>);
-        <span class="kw">let</span> <span class="ident">right_value</span> <span class="op">=</span> <span class="ident">value_from_pos</span>(<span class="ident">pos_from_value</span>(<span class="ident">value</span>) <span class="op">+</span> <span class="number">0.5</span>);
-        <span class="ident">right_value</span> <span class="op">-</span> <span class="ident">left_value</span>
+    <span class="doccomment">/// delta(value) / delta(points)
+    </span><span class="kw">fn </span>current_gradient(<span class="kw-2">&amp;mut </span><span class="self">self</span>, position_range: <span class="kw-2">&amp;</span>RangeInclusive&lt;f32&gt;) -&gt; f64 {
+        <span class="comment">// TODO: handle clamping
+        </span><span class="kw">let </span>value = <span class="self">self</span>.get_value();
+        <span class="kw">let </span>value_from_pos =
+            |position: f32| <span class="self">self</span>.value_from_position(position, position_range.clone());
+        <span class="kw">let </span>pos_from_value = |value: f64| <span class="self">self</span>.position_from_value(value, position_range.clone());
+        <span class="kw">let </span>left_value = value_from_pos(pos_from_value(value) - <span class="number">0.5</span>);
+        <span class="kw">let </span>right_value = value_from_pos(pos_from_value(value) + <span class="number">0.5</span>);
+        right_value - left_value
     }
 
-    <span class="kw">fn</span> <span class="ident">add_contents</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">ui</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Ui</span>) -&gt; <span class="ident">Response</span> {
-        <span class="kw">let</span> <span class="ident">text_style</span> <span class="op">=</span> <span class="ident">TextStyle::Button</span>;
-        <span class="kw">let</span> <span class="ident">perpendicular</span> <span class="op">=</span> <span class="ident">ui</span>
-            .<span class="ident">fonts</span>()
-            .<span class="ident">row_height</span>(<span class="ident">text_style</span>)
-            .<span class="ident">at_least</span>(<span class="ident">ui</span>.<span class="ident">spacing</span>().<span class="ident">interact_size</span>.<span class="ident">y</span>);
-        <span class="kw">let</span> <span class="ident">slider_response</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">allocate_slider_space</span>(<span class="ident">ui</span>, <span class="ident">perpendicular</span>);
-        <span class="self">self</span>.<span class="ident">slider_ui</span>(<span class="ident">ui</span>, <span class="kw-2">&amp;</span><span class="ident">slider_response</span>);
+    <span class="kw">fn </span>add_contents(<span class="kw-2">&amp;mut </span><span class="self">self</span>, ui: <span class="kw-2">&amp;mut </span>Ui) -&gt; Response {
+        <span class="kw">let </span>text_style = TextStyle::Button;
+        <span class="kw">let </span>perpendicular = ui
+            .fonts()
+            .row_height(text_style)
+            .at_least(ui.spacing().interact_size.y);
+        <span class="kw">let </span>slider_response = <span class="self">self</span>.allocate_slider_space(ui, perpendicular);
+        <span class="self">self</span>.slider_ui(ui, <span class="kw-2">&amp;</span>slider_response);
 
-        <span class="kw">if</span> <span class="self">self</span>.<span class="ident">show_value</span> {
-            <span class="kw">let</span> <span class="ident">position_range</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">position_range</span>(<span class="kw-2">&amp;</span><span class="ident">slider_response</span>.<span class="ident">rect</span>);
-            <span class="self">self</span>.<span class="ident">value_ui</span>(<span class="ident">ui</span>, <span class="ident">position_range</span>);
+        <span class="kw">if </span><span class="self">self</span>.show_value {
+            <span class="kw">let </span>position_range = <span class="self">self</span>.position_range(<span class="kw-2">&amp;</span>slider_response.rect);
+            <span class="self">self</span>.value_ui(ui, position_range);
         }
 
-        <span class="kw">if</span> <span class="op">!</span><span class="self">self</span>.<span class="ident">text</span>.<span class="ident">is_empty</span>() {
-            <span class="self">self</span>.<span class="ident">label_ui</span>(<span class="ident">ui</span>);
+        <span class="kw">if </span>!<span class="self">self</span>.text.is_empty() {
+            <span class="self">self</span>.label_ui(ui);
         }
-        <span class="ident">slider_response</span>
+        slider_response
     }
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">Widget</span> <span class="kw">for</span> <span class="ident">Slider</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="kw">fn</span> <span class="ident">ui</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">ui</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Ui</span>) -&gt; <span class="ident">Response</span> {
-        <span class="kw">let</span> <span class="ident">old_value</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">get_value</span>();
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; Widget <span class="kw">for </span>Slider&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="kw">fn </span>ui(<span class="kw-2">mut </span><span class="self">self</span>, ui: <span class="kw-2">&amp;mut </span>Ui) -&gt; Response {
+        <span class="kw">let </span>old_value = <span class="self">self</span>.get_value();
 
-        <span class="kw">let</span> <span class="ident">inner_response</span> <span class="op">=</span> <span class="kw">match</span> <span class="self">self</span>.<span class="ident">orientation</span> {
-            <span class="ident">SliderOrientation::Horizontal</span> =&gt; <span class="ident">ui</span>.<span class="ident">horizontal</span>(<span class="op">|</span><span class="ident">ui</span><span class="op">|</span> <span class="self">self</span>.<span class="ident">add_contents</span>(<span class="ident">ui</span>)),
-            <span class="ident">SliderOrientation::Vertical</span> =&gt; <span class="ident">ui</span>.<span class="ident">vertical</span>(<span class="op">|</span><span class="ident">ui</span><span class="op">|</span> <span class="self">self</span>.<span class="ident">add_contents</span>(<span class="ident">ui</span>)),
+        <span class="kw">let </span>inner_response = <span class="kw">match </span><span class="self">self</span>.orientation {
+            SliderOrientation::Horizontal =&gt; ui.horizontal(|ui| <span class="self">self</span>.add_contents(ui)),
+            SliderOrientation::Vertical =&gt; ui.vertical(|ui| <span class="self">self</span>.add_contents(ui)),
         };
 
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">response</span> <span class="op">=</span> <span class="ident">inner_response</span>.<span class="ident">inner</span> <span class="op">|</span> <span class="ident">inner_response</span>.<span class="ident">response</span>;
-        <span class="ident">response</span>.<span class="ident">changed</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">get_value</span>() <span class="op">!</span><span class="op">=</span> <span class="ident">old_value</span>;
-        <span class="ident">response</span>
+        <span class="kw">let </span><span class="kw-2">mut </span>response = inner_response.inner | inner_response.response;
+        response.changed = <span class="self">self</span>.get_value() != old_value;
+        response
     }
 }
 
-<span class="comment">// ----------------------------------------------------------------------------</span>
-<span class="comment">// Helpers for converting slider range to/from normalized [0-1] range.</span>
-<span class="comment">// Always clamps.</span>
-<span class="comment">// Logarithmic sliders are allowed to include zero and infinity,</span>
-<span class="comment">// even though mathematically it doesn&#39;t make sense.</span>
+<span class="comment">// ----------------------------------------------------------------------------
+// Helpers for converting slider range to/from normalized [0-1] range.
+// Always clamps.
+// Logarithmic sliders are allowed to include zero and infinity,
+// even though mathematically it doesn&#39;t make sense.
 
-<span class="kw">use</span> <span class="ident">std::f64::INFINITY</span>;
+</span><span class="kw">use </span>std::f64::INFINITY;
 
-<span class="doccomment">/// When the user asks for an infinitely large range (e.g. logarithmic from zero),</span>
-<span class="doccomment">/// give a scale that this many orders of magnitude in size.</span>
-<span class="kw">const</span> <span class="ident">INF_RANGE_MAGNITUDE</span>: <span class="ident">f64</span> <span class="op">=</span> <span class="number">10.0</span>;
+<span class="doccomment">/// When the user asks for an infinitely large range (e.g. logarithmic from zero),
+/// give a scale that this many orders of magnitude in size.
+</span><span class="kw">const </span>INF_RANGE_MAGNITUDE: f64 = <span class="number">10.0</span>;
 
-<span class="kw">fn</span> <span class="ident">value_from_normalized</span>(<span class="ident">normalized</span>: <span class="ident">f64</span>, <span class="ident">range</span>: <span class="ident">RangeInclusive</span><span class="op">&lt;</span><span class="ident">f64</span><span class="op">&gt;</span>, <span class="ident">spec</span>: <span class="kw-2">&amp;</span><span class="ident">SliderSpec</span>) -&gt; <span class="ident">f64</span> {
-    <span class="kw">let</span> (<span class="ident">min</span>, <span class="ident">max</span>) <span class="op">=</span> (<span class="kw-2">*</span><span class="ident">range</span>.<span class="ident">start</span>(), <span class="kw-2">*</span><span class="ident">range</span>.<span class="ident">end</span>());
+<span class="kw">fn </span>value_from_normalized(normalized: f64, range: RangeInclusive&lt;f64&gt;, spec: <span class="kw-2">&amp;</span>SliderSpec) -&gt; f64 {
+    <span class="kw">let </span>(min, max) = (<span class="kw-2">*</span>range.start(), <span class="kw-2">*</span>range.end());
 
-    <span class="kw">if</span> <span class="ident">min</span>.<span class="ident">is_nan</span>() <span class="op">|</span><span class="op">|</span> <span class="ident">max</span>.<span class="ident">is_nan</span>() {
-        <span class="ident">f64::NAN</span>
-    } <span class="kw">else</span> <span class="kw">if</span> <span class="ident">min</span> <span class="op">==</span> <span class="ident">max</span> {
-        <span class="ident">min</span>
-    } <span class="kw">else</span> <span class="kw">if</span> <span class="ident">min</span> <span class="op">&gt;</span> <span class="ident">max</span> {
-        <span class="ident">value_from_normalized</span>(<span class="number">1.0</span> <span class="op">-</span> <span class="ident">normalized</span>, <span class="ident">max</span>..<span class="op">=</span><span class="ident">min</span>, <span class="ident">spec</span>)
-    } <span class="kw">else</span> <span class="kw">if</span> <span class="ident">normalized</span> <span class="op">&lt;</span><span class="op">=</span> <span class="number">0.0</span> {
-        <span class="ident">min</span>
-    } <span class="kw">else</span> <span class="kw">if</span> <span class="ident">normalized</span> <span class="op">&gt;</span><span class="op">=</span> <span class="number">1.0</span> {
-        <span class="ident">max</span>
-    } <span class="kw">else</span> <span class="kw">if</span> <span class="ident">spec</span>.<span class="ident">logarithmic</span> {
-        <span class="kw">if</span> <span class="ident">max</span> <span class="op">&lt;</span><span class="op">=</span> <span class="number">0.0</span> {
-            <span class="comment">// non-positive range</span>
-            <span class="op">-</span><span class="ident">value_from_normalized</span>(<span class="ident">normalized</span>, <span class="op">-</span><span class="ident">min</span>..<span class="op">=</span><span class="op">-</span><span class="ident">max</span>, <span class="ident">spec</span>)
-        } <span class="kw">else</span> <span class="kw">if</span> <span class="number">0.0</span> <span class="op">&lt;</span><span class="op">=</span> <span class="ident">min</span> {
-            <span class="kw">let</span> (<span class="ident">min_log</span>, <span class="ident">max_log</span>) <span class="op">=</span> <span class="ident">range_log10</span>(<span class="ident">min</span>, <span class="ident">max</span>, <span class="ident">spec</span>);
-            <span class="kw">let</span> <span class="ident">log</span> <span class="op">=</span> <span class="ident">lerp</span>(<span class="ident">min_log</span>..<span class="op">=</span><span class="ident">max_log</span>, <span class="ident">normalized</span>);
-            <span class="number">10.0_f64</span>.<span class="ident">powf</span>(<span class="ident">log</span>)
-        } <span class="kw">else</span> {
-            <span class="macro">assert!</span>(<span class="ident">min</span> <span class="op">&lt;</span> <span class="number">0.0</span> <span class="op">&amp;&amp;</span> <span class="number">0.0</span> <span class="op">&lt;</span> <span class="ident">max</span>);
-            <span class="kw">let</span> <span class="ident">zero_cutoff</span> <span class="op">=</span> <span class="ident">logaritmic_zero_cutoff</span>(<span class="ident">min</span>, <span class="ident">max</span>);
-            <span class="kw">if</span> <span class="ident">normalized</span> <span class="op">&lt;</span> <span class="ident">zero_cutoff</span> {
-                <span class="comment">// negative</span>
-                <span class="ident">value_from_normalized</span>(
-                    <span class="ident">remap</span>(<span class="ident">normalized</span>, <span class="number">0.0</span>..<span class="op">=</span><span class="ident">zero_cutoff</span>, <span class="number">0.0</span>..<span class="op">=</span><span class="number">1.0</span>),
-                    <span class="ident">min</span>..<span class="op">=</span><span class="number">0.0</span>,
-                    <span class="ident">spec</span>,
+    <span class="kw">if </span>min.is_nan() || max.is_nan() {
+        f64::NAN
+    } <span class="kw">else if </span>min == max {
+        min
+    } <span class="kw">else if </span>min &gt; max {
+        value_from_normalized(<span class="number">1.0 </span>- normalized, max..=min, spec)
+    } <span class="kw">else if </span>normalized &lt;= <span class="number">0.0 </span>{
+        min
+    } <span class="kw">else if </span>normalized &gt;= <span class="number">1.0 </span>{
+        max
+    } <span class="kw">else if </span>spec.logarithmic {
+        <span class="kw">if </span>max &lt;= <span class="number">0.0 </span>{
+            <span class="comment">// non-positive range
+            </span>-value_from_normalized(normalized, -min..=-max, spec)
+        } <span class="kw">else if </span><span class="number">0.0 </span>&lt;= min {
+            <span class="kw">let </span>(min_log, max_log) = range_log10(min, max, spec);
+            <span class="kw">let </span>log = lerp(min_log..=max_log, normalized);
+            <span class="number">10.0_f64</span>.powf(log)
+        } <span class="kw">else </span>{
+            <span class="macro">assert!</span>(min &lt; <span class="number">0.0 </span>&amp;&amp; <span class="number">0.0 </span>&lt; max);
+            <span class="kw">let </span>zero_cutoff = logaritmic_zero_cutoff(min, max);
+            <span class="kw">if </span>normalized &lt; zero_cutoff {
+                <span class="comment">// negative
+                </span>value_from_normalized(
+                    remap(normalized, <span class="number">0.0</span>..=zero_cutoff, <span class="number">0.0</span>..=<span class="number">1.0</span>),
+                    min..=<span class="number">0.0</span>,
+                    spec,
                 )
-            } <span class="kw">else</span> {
-                <span class="comment">// positive</span>
-                <span class="ident">value_from_normalized</span>(
-                    <span class="ident">remap</span>(<span class="ident">normalized</span>, <span class="ident">zero_cutoff</span>..<span class="op">=</span><span class="number">1.0</span>, <span class="number">0.0</span>..<span class="op">=</span><span class="number">1.0</span>),
-                    <span class="number">0.0</span>..<span class="op">=</span><span class="ident">max</span>,
-                    <span class="ident">spec</span>,
+            } <span class="kw">else </span>{
+                <span class="comment">// positive
+                </span>value_from_normalized(
+                    remap(normalized, zero_cutoff..=<span class="number">1.0</span>, <span class="number">0.0</span>..=<span class="number">1.0</span>),
+                    <span class="number">0.0</span>..=max,
+                    spec,
                 )
             }
         }
-    } <span class="kw">else</span> {
+    } <span class="kw">else </span>{
         <span class="macro">crate::egui_assert!</span>(
-            <span class="ident">min</span>.<span class="ident">is_finite</span>() <span class="op">&amp;&amp;</span> <span class="ident">max</span>.<span class="ident">is_finite</span>(),
-            <span class="string">&quot;You should use a logarithmic range&quot;</span>
-        );
-        <span class="ident">lerp</span>(<span class="ident">range</span>, <span class="ident">normalized</span>.<span class="ident">clamp</span>(<span class="number">0.0</span>, <span class="number">1.0</span>))
+            min.is_finite() &amp;&amp; max.is_finite(),
+            <span class="string">&quot;You should use a logarithmic range&quot;
+        </span>);
+        lerp(range, normalized.clamp(<span class="number">0.0</span>, <span class="number">1.0</span>))
     }
 }
 
-<span class="kw">fn</span> <span class="ident">normalized_from_value</span>(<span class="ident">value</span>: <span class="ident">f64</span>, <span class="ident">range</span>: <span class="ident">RangeInclusive</span><span class="op">&lt;</span><span class="ident">f64</span><span class="op">&gt;</span>, <span class="ident">spec</span>: <span class="kw-2">&amp;</span><span class="ident">SliderSpec</span>) -&gt; <span class="ident">f64</span> {
-    <span class="kw">let</span> (<span class="ident">min</span>, <span class="ident">max</span>) <span class="op">=</span> (<span class="kw-2">*</span><span class="ident">range</span>.<span class="ident">start</span>(), <span class="kw-2">*</span><span class="ident">range</span>.<span class="ident">end</span>());
+<span class="kw">fn </span>normalized_from_value(value: f64, range: RangeInclusive&lt;f64&gt;, spec: <span class="kw-2">&amp;</span>SliderSpec) -&gt; f64 {
+    <span class="kw">let </span>(min, max) = (<span class="kw-2">*</span>range.start(), <span class="kw-2">*</span>range.end());
 
-    <span class="kw">if</span> <span class="ident">min</span>.<span class="ident">is_nan</span>() <span class="op">|</span><span class="op">|</span> <span class="ident">max</span>.<span class="ident">is_nan</span>() {
-        <span class="ident">f64::NAN</span>
-    } <span class="kw">else</span> <span class="kw">if</span> <span class="ident">min</span> <span class="op">==</span> <span class="ident">max</span> {
-        <span class="number">0.5</span> <span class="comment">// empty range, show center of slider</span>
-    } <span class="kw">else</span> <span class="kw">if</span> <span class="ident">min</span> <span class="op">&gt;</span> <span class="ident">max</span> {
-        <span class="number">1.0</span> <span class="op">-</span> <span class="ident">normalized_from_value</span>(<span class="ident">value</span>, <span class="ident">max</span>..<span class="op">=</span><span class="ident">min</span>, <span class="ident">spec</span>)
-    } <span class="kw">else</span> <span class="kw">if</span> <span class="ident">value</span> <span class="op">&lt;</span><span class="op">=</span> <span class="ident">min</span> {
-        <span class="number">0.0</span>
-    } <span class="kw">else</span> <span class="kw">if</span> <span class="ident">value</span> <span class="op">&gt;</span><span class="op">=</span> <span class="ident">max</span> {
-        <span class="number">1.0</span>
-    } <span class="kw">else</span> <span class="kw">if</span> <span class="ident">spec</span>.<span class="ident">logarithmic</span> {
-        <span class="kw">if</span> <span class="ident">max</span> <span class="op">&lt;</span><span class="op">=</span> <span class="number">0.0</span> {
-            <span class="comment">// non-positive range</span>
-            <span class="ident">normalized_from_value</span>(<span class="op">-</span><span class="ident">value</span>, <span class="op">-</span><span class="ident">min</span>..<span class="op">=</span><span class="op">-</span><span class="ident">max</span>, <span class="ident">spec</span>)
-        } <span class="kw">else</span> <span class="kw">if</span> <span class="number">0.0</span> <span class="op">&lt;</span><span class="op">=</span> <span class="ident">min</span> {
-            <span class="kw">let</span> (<span class="ident">min_log</span>, <span class="ident">max_log</span>) <span class="op">=</span> <span class="ident">range_log10</span>(<span class="ident">min</span>, <span class="ident">max</span>, <span class="ident">spec</span>);
-            <span class="kw">let</span> <span class="ident">value_log</span> <span class="op">=</span> <span class="ident">value</span>.<span class="ident">log10</span>();
-            <span class="ident">remap_clamp</span>(<span class="ident">value_log</span>, <span class="ident">min_log</span>..<span class="op">=</span><span class="ident">max_log</span>, <span class="number">0.0</span>..<span class="op">=</span><span class="number">1.0</span>)
-        } <span class="kw">else</span> {
-            <span class="macro">assert!</span>(<span class="ident">min</span> <span class="op">&lt;</span> <span class="number">0.0</span> <span class="op">&amp;&amp;</span> <span class="number">0.0</span> <span class="op">&lt;</span> <span class="ident">max</span>);
-            <span class="kw">let</span> <span class="ident">zero_cutoff</span> <span class="op">=</span> <span class="ident">logaritmic_zero_cutoff</span>(<span class="ident">min</span>, <span class="ident">max</span>);
-            <span class="kw">if</span> <span class="ident">value</span> <span class="op">&lt;</span> <span class="number">0.0</span> {
-                <span class="comment">// negative</span>
-                <span class="ident">remap</span>(
-                    <span class="ident">normalized_from_value</span>(<span class="ident">value</span>, <span class="ident">min</span>..<span class="op">=</span><span class="number">0.0</span>, <span class="ident">spec</span>),
-                    <span class="number">0.0</span>..<span class="op">=</span><span class="number">1.0</span>,
-                    <span class="number">0.0</span>..<span class="op">=</span><span class="ident">zero_cutoff</span>,
+    <span class="kw">if </span>min.is_nan() || max.is_nan() {
+        f64::NAN
+    } <span class="kw">else if </span>min == max {
+        <span class="number">0.5 </span><span class="comment">// empty range, show center of slider
+    </span>} <span class="kw">else if </span>min &gt; max {
+        <span class="number">1.0 </span>- normalized_from_value(value, max..=min, spec)
+    } <span class="kw">else if </span>value &lt;= min {
+        <span class="number">0.0
+    </span>} <span class="kw">else if </span>value &gt;= max {
+        <span class="number">1.0
+    </span>} <span class="kw">else if </span>spec.logarithmic {
+        <span class="kw">if </span>max &lt;= <span class="number">0.0 </span>{
+            <span class="comment">// non-positive range
+            </span>normalized_from_value(-value, -min..=-max, spec)
+        } <span class="kw">else if </span><span class="number">0.0 </span>&lt;= min {
+            <span class="kw">let </span>(min_log, max_log) = range_log10(min, max, spec);
+            <span class="kw">let </span>value_log = value.log10();
+            remap_clamp(value_log, min_log..=max_log, <span class="number">0.0</span>..=<span class="number">1.0</span>)
+        } <span class="kw">else </span>{
+            <span class="macro">assert!</span>(min &lt; <span class="number">0.0 </span>&amp;&amp; <span class="number">0.0 </span>&lt; max);
+            <span class="kw">let </span>zero_cutoff = logaritmic_zero_cutoff(min, max);
+            <span class="kw">if </span>value &lt; <span class="number">0.0 </span>{
+                <span class="comment">// negative
+                </span>remap(
+                    normalized_from_value(value, min..=<span class="number">0.0</span>, spec),
+                    <span class="number">0.0</span>..=<span class="number">1.0</span>,
+                    <span class="number">0.0</span>..=zero_cutoff,
                 )
-            } <span class="kw">else</span> {
-                <span class="comment">// positive side</span>
-                <span class="ident">remap</span>(
-                    <span class="ident">normalized_from_value</span>(<span class="ident">value</span>, <span class="number">0.0</span>..<span class="op">=</span><span class="ident">max</span>, <span class="ident">spec</span>),
-                    <span class="number">0.0</span>..<span class="op">=</span><span class="number">1.0</span>,
-                    <span class="ident">zero_cutoff</span>..<span class="op">=</span><span class="number">1.0</span>,
+            } <span class="kw">else </span>{
+                <span class="comment">// positive side
+                </span>remap(
+                    normalized_from_value(value, <span class="number">0.0</span>..=max, spec),
+                    <span class="number">0.0</span>..=<span class="number">1.0</span>,
+                    zero_cutoff..=<span class="number">1.0</span>,
                 )
             }
         }
-    } <span class="kw">else</span> {
+    } <span class="kw">else </span>{
         <span class="macro">crate::egui_assert!</span>(
-            <span class="ident">min</span>.<span class="ident">is_finite</span>() <span class="op">&amp;&amp;</span> <span class="ident">max</span>.<span class="ident">is_finite</span>(),
-            <span class="string">&quot;You should use a logarithmic range&quot;</span>
-        );
-        <span class="ident">remap_clamp</span>(<span class="ident">value</span>, <span class="ident">range</span>, <span class="number">0.0</span>..<span class="op">=</span><span class="number">1.0</span>)
+            min.is_finite() &amp;&amp; max.is_finite(),
+            <span class="string">&quot;You should use a logarithmic range&quot;
+        </span>);
+        remap_clamp(value, range, <span class="number">0.0</span>..=<span class="number">1.0</span>)
     }
 }
 
-<span class="kw">fn</span> <span class="ident">range_log10</span>(<span class="ident">min</span>: <span class="ident">f64</span>, <span class="ident">max</span>: <span class="ident">f64</span>, <span class="ident">spec</span>: <span class="kw-2">&amp;</span><span class="ident">SliderSpec</span>) -&gt; (<span class="ident">f64</span>, <span class="ident">f64</span>) {
-    <span class="macro">assert!</span>(<span class="ident">spec</span>.<span class="ident">logarithmic</span>);
-    <span class="macro">assert!</span>(<span class="ident">min</span> <span class="op">&lt;</span><span class="op">=</span> <span class="ident">max</span>);
+<span class="kw">fn </span>range_log10(min: f64, max: f64, spec: <span class="kw-2">&amp;</span>SliderSpec) -&gt; (f64, f64) {
+    <span class="macro">assert!</span>(spec.logarithmic);
+    <span class="macro">assert!</span>(min &lt;= max);
 
-    <span class="kw">if</span> <span class="ident">min</span> <span class="op">==</span> <span class="number">0.0</span> <span class="op">&amp;&amp;</span> <span class="ident">max</span> <span class="op">==</span> <span class="ident">INFINITY</span> {
-        (<span class="ident">spec</span>.<span class="ident">smallest_positive</span>.<span class="ident">log10</span>(), <span class="ident">INF_RANGE_MAGNITUDE</span>)
-    } <span class="kw">else</span> <span class="kw">if</span> <span class="ident">min</span> <span class="op">==</span> <span class="number">0.0</span> {
-        <span class="kw">if</span> <span class="ident">spec</span>.<span class="ident">smallest_positive</span> <span class="op">&lt;</span> <span class="ident">max</span> {
-            (<span class="ident">spec</span>.<span class="ident">smallest_positive</span>.<span class="ident">log10</span>(), <span class="ident">max</span>.<span class="ident">log10</span>())
-        } <span class="kw">else</span> {
-            (<span class="ident">max</span>.<span class="ident">log10</span>() <span class="op">-</span> <span class="ident">INF_RANGE_MAGNITUDE</span>, <span class="ident">max</span>.<span class="ident">log10</span>())
+    <span class="kw">if </span>min == <span class="number">0.0 </span>&amp;&amp; max == INFINITY {
+        (spec.smallest_positive.log10(), INF_RANGE_MAGNITUDE)
+    } <span class="kw">else if </span>min == <span class="number">0.0 </span>{
+        <span class="kw">if </span>spec.smallest_positive &lt; max {
+            (spec.smallest_positive.log10(), max.log10())
+        } <span class="kw">else </span>{
+            (max.log10() - INF_RANGE_MAGNITUDE, max.log10())
         }
-    } <span class="kw">else</span> <span class="kw">if</span> <span class="ident">max</span> <span class="op">==</span> <span class="ident">INFINITY</span> {
-        <span class="kw">if</span> <span class="ident">min</span> <span class="op">&lt;</span> <span class="ident">spec</span>.<span class="ident">largest_finite</span> {
-            (<span class="ident">min</span>.<span class="ident">log10</span>(), <span class="ident">spec</span>.<span class="ident">largest_finite</span>.<span class="ident">log10</span>())
-        } <span class="kw">else</span> {
-            (<span class="ident">min</span>.<span class="ident">log10</span>(), <span class="ident">min</span>.<span class="ident">log10</span>() <span class="op">+</span> <span class="ident">INF_RANGE_MAGNITUDE</span>)
+    } <span class="kw">else if </span>max == INFINITY {
+        <span class="kw">if </span>min &lt; spec.largest_finite {
+            (min.log10(), spec.largest_finite.log10())
+        } <span class="kw">else </span>{
+            (min.log10(), min.log10() + INF_RANGE_MAGNITUDE)
         }
-    } <span class="kw">else</span> {
-        (<span class="ident">min</span>.<span class="ident">log10</span>(), <span class="ident">max</span>.<span class="ident">log10</span>())
+    } <span class="kw">else </span>{
+        (min.log10(), max.log10())
     }
 }
 
-<span class="doccomment">/// where to put the zero cutoff for logarithmic sliders</span>
-<span class="doccomment">/// that crosses zero ?</span>
-<span class="kw">fn</span> <span class="ident">logaritmic_zero_cutoff</span>(<span class="ident">min</span>: <span class="ident">f64</span>, <span class="ident">max</span>: <span class="ident">f64</span>) -&gt; <span class="ident">f64</span> {
-    <span class="macro">assert!</span>(<span class="ident">min</span> <span class="op">&lt;</span> <span class="number">0.0</span> <span class="op">&amp;&amp;</span> <span class="number">0.0</span> <span class="op">&lt;</span> <span class="ident">max</span>);
+<span class="doccomment">/// where to put the zero cutoff for logarithmic sliders
+/// that crosses zero ?
+</span><span class="kw">fn </span>logaritmic_zero_cutoff(min: f64, max: f64) -&gt; f64 {
+    <span class="macro">assert!</span>(min &lt; <span class="number">0.0 </span>&amp;&amp; <span class="number">0.0 </span>&lt; max);
 
-    <span class="kw">let</span> <span class="ident">min_magnitude</span> <span class="op">=</span> <span class="kw">if</span> <span class="ident">min</span> <span class="op">==</span> <span class="op">-</span><span class="ident">INFINITY</span> {
-        <span class="ident">INF_RANGE_MAGNITUDE</span>
-    } <span class="kw">else</span> {
-        <span class="ident">min</span>.<span class="ident">abs</span>().<span class="ident">log10</span>().<span class="ident">abs</span>()
+    <span class="kw">let </span>min_magnitude = <span class="kw">if </span>min == -INFINITY {
+        INF_RANGE_MAGNITUDE
+    } <span class="kw">else </span>{
+        min.abs().log10().abs()
     };
-    <span class="kw">let</span> <span class="ident">max_magnitude</span> <span class="op">=</span> <span class="kw">if</span> <span class="ident">max</span> <span class="op">==</span> <span class="ident">INFINITY</span> {
-        <span class="ident">INF_RANGE_MAGNITUDE</span>
-    } <span class="kw">else</span> {
-        <span class="ident">max</span>.<span class="ident">log10</span>().<span class="ident">abs</span>()
+    <span class="kw">let </span>max_magnitude = <span class="kw">if </span>max == INFINITY {
+        INF_RANGE_MAGNITUDE
+    } <span class="kw">else </span>{
+        max.log10().abs()
     };
 
-    <span class="kw">let</span> <span class="ident">cutoff</span> <span class="op">=</span> <span class="ident">min_magnitude</span> <span class="op">/</span> (<span class="ident">min_magnitude</span> <span class="op">+</span> <span class="ident">max_magnitude</span>);
-    <span class="macro">crate::egui_assert!</span>(<span class="number">0.0</span> <span class="op">&lt;</span><span class="op">=</span> <span class="ident">cutoff</span> <span class="op">&amp;&amp;</span> <span class="ident">cutoff</span> <span class="op">&lt;</span><span class="op">=</span> <span class="number">1.0</span>);
-    <span class="ident">cutoff</span>
+    <span class="kw">let </span>cutoff = min_magnitude / (min_magnitude + max_magnitude);
+    <span class="macro">crate::egui_assert!</span>(<span class="number">0.0 </span>&lt;= cutoff &amp;&amp; cutoff &lt;= <span class="number">1.0</span>);
+    cutoff
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="egui" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0 (a55dd71d5 2022-09-19)" ></div></body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="egui" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.66.1 (90743e729 2023-01-10)" ></div></body></html>

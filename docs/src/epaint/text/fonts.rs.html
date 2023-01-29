@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/epaint-0.16.0/src/text/fonts.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>fonts.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../storage.js"></script><script defer src="../../../source-script.js"></script><script defer src="../../../source-files.js"></script><script defer src="../../../main.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../../epaint/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../../epaint/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../../epaint/index.html"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/epaint-0.16.0/src/text/fonts.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>fonts.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../../normalize.css"><link rel="stylesheet" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../../ayu.css" disabled><link rel="stylesheet" href="../../../dark.css" disabled><link rel="stylesheet" href="../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../storage.js"></script><script defer src="../../../source-script.js"></script><script defer src="../../../source-files.js"></script><script defer src="../../../main.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><div class="width-limiter"><nav class="sub"><a class="sub-logo-container" href="../../../epaint/index.html"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../wheel.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -535,542 +535,542 @@
 <span id="535">535</span>
 <span id="536">536</span>
 <span id="537">537</span>
-</pre><pre class="rust"><code><span class="kw">use</span> <span class="ident">std</span>::{<span class="ident">collections::BTreeMap</span>, <span class="ident">sync::Arc</span>};
+</pre><pre class="rust"><code><span class="kw">use </span>std::{collections::BTreeMap, sync::Arc};
 
-<span class="kw">use</span> <span class="kw">crate</span>::{
-    <span class="ident">mutex::Mutex</span>,
-    <span class="ident">text</span>::{
-        <span class="ident">font</span>::{<span class="ident">Font</span>, <span class="ident">FontImpl</span>},
-        <span class="ident">Galley</span>, <span class="ident">LayoutJob</span>,
+<span class="kw">use crate</span>::{
+    mutex::Mutex,
+    text::{
+        font::{Font, FontImpl},
+        Galley, LayoutJob,
     },
-    <span class="ident">FontImage</span>, <span class="ident">TextureAtlas</span>,
+    FontImage, TextureAtlas,
 };
 
-<span class="comment">// TODO: rename</span>
-<span class="doccomment">/// One of a few categories of styles of text, e.g. body, button or heading.</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">Eq</span>, <span class="ident">Hash</span>, <span class="ident">Ord</span>, <span class="ident">PartialEq</span>, <span class="ident">PartialOrd</span>)]</span>
-<span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;serde&quot;</span>, <span class="ident">derive</span>(<span class="ident">serde::Deserialize</span>, <span class="ident">serde::Serialize</span>))]</span>
-<span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;serde&quot;</span>, <span class="ident">serde</span>(<span class="ident">rename_all</span> <span class="op">=</span> <span class="string">&quot;snake_case&quot;</span>))]</span>
-<span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">TextStyle</span> {
-    <span class="doccomment">/// Used when small text is needed.</span>
-    <span class="ident">Small</span>,
-    <span class="doccomment">/// Normal labels. Easily readable, doesn&#39;t take up too much space.</span>
-    <span class="ident">Body</span>,
-    <span class="doccomment">/// Buttons. Maybe slightly bigger than `Body`.</span>
-    <span class="ident">Button</span>,
-    <span class="doccomment">/// Heading. Probably larger than `Body`.</span>
-    <span class="ident">Heading</span>,
-    <span class="doccomment">/// Same size as `Body`, but used when monospace is important (for aligning number, code snippets, etc).</span>
-    <span class="ident">Monospace</span>,
+<span class="comment">// TODO: rename
+</span><span class="doccomment">/// One of a few categories of styles of text, e.g. body, button or heading.
+</span><span class="attribute">#[derive(Copy, Clone, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
+#[cfg_attr(feature = <span class="string">&quot;serde&quot;</span>, derive(serde::Deserialize, serde::Serialize))]
+#[cfg_attr(feature = <span class="string">&quot;serde&quot;</span>, serde(rename_all = <span class="string">&quot;snake_case&quot;</span>))]
+</span><span class="kw">pub enum </span>TextStyle {
+    <span class="doccomment">/// Used when small text is needed.
+    </span>Small,
+    <span class="doccomment">/// Normal labels. Easily readable, doesn&#39;t take up too much space.
+    </span>Body,
+    <span class="doccomment">/// Buttons. Maybe slightly bigger than `Body`.
+    </span>Button,
+    <span class="doccomment">/// Heading. Probably larger than `Body`.
+    </span>Heading,
+    <span class="doccomment">/// Same size as `Body`, but used when monospace is important (for aligning number, code snippets, etc).
+    </span>Monospace,
 }
 
-<span class="kw">impl</span> <span class="ident">TextStyle</span> {
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">all</span>() -&gt; <span class="kw">impl</span> <span class="ident">Iterator</span><span class="op">&lt;</span><span class="ident">Item</span> <span class="op">=</span> <span class="ident">TextStyle</span><span class="op">&gt;</span> {
+<span class="kw">impl </span>TextStyle {
+    <span class="kw">pub fn </span>all() -&gt; <span class="kw">impl </span>Iterator&lt;Item = TextStyle&gt; {
         [
-            <span class="ident">TextStyle::Small</span>,
-            <span class="ident">TextStyle::Body</span>,
-            <span class="ident">TextStyle::Button</span>,
-            <span class="ident">TextStyle::Heading</span>,
-            <span class="ident">TextStyle::Monospace</span>,
+            TextStyle::Small,
+            TextStyle::Body,
+            TextStyle::Button,
+            TextStyle::Heading,
+            TextStyle::Monospace,
         ]
-        .<span class="ident">iter</span>()
-        .<span class="ident">copied</span>()
+        .iter()
+        .copied()
     }
 }
 
-<span class="doccomment">/// Which style of font: [`Monospace`][`FontFamily::Monospace`] or [`Proportional`][`FontFamily::Proportional`].</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">Eq</span>, <span class="ident">Hash</span>, <span class="ident">Ord</span>, <span class="ident">PartialEq</span>, <span class="ident">PartialOrd</span>)]</span>
-<span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;serde&quot;</span>, <span class="ident">derive</span>(<span class="ident">serde::Deserialize</span>, <span class="ident">serde::Serialize</span>))]</span>
-<span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;serde&quot;</span>, <span class="ident">serde</span>(<span class="ident">rename_all</span> <span class="op">=</span> <span class="string">&quot;snake_case&quot;</span>))]</span>
-<span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">FontFamily</span> {
-    <span class="doccomment">/// A font where each character is the same width (`w` is the same width as `i`).</span>
-    <span class="ident">Monospace</span>,
-    <span class="doccomment">/// A font where some characters are wider than other (e.g. &#39;w&#39; is wider than &#39;i&#39;).</span>
-    <span class="ident">Proportional</span>,
+<span class="doccomment">/// Which style of font: [`Monospace`][`FontFamily::Monospace`] or [`Proportional`][`FontFamily::Proportional`].
+</span><span class="attribute">#[derive(Copy, Clone, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
+#[cfg_attr(feature = <span class="string">&quot;serde&quot;</span>, derive(serde::Deserialize, serde::Serialize))]
+#[cfg_attr(feature = <span class="string">&quot;serde&quot;</span>, serde(rename_all = <span class="string">&quot;snake_case&quot;</span>))]
+</span><span class="kw">pub enum </span>FontFamily {
+    <span class="doccomment">/// A font where each character is the same width (`w` is the same width as `i`).
+    </span>Monospace,
+    <span class="doccomment">/// A font where some characters are wider than other (e.g. &#39;w&#39; is wider than &#39;i&#39;).
+    </span>Proportional,
 }
 
-<span class="doccomment">/// A `.ttf` or `.otf` file and a font face index.</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>)]</span>
-<span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;serde&quot;</span>, <span class="ident">derive</span>(<span class="ident">serde::Deserialize</span>, <span class="ident">serde::Serialize</span>))]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">FontData</span> {
-    <span class="doccomment">/// The data of a `.ttf` or `.otf` file.</span>
-    <span class="kw">pub</span> <span class="ident">font</span>: <span class="ident">std::borrow::Cow</span><span class="op">&lt;</span><span class="lifetime">&#39;static</span>, [<span class="ident">u8</span>]<span class="op">&gt;</span>,
-    <span class="doccomment">/// Which font face in the file to use.</span>
-    <span class="doccomment">/// When in doubt, use `0`.</span>
-    <span class="kw">pub</span> <span class="ident">index</span>: <span class="ident">u32</span>,
+<span class="doccomment">/// A `.ttf` or `.otf` file and a font face index.
+</span><span class="attribute">#[derive(Clone, Debug, PartialEq)]
+#[cfg_attr(feature = <span class="string">&quot;serde&quot;</span>, derive(serde::Deserialize, serde::Serialize))]
+</span><span class="kw">pub struct </span>FontData {
+    <span class="doccomment">/// The data of a `.ttf` or `.otf` file.
+    </span><span class="kw">pub </span>font: std::borrow::Cow&lt;<span class="lifetime">&#39;static</span>, [u8]&gt;,
+    <span class="doccomment">/// Which font face in the file to use.
+    /// When in doubt, use `0`.
+    </span><span class="kw">pub </span>index: u32,
 }
 
-<span class="kw">impl</span> <span class="ident">FontData</span> {
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">from_static</span>(<span class="ident">font</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> [<span class="ident">u8</span>]) -&gt; <span class="self">Self</span> {
-        <span class="self">Self</span> {
-            <span class="ident">font</span>: <span class="ident">std::borrow::Cow::Borrowed</span>(<span class="ident">font</span>),
-            <span class="ident">index</span>: <span class="number">0</span>,
+<span class="kw">impl </span>FontData {
+    <span class="kw">pub fn </span>from_static(font: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>[u8]) -&gt; <span class="self">Self </span>{
+        <span class="self">Self </span>{
+            font: std::borrow::Cow::Borrowed(font),
+            index: <span class="number">0</span>,
         }
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">from_owned</span>(<span class="ident">font</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">Self</span> {
-            <span class="ident">font</span>: <span class="ident">std::borrow::Cow::Owned</span>(<span class="ident">font</span>),
-            <span class="ident">index</span>: <span class="number">0</span>,
+    <span class="kw">pub fn </span>from_owned(font: Vec&lt;u8&gt;) -&gt; <span class="self">Self </span>{
+        <span class="self">Self </span>{
+            font: std::borrow::Cow::Owned(font),
+            index: <span class="number">0</span>,
         }
     }
 }
 
-<span class="kw">fn</span> <span class="ident">ab_glyph_font_from_font_data</span>(<span class="ident">name</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>, <span class="ident">data</span>: <span class="kw-2">&amp;</span><span class="ident">FontData</span>) -&gt; <span class="ident">ab_glyph::FontArc</span> {
-    <span class="kw">match</span> <span class="kw-2">&amp;</span><span class="ident">data</span>.<span class="ident">font</span> {
-        <span class="ident">std::borrow::Cow::Borrowed</span>(<span class="ident">bytes</span>) =&gt; {
-            <span class="ident">ab_glyph::FontRef::try_from_slice_and_index</span>(<span class="ident">bytes</span>, <span class="ident">data</span>.<span class="ident">index</span>)
-                .<span class="ident">map</span>(<span class="ident">ab_glyph::FontArc::from</span>)
+<span class="kw">fn </span>ab_glyph_font_from_font_data(name: <span class="kw-2">&amp;</span>str, data: <span class="kw-2">&amp;</span>FontData) -&gt; ab_glyph::FontArc {
+    <span class="kw">match </span><span class="kw-2">&amp;</span>data.font {
+        std::borrow::Cow::Borrowed(bytes) =&gt; {
+            ab_glyph::FontRef::try_from_slice_and_index(bytes, data.index)
+                .map(ab_glyph::FontArc::from)
         }
-        <span class="ident">std::borrow::Cow::Owned</span>(<span class="ident">bytes</span>) =&gt; {
-            <span class="ident">ab_glyph::FontVec::try_from_vec_and_index</span>(<span class="ident">bytes</span>.<span class="ident">clone</span>(), <span class="ident">data</span>.<span class="ident">index</span>)
-                .<span class="ident">map</span>(<span class="ident">ab_glyph::FontArc::from</span>)
+        std::borrow::Cow::Owned(bytes) =&gt; {
+            ab_glyph::FontVec::try_from_vec_and_index(bytes.clone(), data.index)
+                .map(ab_glyph::FontArc::from)
         }
     }
-    .<span class="ident">unwrap_or_else</span>(<span class="op">|</span><span class="ident">err</span><span class="op">|</span> <span class="macro">panic!</span>(<span class="string">&quot;Error parsing {:?} TTF/OTF font file: {}&quot;</span>, <span class="ident">name</span>, <span class="ident">err</span>))
+    .unwrap_or_else(|err| <span class="macro">panic!</span>(<span class="string">&quot;Error parsing {:?} TTF/OTF font file: {}&quot;</span>, name, err))
 }
 
-<span class="doccomment">/// Describes the font data and the sizes to use.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// Often you would start with [`FontDefinitions::default()`] and then add/change the contents.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// ```</span>
-<span class="doccomment">/// # use {epaint::text::{FontDefinitions, TextStyle, FontFamily}};</span>
-<span class="doccomment">/// # struct FakeEguiCtx {};</span>
-<span class="doccomment">/// # impl FakeEguiCtx { fn set_fonts(&amp;self, _: FontDefinitions) {} }</span>
-<span class="doccomment">/// # let ctx = FakeEguiCtx {};</span>
-<span class="doccomment">/// let mut fonts = FontDefinitions::default();</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// // Large button text:</span>
-<span class="doccomment">/// fonts.family_and_size.insert(</span>
-<span class="doccomment">///     TextStyle::Button,</span>
-<span class="doccomment">///     (FontFamily::Proportional, 32.0)</span>
-<span class="doccomment">/// );</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// ctx.set_fonts(fonts);</span>
-<span class="doccomment">/// ```</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// You can also install your own custom fonts:</span>
-<span class="doccomment">/// ```</span>
-<span class="doccomment">/// # use {epaint::text::{FontDefinitions, TextStyle, FontFamily, FontData}};</span>
-<span class="doccomment">/// # struct FakeEguiCtx {};</span>
-<span class="doccomment">/// # impl FakeEguiCtx { fn set_fonts(&amp;self, _: FontDefinitions) {} }</span>
-<span class="doccomment">/// # let ctx = FakeEguiCtx {};</span>
-<span class="doccomment">/// let mut fonts = FontDefinitions::default();</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// // Install my own font (maybe supporting non-latin characters):</span>
-<span class="doccomment">/// fonts.font_data.insert(&quot;my_font&quot;.to_owned(),</span>
-<span class="doccomment">///    FontData::from_static(include_bytes!(&quot;../../fonts/Ubuntu-Light.ttf&quot;))); // .ttf and .otf supported</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// // Put my font first (highest priority):</span>
-<span class="doccomment">/// fonts.fonts_for_family.get_mut(&amp;FontFamily::Proportional).unwrap()</span>
-<span class="doccomment">///     .insert(0, &quot;my_font&quot;.to_owned());</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// // Put my font as last fallback for monospace:</span>
-<span class="doccomment">/// fonts.fonts_for_family.get_mut(&amp;FontFamily::Monospace).unwrap()</span>
-<span class="doccomment">///     .push(&quot;my_font&quot;.to_owned());</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// ctx.set_fonts(fonts);</span>
-<span class="doccomment">/// ```</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>)]</span>
-<span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;serde&quot;</span>, <span class="ident">derive</span>(<span class="ident">serde::Deserialize</span>, <span class="ident">serde::Serialize</span>))]</span>
-<span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;serde&quot;</span>, <span class="ident">serde</span>(<span class="ident">default</span>))]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">FontDefinitions</span> {
-    <span class="doccomment">/// List of font names and their definitions.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// `epaint` has built-in-default for these, but you can override them if you like.</span>
-    <span class="kw">pub</span> <span class="ident">font_data</span>: <span class="ident">BTreeMap</span><span class="op">&lt;</span><span class="ident">String</span>, <span class="ident">FontData</span><span class="op">&gt;</span>,
+<span class="doccomment">/// Describes the font data and the sizes to use.
+///
+/// Often you would start with [`FontDefinitions::default()`] and then add/change the contents.
+///
+/// ```
+/// # use {epaint::text::{FontDefinitions, TextStyle, FontFamily}};
+/// # struct FakeEguiCtx {};
+/// # impl FakeEguiCtx { fn set_fonts(&amp;self, _: FontDefinitions) {} }
+/// # let ctx = FakeEguiCtx {};
+/// let mut fonts = FontDefinitions::default();
+///
+/// // Large button text:
+/// fonts.family_and_size.insert(
+///     TextStyle::Button,
+///     (FontFamily::Proportional, 32.0)
+/// );
+///
+/// ctx.set_fonts(fonts);
+/// ```
+///
+/// You can also install your own custom fonts:
+/// ```
+/// # use {epaint::text::{FontDefinitions, TextStyle, FontFamily, FontData}};
+/// # struct FakeEguiCtx {};
+/// # impl FakeEguiCtx { fn set_fonts(&amp;self, _: FontDefinitions) {} }
+/// # let ctx = FakeEguiCtx {};
+/// let mut fonts = FontDefinitions::default();
+///
+/// // Install my own font (maybe supporting non-latin characters):
+/// fonts.font_data.insert(&quot;my_font&quot;.to_owned(),
+///    FontData::from_static(include_bytes!(&quot;../../fonts/Ubuntu-Light.ttf&quot;))); // .ttf and .otf supported
+///
+/// // Put my font first (highest priority):
+/// fonts.fonts_for_family.get_mut(&amp;FontFamily::Proportional).unwrap()
+///     .insert(0, &quot;my_font&quot;.to_owned());
+///
+/// // Put my font as last fallback for monospace:
+/// fonts.fonts_for_family.get_mut(&amp;FontFamily::Monospace).unwrap()
+///     .push(&quot;my_font&quot;.to_owned());
+///
+/// ctx.set_fonts(fonts);
+/// ```
+</span><span class="attribute">#[derive(Clone, Debug, PartialEq)]
+#[cfg_attr(feature = <span class="string">&quot;serde&quot;</span>, derive(serde::Deserialize, serde::Serialize))]
+#[cfg_attr(feature = <span class="string">&quot;serde&quot;</span>, serde(default))]
+</span><span class="kw">pub struct </span>FontDefinitions {
+    <span class="doccomment">/// List of font names and their definitions.
+    ///
+    /// `epaint` has built-in-default for these, but you can override them if you like.
+    </span><span class="kw">pub </span>font_data: BTreeMap&lt;String, FontData&gt;,
 
-    <span class="doccomment">/// Which fonts (names) to use for each [`FontFamily`].</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// The list should be a list of keys into [`Self::font_data`].</span>
-    <span class="doccomment">/// When looking for a character glyph `epaint` will start with</span>
-    <span class="doccomment">/// the first font and then move to the second, and so on.</span>
-    <span class="doccomment">/// So the first font is the primary, and then comes a list of fallbacks in order of priority.</span>
-    <span class="kw">pub</span> <span class="ident">fonts_for_family</span>: <span class="ident">BTreeMap</span><span class="op">&lt;</span><span class="ident">FontFamily</span>, <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span><span class="op">&gt;</span>,
+    <span class="doccomment">/// Which fonts (names) to use for each [`FontFamily`].
+    ///
+    /// The list should be a list of keys into [`Self::font_data`].
+    /// When looking for a character glyph `epaint` will start with
+    /// the first font and then move to the second, and so on.
+    /// So the first font is the primary, and then comes a list of fallbacks in order of priority.
+    </span><span class="kw">pub </span>fonts_for_family: BTreeMap&lt;FontFamily, Vec&lt;String&gt;&gt;,
 
-    <span class="doccomment">/// The [`FontFamily`] and size you want to use for a specific [`TextStyle`].</span>
-    <span class="kw">pub</span> <span class="ident">family_and_size</span>: <span class="ident">BTreeMap</span><span class="op">&lt;</span><span class="ident">TextStyle</span>, (<span class="ident">FontFamily</span>, <span class="ident">f32</span>)<span class="op">&gt;</span>,
+    <span class="doccomment">/// The [`FontFamily`] and size you want to use for a specific [`TextStyle`].
+    </span><span class="kw">pub </span>family_and_size: BTreeMap&lt;TextStyle, (FontFamily, f32)&gt;,
 }
 
-<span class="kw">impl</span> <span class="ident">Default</span> <span class="kw">for</span> <span class="ident">FontDefinitions</span> {
-    <span class="kw">fn</span> <span class="ident">default</span>() -&gt; <span class="self">Self</span> {
-        <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">unused</span>)]</span>
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">font_data</span>: <span class="ident">BTreeMap</span><span class="op">&lt;</span><span class="ident">String</span>, <span class="ident">FontData</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">BTreeMap::new</span>();
+<span class="kw">impl </span>Default <span class="kw">for </span>FontDefinitions {
+    <span class="kw">fn </span>default() -&gt; <span class="self">Self </span>{
+        <span class="attribute">#[allow(unused)]
+        </span><span class="kw">let </span><span class="kw-2">mut </span>font_data: BTreeMap&lt;String, FontData&gt; = BTreeMap::new();
 
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">fonts_for_family</span> <span class="op">=</span> <span class="ident">BTreeMap::new</span>();
+        <span class="kw">let </span><span class="kw-2">mut </span>fonts_for_family = BTreeMap::new();
 
-        <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;default_fonts&quot;</span>)]</span>
-        {
-            <span class="ident">font_data</span>.<span class="ident">insert</span>(
-                <span class="string">&quot;Hack&quot;</span>.<span class="ident">to_owned</span>(),
-                <span class="ident">FontData::from_static</span>(<span class="macro">include_bytes!</span>(<span class="string">&quot;../../fonts/Hack-Regular.ttf&quot;</span>)),
+        <span class="attribute">#[cfg(feature = <span class="string">&quot;default_fonts&quot;</span>)]
+        </span>{
+            font_data.insert(
+                <span class="string">&quot;Hack&quot;</span>.to_owned(),
+                FontData::from_static(<span class="macro">include_bytes!</span>(<span class="string">&quot;../../fonts/Hack-Regular.ttf&quot;</span>)),
             );
-            <span class="ident">font_data</span>.<span class="ident">insert</span>(
-                <span class="string">&quot;Ubuntu-Light&quot;</span>.<span class="ident">to_owned</span>(),
-                <span class="ident">FontData::from_static</span>(<span class="macro">include_bytes!</span>(<span class="string">&quot;../../fonts/Ubuntu-Light.ttf&quot;</span>)),
-            );
-
-            <span class="comment">// Some good looking emojis. Use as first priority:</span>
-            <span class="ident">font_data</span>.<span class="ident">insert</span>(
-                <span class="string">&quot;NotoEmoji-Regular&quot;</span>.<span class="ident">to_owned</span>(),
-                <span class="ident">FontData::from_static</span>(<span class="macro">include_bytes!</span>(<span class="string">&quot;../../fonts/NotoEmoji-Regular.ttf&quot;</span>)),
-            );
-            <span class="comment">// Bigger emojis, and more. &lt;http://jslegers.github.io/emoji-icon-font/&gt;:</span>
-            <span class="ident">font_data</span>.<span class="ident">insert</span>(
-                <span class="string">&quot;emoji-icon-font&quot;</span>.<span class="ident">to_owned</span>(),
-                <span class="ident">FontData::from_static</span>(<span class="macro">include_bytes!</span>(<span class="string">&quot;../../fonts/emoji-icon-font.ttf&quot;</span>)),
+            font_data.insert(
+                <span class="string">&quot;Ubuntu-Light&quot;</span>.to_owned(),
+                FontData::from_static(<span class="macro">include_bytes!</span>(<span class="string">&quot;../../fonts/Ubuntu-Light.ttf&quot;</span>)),
             );
 
-            <span class="ident">fonts_for_family</span>.<span class="ident">insert</span>(
-                <span class="ident">FontFamily::Monospace</span>,
+            <span class="comment">// Some good looking emojis. Use as first priority:
+            </span>font_data.insert(
+                <span class="string">&quot;NotoEmoji-Regular&quot;</span>.to_owned(),
+                FontData::from_static(<span class="macro">include_bytes!</span>(<span class="string">&quot;../../fonts/NotoEmoji-Regular.ttf&quot;</span>)),
+            );
+            <span class="comment">// Bigger emojis, and more. &lt;http://jslegers.github.io/emoji-icon-font/&gt;:
+            </span>font_data.insert(
+                <span class="string">&quot;emoji-icon-font&quot;</span>.to_owned(),
+                FontData::from_static(<span class="macro">include_bytes!</span>(<span class="string">&quot;../../fonts/emoji-icon-font.ttf&quot;</span>)),
+            );
+
+            fonts_for_family.insert(
+                FontFamily::Monospace,
                 <span class="macro">vec!</span>[
-                    <span class="string">&quot;Hack&quot;</span>.<span class="ident">to_owned</span>(),
-                    <span class="string">&quot;Ubuntu-Light&quot;</span>.<span class="ident">to_owned</span>(), <span class="comment">// fallback for √ etc</span>
-                    <span class="string">&quot;NotoEmoji-Regular&quot;</span>.<span class="ident">to_owned</span>(),
-                    <span class="string">&quot;emoji-icon-font&quot;</span>.<span class="ident">to_owned</span>(),
+                    <span class="string">&quot;Hack&quot;</span>.to_owned(),
+                    <span class="string">&quot;Ubuntu-Light&quot;</span>.to_owned(), <span class="comment">// fallback for √ etc
+                    </span><span class="string">&quot;NotoEmoji-Regular&quot;</span>.to_owned(),
+                    <span class="string">&quot;emoji-icon-font&quot;</span>.to_owned(),
                 ],
             );
-            <span class="ident">fonts_for_family</span>.<span class="ident">insert</span>(
-                <span class="ident">FontFamily::Proportional</span>,
+            fonts_for_family.insert(
+                FontFamily::Proportional,
                 <span class="macro">vec!</span>[
-                    <span class="string">&quot;Ubuntu-Light&quot;</span>.<span class="ident">to_owned</span>(),
-                    <span class="string">&quot;NotoEmoji-Regular&quot;</span>.<span class="ident">to_owned</span>(),
-                    <span class="string">&quot;emoji-icon-font&quot;</span>.<span class="ident">to_owned</span>(),
+                    <span class="string">&quot;Ubuntu-Light&quot;</span>.to_owned(),
+                    <span class="string">&quot;NotoEmoji-Regular&quot;</span>.to_owned(),
+                    <span class="string">&quot;emoji-icon-font&quot;</span>.to_owned(),
                 ],
             );
         }
 
-        <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">not</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;default_fonts&quot;</span>))]</span>
-        {
-            <span class="ident">fonts_for_family</span>.<span class="ident">insert</span>(<span class="ident">FontFamily::Monospace</span>, <span class="macro">vec!</span>[]);
-            <span class="ident">fonts_for_family</span>.<span class="ident">insert</span>(<span class="ident">FontFamily::Proportional</span>, <span class="macro">vec!</span>[]);
+        <span class="attribute">#[cfg(not(feature = <span class="string">&quot;default_fonts&quot;</span>))]
+        </span>{
+            fonts_for_family.insert(FontFamily::Monospace, <span class="macro">vec!</span>[]);
+            fonts_for_family.insert(FontFamily::Proportional, <span class="macro">vec!</span>[]);
         }
 
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">family_and_size</span> <span class="op">=</span> <span class="ident">BTreeMap::new</span>();
-        <span class="ident">family_and_size</span>.<span class="ident">insert</span>(<span class="ident">TextStyle::Small</span>, (<span class="ident">FontFamily::Proportional</span>, <span class="number">10.0</span>));
-        <span class="ident">family_and_size</span>.<span class="ident">insert</span>(<span class="ident">TextStyle::Body</span>, (<span class="ident">FontFamily::Proportional</span>, <span class="number">14.0</span>));
-        <span class="ident">family_and_size</span>.<span class="ident">insert</span>(<span class="ident">TextStyle::Button</span>, (<span class="ident">FontFamily::Proportional</span>, <span class="number">14.0</span>));
-        <span class="ident">family_and_size</span>.<span class="ident">insert</span>(<span class="ident">TextStyle::Heading</span>, (<span class="ident">FontFamily::Proportional</span>, <span class="number">20.0</span>));
-        <span class="ident">family_and_size</span>.<span class="ident">insert</span>(<span class="ident">TextStyle::Monospace</span>, (<span class="ident">FontFamily::Monospace</span>, <span class="number">14.0</span>));
+        <span class="kw">let </span><span class="kw-2">mut </span>family_and_size = BTreeMap::new();
+        family_and_size.insert(TextStyle::Small, (FontFamily::Proportional, <span class="number">10.0</span>));
+        family_and_size.insert(TextStyle::Body, (FontFamily::Proportional, <span class="number">14.0</span>));
+        family_and_size.insert(TextStyle::Button, (FontFamily::Proportional, <span class="number">14.0</span>));
+        family_and_size.insert(TextStyle::Heading, (FontFamily::Proportional, <span class="number">20.0</span>));
+        family_and_size.insert(TextStyle::Monospace, (FontFamily::Monospace, <span class="number">14.0</span>));
 
-        <span class="self">Self</span> {
-            <span class="ident">font_data</span>,
-            <span class="ident">fonts_for_family</span>,
-            <span class="ident">family_and_size</span>,
+        <span class="self">Self </span>{
+            font_data,
+            fonts_for_family,
+            family_and_size,
         }
     }
 }
 
-<span class="doccomment">/// The collection of fonts used by `epaint`.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// Required in order to paint text.</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Fonts</span> {
-    <span class="ident">pixels_per_point</span>: <span class="ident">f32</span>,
-    <span class="ident">definitions</span>: <span class="ident">FontDefinitions</span>,
-    <span class="ident">fonts</span>: <span class="ident">BTreeMap</span><span class="op">&lt;</span><span class="ident">TextStyle</span>, <span class="ident">Font</span><span class="op">&gt;</span>,
-    <span class="ident">atlas</span>: <span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">Mutex</span><span class="op">&lt;</span><span class="ident">TextureAtlas</span><span class="op">&gt;</span><span class="op">&gt;</span>,
+<span class="doccomment">/// The collection of fonts used by `epaint`.
+///
+/// Required in order to paint text.
+</span><span class="kw">pub struct </span>Fonts {
+    pixels_per_point: f32,
+    definitions: FontDefinitions,
+    fonts: BTreeMap&lt;TextStyle, Font&gt;,
+    atlas: Arc&lt;Mutex&lt;TextureAtlas&gt;&gt;,
 
-    <span class="doccomment">/// Copy of the font image in the texture atlas.</span>
-    <span class="doccomment">/// This is so we can return a reference to it (the texture atlas is behind a lock).</span>
-    <span class="ident">buffered_font_image</span>: <span class="ident">Mutex</span><span class="op">&lt;</span><span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">FontImage</span><span class="op">&gt;</span><span class="op">&gt;</span>,
+    <span class="doccomment">/// Copy of the font image in the texture atlas.
+    /// This is so we can return a reference to it (the texture atlas is behind a lock).
+    </span>buffered_font_image: Mutex&lt;Arc&lt;FontImage&gt;&gt;,
 
-    <span class="ident">galley_cache</span>: <span class="ident">Mutex</span><span class="op">&lt;</span><span class="ident">GalleyCache</span><span class="op">&gt;</span>,
+    galley_cache: Mutex&lt;GalleyCache&gt;,
 }
 
-<span class="kw">impl</span> <span class="ident">Fonts</span> {
-    <span class="doccomment">/// Create a new [`Fonts`] for text layout.</span>
-    <span class="doccomment">/// This call is expensive, so only create on [`Fonts`] and then reuse it.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">pixels_per_point</span>: <span class="ident">f32</span>, <span class="ident">definitions</span>: <span class="ident">FontDefinitions</span>) -&gt; <span class="self">Self</span> {
+<span class="kw">impl </span>Fonts {
+    <span class="doccomment">/// Create a new [`Fonts`] for text layout.
+    /// This call is expensive, so only create on [`Fonts`] and then reuse it.
+    </span><span class="kw">pub fn </span>new(pixels_per_point: f32, definitions: FontDefinitions) -&gt; <span class="self">Self </span>{
         <span class="macro">assert!</span>(
-            <span class="number">0.0</span> <span class="op">&lt;</span> <span class="ident">pixels_per_point</span> <span class="op">&amp;&amp;</span> <span class="ident">pixels_per_point</span> <span class="op">&lt;</span> <span class="number">100.0</span>,
+            <span class="number">0.0 </span>&lt; pixels_per_point &amp;&amp; pixels_per_point &lt; <span class="number">100.0</span>,
             <span class="string">&quot;pixels_per_point out of range: {}&quot;</span>,
-            <span class="ident">pixels_per_point</span>
+            pixels_per_point
         );
 
-        <span class="comment">// We want an atlas big enough to be able to include all the Emojis in the `TextStyle::Heading`,</span>
-        <span class="comment">// so we can show the Emoji picker demo window.</span>
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">atlas</span> <span class="op">=</span> <span class="ident">TextureAtlas::new</span>(<span class="number">2048</span>, <span class="number">64</span>);
+        <span class="comment">// We want an atlas big enough to be able to include all the Emojis in the `TextStyle::Heading`,
+        // so we can show the Emoji picker demo window.
+        </span><span class="kw">let </span><span class="kw-2">mut </span>atlas = TextureAtlas::new(<span class="number">2048</span>, <span class="number">64</span>);
 
         {
-            <span class="comment">// Make the top left pixel fully white:</span>
-            <span class="kw">let</span> <span class="ident">pos</span> <span class="op">=</span> <span class="ident">atlas</span>.<span class="ident">allocate</span>((<span class="number">1</span>, <span class="number">1</span>));
-            <span class="macro">assert_eq!</span>(<span class="ident">pos</span>, (<span class="number">0</span>, <span class="number">0</span>));
-            <span class="ident">atlas</span>.<span class="ident">image_mut</span>()[<span class="ident">pos</span>] <span class="op">=</span> <span class="number">255</span>;
+            <span class="comment">// Make the top left pixel fully white:
+            </span><span class="kw">let </span>pos = atlas.allocate((<span class="number">1</span>, <span class="number">1</span>));
+            <span class="macro">assert_eq!</span>(pos, (<span class="number">0</span>, <span class="number">0</span>));
+            atlas.image_mut()[pos] = <span class="number">255</span>;
         }
 
-        <span class="kw">let</span> <span class="ident">atlas</span> <span class="op">=</span> <span class="ident">Arc::new</span>(<span class="ident">Mutex::new</span>(<span class="ident">atlas</span>));
+        <span class="kw">let </span>atlas = Arc::new(Mutex::new(atlas));
 
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">font_impl_cache</span> <span class="op">=</span> <span class="ident">FontImplCache::new</span>(<span class="ident">atlas</span>.<span class="ident">clone</span>(), <span class="ident">pixels_per_point</span>, <span class="kw-2">&amp;</span><span class="ident">definitions</span>);
+        <span class="kw">let </span><span class="kw-2">mut </span>font_impl_cache = FontImplCache::new(atlas.clone(), pixels_per_point, <span class="kw-2">&amp;</span>definitions);
 
-        <span class="kw">let</span> <span class="ident">fonts</span> <span class="op">=</span> <span class="ident">definitions</span>
-            .<span class="ident">family_and_size</span>
-            .<span class="ident">iter</span>()
-            .<span class="ident">map</span>(<span class="op">|</span>(<span class="kw-2">&amp;</span><span class="ident">text_style</span>, <span class="kw-2">&amp;</span>(<span class="ident">family</span>, <span class="ident">scale_in_points</span>))<span class="op">|</span> {
-                <span class="kw">let</span> <span class="ident">fonts</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">definitions</span>.<span class="ident">fonts_for_family</span>.<span class="ident">get</span>(<span class="kw-2">&amp;</span><span class="ident">family</span>);
-                <span class="kw">let</span> <span class="ident">fonts</span> <span class="op">=</span> <span class="ident">fonts</span>.<span class="ident">unwrap_or_else</span>(<span class="op">|</span><span class="op">|</span> {
-                    <span class="macro">panic!</span>(<span class="string">&quot;FontFamily::{:?} is not bound to any fonts&quot;</span>, <span class="ident">family</span>)
+        <span class="kw">let </span>fonts = definitions
+            .family_and_size
+            .iter()
+            .map(|(<span class="kw-2">&amp;</span>text_style, <span class="kw-2">&amp;</span>(family, scale_in_points))| {
+                <span class="kw">let </span>fonts = <span class="kw-2">&amp;</span>definitions.fonts_for_family.get(<span class="kw-2">&amp;</span>family);
+                <span class="kw">let </span>fonts = fonts.unwrap_or_else(|| {
+                    <span class="macro">panic!</span>(<span class="string">&quot;FontFamily::{:?} is not bound to any fonts&quot;</span>, family)
                 });
-                <span class="kw">let</span> <span class="ident">fonts</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">FontImpl</span><span class="op">&gt;</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">fonts</span>
-                    .<span class="ident">iter</span>()
-                    .<span class="ident">map</span>(<span class="op">|</span><span class="ident">font_name</span><span class="op">|</span> <span class="ident">font_impl_cache</span>.<span class="ident">font_impl</span>(<span class="ident">font_name</span>, <span class="ident">scale_in_points</span>))
-                    .<span class="ident">collect</span>();
+                <span class="kw">let </span>fonts: Vec&lt;Arc&lt;FontImpl&gt;&gt; = fonts
+                    .iter()
+                    .map(|font_name| font_impl_cache.font_impl(font_name, scale_in_points))
+                    .collect();
 
-                (<span class="ident">text_style</span>, <span class="ident">Font::new</span>(<span class="ident">text_style</span>, <span class="ident">fonts</span>))
+                (text_style, Font::new(text_style, fonts))
             })
-            .<span class="ident">collect</span>();
+            .collect();
 
         {
-            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">atlas</span> <span class="op">=</span> <span class="ident">atlas</span>.<span class="ident">lock</span>();
-            <span class="kw">let</span> <span class="ident">texture</span> <span class="op">=</span> <span class="ident">atlas</span>.<span class="ident">image_mut</span>();
-            <span class="comment">// Make sure we seed the texture version with something unique based on the default characters:</span>
-            <span class="ident">texture</span>.<span class="ident">version</span> <span class="op">=</span> <span class="ident"><span class="kw">crate</span>::util::hash</span>(<span class="kw-2">&amp;</span><span class="ident">texture</span>.<span class="ident">pixels</span>);
+            <span class="kw">let </span><span class="kw-2">mut </span>atlas = atlas.lock();
+            <span class="kw">let </span>texture = atlas.image_mut();
+            <span class="comment">// Make sure we seed the texture version with something unique based on the default characters:
+            </span>texture.version = <span class="kw">crate</span>::util::hash(<span class="kw-2">&amp;</span>texture.pixels);
         }
 
-        <span class="self">Self</span> {
-            <span class="ident">pixels_per_point</span>,
-            <span class="ident">definitions</span>,
-            <span class="ident">fonts</span>,
-            <span class="ident">atlas</span>,
-            <span class="ident">buffered_font_image</span>: <span class="ident">Default::default</span>(), <span class="comment">//atlas.lock().texture().clone();</span>
-            <span class="ident">galley_cache</span>: <span class="ident">Default::default</span>(),
+        <span class="self">Self </span>{
+            pixels_per_point,
+            definitions,
+            fonts,
+            atlas,
+            buffered_font_image: Default::default(), <span class="comment">//atlas.lock().texture().clone();
+            </span>galley_cache: Default::default(),
         }
     }
 
-    <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">pixels_per_point</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">f32</span> {
-        <span class="self">self</span>.<span class="ident">pixels_per_point</span>
+    <span class="attribute">#[inline(always)]
+    </span><span class="kw">pub fn </span>pixels_per_point(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; f32 {
+        <span class="self">self</span>.pixels_per_point
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">definitions</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span><span class="ident">FontDefinitions</span> {
-        <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">definitions</span>
+    <span class="kw">pub fn </span>definitions(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span>FontDefinitions {
+        <span class="kw-2">&amp;</span><span class="self">self</span>.definitions
     }
 
-    <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">round_to_pixel</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">point</span>: <span class="ident">f32</span>) -&gt; <span class="ident">f32</span> {
-        (<span class="ident">point</span> <span class="op">*</span> <span class="self">self</span>.<span class="ident">pixels_per_point</span>).<span class="ident">round</span>() <span class="op">/</span> <span class="self">self</span>.<span class="ident">pixels_per_point</span>
+    <span class="attribute">#[inline(always)]
+    </span><span class="kw">pub fn </span>round_to_pixel(<span class="kw-2">&amp;</span><span class="self">self</span>, point: f32) -&gt; f32 {
+        (point * <span class="self">self</span>.pixels_per_point).round() / <span class="self">self</span>.pixels_per_point
     }
 
-    <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">floor_to_pixel</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">point</span>: <span class="ident">f32</span>) -&gt; <span class="ident">f32</span> {
-        (<span class="ident">point</span> <span class="op">*</span> <span class="self">self</span>.<span class="ident">pixels_per_point</span>).<span class="ident">floor</span>() <span class="op">/</span> <span class="self">self</span>.<span class="ident">pixels_per_point</span>
+    <span class="attribute">#[inline(always)]
+    </span><span class="kw">pub fn </span>floor_to_pixel(<span class="kw-2">&amp;</span><span class="self">self</span>, point: f32) -&gt; f32 {
+        (point * <span class="self">self</span>.pixels_per_point).floor() / <span class="self">self</span>.pixels_per_point
     }
 
-    <span class="doccomment">/// Call each frame to get the latest available font texture data.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">font_image</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">FontImage</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="ident">atlas</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">atlas</span>.<span class="ident">lock</span>();
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">buffered_texture</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">buffered_font_image</span>.<span class="ident">lock</span>();
-        <span class="kw">if</span> <span class="ident">buffered_texture</span>.<span class="ident">version</span> <span class="op">!</span><span class="op">=</span> <span class="ident">atlas</span>.<span class="ident">image</span>().<span class="ident">version</span> {
-            <span class="kw-2">*</span><span class="ident">buffered_texture</span> <span class="op">=</span> <span class="ident">Arc::new</span>(<span class="ident">atlas</span>.<span class="ident">image</span>().<span class="ident">clone</span>());
+    <span class="doccomment">/// Call each frame to get the latest available font texture data.
+    </span><span class="kw">pub fn </span>font_image(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; Arc&lt;FontImage&gt; {
+        <span class="kw">let </span>atlas = <span class="self">self</span>.atlas.lock();
+        <span class="kw">let </span><span class="kw-2">mut </span>buffered_texture = <span class="self">self</span>.buffered_font_image.lock();
+        <span class="kw">if </span>buffered_texture.version != atlas.image().version {
+            <span class="kw-2">*</span>buffered_texture = Arc::new(atlas.image().clone());
         }
 
-        <span class="ident">buffered_texture</span>.<span class="ident">clone</span>()
+        buffered_texture.clone()
     }
 
-    <span class="doccomment">/// Width of this character in points.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">glyph_width</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">text_style</span>: <span class="ident">TextStyle</span>, <span class="ident">c</span>: <span class="ident">char</span>) -&gt; <span class="ident">f32</span> {
-        <span class="self">self</span>.<span class="ident">fonts</span>[<span class="kw-2">&amp;</span><span class="ident">text_style</span>].<span class="ident">glyph_width</span>(<span class="ident">c</span>)
+    <span class="doccomment">/// Width of this character in points.
+    </span><span class="kw">pub fn </span>glyph_width(<span class="kw-2">&amp;</span><span class="self">self</span>, text_style: TextStyle, c: char) -&gt; f32 {
+        <span class="self">self</span>.fonts[<span class="kw-2">&amp;</span>text_style].glyph_width(c)
     }
 
-    <span class="doccomment">/// Height of one row of text. In points</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">row_height</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">text_style</span>: <span class="ident">TextStyle</span>) -&gt; <span class="ident">f32</span> {
-        <span class="self">self</span>.<span class="ident">fonts</span>[<span class="kw-2">&amp;</span><span class="ident">text_style</span>].<span class="ident">row_height</span>()
+    <span class="doccomment">/// Height of one row of text. In points
+    </span><span class="kw">pub fn </span>row_height(<span class="kw-2">&amp;</span><span class="self">self</span>, text_style: TextStyle) -&gt; f32 {
+        <span class="self">self</span>.fonts[<span class="kw-2">&amp;</span>text_style].row_height()
     }
 
-    <span class="doccomment">/// Layout some text.</span>
-    <span class="doccomment">/// This is the most advanced layout function.</span>
-    <span class="doccomment">/// See also [`Self::layout`], [`Self::layout_no_wrap`] and</span>
-    <span class="doccomment">/// [`Self::layout_delayed_color`].</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// The implementation uses memoization so repeated calls are cheap.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">layout_job</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">job</span>: <span class="ident">LayoutJob</span>) -&gt; <span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">Galley</span><span class="op">&gt;</span> {
-        <span class="self">self</span>.<span class="ident">galley_cache</span>.<span class="ident">lock</span>().<span class="ident">layout</span>(<span class="self">self</span>, <span class="ident">job</span>)
+    <span class="doccomment">/// Layout some text.
+    /// This is the most advanced layout function.
+    /// See also [`Self::layout`], [`Self::layout_no_wrap`] and
+    /// [`Self::layout_delayed_color`].
+    ///
+    /// The implementation uses memoization so repeated calls are cheap.
+    </span><span class="kw">pub fn </span>layout_job(<span class="kw-2">&amp;</span><span class="self">self</span>, job: LayoutJob) -&gt; Arc&lt;Galley&gt; {
+        <span class="self">self</span>.galley_cache.lock().layout(<span class="self">self</span>, job)
     }
 
-    <span class="doccomment">/// Will wrap text at the given width and line break at `\n`.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// The implementation uses memoization so repeated calls are cheap.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">layout</span>(
+    <span class="doccomment">/// Will wrap text at the given width and line break at `\n`.
+    ///
+    /// The implementation uses memoization so repeated calls are cheap.
+    </span><span class="kw">pub fn </span>layout(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
-        <span class="ident">text</span>: <span class="ident">String</span>,
-        <span class="ident">text_style</span>: <span class="ident">TextStyle</span>,
-        <span class="ident">color</span>: <span class="ident"><span class="kw">crate</span>::Color32</span>,
-        <span class="ident">wrap_width</span>: <span class="ident">f32</span>,
-    ) -&gt; <span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">Galley</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="ident">job</span> <span class="op">=</span> <span class="ident">LayoutJob::simple</span>(<span class="ident">text</span>, <span class="ident">text_style</span>, <span class="ident">color</span>, <span class="ident">wrap_width</span>);
-        <span class="self">self</span>.<span class="ident">layout_job</span>(<span class="ident">job</span>)
+        text: String,
+        text_style: TextStyle,
+        color: <span class="kw">crate</span>::Color32,
+        wrap_width: f32,
+    ) -&gt; Arc&lt;Galley&gt; {
+        <span class="kw">let </span>job = LayoutJob::simple(text, text_style, color, wrap_width);
+        <span class="self">self</span>.layout_job(job)
     }
 
-    <span class="doccomment">/// Will line break at `\n`.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// The implementation uses memoization so repeated calls are cheap.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">layout_no_wrap</span>(
+    <span class="doccomment">/// Will line break at `\n`.
+    ///
+    /// The implementation uses memoization so repeated calls are cheap.
+    </span><span class="kw">pub fn </span>layout_no_wrap(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
-        <span class="ident">text</span>: <span class="ident">String</span>,
-        <span class="ident">text_style</span>: <span class="ident">TextStyle</span>,
-        <span class="ident">color</span>: <span class="ident"><span class="kw">crate</span>::Color32</span>,
-    ) -&gt; <span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">Galley</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="ident">job</span> <span class="op">=</span> <span class="ident">LayoutJob::simple</span>(<span class="ident">text</span>, <span class="ident">text_style</span>, <span class="ident">color</span>, <span class="ident">f32::INFINITY</span>);
-        <span class="self">self</span>.<span class="ident">layout_job</span>(<span class="ident">job</span>)
+        text: String,
+        text_style: TextStyle,
+        color: <span class="kw">crate</span>::Color32,
+    ) -&gt; Arc&lt;Galley&gt; {
+        <span class="kw">let </span>job = LayoutJob::simple(text, text_style, color, f32::INFINITY);
+        <span class="self">self</span>.layout_job(job)
     }
 
-    <span class="doccomment">/// Like [`Self::layout`], made for when you want to pick a color for the text later.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// The implementation uses memoization so repeated calls are cheap.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">layout_delayed_color</span>(
+    <span class="doccomment">/// Like [`Self::layout`], made for when you want to pick a color for the text later.
+    ///
+    /// The implementation uses memoization so repeated calls are cheap.
+    </span><span class="kw">pub fn </span>layout_delayed_color(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
-        <span class="ident">text</span>: <span class="ident">String</span>,
-        <span class="ident">text_style</span>: <span class="ident">TextStyle</span>,
-        <span class="ident">wrap_width</span>: <span class="ident">f32</span>,
-    ) -&gt; <span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">Galley</span><span class="op">&gt;</span> {
-        <span class="self">self</span>.<span class="ident">layout_job</span>(<span class="ident">LayoutJob::simple</span>(
-            <span class="ident">text</span>,
-            <span class="ident">text_style</span>,
-            <span class="ident"><span class="kw">crate</span>::Color32::TEMPORARY_COLOR</span>,
-            <span class="ident">wrap_width</span>,
+        text: String,
+        text_style: TextStyle,
+        wrap_width: f32,
+    ) -&gt; Arc&lt;Galley&gt; {
+        <span class="self">self</span>.layout_job(LayoutJob::simple(
+            text,
+            text_style,
+            <span class="kw">crate</span>::Color32::TEMPORARY_COLOR,
+            wrap_width,
         ))
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">num_galleys_in_cache</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">usize</span> {
-        <span class="self">self</span>.<span class="ident">galley_cache</span>.<span class="ident">lock</span>().<span class="ident">num_galleys_in_cache</span>()
+    <span class="kw">pub fn </span>num_galleys_in_cache(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; usize {
+        <span class="self">self</span>.galley_cache.lock().num_galleys_in_cache()
     }
 
-    <span class="doccomment">/// Must be called once per frame to clear the [`Galley`] cache.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">end_frame</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) {
-        <span class="self">self</span>.<span class="ident">galley_cache</span>.<span class="ident">lock</span>().<span class="ident">end_frame</span>();
-    }
-}
-
-<span class="kw">impl</span> <span class="ident">std::ops::Index</span><span class="op">&lt;</span><span class="ident">TextStyle</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Fonts</span> {
-    <span class="kw">type</span> <span class="ident">Output</span> <span class="op">=</span> <span class="ident">Font</span>;
-
-    <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-    <span class="kw">fn</span> <span class="ident">index</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">text_style</span>: <span class="ident">TextStyle</span>) -&gt; <span class="kw-2">&amp;</span><span class="ident">Font</span> {
-        <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">fonts</span>[<span class="kw-2">&amp;</span><span class="ident">text_style</span>]
+    <span class="doccomment">/// Must be called once per frame to clear the [`Galley`] cache.
+    </span><span class="kw">pub fn </span>end_frame(<span class="kw-2">&amp;</span><span class="self">self</span>) {
+        <span class="self">self</span>.galley_cache.lock().end_frame();
     }
 }
 
-<span class="comment">// ----------------------------------------------------------------------------</span>
+<span class="kw">impl </span>std::ops::Index&lt;TextStyle&gt; <span class="kw">for </span>Fonts {
+    <span class="kw">type </span>Output = Font;
 
-<span class="kw">struct</span> <span class="ident">CachedGalley</span> {
-    <span class="doccomment">/// When it was last used</span>
-    <span class="ident">last_used</span>: <span class="ident">u32</span>,
-    <span class="ident">galley</span>: <span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">Galley</span><span class="op">&gt;</span>,
+    <span class="attribute">#[inline(always)]
+    </span><span class="kw">fn </span>index(<span class="kw-2">&amp;</span><span class="self">self</span>, text_style: TextStyle) -&gt; <span class="kw-2">&amp;</span>Font {
+        <span class="kw-2">&amp;</span><span class="self">self</span>.fonts[<span class="kw-2">&amp;</span>text_style]
+    }
 }
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Default</span>)]</span>
-<span class="kw">struct</span> <span class="ident">GalleyCache</span> {
-    <span class="doccomment">/// Frame counter used to do garbage collection on the cache</span>
-    <span class="ident">generation</span>: <span class="ident">u32</span>,
-    <span class="ident">cache</span>: <span class="ident">nohash_hasher::IntMap</span><span class="op">&lt;</span><span class="ident">u64</span>, <span class="ident">CachedGalley</span><span class="op">&gt;</span>,
+<span class="comment">// ----------------------------------------------------------------------------
+
+</span><span class="kw">struct </span>CachedGalley {
+    <span class="doccomment">/// When it was last used
+    </span>last_used: u32,
+    galley: Arc&lt;Galley&gt;,
 }
 
-<span class="kw">impl</span> <span class="ident">GalleyCache</span> {
-    <span class="kw">fn</span> <span class="ident">layout</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">fonts</span>: <span class="kw-2">&amp;</span><span class="ident">Fonts</span>, <span class="ident">job</span>: <span class="ident">LayoutJob</span>) -&gt; <span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">Galley</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="ident">hash</span> <span class="op">=</span> <span class="ident"><span class="kw">crate</span>::util::hash</span>(<span class="kw-2">&amp;</span><span class="ident">job</span>); <span class="comment">// TODO: even faster hasher?</span>
+<span class="attribute">#[derive(Default)]
+</span><span class="kw">struct </span>GalleyCache {
+    <span class="doccomment">/// Frame counter used to do garbage collection on the cache
+    </span>generation: u32,
+    cache: nohash_hasher::IntMap&lt;u64, CachedGalley&gt;,
+}
 
-        <span class="kw">match</span> <span class="self">self</span>.<span class="ident">cache</span>.<span class="ident">entry</span>(<span class="ident">hash</span>) {
-            <span class="ident">std::collections::hash_map::Entry::Occupied</span>(<span class="ident">entry</span>) =&gt; {
-                <span class="kw">let</span> <span class="ident">cached</span> <span class="op">=</span> <span class="ident">entry</span>.<span class="ident">into_mut</span>();
-                <span class="ident">cached</span>.<span class="ident">last_used</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">generation</span>;
-                <span class="ident">cached</span>.<span class="ident">galley</span>.<span class="ident">clone</span>()
+<span class="kw">impl </span>GalleyCache {
+    <span class="kw">fn </span>layout(<span class="kw-2">&amp;mut </span><span class="self">self</span>, fonts: <span class="kw-2">&amp;</span>Fonts, job: LayoutJob) -&gt; Arc&lt;Galley&gt; {
+        <span class="kw">let </span>hash = <span class="kw">crate</span>::util::hash(<span class="kw-2">&amp;</span>job); <span class="comment">// TODO: even faster hasher?
+
+        </span><span class="kw">match </span><span class="self">self</span>.cache.entry(hash) {
+            std::collections::hash_map::Entry::Occupied(entry) =&gt; {
+                <span class="kw">let </span>cached = entry.into_mut();
+                cached.last_used = <span class="self">self</span>.generation;
+                cached.galley.clone()
             }
-            <span class="ident">std::collections::hash_map::Entry::Vacant</span>(<span class="ident">entry</span>) =&gt; {
-                <span class="kw">let</span> <span class="ident">galley</span> <span class="op">=</span> <span class="ident"><span class="kw">super</span>::layout</span>(<span class="ident">fonts</span>, <span class="ident">job</span>.<span class="ident">into</span>());
-                <span class="kw">let</span> <span class="ident">galley</span> <span class="op">=</span> <span class="ident">Arc::new</span>(<span class="ident">galley</span>);
-                <span class="ident">entry</span>.<span class="ident">insert</span>(<span class="ident">CachedGalley</span> {
-                    <span class="ident">last_used</span>: <span class="self">self</span>.<span class="ident">generation</span>,
-                    <span class="ident">galley</span>: <span class="ident">galley</span>.<span class="ident">clone</span>(),
+            std::collections::hash_map::Entry::Vacant(entry) =&gt; {
+                <span class="kw">let </span>galley = <span class="kw">super</span>::layout(fonts, job.into());
+                <span class="kw">let </span>galley = Arc::new(galley);
+                entry.insert(CachedGalley {
+                    last_used: <span class="self">self</span>.generation,
+                    galley: galley.clone(),
                 });
-                <span class="ident">galley</span>
+                galley
             }
         }
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">num_galleys_in_cache</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">usize</span> {
-        <span class="self">self</span>.<span class="ident">cache</span>.<span class="ident">len</span>()
+    <span class="kw">pub fn </span>num_galleys_in_cache(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; usize {
+        <span class="self">self</span>.cache.len()
     }
 
-    <span class="doccomment">/// Must be called once per frame to clear the [`Galley`] cache.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">end_frame</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>) {
-        <span class="kw">let</span> <span class="ident">current_generation</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">generation</span>;
-        <span class="self">self</span>.<span class="ident">cache</span>.<span class="ident">retain</span>(<span class="op">|</span><span class="ident">_key</span>, <span class="ident">cached</span><span class="op">|</span> {
-            <span class="ident">cached</span>.<span class="ident">last_used</span> <span class="op">==</span> <span class="ident">current_generation</span> <span class="comment">// only keep those that were used this frame</span>
-        });
-        <span class="self">self</span>.<span class="ident">generation</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">generation</span>.<span class="ident">wrapping_add</span>(<span class="number">1</span>);
+    <span class="doccomment">/// Must be called once per frame to clear the [`Galley`] cache.
+    </span><span class="kw">pub fn </span>end_frame(<span class="kw-2">&amp;mut </span><span class="self">self</span>) {
+        <span class="kw">let </span>current_generation = <span class="self">self</span>.generation;
+        <span class="self">self</span>.cache.retain(|_key, cached| {
+            cached.last_used == current_generation <span class="comment">// only keep those that were used this frame
+        </span>});
+        <span class="self">self</span>.generation = <span class="self">self</span>.generation.wrapping_add(<span class="number">1</span>);
     }
 }
 
-<span class="comment">// ----------------------------------------------------------------------------</span>
+<span class="comment">// ----------------------------------------------------------------------------
 
-<span class="kw">struct</span> <span class="ident">FontImplCache</span> {
-    <span class="ident">atlas</span>: <span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">Mutex</span><span class="op">&lt;</span><span class="ident">TextureAtlas</span><span class="op">&gt;</span><span class="op">&gt;</span>,
-    <span class="ident">pixels_per_point</span>: <span class="ident">f32</span>,
-    <span class="ident">ab_glyph_fonts</span>: <span class="ident">BTreeMap</span><span class="op">&lt;</span><span class="ident">String</span>, <span class="ident">ab_glyph::FontArc</span><span class="op">&gt;</span>,
+</span><span class="kw">struct </span>FontImplCache {
+    atlas: Arc&lt;Mutex&lt;TextureAtlas&gt;&gt;,
+    pixels_per_point: f32,
+    ab_glyph_fonts: BTreeMap&lt;String, ab_glyph::FontArc&gt;,
 
-    <span class="doccomment">/// Map font names and size to the cached `FontImpl`.</span>
-    <span class="doccomment">/// Can&#39;t have f32 in a HashMap or BTreeMap, so let&#39;s do a linear search</span>
-    <span class="ident">cache</span>: <span class="ident">Vec</span><span class="op">&lt;</span>(<span class="ident">String</span>, <span class="ident">f32</span>, <span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">FontImpl</span><span class="op">&gt;</span>)<span class="op">&gt;</span>,
+    <span class="doccomment">/// Map font names and size to the cached `FontImpl`.
+    /// Can&#39;t have f32 in a HashMap or BTreeMap, so let&#39;s do a linear search
+    </span>cache: Vec&lt;(String, f32, Arc&lt;FontImpl&gt;)&gt;,
 }
 
-<span class="kw">impl</span> <span class="ident">FontImplCache</span> {
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(
-        <span class="ident">atlas</span>: <span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">Mutex</span><span class="op">&lt;</span><span class="ident">TextureAtlas</span><span class="op">&gt;</span><span class="op">&gt;</span>,
-        <span class="ident">pixels_per_point</span>: <span class="ident">f32</span>,
-        <span class="ident">definitions</span>: <span class="kw-2">&amp;</span><span class="ident"><span class="kw">super</span>::FontDefinitions</span>,
-    ) -&gt; <span class="self">Self</span> {
-        <span class="kw">let</span> <span class="ident">ab_glyph_fonts</span> <span class="op">=</span> <span class="ident">definitions</span>
-            .<span class="ident">font_data</span>
-            .<span class="ident">iter</span>()
-            .<span class="ident">map</span>(<span class="op">|</span>(<span class="ident">name</span>, <span class="ident">font_data</span>)<span class="op">|</span> (<span class="ident">name</span>.<span class="ident">clone</span>(), <span class="ident">ab_glyph_font_from_font_data</span>(<span class="ident">name</span>, <span class="ident">font_data</span>)))
-            .<span class="ident">collect</span>();
+<span class="kw">impl </span>FontImplCache {
+    <span class="kw">pub fn </span>new(
+        atlas: Arc&lt;Mutex&lt;TextureAtlas&gt;&gt;,
+        pixels_per_point: f32,
+        definitions: <span class="kw-2">&amp;</span><span class="kw">super</span>::FontDefinitions,
+    ) -&gt; <span class="self">Self </span>{
+        <span class="kw">let </span>ab_glyph_fonts = definitions
+            .font_data
+            .iter()
+            .map(|(name, font_data)| (name.clone(), ab_glyph_font_from_font_data(name, font_data)))
+            .collect();
 
-        <span class="self">Self</span> {
-            <span class="ident">atlas</span>,
-            <span class="ident">pixels_per_point</span>,
-            <span class="ident">ab_glyph_fonts</span>,
-            <span class="ident">cache</span>: <span class="ident">Default::default</span>(),
+        <span class="self">Self </span>{
+            atlas,
+            pixels_per_point,
+            ab_glyph_fonts,
+            cache: Default::default(),
         }
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ab_glyph_font</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">font_name</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) -&gt; <span class="ident">ab_glyph::FontArc</span> {
-        <span class="self">self</span>.<span class="ident">ab_glyph_fonts</span>
-            .<span class="ident">get</span>(<span class="ident">font_name</span>)
-            .<span class="ident">unwrap_or_else</span>(<span class="op">|</span><span class="op">|</span> <span class="macro">panic!</span>(<span class="string">&quot;No font data found for {:?}&quot;</span>, <span class="ident">font_name</span>))
-            .<span class="ident">clone</span>()
+    <span class="kw">pub fn </span>ab_glyph_font(<span class="kw-2">&amp;</span><span class="self">self</span>, font_name: <span class="kw-2">&amp;</span>str) -&gt; ab_glyph::FontArc {
+        <span class="self">self</span>.ab_glyph_fonts
+            .get(font_name)
+            .unwrap_or_else(|| <span class="macro">panic!</span>(<span class="string">&quot;No font data found for {:?}&quot;</span>, font_name))
+            .clone()
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">font_impl</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">font_name</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>, <span class="ident">scale_in_points</span>: <span class="ident">f32</span>) -&gt; <span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">FontImpl</span><span class="op">&gt;</span> {
-        <span class="kw">for</span> <span class="ident">entry</span> <span class="kw">in</span> <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">cache</span> {
-            <span class="kw">if</span> (<span class="ident">entry</span>.<span class="number">0</span>.<span class="ident">as_str</span>(), <span class="ident">entry</span>.<span class="number">1</span>) <span class="op">==</span> (<span class="ident">font_name</span>, <span class="ident">scale_in_points</span>) {
-                <span class="kw">return</span> <span class="ident">entry</span>.<span class="number">2</span>.<span class="ident">clone</span>();
+    <span class="kw">pub fn </span>font_impl(<span class="kw-2">&amp;mut </span><span class="self">self</span>, font_name: <span class="kw-2">&amp;</span>str, scale_in_points: f32) -&gt; Arc&lt;FontImpl&gt; {
+        <span class="kw">for </span>entry <span class="kw">in </span><span class="kw-2">&amp;</span><span class="self">self</span>.cache {
+            <span class="kw">if </span>(entry.<span class="number">0</span>.as_str(), entry.<span class="number">1</span>) == (font_name, scale_in_points) {
+                <span class="kw">return </span>entry.<span class="number">2</span>.clone();
             }
         }
 
-        <span class="kw">let</span> <span class="ident">y_offset</span> <span class="op">=</span> <span class="kw">if</span> <span class="ident">font_name</span> <span class="op">==</span> <span class="string">&quot;emoji-icon-font&quot;</span> {
-            <span class="ident">scale_in_points</span> <span class="op">*</span> <span class="number">0.235</span> <span class="comment">// TODO: remove font alignment hack</span>
-        } <span class="kw">else</span> {
-            <span class="number">0.0</span>
-        };
-        <span class="kw">let</span> <span class="ident">y_offset</span> <span class="op">=</span> <span class="ident">y_offset</span> <span class="op">-</span> <span class="number">3.0</span>; <span class="comment">// Tweaked to make text look centered in buttons and text edit fields</span>
+        <span class="kw">let </span>y_offset = <span class="kw">if </span>font_name == <span class="string">&quot;emoji-icon-font&quot; </span>{
+            scale_in_points * <span class="number">0.235 </span><span class="comment">// TODO: remove font alignment hack
+        </span>} <span class="kw">else </span>{
+            <span class="number">0.0
+        </span>};
+        <span class="kw">let </span>y_offset = y_offset - <span class="number">3.0</span>; <span class="comment">// Tweaked to make text look centered in buttons and text edit fields
 
-        <span class="kw">let</span> <span class="ident">scale_in_points</span> <span class="op">=</span> <span class="kw">if</span> <span class="ident">font_name</span> <span class="op">==</span> <span class="string">&quot;emoji-icon-font&quot;</span> {
-            <span class="ident">scale_in_points</span> <span class="op">*</span> <span class="number">0.8</span> <span class="comment">// TODO: remove HACK!</span>
-        } <span class="kw">else</span> {
-            <span class="ident">scale_in_points</span>
+        </span><span class="kw">let </span>scale_in_points = <span class="kw">if </span>font_name == <span class="string">&quot;emoji-icon-font&quot; </span>{
+            scale_in_points * <span class="number">0.8 </span><span class="comment">// TODO: remove HACK!
+        </span>} <span class="kw">else </span>{
+            scale_in_points
         };
 
-        <span class="kw">let</span> <span class="ident">font_impl</span> <span class="op">=</span> <span class="ident">Arc::new</span>(<span class="ident">FontImpl::new</span>(
-            <span class="self">self</span>.<span class="ident">atlas</span>.<span class="ident">clone</span>(),
-            <span class="self">self</span>.<span class="ident">pixels_per_point</span>,
-            <span class="self">self</span>.<span class="ident">ab_glyph_font</span>(<span class="ident">font_name</span>),
-            <span class="ident">scale_in_points</span>,
-            <span class="ident">y_offset</span>,
+        <span class="kw">let </span>font_impl = Arc::new(FontImpl::new(
+            <span class="self">self</span>.atlas.clone(),
+            <span class="self">self</span>.pixels_per_point,
+            <span class="self">self</span>.ab_glyph_font(font_name),
+            scale_in_points,
+            y_offset,
         ));
-        <span class="self">self</span>.<span class="ident">cache</span>
-            .<span class="ident">push</span>((<span class="ident">font_name</span>.<span class="ident">to_owned</span>(), <span class="ident">scale_in_points</span>, <span class="ident">font_impl</span>.<span class="ident">clone</span>()));
-        <span class="ident">font_impl</span>
+        <span class="self">self</span>.cache
+            .push((font_name.to_owned(), scale_in_points, font_impl.clone()));
+        font_impl
     }
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="epaint" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0 (a55dd71d5 2022-09-19)" ></div></body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="epaint" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.66.1 (90743e729 2023-01-10)" ></div></body></html>

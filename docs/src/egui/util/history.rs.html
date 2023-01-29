@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/egui-0.16.1/src/util/history.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>history.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../storage.js"></script><script defer src="../../../source-script.js"></script><script defer src="../../../source-files.js"></script><script defer src="../../../main.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../../egui/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../../egui/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../../egui/index.html"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/egui-0.16.1/src/util/history.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>history.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../../normalize.css"><link rel="stylesheet" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../../ayu.css" disabled><link rel="stylesheet" href="../../../dark.css" disabled><link rel="stylesheet" href="../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../storage.js"></script><script defer src="../../../source-script.js"></script><script defer src="../../../source-files.js"></script><script defer src="../../../main.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><div class="width-limiter"><nav class="sub"><a class="sub-logo-container" href="../../../egui/index.html"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../wheel.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -227,234 +227,234 @@
 <span id="227">227</span>
 <span id="228">228</span>
 <span id="229">229</span>
-</pre><pre class="rust"><code><span class="kw">use</span> <span class="ident">std::collections::VecDeque</span>;
+</pre><pre class="rust"><code><span class="kw">use </span>std::collections::VecDeque;
 
-<span class="doccomment">/// This struct tracks recent values of some time series.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// It can be used as a smoothing filter for e.g. latency, fps etc,</span>
-<span class="doccomment">/// or to show a log or graph of recent events.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// It has a minimum and maximum length, as well as a maximum storage time.</span>
-<span class="doccomment">/// * The minimum length is to ensure you have enough data for an estimate.</span>
-<span class="doccomment">/// * The maximum length is to make sure the history doesn&#39;t take up too much space.</span>
-<span class="doccomment">/// * The maximum age is to make sure the estimate isn&#39;t outdated.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// Time difference between values can be zero, but never negative.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// This can be used for things like smoothed averages (for e.g. FPS)</span>
-<span class="doccomment">/// or for smoothed velocity (e.g. mouse pointer speed).</span>
-<span class="doccomment">/// All times are in seconds.</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">History</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> {
-    <span class="doccomment">/// In elements, i.e. of `values.len()`.</span>
-    <span class="doccomment">/// The length is initially zero, but once past `min_len` will not shrink below it.</span>
-    <span class="ident">min_len</span>: <span class="ident">usize</span>,
+<span class="doccomment">/// This struct tracks recent values of some time series.
+///
+/// It can be used as a smoothing filter for e.g. latency, fps etc,
+/// or to show a log or graph of recent events.
+///
+/// It has a minimum and maximum length, as well as a maximum storage time.
+/// * The minimum length is to ensure you have enough data for an estimate.
+/// * The maximum length is to make sure the history doesn&#39;t take up too much space.
+/// * The maximum age is to make sure the estimate isn&#39;t outdated.
+///
+/// Time difference between values can be zero, but never negative.
+///
+/// This can be used for things like smoothed averages (for e.g. FPS)
+/// or for smoothed velocity (e.g. mouse pointer speed).
+/// All times are in seconds.
+</span><span class="attribute">#[derive(Clone, Debug)]
+</span><span class="kw">pub struct </span>History&lt;T&gt; {
+    <span class="doccomment">/// In elements, i.e. of `values.len()`.
+    /// The length is initially zero, but once past `min_len` will not shrink below it.
+    </span>min_len: usize,
 
-    <span class="doccomment">/// In elements, i.e. of `values.len()`.</span>
-    <span class="ident">max_len</span>: <span class="ident">usize</span>,
+    <span class="doccomment">/// In elements, i.e. of `values.len()`.
+    </span>max_len: usize,
 
-    <span class="doccomment">/// In seconds.</span>
-    <span class="ident">max_age</span>: <span class="ident">f32</span>,
+    <span class="doccomment">/// In seconds.
+    </span>max_age: f32,
 
-    <span class="doccomment">/// Total number of elements seen ever</span>
-    <span class="ident">total_count</span>: <span class="ident">u64</span>,
+    <span class="doccomment">/// Total number of elements seen ever
+    </span>total_count: u64,
 
-    <span class="doccomment">/// (time, value) pairs, oldest front, newest back.</span>
-    <span class="doccomment">/// Time difference between values can be zero, but never negative.</span>
-    <span class="ident">values</span>: <span class="ident">VecDeque</span><span class="op">&lt;</span>(<span class="ident">f64</span>, <span class="ident">T</span>)<span class="op">&gt;</span>,
+    <span class="doccomment">/// (time, value) pairs, oldest front, newest back.
+    /// Time difference between values can be zero, but never negative.
+    </span>values: VecDeque&lt;(f64, T)&gt;,
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> <span class="ident">History</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>
-<span class="kw">where</span>
-    <span class="ident">T</span>: <span class="ident">Copy</span>,
+<span class="kw">impl</span>&lt;T&gt; History&lt;T&gt;
+<span class="kw">where
+    </span>T: Copy,
 {
-    <span class="doccomment">/// Example:</span>
-    <span class="doccomment">/// ```</span>
-    <span class="doccomment">/// # use egui::util::History;</span>
-    <span class="doccomment">/// # fn now() -&gt; f64 { 0.0 }</span>
-    <span class="doccomment">/// // Drop events that are older than one second,</span>
-    <span class="doccomment">/// // as long we keep at least two events. Never keep more than a hundred events.</span>
-    <span class="doccomment">/// let mut history = History::new(2..100, 1.0);</span>
-    <span class="doccomment">/// assert_eq!(history.average(), None);</span>
-    <span class="doccomment">/// history.add(now(), 40.0_f32);</span>
-    <span class="doccomment">/// history.add(now(), 44.0_f32);</span>
-    <span class="doccomment">/// assert_eq!(history.average(), Some(42.0));</span>
-    <span class="doccomment">/// ```</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">length_range</span>: <span class="ident">std::ops::Range</span><span class="op">&lt;</span><span class="ident">usize</span><span class="op">&gt;</span>, <span class="ident">max_age</span>: <span class="ident">f32</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">Self</span> {
-            <span class="ident">min_len</span>: <span class="ident">length_range</span>.<span class="ident">start</span>,
-            <span class="ident">max_len</span>: <span class="ident">length_range</span>.<span class="ident">end</span>,
-            <span class="ident">max_age</span>,
-            <span class="ident">total_count</span>: <span class="number">0</span>,
-            <span class="ident">values</span>: <span class="ident">Default::default</span>(),
+    <span class="doccomment">/// Example:
+    /// ```
+    /// # use egui::util::History;
+    /// # fn now() -&gt; f64 { 0.0 }
+    /// // Drop events that are older than one second,
+    /// // as long we keep at least two events. Never keep more than a hundred events.
+    /// let mut history = History::new(2..100, 1.0);
+    /// assert_eq!(history.average(), None);
+    /// history.add(now(), 40.0_f32);
+    /// history.add(now(), 44.0_f32);
+    /// assert_eq!(history.average(), Some(42.0));
+    /// ```
+    </span><span class="kw">pub fn </span>new(length_range: std::ops::Range&lt;usize&gt;, max_age: f32) -&gt; <span class="self">Self </span>{
+        <span class="self">Self </span>{
+            min_len: length_range.start,
+            max_len: length_range.end,
+            max_age,
+            total_count: <span class="number">0</span>,
+            values: Default::default(),
         }
     }
 
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">max_len</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">usize</span> {
-        <span class="self">self</span>.<span class="ident">max_len</span>
+    <span class="attribute">#[inline]
+    </span><span class="kw">pub fn </span>max_len(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; usize {
+        <span class="self">self</span>.max_len
     }
 
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">max_age</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">f32</span> {
-        <span class="self">self</span>.<span class="ident">max_age</span>
+    <span class="attribute">#[inline]
+    </span><span class="kw">pub fn </span>max_age(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; f32 {
+        <span class="self">self</span>.max_age
     }
 
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_empty</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span> {
-        <span class="self">self</span>.<span class="ident">values</span>.<span class="ident">is_empty</span>()
+    <span class="attribute">#[inline]
+    </span><span class="kw">pub fn </span>is_empty(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; bool {
+        <span class="self">self</span>.values.is_empty()
     }
 
-    <span class="doccomment">/// Current number of values kept in history</span>
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">len</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">usize</span> {
-        <span class="self">self</span>.<span class="ident">values</span>.<span class="ident">len</span>()
+    <span class="doccomment">/// Current number of values kept in history
+    </span><span class="attribute">#[inline]
+    </span><span class="kw">pub fn </span>len(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; usize {
+        <span class="self">self</span>.values.len()
     }
 
-    <span class="doccomment">/// Total number of values seen.</span>
-    <span class="doccomment">/// Includes those that have been discarded due to `max_len` or `max_age`.</span>
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">total_count</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">u64</span> {
-        <span class="self">self</span>.<span class="ident">total_count</span>
+    <span class="doccomment">/// Total number of values seen.
+    /// Includes those that have been discarded due to `max_len` or `max_age`.
+    </span><span class="attribute">#[inline]
+    </span><span class="kw">pub fn </span>total_count(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; u64 {
+        <span class="self">self</span>.total_count
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">latest</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> {
-        <span class="self">self</span>.<span class="ident">values</span>.<span class="ident">back</span>().<span class="ident">map</span>(<span class="op">|</span>(<span class="kw">_</span>, <span class="ident">value</span>)<span class="op">|</span> <span class="kw-2">*</span><span class="ident">value</span>)
+    <span class="kw">pub fn </span>latest(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;T&gt; {
+        <span class="self">self</span>.values.back().map(|(<span class="kw">_</span>, value)| <span class="kw-2">*</span>value)
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">latest_mut</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;mut</span> <span class="ident">T</span><span class="op">&gt;</span> {
-        <span class="self">self</span>.<span class="ident">values</span>.<span class="ident">back_mut</span>().<span class="ident">map</span>(<span class="op">|</span>(<span class="kw">_</span>, <span class="ident">value</span>)<span class="op">|</span> <span class="ident">value</span>)
+    <span class="kw">pub fn </span>latest_mut(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;mut </span>T&gt; {
+        <span class="self">self</span>.values.back_mut().map(|(<span class="kw">_</span>, value)| value)
     }
 
-    <span class="doccomment">/// Amount of time contained from start to end in this `History`.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">duration</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">f32</span> {
-        <span class="kw">if</span> <span class="kw">let</span> (<span class="prelude-val">Some</span>(<span class="ident">front</span>), <span class="prelude-val">Some</span>(<span class="ident">back</span>)) <span class="op">=</span> (<span class="self">self</span>.<span class="ident">values</span>.<span class="ident">front</span>(), <span class="self">self</span>.<span class="ident">values</span>.<span class="ident">back</span>()) {
-            (<span class="ident">back</span>.<span class="number">0</span> <span class="op">-</span> <span class="ident">front</span>.<span class="number">0</span>) <span class="kw">as</span> <span class="ident">f32</span>
-        } <span class="kw">else</span> {
-            <span class="number">0.0</span>
+    <span class="doccomment">/// Amount of time contained from start to end in this `History`.
+    </span><span class="kw">pub fn </span>duration(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; f32 {
+        <span class="kw">if let </span>(<span class="prelude-val">Some</span>(front), <span class="prelude-val">Some</span>(back)) = (<span class="self">self</span>.values.front(), <span class="self">self</span>.values.back()) {
+            (back.<span class="number">0 </span>- front.<span class="number">0</span>) <span class="kw">as </span>f32
+        } <span class="kw">else </span>{
+            <span class="number">0.0
+        </span>}
+    }
+
+    <span class="doccomment">/// `(time, value)` pairs
+    /// Time difference between values can be zero, but never negative.
+    </span><span class="comment">// TODO: impl IntoIter
+    </span><span class="kw">pub fn </span>iter(<span class="kw-2">&amp;</span><span class="lifetime">&#39;_ </span><span class="self">self</span>) -&gt; <span class="kw">impl </span>Iterator&lt;Item = (f64, T)&gt; + <span class="lifetime">&#39;_ </span>{
+        <span class="self">self</span>.values.iter().map(|(time, value)| (<span class="kw-2">*</span>time, <span class="kw-2">*</span>value))
+    }
+
+    <span class="kw">pub fn </span>values(<span class="kw-2">&amp;</span><span class="lifetime">&#39;_ </span><span class="self">self</span>) -&gt; <span class="kw">impl </span>Iterator&lt;Item = T&gt; + <span class="lifetime">&#39;_ </span>{
+        <span class="self">self</span>.values.iter().map(|(_time, value)| <span class="kw-2">*</span>value)
+    }
+
+    <span class="attribute">#[inline]
+    </span><span class="kw">pub fn </span>clear(<span class="kw-2">&amp;mut </span><span class="self">self</span>) {
+        <span class="self">self</span>.values.clear();
+    }
+
+    <span class="doccomment">/// Values must be added with a monotonically increasing time, or at least not decreasing.
+    </span><span class="kw">pub fn </span>add(<span class="kw-2">&amp;mut </span><span class="self">self</span>, now: f64, value: T) {
+        <span class="kw">if let </span><span class="prelude-val">Some</span>((last_time, <span class="kw">_</span>)) = <span class="self">self</span>.values.back() {
+            <span class="macro">crate::egui_assert!</span>(now &gt;= <span class="kw-2">*</span>last_time, <span class="string">&quot;Time shouldn&#39;t move backwards&quot;</span>);
         }
+        <span class="self">self</span>.total_count += <span class="number">1</span>;
+        <span class="self">self</span>.values.push_back((now, value));
+        <span class="self">self</span>.flush(now);
     }
 
-    <span class="doccomment">/// `(time, value)` pairs</span>
-    <span class="doccomment">/// Time difference between values can be zero, but never negative.</span>
-    <span class="comment">// TODO: impl IntoIter</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">iter</span>(<span class="kw-2">&amp;</span><span class="lifetime">&#39;_</span> <span class="self">self</span>) -&gt; <span class="kw">impl</span> <span class="ident">Iterator</span><span class="op">&lt;</span><span class="ident">Item</span> <span class="op">=</span> (<span class="ident">f64</span>, <span class="ident">T</span>)<span class="op">&gt;</span> <span class="op">+</span> <span class="lifetime">&#39;_</span> {
-        <span class="self">self</span>.<span class="ident">values</span>.<span class="ident">iter</span>().<span class="ident">map</span>(<span class="op">|</span>(<span class="ident">time</span>, <span class="ident">value</span>)<span class="op">|</span> (<span class="kw-2">*</span><span class="ident">time</span>, <span class="kw-2">*</span><span class="ident">value</span>))
+    <span class="doccomment">/// Mean time difference between values in this `History`.
+    </span><span class="kw">pub fn </span>mean_time_interval(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;f32&gt; {
+        <span class="kw">if let </span>(<span class="prelude-val">Some</span>(first), <span class="prelude-val">Some</span>(last)) = (<span class="self">self</span>.values.front(), <span class="self">self</span>.values.back()) {
+            <span class="kw">let </span>n = <span class="self">self</span>.len();
+            <span class="kw">if </span>n &gt;= <span class="number">2 </span>{
+                <span class="prelude-val">Some</span>((last.<span class="number">0 </span>- first.<span class="number">0</span>) <span class="kw">as </span>f32 / ((n - <span class="number">1</span>) <span class="kw">as </span>f32))
+            } <span class="kw">else </span>{
+                <span class="prelude-val">None
+            </span>}
+        } <span class="kw">else </span>{
+            <span class="prelude-val">None
+        </span>}
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">values</span>(<span class="kw-2">&amp;</span><span class="lifetime">&#39;_</span> <span class="self">self</span>) -&gt; <span class="kw">impl</span> <span class="ident">Iterator</span><span class="op">&lt;</span><span class="ident">Item</span> <span class="op">=</span> <span class="ident">T</span><span class="op">&gt;</span> <span class="op">+</span> <span class="lifetime">&#39;_</span> {
-        <span class="self">self</span>.<span class="ident">values</span>.<span class="ident">iter</span>().<span class="ident">map</span>(<span class="op">|</span>(<span class="ident">_time</span>, <span class="ident">value</span>)<span class="op">|</span> <span class="kw-2">*</span><span class="ident">value</span>)
+    <span class="comment">// Mean number of events per second.
+    </span><span class="kw">pub fn </span>rate(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;f32&gt; {
+        <span class="self">self</span>.mean_time_interval().map(|time| <span class="number">1.0 </span>/ time)
     }
 
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">clear</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>) {
-        <span class="self">self</span>.<span class="ident">values</span>.<span class="ident">clear</span>();
-    }
-
-    <span class="doccomment">/// Values must be added with a monotonically increasing time, or at least not decreasing.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">add</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">now</span>: <span class="ident">f64</span>, <span class="ident">value</span>: <span class="ident">T</span>) {
-        <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>((<span class="ident">last_time</span>, <span class="kw">_</span>)) <span class="op">=</span> <span class="self">self</span>.<span class="ident">values</span>.<span class="ident">back</span>() {
-            <span class="macro">crate::egui_assert!</span>(<span class="ident">now</span> <span class="op">&gt;</span><span class="op">=</span> <span class="kw-2">*</span><span class="ident">last_time</span>, <span class="string">&quot;Time shouldn&#39;t move backwards&quot;</span>);
+    <span class="doccomment">/// Remove samples that are too old.
+    </span><span class="kw">pub fn </span>flush(<span class="kw-2">&amp;mut </span><span class="self">self</span>, now: f64) {
+        <span class="kw">while </span><span class="self">self</span>.values.len() &gt; <span class="self">self</span>.max_len {
+            <span class="self">self</span>.values.pop_front();
         }
-        <span class="self">self</span>.<span class="ident">total_count</span> <span class="op">+</span><span class="op">=</span> <span class="number">1</span>;
-        <span class="self">self</span>.<span class="ident">values</span>.<span class="ident">push_back</span>((<span class="ident">now</span>, <span class="ident">value</span>));
-        <span class="self">self</span>.<span class="ident">flush</span>(<span class="ident">now</span>);
-    }
-
-    <span class="doccomment">/// Mean time difference between values in this `History`.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">mean_time_interval</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">f32</span><span class="op">&gt;</span> {
-        <span class="kw">if</span> <span class="kw">let</span> (<span class="prelude-val">Some</span>(<span class="ident">first</span>), <span class="prelude-val">Some</span>(<span class="ident">last</span>)) <span class="op">=</span> (<span class="self">self</span>.<span class="ident">values</span>.<span class="ident">front</span>(), <span class="self">self</span>.<span class="ident">values</span>.<span class="ident">back</span>()) {
-            <span class="kw">let</span> <span class="ident">n</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">len</span>();
-            <span class="kw">if</span> <span class="ident">n</span> <span class="op">&gt;</span><span class="op">=</span> <span class="number">2</span> {
-                <span class="prelude-val">Some</span>((<span class="ident">last</span>.<span class="number">0</span> <span class="op">-</span> <span class="ident">first</span>.<span class="number">0</span>) <span class="kw">as</span> <span class="ident">f32</span> <span class="op">/</span> ((<span class="ident">n</span> <span class="op">-</span> <span class="number">1</span>) <span class="kw">as</span> <span class="ident">f32</span>))
-            } <span class="kw">else</span> {
-                <span class="prelude-val">None</span>
-            }
-        } <span class="kw">else</span> {
-            <span class="prelude-val">None</span>
-        }
-    }
-
-    <span class="comment">// Mean number of events per second.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">rate</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">f32</span><span class="op">&gt;</span> {
-        <span class="self">self</span>.<span class="ident">mean_time_interval</span>().<span class="ident">map</span>(<span class="op">|</span><span class="ident">time</span><span class="op">|</span> <span class="number">1.0</span> <span class="op">/</span> <span class="ident">time</span>)
-    }
-
-    <span class="doccomment">/// Remove samples that are too old.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">flush</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">now</span>: <span class="ident">f64</span>) {
-        <span class="kw">while</span> <span class="self">self</span>.<span class="ident">values</span>.<span class="ident">len</span>() <span class="op">&gt;</span> <span class="self">self</span>.<span class="ident">max_len</span> {
-            <span class="self">self</span>.<span class="ident">values</span>.<span class="ident">pop_front</span>();
-        }
-        <span class="kw">while</span> <span class="self">self</span>.<span class="ident">values</span>.<span class="ident">len</span>() <span class="op">&gt;</span> <span class="self">self</span>.<span class="ident">min_len</span> {
-            <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>((<span class="ident">front_time</span>, <span class="kw">_</span>)) <span class="op">=</span> <span class="self">self</span>.<span class="ident">values</span>.<span class="ident">front</span>() {
-                <span class="kw">if</span> <span class="kw-2">*</span><span class="ident">front_time</span> <span class="op">&lt;</span> <span class="ident">now</span> <span class="op">-</span> (<span class="self">self</span>.<span class="ident">max_age</span> <span class="kw">as</span> <span class="ident">f64</span>) {
-                    <span class="self">self</span>.<span class="ident">values</span>.<span class="ident">pop_front</span>();
-                } <span class="kw">else</span> {
+        <span class="kw">while </span><span class="self">self</span>.values.len() &gt; <span class="self">self</span>.min_len {
+            <span class="kw">if let </span><span class="prelude-val">Some</span>((front_time, <span class="kw">_</span>)) = <span class="self">self</span>.values.front() {
+                <span class="kw">if </span><span class="kw-2">*</span>front_time &lt; now - (<span class="self">self</span>.max_age <span class="kw">as </span>f64) {
+                    <span class="self">self</span>.values.pop_front();
+                } <span class="kw">else </span>{
                     <span class="kw">break</span>;
                 }
-            } <span class="kw">else</span> {
+            } <span class="kw">else </span>{
                 <span class="kw">break</span>;
             }
         }
     }
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> <span class="ident">History</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>
-<span class="kw">where</span>
-    <span class="ident">T</span>: <span class="ident">Copy</span>,
-    <span class="ident">T</span>: <span class="ident">std::iter::Sum</span>,
-    <span class="ident">T</span>: <span class="ident">std::ops::Div</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Output</span> <span class="op">=</span> <span class="ident">T</span><span class="op">&gt;</span>,
+<span class="kw">impl</span>&lt;T&gt; History&lt;T&gt;
+<span class="kw">where
+    </span>T: Copy,
+    T: std::iter::Sum,
+    T: std::ops::Div&lt;f32, Output = T&gt;,
 {
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">sum</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">T</span> {
-        <span class="self">self</span>.<span class="ident">values</span>().<span class="ident">sum</span>()
+    <span class="attribute">#[inline]
+    </span><span class="kw">pub fn </span>sum(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; T {
+        <span class="self">self</span>.values().sum()
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">average</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="ident">num</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">len</span>();
-        <span class="kw">if</span> <span class="ident">num</span> <span class="op">&gt;</span> <span class="number">0</span> {
-            <span class="prelude-val">Some</span>(<span class="self">self</span>.<span class="ident">sum</span>() <span class="op">/</span> (<span class="ident">num</span> <span class="kw">as</span> <span class="ident">f32</span>))
-        } <span class="kw">else</span> {
-            <span class="prelude-val">None</span>
-        }
-    }
-}
-
-<span class="kw">impl</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> <span class="ident">History</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>
-<span class="kw">where</span>
-    <span class="ident">T</span>: <span class="ident">Copy</span>,
-    <span class="ident">T</span>: <span class="ident">std::iter::Sum</span>,
-    <span class="ident">T</span>: <span class="ident">std::ops::Div</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Output</span> <span class="op">=</span> <span class="ident">T</span><span class="op">&gt;</span>,
-    <span class="ident">T</span>: <span class="ident">std::ops::Mul</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Output</span> <span class="op">=</span> <span class="ident">T</span><span class="op">&gt;</span>,
-{
-    <span class="doccomment">/// Average times rate.</span>
-    <span class="doccomment">/// If you are keeping track of individual sizes of things (e.g. bytes),</span>
-    <span class="doccomment">/// this will estimate the bandwidth (bytes per second).</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">bandwidth</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> {
-        <span class="prelude-val">Some</span>(<span class="self">self</span>.<span class="ident">average</span>()<span class="question-mark">?</span> <span class="op">*</span> <span class="self">self</span>.<span class="ident">rate</span>()<span class="question-mark">?</span>)
+    <span class="kw">pub fn </span>average(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;T&gt; {
+        <span class="kw">let </span>num = <span class="self">self</span>.len();
+        <span class="kw">if </span>num &gt; <span class="number">0 </span>{
+            <span class="prelude-val">Some</span>(<span class="self">self</span>.sum() / (num <span class="kw">as </span>f32))
+        } <span class="kw">else </span>{
+            <span class="prelude-val">None
+        </span>}
     }
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="ident">T</span>, <span class="ident">Vel</span><span class="op">&gt;</span> <span class="ident">History</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>
-<span class="kw">where</span>
-    <span class="ident">T</span>: <span class="ident">Copy</span>,
-    <span class="ident">T</span>: <span class="ident">std::ops::Sub</span><span class="op">&lt;</span><span class="ident">Output</span> <span class="op">=</span> <span class="ident">Vel</span><span class="op">&gt;</span>,
-    <span class="ident">Vel</span>: <span class="ident">std::ops::Div</span><span class="op">&lt;</span><span class="ident">f32</span>, <span class="ident">Output</span> <span class="op">=</span> <span class="ident">Vel</span><span class="op">&gt;</span>,
+<span class="kw">impl</span>&lt;T&gt; History&lt;T&gt;
+<span class="kw">where
+    </span>T: Copy,
+    T: std::iter::Sum,
+    T: std::ops::Div&lt;f32, Output = T&gt;,
+    T: std::ops::Mul&lt;f32, Output = T&gt;,
 {
-    <span class="doccomment">/// Calculate a smooth velocity (per second) over the entire time span.</span>
-    <span class="doccomment">/// Calculated as the last value minus the first value over the elapsed time between them.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">velocity</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Vel</span><span class="op">&gt;</span> {
-        <span class="kw">if</span> <span class="kw">let</span> (<span class="prelude-val">Some</span>(<span class="ident">first</span>), <span class="prelude-val">Some</span>(<span class="ident">last</span>)) <span class="op">=</span> (<span class="self">self</span>.<span class="ident">values</span>.<span class="ident">front</span>(), <span class="self">self</span>.<span class="ident">values</span>.<span class="ident">back</span>()) {
-            <span class="kw">let</span> <span class="ident">dt</span> <span class="op">=</span> (<span class="ident">last</span>.<span class="number">0</span> <span class="op">-</span> <span class="ident">first</span>.<span class="number">0</span>) <span class="kw">as</span> <span class="ident">f32</span>;
-            <span class="kw">if</span> <span class="ident">dt</span> <span class="op">&gt;</span> <span class="number">0.0</span> {
-                <span class="prelude-val">Some</span>((<span class="ident">last</span>.<span class="number">1</span> <span class="op">-</span> <span class="ident">first</span>.<span class="number">1</span>) <span class="op">/</span> <span class="ident">dt</span>)
-            } <span class="kw">else</span> {
-                <span class="prelude-val">None</span>
-            }
-        } <span class="kw">else</span> {
-            <span class="prelude-val">None</span>
-        }
+    <span class="doccomment">/// Average times rate.
+    /// If you are keeping track of individual sizes of things (e.g. bytes),
+    /// this will estimate the bandwidth (bytes per second).
+    </span><span class="kw">pub fn </span>bandwidth(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;T&gt; {
+        <span class="prelude-val">Some</span>(<span class="self">self</span>.average()<span class="question-mark">? </span>* <span class="self">self</span>.rate()<span class="question-mark">?</span>)
+    }
+}
+
+<span class="kw">impl</span>&lt;T, Vel&gt; History&lt;T&gt;
+<span class="kw">where
+    </span>T: Copy,
+    T: std::ops::Sub&lt;Output = Vel&gt;,
+    Vel: std::ops::Div&lt;f32, Output = Vel&gt;,
+{
+    <span class="doccomment">/// Calculate a smooth velocity (per second) over the entire time span.
+    /// Calculated as the last value minus the first value over the elapsed time between them.
+    </span><span class="kw">pub fn </span>velocity(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;Vel&gt; {
+        <span class="kw">if let </span>(<span class="prelude-val">Some</span>(first), <span class="prelude-val">Some</span>(last)) = (<span class="self">self</span>.values.front(), <span class="self">self</span>.values.back()) {
+            <span class="kw">let </span>dt = (last.<span class="number">0 </span>- first.<span class="number">0</span>) <span class="kw">as </span>f32;
+            <span class="kw">if </span>dt &gt; <span class="number">0.0 </span>{
+                <span class="prelude-val">Some</span>((last.<span class="number">1 </span>- first.<span class="number">1</span>) / dt)
+            } <span class="kw">else </span>{
+                <span class="prelude-val">None
+            </span>}
+        } <span class="kw">else </span>{
+            <span class="prelude-val">None
+        </span>}
     }
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="egui" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0 (a55dd71d5 2022-09-19)" ></div></body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="egui" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.66.1 (90743e729 2023-01-10)" ></div></body></html>

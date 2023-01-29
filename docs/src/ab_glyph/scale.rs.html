@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/ab_glyph-0.2.15/src/scale.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>scale.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../ab_glyph/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../ab_glyph/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../ab_glyph/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/ab_glyph-0.2.15/src/scale.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>scale.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../normalize.css"><link rel="stylesheet" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../ayu.css" disabled><link rel="stylesheet" href="../../dark.css" disabled><link rel="stylesheet" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><div class="width-limiter"><nav class="sub"><a class="sub-logo-container" href="../../ab_glyph/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -253,260 +253,260 @@
 <span id="253">253</span>
 <span id="254">254</span>
 <span id="255">255</span>
-</pre><pre class="rust"><code><span class="kw">use</span> <span class="kw">crate</span>::{<span class="ident">Font</span>, <span class="ident">Glyph</span>, <span class="ident">GlyphId</span>, <span class="ident">OutlinedGlyph</span>, <span class="ident">Rect</span>};
+</pre><pre class="rust"><code><span class="kw">use crate</span>::{Font, Glyph, GlyphId, OutlinedGlyph, Rect};
 
-<span class="doccomment">/// Pixel scale.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// This is the pixel-height of text.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// Usually one uses `x == y`, but one may use a different ratio to stretch a</span>
-<span class="doccomment">/// font horizontally or vertically.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// # Example</span>
-<span class="doccomment">/// ```</span>
-<span class="doccomment">/// use ab_glyph::PxScale;</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// let uniform_scale_24px = PxScale::from(24.0);</span>
-<span class="doccomment">/// ```</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>, <span class="ident">PartialOrd</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">PxScale</span> {
-    <span class="doccomment">/// Horizontal scale in pixels.</span>
-    <span class="kw">pub</span> <span class="ident">x</span>: <span class="ident">f32</span>,
-    <span class="doccomment">/// Vertical scale in pixels.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// By definition, this is the pixel-height of a font.</span>
-    <span class="kw">pub</span> <span class="ident">y</span>: <span class="ident">f32</span>,
+<span class="doccomment">/// Pixel scale.
+///
+/// This is the pixel-height of text.
+///
+/// Usually one uses `x == y`, but one may use a different ratio to stretch a
+/// font horizontally or vertically.
+///
+/// # Example
+/// ```
+/// use ab_glyph::PxScale;
+///
+/// let uniform_scale_24px = PxScale::from(24.0);
+/// ```
+</span><span class="attribute">#[derive(Copy, Clone, Debug, PartialEq, PartialOrd)]
+</span><span class="kw">pub struct </span>PxScale {
+    <span class="doccomment">/// Horizontal scale in pixels.
+    </span><span class="kw">pub </span>x: f32,
+    <span class="doccomment">/// Vertical scale in pixels.
+    ///
+    /// By definition, this is the pixel-height of a font.
+    </span><span class="kw">pub </span>y: f32,
 }
 
-<span class="kw">impl</span> <span class="ident">From</span><span class="op">&lt;</span><span class="ident">f32</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">PxScale</span> {
-    <span class="doccomment">/// Uniform scaling where x &amp; y are the same.</span>
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">s</span>: <span class="ident">f32</span>) -&gt; <span class="self">Self</span> {
-        <span class="ident">PxScale</span> { <span class="ident">x</span>: <span class="ident">s</span>, <span class="ident">y</span>: <span class="ident">s</span> }
+<span class="kw">impl </span>From&lt;f32&gt; <span class="kw">for </span>PxScale {
+    <span class="doccomment">/// Uniform scaling where x &amp; y are the same.
+    </span><span class="attribute">#[inline]
+    </span><span class="kw">fn </span>from(s: f32) -&gt; <span class="self">Self </span>{
+        PxScale { x: s, y: s }
     }
 }
 
-<span class="doccomment">/// 2D scale factors for use with unscaled metrics.</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>, <span class="ident">PartialOrd</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">PxScaleFactor</span> {
-    <span class="kw">pub</span> <span class="ident">horizontal</span>: <span class="ident">f32</span>,
-    <span class="kw">pub</span> <span class="ident">vertical</span>: <span class="ident">f32</span>,
+<span class="doccomment">/// 2D scale factors for use with unscaled metrics.
+</span><span class="attribute">#[derive(Copy, Clone, Debug, PartialEq, PartialOrd)]
+</span><span class="kw">pub struct </span>PxScaleFactor {
+    <span class="kw">pub </span>horizontal: f32,
+    <span class="kw">pub </span>vertical: f32,
 }
 
-<span class="doccomment">/// A [`Font`](trait.Font.html) with an associated pixel scale. This can be used to provide</span>
-<span class="doccomment">/// pixel scale values for glyph advances, heights etc.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// # Example</span>
-<span class="doccomment">/// ```</span>
-<span class="doccomment">/// use ab_glyph::{Font, FontRef, PxScale, ScaleFont};</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// # fn main() -&gt; Result&lt;(), ab_glyph::InvalidFont&gt; {</span>
-<span class="doccomment">/// let font = FontRef::try_from_slice(include_bytes!(&quot;../../dev/fonts/Exo2-Light.otf&quot;))?;</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// // Associate the font with a scale of 45px</span>
-<span class="doccomment">/// let scaled_font = font.as_scaled(PxScale::from(45.0));</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// assert_eq!(scaled_font.height(), 45.0);</span>
-<span class="doccomment">/// assert_eq!(scaled_font.h_advance(scaled_font.glyph_id(&#39;b&#39;)), 21.225);</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// // Replace associated scale with another</span>
-<span class="doccomment">/// let scaled_font = scaled_font.with_scale(180.0);</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// assert_eq!(scaled_font.height(), 180.0);</span>
-<span class="doccomment">/// assert_eq!(scaled_font.h_advance(scaled_font.glyph_id(&#39;b&#39;)), 84.9);</span>
-<span class="doccomment">/// # Ok(()) }</span>
-<span class="doccomment">/// ```</span>
-<span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">ScaleFont</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Font</span><span class="op">&gt;</span> {
-    <span class="doccomment">/// Returns the pixel scale associated with this font.</span>
-    <span class="kw">fn</span> <span class="ident">scale</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">PxScale</span>;
+<span class="doccomment">/// A [`Font`](trait.Font.html) with an associated pixel scale. This can be used to provide
+/// pixel scale values for glyph advances, heights etc.
+///
+/// # Example
+/// ```
+/// use ab_glyph::{Font, FontRef, PxScale, ScaleFont};
+///
+/// # fn main() -&gt; Result&lt;(), ab_glyph::InvalidFont&gt; {
+/// let font = FontRef::try_from_slice(include_bytes!(&quot;../../dev/fonts/Exo2-Light.otf&quot;))?;
+///
+/// // Associate the font with a scale of 45px
+/// let scaled_font = font.as_scaled(PxScale::from(45.0));
+///
+/// assert_eq!(scaled_font.height(), 45.0);
+/// assert_eq!(scaled_font.h_advance(scaled_font.glyph_id(&#39;b&#39;)), 21.225);
+///
+/// // Replace associated scale with another
+/// let scaled_font = scaled_font.with_scale(180.0);
+///
+/// assert_eq!(scaled_font.height(), 180.0);
+/// assert_eq!(scaled_font.h_advance(scaled_font.glyph_id(&#39;b&#39;)), 84.9);
+/// # Ok(()) }
+/// ```
+</span><span class="kw">pub trait </span>ScaleFont&lt;F: Font&gt; {
+    <span class="doccomment">/// Returns the pixel scale associated with this font.
+    </span><span class="kw">fn </span>scale(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; PxScale;
 
-    <span class="doccomment">/// Returns a font reference.</span>
-    <span class="kw">fn</span> <span class="ident">font</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span><span class="ident">F</span>;
+    <span class="doccomment">/// Returns a font reference.
+    </span><span class="kw">fn </span>font(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span>F;
 
-    <span class="doccomment">/// Scale factor for unscaled font horizontal values.</span>
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">h_scale_factor</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">f32</span> {
-        <span class="self">self</span>.<span class="ident">scale</span>().<span class="ident">x</span> <span class="op">/</span> <span class="self">self</span>.<span class="ident">font</span>().<span class="ident">height_unscaled</span>()
+    <span class="doccomment">/// Scale factor for unscaled font horizontal values.
+    </span><span class="attribute">#[inline]
+    </span><span class="kw">fn </span>h_scale_factor(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; f32 {
+        <span class="self">self</span>.scale().x / <span class="self">self</span>.font().height_unscaled()
     }
 
-    <span class="doccomment">/// Scale factor for unscaled font vertical values.</span>
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">v_scale_factor</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">f32</span> {
-        <span class="self">self</span>.<span class="ident">scale</span>().<span class="ident">y</span> <span class="op">/</span> <span class="self">self</span>.<span class="ident">font</span>().<span class="ident">height_unscaled</span>()
+    <span class="doccomment">/// Scale factor for unscaled font vertical values.
+    </span><span class="attribute">#[inline]
+    </span><span class="kw">fn </span>v_scale_factor(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; f32 {
+        <span class="self">self</span>.scale().y / <span class="self">self</span>.font().height_unscaled()
     }
 
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">scale_factor</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">PxScaleFactor</span> {
-        <span class="ident">PxScaleFactor</span> {
-            <span class="ident">horizontal</span>: <span class="self">self</span>.<span class="ident">h_scale_factor</span>(),
-            <span class="ident">vertical</span>: <span class="self">self</span>.<span class="ident">v_scale_factor</span>(),
+    <span class="attribute">#[inline]
+    </span><span class="kw">fn </span>scale_factor(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; PxScaleFactor {
+        PxScaleFactor {
+            horizontal: <span class="self">self</span>.h_scale_factor(),
+            vertical: <span class="self">self</span>.v_scale_factor(),
         }
     }
 
-    <span class="doccomment">/// Pixel scaled glyph ascent.</span>
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">ascent</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">f32</span> {
-        <span class="self">self</span>.<span class="ident">v_scale_factor</span>() <span class="op">*</span> <span class="self">self</span>.<span class="ident">font</span>().<span class="ident">ascent_unscaled</span>()
+    <span class="doccomment">/// Pixel scaled glyph ascent.
+    </span><span class="attribute">#[inline]
+    </span><span class="kw">fn </span>ascent(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; f32 {
+        <span class="self">self</span>.v_scale_factor() * <span class="self">self</span>.font().ascent_unscaled()
     }
 
-    <span class="doccomment">/// Pixel scaled glyph descent.</span>
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">descent</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">f32</span> {
-        <span class="self">self</span>.<span class="ident">v_scale_factor</span>() <span class="op">*</span> <span class="self">self</span>.<span class="ident">font</span>().<span class="ident">descent_unscaled</span>()
+    <span class="doccomment">/// Pixel scaled glyph descent.
+    </span><span class="attribute">#[inline]
+    </span><span class="kw">fn </span>descent(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; f32 {
+        <span class="self">self</span>.v_scale_factor() * <span class="self">self</span>.font().descent_unscaled()
     }
 
-    <span class="doccomment">/// Pixel scaled height `ascent - descent`.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// By definition of [`PxScale`], this is `self.scale().y`.</span>
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">height</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">f32</span> {
-        <span class="self">self</span>.<span class="ident">scale</span>().<span class="ident">y</span>
+    <span class="doccomment">/// Pixel scaled height `ascent - descent`.
+    ///
+    /// By definition of [`PxScale`], this is `self.scale().y`.
+    </span><span class="attribute">#[inline]
+    </span><span class="kw">fn </span>height(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; f32 {
+        <span class="self">self</span>.scale().y
     }
 
-    <span class="doccomment">/// Pixel scaled line gap.</span>
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">line_gap</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">f32</span> {
-        <span class="self">self</span>.<span class="ident">v_scale_factor</span>() <span class="op">*</span> <span class="self">self</span>.<span class="ident">font</span>().<span class="ident">line_gap_unscaled</span>()
+    <span class="doccomment">/// Pixel scaled line gap.
+    </span><span class="attribute">#[inline]
+    </span><span class="kw">fn </span>line_gap(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; f32 {
+        <span class="self">self</span>.v_scale_factor() * <span class="self">self</span>.font().line_gap_unscaled()
     }
 
-    <span class="doccomment">/// Lookup a `GlyphId` matching a given `char`.</span>
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">glyph_id</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">c</span>: <span class="ident">char</span>) -&gt; <span class="ident">GlyphId</span> {
-        <span class="self">self</span>.<span class="ident">font</span>().<span class="ident">glyph_id</span>(<span class="ident">c</span>)
+    <span class="doccomment">/// Lookup a `GlyphId` matching a given `char`.
+    </span><span class="attribute">#[inline]
+    </span><span class="kw">fn </span>glyph_id(<span class="kw-2">&amp;</span><span class="self">self</span>, c: char) -&gt; GlyphId {
+        <span class="self">self</span>.font().glyph_id(c)
     }
 
-    <span class="doccomment">/// Construct a [`Glyph`](struct.Glyph.html) with the font&#39;s pixel scale at</span>
-    <span class="doccomment">/// position `point(0.0, 0.0)`.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// # Example</span>
-    <span class="doccomment">/// ```</span>
-    <span class="doccomment">/// # use ab_glyph::*;</span>
-    <span class="doccomment">/// # let font = FontRef::try_from_slice(include_bytes!(&quot;../../dev/fonts/Exo2-Light.otf&quot;)).unwrap();</span>
-    <span class="doccomment">/// let scaled_font = font.as_scaled(50.0);</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// let a1 = scaled_font.scaled_glyph(&#39;a&#39;);</span>
-    <span class="doccomment">/// let a2 = font.glyph_id(&#39;a&#39;).with_scale(50.0); // equivalent</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// # assert_eq!(a1.id, a2.id);</span>
-    <span class="doccomment">/// assert_eq!(a1.scale, PxScale::from(50.0));</span>
-    <span class="doccomment">/// assert_eq!(a1.position, point(0.0, 0.0));</span>
-    <span class="doccomment">/// ```</span>
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">scaled_glyph</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">c</span>: <span class="ident">char</span>) -&gt; <span class="ident">Glyph</span> {
-        <span class="self">self</span>.<span class="ident">font</span>().<span class="ident">glyph_id</span>(<span class="ident">c</span>).<span class="ident">with_scale</span>(<span class="self">self</span>.<span class="ident">scale</span>())
+    <span class="doccomment">/// Construct a [`Glyph`](struct.Glyph.html) with the font&#39;s pixel scale at
+    /// position `point(0.0, 0.0)`.
+    ///
+    /// # Example
+    /// ```
+    /// # use ab_glyph::*;
+    /// # let font = FontRef::try_from_slice(include_bytes!(&quot;../../dev/fonts/Exo2-Light.otf&quot;)).unwrap();
+    /// let scaled_font = font.as_scaled(50.0);
+    ///
+    /// let a1 = scaled_font.scaled_glyph(&#39;a&#39;);
+    /// let a2 = font.glyph_id(&#39;a&#39;).with_scale(50.0); // equivalent
+    ///
+    /// # assert_eq!(a1.id, a2.id);
+    /// assert_eq!(a1.scale, PxScale::from(50.0));
+    /// assert_eq!(a1.position, point(0.0, 0.0));
+    /// ```
+    </span><span class="attribute">#[inline]
+    </span><span class="kw">fn </span>scaled_glyph(<span class="kw-2">&amp;</span><span class="self">self</span>, c: char) -&gt; Glyph {
+        <span class="self">self</span>.font().glyph_id(c).with_scale(<span class="self">self</span>.scale())
     }
 
-    <span class="doccomment">/// Pixel scaled horizontal advance for a given glyph.</span>
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">h_advance</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">id</span>: <span class="ident">GlyphId</span>) -&gt; <span class="ident">f32</span> {
-        <span class="self">self</span>.<span class="ident">h_scale_factor</span>() <span class="op">*</span> <span class="self">self</span>.<span class="ident">font</span>().<span class="ident">h_advance_unscaled</span>(<span class="ident">id</span>)
+    <span class="doccomment">/// Pixel scaled horizontal advance for a given glyph.
+    </span><span class="attribute">#[inline]
+    </span><span class="kw">fn </span>h_advance(<span class="kw-2">&amp;</span><span class="self">self</span>, id: GlyphId) -&gt; f32 {
+        <span class="self">self</span>.h_scale_factor() * <span class="self">self</span>.font().h_advance_unscaled(id)
     }
 
-    <span class="doccomment">/// Pixel scaled horizontal side bearing for a given glyph.</span>
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">h_side_bearing</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">id</span>: <span class="ident">GlyphId</span>) -&gt; <span class="ident">f32</span> {
-        <span class="self">self</span>.<span class="ident">h_scale_factor</span>() <span class="op">*</span> <span class="self">self</span>.<span class="ident">font</span>().<span class="ident">h_side_bearing_unscaled</span>(<span class="ident">id</span>)
+    <span class="doccomment">/// Pixel scaled horizontal side bearing for a given glyph.
+    </span><span class="attribute">#[inline]
+    </span><span class="kw">fn </span>h_side_bearing(<span class="kw-2">&amp;</span><span class="self">self</span>, id: GlyphId) -&gt; f32 {
+        <span class="self">self</span>.h_scale_factor() * <span class="self">self</span>.font().h_side_bearing_unscaled(id)
     }
 
-    <span class="doccomment">/// Pixel scaled vertical advance for a given glyph.</span>
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">v_advance</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">id</span>: <span class="ident">GlyphId</span>) -&gt; <span class="ident">f32</span> {
-        <span class="self">self</span>.<span class="ident">v_scale_factor</span>() <span class="op">*</span> <span class="self">self</span>.<span class="ident">font</span>().<span class="ident">v_advance_unscaled</span>(<span class="ident">id</span>)
+    <span class="doccomment">/// Pixel scaled vertical advance for a given glyph.
+    </span><span class="attribute">#[inline]
+    </span><span class="kw">fn </span>v_advance(<span class="kw-2">&amp;</span><span class="self">self</span>, id: GlyphId) -&gt; f32 {
+        <span class="self">self</span>.v_scale_factor() * <span class="self">self</span>.font().v_advance_unscaled(id)
     }
 
-    <span class="doccomment">/// Pixel scaled vertical side bearing for a given glyph.</span>
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">v_side_bearing</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">id</span>: <span class="ident">GlyphId</span>) -&gt; <span class="ident">f32</span> {
-        <span class="self">self</span>.<span class="ident">v_scale_factor</span>() <span class="op">*</span> <span class="self">self</span>.<span class="ident">font</span>().<span class="ident">v_side_bearing_unscaled</span>(<span class="ident">id</span>)
+    <span class="doccomment">/// Pixel scaled vertical side bearing for a given glyph.
+    </span><span class="attribute">#[inline]
+    </span><span class="kw">fn </span>v_side_bearing(<span class="kw-2">&amp;</span><span class="self">self</span>, id: GlyphId) -&gt; f32 {
+        <span class="self">self</span>.v_scale_factor() * <span class="self">self</span>.font().v_side_bearing_unscaled(id)
     }
 
-    <span class="doccomment">/// Returns additional pixel scaled kerning to apply for a particular pair of glyphs.</span>
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">kern</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">first</span>: <span class="ident">GlyphId</span>, <span class="ident">second</span>: <span class="ident">GlyphId</span>) -&gt; <span class="ident">f32</span> {
-        <span class="self">self</span>.<span class="ident">h_scale_factor</span>() <span class="op">*</span> <span class="self">self</span>.<span class="ident">font</span>().<span class="ident">kern_unscaled</span>(<span class="ident">first</span>, <span class="ident">second</span>)
+    <span class="doccomment">/// Returns additional pixel scaled kerning to apply for a particular pair of glyphs.
+    </span><span class="attribute">#[inline]
+    </span><span class="kw">fn </span>kern(<span class="kw-2">&amp;</span><span class="self">self</span>, first: GlyphId, second: GlyphId) -&gt; f32 {
+        <span class="self">self</span>.h_scale_factor() * <span class="self">self</span>.font().kern_unscaled(first, second)
     }
 
-    <span class="doccomment">/// Returns the layout bounds of this glyph. These are different to the outline `px_bounds()`.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// Horizontally: Glyph position +/- h_advance/h_side_bearing.</span>
-    <span class="doccomment">/// Vertically: Glyph position +/- ascent/descent.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// Note this method does not make use of the associated scale, as `Glyph`</span>
-    <span class="doccomment">/// already includes one of it&#39;s own.</span>
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">glyph_bounds</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">glyph</span>: <span class="kw-2">&amp;</span><span class="ident">Glyph</span>) -&gt; <span class="ident">Rect</span> {
-        <span class="self">self</span>.<span class="ident">font</span>().<span class="ident">glyph_bounds</span>(<span class="ident">glyph</span>)
+    <span class="doccomment">/// Returns the layout bounds of this glyph. These are different to the outline `px_bounds()`.
+    ///
+    /// Horizontally: Glyph position +/- h_advance/h_side_bearing.
+    /// Vertically: Glyph position +/- ascent/descent.
+    ///
+    /// Note this method does not make use of the associated scale, as `Glyph`
+    /// already includes one of it&#39;s own.
+    </span><span class="attribute">#[inline]
+    </span><span class="kw">fn </span>glyph_bounds(<span class="kw-2">&amp;</span><span class="self">self</span>, glyph: <span class="kw-2">&amp;</span>Glyph) -&gt; Rect {
+        <span class="self">self</span>.font().glyph_bounds(glyph)
     }
 
-    <span class="doccomment">/// The number of glyphs present in this font. Glyph identifiers for this</span>
-    <span class="doccomment">/// font will always be in the range `0..self.glyph_count()`</span>
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">glyph_count</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">usize</span> {
-        <span class="self">self</span>.<span class="ident">font</span>().<span class="ident">glyph_count</span>()
+    <span class="doccomment">/// The number of glyphs present in this font. Glyph identifiers for this
+    /// font will always be in the range `0..self.glyph_count()`
+    </span><span class="attribute">#[inline]
+    </span><span class="kw">fn </span>glyph_count(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; usize {
+        <span class="self">self</span>.font().glyph_count()
     }
 
-    <span class="doccomment">/// Returns an iterator of all distinct `(GlyphId, char)` pairs. Not ordered.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// Same as [`Font::codepoint_ids`](trait.Font.html#tymethod.codepoint_ids).</span>
-    <span class="kw">fn</span> <span class="ident">codepoint_ids</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident"><span class="kw">crate</span>::CodepointIdIter</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>;
+    <span class="doccomment">/// Returns an iterator of all distinct `(GlyphId, char)` pairs. Not ordered.
+    ///
+    /// Same as [`Font::codepoint_ids`](trait.Font.html#tymethod.codepoint_ids).
+    </span><span class="kw">fn </span>codepoint_ids(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw">crate</span>::CodepointIdIter&lt;<span class="lifetime">&#39;_</span>&gt;;
 
-    <span class="doccomment">/// Compute glyph outline ready for drawing.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// Note this method does not make use of the associated scale, as `Glyph`</span>
-    <span class="doccomment">/// already includes one of it&#39;s own.</span>
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">outline_glyph</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">glyph</span>: <span class="ident">Glyph</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">OutlinedGlyph</span><span class="op">&gt;</span> {
-        <span class="self">self</span>.<span class="ident">font</span>().<span class="ident">outline_glyph</span>(<span class="ident">glyph</span>)
-    }
-}
-
-<span class="kw">impl</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Font</span>, <span class="ident">SF</span>: <span class="ident">ScaleFont</span><span class="op">&lt;</span><span class="ident">F</span><span class="op">&gt;</span><span class="op">&gt;</span> <span class="ident">ScaleFont</span><span class="op">&lt;</span><span class="ident">F</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="kw-2">&amp;</span><span class="ident">SF</span> {
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">scale</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">PxScale</span> {
-        (<span class="kw-2">*</span><span class="self">self</span>).<span class="ident">scale</span>()
-    }
-
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">font</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span><span class="ident">F</span> {
-        (<span class="kw-2">*</span><span class="self">self</span>).<span class="ident">font</span>()
-    }
-
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">codepoint_ids</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident"><span class="kw">crate</span>::CodepointIdIter</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span> {
-        (<span class="kw-2">*</span><span class="self">self</span>).<span class="ident">codepoint_ids</span>()
+    <span class="doccomment">/// Compute glyph outline ready for drawing.
+    ///
+    /// Note this method does not make use of the associated scale, as `Glyph`
+    /// already includes one of it&#39;s own.
+    </span><span class="attribute">#[inline]
+    </span><span class="kw">fn </span>outline_glyph(<span class="kw-2">&amp;</span><span class="self">self</span>, glyph: Glyph) -&gt; <span class="prelude-ty">Option</span>&lt;OutlinedGlyph&gt; {
+        <span class="self">self</span>.font().outline_glyph(glyph)
     }
 }
 
-<span class="doccomment">/// A [`Font`](trait.Font.html) and an associated pixel scale.</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">Debug</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">PxScaleFont</span><span class="op">&lt;</span><span class="ident">F</span><span class="op">&gt;</span> {
-    <span class="kw">pub</span> <span class="ident">font</span>: <span class="ident">F</span>,
-    <span class="kw">pub</span> <span class="ident">scale</span>: <span class="ident">PxScale</span>,
-}
+<span class="kw">impl</span>&lt;F: Font, SF: ScaleFont&lt;F&gt;&gt; ScaleFont&lt;F&gt; <span class="kw">for </span><span class="kw-2">&amp;</span>SF {
+    <span class="attribute">#[inline]
+    </span><span class="kw">fn </span>scale(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; PxScale {
+        (<span class="kw-2">*</span><span class="self">self</span>).scale()
+    }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="ident">F</span><span class="op">&gt;</span> <span class="ident">PxScaleFont</span><span class="op">&lt;</span><span class="ident">F</span><span class="op">&gt;</span> {
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">with_scale</span><span class="op">&lt;</span><span class="ident">S</span>: <span class="ident">Into</span><span class="op">&lt;</span><span class="ident">PxScale</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">scale</span>: <span class="ident">S</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">self</span>.<span class="ident">scale</span> <span class="op">=</span> <span class="ident">scale</span>.<span class="ident">into</span>();
-        <span class="self">self</span>
+    <span class="attribute">#[inline]
+    </span><span class="kw">fn </span>font(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span>F {
+        (<span class="kw-2">*</span><span class="self">self</span>).font()
+    }
+
+    <span class="attribute">#[inline]
+    </span><span class="kw">fn </span>codepoint_ids(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw">crate</span>::CodepointIdIter&lt;<span class="lifetime">&#39;_</span>&gt; {
+        (<span class="kw-2">*</span><span class="self">self</span>).codepoint_ids()
     }
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Font</span><span class="op">&gt;</span> <span class="ident">ScaleFont</span><span class="op">&lt;</span><span class="ident">F</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">PxScaleFont</span><span class="op">&lt;</span><span class="ident">F</span><span class="op">&gt;</span> {
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">scale</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">PxScale</span> {
-        <span class="self">self</span>.<span class="ident">scale</span>
+<span class="doccomment">/// A [`Font`](trait.Font.html) and an associated pixel scale.
+</span><span class="attribute">#[derive(Clone, Copy, Debug)]
+</span><span class="kw">pub struct </span>PxScaleFont&lt;F&gt; {
+    <span class="kw">pub </span>font: F,
+    <span class="kw">pub </span>scale: PxScale,
+}
+
+<span class="kw">impl</span>&lt;F&gt; PxScaleFont&lt;F&gt; {
+    <span class="attribute">#[inline]
+    </span><span class="kw">pub fn </span>with_scale&lt;S: Into&lt;PxScale&gt;&gt;(<span class="kw-2">mut </span><span class="self">self</span>, scale: S) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.scale = scale.into();
+        <span class="self">self
+    </span>}
+}
+
+<span class="kw">impl</span>&lt;F: Font&gt; ScaleFont&lt;F&gt; <span class="kw">for </span>PxScaleFont&lt;F&gt; {
+    <span class="attribute">#[inline]
+    </span><span class="kw">fn </span>scale(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; PxScale {
+        <span class="self">self</span>.scale
     }
 
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">font</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span><span class="ident">F</span> {
-        <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">font</span>
+    <span class="attribute">#[inline]
+    </span><span class="kw">fn </span>font(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span>F {
+        <span class="kw-2">&amp;</span><span class="self">self</span>.font
     }
 
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">codepoint_ids</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident"><span class="kw">crate</span>::CodepointIdIter</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span> {
-        <span class="self">self</span>.<span class="ident">font</span>.<span class="ident">codepoint_ids</span>()
+    <span class="attribute">#[inline]
+    </span><span class="kw">fn </span>codepoint_ids(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw">crate</span>::CodepointIdIter&lt;<span class="lifetime">&#39;_</span>&gt; {
+        <span class="self">self</span>.font.codepoint_ids()
     }
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="ab_glyph" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0 (a55dd71d5 2022-09-19)" ></div></body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="ab_glyph" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.66.1 (90743e729 2023-01-10)" ></div></body></html>

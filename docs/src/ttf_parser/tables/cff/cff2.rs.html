@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/ttf-parser-0.15.2/src/tables/cff/cff2.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>cff2.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../../storage.js"></script><script defer src="../../../../source-script.js"></script><script defer src="../../../../source-files.js"></script><script defer src="../../../../main.js"></script><noscript><link rel="stylesheet" href="../../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../../../ttf_parser/index.html"><div class="logo-container"><img class="rust-logo" src="../../../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../../../ttf_parser/index.html"><div class="logo-container"><img class="rust-logo" src="../../../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../../../ttf_parser/index.html"><img class="rust-logo" src="../../../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/ttf-parser-0.15.2/src/tables/cff/cff2.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>cff2.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../../../normalize.css"><link rel="stylesheet" href="../../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../../../ayu.css" disabled><link rel="stylesheet" href="../../../../dark.css" disabled><link rel="stylesheet" href="../../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../../storage.js"></script><script defer src="../../../../source-script.js"></script><script defer src="../../../../source-files.js"></script><script defer src="../../../../main.js"></script><noscript><link rel="stylesheet" href="../../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><div class="width-limiter"><nav class="sub"><a class="sub-logo-container" href="../../../../ttf_parser/index.html"><img class="rust-logo" src="../../../../rust-logo.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../../wheel.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -547,226 +547,226 @@
 <span id="547">547</span>
 <span id="548">548</span>
 <span id="549">549</span>
-</pre><pre class="rust"><code><span class="doccomment">//! A [Compact Font Format 2 Table](</span>
-<span class="doccomment">//! https://docs.microsoft.com/en-us/typography/opentype/spec/cff2) implementation.</span>
+</pre><pre class="rust"><code><span class="doccomment">//! A [Compact Font Format 2 Table](
+//! https://docs.microsoft.com/en-us/typography/opentype/spec/cff2) implementation.
 
-<span class="comment">// https://docs.microsoft.com/en-us/typography/opentype/spec/cff2charstr</span>
+</span><span class="comment">// https://docs.microsoft.com/en-us/typography/opentype/spec/cff2charstr
 
-<span class="kw">use</span> <span class="ident">core::convert::TryFrom</span>;
-<span class="kw">use</span> <span class="ident">core::ops::Range</span>;
+</span><span class="kw">use </span>core::convert::TryFrom;
+<span class="kw">use </span>core::ops::Range;
 
-<span class="kw">use</span> <span class="kw">crate</span>::{<span class="ident">GlyphId</span>, <span class="ident">OutlineBuilder</span>, <span class="ident">Rect</span>, <span class="ident">BBox</span>, <span class="ident">NormalizedCoordinate</span>};
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::parser</span>::{<span class="ident">Stream</span>, <span class="ident">NumFrom</span>, <span class="ident">TryNumFrom</span>};
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::var_store</span>::<span class="kw-2">*</span>;
-<span class="kw">use</span> <span class="kw">super</span>::{<span class="ident">Builder</span>, <span class="ident">CFFError</span>, <span class="ident">calc_subroutine_bias</span>, <span class="ident">conv_subroutine_index</span>};
-<span class="kw">use</span> <span class="ident"><span class="kw">super</span>::argstack::ArgumentsStack</span>;
-<span class="kw">use</span> <span class="ident"><span class="kw">super</span>::charstring::CharStringParser</span>;
-<span class="kw">use</span> <span class="ident"><span class="kw">super</span>::dict::DictionaryParser</span>;
-<span class="kw">use</span> <span class="ident"><span class="kw">super</span>::index</span>::{<span class="ident">Index</span>, <span class="ident">parse_index</span>};
+<span class="kw">use crate</span>::{GlyphId, OutlineBuilder, Rect, BBox, NormalizedCoordinate};
+<span class="kw">use </span><span class="kw">crate</span>::parser::{Stream, NumFrom, TryNumFrom};
+<span class="kw">use </span><span class="kw">crate</span>::var_store::<span class="kw-2">*</span>;
+<span class="kw">use super</span>::{Builder, CFFError, calc_subroutine_bias, conv_subroutine_index};
+<span class="kw">use </span><span class="kw">super</span>::argstack::ArgumentsStack;
+<span class="kw">use </span><span class="kw">super</span>::charstring::CharStringParser;
+<span class="kw">use </span><span class="kw">super</span>::dict::DictionaryParser;
+<span class="kw">use </span><span class="kw">super</span>::index::{Index, parse_index};
 
-<span class="comment">// https://docs.microsoft.com/en-us/typography/opentype/spec/cff2#7-top-dict-data</span>
-<span class="comment">// &#39;Operators in DICT may be preceded by up to a maximum of 513 operands.&#39;</span>
-<span class="kw">const</span> <span class="ident">MAX_OPERANDS_LEN</span>: <span class="ident">usize</span> <span class="op">=</span> <span class="number">513</span>;
+<span class="comment">// https://docs.microsoft.com/en-us/typography/opentype/spec/cff2#7-top-dict-data
+// &#39;Operators in DICT may be preceded by up to a maximum of 513 operands.&#39;
+</span><span class="kw">const </span>MAX_OPERANDS_LEN: usize = <span class="number">513</span>;
 
-<span class="comment">// https://docs.microsoft.com/en-us/typography/opentype/spec/cff2charstr#appendix-b-cff2-charstring-implementation-limits</span>
-<span class="kw">const</span> <span class="ident">STACK_LIMIT</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">10</span>;
-<span class="kw">const</span> <span class="ident">MAX_ARGUMENTS_STACK_LEN</span>: <span class="ident">usize</span> <span class="op">=</span> <span class="number">513</span>;
+<span class="comment">// https://docs.microsoft.com/en-us/typography/opentype/spec/cff2charstr#appendix-b-cff2-charstring-implementation-limits
+</span><span class="kw">const </span>STACK_LIMIT: u8 = <span class="number">10</span>;
+<span class="kw">const </span>MAX_ARGUMENTS_STACK_LEN: usize = <span class="number">513</span>;
 
-<span class="kw">const</span> <span class="ident">TWO_BYTE_OPERATOR_MARK</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">12</span>;
+<span class="kw">const </span>TWO_BYTE_OPERATOR_MARK: u8 = <span class="number">12</span>;
 
-<span class="comment">// https://docs.microsoft.com/en-us/typography/opentype/spec/cff2charstr#4-charstring-operators</span>
-<span class="kw">mod</span> <span class="ident">operator</span> {
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">HORIZONTAL_STEM</span>: <span class="ident">u8</span>           <span class="op">=</span> <span class="number">1</span>;
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">VERTICAL_STEM</span>: <span class="ident">u8</span>             <span class="op">=</span> <span class="number">3</span>;
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">VERTICAL_MOVE_TO</span>: <span class="ident">u8</span>          <span class="op">=</span> <span class="number">4</span>;
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">LINE_TO</span>: <span class="ident">u8</span>                   <span class="op">=</span> <span class="number">5</span>;
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">HORIZONTAL_LINE_TO</span>: <span class="ident">u8</span>        <span class="op">=</span> <span class="number">6</span>;
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">VERTICAL_LINE_TO</span>: <span class="ident">u8</span>          <span class="op">=</span> <span class="number">7</span>;
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">CURVE_TO</span>: <span class="ident">u8</span>                  <span class="op">=</span> <span class="number">8</span>;
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">CALL_LOCAL_SUBROUTINE</span>: <span class="ident">u8</span>     <span class="op">=</span> <span class="number">10</span>;
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">VS_INDEX</span>: <span class="ident">u8</span>                  <span class="op">=</span> <span class="number">15</span>;
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">BLEND</span>: <span class="ident">u8</span>                     <span class="op">=</span> <span class="number">16</span>;
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">HORIZONTAL_STEM_HINT_MASK</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">18</span>;
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">HINT_MASK</span>: <span class="ident">u8</span>                 <span class="op">=</span> <span class="number">19</span>;
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">COUNTER_MASK</span>: <span class="ident">u8</span>              <span class="op">=</span> <span class="number">20</span>;
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">MOVE_TO</span>: <span class="ident">u8</span>                   <span class="op">=</span> <span class="number">21</span>;
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">HORIZONTAL_MOVE_TO</span>: <span class="ident">u8</span>        <span class="op">=</span> <span class="number">22</span>;
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">VERTICAL_STEM_HINT_MASK</span>: <span class="ident">u8</span>   <span class="op">=</span> <span class="number">23</span>;
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">CURVE_LINE</span>: <span class="ident">u8</span>                <span class="op">=</span> <span class="number">24</span>;
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">LINE_CURVE</span>: <span class="ident">u8</span>                <span class="op">=</span> <span class="number">25</span>;
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">VV_CURVE_TO</span>: <span class="ident">u8</span>               <span class="op">=</span> <span class="number">26</span>;
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">HH_CURVE_TO</span>: <span class="ident">u8</span>               <span class="op">=</span> <span class="number">27</span>;
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">SHORT_INT</span>: <span class="ident">u8</span>                 <span class="op">=</span> <span class="number">28</span>;
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">CALL_GLOBAL_SUBROUTINE</span>: <span class="ident">u8</span>    <span class="op">=</span> <span class="number">29</span>;
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">VH_CURVE_TO</span>: <span class="ident">u8</span>               <span class="op">=</span> <span class="number">30</span>;
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">HV_CURVE_TO</span>: <span class="ident">u8</span>               <span class="op">=</span> <span class="number">31</span>;
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">HFLEX</span>: <span class="ident">u8</span>                     <span class="op">=</span> <span class="number">34</span>;
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">FLEX</span>: <span class="ident">u8</span>                      <span class="op">=</span> <span class="number">35</span>;
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">HFLEX1</span>: <span class="ident">u8</span>                    <span class="op">=</span> <span class="number">36</span>;
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">FLEX1</span>: <span class="ident">u8</span>                     <span class="op">=</span> <span class="number">37</span>;
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">FIXED_16_16</span>: <span class="ident">u8</span>               <span class="op">=</span> <span class="number">255</span>;
+<span class="comment">// https://docs.microsoft.com/en-us/typography/opentype/spec/cff2charstr#4-charstring-operators
+</span><span class="kw">mod </span>operator {
+    <span class="kw">pub const </span>HORIZONTAL_STEM: u8           = <span class="number">1</span>;
+    <span class="kw">pub const </span>VERTICAL_STEM: u8             = <span class="number">3</span>;
+    <span class="kw">pub const </span>VERTICAL_MOVE_TO: u8          = <span class="number">4</span>;
+    <span class="kw">pub const </span>LINE_TO: u8                   = <span class="number">5</span>;
+    <span class="kw">pub const </span>HORIZONTAL_LINE_TO: u8        = <span class="number">6</span>;
+    <span class="kw">pub const </span>VERTICAL_LINE_TO: u8          = <span class="number">7</span>;
+    <span class="kw">pub const </span>CURVE_TO: u8                  = <span class="number">8</span>;
+    <span class="kw">pub const </span>CALL_LOCAL_SUBROUTINE: u8     = <span class="number">10</span>;
+    <span class="kw">pub const </span>VS_INDEX: u8                  = <span class="number">15</span>;
+    <span class="kw">pub const </span>BLEND: u8                     = <span class="number">16</span>;
+    <span class="kw">pub const </span>HORIZONTAL_STEM_HINT_MASK: u8 = <span class="number">18</span>;
+    <span class="kw">pub const </span>HINT_MASK: u8                 = <span class="number">19</span>;
+    <span class="kw">pub const </span>COUNTER_MASK: u8              = <span class="number">20</span>;
+    <span class="kw">pub const </span>MOVE_TO: u8                   = <span class="number">21</span>;
+    <span class="kw">pub const </span>HORIZONTAL_MOVE_TO: u8        = <span class="number">22</span>;
+    <span class="kw">pub const </span>VERTICAL_STEM_HINT_MASK: u8   = <span class="number">23</span>;
+    <span class="kw">pub const </span>CURVE_LINE: u8                = <span class="number">24</span>;
+    <span class="kw">pub const </span>LINE_CURVE: u8                = <span class="number">25</span>;
+    <span class="kw">pub const </span>VV_CURVE_TO: u8               = <span class="number">26</span>;
+    <span class="kw">pub const </span>HH_CURVE_TO: u8               = <span class="number">27</span>;
+    <span class="kw">pub const </span>SHORT_INT: u8                 = <span class="number">28</span>;
+    <span class="kw">pub const </span>CALL_GLOBAL_SUBROUTINE: u8    = <span class="number">29</span>;
+    <span class="kw">pub const </span>VH_CURVE_TO: u8               = <span class="number">30</span>;
+    <span class="kw">pub const </span>HV_CURVE_TO: u8               = <span class="number">31</span>;
+    <span class="kw">pub const </span>HFLEX: u8                     = <span class="number">34</span>;
+    <span class="kw">pub const </span>FLEX: u8                      = <span class="number">35</span>;
+    <span class="kw">pub const </span>HFLEX1: u8                    = <span class="number">36</span>;
+    <span class="kw">pub const </span>FLEX1: u8                     = <span class="number">37</span>;
+    <span class="kw">pub const </span>FIXED_16_16: u8               = <span class="number">255</span>;
 }
 
-<span class="comment">// https://docs.microsoft.com/en-us/typography/opentype/spec/cff2#table-9-top-dict-operator-entries</span>
-<span class="kw">mod</span> <span class="ident">top_dict_operator</span> {
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">CHAR_STRINGS_OFFSET</span>: <span class="ident">u16</span>      <span class="op">=</span> <span class="number">17</span>;
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">VARIATION_STORE_OFFSET</span>: <span class="ident">u16</span>   <span class="op">=</span> <span class="number">24</span>;
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">FONT_DICT_INDEX_OFFSET</span>: <span class="ident">u16</span>   <span class="op">=</span> <span class="number">1236</span>;
+<span class="comment">// https://docs.microsoft.com/en-us/typography/opentype/spec/cff2#table-9-top-dict-operator-entries
+</span><span class="kw">mod </span>top_dict_operator {
+    <span class="kw">pub const </span>CHAR_STRINGS_OFFSET: u16      = <span class="number">17</span>;
+    <span class="kw">pub const </span>VARIATION_STORE_OFFSET: u16   = <span class="number">24</span>;
+    <span class="kw">pub const </span>FONT_DICT_INDEX_OFFSET: u16   = <span class="number">1236</span>;
 }
 
-<span class="comment">// https://docs.microsoft.com/en-us/typography/opentype/spec/cff2#table-10-font-dict-operator-entries</span>
-<span class="kw">mod</span> <span class="ident">font_dict_operator</span> {
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PRIVATE_DICT_SIZE_AND_OFFSET</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">18</span>;
+<span class="comment">// https://docs.microsoft.com/en-us/typography/opentype/spec/cff2#table-10-font-dict-operator-entries
+</span><span class="kw">mod </span>font_dict_operator {
+    <span class="kw">pub const </span>PRIVATE_DICT_SIZE_AND_OFFSET: u16 = <span class="number">18</span>;
 }
 
-<span class="comment">// https://docs.microsoft.com/en-us/typography/opentype/spec/cff2#table-16-private-dict-operators</span>
-<span class="kw">mod</span> <span class="ident">private_dict_operator</span> {
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">LOCAL_SUBROUTINES_OFFSET</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="number">19</span>;
+<span class="comment">// https://docs.microsoft.com/en-us/typography/opentype/spec/cff2#table-16-private-dict-operators
+</span><span class="kw">mod </span>private_dict_operator {
+    <span class="kw">pub const </span>LOCAL_SUBROUTINES_OFFSET: u16 = <span class="number">19</span>;
 }
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">Default</span>)]</span>
-<span class="kw">struct</span> <span class="ident">TopDictData</span> {
-    <span class="ident">char_strings_offset</span>: <span class="ident">usize</span>,
-    <span class="ident">font_dict_index_offset</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">usize</span><span class="op">&gt;</span>,
-    <span class="ident">variation_store_offset</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">usize</span><span class="op">&gt;</span>,
+<span class="attribute">#[derive(Clone, Copy, Default)]
+</span><span class="kw">struct </span>TopDictData {
+    char_strings_offset: usize,
+    font_dict_index_offset: <span class="prelude-ty">Option</span>&lt;usize&gt;,
+    variation_store_offset: <span class="prelude-ty">Option</span>&lt;usize&gt;,
 }
 
-<span class="kw">fn</span> <span class="ident">parse_top_dict</span>(<span class="ident">data</span>: <span class="kw-2">&amp;</span>[<span class="ident">u8</span>]) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">TopDictData</span><span class="op">&gt;</span> {
-    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">dict_data</span> <span class="op">=</span> <span class="ident">TopDictData::default</span>();
+<span class="kw">fn </span>parse_top_dict(data: <span class="kw-2">&amp;</span>[u8]) -&gt; <span class="prelude-ty">Option</span>&lt;TopDictData&gt; {
+    <span class="kw">let </span><span class="kw-2">mut </span>dict_data = TopDictData::default();
 
-    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">operands_buffer</span> <span class="op">=</span> [<span class="number">0</span>; <span class="ident">MAX_OPERANDS_LEN</span>];
-    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">dict_parser</span> <span class="op">=</span> <span class="ident">DictionaryParser::new</span>(<span class="ident">data</span>, <span class="kw-2">&amp;mut</span> <span class="ident">operands_buffer</span>);
-    <span class="kw">while</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">operator</span>) <span class="op">=</span> <span class="ident">dict_parser</span>.<span class="ident">parse_next</span>() {
-        <span class="kw">if</span> <span class="ident">operator</span>.<span class="ident">get</span>() <span class="op">==</span> <span class="ident">top_dict_operator::CHAR_STRINGS_OFFSET</span> {
-            <span class="ident">dict_data</span>.<span class="ident">char_strings_offset</span> <span class="op">=</span> <span class="ident">dict_parser</span>.<span class="ident">parse_offset</span>()<span class="question-mark">?</span>;
-        } <span class="kw">else</span> <span class="kw">if</span> <span class="ident">operator</span>.<span class="ident">get</span>() <span class="op">==</span> <span class="ident">top_dict_operator::FONT_DICT_INDEX_OFFSET</span> {
-            <span class="ident">dict_data</span>.<span class="ident">font_dict_index_offset</span> <span class="op">=</span> <span class="ident">dict_parser</span>.<span class="ident">parse_offset</span>();
-        } <span class="kw">else</span> <span class="kw">if</span> <span class="ident">operator</span>.<span class="ident">get</span>() <span class="op">==</span> <span class="ident">top_dict_operator::VARIATION_STORE_OFFSET</span> {
-            <span class="ident">dict_data</span>.<span class="ident">variation_store_offset</span> <span class="op">=</span> <span class="ident">dict_parser</span>.<span class="ident">parse_offset</span>();
+    <span class="kw">let </span><span class="kw-2">mut </span>operands_buffer = [<span class="number">0</span>; MAX_OPERANDS_LEN];
+    <span class="kw">let </span><span class="kw-2">mut </span>dict_parser = DictionaryParser::new(data, <span class="kw-2">&amp;mut </span>operands_buffer);
+    <span class="kw">while let </span><span class="prelude-val">Some</span>(operator) = dict_parser.parse_next() {
+        <span class="kw">if </span>operator.get() == top_dict_operator::CHAR_STRINGS_OFFSET {
+            dict_data.char_strings_offset = dict_parser.parse_offset()<span class="question-mark">?</span>;
+        } <span class="kw">else if </span>operator.get() == top_dict_operator::FONT_DICT_INDEX_OFFSET {
+            dict_data.font_dict_index_offset = dict_parser.parse_offset();
+        } <span class="kw">else if </span>operator.get() == top_dict_operator::VARIATION_STORE_OFFSET {
+            dict_data.variation_store_offset = dict_parser.parse_offset();
         }
     }
 
-    <span class="comment">// Must be set, otherwise there are nothing to parse.</span>
-    <span class="kw">if</span> <span class="ident">dict_data</span>.<span class="ident">char_strings_offset</span> <span class="op">==</span> <span class="number">0</span> {
-        <span class="kw">return</span> <span class="prelude-val">None</span>;
+    <span class="comment">// Must be set, otherwise there are nothing to parse.
+    </span><span class="kw">if </span>dict_data.char_strings_offset == <span class="number">0 </span>{
+        <span class="kw">return </span><span class="prelude-val">None</span>;
     }
 
-    <span class="prelude-val">Some</span>(<span class="ident">dict_data</span>)
+    <span class="prelude-val">Some</span>(dict_data)
 }
 
-<span class="kw">fn</span> <span class="ident">parse_font_dict</span>(<span class="ident">data</span>: <span class="kw-2">&amp;</span>[<span class="ident">u8</span>]) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Range</span><span class="op">&lt;</span><span class="ident">usize</span><span class="op">&gt;</span><span class="op">&gt;</span> {
-    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">private_dict_range</span> <span class="op">=</span> <span class="prelude-val">None</span>;
+<span class="kw">fn </span>parse_font_dict(data: <span class="kw-2">&amp;</span>[u8]) -&gt; <span class="prelude-ty">Option</span>&lt;Range&lt;usize&gt;&gt; {
+    <span class="kw">let </span><span class="kw-2">mut </span>private_dict_range = <span class="prelude-val">None</span>;
 
-    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">operands_buffer</span> <span class="op">=</span> [<span class="number">0</span>; <span class="ident">MAX_OPERANDS_LEN</span>];
-    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">dict_parser</span> <span class="op">=</span> <span class="ident">DictionaryParser::new</span>(<span class="ident">data</span>, <span class="kw-2">&amp;mut</span> <span class="ident">operands_buffer</span>);
-    <span class="kw">while</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">operator</span>) <span class="op">=</span> <span class="ident">dict_parser</span>.<span class="ident">parse_next</span>() {
-        <span class="kw">if</span> <span class="ident">operator</span>.<span class="ident">get</span>() <span class="op">==</span> <span class="ident">font_dict_operator::PRIVATE_DICT_SIZE_AND_OFFSET</span> {
-            <span class="ident">dict_parser</span>.<span class="ident">parse_operands</span>()<span class="question-mark">?</span>;
-            <span class="kw">let</span> <span class="ident">operands</span> <span class="op">=</span> <span class="ident">dict_parser</span>.<span class="ident">operands</span>();
+    <span class="kw">let </span><span class="kw-2">mut </span>operands_buffer = [<span class="number">0</span>; MAX_OPERANDS_LEN];
+    <span class="kw">let </span><span class="kw-2">mut </span>dict_parser = DictionaryParser::new(data, <span class="kw-2">&amp;mut </span>operands_buffer);
+    <span class="kw">while let </span><span class="prelude-val">Some</span>(operator) = dict_parser.parse_next() {
+        <span class="kw">if </span>operator.get() == font_dict_operator::PRIVATE_DICT_SIZE_AND_OFFSET {
+            dict_parser.parse_operands()<span class="question-mark">?</span>;
+            <span class="kw">let </span>operands = dict_parser.operands();
 
-            <span class="kw">if</span> <span class="ident">operands</span>.<span class="ident">len</span>() <span class="op">==</span> <span class="number">2</span> {
-                <span class="kw">let</span> <span class="ident">len</span> <span class="op">=</span> <span class="ident">usize::try_from</span>(<span class="ident">operands</span>[<span class="number">0</span>]).<span class="ident">ok</span>()<span class="question-mark">?</span>;
-                <span class="kw">let</span> <span class="ident">start</span> <span class="op">=</span> <span class="ident">usize::try_from</span>(<span class="ident">operands</span>[<span class="number">1</span>]).<span class="ident">ok</span>()<span class="question-mark">?</span>;
-                <span class="kw">let</span> <span class="ident">end</span> <span class="op">=</span> <span class="ident">start</span>.<span class="ident">checked_add</span>(<span class="ident">len</span>)<span class="question-mark">?</span>;
-                <span class="ident">private_dict_range</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">start</span>..<span class="ident">end</span>);
+            <span class="kw">if </span>operands.len() == <span class="number">2 </span>{
+                <span class="kw">let </span>len = usize::try_from(operands[<span class="number">0</span>]).ok()<span class="question-mark">?</span>;
+                <span class="kw">let </span>start = usize::try_from(operands[<span class="number">1</span>]).ok()<span class="question-mark">?</span>;
+                <span class="kw">let </span>end = start.checked_add(len)<span class="question-mark">?</span>;
+                private_dict_range = <span class="prelude-val">Some</span>(start..end);
             }
 
             <span class="kw">break</span>;
         }
     }
 
-    <span class="ident">private_dict_range</span>
+    private_dict_range
 }
 
-<span class="kw">fn</span> <span class="ident">parse_private_dict</span>(<span class="ident">data</span>: <span class="kw-2">&amp;</span>[<span class="ident">u8</span>]) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">usize</span><span class="op">&gt;</span> {
-    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">subroutines_offset</span> <span class="op">=</span> <span class="prelude-val">None</span>;
-    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">operands_buffer</span> <span class="op">=</span> [<span class="number">0</span>; <span class="ident">MAX_OPERANDS_LEN</span>];
-    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">dict_parser</span> <span class="op">=</span> <span class="ident">DictionaryParser::new</span>(<span class="ident">data</span>, <span class="kw-2">&amp;mut</span> <span class="ident">operands_buffer</span>);
-    <span class="kw">while</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">operator</span>) <span class="op">=</span> <span class="ident">dict_parser</span>.<span class="ident">parse_next</span>() {
-        <span class="kw">if</span> <span class="ident">operator</span>.<span class="ident">get</span>() <span class="op">==</span> <span class="ident">private_dict_operator::LOCAL_SUBROUTINES_OFFSET</span> {
-            <span class="ident">dict_parser</span>.<span class="ident">parse_operands</span>()<span class="question-mark">?</span>;
-            <span class="kw">let</span> <span class="ident">operands</span> <span class="op">=</span> <span class="ident">dict_parser</span>.<span class="ident">operands</span>();
+<span class="kw">fn </span>parse_private_dict(data: <span class="kw-2">&amp;</span>[u8]) -&gt; <span class="prelude-ty">Option</span>&lt;usize&gt; {
+    <span class="kw">let </span><span class="kw-2">mut </span>subroutines_offset = <span class="prelude-val">None</span>;
+    <span class="kw">let </span><span class="kw-2">mut </span>operands_buffer = [<span class="number">0</span>; MAX_OPERANDS_LEN];
+    <span class="kw">let </span><span class="kw-2">mut </span>dict_parser = DictionaryParser::new(data, <span class="kw-2">&amp;mut </span>operands_buffer);
+    <span class="kw">while let </span><span class="prelude-val">Some</span>(operator) = dict_parser.parse_next() {
+        <span class="kw">if </span>operator.get() == private_dict_operator::LOCAL_SUBROUTINES_OFFSET {
+            dict_parser.parse_operands()<span class="question-mark">?</span>;
+            <span class="kw">let </span>operands = dict_parser.operands();
 
-            <span class="kw">if</span> <span class="ident">operands</span>.<span class="ident">len</span>() <span class="op">==</span> <span class="number">1</span> {
-                <span class="ident">subroutines_offset</span> <span class="op">=</span> <span class="ident">usize::try_from</span>(<span class="ident">operands</span>[<span class="number">0</span>]).<span class="ident">ok</span>();
+            <span class="kw">if </span>operands.len() == <span class="number">1 </span>{
+                subroutines_offset = usize::try_from(operands[<span class="number">0</span>]).ok();
             }
 
             <span class="kw">break</span>;
         }
     }
 
-    <span class="ident">subroutines_offset</span>
+    subroutines_offset
 }
 
 
-<span class="doccomment">/// CFF2 allows up to 65535 scalars, but an average font will have 3-5.</span>
-<span class="doccomment">/// So 64 is more than enough.</span>
-<span class="kw">const</span> <span class="ident">SCALARS_MAX</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">64</span>;
+<span class="doccomment">/// CFF2 allows up to 65535 scalars, but an average font will have 3-5.
+/// So 64 is more than enough.
+</span><span class="kw">const </span>SCALARS_MAX: u8 = <span class="number">64</span>;
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Copy</span>)]</span>
-<span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">struct</span> <span class="ident">Scalars</span> {
-    <span class="ident">d</span>: [<span class="ident">f32</span>; <span class="ident">SCALARS_MAX</span> <span class="kw">as</span> <span class="ident">usize</span>], <span class="comment">// 256B</span>
-    <span class="ident">len</span>: <span class="ident">u8</span>,
+<span class="attribute">#[derive(Clone, Copy)]
+</span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">struct </span>Scalars {
+    d: [f32; SCALARS_MAX <span class="kw">as </span>usize], <span class="comment">// 256B
+    </span>len: u8,
 }
 
-<span class="kw">impl</span> <span class="ident">Default</span> <span class="kw">for</span> <span class="ident">Scalars</span> {
-    <span class="kw">fn</span> <span class="ident">default</span>() -&gt; <span class="self">Self</span> {
-        <span class="ident">Scalars</span> {
-            <span class="ident">d</span>: [<span class="number">0.0</span>; <span class="ident">SCALARS_MAX</span> <span class="kw">as</span> <span class="ident">usize</span>],
-            <span class="ident">len</span>: <span class="number">0</span>,
+<span class="kw">impl </span>Default <span class="kw">for </span>Scalars {
+    <span class="kw">fn </span>default() -&gt; <span class="self">Self </span>{
+        Scalars {
+            d: [<span class="number">0.0</span>; SCALARS_MAX <span class="kw">as </span>usize],
+            len: <span class="number">0</span>,
         }
     }
 }
 
-<span class="kw">impl</span> <span class="ident">Scalars</span> {
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">len</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">u8</span> {
-        <span class="self">self</span>.<span class="ident">len</span>
+<span class="kw">impl </span>Scalars {
+    <span class="kw">pub fn </span>len(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; u8 {
+        <span class="self">self</span>.len
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">clear</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>) {
-        <span class="self">self</span>.<span class="ident">len</span> <span class="op">=</span> <span class="number">0</span>;
+    <span class="kw">pub fn </span>clear(<span class="kw-2">&amp;mut </span><span class="self">self</span>) {
+        <span class="self">self</span>.len = <span class="number">0</span>;
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">at</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">i</span>: <span class="ident">u8</span>) -&gt; <span class="ident">f32</span> {
-        <span class="kw">if</span> <span class="ident">i</span> <span class="op">&lt;</span> <span class="self">self</span>.<span class="ident">len</span> {
-            <span class="self">self</span>.<span class="ident">d</span>[<span class="ident">usize::from</span>(<span class="ident">i</span>)]
-        } <span class="kw">else</span> {
-            <span class="number">0.0</span>
-        }
+    <span class="kw">pub fn </span>at(<span class="kw-2">&amp;</span><span class="self">self</span>, i: u8) -&gt; f32 {
+        <span class="kw">if </span>i &lt; <span class="self">self</span>.len {
+            <span class="self">self</span>.d[usize::from(i)]
+        } <span class="kw">else </span>{
+            <span class="number">0.0
+        </span>}
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">push</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">n</span>: <span class="ident">f32</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
-        <span class="kw">if</span> <span class="self">self</span>.<span class="ident">len</span> <span class="op">&lt;</span> <span class="ident">SCALARS_MAX</span> {
-            <span class="self">self</span>.<span class="ident">d</span>[<span class="ident">usize::from</span>(<span class="self">self</span>.<span class="ident">len</span>)] <span class="op">=</span> <span class="ident">n</span>;
-            <span class="self">self</span>.<span class="ident">len</span> <span class="op">+</span><span class="op">=</span> <span class="number">1</span>;
+    <span class="kw">pub fn </span>push(<span class="kw-2">&amp;mut </span><span class="self">self</span>, n: f32) -&gt; <span class="prelude-ty">Option</span>&lt;()&gt; {
+        <span class="kw">if </span><span class="self">self</span>.len &lt; SCALARS_MAX {
+            <span class="self">self</span>.d[usize::from(<span class="self">self</span>.len)] = n;
+            <span class="self">self</span>.len += <span class="number">1</span>;
             <span class="prelude-val">Some</span>(())
-        } <span class="kw">else</span> {
-            <span class="prelude-val">None</span>
-        }
+        } <span class="kw">else </span>{
+            <span class="prelude-val">None
+        </span>}
     }
 }
 
 
-<span class="kw">struct</span> <span class="ident">CharStringParserContext</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="ident">metadata</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">Table</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>,
-    <span class="ident">coordinates</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">NormalizedCoordinate</span>],
-    <span class="ident">scalars</span>: <span class="ident">Scalars</span>,
-    <span class="ident">had_vsindex</span>: <span class="ident">bool</span>,
-    <span class="ident">had_blend</span>: <span class="ident">bool</span>,
-    <span class="ident">stems_len</span>: <span class="ident">u32</span>,
+<span class="kw">struct </span>CharStringParserContext&lt;<span class="lifetime">&#39;a</span>&gt; {
+    metadata: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>Table&lt;<span class="lifetime">&#39;a</span>&gt;,
+    coordinates: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[NormalizedCoordinate],
+    scalars: Scalars,
+    had_vsindex: bool,
+    had_blend: bool,
+    stems_len: u32,
 }
 
-<span class="kw">impl</span> <span class="ident">CharStringParserContext</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span> {
-    <span class="kw">fn</span> <span class="ident">update_scalars</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">index</span>: <span class="ident">u16</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">CFFError</span><span class="op">&gt;</span> {
-        <span class="self">self</span>.<span class="ident">scalars</span>.<span class="ident">clear</span>();
+<span class="kw">impl </span>CharStringParserContext&lt;<span class="lifetime">&#39;_</span>&gt; {
+    <span class="kw">fn </span>update_scalars(<span class="kw-2">&amp;mut </span><span class="self">self</span>, index: u16) -&gt; <span class="prelude-ty">Result</span>&lt;(), CFFError&gt; {
+        <span class="self">self</span>.scalars.clear();
 
-        <span class="kw">let</span> <span class="ident">indices</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">metadata</span>.<span class="ident">item_variation_store</span>.<span class="ident">region_indices</span>(<span class="ident">index</span>)
-            .<span class="ident">ok_or</span>(<span class="ident">CFFError::InvalidItemVariationDataIndex</span>)<span class="question-mark">?</span>;
-        <span class="kw">for</span> <span class="ident">index</span> <span class="kw">in</span> <span class="ident">indices</span> {
-            <span class="kw">let</span> <span class="ident">scalar</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">metadata</span>.<span class="ident">item_variation_store</span>.<span class="ident">regions</span>
-                .<span class="ident">evaluate_region</span>(<span class="ident">index</span>, <span class="self">self</span>.<span class="ident">coordinates</span>);
-            <span class="self">self</span>.<span class="ident">scalars</span>.<span class="ident">push</span>(<span class="ident">scalar</span>)
-                .<span class="ident">ok_or</span>(<span class="ident">CFFError::BlendRegionsLimitReached</span>)<span class="question-mark">?</span>;
+        <span class="kw">let </span>indices = <span class="self">self</span>.metadata.item_variation_store.region_indices(index)
+            .ok_or(CFFError::InvalidItemVariationDataIndex)<span class="question-mark">?</span>;
+        <span class="kw">for </span>index <span class="kw">in </span>indices {
+            <span class="kw">let </span>scalar = <span class="self">self</span>.metadata.item_variation_store.regions
+                .evaluate_region(index, <span class="self">self</span>.coordinates);
+            <span class="self">self</span>.scalars.push(scalar)
+                .ok_or(CFFError::BlendRegionsLimitReached)<span class="question-mark">?</span>;
         }
 
         <span class="prelude-val">Ok</span>(())
@@ -774,230 +774,230 @@
 }
 
 
-<span class="kw">fn</span> <span class="ident">parse_char_string</span>(
-    <span class="ident">data</span>: <span class="kw-2">&amp;</span>[<span class="ident">u8</span>],
-    <span class="ident">metadata</span>: <span class="kw-2">&amp;</span><span class="ident">Table</span>,
-    <span class="ident">coordinates</span>: <span class="kw-2">&amp;</span>[<span class="ident">NormalizedCoordinate</span>],
-    <span class="ident">builder</span>: <span class="kw-2">&amp;mut</span> <span class="kw">dyn</span> <span class="ident">OutlineBuilder</span>,
-) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">Rect</span>, <span class="ident">CFFError</span><span class="op">&gt;</span> {
-    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">ctx</span> <span class="op">=</span> <span class="ident">CharStringParserContext</span> {
-        <span class="ident">metadata</span>,
-        <span class="ident">coordinates</span>,
-        <span class="ident">scalars</span>: <span class="ident">Scalars::default</span>(),
-        <span class="ident">had_vsindex</span>: <span class="bool-val">false</span>,
-        <span class="ident">had_blend</span>: <span class="bool-val">false</span>,
-        <span class="ident">stems_len</span>: <span class="number">0</span>,
+<span class="kw">fn </span>parse_char_string(
+    data: <span class="kw-2">&amp;</span>[u8],
+    metadata: <span class="kw-2">&amp;</span>Table,
+    coordinates: <span class="kw-2">&amp;</span>[NormalizedCoordinate],
+    builder: <span class="kw-2">&amp;mut </span><span class="kw">dyn </span>OutlineBuilder,
+) -&gt; <span class="prelude-ty">Result</span>&lt;Rect, CFFError&gt; {
+    <span class="kw">let </span><span class="kw-2">mut </span>ctx = CharStringParserContext {
+        metadata,
+        coordinates,
+        scalars: Scalars::default(),
+        had_vsindex: <span class="bool-val">false</span>,
+        had_blend: <span class="bool-val">false</span>,
+        stems_len: <span class="number">0</span>,
     };
 
-    <span class="comment">// Load scalars at default index.</span>
-    <span class="ident">ctx</span>.<span class="ident">update_scalars</span>(<span class="number">0</span>)<span class="question-mark">?</span>;
+    <span class="comment">// Load scalars at default index.
+    </span>ctx.update_scalars(<span class="number">0</span>)<span class="question-mark">?</span>;
 
-    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">inner_builder</span> <span class="op">=</span> <span class="ident">Builder</span> {
-        <span class="ident">builder</span>,
-        <span class="ident">bbox</span>: <span class="ident">BBox::new</span>(),
+    <span class="kw">let </span><span class="kw-2">mut </span>inner_builder = Builder {
+        builder,
+        bbox: BBox::new(),
     };
 
-    <span class="kw">let</span> <span class="ident">stack</span> <span class="op">=</span> <span class="ident">ArgumentsStack</span> {
-        <span class="ident">data</span>: <span class="kw-2">&amp;mut</span> [<span class="number">0.0</span>; <span class="ident">MAX_ARGUMENTS_STACK_LEN</span>], <span class="comment">// 2052B</span>
-        <span class="ident">len</span>: <span class="number">0</span>,
-        <span class="ident">max_len</span>: <span class="ident">MAX_ARGUMENTS_STACK_LEN</span>,
+    <span class="kw">let </span>stack = ArgumentsStack {
+        data: <span class="kw-2">&amp;mut </span>[<span class="number">0.0</span>; MAX_ARGUMENTS_STACK_LEN], <span class="comment">// 2052B
+        </span>len: <span class="number">0</span>,
+        max_len: MAX_ARGUMENTS_STACK_LEN,
     };
-    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">parser</span> <span class="op">=</span> <span class="ident">CharStringParser</span> {
-        <span class="ident">stack</span>,
-        <span class="ident">builder</span>: <span class="kw-2">&amp;mut</span> <span class="ident">inner_builder</span>,
-        <span class="ident">x</span>: <span class="number">0.0</span>,
-        <span class="ident">y</span>: <span class="number">0.0</span>,
-        <span class="ident">has_move_to</span>: <span class="bool-val">false</span>,
-        <span class="ident">is_first_move_to</span>: <span class="bool-val">true</span>,
+    <span class="kw">let </span><span class="kw-2">mut </span>parser = CharStringParser {
+        stack,
+        builder: <span class="kw-2">&amp;mut </span>inner_builder,
+        x: <span class="number">0.0</span>,
+        y: <span class="number">0.0</span>,
+        has_move_to: <span class="bool-val">false</span>,
+        is_first_move_to: <span class="bool-val">true</span>,
     };
-    <span class="ident">_parse_char_string</span>(<span class="kw-2">&amp;mut</span> <span class="ident">ctx</span>, <span class="ident">data</span>, <span class="number">0</span>, <span class="kw-2">&amp;mut</span> <span class="ident">parser</span>)<span class="question-mark">?</span>;
-    <span class="comment">// let _ = _parse_char_string(&amp;mut ctx, data, 0.0, 0.0, &amp;mut stack, 0, &amp;mut inner_builder)?;</span>
+    _parse_char_string(<span class="kw-2">&amp;mut </span>ctx, data, <span class="number">0</span>, <span class="kw-2">&amp;mut </span>parser)<span class="question-mark">?</span>;
+    <span class="comment">// let _ = _parse_char_string(&amp;mut ctx, data, 0.0, 0.0, &amp;mut stack, 0, &amp;mut inner_builder)?;
 
-    <span class="kw">let</span> <span class="ident">bbox</span> <span class="op">=</span> <span class="ident">parser</span>.<span class="ident">builder</span>.<span class="ident">bbox</span>;
+    </span><span class="kw">let </span>bbox = parser.builder.bbox;
 
-    <span class="comment">// Check that bbox was changed.</span>
-    <span class="kw">if</span> <span class="ident">bbox</span>.<span class="ident">is_default</span>() {
-        <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">CFFError::ZeroBBox</span>);
+    <span class="comment">// Check that bbox was changed.
+    </span><span class="kw">if </span>bbox.is_default() {
+        <span class="kw">return </span><span class="prelude-val">Err</span>(CFFError::ZeroBBox);
     }
 
-    <span class="ident">bbox</span>.<span class="ident">to_rect</span>().<span class="ident">ok_or</span>(<span class="ident">CFFError::BboxOverflow</span>)
+    bbox.to_rect().ok_or(CFFError::BboxOverflow)
 }
 
-<span class="kw">fn</span> <span class="ident">_parse_char_string</span>(
-    <span class="ident">ctx</span>: <span class="kw-2">&amp;mut</span> <span class="ident">CharStringParserContext</span>,
-    <span class="ident">char_string</span>: <span class="kw-2">&amp;</span>[<span class="ident">u8</span>],
-    <span class="ident">depth</span>: <span class="ident">u8</span>,
-    <span class="ident">p</span>: <span class="kw-2">&amp;mut</span> <span class="ident">CharStringParser</span>,
-) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">CFFError</span><span class="op">&gt;</span> {
-    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">s</span> <span class="op">=</span> <span class="ident">Stream::new</span>(<span class="ident">char_string</span>);
-    <span class="kw">while</span> <span class="op">!</span><span class="ident">s</span>.<span class="ident">at_end</span>() {
-        <span class="kw">let</span> <span class="ident">op</span> <span class="op">=</span> <span class="ident">s</span>.<span class="ident">read</span>::<span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span>().<span class="ident">ok_or</span>(<span class="ident">CFFError::ReadOutOfBounds</span>)<span class="question-mark">?</span>;
-        <span class="kw">match</span> <span class="ident">op</span> {
-            <span class="number">0</span> <span class="op">|</span> <span class="number">2</span> <span class="op">|</span> <span class="number">9</span> <span class="op">|</span> <span class="number">11</span> <span class="op">|</span> <span class="number">13</span> <span class="op">|</span> <span class="number">14</span> <span class="op">|</span> <span class="number">17</span> =&gt; {
-                <span class="comment">// Reserved.</span>
-                <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">CFFError::InvalidOperator</span>);
+<span class="kw">fn </span>_parse_char_string(
+    ctx: <span class="kw-2">&amp;mut </span>CharStringParserContext,
+    char_string: <span class="kw-2">&amp;</span>[u8],
+    depth: u8,
+    p: <span class="kw-2">&amp;mut </span>CharStringParser,
+) -&gt; <span class="prelude-ty">Result</span>&lt;(), CFFError&gt; {
+    <span class="kw">let </span><span class="kw-2">mut </span>s = Stream::new(char_string);
+    <span class="kw">while </span>!s.at_end() {
+        <span class="kw">let </span>op = s.read::&lt;u8&gt;().ok_or(CFFError::ReadOutOfBounds)<span class="question-mark">?</span>;
+        <span class="kw">match </span>op {
+            <span class="number">0 </span>| <span class="number">2 </span>| <span class="number">9 </span>| <span class="number">11 </span>| <span class="number">13 </span>| <span class="number">14 </span>| <span class="number">17 </span>=&gt; {
+                <span class="comment">// Reserved.
+                </span><span class="kw">return </span><span class="prelude-val">Err</span>(CFFError::InvalidOperator);
             }
-            <span class="ident">operator::HORIZONTAL_STEM</span> <span class="op">|</span>
-            <span class="ident">operator::VERTICAL_STEM</span> <span class="op">|</span>
-            <span class="ident">operator::HORIZONTAL_STEM_HINT_MASK</span> <span class="op">|</span>
-            <span class="ident">operator::VERTICAL_STEM_HINT_MASK</span> =&gt; {
-                <span class="comment">// y dy {dya dyb}* hstem</span>
-                <span class="comment">// x dx {dxa dxb}* vstem</span>
-                <span class="comment">// y dy {dya dyb}* hstemhm</span>
-                <span class="comment">// x dx {dxa dxb}* vstemhm</span>
+            operator::HORIZONTAL_STEM |
+            operator::VERTICAL_STEM |
+            operator::HORIZONTAL_STEM_HINT_MASK |
+            operator::VERTICAL_STEM_HINT_MASK =&gt; {
+                <span class="comment">// y dy {dya dyb}* hstem
+                // x dx {dxa dxb}* vstem
+                // y dy {dya dyb}* hstemhm
+                // x dx {dxa dxb}* vstemhm
 
-                <span class="ident">ctx</span>.<span class="ident">stems_len</span> <span class="op">+</span><span class="op">=</span> <span class="ident">p</span>.<span class="ident">stack</span>.<span class="ident">len</span>() <span class="kw">as</span> <span class="ident">u32</span> <span class="op">&gt;</span><span class="op">&gt;</span> <span class="number">1</span>;
+                </span>ctx.stems_len += p.stack.len() <span class="kw">as </span>u32 &gt;&gt; <span class="number">1</span>;
 
-                <span class="comment">// We are ignoring the hint operators.</span>
-                <span class="ident">p</span>.<span class="ident">stack</span>.<span class="ident">clear</span>();
+                <span class="comment">// We are ignoring the hint operators.
+                </span>p.stack.clear();
             }
-            <span class="ident">operator::VERTICAL_MOVE_TO</span> =&gt; {
-                <span class="ident">p</span>.<span class="ident">parse_vertical_move_to</span>(<span class="number">0</span>)<span class="question-mark">?</span>;
+            operator::VERTICAL_MOVE_TO =&gt; {
+                p.parse_vertical_move_to(<span class="number">0</span>)<span class="question-mark">?</span>;
             }
-            <span class="ident">operator::LINE_TO</span> =&gt; {
-                <span class="ident">p</span>.<span class="ident">parse_line_to</span>()<span class="question-mark">?</span>;
+            operator::LINE_TO =&gt; {
+                p.parse_line_to()<span class="question-mark">?</span>;
             }
-            <span class="ident">operator::HORIZONTAL_LINE_TO</span> =&gt; {
-                <span class="ident">p</span>.<span class="ident">parse_horizontal_line_to</span>()<span class="question-mark">?</span>;
+            operator::HORIZONTAL_LINE_TO =&gt; {
+                p.parse_horizontal_line_to()<span class="question-mark">?</span>;
             }
-            <span class="ident">operator::VERTICAL_LINE_TO</span> =&gt; {
-                <span class="ident">p</span>.<span class="ident">parse_vertical_line_to</span>()<span class="question-mark">?</span>;
+            operator::VERTICAL_LINE_TO =&gt; {
+                p.parse_vertical_line_to()<span class="question-mark">?</span>;
             }
-            <span class="ident">operator::CURVE_TO</span> =&gt; {
-                <span class="ident">p</span>.<span class="ident">parse_curve_to</span>()<span class="question-mark">?</span>;
+            operator::CURVE_TO =&gt; {
+                p.parse_curve_to()<span class="question-mark">?</span>;
             }
-            <span class="ident">operator::CALL_LOCAL_SUBROUTINE</span> =&gt; {
-                <span class="kw">if</span> <span class="ident">p</span>.<span class="ident">stack</span>.<span class="ident">is_empty</span>() {
-                    <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">CFFError::InvalidArgumentsStackLength</span>);
+            operator::CALL_LOCAL_SUBROUTINE =&gt; {
+                <span class="kw">if </span>p.stack.is_empty() {
+                    <span class="kw">return </span><span class="prelude-val">Err</span>(CFFError::InvalidArgumentsStackLength);
                 }
 
-                <span class="kw">if</span> <span class="ident">depth</span> <span class="op">==</span> <span class="ident">STACK_LIMIT</span> {
-                    <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">CFFError::NestingLimitReached</span>);
+                <span class="kw">if </span>depth == STACK_LIMIT {
+                    <span class="kw">return </span><span class="prelude-val">Err</span>(CFFError::NestingLimitReached);
                 }
 
-                <span class="kw">let</span> <span class="ident">subroutine_bias</span> <span class="op">=</span> <span class="ident">calc_subroutine_bias</span>(<span class="ident">ctx</span>.<span class="ident">metadata</span>.<span class="ident">local_subrs</span>.<span class="ident">len</span>());
-                <span class="kw">let</span> <span class="ident">index</span> <span class="op">=</span> <span class="ident">conv_subroutine_index</span>(<span class="ident">p</span>.<span class="ident">stack</span>.<span class="ident">pop</span>(), <span class="ident">subroutine_bias</span>)<span class="question-mark">?</span>;
-                <span class="kw">let</span> <span class="ident">char_string</span> <span class="op">=</span> <span class="ident">ctx</span>.<span class="ident">metadata</span>.<span class="ident">local_subrs</span>.<span class="ident">get</span>(<span class="ident">index</span>)
-                    .<span class="ident">ok_or</span>(<span class="ident">CFFError::InvalidSubroutineIndex</span>)<span class="question-mark">?</span>;
-                <span class="ident">_parse_char_string</span>(<span class="ident">ctx</span>, <span class="ident">char_string</span>, <span class="ident">depth</span> <span class="op">+</span> <span class="number">1</span>, <span class="ident">p</span>)<span class="question-mark">?</span>;
+                <span class="kw">let </span>subroutine_bias = calc_subroutine_bias(ctx.metadata.local_subrs.len());
+                <span class="kw">let </span>index = conv_subroutine_index(p.stack.pop(), subroutine_bias)<span class="question-mark">?</span>;
+                <span class="kw">let </span>char_string = ctx.metadata.local_subrs.get(index)
+                    .ok_or(CFFError::InvalidSubroutineIndex)<span class="question-mark">?</span>;
+                _parse_char_string(ctx, char_string, depth + <span class="number">1</span>, p)<span class="question-mark">?</span>;
             }
-            <span class="ident">TWO_BYTE_OPERATOR_MARK</span> =&gt; {
-                <span class="comment">// flex</span>
-                <span class="kw">let</span> <span class="ident">op2</span> <span class="op">=</span> <span class="ident">s</span>.<span class="ident">read</span>::<span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span>().<span class="ident">ok_or</span>(<span class="ident">CFFError::ReadOutOfBounds</span>)<span class="question-mark">?</span>;
-                <span class="kw">match</span> <span class="ident">op2</span> {
-                    <span class="ident">operator::HFLEX</span> =&gt; <span class="ident">p</span>.<span class="ident">parse_hflex</span>()<span class="question-mark">?</span>,
-                    <span class="ident">operator::FLEX</span> =&gt; <span class="ident">p</span>.<span class="ident">parse_flex</span>()<span class="question-mark">?</span>,
-                    <span class="ident">operator::HFLEX1</span> =&gt; <span class="ident">p</span>.<span class="ident">parse_hflex1</span>()<span class="question-mark">?</span>,
-                    <span class="ident">operator::FLEX1</span> =&gt; <span class="ident">p</span>.<span class="ident">parse_flex1</span>()<span class="question-mark">?</span>,
-                    <span class="kw">_</span> =&gt; <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">CFFError::UnsupportedOperator</span>),
+            TWO_BYTE_OPERATOR_MARK =&gt; {
+                <span class="comment">// flex
+                </span><span class="kw">let </span>op2 = s.read::&lt;u8&gt;().ok_or(CFFError::ReadOutOfBounds)<span class="question-mark">?</span>;
+                <span class="kw">match </span>op2 {
+                    operator::HFLEX =&gt; p.parse_hflex()<span class="question-mark">?</span>,
+                    operator::FLEX =&gt; p.parse_flex()<span class="question-mark">?</span>,
+                    operator::HFLEX1 =&gt; p.parse_hflex1()<span class="question-mark">?</span>,
+                    operator::FLEX1 =&gt; p.parse_flex1()<span class="question-mark">?</span>,
+                    <span class="kw">_ </span>=&gt; <span class="kw">return </span><span class="prelude-val">Err</span>(CFFError::UnsupportedOperator),
                 }
             }
-            <span class="ident">operator::VS_INDEX</span> =&gt; {
-                <span class="comment">// |- ivs vsindex (15) |-</span>
+            operator::VS_INDEX =&gt; {
+                <span class="comment">// |- ivs vsindex (15) |-
 
-                <span class="comment">// `vsindex` must precede the first `blend` operator, and may occur only once.</span>
-                <span class="kw">if</span> <span class="ident">ctx</span>.<span class="ident">had_blend</span> <span class="op">|</span><span class="op">|</span> <span class="ident">ctx</span>.<span class="ident">had_vsindex</span> {
-                    <span class="comment">// TODO: maybe add a custom error</span>
-                    <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">CFFError::InvalidOperator</span>);
+                // `vsindex` must precede the first `blend` operator, and may occur only once.
+                </span><span class="kw">if </span>ctx.had_blend || ctx.had_vsindex {
+                    <span class="comment">// TODO: maybe add a custom error
+                    </span><span class="kw">return </span><span class="prelude-val">Err</span>(CFFError::InvalidOperator);
                 }
 
-                <span class="kw">if</span> <span class="ident">p</span>.<span class="ident">stack</span>.<span class="ident">len</span>() <span class="op">!</span><span class="op">=</span> <span class="number">1</span> {
-                    <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">CFFError::InvalidArgumentsStackLength</span>);
+                <span class="kw">if </span>p.stack.len() != <span class="number">1 </span>{
+                    <span class="kw">return </span><span class="prelude-val">Err</span>(CFFError::InvalidArgumentsStackLength);
                 }
 
-                <span class="kw">let</span> <span class="ident">index</span> <span class="op">=</span> <span class="ident">u16::try_num_from</span>(<span class="ident">p</span>.<span class="ident">stack</span>.<span class="ident">pop</span>())
-                    .<span class="ident">ok_or</span>(<span class="ident">CFFError::InvalidItemVariationDataIndex</span>)<span class="question-mark">?</span>;
-                <span class="ident">ctx</span>.<span class="ident">update_scalars</span>(<span class="ident">index</span>)<span class="question-mark">?</span>;
+                <span class="kw">let </span>index = u16::try_num_from(p.stack.pop())
+                    .ok_or(CFFError::InvalidItemVariationDataIndex)<span class="question-mark">?</span>;
+                ctx.update_scalars(index)<span class="question-mark">?</span>;
 
-                <span class="ident">ctx</span>.<span class="ident">had_vsindex</span> <span class="op">=</span> <span class="bool-val">true</span>;
+                ctx.had_vsindex = <span class="bool-val">true</span>;
 
-                <span class="ident">p</span>.<span class="ident">stack</span>.<span class="ident">clear</span>();
+                p.stack.clear();
             }
-            <span class="ident">operator::BLEND</span> =&gt; {
-                <span class="comment">// num(0)..num(n-1), delta(0,0)..delta(k-1,0),</span>
-                <span class="comment">// delta(0,1)..delta(k-1,1) .. delta(0,n-1)..delta(k-1,n-1)</span>
-                <span class="comment">// n blend (16) val(0)..val(n-1)</span>
+            operator::BLEND =&gt; {
+                <span class="comment">// num(0)..num(n-1), delta(0,0)..delta(k-1,0),
+                // delta(0,1)..delta(k-1,1) .. delta(0,n-1)..delta(k-1,n-1)
+                // n blend (16) val(0)..val(n-1)
 
-                <span class="ident">ctx</span>.<span class="ident">had_blend</span> <span class="op">=</span> <span class="bool-val">true</span>;
+                </span>ctx.had_blend = <span class="bool-val">true</span>;
 
-                <span class="kw">let</span> <span class="ident">n</span> <span class="op">=</span> <span class="ident">u16::try_num_from</span>(<span class="ident">p</span>.<span class="ident">stack</span>.<span class="ident">pop</span>())
-                    .<span class="ident">ok_or</span>(<span class="ident">CFFError::InvalidNumberOfBlendOperands</span>)<span class="question-mark">?</span>;
-                <span class="kw">let</span> <span class="ident">k</span> <span class="op">=</span> <span class="ident">ctx</span>.<span class="ident">scalars</span>.<span class="ident">len</span>();
+                <span class="kw">let </span>n = u16::try_num_from(p.stack.pop())
+                    .ok_or(CFFError::InvalidNumberOfBlendOperands)<span class="question-mark">?</span>;
+                <span class="kw">let </span>k = ctx.scalars.len();
 
-                <span class="kw">let</span> <span class="ident">len</span> <span class="op">=</span> <span class="ident">usize::from</span>(<span class="ident">n</span>) <span class="op">*</span> (<span class="ident">usize::from</span>(<span class="ident">k</span>) <span class="op">+</span> <span class="number">1</span>);
-                <span class="kw">if</span> <span class="ident">p</span>.<span class="ident">stack</span>.<span class="ident">len</span>() <span class="op">&lt;</span> <span class="ident">len</span> {
-                    <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">CFFError::InvalidArgumentsStackLength</span>);
+                <span class="kw">let </span>len = usize::from(n) * (usize::from(k) + <span class="number">1</span>);
+                <span class="kw">if </span>p.stack.len() &lt; len {
+                    <span class="kw">return </span><span class="prelude-val">Err</span>(CFFError::InvalidArgumentsStackLength);
                 }
 
-                <span class="kw">let</span> <span class="ident">start</span> <span class="op">=</span> <span class="ident">p</span>.<span class="ident">stack</span>.<span class="ident">len</span>() <span class="op">-</span> <span class="ident">len</span>;
-                <span class="kw">for</span> <span class="ident">i</span> <span class="kw">in</span> (<span class="number">0</span>..<span class="ident">n</span>).<span class="ident">rev</span>() {
-                    <span class="kw">for</span> <span class="ident">j</span> <span class="kw">in</span> <span class="number">0</span>..<span class="ident">k</span> {
-                        <span class="kw">let</span> <span class="ident">delta</span> <span class="op">=</span> <span class="ident">p</span>.<span class="ident">stack</span>.<span class="ident">pop</span>();
-                        <span class="ident">p</span>.<span class="ident">stack</span>.<span class="ident">data</span>[<span class="ident">start</span> <span class="op">+</span> <span class="ident">usize::from</span>(<span class="ident">i</span>)] <span class="op">+</span><span class="op">=</span> <span class="ident">delta</span> <span class="op">*</span> <span class="ident">ctx</span>.<span class="ident">scalars</span>.<span class="ident">at</span>(<span class="ident">k</span> <span class="op">-</span> <span class="ident">j</span> <span class="op">-</span> <span class="number">1</span>);
+                <span class="kw">let </span>start = p.stack.len() - len;
+                <span class="kw">for </span>i <span class="kw">in </span>(<span class="number">0</span>..n).rev() {
+                    <span class="kw">for </span>j <span class="kw">in </span><span class="number">0</span>..k {
+                        <span class="kw">let </span>delta = p.stack.pop();
+                        p.stack.data[start + usize::from(i)] += delta * ctx.scalars.at(k - j - <span class="number">1</span>);
                     }
                 }
             }
-            <span class="ident">operator::HINT_MASK</span> <span class="op">|</span> <span class="ident">operator::COUNTER_MASK</span> =&gt; {
-                <span class="ident">ctx</span>.<span class="ident">stems_len</span> <span class="op">+</span><span class="op">=</span> <span class="ident">p</span>.<span class="ident">stack</span>.<span class="ident">len</span>() <span class="kw">as</span> <span class="ident">u32</span> <span class="op">&gt;</span><span class="op">&gt;</span> <span class="number">1</span>;
-                <span class="ident">s</span>.<span class="ident">advance</span>(<span class="ident">usize::num_from</span>((<span class="ident">ctx</span>.<span class="ident">stems_len</span> <span class="op">+</span> <span class="number">7</span>) <span class="op">&gt;</span><span class="op">&gt;</span> <span class="number">3</span>));
+            operator::HINT_MASK | operator::COUNTER_MASK =&gt; {
+                ctx.stems_len += p.stack.len() <span class="kw">as </span>u32 &gt;&gt; <span class="number">1</span>;
+                s.advance(usize::num_from((ctx.stems_len + <span class="number">7</span>) &gt;&gt; <span class="number">3</span>));
 
-                <span class="comment">// We are ignoring the hint operators.</span>
-                <span class="ident">p</span>.<span class="ident">stack</span>.<span class="ident">clear</span>();
+                <span class="comment">// We are ignoring the hint operators.
+                </span>p.stack.clear();
             }
-            <span class="ident">operator::MOVE_TO</span> =&gt; {
-                <span class="ident">p</span>.<span class="ident">parse_move_to</span>(<span class="number">0</span>)<span class="question-mark">?</span>;
+            operator::MOVE_TO =&gt; {
+                p.parse_move_to(<span class="number">0</span>)<span class="question-mark">?</span>;
             }
-            <span class="ident">operator::HORIZONTAL_MOVE_TO</span> =&gt; {
-                <span class="ident">p</span>.<span class="ident">parse_horizontal_move_to</span>(<span class="number">0</span>)<span class="question-mark">?</span>;
+            operator::HORIZONTAL_MOVE_TO =&gt; {
+                p.parse_horizontal_move_to(<span class="number">0</span>)<span class="question-mark">?</span>;
             }
-            <span class="ident">operator::CURVE_LINE</span> =&gt; {
-                <span class="ident">p</span>.<span class="ident">parse_curve_line</span>()<span class="question-mark">?</span>;
+            operator::CURVE_LINE =&gt; {
+                p.parse_curve_line()<span class="question-mark">?</span>;
             }
-            <span class="ident">operator::LINE_CURVE</span> =&gt; {
-                <span class="ident">p</span>.<span class="ident">parse_line_curve</span>()<span class="question-mark">?</span>;
+            operator::LINE_CURVE =&gt; {
+                p.parse_line_curve()<span class="question-mark">?</span>;
             }
-            <span class="ident">operator::VV_CURVE_TO</span> =&gt; {
-                <span class="ident">p</span>.<span class="ident">parse_vv_curve_to</span>()<span class="question-mark">?</span>;
+            operator::VV_CURVE_TO =&gt; {
+                p.parse_vv_curve_to()<span class="question-mark">?</span>;
             }
-            <span class="ident">operator::HH_CURVE_TO</span> =&gt; {
-                <span class="ident">p</span>.<span class="ident">parse_hh_curve_to</span>()<span class="question-mark">?</span>;
+            operator::HH_CURVE_TO =&gt; {
+                p.parse_hh_curve_to()<span class="question-mark">?</span>;
             }
-            <span class="ident">operator::SHORT_INT</span> =&gt; {
-                <span class="kw">let</span> <span class="ident">n</span> <span class="op">=</span> <span class="ident">s</span>.<span class="ident">read</span>::<span class="op">&lt;</span><span class="ident">i16</span><span class="op">&gt;</span>().<span class="ident">ok_or</span>(<span class="ident">CFFError::ReadOutOfBounds</span>)<span class="question-mark">?</span>;
-                <span class="ident">p</span>.<span class="ident">stack</span>.<span class="ident">push</span>(<span class="ident">f32::from</span>(<span class="ident">n</span>))<span class="question-mark">?</span>;
+            operator::SHORT_INT =&gt; {
+                <span class="kw">let </span>n = s.read::&lt;i16&gt;().ok_or(CFFError::ReadOutOfBounds)<span class="question-mark">?</span>;
+                p.stack.push(f32::from(n))<span class="question-mark">?</span>;
             }
-            <span class="ident">operator::CALL_GLOBAL_SUBROUTINE</span> =&gt; {
-                <span class="kw">if</span> <span class="ident">p</span>.<span class="ident">stack</span>.<span class="ident">is_empty</span>() {
-                    <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">CFFError::InvalidArgumentsStackLength</span>);
+            operator::CALL_GLOBAL_SUBROUTINE =&gt; {
+                <span class="kw">if </span>p.stack.is_empty() {
+                    <span class="kw">return </span><span class="prelude-val">Err</span>(CFFError::InvalidArgumentsStackLength);
                 }
 
-                <span class="kw">if</span> <span class="ident">depth</span> <span class="op">==</span> <span class="ident">STACK_LIMIT</span> {
-                    <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">CFFError::NestingLimitReached</span>);
+                <span class="kw">if </span>depth == STACK_LIMIT {
+                    <span class="kw">return </span><span class="prelude-val">Err</span>(CFFError::NestingLimitReached);
                 }
 
-                <span class="kw">let</span> <span class="ident">subroutine_bias</span> <span class="op">=</span> <span class="ident">calc_subroutine_bias</span>(<span class="ident">ctx</span>.<span class="ident">metadata</span>.<span class="ident">global_subrs</span>.<span class="ident">len</span>());
-                <span class="kw">let</span> <span class="ident">index</span> <span class="op">=</span> <span class="ident">conv_subroutine_index</span>(<span class="ident">p</span>.<span class="ident">stack</span>.<span class="ident">pop</span>(), <span class="ident">subroutine_bias</span>)<span class="question-mark">?</span>;
-                <span class="kw">let</span> <span class="ident">char_string</span> <span class="op">=</span> <span class="ident">ctx</span>.<span class="ident">metadata</span>.<span class="ident">global_subrs</span>.<span class="ident">get</span>(<span class="ident">index</span>)
-                    .<span class="ident">ok_or</span>(<span class="ident">CFFError::InvalidSubroutineIndex</span>)<span class="question-mark">?</span>;
-                <span class="ident">_parse_char_string</span>(<span class="ident">ctx</span>, <span class="ident">char_string</span>, <span class="ident">depth</span> <span class="op">+</span> <span class="number">1</span>, <span class="ident">p</span>)<span class="question-mark">?</span>;
+                <span class="kw">let </span>subroutine_bias = calc_subroutine_bias(ctx.metadata.global_subrs.len());
+                <span class="kw">let </span>index = conv_subroutine_index(p.stack.pop(), subroutine_bias)<span class="question-mark">?</span>;
+                <span class="kw">let </span>char_string = ctx.metadata.global_subrs.get(index)
+                    .ok_or(CFFError::InvalidSubroutineIndex)<span class="question-mark">?</span>;
+                _parse_char_string(ctx, char_string, depth + <span class="number">1</span>, p)<span class="question-mark">?</span>;
             }
-            <span class="ident">operator::VH_CURVE_TO</span> =&gt; {
-                <span class="ident">p</span>.<span class="ident">parse_vh_curve_to</span>()<span class="question-mark">?</span>;
+            operator::VH_CURVE_TO =&gt; {
+                p.parse_vh_curve_to()<span class="question-mark">?</span>;
             }
-            <span class="ident">operator::HV_CURVE_TO</span> =&gt; {
-                <span class="ident">p</span>.<span class="ident">parse_hv_curve_to</span>()<span class="question-mark">?</span>;
+            operator::HV_CURVE_TO =&gt; {
+                p.parse_hv_curve_to()<span class="question-mark">?</span>;
             }
-            <span class="number">32</span>..<span class="op">=</span><span class="number">246</span> =&gt; {
-                <span class="ident">p</span>.<span class="ident">parse_int1</span>(<span class="ident">op</span>)<span class="question-mark">?</span>;
+            <span class="number">32</span>..=<span class="number">246 </span>=&gt; {
+                p.parse_int1(op)<span class="question-mark">?</span>;
             }
-            <span class="number">247</span>..<span class="op">=</span><span class="number">250</span> =&gt; {
-                <span class="ident">p</span>.<span class="ident">parse_int2</span>(<span class="ident">op</span>, <span class="kw-2">&amp;mut</span> <span class="ident">s</span>)<span class="question-mark">?</span>;
+            <span class="number">247</span>..=<span class="number">250 </span>=&gt; {
+                p.parse_int2(op, <span class="kw-2">&amp;mut </span>s)<span class="question-mark">?</span>;
             }
-            <span class="number">251</span>..<span class="op">=</span><span class="number">254</span> =&gt; {
-                <span class="ident">p</span>.<span class="ident">parse_int3</span>(<span class="ident">op</span>, <span class="kw-2">&amp;mut</span> <span class="ident">s</span>)<span class="question-mark">?</span>;
+            <span class="number">251</span>..=<span class="number">254 </span>=&gt; {
+                p.parse_int3(op, <span class="kw-2">&amp;mut </span>s)<span class="question-mark">?</span>;
             }
-            <span class="ident">operator::FIXED_16_16</span> =&gt; {
-                <span class="ident">p</span>.<span class="ident">parse_fixed</span>(<span class="kw-2">&amp;mut</span> <span class="ident">s</span>)<span class="question-mark">?</span>;
+            operator::FIXED_16_16 =&gt; {
+                p.parse_fixed(<span class="kw-2">&amp;mut </span>s)<span class="question-mark">?</span>;
             }
         }
     }
@@ -1006,95 +1006,95 @@
 }
 
 
-<span class="doccomment">/// A [Compact Font Format 2 Table](</span>
-<span class="doccomment">/// https://docs.microsoft.com/en-us/typography/opentype/spec/cff2).</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">Default</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Table</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="ident">global_subrs</span>: <span class="ident">Index</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>,
-    <span class="ident">local_subrs</span>: <span class="ident">Index</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>,
-    <span class="ident">char_strings</span>: <span class="ident">Index</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>,
-    <span class="ident">item_variation_store</span>: <span class="ident">ItemVariationStore</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>,
+<span class="doccomment">/// A [Compact Font Format 2 Table](
+/// https://docs.microsoft.com/en-us/typography/opentype/spec/cff2).
+</span><span class="attribute">#[derive(Clone, Copy, Default)]
+</span><span class="kw">pub struct </span>Table&lt;<span class="lifetime">&#39;a</span>&gt; {
+    global_subrs: Index&lt;<span class="lifetime">&#39;a</span>&gt;,
+    local_subrs: Index&lt;<span class="lifetime">&#39;a</span>&gt;,
+    char_strings: Index&lt;<span class="lifetime">&#39;a</span>&gt;,
+    item_variation_store: ItemVariationStore&lt;<span class="lifetime">&#39;a</span>&gt;,
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">Table</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="doccomment">/// Parses a table from raw data.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">parse</span>(<span class="ident">data</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>]) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">s</span> <span class="op">=</span> <span class="ident">Stream::new</span>(<span class="ident">data</span>);
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; Table&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="doccomment">/// Parses a table from raw data.
+    </span><span class="kw">pub fn </span>parse(data: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8]) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="self">Self</span>&gt; {
+        <span class="kw">let </span><span class="kw-2">mut </span>s = Stream::new(data);
 
-        <span class="comment">// Parse Header.</span>
-        <span class="kw">let</span> <span class="ident">major</span> <span class="op">=</span> <span class="ident">s</span>.<span class="ident">read</span>::<span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span>()<span class="question-mark">?</span>;
-        <span class="ident">s</span>.<span class="ident">skip</span>::<span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span>(); <span class="comment">// minor</span>
-        <span class="kw">let</span> <span class="ident">header_size</span> <span class="op">=</span> <span class="ident">s</span>.<span class="ident">read</span>::<span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span>()<span class="question-mark">?</span>;
-        <span class="kw">let</span> <span class="ident">top_dict_length</span> <span class="op">=</span> <span class="ident">s</span>.<span class="ident">read</span>::<span class="op">&lt;</span><span class="ident">u16</span><span class="op">&gt;</span>()<span class="question-mark">?</span>;
+        <span class="comment">// Parse Header.
+        </span><span class="kw">let </span>major = s.read::&lt;u8&gt;()<span class="question-mark">?</span>;
+        s.skip::&lt;u8&gt;(); <span class="comment">// minor
+        </span><span class="kw">let </span>header_size = s.read::&lt;u8&gt;()<span class="question-mark">?</span>;
+        <span class="kw">let </span>top_dict_length = s.read::&lt;u16&gt;()<span class="question-mark">?</span>;
 
-        <span class="kw">if</span> <span class="ident">major</span> <span class="op">!</span><span class="op">=</span> <span class="number">2</span> {
-            <span class="kw">return</span> <span class="prelude-val">None</span>;
+        <span class="kw">if </span>major != <span class="number">2 </span>{
+            <span class="kw">return </span><span class="prelude-val">None</span>;
         }
 
-        <span class="comment">// Jump to Top DICT. It&#39;s not necessarily right after the header.</span>
-        <span class="kw">if</span> <span class="ident">header_size</span> <span class="op">&gt;</span> <span class="number">5</span> {
-            <span class="ident">s</span>.<span class="ident">advance</span>(<span class="ident">usize::from</span>(<span class="ident">header_size</span>) <span class="op">-</span> <span class="number">5</span>);
+        <span class="comment">// Jump to Top DICT. It&#39;s not necessarily right after the header.
+        </span><span class="kw">if </span>header_size &gt; <span class="number">5 </span>{
+            s.advance(usize::from(header_size) - <span class="number">5</span>);
         }
 
-        <span class="kw">let</span> <span class="ident">top_dict_data</span> <span class="op">=</span> <span class="ident">s</span>.<span class="ident">read_bytes</span>(<span class="ident">usize::from</span>(<span class="ident">top_dict_length</span>))<span class="question-mark">?</span>;
-        <span class="kw">let</span> <span class="ident">top_dict</span> <span class="op">=</span> <span class="ident">parse_top_dict</span>(<span class="ident">top_dict_data</span>)<span class="question-mark">?</span>;
+        <span class="kw">let </span>top_dict_data = s.read_bytes(usize::from(top_dict_length))<span class="question-mark">?</span>;
+        <span class="kw">let </span>top_dict = parse_top_dict(top_dict_data)<span class="question-mark">?</span>;
 
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">metadata</span> <span class="op">=</span> <span class="ident"><span class="self">Self</span>::default</span>();
+        <span class="kw">let </span><span class="kw-2">mut </span>metadata = <span class="self">Self</span>::default();
 
-        <span class="comment">// Parse Global Subroutines INDEX.</span>
-        <span class="ident">metadata</span>.<span class="ident">global_subrs</span> <span class="op">=</span> <span class="ident">parse_index</span>::<span class="op">&lt;</span><span class="ident">u32</span><span class="op">&gt;</span>(<span class="kw-2">&amp;mut</span> <span class="ident">s</span>)<span class="question-mark">?</span>;
+        <span class="comment">// Parse Global Subroutines INDEX.
+        </span>metadata.global_subrs = parse_index::&lt;u32&gt;(<span class="kw-2">&amp;mut </span>s)<span class="question-mark">?</span>;
 
-        <span class="ident">metadata</span>.<span class="ident">char_strings</span> <span class="op">=</span> {
-            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">s</span> <span class="op">=</span> <span class="ident">Stream::new_at</span>(<span class="ident">data</span>, <span class="ident">top_dict</span>.<span class="ident">char_strings_offset</span>)<span class="question-mark">?</span>;
-            <span class="ident">parse_index</span>::<span class="op">&lt;</span><span class="ident">u32</span><span class="op">&gt;</span>(<span class="kw-2">&amp;mut</span> <span class="ident">s</span>)<span class="question-mark">?</span>
-        };
+        metadata.char_strings = {
+            <span class="kw">let </span><span class="kw-2">mut </span>s = Stream::new_at(data, top_dict.char_strings_offset)<span class="question-mark">?</span>;
+            parse_index::&lt;u32&gt;(<span class="kw-2">&amp;mut </span>s)<span class="question-mark">?
+        </span>};
 
-        <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">offset</span>) <span class="op">=</span> <span class="ident">top_dict</span>.<span class="ident">variation_store_offset</span> {
-            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">s</span> <span class="op">=</span> <span class="ident">Stream::new_at</span>(<span class="ident">data</span>, <span class="ident">offset</span>)<span class="question-mark">?</span>;
-            <span class="ident">s</span>.<span class="ident">skip</span>::<span class="op">&lt;</span><span class="ident">u16</span><span class="op">&gt;</span>(); <span class="comment">// length</span>
-            <span class="ident">metadata</span>.<span class="ident">item_variation_store</span> <span class="op">=</span> <span class="ident">ItemVariationStore::parse</span>(<span class="ident">s</span>)<span class="question-mark">?</span>;
+        <span class="kw">if let </span><span class="prelude-val">Some</span>(offset) = top_dict.variation_store_offset {
+            <span class="kw">let </span><span class="kw-2">mut </span>s = Stream::new_at(data, offset)<span class="question-mark">?</span>;
+            s.skip::&lt;u16&gt;(); <span class="comment">// length
+            </span>metadata.item_variation_store = ItemVariationStore::parse(s)<span class="question-mark">?</span>;
         }
 
-        <span class="comment">// TODO: simplify</span>
-        <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">offset</span>) <span class="op">=</span> <span class="ident">top_dict</span>.<span class="ident">font_dict_index_offset</span> {
-            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">s</span> <span class="op">=</span> <span class="ident">Stream::new_at</span>(<span class="ident">data</span>, <span class="ident">offset</span>)<span class="question-mark">?</span>;
-            <span class="lifetime">&#39;outer</span>: <span class="kw">for</span> <span class="ident">font_dict_data</span> <span class="kw">in</span> <span class="ident">parse_index</span>::<span class="op">&lt;</span><span class="ident">u32</span><span class="op">&gt;</span>(<span class="kw-2">&amp;mut</span> <span class="ident">s</span>)<span class="question-mark">?</span> {
-                <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">private_dict_range</span>) <span class="op">=</span> <span class="ident">parse_font_dict</span>(<span class="ident">font_dict_data</span>) {
-                    <span class="comment">// &#39;Private DICT size and offset, from start of the CFF2 table.&#39;</span>
-                    <span class="kw">let</span> <span class="ident">private_dict_data</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">get</span>(<span class="ident">private_dict_range</span>.<span class="ident">clone</span>())<span class="question-mark">?</span>;
-                    <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">subroutines_offset</span>) <span class="op">=</span> <span class="ident">parse_private_dict</span>(<span class="ident">private_dict_data</span>) {
-                        <span class="comment">// &#39;The local subroutines offset is relative to the beginning</span>
-                        <span class="comment">// of the Private DICT data.&#39;</span>
-                        <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">start</span>) <span class="op">=</span> <span class="ident">private_dict_range</span>.<span class="ident">start</span>.<span class="ident">checked_add</span>(<span class="ident">subroutines_offset</span>) {
-                            <span class="kw">let</span> <span class="ident">data</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">get</span>(<span class="ident">start</span>..<span class="ident">data</span>.<span class="ident">len</span>())<span class="question-mark">?</span>;
-                            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">s</span> <span class="op">=</span> <span class="ident">Stream::new</span>(<span class="ident">data</span>);
-                            <span class="ident">metadata</span>.<span class="ident">local_subrs</span> <span class="op">=</span> <span class="ident">parse_index</span>::<span class="op">&lt;</span><span class="ident">u32</span><span class="op">&gt;</span>(<span class="kw-2">&amp;mut</span> <span class="ident">s</span>)<span class="question-mark">?</span>;
-                            <span class="kw">break</span> <span class="lifetime">&#39;outer</span>;
+        <span class="comment">// TODO: simplify
+        </span><span class="kw">if let </span><span class="prelude-val">Some</span>(offset) = top_dict.font_dict_index_offset {
+            <span class="kw">let </span><span class="kw-2">mut </span>s = Stream::new_at(data, offset)<span class="question-mark">?</span>;
+            <span class="lifetime">&#39;outer</span>: <span class="kw">for </span>font_dict_data <span class="kw">in </span>parse_index::&lt;u32&gt;(<span class="kw-2">&amp;mut </span>s)<span class="question-mark">? </span>{
+                <span class="kw">if let </span><span class="prelude-val">Some</span>(private_dict_range) = parse_font_dict(font_dict_data) {
+                    <span class="comment">// &#39;Private DICT size and offset, from start of the CFF2 table.&#39;
+                    </span><span class="kw">let </span>private_dict_data = data.get(private_dict_range.clone())<span class="question-mark">?</span>;
+                    <span class="kw">if let </span><span class="prelude-val">Some</span>(subroutines_offset) = parse_private_dict(private_dict_data) {
+                        <span class="comment">// &#39;The local subroutines offset is relative to the beginning
+                        // of the Private DICT data.&#39;
+                        </span><span class="kw">if let </span><span class="prelude-val">Some</span>(start) = private_dict_range.start.checked_add(subroutines_offset) {
+                            <span class="kw">let </span>data = data.get(start..data.len())<span class="question-mark">?</span>;
+                            <span class="kw">let </span><span class="kw-2">mut </span>s = Stream::new(data);
+                            metadata.local_subrs = parse_index::&lt;u32&gt;(<span class="kw-2">&amp;mut </span>s)<span class="question-mark">?</span>;
+                            <span class="kw">break </span><span class="lifetime">&#39;outer</span>;
                         }
                     }
                 }
             }
         }
 
-        <span class="prelude-val">Some</span>(<span class="ident">metadata</span>)
+        <span class="prelude-val">Some</span>(metadata)
     }
 
-    <span class="doccomment">/// Outlines a glyph.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">outline</span>(
+    <span class="doccomment">/// Outlines a glyph.
+    </span><span class="kw">pub fn </span>outline(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
-        <span class="ident">coordinates</span>: <span class="kw-2">&amp;</span>[<span class="ident">NormalizedCoordinate</span>],
-        <span class="ident">glyph_id</span>: <span class="ident">GlyphId</span>,
-        <span class="ident">builder</span>: <span class="kw-2">&amp;mut</span> <span class="kw">dyn</span> <span class="ident">OutlineBuilder</span>,
-    ) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">Rect</span>, <span class="ident">CFFError</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="ident">data</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">char_strings</span>.<span class="ident">get</span>(<span class="ident">u32::from</span>(<span class="ident">glyph_id</span>.<span class="number">0</span>)).<span class="ident">ok_or</span>(<span class="ident">CFFError::NoGlyph</span>)<span class="question-mark">?</span>;
-        <span class="ident">parse_char_string</span>(<span class="ident">data</span>, <span class="self">self</span>, <span class="ident">coordinates</span>, <span class="ident">builder</span>)
+        coordinates: <span class="kw-2">&amp;</span>[NormalizedCoordinate],
+        glyph_id: GlyphId,
+        builder: <span class="kw-2">&amp;mut </span><span class="kw">dyn </span>OutlineBuilder,
+    ) -&gt; <span class="prelude-ty">Result</span>&lt;Rect, CFFError&gt; {
+        <span class="kw">let </span>data = <span class="self">self</span>.char_strings.get(u32::from(glyph_id.<span class="number">0</span>)).ok_or(CFFError::NoGlyph)<span class="question-mark">?</span>;
+        parse_char_string(data, <span class="self">self</span>, coordinates, builder)
     }
 }
 
-<span class="kw">impl</span> <span class="ident">core::fmt::Debug</span> <span class="kw">for</span> <span class="ident">Table</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span> {
-    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;mut</span> <span class="ident">core::fmt::Formatter</span>) -&gt; <span class="ident">core::fmt::Result</span> {
-        <span class="macro">write!</span>(<span class="ident">f</span>, <span class="string">&quot;Table {{ ... }}&quot;</span>)
+<span class="kw">impl </span>core::fmt::Debug <span class="kw">for </span>Table&lt;<span class="lifetime">&#39;_</span>&gt; {
+    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>core::fmt::Formatter) -&gt; core::fmt::Result {
+        <span class="macro">write!</span>(f, <span class="string">&quot;Table {{ ... }}&quot;</span>)
     }
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../../../" data-current-crate="ttf_parser" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0 (a55dd71d5 2022-09-19)" ></div></body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../../../" data-current-crate="ttf_parser" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.66.1 (90743e729 2023-01-10)" ></div></body></html>

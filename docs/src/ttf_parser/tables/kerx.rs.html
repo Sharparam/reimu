@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/ttf-parser-0.15.2/src/tables/kerx.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>kerx.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../storage.js"></script><script defer src="../../../source-script.js"></script><script defer src="../../../source-files.js"></script><script defer src="../../../main.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../../ttf_parser/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../../ttf_parser/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../../ttf_parser/index.html"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/ttf-parser-0.15.2/src/tables/kerx.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>kerx.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../../normalize.css"><link rel="stylesheet" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../../ayu.css" disabled><link rel="stylesheet" href="../../../dark.css" disabled><link rel="stylesheet" href="../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../storage.js"></script><script defer src="../../../source-script.js"></script><script defer src="../../../source-files.js"></script><script defer src="../../../main.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><div class="width-limiter"><nav class="sub"><a class="sub-logo-container" href="../../../ttf_parser/index.html"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../wheel.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -478,485 +478,485 @@
 <span id="478">478</span>
 <span id="479">479</span>
 <span id="480">480</span>
-</pre><pre class="rust"><code><span class="doccomment">//! An [Extended Kerning Table](</span>
-<span class="doccomment">//! https://developer.apple.com/fonts/TrueType-Reference-Manual/RM06/Chap6kerx.html) implementation.</span>
+</pre><pre class="rust"><code><span class="doccomment">//! An [Extended Kerning Table](
+//! https://developer.apple.com/fonts/TrueType-Reference-Manual/RM06/Chap6kerx.html) implementation.
 
-<span class="comment">// TODO: find a way to test this table</span>
-<span class="comment">// This table is basically untested because it uses Apple&#39;s State Tables</span>
-<span class="comment">// and I have no idea how to generate them.</span>
+</span><span class="comment">// TODO: find a way to test this table
+// This table is basically untested because it uses Apple&#39;s State Tables
+// and I have no idea how to generate them.
 
-<span class="kw">use</span> <span class="ident">core::num::NonZeroU16</span>;
+</span><span class="kw">use </span>core::num::NonZeroU16;
 
-<span class="kw">use</span> <span class="kw">crate</span>::{<span class="ident">aat</span>, <span class="ident">GlyphId</span>};
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::kern::KerningPair</span>;
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::parser</span>::{<span class="ident">Stream</span>, <span class="ident">FromData</span>, <span class="ident">NumFrom</span>, <span class="ident">Offset32</span>, <span class="ident">Offset</span>, <span class="ident">LazyArray32</span>};
+<span class="kw">use crate</span>::{aat, GlyphId};
+<span class="kw">use </span><span class="kw">crate</span>::kern::KerningPair;
+<span class="kw">use </span><span class="kw">crate</span>::parser::{Stream, FromData, NumFrom, Offset32, Offset, LazyArray32};
 
-<span class="kw">const</span> <span class="ident">HEADER_SIZE</span>: <span class="ident">usize</span> <span class="op">=</span> <span class="number">12</span>;
+<span class="kw">const </span>HEADER_SIZE: usize = <span class="number">12</span>;
 
-<span class="doccomment">/// A format 0 subtable.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// Ordered List of Kerning Pairs.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// The same as in `kern`, but uses `LazyArray32` instead of `LazyArray16`.</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">Debug</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Subtable0</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="doccomment">/// A list of kerning pairs.</span>
-    <span class="kw">pub</span> <span class="ident">pairs</span>: <span class="ident">LazyArray32</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">KerningPair</span><span class="op">&gt;</span>,
+<span class="doccomment">/// A format 0 subtable.
+///
+/// Ordered List of Kerning Pairs.
+///
+/// The same as in `kern`, but uses `LazyArray32` instead of `LazyArray16`.
+</span><span class="attribute">#[derive(Clone, Copy, Debug)]
+</span><span class="kw">pub struct </span>Subtable0&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="doccomment">/// A list of kerning pairs.
+    </span><span class="kw">pub </span>pairs: LazyArray32&lt;<span class="lifetime">&#39;a</span>, KerningPair&gt;,
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">Subtable0</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="doccomment">/// Parses a subtable from raw data.</span>
-    <span class="kw">fn</span> <span class="ident">parse</span>(<span class="ident">data</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>]) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">s</span> <span class="op">=</span> <span class="ident">Stream::new</span>(<span class="ident">data</span>);
-        <span class="kw">let</span> <span class="ident">number_of_pairs</span> <span class="op">=</span> <span class="ident">s</span>.<span class="ident">read</span>::<span class="op">&lt;</span><span class="ident">u32</span><span class="op">&gt;</span>()<span class="question-mark">?</span>;
-        <span class="ident">s</span>.<span class="ident">advance</span>(<span class="number">12</span>); <span class="comment">// search_range (u32) + entry_selector (u32) + range_shift (u32)</span>
-        <span class="kw">let</span> <span class="ident">pairs</span> <span class="op">=</span> <span class="ident">s</span>.<span class="ident">read_array32</span>::<span class="op">&lt;</span><span class="ident">KerningPair</span><span class="op">&gt;</span>(<span class="ident">number_of_pairs</span>)<span class="question-mark">?</span>;
-        <span class="prelude-val">Some</span>(<span class="self">Self</span> { <span class="ident">pairs</span> })
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; Subtable0&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="doccomment">/// Parses a subtable from raw data.
+    </span><span class="kw">fn </span>parse(data: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8]) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="self">Self</span>&gt; {
+        <span class="kw">let </span><span class="kw-2">mut </span>s = Stream::new(data);
+        <span class="kw">let </span>number_of_pairs = s.read::&lt;u32&gt;()<span class="question-mark">?</span>;
+        s.advance(<span class="number">12</span>); <span class="comment">// search_range (u32) + entry_selector (u32) + range_shift (u32)
+        </span><span class="kw">let </span>pairs = s.read_array32::&lt;KerningPair&gt;(number_of_pairs)<span class="question-mark">?</span>;
+        <span class="prelude-val">Some</span>(<span class="self">Self </span>{ pairs })
     }
 
-    <span class="doccomment">/// Returns kerning for a pair of glyphs.</span>
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">glyphs_kerning</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">left</span>: <span class="ident">GlyphId</span>, <span class="ident">right</span>: <span class="ident">GlyphId</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">i16</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="ident">needle</span> <span class="op">=</span> <span class="ident">u32::from</span>(<span class="ident">left</span>.<span class="number">0</span>) <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">16</span> <span class="op">|</span> <span class="ident">u32::from</span>(<span class="ident">right</span>.<span class="number">0</span>);
-        <span class="self">self</span>.<span class="ident">pairs</span>.<span class="ident">binary_search_by</span>(<span class="op">|</span><span class="ident">v</span><span class="op">|</span> <span class="ident">v</span>.<span class="ident">pair</span>.<span class="ident">cmp</span>(<span class="kw-2">&amp;</span><span class="ident">needle</span>)).<span class="ident">map</span>(<span class="op">|</span>(<span class="kw">_</span>, <span class="ident">v</span>)<span class="op">|</span> <span class="ident">v</span>.<span class="ident">value</span>)
+    <span class="doccomment">/// Returns kerning for a pair of glyphs.
+    </span><span class="attribute">#[inline]
+    </span><span class="kw">pub fn </span>glyphs_kerning(<span class="kw-2">&amp;</span><span class="self">self</span>, left: GlyphId, right: GlyphId) -&gt; <span class="prelude-ty">Option</span>&lt;i16&gt; {
+        <span class="kw">let </span>needle = u32::from(left.<span class="number">0</span>) &lt;&lt; <span class="number">16 </span>| u32::from(right.<span class="number">0</span>);
+        <span class="self">self</span>.pairs.binary_search_by(|v| v.pair.cmp(<span class="kw-2">&amp;</span>needle)).map(|(<span class="kw">_</span>, v)| v.value)
     }
 }
 
 
-<span class="doccomment">/// A state machine entry.</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">Debug</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">EntryData</span> {
-    <span class="doccomment">/// An action index.</span>
-    <span class="kw">pub</span> <span class="ident">action_index</span>: <span class="ident">u16</span>,
+<span class="doccomment">/// A state machine entry.
+</span><span class="attribute">#[derive(Clone, Copy, Debug)]
+</span><span class="kw">pub struct </span>EntryData {
+    <span class="doccomment">/// An action index.
+    </span><span class="kw">pub </span>action_index: u16,
 }
 
-<span class="kw">impl</span> <span class="ident">FromData</span> <span class="kw">for</span> <span class="ident">EntryData</span> {
-    <span class="kw">const</span> <span class="ident">SIZE</span>: <span class="ident">usize</span> <span class="op">=</span> <span class="number">2</span>;
+<span class="kw">impl </span>FromData <span class="kw">for </span>EntryData {
+    <span class="kw">const </span>SIZE: usize = <span class="number">2</span>;
 
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">parse</span>(<span class="ident">data</span>: <span class="kw-2">&amp;</span>[<span class="ident">u8</span>]) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">s</span> <span class="op">=</span> <span class="ident">Stream::new</span>(<span class="ident">data</span>);
-        <span class="prelude-val">Some</span>(<span class="ident">EntryData</span> {
-            <span class="ident">action_index</span>: <span class="ident">s</span>.<span class="ident">read</span>::<span class="op">&lt;</span><span class="ident">u16</span><span class="op">&gt;</span>()<span class="question-mark">?</span>,
+    <span class="attribute">#[inline]
+    </span><span class="kw">fn </span>parse(data: <span class="kw-2">&amp;</span>[u8]) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="self">Self</span>&gt; {
+        <span class="kw">let </span><span class="kw-2">mut </span>s = Stream::new(data);
+        <span class="prelude-val">Some</span>(EntryData {
+            action_index: s.read::&lt;u16&gt;()<span class="question-mark">?</span>,
         })
     }
 }
 
-<span class="doccomment">/// A format 1 subtable.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// State Table for Contextual Kerning.</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Subtable1</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="doccomment">/// A state table.</span>
-    <span class="kw">pub</span> <span class="ident">state_table</span>: <span class="ident">aat::ExtendedStateTable</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">EntryData</span><span class="op">&gt;</span>,
-    <span class="ident">actions_data</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>],
+<span class="doccomment">/// A format 1 subtable.
+///
+/// State Table for Contextual Kerning.
+</span><span class="attribute">#[derive(Clone)]
+</span><span class="kw">pub struct </span>Subtable1&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="doccomment">/// A state table.
+    </span><span class="kw">pub </span>state_table: aat::ExtendedStateTable&lt;<span class="lifetime">&#39;a</span>, EntryData&gt;,
+    actions_data: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8],
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">Subtable1</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="kw">fn</span> <span class="ident">parse</span>(<span class="ident">number_of_glyphs</span>: <span class="ident">NonZeroU16</span>, <span class="ident">data</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>]) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">s</span> <span class="op">=</span> <span class="ident">Stream::new</span>(<span class="ident">data</span>);
-        <span class="kw">let</span> <span class="ident">state_table</span> <span class="op">=</span> <span class="ident">aat::ExtendedStateTable::parse</span>(<span class="ident">number_of_glyphs</span>, <span class="kw-2">&amp;mut</span> <span class="ident">s</span>)<span class="question-mark">?</span>;
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; Subtable1&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="kw">fn </span>parse(number_of_glyphs: NonZeroU16, data: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8]) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="self">Self</span>&gt; {
+        <span class="kw">let </span><span class="kw-2">mut </span>s = Stream::new(data);
+        <span class="kw">let </span>state_table = aat::ExtendedStateTable::parse(number_of_glyphs, <span class="kw-2">&amp;mut </span>s)<span class="question-mark">?</span>;
 
-        <span class="comment">// Actions offset is right after the state table.</span>
-        <span class="kw">let</span> <span class="ident">actions_offset</span> <span class="op">=</span> <span class="ident">s</span>.<span class="ident">read</span>::<span class="op">&lt;</span><span class="ident">Offset32</span><span class="op">&gt;</span>()<span class="question-mark">?</span>;
-        <span class="comment">// Actions offset is from the start of the state table and not from the start of subtable.</span>
-        <span class="comment">// And since we don&#39;t know the length of the actions data,</span>
-        <span class="comment">// simply store all the data after the offset.</span>
-        <span class="kw">let</span> <span class="ident">actions_data</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">get</span>(<span class="ident">actions_offset</span>.<span class="ident">to_usize</span>()..)<span class="question-mark">?</span>;
+        <span class="comment">// Actions offset is right after the state table.
+        </span><span class="kw">let </span>actions_offset = s.read::&lt;Offset32&gt;()<span class="question-mark">?</span>;
+        <span class="comment">// Actions offset is from the start of the state table and not from the start of subtable.
+        // And since we don&#39;t know the length of the actions data,
+        // simply store all the data after the offset.
+        </span><span class="kw">let </span>actions_data = data.get(actions_offset.to_usize()..)<span class="question-mark">?</span>;
 
-        <span class="prelude-val">Some</span>(<span class="ident">Subtable1</span> {
-            <span class="ident">state_table</span>,
-            <span class="ident">actions_data</span>,
+        <span class="prelude-val">Some</span>(Subtable1 {
+            state_table,
+            actions_data,
         })
     }
 
-    <span class="doccomment">/// Returns kerning at action index.</span>
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">glyphs_kerning</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">action_index</span>: <span class="ident">u16</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">i16</span><span class="op">&gt;</span> {
-        <span class="ident">Stream::read_at</span>(<span class="self">self</span>.<span class="ident">actions_data</span>, <span class="ident">usize::from</span>(<span class="ident">action_index</span>) <span class="op">*</span> <span class="ident">i16::SIZE</span>)
+    <span class="doccomment">/// Returns kerning at action index.
+    </span><span class="attribute">#[inline]
+    </span><span class="kw">pub fn </span>glyphs_kerning(<span class="kw-2">&amp;</span><span class="self">self</span>, action_index: u16) -&gt; <span class="prelude-ty">Option</span>&lt;i16&gt; {
+        Stream::read_at(<span class="self">self</span>.actions_data, usize::from(action_index) * i16::SIZE)
     }
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">core::ops::Deref</span> <span class="kw">for</span> <span class="ident">Subtable1</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="kw">type</span> <span class="ident">Target</span> <span class="op">=</span> <span class="ident">aat::ExtendedStateTable</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">EntryData</span><span class="op">&gt;</span>;
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; core::ops::Deref <span class="kw">for </span>Subtable1&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="kw">type </span>Target = aat::ExtendedStateTable&lt;<span class="lifetime">&#39;a</span>, EntryData&gt;;
 
-    <span class="kw">fn</span> <span class="ident">deref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Target</span> {
-        <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">state_table</span>
+    <span class="kw">fn </span>deref(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span><span class="self">Self</span>::Target {
+        <span class="kw-2">&amp;</span><span class="self">self</span>.state_table
     }
 }
 
-<span class="kw">impl</span> <span class="ident">core::fmt::Debug</span> <span class="kw">for</span> <span class="ident">Subtable1</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span> {
-    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;mut</span> <span class="ident">core::fmt::Formatter</span>) -&gt; <span class="ident">core::fmt::Result</span> {
-        <span class="macro">write!</span>(<span class="ident">f</span>, <span class="string">&quot;Subtable1 {{ ... }}&quot;</span>)
+<span class="kw">impl </span>core::fmt::Debug <span class="kw">for </span>Subtable1&lt;<span class="lifetime">&#39;_</span>&gt; {
+    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>core::fmt::Formatter) -&gt; core::fmt::Result {
+        <span class="macro">write!</span>(f, <span class="string">&quot;Subtable1 {{ ... }}&quot;</span>)
     }
 }
 
 
-<span class="doccomment">/// A format 2 subtable.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// Simple n x m Array of Kerning Values.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// The same as in `kern`, but uses 32bit offsets instead of 16bit one.</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Copy</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Subtable2</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>]); <span class="comment">// TODO: parse actual structure</span>
+<span class="doccomment">/// A format 2 subtable.
+///
+/// Simple n x m Array of Kerning Values.
+///
+/// The same as in `kern`, but uses 32bit offsets instead of 16bit one.
+</span><span class="attribute">#[derive(Clone, Copy)]
+</span><span class="kw">pub struct </span>Subtable2&lt;<span class="lifetime">&#39;a</span>&gt;(<span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8]); <span class="comment">// TODO: parse actual structure
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">Subtable2</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="doccomment">/// Returns kerning for a pair of glyphs.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">glyphs_kerning</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">left</span>: <span class="ident">GlyphId</span>, <span class="ident">right</span>: <span class="ident">GlyphId</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">i16</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">s</span> <span class="op">=</span> <span class="ident">Stream::new</span>(<span class="self">self</span>.<span class="number">0</span>);
-        <span class="ident">s</span>.<span class="ident">skip</span>::<span class="op">&lt;</span><span class="ident">u32</span><span class="op">&gt;</span>(); <span class="comment">// row_width</span>
+</span><span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; Subtable2&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="doccomment">/// Returns kerning for a pair of glyphs.
+    </span><span class="kw">pub fn </span>glyphs_kerning(<span class="kw-2">&amp;</span><span class="self">self</span>, left: GlyphId, right: GlyphId) -&gt; <span class="prelude-ty">Option</span>&lt;i16&gt; {
+        <span class="kw">let </span><span class="kw-2">mut </span>s = Stream::new(<span class="self">self</span>.<span class="number">0</span>);
+        s.skip::&lt;u32&gt;(); <span class="comment">// row_width
 
-        <span class="comment">// Offsets are from beginning of the subtable and not from the `data` start,</span>
-        <span class="comment">// so we have to subtract the header.</span>
-        <span class="kw">let</span> <span class="ident">left_hand_table_offset</span> <span class="op">=</span> <span class="ident">s</span>.<span class="ident">read</span>::<span class="op">&lt;</span><span class="ident">Offset32</span><span class="op">&gt;</span>()<span class="question-mark">?</span>.<span class="ident">to_usize</span>().<span class="ident">checked_sub</span>(<span class="ident">HEADER_SIZE</span>)<span class="question-mark">?</span>;
-        <span class="kw">let</span> <span class="ident">right_hand_table_offset</span> <span class="op">=</span> <span class="ident">s</span>.<span class="ident">read</span>::<span class="op">&lt;</span><span class="ident">Offset32</span><span class="op">&gt;</span>()<span class="question-mark">?</span>.<span class="ident">to_usize</span>().<span class="ident">checked_sub</span>(<span class="ident">HEADER_SIZE</span>)<span class="question-mark">?</span>;
-        <span class="kw">let</span> <span class="ident">array_offset</span> <span class="op">=</span> <span class="ident">s</span>.<span class="ident">read</span>::<span class="op">&lt;</span><span class="ident">Offset32</span><span class="op">&gt;</span>()<span class="question-mark">?</span>.<span class="ident">to_usize</span>().<span class="ident">checked_sub</span>(<span class="ident">HEADER_SIZE</span>)<span class="question-mark">?</span>;
+        // Offsets are from beginning of the subtable and not from the `data` start,
+        // so we have to subtract the header.
+        </span><span class="kw">let </span>left_hand_table_offset = s.read::&lt;Offset32&gt;()<span class="question-mark">?</span>.to_usize().checked_sub(HEADER_SIZE)<span class="question-mark">?</span>;
+        <span class="kw">let </span>right_hand_table_offset = s.read::&lt;Offset32&gt;()<span class="question-mark">?</span>.to_usize().checked_sub(HEADER_SIZE)<span class="question-mark">?</span>;
+        <span class="kw">let </span>array_offset = s.read::&lt;Offset32&gt;()<span class="question-mark">?</span>.to_usize().checked_sub(HEADER_SIZE)<span class="question-mark">?</span>;
 
-        <span class="comment">// &#39;The array can be indexed by completing the left-hand and right-hand class mappings,</span>
-        <span class="comment">// adding the class values to the address of the subtable,</span>
-        <span class="comment">// and fetching the kerning value to which the new address points.&#39;</span>
+        <span class="comment">// &#39;The array can be indexed by completing the left-hand and right-hand class mappings,
+        // adding the class values to the address of the subtable,
+        // and fetching the kerning value to which the new address points.&#39;
 
-        <span class="kw">let</span> <span class="ident">left_class</span> <span class="op">=</span> <span class="ident"><span class="kw">crate</span>::kern::get_format2_class</span>(<span class="ident">left</span>.<span class="number">0</span>, <span class="ident">left_hand_table_offset</span>, <span class="self">self</span>.<span class="number">0</span>).<span class="ident">unwrap_or</span>(<span class="number">0</span>);
-        <span class="kw">let</span> <span class="ident">right_class</span> <span class="op">=</span> <span class="ident"><span class="kw">crate</span>::kern::get_format2_class</span>(<span class="ident">right</span>.<span class="number">0</span>, <span class="ident">right_hand_table_offset</span>, <span class="self">self</span>.<span class="number">0</span>).<span class="ident">unwrap_or</span>(<span class="number">0</span>);
+        </span><span class="kw">let </span>left_class = <span class="kw">crate</span>::kern::get_format2_class(left.<span class="number">0</span>, left_hand_table_offset, <span class="self">self</span>.<span class="number">0</span>).unwrap_or(<span class="number">0</span>);
+        <span class="kw">let </span>right_class = <span class="kw">crate</span>::kern::get_format2_class(right.<span class="number">0</span>, right_hand_table_offset, <span class="self">self</span>.<span class="number">0</span>).unwrap_or(<span class="number">0</span>);
 
-        <span class="comment">// &#39;Values within the left-hand offset table should not be less than the kerning array offset.&#39;</span>
-        <span class="kw">if</span> <span class="ident">usize::from</span>(<span class="ident">left_class</span>) <span class="op">&lt;</span> <span class="ident">array_offset</span> {
-            <span class="kw">return</span> <span class="prelude-val">None</span>;
+        <span class="comment">// &#39;Values within the left-hand offset table should not be less than the kerning array offset.&#39;
+        </span><span class="kw">if </span>usize::from(left_class) &lt; array_offset {
+            <span class="kw">return </span><span class="prelude-val">None</span>;
         }
 
-        <span class="comment">// Classes are already premultiplied, so we only need to sum them.</span>
-        <span class="kw">let</span> <span class="ident">index</span> <span class="op">=</span> <span class="ident">usize::from</span>(<span class="ident">left_class</span>) <span class="op">+</span> <span class="ident">usize::from</span>(<span class="ident">right_class</span>);
-        <span class="kw">let</span> <span class="ident">value_offset</span> <span class="op">=</span> <span class="ident">index</span>.<span class="ident">checked_sub</span>(<span class="ident">HEADER_SIZE</span>)<span class="question-mark">?</span>;
-        <span class="ident">Stream::read_at</span>::<span class="op">&lt;</span><span class="ident">i16</span><span class="op">&gt;</span>(<span class="self">self</span>.<span class="number">0</span>, <span class="ident">value_offset</span>)
+        <span class="comment">// Classes are already premultiplied, so we only need to sum them.
+        </span><span class="kw">let </span>index = usize::from(left_class) + usize::from(right_class);
+        <span class="kw">let </span>value_offset = index.checked_sub(HEADER_SIZE)<span class="question-mark">?</span>;
+        Stream::read_at::&lt;i16&gt;(<span class="self">self</span>.<span class="number">0</span>, value_offset)
     }
 }
 
-<span class="kw">impl</span> <span class="ident">core::fmt::Debug</span> <span class="kw">for</span> <span class="ident">Subtable2</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span> {
-    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;mut</span> <span class="ident">core::fmt::Formatter</span>) -&gt; <span class="ident">core::fmt::Result</span> {
-        <span class="macro">write!</span>(<span class="ident">f</span>, <span class="string">&quot;Subtable2 {{ ... }}&quot;</span>)
+<span class="kw">impl </span>core::fmt::Debug <span class="kw">for </span>Subtable2&lt;<span class="lifetime">&#39;_</span>&gt; {
+    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>core::fmt::Formatter) -&gt; core::fmt::Result {
+        <span class="macro">write!</span>(f, <span class="string">&quot;Subtable2 {{ ... }}&quot;</span>)
     }
 }
 
 
-<span class="doccomment">/// A container of Anchor Points used by [`Subtable4`].</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Copy</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">AnchorPoints</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>]);
+<span class="doccomment">/// A container of Anchor Points used by [`Subtable4`].
+</span><span class="attribute">#[derive(Clone, Copy)]
+</span><span class="kw">pub struct </span>AnchorPoints&lt;<span class="lifetime">&#39;a</span>&gt;(<span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8]);
 
-<span class="kw">impl</span> <span class="ident">AnchorPoints</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span> {
-    <span class="doccomment">/// Returns a mark and current anchor points at action index.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">action_index</span>: <span class="ident">u16</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span>(<span class="ident">u16</span>, <span class="ident">u16</span>)<span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="ident">offset</span> <span class="op">=</span> <span class="ident">usize::from</span>(<span class="ident">action_index</span>) <span class="op">*</span> <span class="ident">u16::SIZE</span>;
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">s</span> <span class="op">=</span> <span class="ident">Stream::new_at</span>(<span class="self">self</span>.<span class="number">0</span>, <span class="ident">offset</span>)<span class="question-mark">?</span>;
-        <span class="prelude-val">Some</span>((<span class="ident">s</span>.<span class="ident">read</span>::<span class="op">&lt;</span><span class="ident">u16</span><span class="op">&gt;</span>()<span class="question-mark">?</span>, <span class="ident">s</span>.<span class="ident">read</span>::<span class="op">&lt;</span><span class="ident">u16</span><span class="op">&gt;</span>()<span class="question-mark">?</span>))
+<span class="kw">impl </span>AnchorPoints&lt;<span class="lifetime">&#39;_</span>&gt; {
+    <span class="doccomment">/// Returns a mark and current anchor points at action index.
+    </span><span class="kw">pub fn </span>get(<span class="kw-2">&amp;</span><span class="self">self</span>, action_index: u16) -&gt; <span class="prelude-ty">Option</span>&lt;(u16, u16)&gt; {
+        <span class="kw">let </span>offset = usize::from(action_index) * u16::SIZE;
+        <span class="kw">let </span><span class="kw-2">mut </span>s = Stream::new_at(<span class="self">self</span>.<span class="number">0</span>, offset)<span class="question-mark">?</span>;
+        <span class="prelude-val">Some</span>((s.read::&lt;u16&gt;()<span class="question-mark">?</span>, s.read::&lt;u16&gt;()<span class="question-mark">?</span>))
     }
 }
 
-<span class="kw">impl</span> <span class="ident">core::fmt::Debug</span> <span class="kw">for</span> <span class="ident">AnchorPoints</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span> {
-    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;mut</span> <span class="ident">core::fmt::Formatter</span>) -&gt; <span class="ident">core::fmt::Result</span> {
-        <span class="macro">write!</span>(<span class="ident">f</span>, <span class="string">&quot;AnchorPoints {{ ... }}&quot;</span>)
+<span class="kw">impl </span>core::fmt::Debug <span class="kw">for </span>AnchorPoints&lt;<span class="lifetime">&#39;_</span>&gt; {
+    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>core::fmt::Formatter) -&gt; core::fmt::Result {
+        <span class="macro">write!</span>(f, <span class="string">&quot;AnchorPoints {{ ... }}&quot;</span>)
     }
 }
 
-<span class="doccomment">/// A format 4 subtable.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// State Table for Control Point/Anchor Point Positioning.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// Note: I wasn&#39;t able to find any fonts that actually use</span>
-<span class="doccomment">/// `ControlPointActions` and/or `ControlPointCoordinateActions`,</span>
-<span class="doccomment">/// therefore only `AnchorPointActions` is supported.</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Subtable4</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="doccomment">/// A state table.</span>
-    <span class="kw">pub</span> <span class="ident">state_table</span>: <span class="ident">aat::ExtendedStateTable</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">EntryData</span><span class="op">&gt;</span>,
-    <span class="doccomment">/// Anchor points.</span>
-    <span class="kw">pub</span> <span class="ident">anchor_points</span>: <span class="ident">AnchorPoints</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>,
+<span class="doccomment">/// A format 4 subtable.
+///
+/// State Table for Control Point/Anchor Point Positioning.
+///
+/// Note: I wasn&#39;t able to find any fonts that actually use
+/// `ControlPointActions` and/or `ControlPointCoordinateActions`,
+/// therefore only `AnchorPointActions` is supported.
+</span><span class="attribute">#[derive(Clone)]
+</span><span class="kw">pub struct </span>Subtable4&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="doccomment">/// A state table.
+    </span><span class="kw">pub </span>state_table: aat::ExtendedStateTable&lt;<span class="lifetime">&#39;a</span>, EntryData&gt;,
+    <span class="doccomment">/// Anchor points.
+    </span><span class="kw">pub </span>anchor_points: AnchorPoints&lt;<span class="lifetime">&#39;a</span>&gt;,
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">Subtable4</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="kw">fn</span> <span class="ident">parse</span>(<span class="ident">number_of_glyphs</span>: <span class="ident">NonZeroU16</span>, <span class="ident">data</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>]) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">s</span> <span class="op">=</span> <span class="ident">Stream::new</span>(<span class="ident">data</span>);
-        <span class="kw">let</span> <span class="ident">state_table</span> <span class="op">=</span> <span class="ident">aat::ExtendedStateTable::parse</span>(<span class="ident">number_of_glyphs</span>, <span class="kw-2">&amp;mut</span> <span class="ident">s</span>)<span class="question-mark">?</span>;
-        <span class="kw">let</span> <span class="ident">flags</span> <span class="op">=</span> <span class="ident">s</span>.<span class="ident">read</span>::<span class="op">&lt;</span><span class="ident">u32</span><span class="op">&gt;</span>()<span class="question-mark">?</span>;
-        <span class="kw">let</span> <span class="ident">action_type</span> <span class="op">=</span> ((<span class="ident">flags</span> <span class="op">&amp;</span> <span class="number">0xC0000000</span>) <span class="op">&gt;</span><span class="op">&gt;</span> <span class="number">30</span>) <span class="kw">as</span> <span class="ident">u8</span>;
-        <span class="kw">let</span> <span class="ident">points_offset</span> <span class="op">=</span> <span class="ident">usize::num_from</span>(<span class="ident">flags</span> <span class="op">&amp;</span> <span class="number">0x00FFFFFF</span>);
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; Subtable4&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="kw">fn </span>parse(number_of_glyphs: NonZeroU16, data: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8]) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="self">Self</span>&gt; {
+        <span class="kw">let </span><span class="kw-2">mut </span>s = Stream::new(data);
+        <span class="kw">let </span>state_table = aat::ExtendedStateTable::parse(number_of_glyphs, <span class="kw-2">&amp;mut </span>s)<span class="question-mark">?</span>;
+        <span class="kw">let </span>flags = s.read::&lt;u32&gt;()<span class="question-mark">?</span>;
+        <span class="kw">let </span>action_type = ((flags &amp; <span class="number">0xC0000000</span>) &gt;&gt; <span class="number">30</span>) <span class="kw">as </span>u8;
+        <span class="kw">let </span>points_offset = usize::num_from(flags &amp; <span class="number">0x00FFFFFF</span>);
 
-        <span class="comment">// We support only Anchor Point Actions.</span>
-        <span class="kw">if</span> <span class="ident">action_type</span> <span class="op">!</span><span class="op">=</span> <span class="number">1</span> {
-            <span class="kw">return</span> <span class="prelude-val">None</span>;
+        <span class="comment">// We support only Anchor Point Actions.
+        </span><span class="kw">if </span>action_type != <span class="number">1 </span>{
+            <span class="kw">return </span><span class="prelude-val">None</span>;
         }
 
-        <span class="prelude-val">Some</span>(<span class="self">Self</span> {
-            <span class="ident">state_table</span>,
-            <span class="ident">anchor_points</span>: <span class="ident">AnchorPoints</span>(<span class="ident">data</span>.<span class="ident">get</span>(<span class="ident">points_offset</span>..)<span class="question-mark">?</span>),
+        <span class="prelude-val">Some</span>(<span class="self">Self </span>{
+            state_table,
+            anchor_points: AnchorPoints(data.get(points_offset..)<span class="question-mark">?</span>),
         })
     }
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">core::ops::Deref</span> <span class="kw">for</span> <span class="ident">Subtable4</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="kw">type</span> <span class="ident">Target</span> <span class="op">=</span> <span class="ident">aat::ExtendedStateTable</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">EntryData</span><span class="op">&gt;</span>;
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; core::ops::Deref <span class="kw">for </span>Subtable4&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="kw">type </span>Target = aat::ExtendedStateTable&lt;<span class="lifetime">&#39;a</span>, EntryData&gt;;
 
-    <span class="kw">fn</span> <span class="ident">deref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Target</span> {
-        <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">state_table</span>
+    <span class="kw">fn </span>deref(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span><span class="self">Self</span>::Target {
+        <span class="kw-2">&amp;</span><span class="self">self</span>.state_table
     }
 }
 
-<span class="kw">impl</span> <span class="ident">core::fmt::Debug</span> <span class="kw">for</span> <span class="ident">Subtable4</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span> {
-    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;mut</span> <span class="ident">core::fmt::Formatter</span>) -&gt; <span class="ident">core::fmt::Result</span> {
-        <span class="macro">write!</span>(<span class="ident">f</span>, <span class="string">&quot;Subtable4 {{ ... }}&quot;</span>)
+<span class="kw">impl </span>core::fmt::Debug <span class="kw">for </span>Subtable4&lt;<span class="lifetime">&#39;_</span>&gt; {
+    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>core::fmt::Formatter) -&gt; core::fmt::Result {
+        <span class="macro">write!</span>(f, <span class="string">&quot;Subtable4 {{ ... }}&quot;</span>)
     }
 }
 
 
-<span class="doccomment">/// A format 6 subtable.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// Simple Index-based n x m Array of Kerning Values.</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Copy</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Subtable6</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>{
-    <span class="ident">data</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>],
-    <span class="ident">number_of_glyphs</span>: <span class="ident">NonZeroU16</span>,
+<span class="doccomment">/// A format 6 subtable.
+///
+/// Simple Index-based n x m Array of Kerning Values.
+</span><span class="attribute">#[derive(Clone, Copy)]
+</span><span class="kw">pub struct </span>Subtable6&lt;<span class="lifetime">&#39;a</span>&gt;{
+    data: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8],
+    number_of_glyphs: NonZeroU16,
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">Subtable6</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="comment">// TODO: parse actual structure</span>
-    <span class="kw">fn</span> <span class="ident">parse</span>(<span class="ident">number_of_glyphs</span>: <span class="ident">NonZeroU16</span>, <span class="ident">data</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>]) -&gt; <span class="self">Self</span> {
-        <span class="ident">Subtable6</span> { <span class="ident">number_of_glyphs</span>, <span class="ident">data</span> }
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; Subtable6&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="comment">// TODO: parse actual structure
+    </span><span class="kw">fn </span>parse(number_of_glyphs: NonZeroU16, data: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8]) -&gt; <span class="self">Self </span>{
+        Subtable6 { number_of_glyphs, data }
     }
 
-    <span class="doccomment">/// Returns kerning for a pair of glyphs.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">glyphs_kerning</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">left</span>: <span class="ident">GlyphId</span>, <span class="ident">right</span>: <span class="ident">GlyphId</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">i16</span><span class="op">&gt;</span> {
-        <span class="kw">use</span> <span class="ident">core::convert::TryFrom</span>;
+    <span class="doccomment">/// Returns kerning for a pair of glyphs.
+    </span><span class="kw">pub fn </span>glyphs_kerning(<span class="kw-2">&amp;</span><span class="self">self</span>, left: GlyphId, right: GlyphId) -&gt; <span class="prelude-ty">Option</span>&lt;i16&gt; {
+        <span class="kw">use </span>core::convert::TryFrom;
 
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">s</span> <span class="op">=</span> <span class="ident">Stream::new</span>(<span class="self">self</span>.<span class="ident">data</span>);
-        <span class="kw">let</span> <span class="ident">flags</span> <span class="op">=</span> <span class="ident">s</span>.<span class="ident">read</span>::<span class="op">&lt;</span><span class="ident">u32</span><span class="op">&gt;</span>()<span class="question-mark">?</span>;
-        <span class="ident">s</span>.<span class="ident">skip</span>::<span class="op">&lt;</span><span class="ident">u16</span><span class="op">&gt;</span>(); <span class="comment">// row_count</span>
-        <span class="ident">s</span>.<span class="ident">skip</span>::<span class="op">&lt;</span><span class="ident">u16</span><span class="op">&gt;</span>(); <span class="comment">// col_count</span>
-        <span class="comment">// All offsets are from the start of the subtable.</span>
-        <span class="kw">let</span> <span class="ident">row_index_table_offset</span> <span class="op">=</span> <span class="ident">s</span>.<span class="ident">read</span>::<span class="op">&lt;</span><span class="ident">Offset32</span><span class="op">&gt;</span>()<span class="question-mark">?</span>.<span class="ident">to_usize</span>().<span class="ident">checked_sub</span>(<span class="ident">HEADER_SIZE</span>)<span class="question-mark">?</span>;
-        <span class="kw">let</span> <span class="ident">column_index_table_offset</span> <span class="op">=</span> <span class="ident">s</span>.<span class="ident">read</span>::<span class="op">&lt;</span><span class="ident">Offset32</span><span class="op">&gt;</span>()<span class="question-mark">?</span>.<span class="ident">to_usize</span>().<span class="ident">checked_sub</span>(<span class="ident">HEADER_SIZE</span>)<span class="question-mark">?</span>;
-        <span class="kw">let</span> <span class="ident">kerning_array_offset</span> <span class="op">=</span> <span class="ident">s</span>.<span class="ident">read</span>::<span class="op">&lt;</span><span class="ident">Offset32</span><span class="op">&gt;</span>()<span class="question-mark">?</span>.<span class="ident">to_usize</span>().<span class="ident">checked_sub</span>(<span class="ident">HEADER_SIZE</span>)<span class="question-mark">?</span>;
-        <span class="kw">let</span> <span class="ident">kerning_vector_offset</span> <span class="op">=</span> <span class="ident">s</span>.<span class="ident">read</span>::<span class="op">&lt;</span><span class="ident">Offset32</span><span class="op">&gt;</span>()<span class="question-mark">?</span>.<span class="ident">to_usize</span>().<span class="ident">checked_sub</span>(<span class="ident">HEADER_SIZE</span>)<span class="question-mark">?</span>;
+        <span class="kw">let </span><span class="kw-2">mut </span>s = Stream::new(<span class="self">self</span>.data);
+        <span class="kw">let </span>flags = s.read::&lt;u32&gt;()<span class="question-mark">?</span>;
+        s.skip::&lt;u16&gt;(); <span class="comment">// row_count
+        </span>s.skip::&lt;u16&gt;(); <span class="comment">// col_count
+        // All offsets are from the start of the subtable.
+        </span><span class="kw">let </span>row_index_table_offset = s.read::&lt;Offset32&gt;()<span class="question-mark">?</span>.to_usize().checked_sub(HEADER_SIZE)<span class="question-mark">?</span>;
+        <span class="kw">let </span>column_index_table_offset = s.read::&lt;Offset32&gt;()<span class="question-mark">?</span>.to_usize().checked_sub(HEADER_SIZE)<span class="question-mark">?</span>;
+        <span class="kw">let </span>kerning_array_offset = s.read::&lt;Offset32&gt;()<span class="question-mark">?</span>.to_usize().checked_sub(HEADER_SIZE)<span class="question-mark">?</span>;
+        <span class="kw">let </span>kerning_vector_offset = s.read::&lt;Offset32&gt;()<span class="question-mark">?</span>.to_usize().checked_sub(HEADER_SIZE)<span class="question-mark">?</span>;
 
-        <span class="kw">let</span> <span class="ident">row_index_table_data</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">data</span>.<span class="ident">get</span>(<span class="ident">row_index_table_offset</span>..)<span class="question-mark">?</span>;
-        <span class="kw">let</span> <span class="ident">column_index_table_data</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">data</span>.<span class="ident">get</span>(<span class="ident">column_index_table_offset</span>..)<span class="question-mark">?</span>;
-        <span class="kw">let</span> <span class="ident">kerning_array_data</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">data</span>.<span class="ident">get</span>(<span class="ident">kerning_array_offset</span>..)<span class="question-mark">?</span>;
-        <span class="kw">let</span> <span class="ident">kerning_vector_data</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">data</span>.<span class="ident">get</span>(<span class="ident">kerning_vector_offset</span>..)<span class="question-mark">?</span>;
+        <span class="kw">let </span>row_index_table_data = <span class="self">self</span>.data.get(row_index_table_offset..)<span class="question-mark">?</span>;
+        <span class="kw">let </span>column_index_table_data = <span class="self">self</span>.data.get(column_index_table_offset..)<span class="question-mark">?</span>;
+        <span class="kw">let </span>kerning_array_data = <span class="self">self</span>.data.get(kerning_array_offset..)<span class="question-mark">?</span>;
+        <span class="kw">let </span>kerning_vector_data = <span class="self">self</span>.data.get(kerning_vector_offset..)<span class="question-mark">?</span>;
 
-        <span class="kw">let</span> <span class="ident">has_long_values</span> <span class="op">=</span> <span class="ident">flags</span> <span class="op">&amp;</span> <span class="number">0x00000001</span> <span class="op">!</span><span class="op">=</span> <span class="number">0</span>;
-        <span class="kw">if</span> <span class="ident">has_long_values</span> {
-            <span class="kw">let</span> <span class="ident">l</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="ident">aat::Lookup::parse</span>(<span class="self">self</span>.<span class="ident">number_of_glyphs</span>, <span class="ident">row_index_table_data</span>)<span class="question-mark">?</span>
-                .<span class="ident">value</span>(<span class="ident">left</span>).<span class="ident">unwrap_or</span>(<span class="number">0</span>) <span class="kw">as</span> <span class="ident">u32</span>;
+        <span class="kw">let </span>has_long_values = flags &amp; <span class="number">0x00000001 </span>!= <span class="number">0</span>;
+        <span class="kw">if </span>has_long_values {
+            <span class="kw">let </span>l: u32 = aat::Lookup::parse(<span class="self">self</span>.number_of_glyphs, row_index_table_data)<span class="question-mark">?
+                </span>.value(left).unwrap_or(<span class="number">0</span>) <span class="kw">as </span>u32;
 
-            <span class="kw">let</span> <span class="ident">r</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="ident">aat::Lookup::parse</span>(<span class="self">self</span>.<span class="ident">number_of_glyphs</span>, <span class="ident">column_index_table_data</span>)<span class="question-mark">?</span>
-                .<span class="ident">value</span>(<span class="ident">right</span>).<span class="ident">unwrap_or</span>(<span class="number">0</span>) <span class="kw">as</span> <span class="ident">u32</span>;
+            <span class="kw">let </span>r: u32 = aat::Lookup::parse(<span class="self">self</span>.number_of_glyphs, column_index_table_data)<span class="question-mark">?
+                </span>.value(right).unwrap_or(<span class="number">0</span>) <span class="kw">as </span>u32;
 
-            <span class="kw">let</span> <span class="ident">array_offset</span> <span class="op">=</span> <span class="ident">usize::try_from</span>(<span class="ident">l</span> <span class="op">+</span> <span class="ident">r</span>).<span class="ident">ok</span>()<span class="question-mark">?</span>.<span class="ident">checked_mul</span>(<span class="ident">i32::SIZE</span>)<span class="question-mark">?</span>;
-            <span class="kw">let</span> <span class="ident">vector_offset</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="ident">Stream::read_at</span>(<span class="ident">kerning_array_data</span>, <span class="ident">array_offset</span>)<span class="question-mark">?</span>;
+            <span class="kw">let </span>array_offset = usize::try_from(l + r).ok()<span class="question-mark">?</span>.checked_mul(i32::SIZE)<span class="question-mark">?</span>;
+            <span class="kw">let </span>vector_offset: u32 = Stream::read_at(kerning_array_data, array_offset)<span class="question-mark">?</span>;
 
-            <span class="ident">Stream::read_at</span>(<span class="ident">kerning_vector_data</span>, <span class="ident">usize::num_from</span>(<span class="ident">vector_offset</span>))
-        } <span class="kw">else</span> {
-            <span class="kw">let</span> <span class="ident">l</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="ident">aat::Lookup::parse</span>(<span class="self">self</span>.<span class="ident">number_of_glyphs</span>, <span class="ident">row_index_table_data</span>)<span class="question-mark">?</span>
-                .<span class="ident">value</span>(<span class="ident">left</span>).<span class="ident">unwrap_or</span>(<span class="number">0</span>);
+            Stream::read_at(kerning_vector_data, usize::num_from(vector_offset))
+        } <span class="kw">else </span>{
+            <span class="kw">let </span>l: u16 = aat::Lookup::parse(<span class="self">self</span>.number_of_glyphs, row_index_table_data)<span class="question-mark">?
+                </span>.value(left).unwrap_or(<span class="number">0</span>);
 
-            <span class="kw">let</span> <span class="ident">r</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="ident">aat::Lookup::parse</span>(<span class="self">self</span>.<span class="ident">number_of_glyphs</span>, <span class="ident">column_index_table_data</span>)<span class="question-mark">?</span>
-                .<span class="ident">value</span>(<span class="ident">right</span>).<span class="ident">unwrap_or</span>(<span class="number">0</span>);
+            <span class="kw">let </span>r: u16 = aat::Lookup::parse(<span class="self">self</span>.number_of_glyphs, column_index_table_data)<span class="question-mark">?
+                </span>.value(right).unwrap_or(<span class="number">0</span>);
 
-            <span class="kw">let</span> <span class="ident">array_offset</span> <span class="op">=</span> <span class="ident">usize::try_from</span>(<span class="ident">l</span> <span class="op">+</span> <span class="ident">r</span>).<span class="ident">ok</span>()<span class="question-mark">?</span>.<span class="ident">checked_mul</span>(<span class="ident">i16::SIZE</span>)<span class="question-mark">?</span>;
-            <span class="kw">let</span> <span class="ident">vector_offset</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="ident">Stream::read_at</span>(<span class="ident">kerning_array_data</span>, <span class="ident">array_offset</span>)<span class="question-mark">?</span>;
+            <span class="kw">let </span>array_offset = usize::try_from(l + r).ok()<span class="question-mark">?</span>.checked_mul(i16::SIZE)<span class="question-mark">?</span>;
+            <span class="kw">let </span>vector_offset: u16 = Stream::read_at(kerning_array_data, array_offset)<span class="question-mark">?</span>;
 
-            <span class="ident">Stream::read_at</span>(<span class="ident">kerning_vector_data</span>, <span class="ident">usize::from</span>(<span class="ident">vector_offset</span>))
+            Stream::read_at(kerning_vector_data, usize::from(vector_offset))
         }
     }
 }
 
-<span class="kw">impl</span> <span class="ident">core::fmt::Debug</span> <span class="kw">for</span> <span class="ident">Subtable6</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span> {
-    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;mut</span> <span class="ident">core::fmt::Formatter</span>) -&gt; <span class="ident">core::fmt::Result</span> {
-        <span class="macro">write!</span>(<span class="ident">f</span>, <span class="string">&quot;Subtable6 {{ ... }}&quot;</span>)
+<span class="kw">impl </span>core::fmt::Debug <span class="kw">for </span>Subtable6&lt;<span class="lifetime">&#39;_</span>&gt; {
+    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>core::fmt::Formatter) -&gt; core::fmt::Result {
+        <span class="macro">write!</span>(f, <span class="string">&quot;Subtable6 {{ ... }}&quot;</span>)
     }
 }
 
 
-<span class="doccomment">/// An extended kerning subtable format.</span>
-<span class="attribute">#[<span class="ident">allow</span>(<span class="ident">missing_docs</span>)]</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
-<span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">Format</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="ident">Format0</span>(<span class="ident">Subtable0</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>),
-    <span class="ident">Format1</span>(<span class="ident">Subtable1</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>),
-    <span class="ident">Format2</span>(<span class="ident">Subtable2</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>),
-    <span class="ident">Format4</span>(<span class="ident">Subtable4</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>),
-    <span class="ident">Format6</span>(<span class="ident">Subtable6</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>),
+<span class="doccomment">/// An extended kerning subtable format.
+</span><span class="attribute">#[allow(missing_docs)]
+#[derive(Clone, Debug)]
+</span><span class="kw">pub enum </span>Format&lt;<span class="lifetime">&#39;a</span>&gt; {
+    Format0(Subtable0&lt;<span class="lifetime">&#39;a</span>&gt;),
+    Format1(Subtable1&lt;<span class="lifetime">&#39;a</span>&gt;),
+    Format2(Subtable2&lt;<span class="lifetime">&#39;a</span>&gt;),
+    Format4(Subtable4&lt;<span class="lifetime">&#39;a</span>&gt;),
+    Format6(Subtable6&lt;<span class="lifetime">&#39;a</span>&gt;),
 }
 
-<span class="doccomment">/// A kerning subtable.</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Subtable</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="doccomment">/// Indicates that subtable is for horizontal text.</span>
-    <span class="kw">pub</span> <span class="ident">horizontal</span>: <span class="ident">bool</span>,
-    <span class="doccomment">/// Indicates that subtable is variable.</span>
-    <span class="kw">pub</span> <span class="ident">variable</span>: <span class="ident">bool</span>,
-    <span class="doccomment">/// Indicates that subtable has a cross-stream values.</span>
-    <span class="kw">pub</span> <span class="ident">has_cross_stream</span>: <span class="ident">bool</span>,
-    <span class="doccomment">/// Indicates that subtable uses a state machine.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// In this case `glyphs_kerning()` will return `None`.</span>
-    <span class="kw">pub</span> <span class="ident">has_state_machine</span>: <span class="ident">bool</span>,
-    <span class="doccomment">/// The tuple count.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// This value is only used with variation fonts and should be 0 for all other fonts.</span>
-    <span class="kw">pub</span> <span class="ident">tuple_count</span>: <span class="ident">u32</span>,
-    <span class="doccomment">/// Subtable format.</span>
-    <span class="kw">pub</span> <span class="ident">format</span>: <span class="ident">Format</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>,
+<span class="doccomment">/// A kerning subtable.
+</span><span class="attribute">#[derive(Clone, Debug)]
+</span><span class="kw">pub struct </span>Subtable&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="doccomment">/// Indicates that subtable is for horizontal text.
+    </span><span class="kw">pub </span>horizontal: bool,
+    <span class="doccomment">/// Indicates that subtable is variable.
+    </span><span class="kw">pub </span>variable: bool,
+    <span class="doccomment">/// Indicates that subtable has a cross-stream values.
+    </span><span class="kw">pub </span>has_cross_stream: bool,
+    <span class="doccomment">/// Indicates that subtable uses a state machine.
+    ///
+    /// In this case `glyphs_kerning()` will return `None`.
+    </span><span class="kw">pub </span>has_state_machine: bool,
+    <span class="doccomment">/// The tuple count.
+    ///
+    /// This value is only used with variation fonts and should be 0 for all other fonts.
+    </span><span class="kw">pub </span>tuple_count: u32,
+    <span class="doccomment">/// Subtable format.
+    </span><span class="kw">pub </span>format: Format&lt;<span class="lifetime">&#39;a</span>&gt;,
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">Subtable</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="doccomment">/// Returns kerning for a pair of glyphs.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// Returns `None` in case of state machine based subtable.</span>
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">glyphs_kerning</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">left</span>: <span class="ident">GlyphId</span>, <span class="ident">right</span>: <span class="ident">GlyphId</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">i16</span><span class="op">&gt;</span> {
-        <span class="kw">match</span> <span class="self">self</span>.<span class="ident">format</span> {
-            <span class="ident">Format::Format0</span>(<span class="kw-2">ref</span> <span class="ident">subtable</span>) =&gt; <span class="ident">subtable</span>.<span class="ident">glyphs_kerning</span>(<span class="ident">left</span>, <span class="ident">right</span>),
-            <span class="ident">Format::Format1</span>(<span class="kw">_</span>) =&gt; <span class="prelude-val">None</span>,
-            <span class="ident">Format::Format2</span>(<span class="kw-2">ref</span> <span class="ident">subtable</span>) =&gt; <span class="ident">subtable</span>.<span class="ident">glyphs_kerning</span>(<span class="ident">left</span>, <span class="ident">right</span>),
-            <span class="ident">Format::Format4</span>(<span class="kw">_</span>) =&gt; <span class="prelude-val">None</span>,
-            <span class="ident">Format::Format6</span>(<span class="kw-2">ref</span> <span class="ident">subtable</span>) =&gt; <span class="ident">subtable</span>.<span class="ident">glyphs_kerning</span>(<span class="ident">left</span>, <span class="ident">right</span>),
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; Subtable&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="doccomment">/// Returns kerning for a pair of glyphs.
+    ///
+    /// Returns `None` in case of state machine based subtable.
+    </span><span class="attribute">#[inline]
+    </span><span class="kw">pub fn </span>glyphs_kerning(<span class="kw-2">&amp;</span><span class="self">self</span>, left: GlyphId, right: GlyphId) -&gt; <span class="prelude-ty">Option</span>&lt;i16&gt; {
+        <span class="kw">match </span><span class="self">self</span>.format {
+            Format::Format0(<span class="kw-2">ref </span>subtable) =&gt; subtable.glyphs_kerning(left, right),
+            Format::Format1(<span class="kw">_</span>) =&gt; <span class="prelude-val">None</span>,
+            Format::Format2(<span class="kw-2">ref </span>subtable) =&gt; subtable.glyphs_kerning(left, right),
+            Format::Format4(<span class="kw">_</span>) =&gt; <span class="prelude-val">None</span>,
+            Format::Format6(<span class="kw-2">ref </span>subtable) =&gt; subtable.glyphs_kerning(left, right),
         }
     }
 }
 
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">Debug</span>)]</span>
-<span class="kw">struct</span> <span class="ident">Coverage</span>(<span class="ident">u8</span>);
+<span class="attribute">#[derive(Clone, Copy, Debug)]
+</span><span class="kw">struct </span>Coverage(u8);
 
-<span class="kw">impl</span> <span class="ident">Coverage</span> {
-    <span class="comment">// TODO: use hex</span>
-    <span class="attribute">#[<span class="ident">inline</span>]</span> <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_horizontal</span>(<span class="self">self</span>) -&gt; <span class="ident">bool</span> { <span class="self">self</span>.<span class="number">0</span> <span class="op">&amp;</span> (<span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">7</span>) <span class="op">==</span> <span class="number">0</span> }
-    <span class="attribute">#[<span class="ident">inline</span>]</span> <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">has_cross_stream</span>(<span class="self">self</span>) -&gt; <span class="ident">bool</span> { <span class="self">self</span>.<span class="number">0</span> <span class="op">&amp;</span> (<span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">6</span>) <span class="op">!</span><span class="op">=</span> <span class="number">0</span> }
-    <span class="attribute">#[<span class="ident">inline</span>]</span> <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_variable</span>(<span class="self">self</span>) -&gt; <span class="ident">bool</span> { <span class="self">self</span>.<span class="number">0</span> <span class="op">&amp;</span> (<span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">5</span>) <span class="op">!</span><span class="op">=</span> <span class="number">0</span> }
+<span class="kw">impl </span>Coverage {
+    <span class="comment">// TODO: use hex
+    </span><span class="attribute">#[inline] </span><span class="kw">pub fn </span>is_horizontal(<span class="self">self</span>) -&gt; bool { <span class="self">self</span>.<span class="number">0 </span>&amp; (<span class="number">1 </span>&lt;&lt; <span class="number">7</span>) == <span class="number">0 </span>}
+    <span class="attribute">#[inline] </span><span class="kw">pub fn </span>has_cross_stream(<span class="self">self</span>) -&gt; bool { <span class="self">self</span>.<span class="number">0 </span>&amp; (<span class="number">1 </span>&lt;&lt; <span class="number">6</span>) != <span class="number">0 </span>}
+    <span class="attribute">#[inline] </span><span class="kw">pub fn </span>is_variable(<span class="self">self</span>) -&gt; bool { <span class="self">self</span>.<span class="number">0 </span>&amp; (<span class="number">1 </span>&lt;&lt; <span class="number">5</span>) != <span class="number">0 </span>}
 }
 
 
-<span class="doccomment">/// A list of extended kerning subtables.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// The internal data layout is not designed for random access,</span>
-<span class="doccomment">/// therefore we&#39;re not providing the `get()` method and only an iterator.</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Copy</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Subtables</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="doccomment">/// The number of glyphs from the `maxp` table.</span>
-    <span class="ident">number_of_glyphs</span>: <span class="ident">NonZeroU16</span>,
-    <span class="doccomment">/// The total number of tables.</span>
-    <span class="ident">number_of_tables</span>: <span class="ident">u32</span>,
-    <span class="doccomment">/// Actual data. Starts right after the `kerx` header.</span>
-    <span class="ident">data</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>],
+<span class="doccomment">/// A list of extended kerning subtables.
+///
+/// The internal data layout is not designed for random access,
+/// therefore we&#39;re not providing the `get()` method and only an iterator.
+</span><span class="attribute">#[derive(Clone, Copy)]
+</span><span class="kw">pub struct </span>Subtables&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="doccomment">/// The number of glyphs from the `maxp` table.
+    </span>number_of_glyphs: NonZeroU16,
+    <span class="doccomment">/// The total number of tables.
+    </span>number_of_tables: u32,
+    <span class="doccomment">/// Actual data. Starts right after the `kerx` header.
+    </span>data: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8],
 }
 
-<span class="kw">impl</span> <span class="ident">core::fmt::Debug</span> <span class="kw">for</span> <span class="ident">Subtables</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span> {
-    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;mut</span> <span class="ident">core::fmt::Formatter</span>) -&gt; <span class="ident">core::fmt::Result</span> {
-        <span class="macro">write!</span>(<span class="ident">f</span>, <span class="string">&quot;Subtables {{ ... }}&quot;</span>)
+<span class="kw">impl </span>core::fmt::Debug <span class="kw">for </span>Subtables&lt;<span class="lifetime">&#39;_</span>&gt; {
+    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>core::fmt::Formatter) -&gt; core::fmt::Result {
+        <span class="macro">write!</span>(f, <span class="string">&quot;Subtables {{ ... }}&quot;</span>)
     }
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">IntoIterator</span> <span class="kw">for</span> <span class="ident">Subtables</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="kw">type</span> <span class="ident">Item</span> <span class="op">=</span> <span class="ident">Subtable</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>;
-    <span class="kw">type</span> <span class="ident">IntoIter</span> <span class="op">=</span> <span class="ident">SubtablesIter</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>;
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; IntoIterator <span class="kw">for </span>Subtables&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="kw">type </span>Item = Subtable&lt;<span class="lifetime">&#39;a</span>&gt;;
+    <span class="kw">type </span>IntoIter = SubtablesIter&lt;<span class="lifetime">&#39;a</span>&gt;;
 
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">into_iter</span>(<span class="self">self</span>) -&gt; <span class="ident"><span class="self">Self</span>::IntoIter</span> {
-        <span class="ident">SubtablesIter</span> {
-            <span class="ident">number_of_glyphs</span>: <span class="self">self</span>.<span class="ident">number_of_glyphs</span>,
-            <span class="ident">table_index</span>: <span class="number">0</span>,
-            <span class="ident">number_of_tables</span>: <span class="self">self</span>.<span class="ident">number_of_tables</span>,
-            <span class="ident">stream</span>: <span class="ident">Stream::new</span>(<span class="self">self</span>.<span class="ident">data</span>),
+    <span class="attribute">#[inline]
+    </span><span class="kw">fn </span>into_iter(<span class="self">self</span>) -&gt; <span class="self">Self</span>::IntoIter {
+        SubtablesIter {
+            number_of_glyphs: <span class="self">self</span>.number_of_glyphs,
+            table_index: <span class="number">0</span>,
+            number_of_tables: <span class="self">self</span>.number_of_tables,
+            stream: Stream::new(<span class="self">self</span>.data),
         }
     }
 }
 
-<span class="doccomment">/// An iterator over extended kerning subtables.</span>
-<span class="attribute">#[<span class="ident">allow</span>(<span class="ident">missing_debug_implementations</span>)]</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Copy</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">SubtablesIter</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="doccomment">/// The number of glyphs from the `maxp` table.</span>
-    <span class="ident">number_of_glyphs</span>: <span class="ident">NonZeroU16</span>,
-    <span class="doccomment">/// The current table index.</span>
-    <span class="ident">table_index</span>: <span class="ident">u32</span>,
-    <span class="doccomment">/// The total number of tables.</span>
-    <span class="ident">number_of_tables</span>: <span class="ident">u32</span>,
-    <span class="doccomment">/// Actual data. Starts right after the `kerx` header.</span>
-    <span class="ident">stream</span>: <span class="ident">Stream</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>,
+<span class="doccomment">/// An iterator over extended kerning subtables.
+</span><span class="attribute">#[allow(missing_debug_implementations)]
+#[derive(Clone, Copy)]
+</span><span class="kw">pub struct </span>SubtablesIter&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="doccomment">/// The number of glyphs from the `maxp` table.
+    </span>number_of_glyphs: NonZeroU16,
+    <span class="doccomment">/// The current table index.
+    </span>table_index: u32,
+    <span class="doccomment">/// The total number of tables.
+    </span>number_of_tables: u32,
+    <span class="doccomment">/// Actual data. Starts right after the `kerx` header.
+    </span>stream: Stream&lt;<span class="lifetime">&#39;a</span>&gt;,
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">Iterator</span> <span class="kw">for</span> <span class="ident">SubtablesIter</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="kw">type</span> <span class="ident">Item</span> <span class="op">=</span> <span class="ident">Subtable</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>;
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; Iterator <span class="kw">for </span>SubtablesIter&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="kw">type </span>Item = Subtable&lt;<span class="lifetime">&#39;a</span>&gt;;
 
-    <span class="kw">fn</span> <span class="ident">next</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident"><span class="self">Self</span>::Item</span><span class="op">&gt;</span> {
-        <span class="kw">if</span> <span class="self">self</span>.<span class="ident">table_index</span> <span class="op">==</span> <span class="self">self</span>.<span class="ident">number_of_tables</span> {
-            <span class="kw">return</span> <span class="prelude-val">None</span>;
+    <span class="kw">fn </span>next(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="self">Self</span>::Item&gt; {
+        <span class="kw">if </span><span class="self">self</span>.table_index == <span class="self">self</span>.number_of_tables {
+            <span class="kw">return </span><span class="prelude-val">None</span>;
         }
 
-        <span class="kw">if</span> <span class="self">self</span>.<span class="ident">stream</span>.<span class="ident">at_end</span>() {
-            <span class="kw">return</span> <span class="prelude-val">None</span>;
+        <span class="kw">if </span><span class="self">self</span>.stream.at_end() {
+            <span class="kw">return </span><span class="prelude-val">None</span>;
         }
 
-        <span class="kw">let</span> <span class="ident">s</span> <span class="op">=</span> <span class="kw-2">&amp;mut</span> <span class="self">self</span>.<span class="ident">stream</span>;
+        <span class="kw">let </span>s = <span class="kw-2">&amp;mut </span><span class="self">self</span>.stream;
 
-        <span class="kw">let</span> <span class="ident">table_len</span> <span class="op">=</span> <span class="ident">s</span>.<span class="ident">read</span>::<span class="op">&lt;</span><span class="ident">u32</span><span class="op">&gt;</span>()<span class="question-mark">?</span>;
-        <span class="kw">let</span> <span class="ident">coverage</span> <span class="op">=</span> <span class="ident">Coverage</span>(<span class="ident">s</span>.<span class="ident">read</span>::<span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span>()<span class="question-mark">?</span>);
-        <span class="ident">s</span>.<span class="ident">skip</span>::<span class="op">&lt;</span><span class="ident">u16</span><span class="op">&gt;</span>(); <span class="comment">// unused</span>
-        <span class="kw">let</span> <span class="ident">raw_format</span> <span class="op">=</span> <span class="ident">s</span>.<span class="ident">read</span>::<span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span>()<span class="question-mark">?</span>;
-        <span class="kw">let</span> <span class="ident">tuple_count</span> <span class="op">=</span> <span class="ident">s</span>.<span class="ident">read</span>::<span class="op">&lt;</span><span class="ident">u32</span><span class="op">&gt;</span>()<span class="question-mark">?</span>;
+        <span class="kw">let </span>table_len = s.read::&lt;u32&gt;()<span class="question-mark">?</span>;
+        <span class="kw">let </span>coverage = Coverage(s.read::&lt;u8&gt;()<span class="question-mark">?</span>);
+        s.skip::&lt;u16&gt;(); <span class="comment">// unused
+        </span><span class="kw">let </span>raw_format = s.read::&lt;u8&gt;()<span class="question-mark">?</span>;
+        <span class="kw">let </span>tuple_count = s.read::&lt;u32&gt;()<span class="question-mark">?</span>;
 
-        <span class="comment">// Subtract the header size.</span>
-        <span class="kw">let</span> <span class="ident">data_len</span> <span class="op">=</span> <span class="ident">usize::num_from</span>(<span class="ident">table_len</span>).<span class="ident">checked_sub</span>(<span class="ident">HEADER_SIZE</span>)<span class="question-mark">?</span>;
-        <span class="kw">let</span> <span class="ident">data</span> <span class="op">=</span> <span class="ident">s</span>.<span class="ident">read_bytes</span>(<span class="ident">data_len</span>)<span class="question-mark">?</span>;
+        <span class="comment">// Subtract the header size.
+        </span><span class="kw">let </span>data_len = usize::num_from(table_len).checked_sub(HEADER_SIZE)<span class="question-mark">?</span>;
+        <span class="kw">let </span>data = s.read_bytes(data_len)<span class="question-mark">?</span>;
 
-        <span class="kw">let</span> <span class="ident">format</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">raw_format</span> {
-            <span class="number">0</span> =&gt; <span class="ident">Subtable0::parse</span>(<span class="ident">data</span>).<span class="ident">map</span>(<span class="ident">Format::Format0</span>)<span class="question-mark">?</span>,
-            <span class="number">1</span> =&gt; <span class="ident">Subtable1::parse</span>(<span class="self">self</span>.<span class="ident">number_of_glyphs</span>, <span class="ident">data</span>).<span class="ident">map</span>(<span class="ident">Format::Format1</span>)<span class="question-mark">?</span>,
-            <span class="number">2</span> =&gt; <span class="ident">Format::Format2</span>(<span class="ident">Subtable2</span>(<span class="ident">data</span>)),
-            <span class="number">4</span> =&gt; <span class="ident">Subtable4::parse</span>(<span class="self">self</span>.<span class="ident">number_of_glyphs</span>, <span class="ident">data</span>).<span class="ident">map</span>(<span class="ident">Format::Format4</span>)<span class="question-mark">?</span>,
-            <span class="number">6</span> =&gt; <span class="ident">Format::Format6</span>(<span class="ident">Subtable6::parse</span>(<span class="self">self</span>.<span class="ident">number_of_glyphs</span>, <span class="ident">data</span>)),
-            <span class="kw">_</span> =&gt; {
-                <span class="comment">// Unknown format.</span>
-                <span class="kw">return</span> <span class="prelude-val">None</span>;
+        <span class="kw">let </span>format = <span class="kw">match </span>raw_format {
+            <span class="number">0 </span>=&gt; Subtable0::parse(data).map(Format::Format0)<span class="question-mark">?</span>,
+            <span class="number">1 </span>=&gt; Subtable1::parse(<span class="self">self</span>.number_of_glyphs, data).map(Format::Format1)<span class="question-mark">?</span>,
+            <span class="number">2 </span>=&gt; Format::Format2(Subtable2(data)),
+            <span class="number">4 </span>=&gt; Subtable4::parse(<span class="self">self</span>.number_of_glyphs, data).map(Format::Format4)<span class="question-mark">?</span>,
+            <span class="number">6 </span>=&gt; Format::Format6(Subtable6::parse(<span class="self">self</span>.number_of_glyphs, data)),
+            <span class="kw">_ </span>=&gt; {
+                <span class="comment">// Unknown format.
+                </span><span class="kw">return </span><span class="prelude-val">None</span>;
             }
         };
 
-        <span class="prelude-val">Some</span>(<span class="ident">Subtable</span> {
-            <span class="ident">horizontal</span>: <span class="ident">coverage</span>.<span class="ident">is_horizontal</span>(),
-            <span class="ident">variable</span>: <span class="ident">coverage</span>.<span class="ident">is_variable</span>(),
-            <span class="ident">has_cross_stream</span>: <span class="ident">coverage</span>.<span class="ident">has_cross_stream</span>(),
-            <span class="ident">has_state_machine</span>: <span class="ident">raw_format</span> <span class="op">==</span> <span class="number">1</span> <span class="op">|</span><span class="op">|</span> <span class="ident">raw_format</span> <span class="op">==</span> <span class="number">4</span>,
-            <span class="ident">tuple_count</span>,
-            <span class="ident">format</span>,
+        <span class="prelude-val">Some</span>(Subtable {
+            horizontal: coverage.is_horizontal(),
+            variable: coverage.is_variable(),
+            has_cross_stream: coverage.has_cross_stream(),
+            has_state_machine: raw_format == <span class="number">1 </span>|| raw_format == <span class="number">4</span>,
+            tuple_count,
+            format,
         })
     }
 }
 
 
-<span class="doccomment">/// An [Extended Kerning Table](</span>
-<span class="doccomment">/// https://developer.apple.com/fonts/TrueType-Reference-Manual/RM06/Chap6kerx.html).</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">Debug</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Table</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="doccomment">/// A list of subtables.</span>
-    <span class="kw">pub</span> <span class="ident">subtables</span>: <span class="ident">Subtables</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>,
+<span class="doccomment">/// An [Extended Kerning Table](
+/// https://developer.apple.com/fonts/TrueType-Reference-Manual/RM06/Chap6kerx.html).
+</span><span class="attribute">#[derive(Clone, Copy, Debug)]
+</span><span class="kw">pub struct </span>Table&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="doccomment">/// A list of subtables.
+    </span><span class="kw">pub </span>subtables: Subtables&lt;<span class="lifetime">&#39;a</span>&gt;,
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">Table</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
-    <span class="doccomment">/// Parses a table from raw data.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// `number_of_glyphs` is from the `maxp` table.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">parse</span>(<span class="ident">number_of_glyphs</span>: <span class="ident">NonZeroU16</span>, <span class="ident">data</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>]) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">s</span> <span class="op">=</span> <span class="ident">Stream::new</span>(<span class="ident">data</span>);
-        <span class="ident">s</span>.<span class="ident">skip</span>::<span class="op">&lt;</span><span class="ident">u16</span><span class="op">&gt;</span>(); <span class="comment">// version</span>
-        <span class="ident">s</span>.<span class="ident">skip</span>::<span class="op">&lt;</span><span class="ident">u16</span><span class="op">&gt;</span>(); <span class="comment">// padding</span>
-        <span class="kw">let</span> <span class="ident">number_of_tables</span> <span class="op">=</span> <span class="ident">s</span>.<span class="ident">read</span>::<span class="op">&lt;</span><span class="ident">u32</span><span class="op">&gt;</span>()<span class="question-mark">?</span>;
-        <span class="kw">let</span> <span class="ident">subtables</span> <span class="op">=</span> <span class="ident">Subtables</span> {
-            <span class="ident">number_of_glyphs</span>,
-            <span class="ident">number_of_tables</span>,
-            <span class="ident">data</span>: <span class="ident">s</span>.<span class="ident">tail</span>()<span class="question-mark">?</span>,
+<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; Table&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="doccomment">/// Parses a table from raw data.
+    ///
+    /// `number_of_glyphs` is from the `maxp` table.
+    </span><span class="kw">pub fn </span>parse(number_of_glyphs: NonZeroU16, data: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8]) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="self">Self</span>&gt; {
+        <span class="kw">let </span><span class="kw-2">mut </span>s = Stream::new(data);
+        s.skip::&lt;u16&gt;(); <span class="comment">// version
+        </span>s.skip::&lt;u16&gt;(); <span class="comment">// padding
+        </span><span class="kw">let </span>number_of_tables = s.read::&lt;u32&gt;()<span class="question-mark">?</span>;
+        <span class="kw">let </span>subtables = Subtables {
+            number_of_glyphs,
+            number_of_tables,
+            data: s.tail()<span class="question-mark">?</span>,
         };
 
-        <span class="prelude-val">Some</span>(<span class="ident">Table</span> { <span class="ident">subtables</span> })
+        <span class="prelude-val">Some</span>(Table { subtables })
     }
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="ttf_parser" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0 (a55dd71d5 2022-09-19)" ></div></body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="ttf_parser" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.66.1 (90743e729 2023-01-10)" ></div></body></html>

@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/egui-0.16.1/src/util/id_type_map.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>id_type_map.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../storage.js"></script><script defer src="../../../source-script.js"></script><script defer src="../../../source-files.js"></script><script defer src="../../../main.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../../egui/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../../egui/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../../egui/index.html"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/egui-0.16.1/src/util/id_type_map.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>id_type_map.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../../normalize.css"><link rel="stylesheet" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../../ayu.css" disabled><link rel="stylesheet" href="../../../dark.css" disabled><link rel="stylesheet" href="../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../storage.js"></script><script defer src="../../../source-script.js"></script><script defer src="../../../source-files.js"></script><script defer src="../../../main.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><div class="width-limiter"><nav class="sub"><a class="sub-logo-container" href="../../../egui/index.html"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../wheel.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -707,714 +707,714 @@
 <span id="707">707</span>
 <span id="708">708</span>
 <span id="709">709</span>
-</pre><pre class="rust"><code><span class="comment">// TODO: it is possible we can simplify `Element` further by</span>
-<span class="comment">// assuming everything is possibly serializable, and by supplying serialize/deserialize functions for them.</span>
-<span class="comment">// For non-serializable types, these simply return `None`.</span>
-<span class="comment">// This will also allow users to pick their own serialization format per type.</span>
+</pre><pre class="rust"><code><span class="comment">// TODO: it is possible we can simplify `Element` further by
+// assuming everything is possibly serializable, and by supplying serialize/deserialize functions for them.
+// For non-serializable types, these simply return `None`.
+// This will also allow users to pick their own serialization format per type.
 
-<span class="kw">use</span> <span class="ident">std::any::Any</span>;
-<span class="kw">use</span> <span class="ident">std::sync::Arc</span>;
+</span><span class="kw">use </span>std::any::Any;
+<span class="kw">use </span>std::sync::Arc;
 
-<span class="comment">// -----------------------------------------------------------------------------------------------</span>
+<span class="comment">// -----------------------------------------------------------------------------------------------
 
-<span class="doccomment">/// Like [`std::any::TypeId`], but can be serialized and deserialized.</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">Debug</span>, <span class="ident">Eq</span>, <span class="ident">PartialEq</span>, <span class="ident">Hash</span>)]</span>
-<span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;persistence&quot;</span>, <span class="ident">derive</span>(<span class="ident">serde::Deserialize</span>, <span class="ident">serde::Serialize</span>))]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">TypeId</span>(<span class="ident">u64</span>);
+</span><span class="doccomment">/// Like [`std::any::TypeId`], but can be serialized and deserialized.
+</span><span class="attribute">#[derive(Clone, Copy, Debug, Eq, PartialEq, Hash)]
+#[cfg_attr(feature = <span class="string">&quot;persistence&quot;</span>, derive(serde::Deserialize, serde::Serialize))]
+</span><span class="kw">pub struct </span>TypeId(u64);
 
-<span class="kw">impl</span> <span class="ident">TypeId</span> {
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">of</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">Any</span> <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>() -&gt; <span class="self">Self</span> {
-        <span class="ident">std::any::TypeId::of</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>().<span class="ident">into</span>()
+<span class="kw">impl </span>TypeId {
+    <span class="attribute">#[inline]
+    </span><span class="kw">pub fn </span>of&lt;T: Any + <span class="lifetime">&#39;static</span>&gt;() -&gt; <span class="self">Self </span>{
+        std::any::TypeId::of::&lt;T&gt;().into()
     }
 
-    <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">value</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">u64</span> {
-        <span class="self">self</span>.<span class="number">0</span>
+    <span class="attribute">#[inline(always)]
+    </span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>value(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; u64 {
+        <span class="self">self</span>.<span class="number">0
+    </span>}
+}
+
+<span class="kw">impl </span>From&lt;std::any::TypeId&gt; <span class="kw">for </span>TypeId {
+    <span class="attribute">#[inline]
+    </span><span class="kw">fn </span>from(id: std::any::TypeId) -&gt; <span class="self">Self </span>{
+        <span class="self">Self</span>(epaint::util::hash(id))
     }
 }
 
-<span class="kw">impl</span> <span class="ident">From</span><span class="op">&lt;</span><span class="ident">std::any::TypeId</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">TypeId</span> {
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">id</span>: <span class="ident">std::any::TypeId</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">Self</span>(<span class="ident">epaint::util::hash</span>(<span class="ident">id</span>))
-    }
-}
+<span class="comment">// -----------------------------------------------------------------------------------------------
 
-<span class="comment">// -----------------------------------------------------------------------------------------------</span>
-
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;persistence&quot;</span>)]</span>
-<span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">SerializableAny</span>:
-    <span class="lifetime">&#39;static</span> <span class="op">+</span> <span class="ident">Any</span> <span class="op">+</span> <span class="ident">Clone</span> <span class="op">+</span> <span class="ident">serde::Serialize</span> <span class="op">+</span> <span class="kw">for</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">serde::Deserialize</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="op">+</span> <span class="ident">Send</span> <span class="op">+</span> <span class="ident">Sync</span>
+</span><span class="attribute">#[cfg(feature = <span class="string">&quot;persistence&quot;</span>)]
+</span><span class="kw">pub trait </span>SerializableAny:
+    <span class="lifetime">&#39;static </span>+ Any + Clone + serde::Serialize + <span class="kw">for</span>&lt;<span class="lifetime">&#39;a</span>&gt; serde::Deserialize&lt;<span class="lifetime">&#39;a</span>&gt; + Send + Sync
 {
 }
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;persistence&quot;</span>)]</span>
-<span class="kw">impl</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> <span class="ident">SerializableAny</span> <span class="kw">for</span> <span class="ident">T</span> <span class="kw">where</span>
-    <span class="ident">T</span>: <span class="lifetime">&#39;static</span> <span class="op">+</span> <span class="ident">Any</span> <span class="op">+</span> <span class="ident">Clone</span> <span class="op">+</span> <span class="ident">serde::Serialize</span> <span class="op">+</span> <span class="kw">for</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">serde::Deserialize</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="op">+</span> <span class="ident">Send</span> <span class="op">+</span> <span class="ident">Sync</span>
+<span class="attribute">#[cfg(feature = <span class="string">&quot;persistence&quot;</span>)]
+</span><span class="kw">impl</span>&lt;T&gt; SerializableAny <span class="kw">for </span>T <span class="kw">where
+    </span>T: <span class="lifetime">&#39;static </span>+ Any + Clone + serde::Serialize + <span class="kw">for</span>&lt;<span class="lifetime">&#39;a</span>&gt; serde::Deserialize&lt;<span class="lifetime">&#39;a</span>&gt; + Send + Sync
 {
 }
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">not</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;persistence&quot;</span>))]</span>
-<span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">SerializableAny</span>: <span class="lifetime">&#39;static</span> <span class="op">+</span> <span class="ident">Any</span> <span class="op">+</span> <span class="ident">Clone</span> <span class="op">+</span> <span class="kw">for</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">Send</span> <span class="op">+</span> <span class="ident">Sync</span> {}
+<span class="attribute">#[cfg(not(feature = <span class="string">&quot;persistence&quot;</span>))]
+</span><span class="kw">pub trait </span>SerializableAny: <span class="lifetime">&#39;static </span>+ Any + Clone + <span class="kw">for</span>&lt;<span class="lifetime">&#39;a</span>&gt; Send + Sync {}
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">not</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;persistence&quot;</span>))]</span>
-<span class="kw">impl</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> <span class="ident">SerializableAny</span> <span class="kw">for</span> <span class="ident">T</span> <span class="kw">where</span> <span class="ident">T</span>: <span class="lifetime">&#39;static</span> <span class="op">+</span> <span class="ident">Any</span> <span class="op">+</span> <span class="ident">Clone</span> <span class="op">+</span> <span class="kw">for</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">Send</span> <span class="op">+</span> <span class="ident">Sync</span> {}
+<span class="attribute">#[cfg(not(feature = <span class="string">&quot;persistence&quot;</span>))]
+</span><span class="kw">impl</span>&lt;T&gt; SerializableAny <span class="kw">for </span>T <span class="kw">where </span>T: <span class="lifetime">&#39;static </span>+ Any + Clone + <span class="kw">for</span>&lt;<span class="lifetime">&#39;a</span>&gt; Send + Sync {}
 
-<span class="comment">// -----------------------------------------------------------------------------------------------</span>
+<span class="comment">// -----------------------------------------------------------------------------------------------
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;persistence&quot;</span>)]</span>
-<span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;persistence&quot;</span>, <span class="ident">derive</span>(<span class="ident">serde::Deserialize</span>, <span class="ident">serde::Serialize</span>))]</span>
-<span class="kw">struct</span> <span class="ident">SerializedElement</span> {
-    <span class="ident">type_id</span>: <span class="ident">TypeId</span>,
-    <span class="ident">ron</span>: <span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">str</span><span class="op">&gt;</span>,
+</span><span class="attribute">#[cfg(feature = <span class="string">&quot;persistence&quot;</span>)]
+#[cfg_attr(feature = <span class="string">&quot;persistence&quot;</span>, derive(serde::Deserialize, serde::Serialize))]
+</span><span class="kw">struct </span>SerializedElement {
+    type_id: TypeId,
+    ron: Arc&lt;str&gt;,
 }
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;persistence&quot;</span>)]</span>
-<span class="kw">type</span> <span class="ident">Serializer</span> <span class="op">=</span> <span class="kw">fn</span>(<span class="kw-2">&amp;</span><span class="ident">Box</span><span class="op">&lt;</span><span class="kw">dyn</span> <span class="ident">Any</span> <span class="op">+</span> <span class="lifetime">&#39;static</span> <span class="op">+</span> <span class="ident">Send</span> <span class="op">+</span> <span class="ident">Sync</span><span class="op">&gt;</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span>;
+<span class="attribute">#[cfg(feature = <span class="string">&quot;persistence&quot;</span>)]
+</span><span class="kw">type </span>Serializer = <span class="kw">fn</span>(<span class="kw-2">&amp;</span>Box&lt;<span class="kw">dyn </span>Any + <span class="lifetime">&#39;static </span>+ Send + Sync&gt;) -&gt; <span class="prelude-ty">Option</span>&lt;String&gt;;
 
-<span class="kw">enum</span> <span class="ident">Element</span> {
-    <span class="doccomment">/// A value, maybe serializable.</span>
-    <span class="ident">Value</span> {
-        <span class="doccomment">/// The actual value.</span>
-        <span class="ident">value</span>: <span class="ident">Box</span><span class="op">&lt;</span><span class="kw">dyn</span> <span class="ident">Any</span> <span class="op">+</span> <span class="lifetime">&#39;static</span> <span class="op">+</span> <span class="ident">Send</span> <span class="op">+</span> <span class="ident">Sync</span><span class="op">&gt;</span>,
+<span class="kw">enum </span>Element {
+    <span class="doccomment">/// A value, maybe serializable.
+    </span>Value {
+        <span class="doccomment">/// The actual value.
+        </span>value: Box&lt;<span class="kw">dyn </span>Any + <span class="lifetime">&#39;static </span>+ Send + Sync&gt;,
 
-        <span class="doccomment">/// How to clone the value.</span>
-        <span class="ident">clone_fn</span>: <span class="kw">fn</span>(<span class="kw-2">&amp;</span><span class="ident">Box</span><span class="op">&lt;</span><span class="kw">dyn</span> <span class="ident">Any</span> <span class="op">+</span> <span class="lifetime">&#39;static</span> <span class="op">+</span> <span class="ident">Send</span> <span class="op">+</span> <span class="ident">Sync</span><span class="op">&gt;</span>) -&gt; <span class="ident">Box</span><span class="op">&lt;</span><span class="kw">dyn</span> <span class="ident">Any</span> <span class="op">+</span> <span class="lifetime">&#39;static</span> <span class="op">+</span> <span class="ident">Send</span> <span class="op">+</span> <span class="ident">Sync</span><span class="op">&gt;</span>,
+        <span class="doccomment">/// How to clone the value.
+        </span>clone_fn: <span class="kw">fn</span>(<span class="kw-2">&amp;</span>Box&lt;<span class="kw">dyn </span>Any + <span class="lifetime">&#39;static </span>+ Send + Sync&gt;) -&gt; Box&lt;<span class="kw">dyn </span>Any + <span class="lifetime">&#39;static </span>+ Send + Sync&gt;,
 
-        <span class="doccomment">/// How to serialize the value.</span>
-        <span class="doccomment">/// None if non-serializable type.</span>
-        <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;persistence&quot;</span>)]</span>
-        <span class="ident">serialize_fn</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Serializer</span><span class="op">&gt;</span>,
+        <span class="doccomment">/// How to serialize the value.
+        /// None if non-serializable type.
+        </span><span class="attribute">#[cfg(feature = <span class="string">&quot;persistence&quot;</span>)]
+        </span>serialize_fn: <span class="prelude-ty">Option</span>&lt;Serializer&gt;,
     },
-    <span class="doccomment">/// A serialized value</span>
-    <span class="ident">Serialized</span> {
-        <span class="doccomment">/// The type of value we are storing.</span>
-        <span class="ident">type_id</span>: <span class="ident">TypeId</span>,
-        <span class="doccomment">/// The ron data we can deserialize.</span>
-        <span class="ident">ron</span>: <span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">str</span><span class="op">&gt;</span>,
+    <span class="doccomment">/// A serialized value
+    </span>Serialized {
+        <span class="doccomment">/// The type of value we are storing.
+        </span>type_id: TypeId,
+        <span class="doccomment">/// The ron data we can deserialize.
+        </span>ron: Arc&lt;str&gt;,
     },
 }
 
-<span class="kw">impl</span> <span class="ident">Clone</span> <span class="kw">for</span> <span class="ident">Element</span> {
-    <span class="kw">fn</span> <span class="ident">clone</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="self">Self</span> {
-        <span class="kw">match</span> <span class="kw-2">&amp;</span><span class="self">self</span> {
-            <span class="ident"><span class="self">Self</span>::Value</span> {
-                <span class="ident">value</span>,
-                <span class="ident">clone_fn</span>,
-                <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;persistence&quot;</span>)]</span>
-                <span class="ident">serialize_fn</span>,
-            } =&gt; <span class="ident"><span class="self">Self</span>::Value</span> {
-                <span class="ident">value</span>: <span class="ident">clone_fn</span>(<span class="ident">value</span>),
-                <span class="ident">clone_fn</span>: <span class="kw-2">*</span><span class="ident">clone_fn</span>,
-                <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;persistence&quot;</span>)]</span>
-                <span class="ident">serialize_fn</span>: <span class="kw-2">*</span><span class="ident">serialize_fn</span>,
+<span class="kw">impl </span>Clone <span class="kw">for </span>Element {
+    <span class="kw">fn </span>clone(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="self">Self </span>{
+        <span class="kw">match </span><span class="kw-2">&amp;</span><span class="self">self </span>{
+            <span class="self">Self</span>::Value {
+                value,
+                clone_fn,
+                <span class="attribute">#[cfg(feature = <span class="string">&quot;persistence&quot;</span>)]
+                </span>serialize_fn,
+            } =&gt; <span class="self">Self</span>::Value {
+                value: clone_fn(value),
+                clone_fn: <span class="kw-2">*</span>clone_fn,
+                <span class="attribute">#[cfg(feature = <span class="string">&quot;persistence&quot;</span>)]
+                </span>serialize_fn: <span class="kw-2">*</span>serialize_fn,
             },
 
-            <span class="ident"><span class="self">Self</span>::Serialized</span> { <span class="ident">type_id</span>, <span class="ident">ron</span> } =&gt; <span class="ident"><span class="self">Self</span>::Serialized</span> {
-                <span class="ident">type_id</span>: <span class="kw-2">*</span><span class="ident">type_id</span>,
-                <span class="ident">ron</span>: <span class="ident">ron</span>.<span class="ident">clone</span>(),
+            <span class="self">Self</span>::Serialized { type_id, ron } =&gt; <span class="self">Self</span>::Serialized {
+                type_id: <span class="kw-2">*</span>type_id,
+                ron: ron.clone(),
             },
         }
     }
 }
 
-<span class="kw">impl</span> <span class="ident">std::fmt::Debug</span> <span class="kw">for</span> <span class="ident">Element</span> {
-    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;mut</span> <span class="ident">std::fmt::Formatter</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>) -&gt; <span class="ident">std::fmt::Result</span> {
-        <span class="kw">match</span> <span class="kw-2">&amp;</span><span class="self">self</span> {
-            <span class="ident"><span class="self">Self</span>::Value</span> { <span class="ident">value</span>, .. } =&gt; <span class="ident">f</span>
-                .<span class="ident">debug_struct</span>(<span class="string">&quot;MaybeSerializable::Value&quot;</span>)
-                .<span class="ident">field</span>(<span class="string">&quot;type_id&quot;</span>, <span class="kw-2">&amp;</span><span class="ident">value</span>.<span class="ident">type_id</span>())
-                .<span class="ident">finish_non_exhaustive</span>(),
-            <span class="ident"><span class="self">Self</span>::Serialized</span> { <span class="ident">type_id</span>, <span class="ident">ron</span> } =&gt; <span class="ident">f</span>
-                .<span class="ident">debug_struct</span>(<span class="string">&quot;MaybeSerializable::Serialized&quot;</span>)
-                .<span class="ident">field</span>(<span class="string">&quot;type_id&quot;</span>, <span class="kw-2">&amp;</span><span class="ident">type_id</span>)
-                .<span class="ident">field</span>(<span class="string">&quot;ron&quot;</span>, <span class="kw-2">&amp;</span><span class="ident">ron</span>)
-                .<span class="ident">finish</span>(),
+<span class="kw">impl </span>std::fmt::Debug <span class="kw">for </span>Element {
+    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>std::fmt::Formatter&lt;<span class="lifetime">&#39;_</span>&gt;) -&gt; std::fmt::Result {
+        <span class="kw">match </span><span class="kw-2">&amp;</span><span class="self">self </span>{
+            <span class="self">Self</span>::Value { value, .. } =&gt; f
+                .debug_struct(<span class="string">&quot;MaybeSerializable::Value&quot;</span>)
+                .field(<span class="string">&quot;type_id&quot;</span>, <span class="kw-2">&amp;</span>value.type_id())
+                .finish_non_exhaustive(),
+            <span class="self">Self</span>::Serialized { type_id, ron } =&gt; f
+                .debug_struct(<span class="string">&quot;MaybeSerializable::Serialized&quot;</span>)
+                .field(<span class="string">&quot;type_id&quot;</span>, <span class="kw-2">&amp;</span>type_id)
+                .field(<span class="string">&quot;ron&quot;</span>, <span class="kw-2">&amp;</span>ron)
+                .finish(),
         }
     }
 }
 
-<span class="kw">impl</span> <span class="ident">Element</span> {
-    <span class="doccomment">/// Create a value that won&#39;t be persisted.</span>
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">new_temp</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="lifetime">&#39;static</span> <span class="op">+</span> <span class="ident">Any</span> <span class="op">+</span> <span class="ident">Clone</span> <span class="op">+</span> <span class="ident">Send</span> <span class="op">+</span> <span class="ident">Sync</span><span class="op">&gt;</span>(<span class="ident">t</span>: <span class="ident">T</span>) -&gt; <span class="self">Self</span> {
-        <span class="ident"><span class="self">Self</span>::Value</span> {
-            <span class="ident">value</span>: <span class="ident">Box::new</span>(<span class="ident">t</span>),
-            <span class="ident">clone_fn</span>: <span class="op">|</span><span class="ident">x</span><span class="op">|</span> {
-                <span class="kw">let</span> <span class="ident">x</span> <span class="op">=</span> <span class="ident">x</span>.<span class="ident">downcast_ref</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>().<span class="ident">unwrap</span>(); <span class="comment">// This unwrap will never panic, because we always construct this type using this `new` function and because we return &amp;mut reference only with this type `T`, so type cannot change.</span>
-                <span class="ident">Box::new</span>(<span class="ident">x</span>.<span class="ident">clone</span>())
+<span class="kw">impl </span>Element {
+    <span class="doccomment">/// Create a value that won&#39;t be persisted.
+    </span><span class="attribute">#[inline]
+    </span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>new_temp&lt;T: <span class="lifetime">&#39;static </span>+ Any + Clone + Send + Sync&gt;(t: T) -&gt; <span class="self">Self </span>{
+        <span class="self">Self</span>::Value {
+            value: Box::new(t),
+            clone_fn: |x| {
+                <span class="kw">let </span>x = x.downcast_ref::&lt;T&gt;().unwrap(); <span class="comment">// This unwrap will never panic, because we always construct this type using this `new` function and because we return &amp;mut reference only with this type `T`, so type cannot change.
+                </span>Box::new(x.clone())
             },
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;persistence&quot;</span>)]</span>
-            <span class="ident">serialize_fn</span>: <span class="prelude-val">None</span>,
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;persistence&quot;</span>)]
+            </span>serialize_fn: <span class="prelude-val">None</span>,
         }
     }
 
-    <span class="doccomment">/// Create a value that will be persisted.</span>
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">new_persisted</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">SerializableAny</span><span class="op">&gt;</span>(<span class="ident">t</span>: <span class="ident">T</span>) -&gt; <span class="self">Self</span> {
-        <span class="ident"><span class="self">Self</span>::Value</span> {
-            <span class="ident">value</span>: <span class="ident">Box::new</span>(<span class="ident">t</span>),
-            <span class="ident">clone_fn</span>: <span class="op">|</span><span class="ident">x</span><span class="op">|</span> {
-                <span class="kw">let</span> <span class="ident">x</span> <span class="op">=</span> <span class="ident">x</span>.<span class="ident">downcast_ref</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>().<span class="ident">unwrap</span>(); <span class="comment">// This unwrap will never panic, because we always construct this type using this `new` function and because we return &amp;mut reference only with this type `T`, so type cannot change.</span>
-                <span class="ident">Box::new</span>(<span class="ident">x</span>.<span class="ident">clone</span>())
+    <span class="doccomment">/// Create a value that will be persisted.
+    </span><span class="attribute">#[inline]
+    </span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>new_persisted&lt;T: SerializableAny&gt;(t: T) -&gt; <span class="self">Self </span>{
+        <span class="self">Self</span>::Value {
+            value: Box::new(t),
+            clone_fn: |x| {
+                <span class="kw">let </span>x = x.downcast_ref::&lt;T&gt;().unwrap(); <span class="comment">// This unwrap will never panic, because we always construct this type using this `new` function and because we return &amp;mut reference only with this type `T`, so type cannot change.
+                </span>Box::new(x.clone())
             },
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;persistence&quot;</span>)]</span>
-            <span class="ident">serialize_fn</span>: <span class="prelude-val">Some</span>(<span class="op">|</span><span class="ident">x</span><span class="op">|</span> {
-                <span class="kw">let</span> <span class="ident">x</span> <span class="op">=</span> <span class="ident">x</span>.<span class="ident">downcast_ref</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>().<span class="ident">unwrap</span>(); <span class="comment">// This will never panic too, for same reason.</span>
-                <span class="ident">ron::to_string</span>(<span class="ident">x</span>).<span class="ident">ok</span>()
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;persistence&quot;</span>)]
+            </span>serialize_fn: <span class="prelude-val">Some</span>(|x| {
+                <span class="kw">let </span>x = x.downcast_ref::&lt;T&gt;().unwrap(); <span class="comment">// This will never panic too, for same reason.
+                </span>ron::to_string(x).ok()
             }),
         }
     }
 
-    <span class="doccomment">/// The type of the stored value.</span>
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">type_id</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">TypeId</span> {
-        <span class="kw">match</span> <span class="self">self</span> {
-            <span class="ident"><span class="self">Self</span>::Value</span> { <span class="ident">value</span>, .. } =&gt; (<span class="kw-2">*</span><span class="kw-2">*</span><span class="ident">value</span>).<span class="ident">type_id</span>().<span class="ident">into</span>(),
-            <span class="ident"><span class="self">Self</span>::Serialized</span> { <span class="ident">type_id</span>, .. } =&gt; <span class="kw-2">*</span><span class="ident">type_id</span>,
+    <span class="doccomment">/// The type of the stored value.
+    </span><span class="attribute">#[inline]
+    </span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>type_id(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; TypeId {
+        <span class="kw">match </span><span class="self">self </span>{
+            <span class="self">Self</span>::Value { value, .. } =&gt; (<span class="kw-2">**</span>value).type_id().into(),
+            <span class="self">Self</span>::Serialized { type_id, .. } =&gt; <span class="kw-2">*</span>type_id,
         }
     }
 
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">get_mut_temp</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;mut</span> <span class="ident">T</span><span class="op">&gt;</span> {
-        <span class="kw">match</span> <span class="self">self</span> {
-            <span class="ident"><span class="self">Self</span>::Value</span> { <span class="ident">value</span>, .. } =&gt; <span class="ident">value</span>.<span class="ident">downcast_mut</span>(),
-            <span class="ident"><span class="self">Self</span>::Serialized</span> { .. } =&gt; <span class="prelude-val">None</span>,
+    <span class="attribute">#[inline]
+    </span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>get_mut_temp&lt;T: <span class="lifetime">&#39;static</span>&gt;(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;mut </span>T&gt; {
+        <span class="kw">match </span><span class="self">self </span>{
+            <span class="self">Self</span>::Value { value, .. } =&gt; value.downcast_mut(),
+            <span class="self">Self</span>::Serialized { .. } =&gt; <span class="prelude-val">None</span>,
         }
     }
 
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">get_temp_mut_or_insert_with</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="lifetime">&#39;static</span> <span class="op">+</span> <span class="ident">Any</span> <span class="op">+</span> <span class="ident">Clone</span> <span class="op">+</span> <span class="ident">Send</span> <span class="op">+</span> <span class="ident">Sync</span><span class="op">&gt;</span>(
-        <span class="kw-2">&amp;mut</span> <span class="self">self</span>,
-        <span class="ident">insert_with</span>: <span class="kw">impl</span> <span class="ident">FnOnce</span>() -&gt; <span class="ident">T</span>,
-    ) -&gt; <span class="kw-2">&amp;mut</span> <span class="ident">T</span> {
-        <span class="kw">match</span> <span class="self">self</span> {
-            <span class="ident"><span class="self">Self</span>::Value</span> { <span class="ident">value</span>, .. } =&gt; {
-                <span class="kw">if</span> <span class="op">!</span><span class="ident">value</span>.<span class="ident">is</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>() {
-                    <span class="kw-2">*</span><span class="self">self</span> <span class="op">=</span> <span class="ident"><span class="self">Self</span>::new_temp</span>(<span class="ident">insert_with</span>());
+    <span class="attribute">#[inline]
+    </span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>get_temp_mut_or_insert_with&lt;T: <span class="lifetime">&#39;static </span>+ Any + Clone + Send + Sync&gt;(
+        <span class="kw-2">&amp;mut </span><span class="self">self</span>,
+        insert_with: <span class="kw">impl </span>FnOnce() -&gt; T,
+    ) -&gt; <span class="kw-2">&amp;mut </span>T {
+        <span class="kw">match </span><span class="self">self </span>{
+            <span class="self">Self</span>::Value { value, .. } =&gt; {
+                <span class="kw">if </span>!value.is::&lt;T&gt;() {
+                    <span class="kw-2">*</span><span class="self">self </span>= <span class="self">Self</span>::new_temp(insert_with());
                 }
             }
-            <span class="ident"><span class="self">Self</span>::Serialized</span> { .. } =&gt; {
-                <span class="kw-2">*</span><span class="self">self</span> <span class="op">=</span> <span class="ident"><span class="self">Self</span>::new_temp</span>(<span class="ident">insert_with</span>());
+            <span class="self">Self</span>::Serialized { .. } =&gt; {
+                <span class="kw-2">*</span><span class="self">self </span>= <span class="self">Self</span>::new_temp(insert_with());
             }
         }
 
-        <span class="kw">match</span> <span class="self">self</span> {
-            <span class="ident"><span class="self">Self</span>::Value</span> { <span class="ident">value</span>, .. } =&gt; <span class="ident">value</span>.<span class="ident">downcast_mut</span>().<span class="ident">unwrap</span>(), <span class="comment">// This unwrap will never panic because we already converted object to required type</span>
-            <span class="ident"><span class="self">Self</span>::Serialized</span> { .. } =&gt; <span class="macro">unreachable!</span>(),
-        }
-    }
-
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">get_persisted_mut_or_insert_with</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">SerializableAny</span><span class="op">&gt;</span>(
-        <span class="kw-2">&amp;mut</span> <span class="self">self</span>,
-        <span class="ident">insert_with</span>: <span class="kw">impl</span> <span class="ident">FnOnce</span>() -&gt; <span class="ident">T</span>,
-    ) -&gt; <span class="kw-2">&amp;mut</span> <span class="ident">T</span> {
-        <span class="kw">match</span> <span class="self">self</span> {
-            <span class="ident"><span class="self">Self</span>::Value</span> { <span class="ident">value</span>, .. } =&gt; {
-                <span class="kw">if</span> <span class="op">!</span><span class="ident">value</span>.<span class="ident">is</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>() {
-                    <span class="kw-2">*</span><span class="self">self</span> <span class="op">=</span> <span class="ident"><span class="self">Self</span>::new_persisted</span>(<span class="ident">insert_with</span>());
-                }
-            }
-
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;persistence&quot;</span>)]</span>
-            <span class="ident"><span class="self">Self</span>::Serialized</span> { <span class="ident">ron</span>, .. } =&gt; {
-                <span class="kw-2">*</span><span class="self">self</span> <span class="op">=</span> <span class="ident"><span class="self">Self</span>::new_persisted</span>(<span class="ident">from_ron_str</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>(<span class="ident">ron</span>).<span class="ident">unwrap_or_else</span>(<span class="ident">insert_with</span>));
-            }
-
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">not</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;persistence&quot;</span>))]</span>
-            <span class="ident"><span class="self">Self</span>::Serialized</span> { .. } =&gt; {
-                <span class="kw-2">*</span><span class="self">self</span> <span class="op">=</span> <span class="ident"><span class="self">Self</span>::new_persisted</span>(<span class="ident">insert_with</span>());
-            }
-        }
-
-        <span class="kw">match</span> <span class="self">self</span> {
-            <span class="ident"><span class="self">Self</span>::Value</span> { <span class="ident">value</span>, .. } =&gt; <span class="ident">value</span>.<span class="ident">downcast_mut</span>().<span class="ident">unwrap</span>(), <span class="comment">// This unwrap will never panic because we already converted object to required type</span>
-            <span class="ident"><span class="self">Self</span>::Serialized</span> { .. } =&gt; <span class="macro">unreachable!</span>(),
+        <span class="kw">match </span><span class="self">self </span>{
+            <span class="self">Self</span>::Value { value, .. } =&gt; value.downcast_mut().unwrap(), <span class="comment">// This unwrap will never panic because we already converted object to required type
+            </span><span class="self">Self</span>::Serialized { .. } =&gt; <span class="macro">unreachable!</span>(),
         }
     }
 
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">get_mut_persisted</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">SerializableAny</span><span class="op">&gt;</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;mut</span> <span class="ident">T</span><span class="op">&gt;</span> {
-        <span class="kw">match</span> <span class="self">self</span> {
-            <span class="ident"><span class="self">Self</span>::Value</span> { <span class="ident">value</span>, .. } =&gt; <span class="ident">value</span>.<span class="ident">downcast_mut</span>(),
-
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;persistence&quot;</span>)]</span>
-            <span class="ident"><span class="self">Self</span>::Serialized</span> { <span class="ident">ron</span>, .. } =&gt; {
-                <span class="kw-2">*</span><span class="self">self</span> <span class="op">=</span> <span class="ident"><span class="self">Self</span>::new_persisted</span>(<span class="ident">from_ron_str</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>(<span class="ident">ron</span>)<span class="question-mark">?</span>);
-
-                <span class="kw">match</span> <span class="self">self</span> {
-                    <span class="ident"><span class="self">Self</span>::Value</span> { <span class="ident">value</span>, .. } =&gt; <span class="ident">value</span>.<span class="ident">downcast_mut</span>(),
-                    <span class="ident"><span class="self">Self</span>::Serialized</span> { .. } =&gt; <span class="macro">unreachable!</span>(),
+    <span class="attribute">#[inline]
+    </span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>get_persisted_mut_or_insert_with&lt;T: SerializableAny&gt;(
+        <span class="kw-2">&amp;mut </span><span class="self">self</span>,
+        insert_with: <span class="kw">impl </span>FnOnce() -&gt; T,
+    ) -&gt; <span class="kw-2">&amp;mut </span>T {
+        <span class="kw">match </span><span class="self">self </span>{
+            <span class="self">Self</span>::Value { value, .. } =&gt; {
+                <span class="kw">if </span>!value.is::&lt;T&gt;() {
+                    <span class="kw-2">*</span><span class="self">self </span>= <span class="self">Self</span>::new_persisted(insert_with());
                 }
             }
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">not</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;persistence&quot;</span>))]</span>
-            <span class="ident"><span class="self">Self</span>::Serialized</span> { .. } =&gt; <span class="prelude-val">None</span>,
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;persistence&quot;</span>)]
+            </span><span class="self">Self</span>::Serialized { ron, .. } =&gt; {
+                <span class="kw-2">*</span><span class="self">self </span>= <span class="self">Self</span>::new_persisted(from_ron_str::&lt;T&gt;(ron).unwrap_or_else(insert_with));
+            }
+
+            <span class="attribute">#[cfg(not(feature = <span class="string">&quot;persistence&quot;</span>))]
+            </span><span class="self">Self</span>::Serialized { .. } =&gt; {
+                <span class="kw-2">*</span><span class="self">self </span>= <span class="self">Self</span>::new_persisted(insert_with());
+            }
+        }
+
+        <span class="kw">match </span><span class="self">self </span>{
+            <span class="self">Self</span>::Value { value, .. } =&gt; value.downcast_mut().unwrap(), <span class="comment">// This unwrap will never panic because we already converted object to required type
+            </span><span class="self">Self</span>::Serialized { .. } =&gt; <span class="macro">unreachable!</span>(),
         }
     }
 
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;persistence&quot;</span>)]</span>
-    <span class="kw">fn</span> <span class="ident">to_serialize</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">SerializedElement</span><span class="op">&gt;</span> {
-        <span class="kw">match</span> <span class="self">self</span> {
-            <span class="ident"><span class="self">Self</span>::Value</span> {
-                <span class="ident">value</span>,
-                <span class="ident">serialize_fn</span>,
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>get_mut_persisted&lt;T: SerializableAny&gt;(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;mut </span>T&gt; {
+        <span class="kw">match </span><span class="self">self </span>{
+            <span class="self">Self</span>::Value { value, .. } =&gt; value.downcast_mut(),
+
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;persistence&quot;</span>)]
+            </span><span class="self">Self</span>::Serialized { ron, .. } =&gt; {
+                <span class="kw-2">*</span><span class="self">self </span>= <span class="self">Self</span>::new_persisted(from_ron_str::&lt;T&gt;(ron)<span class="question-mark">?</span>);
+
+                <span class="kw">match </span><span class="self">self </span>{
+                    <span class="self">Self</span>::Value { value, .. } =&gt; value.downcast_mut(),
+                    <span class="self">Self</span>::Serialized { .. } =&gt; <span class="macro">unreachable!</span>(),
+                }
+            }
+
+            <span class="attribute">#[cfg(not(feature = <span class="string">&quot;persistence&quot;</span>))]
+            </span><span class="self">Self</span>::Serialized { .. } =&gt; <span class="prelude-val">None</span>,
+        }
+    }
+
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;persistence&quot;</span>)]
+    </span><span class="kw">fn </span>to_serialize(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;SerializedElement&gt; {
+        <span class="kw">match </span><span class="self">self </span>{
+            <span class="self">Self</span>::Value {
+                value,
+                serialize_fn,
                 ..
             } =&gt; {
-                <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">serialize_fn</span>) <span class="op">=</span> <span class="ident">serialize_fn</span> {
-                    <span class="kw">let</span> <span class="ident">ron</span> <span class="op">=</span> <span class="ident">serialize_fn</span>(<span class="ident">value</span>)<span class="question-mark">?</span>;
-                    <span class="prelude-val">Some</span>(<span class="ident">SerializedElement</span> {
-                        <span class="ident">type_id</span>: (<span class="kw-2">*</span><span class="kw-2">*</span><span class="ident">value</span>).<span class="ident">type_id</span>().<span class="ident">into</span>(),
-                        <span class="ident">ron</span>: <span class="ident">ron</span>.<span class="ident">into</span>(),
+                <span class="kw">if let </span><span class="prelude-val">Some</span>(serialize_fn) = serialize_fn {
+                    <span class="kw">let </span>ron = serialize_fn(value)<span class="question-mark">?</span>;
+                    <span class="prelude-val">Some</span>(SerializedElement {
+                        type_id: (<span class="kw-2">**</span>value).type_id().into(),
+                        ron: ron.into(),
                     })
-                } <span class="kw">else</span> {
-                    <span class="prelude-val">None</span>
-                }
+                } <span class="kw">else </span>{
+                    <span class="prelude-val">None
+                </span>}
             }
-            <span class="ident"><span class="self">Self</span>::Serialized</span> { <span class="ident">type_id</span>, <span class="ident">ron</span> } =&gt; <span class="prelude-val">Some</span>(<span class="ident">SerializedElement</span> {
-                <span class="ident">type_id</span>: <span class="kw-2">*</span><span class="ident">type_id</span>,
-                <span class="ident">ron</span>: <span class="ident">ron</span>.<span class="ident">clone</span>(),
+            <span class="self">Self</span>::Serialized { type_id, ron } =&gt; <span class="prelude-val">Some</span>(SerializedElement {
+                type_id: <span class="kw-2">*</span>type_id,
+                ron: ron.clone(),
             }),
         }
     }
 }
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;persistence&quot;</span>)]</span>
-<span class="kw">fn</span> <span class="ident">from_ron_str</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">serde::de::DeserializeOwned</span><span class="op">&gt;</span>(<span class="ident">ron</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> {
-    <span class="kw">match</span> <span class="ident">ron::from_str</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>(<span class="ident">ron</span>) {
-        <span class="prelude-val">Ok</span>(<span class="ident">value</span>) =&gt; <span class="prelude-val">Some</span>(<span class="ident">value</span>),
-        <span class="prelude-val">Err</span>(<span class="ident">err</span>) =&gt; {
+<span class="attribute">#[cfg(feature = <span class="string">&quot;persistence&quot;</span>)]
+</span><span class="kw">fn </span>from_ron_str&lt;T: serde::de::DeserializeOwned&gt;(ron: <span class="kw-2">&amp;</span>str) -&gt; <span class="prelude-ty">Option</span>&lt;T&gt; {
+    <span class="kw">match </span>ron::from_str::&lt;T&gt;(ron) {
+        <span class="prelude-val">Ok</span>(value) =&gt; <span class="prelude-val">Some</span>(value),
+        <span class="prelude-val">Err</span>(err) =&gt; {
             <span class="macro">eprintln!</span>(
                 <span class="string">&quot;egui: Failed to deserialize {} from memory: {}, ron error: {:?}&quot;</span>,
-                <span class="ident">std::any::type_name</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>(),
-                <span class="ident">err</span>,
-                <span class="ident">ron</span>
+                std::any::type_name::&lt;T&gt;(),
+                err,
+                ron
             );
-            <span class="prelude-val">None</span>
-        }
+            <span class="prelude-val">None
+        </span>}
     }
 }
 
-<span class="comment">// -----------------------------------------------------------------------------------------------</span>
+<span class="comment">// -----------------------------------------------------------------------------------------------
 
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::Id</span>;
+</span><span class="kw">use </span><span class="kw">crate</span>::Id;
 
-<span class="comment">// TODO: make IdTypeMap generic over the key (`Id`), and make a library of IdTypeMap.</span>
-<span class="doccomment">/// Stores values identified by an [`Id`] AND a the [`std::any::TypeId`] of the value.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// so it maps `(Id, TypeId)` to any value you want.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// Values can either be &quot;persisted&quot; (serializable) or &quot;temporary&quot; (cleared when egui is shut down).</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// You can store state using the key [`Id::null`]. The state will then only be identified by its type.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// ```</span>
-<span class="doccomment">/// # use egui::{Id, util::IdTypeMap};</span>
-<span class="doccomment">/// let a = Id::new(&quot;a&quot;);</span>
-<span class="doccomment">/// let b = Id::new(&quot;b&quot;);</span>
-<span class="doccomment">/// let mut map: IdTypeMap = Default::default();</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// // `a` associated with an f64 and an i32</span>
-<span class="doccomment">/// map.insert_persisted(a, 3.14);</span>
-<span class="doccomment">/// map.insert_temp(a, 42);</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// // `b` associated with an f64 and a `&amp;&#39;static str`</span>
-<span class="doccomment">/// map.insert_persisted(b, 6.28);</span>
-<span class="doccomment">/// map.insert_temp(b, &quot;Hello World&quot;.to_string());</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// // we can retrieve all four values:</span>
-<span class="doccomment">/// assert_eq!(map.get_temp::&lt;f64&gt;(a), Some(3.14));</span>
-<span class="doccomment">/// assert_eq!(map.get_temp::&lt;i32&gt;(a), Some(42));</span>
-<span class="doccomment">/// assert_eq!(map.get_temp::&lt;f64&gt;(b), Some(6.28));</span>
-<span class="doccomment">/// assert_eq!(map.get_temp::&lt;String&gt;(b), Some(&quot;Hello World&quot;.to_string()));</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// // we can retrieve them like so also:</span>
-<span class="doccomment">/// assert_eq!(map.get_persisted::&lt;f64&gt;(a), Some(3.14));</span>
-<span class="doccomment">/// assert_eq!(map.get_persisted::&lt;i32&gt;(a), Some(42));</span>
-<span class="doccomment">/// assert_eq!(map.get_persisted::&lt;f64&gt;(b), Some(6.28));</span>
-<span class="doccomment">/// assert_eq!(map.get_temp::&lt;String&gt;(b), Some(&quot;Hello World&quot;.to_string()));</span>
-<span class="doccomment">/// ```</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">Default</span>)]</span>
-<span class="comment">// We store use `id XOR typeid` as a key, so we don&#39;t need to hash again!</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">IdTypeMap</span>(<span class="ident">nohash_hasher::IntMap</span><span class="op">&lt;</span><span class="ident">u64</span>, <span class="ident">Element</span><span class="op">&gt;</span>);
+<span class="comment">// TODO: make IdTypeMap generic over the key (`Id`), and make a library of IdTypeMap.
+</span><span class="doccomment">/// Stores values identified by an [`Id`] AND a the [`std::any::TypeId`] of the value.
+///
+/// so it maps `(Id, TypeId)` to any value you want.
+///
+/// Values can either be &quot;persisted&quot; (serializable) or &quot;temporary&quot; (cleared when egui is shut down).
+///
+/// You can store state using the key [`Id::null`]. The state will then only be identified by its type.
+///
+/// ```
+/// # use egui::{Id, util::IdTypeMap};
+/// let a = Id::new(&quot;a&quot;);
+/// let b = Id::new(&quot;b&quot;);
+/// let mut map: IdTypeMap = Default::default();
+///
+/// // `a` associated with an f64 and an i32
+/// map.insert_persisted(a, 3.14);
+/// map.insert_temp(a, 42);
+///
+/// // `b` associated with an f64 and a `&amp;&#39;static str`
+/// map.insert_persisted(b, 6.28);
+/// map.insert_temp(b, &quot;Hello World&quot;.to_string());
+///
+/// // we can retrieve all four values:
+/// assert_eq!(map.get_temp::&lt;f64&gt;(a), Some(3.14));
+/// assert_eq!(map.get_temp::&lt;i32&gt;(a), Some(42));
+/// assert_eq!(map.get_temp::&lt;f64&gt;(b), Some(6.28));
+/// assert_eq!(map.get_temp::&lt;String&gt;(b), Some(&quot;Hello World&quot;.to_string()));
+///
+/// // we can retrieve them like so also:
+/// assert_eq!(map.get_persisted::&lt;f64&gt;(a), Some(3.14));
+/// assert_eq!(map.get_persisted::&lt;i32&gt;(a), Some(42));
+/// assert_eq!(map.get_persisted::&lt;f64&gt;(b), Some(6.28));
+/// assert_eq!(map.get_temp::&lt;String&gt;(b), Some(&quot;Hello World&quot;.to_string()));
+/// ```
+</span><span class="attribute">#[derive(Clone, Debug, Default)]
+</span><span class="comment">// We store use `id XOR typeid` as a key, so we don&#39;t need to hash again!
+</span><span class="kw">pub struct </span>IdTypeMap(nohash_hasher::IntMap&lt;u64, Element&gt;);
 
-<span class="kw">impl</span> <span class="ident">IdTypeMap</span> {
-    <span class="doccomment">/// Insert a value that will not be persisted.</span>
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">insert_temp</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="lifetime">&#39;static</span> <span class="op">+</span> <span class="ident">Any</span> <span class="op">+</span> <span class="ident">Clone</span> <span class="op">+</span> <span class="ident">Send</span> <span class="op">+</span> <span class="ident">Sync</span><span class="op">&gt;</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">id</span>: <span class="ident">Id</span>, <span class="ident">value</span>: <span class="ident">T</span>) {
-        <span class="kw">let</span> <span class="ident">hash</span> <span class="op">=</span> <span class="ident">hash</span>(<span class="ident">TypeId::of</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>(), <span class="ident">id</span>);
-        <span class="self">self</span>.<span class="number">0</span>.<span class="ident">insert</span>(<span class="ident">hash</span>, <span class="ident">Element::new_temp</span>(<span class="ident">value</span>));
+<span class="kw">impl </span>IdTypeMap {
+    <span class="doccomment">/// Insert a value that will not be persisted.
+    </span><span class="attribute">#[inline]
+    </span><span class="kw">pub fn </span>insert_temp&lt;T: <span class="lifetime">&#39;static </span>+ Any + Clone + Send + Sync&gt;(<span class="kw-2">&amp;mut </span><span class="self">self</span>, id: Id, value: T) {
+        <span class="kw">let </span>hash = hash(TypeId::of::&lt;T&gt;(), id);
+        <span class="self">self</span>.<span class="number">0</span>.insert(hash, Element::new_temp(value));
     }
 
-    <span class="doccomment">/// Insert a value that will be persisted next time you start the app.</span>
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">insert_persisted</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">SerializableAny</span><span class="op">&gt;</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">id</span>: <span class="ident">Id</span>, <span class="ident">value</span>: <span class="ident">T</span>) {
-        <span class="kw">let</span> <span class="ident">hash</span> <span class="op">=</span> <span class="ident">hash</span>(<span class="ident">TypeId::of</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>(), <span class="ident">id</span>);
-        <span class="self">self</span>.<span class="number">0</span>.<span class="ident">insert</span>(<span class="ident">hash</span>, <span class="ident">Element::new_persisted</span>(<span class="ident">value</span>));
+    <span class="doccomment">/// Insert a value that will be persisted next time you start the app.
+    </span><span class="attribute">#[inline]
+    </span><span class="kw">pub fn </span>insert_persisted&lt;T: SerializableAny&gt;(<span class="kw-2">&amp;mut </span><span class="self">self</span>, id: Id, value: T) {
+        <span class="kw">let </span>hash = hash(TypeId::of::&lt;T&gt;(), id);
+        <span class="self">self</span>.<span class="number">0</span>.insert(hash, Element::new_persisted(value));
     }
 
-    <span class="doccomment">/// Read a value without trying to deserialize a persisted value.</span>
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_temp</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="lifetime">&#39;static</span> <span class="op">+</span> <span class="ident">Clone</span><span class="op">&gt;</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">id</span>: <span class="ident">Id</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="ident">hash</span> <span class="op">=</span> <span class="ident">hash</span>(<span class="ident">TypeId::of</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>(), <span class="ident">id</span>);
-        <span class="self">self</span>.<span class="number">0</span>
-            .<span class="ident">get_mut</span>(<span class="kw-2">&amp;</span><span class="ident">hash</span>)
-            .<span class="ident">and_then</span>(<span class="op">|</span><span class="ident">x</span><span class="op">|</span> <span class="ident">x</span>.<span class="ident">get_mut_temp</span>())
-            .<span class="ident">cloned</span>()
+    <span class="doccomment">/// Read a value without trying to deserialize a persisted value.
+    </span><span class="attribute">#[inline]
+    </span><span class="kw">pub fn </span>get_temp&lt;T: <span class="lifetime">&#39;static </span>+ Clone&gt;(<span class="kw-2">&amp;mut </span><span class="self">self</span>, id: Id) -&gt; <span class="prelude-ty">Option</span>&lt;T&gt; {
+        <span class="kw">let </span>hash = hash(TypeId::of::&lt;T&gt;(), id);
+        <span class="self">self</span>.<span class="number">0
+            </span>.get_mut(<span class="kw-2">&amp;</span>hash)
+            .and_then(|x| x.get_mut_temp())
+            .cloned()
     }
 
-    <span class="doccomment">/// Read a value, optionally deserializing it if available.</span>
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_persisted</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">SerializableAny</span><span class="op">&gt;</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">id</span>: <span class="ident">Id</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="ident">hash</span> <span class="op">=</span> <span class="ident">hash</span>(<span class="ident">TypeId::of</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>(), <span class="ident">id</span>);
-        <span class="self">self</span>.<span class="number">0</span>
-            .<span class="ident">get_mut</span>(<span class="kw-2">&amp;</span><span class="ident">hash</span>)
-            .<span class="ident">and_then</span>(<span class="op">|</span><span class="ident">x</span><span class="op">|</span> <span class="ident">x</span>.<span class="ident">get_mut_persisted</span>())
-            .<span class="ident">cloned</span>()
+    <span class="doccomment">/// Read a value, optionally deserializing it if available.
+    </span><span class="attribute">#[inline]
+    </span><span class="kw">pub fn </span>get_persisted&lt;T: SerializableAny&gt;(<span class="kw-2">&amp;mut </span><span class="self">self</span>, id: Id) -&gt; <span class="prelude-ty">Option</span>&lt;T&gt; {
+        <span class="kw">let </span>hash = hash(TypeId::of::&lt;T&gt;(), id);
+        <span class="self">self</span>.<span class="number">0
+            </span>.get_mut(<span class="kw-2">&amp;</span>hash)
+            .and_then(|x| x.get_mut_persisted())
+            .cloned()
     }
 
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_temp_mut_or</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="lifetime">&#39;static</span> <span class="op">+</span> <span class="ident">Any</span> <span class="op">+</span> <span class="ident">Clone</span> <span class="op">+</span> <span class="ident">Send</span> <span class="op">+</span> <span class="ident">Sync</span><span class="op">&gt;</span>(
-        <span class="kw-2">&amp;mut</span> <span class="self">self</span>,
-        <span class="ident">id</span>: <span class="ident">Id</span>,
-        <span class="ident">or_insert</span>: <span class="ident">T</span>,
-    ) -&gt; <span class="kw-2">&amp;mut</span> <span class="ident">T</span> {
-        <span class="self">self</span>.<span class="ident">get_temp_mut_or_insert_with</span>(<span class="ident">id</span>, <span class="op">|</span><span class="op">|</span> <span class="ident">or_insert</span>)
+    <span class="attribute">#[inline]
+    </span><span class="kw">pub fn </span>get_temp_mut_or&lt;T: <span class="lifetime">&#39;static </span>+ Any + Clone + Send + Sync&gt;(
+        <span class="kw-2">&amp;mut </span><span class="self">self</span>,
+        id: Id,
+        or_insert: T,
+    ) -&gt; <span class="kw-2">&amp;mut </span>T {
+        <span class="self">self</span>.get_temp_mut_or_insert_with(id, || or_insert)
     }
 
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_persisted_mut_or</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">SerializableAny</span><span class="op">&gt;</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">id</span>: <span class="ident">Id</span>, <span class="ident">or_insert</span>: <span class="ident">T</span>) -&gt; <span class="kw-2">&amp;mut</span> <span class="ident">T</span> {
-        <span class="self">self</span>.<span class="ident">get_persisted_mut_or_insert_with</span>(<span class="ident">id</span>, <span class="op">|</span><span class="op">|</span> <span class="ident">or_insert</span>)
+    <span class="attribute">#[inline]
+    </span><span class="kw">pub fn </span>get_persisted_mut_or&lt;T: SerializableAny&gt;(<span class="kw-2">&amp;mut </span><span class="self">self</span>, id: Id, or_insert: T) -&gt; <span class="kw-2">&amp;mut </span>T {
+        <span class="self">self</span>.get_persisted_mut_or_insert_with(id, || or_insert)
     }
 
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_temp_mut_or_default</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="lifetime">&#39;static</span> <span class="op">+</span> <span class="ident">Any</span> <span class="op">+</span> <span class="ident">Clone</span> <span class="op">+</span> <span class="ident">Send</span> <span class="op">+</span> <span class="ident">Sync</span> <span class="op">+</span> <span class="ident">Default</span><span class="op">&gt;</span>(
-        <span class="kw-2">&amp;mut</span> <span class="self">self</span>,
-        <span class="ident">id</span>: <span class="ident">Id</span>,
-    ) -&gt; <span class="kw-2">&amp;mut</span> <span class="ident">T</span> {
-        <span class="self">self</span>.<span class="ident">get_temp_mut_or_insert_with</span>(<span class="ident">id</span>, <span class="ident">Default::default</span>)
+    <span class="attribute">#[inline]
+    </span><span class="kw">pub fn </span>get_temp_mut_or_default&lt;T: <span class="lifetime">&#39;static </span>+ Any + Clone + Send + Sync + Default&gt;(
+        <span class="kw-2">&amp;mut </span><span class="self">self</span>,
+        id: Id,
+    ) -&gt; <span class="kw-2">&amp;mut </span>T {
+        <span class="self">self</span>.get_temp_mut_or_insert_with(id, Default::default)
     }
 
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_persisted_mut_or_default</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">SerializableAny</span> <span class="op">+</span> <span class="ident">Default</span><span class="op">&gt;</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">id</span>: <span class="ident">Id</span>) -&gt; <span class="kw-2">&amp;mut</span> <span class="ident">T</span> {
-        <span class="self">self</span>.<span class="ident">get_persisted_mut_or_insert_with</span>(<span class="ident">id</span>, <span class="ident">Default::default</span>)
+    <span class="attribute">#[inline]
+    </span><span class="kw">pub fn </span>get_persisted_mut_or_default&lt;T: SerializableAny + Default&gt;(<span class="kw-2">&amp;mut </span><span class="self">self</span>, id: Id) -&gt; <span class="kw-2">&amp;mut </span>T {
+        <span class="self">self</span>.get_persisted_mut_or_insert_with(id, Default::default)
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_temp_mut_or_insert_with</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="lifetime">&#39;static</span> <span class="op">+</span> <span class="ident">Any</span> <span class="op">+</span> <span class="ident">Clone</span> <span class="op">+</span> <span class="ident">Send</span> <span class="op">+</span> <span class="ident">Sync</span><span class="op">&gt;</span>(
-        <span class="kw-2">&amp;mut</span> <span class="self">self</span>,
-        <span class="ident">id</span>: <span class="ident">Id</span>,
-        <span class="ident">insert_with</span>: <span class="kw">impl</span> <span class="ident">FnOnce</span>() -&gt; <span class="ident">T</span>,
-    ) -&gt; <span class="kw-2">&amp;mut</span> <span class="ident">T</span> {
-        <span class="kw">let</span> <span class="ident">hash</span> <span class="op">=</span> <span class="ident">hash</span>(<span class="ident">TypeId::of</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>(), <span class="ident">id</span>);
-        <span class="kw">use</span> <span class="ident">std::collections::hash_map::Entry</span>;
-        <span class="kw">match</span> <span class="self">self</span>.<span class="number">0</span>.<span class="ident">entry</span>(<span class="ident">hash</span>) {
-            <span class="ident">Entry::Vacant</span>(<span class="ident">vacant</span>) =&gt; <span class="ident">vacant</span>
-                .<span class="ident">insert</span>(<span class="ident">Element::new_temp</span>(<span class="ident">insert_with</span>()))
-                .<span class="ident">get_mut_temp</span>()
-                .<span class="ident">unwrap</span>(), <span class="comment">// this unwrap will never panic, because we insert correct type right now</span>
-            <span class="ident">Entry::Occupied</span>(<span class="ident">occupied</span>) =&gt; {
-                <span class="ident">occupied</span>.<span class="ident">into_mut</span>().<span class="ident">get_temp_mut_or_insert_with</span>(<span class="ident">insert_with</span>)
+    <span class="kw">pub fn </span>get_temp_mut_or_insert_with&lt;T: <span class="lifetime">&#39;static </span>+ Any + Clone + Send + Sync&gt;(
+        <span class="kw-2">&amp;mut </span><span class="self">self</span>,
+        id: Id,
+        insert_with: <span class="kw">impl </span>FnOnce() -&gt; T,
+    ) -&gt; <span class="kw-2">&amp;mut </span>T {
+        <span class="kw">let </span>hash = hash(TypeId::of::&lt;T&gt;(), id);
+        <span class="kw">use </span>std::collections::hash_map::Entry;
+        <span class="kw">match </span><span class="self">self</span>.<span class="number">0</span>.entry(hash) {
+            Entry::Vacant(vacant) =&gt; vacant
+                .insert(Element::new_temp(insert_with()))
+                .get_mut_temp()
+                .unwrap(), <span class="comment">// this unwrap will never panic, because we insert correct type right now
+            </span>Entry::Occupied(occupied) =&gt; {
+                occupied.into_mut().get_temp_mut_or_insert_with(insert_with)
             }
         }
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_persisted_mut_or_insert_with</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">SerializableAny</span><span class="op">&gt;</span>(
-        <span class="kw-2">&amp;mut</span> <span class="self">self</span>,
-        <span class="ident">id</span>: <span class="ident">Id</span>,
-        <span class="ident">insert_with</span>: <span class="kw">impl</span> <span class="ident">FnOnce</span>() -&gt; <span class="ident">T</span>,
-    ) -&gt; <span class="kw-2">&amp;mut</span> <span class="ident">T</span> {
-        <span class="kw">let</span> <span class="ident">hash</span> <span class="op">=</span> <span class="ident">hash</span>(<span class="ident">TypeId::of</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>(), <span class="ident">id</span>);
-        <span class="kw">use</span> <span class="ident">std::collections::hash_map::Entry</span>;
-        <span class="kw">match</span> <span class="self">self</span>.<span class="number">0</span>.<span class="ident">entry</span>(<span class="ident">hash</span>) {
-            <span class="ident">Entry::Vacant</span>(<span class="ident">vacant</span>) =&gt; <span class="ident">vacant</span>
-                .<span class="ident">insert</span>(<span class="ident">Element::new_persisted</span>(<span class="ident">insert_with</span>()))
-                .<span class="ident">get_mut_persisted</span>()
-                .<span class="ident">unwrap</span>(), <span class="comment">// this unwrap will never panic, because we insert correct type right now</span>
-            <span class="ident">Entry::Occupied</span>(<span class="ident">occupied</span>) =&gt; <span class="ident">occupied</span>
-                .<span class="ident">into_mut</span>()
-                .<span class="ident">get_persisted_mut_or_insert_with</span>(<span class="ident">insert_with</span>),
+    <span class="kw">pub fn </span>get_persisted_mut_or_insert_with&lt;T: SerializableAny&gt;(
+        <span class="kw-2">&amp;mut </span><span class="self">self</span>,
+        id: Id,
+        insert_with: <span class="kw">impl </span>FnOnce() -&gt; T,
+    ) -&gt; <span class="kw-2">&amp;mut </span>T {
+        <span class="kw">let </span>hash = hash(TypeId::of::&lt;T&gt;(), id);
+        <span class="kw">use </span>std::collections::hash_map::Entry;
+        <span class="kw">match </span><span class="self">self</span>.<span class="number">0</span>.entry(hash) {
+            Entry::Vacant(vacant) =&gt; vacant
+                .insert(Element::new_persisted(insert_with()))
+                .get_mut_persisted()
+                .unwrap(), <span class="comment">// this unwrap will never panic, because we insert correct type right now
+            </span>Entry::Occupied(occupied) =&gt; occupied
+                .into_mut()
+                .get_persisted_mut_or_insert_with(insert_with),
         }
     }
 
-    <span class="doccomment">/// Remove the state of this type an id.</span>
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">remove</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">id</span>: <span class="ident">Id</span>) {
-        <span class="kw">let</span> <span class="ident">hash</span> <span class="op">=</span> <span class="ident">hash</span>(<span class="ident">TypeId::of</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>(), <span class="ident">id</span>);
-        <span class="self">self</span>.<span class="number">0</span>.<span class="ident">remove</span>(<span class="kw-2">&amp;</span><span class="ident">hash</span>);
+    <span class="doccomment">/// Remove the state of this type an id.
+    </span><span class="attribute">#[inline]
+    </span><span class="kw">pub fn </span>remove&lt;T: <span class="lifetime">&#39;static</span>&gt;(<span class="kw-2">&amp;mut </span><span class="self">self</span>, id: Id) {
+        <span class="kw">let </span>hash = hash(TypeId::of::&lt;T&gt;(), id);
+        <span class="self">self</span>.<span class="number">0</span>.remove(<span class="kw-2">&amp;</span>hash);
     }
 
-    <span class="doccomment">/// Note all state of the given type.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">remove_by_type</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>) {
-        <span class="kw">let</span> <span class="ident">key</span> <span class="op">=</span> <span class="ident">TypeId::of</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>();
-        <span class="self">self</span>.<span class="number">0</span>.<span class="ident">retain</span>(<span class="op">|</span><span class="kw">_</span>, <span class="ident">e</span><span class="op">|</span> {
-            <span class="kw">let</span> <span class="ident">e</span>: <span class="kw-2">&amp;</span><span class="ident">Element</span> <span class="op">=</span> <span class="ident">e</span>;
-            <span class="ident">e</span>.<span class="ident">type_id</span>() <span class="op">!</span><span class="op">=</span> <span class="ident">key</span>
+    <span class="doccomment">/// Note all state of the given type.
+    </span><span class="kw">pub fn </span>remove_by_type&lt;T: <span class="lifetime">&#39;static</span>&gt;(<span class="kw-2">&amp;mut </span><span class="self">self</span>) {
+        <span class="kw">let </span>key = TypeId::of::&lt;T&gt;();
+        <span class="self">self</span>.<span class="number">0</span>.retain(|<span class="kw">_</span>, e| {
+            <span class="kw">let </span>e: <span class="kw-2">&amp;</span>Element = e;
+            e.type_id() != key
         });
     }
 
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">clear</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>) {
-        <span class="self">self</span>.<span class="number">0</span>.<span class="ident">clear</span>();
+    <span class="attribute">#[inline]
+    </span><span class="kw">pub fn </span>clear(<span class="kw-2">&amp;mut </span><span class="self">self</span>) {
+        <span class="self">self</span>.<span class="number">0</span>.clear();
     }
 
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_empty</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>) -&gt; <span class="ident">bool</span> {
-        <span class="self">self</span>.<span class="number">0</span>.<span class="ident">is_empty</span>()
+    <span class="attribute">#[inline]
+    </span><span class="kw">pub fn </span>is_empty(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; bool {
+        <span class="self">self</span>.<span class="number">0</span>.is_empty()
     }
 
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">len</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>) -&gt; <span class="ident">usize</span> {
-        <span class="self">self</span>.<span class="number">0</span>.<span class="ident">len</span>()
+    <span class="attribute">#[inline]
+    </span><span class="kw">pub fn </span>len(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; usize {
+        <span class="self">self</span>.<span class="number">0</span>.len()
     }
 
-    <span class="doccomment">/// Count how many values are stored but not yet deserialized.</span>
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">count_serialized</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>) -&gt; <span class="ident">usize</span> {
-        <span class="self">self</span>.<span class="number">0</span>
-            .<span class="ident">values</span>()
-            .<span class="ident">filter</span>(<span class="op">|</span><span class="ident">e</span><span class="op">|</span> <span class="macro">matches!</span>(<span class="ident">e</span>, <span class="ident">Element::Serialized</span> { .. }))
-            .<span class="ident">count</span>()
+    <span class="doccomment">/// Count how many values are stored but not yet deserialized.
+    </span><span class="attribute">#[inline]
+    </span><span class="kw">pub fn </span>count_serialized(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; usize {
+        <span class="self">self</span>.<span class="number">0
+            </span>.values()
+            .filter(|e| <span class="macro">matches!</span>(e, Element::Serialized { .. }))
+            .count()
     }
 
-    <span class="doccomment">/// Count the number of values are stored with the given type.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">count</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>) -&gt; <span class="ident">usize</span> {
-        <span class="kw">let</span> <span class="ident">key</span> <span class="op">=</span> <span class="ident">TypeId::of</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>();
-        <span class="self">self</span>.<span class="number">0</span>
-            .<span class="ident">iter</span>()
-            .<span class="ident">filter</span>(<span class="op">|</span>(<span class="kw">_</span>, <span class="ident">e</span>)<span class="op">|</span> {
-                <span class="kw">let</span> <span class="ident">e</span>: <span class="kw-2">&amp;</span><span class="ident">Element</span> <span class="op">=</span> <span class="ident">e</span>;
-                <span class="ident">e</span>.<span class="ident">type_id</span>() <span class="op">==</span> <span class="ident">key</span>
+    <span class="doccomment">/// Count the number of values are stored with the given type.
+    </span><span class="kw">pub fn </span>count&lt;T: <span class="lifetime">&#39;static</span>&gt;(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; usize {
+        <span class="kw">let </span>key = TypeId::of::&lt;T&gt;();
+        <span class="self">self</span>.<span class="number">0
+            </span>.iter()
+            .filter(|(<span class="kw">_</span>, e)| {
+                <span class="kw">let </span>e: <span class="kw-2">&amp;</span>Element = e;
+                e.type_id() == key
             })
-            .<span class="ident">count</span>()
+            .count()
     }
 }
 
-<span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-<span class="kw">fn</span> <span class="ident">hash</span>(<span class="ident">type_id</span>: <span class="ident">TypeId</span>, <span class="ident">id</span>: <span class="ident">Id</span>) -&gt; <span class="ident">u64</span> {
-    <span class="ident">type_id</span>.<span class="ident">value</span>() <span class="op">^</span> <span class="ident">id</span>.<span class="ident">value</span>()
+<span class="attribute">#[inline(always)]
+</span><span class="kw">fn </span>hash(type_id: TypeId, id: Id) -&gt; u64 {
+    type_id.value() ^ id.value()
 }
 
-<span class="comment">// ----------------------------------------------------------------------------</span>
+<span class="comment">// ----------------------------------------------------------------------------
 
-<span class="doccomment">/// How [`IdTypeMap`] is persisted.</span>
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;persistence&quot;</span>)]</span>
-<span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;persistence&quot;</span>, <span class="ident">derive</span>(<span class="ident">serde::Deserialize</span>, <span class="ident">serde::Serialize</span>))]</span>
-<span class="kw">struct</span> <span class="ident">PersistedMap</span>(<span class="ident">Vec</span><span class="op">&lt;</span>(<span class="ident">u64</span>, <span class="ident">SerializedElement</span>)<span class="op">&gt;</span>);
+</span><span class="doccomment">/// How [`IdTypeMap`] is persisted.
+</span><span class="attribute">#[cfg(feature = <span class="string">&quot;persistence&quot;</span>)]
+#[cfg_attr(feature = <span class="string">&quot;persistence&quot;</span>, derive(serde::Deserialize, serde::Serialize))]
+</span><span class="kw">struct </span>PersistedMap(Vec&lt;(u64, SerializedElement)&gt;);
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;persistence&quot;</span>)]</span>
-<span class="kw">impl</span> <span class="ident">PersistedMap</span> {
-    <span class="kw">fn</span> <span class="ident">from_map</span>(<span class="ident">map</span>: <span class="kw-2">&amp;</span><span class="ident">IdTypeMap</span>) -&gt; <span class="self">Self</span> {
-        <span class="comment">// filter out the elements which cannot be serialized:</span>
-        <span class="self">Self</span>(
-            <span class="ident">map</span>.<span class="number">0</span>
-                .<span class="ident">iter</span>()
-                .<span class="ident">filter_map</span>(<span class="op">|</span>(<span class="kw-2">&amp;</span><span class="ident">hash</span>, <span class="ident">element</span>)<span class="op">|</span> <span class="prelude-val">Some</span>((<span class="ident">hash</span>, <span class="ident">element</span>.<span class="ident">to_serialize</span>()<span class="question-mark">?</span>)))
-                .<span class="ident">collect</span>(),
+<span class="attribute">#[cfg(feature = <span class="string">&quot;persistence&quot;</span>)]
+</span><span class="kw">impl </span>PersistedMap {
+    <span class="kw">fn </span>from_map(map: <span class="kw-2">&amp;</span>IdTypeMap) -&gt; <span class="self">Self </span>{
+        <span class="comment">// filter out the elements which cannot be serialized:
+        </span><span class="self">Self</span>(
+            map.<span class="number">0
+                </span>.iter()
+                .filter_map(|(<span class="kw-2">&amp;</span>hash, element)| <span class="prelude-val">Some</span>((hash, element.to_serialize()<span class="question-mark">?</span>)))
+                .collect(),
         )
     }
-    <span class="kw">fn</span> <span class="ident">into_map</span>(<span class="self">self</span>) -&gt; <span class="ident">IdTypeMap</span> {
-        <span class="ident">IdTypeMap</span>(
-            <span class="self">self</span>.<span class="number">0</span>
-                .<span class="ident">into_iter</span>()
-                .<span class="ident">map</span>(<span class="op">|</span>(<span class="ident">hash</span>, <span class="ident">SerializedElement</span> { <span class="ident">type_id</span>, <span class="ident">ron</span> })<span class="op">|</span> {
-                    (<span class="ident">hash</span>, <span class="ident">Element::Serialized</span> { <span class="ident">type_id</span>, <span class="ident">ron</span> })
+    <span class="kw">fn </span>into_map(<span class="self">self</span>) -&gt; IdTypeMap {
+        IdTypeMap(
+            <span class="self">self</span>.<span class="number">0
+                </span>.into_iter()
+                .map(|(hash, SerializedElement { type_id, ron })| {
+                    (hash, Element::Serialized { type_id, ron })
                 })
-                .<span class="ident">collect</span>(),
+                .collect(),
         )
     }
 }
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;persistence&quot;</span>)]</span>
-<span class="kw">impl</span> <span class="ident">serde::Serialize</span> <span class="kw">for</span> <span class="ident">IdTypeMap</span> {
-    <span class="kw">fn</span> <span class="ident">serialize</span><span class="op">&lt;</span><span class="ident">S</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">serializer</span>: <span class="ident">S</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">S::Ok</span>, <span class="ident">S::Error</span><span class="op">&gt;</span>
-    <span class="kw">where</span>
-        <span class="ident">S</span>: <span class="ident">serde::Serializer</span>,
+<span class="attribute">#[cfg(feature = <span class="string">&quot;persistence&quot;</span>)]
+</span><span class="kw">impl </span>serde::Serialize <span class="kw">for </span>IdTypeMap {
+    <span class="kw">fn </span>serialize&lt;S&gt;(<span class="kw-2">&amp;</span><span class="self">self</span>, serializer: S) -&gt; <span class="prelude-ty">Result</span>&lt;S::Ok, S::Error&gt;
+    <span class="kw">where
+        </span>S: serde::Serializer,
     {
-        <span class="ident">PersistedMap::from_map</span>(<span class="self">self</span>).<span class="ident">serialize</span>(<span class="ident">serializer</span>)
+        PersistedMap::from_map(<span class="self">self</span>).serialize(serializer)
     }
 }
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;persistence&quot;</span>)]</span>
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;de</span><span class="op">&gt;</span> <span class="ident">serde::Deserialize</span><span class="op">&lt;</span><span class="lifetime">&#39;de</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">IdTypeMap</span> {
-    <span class="kw">fn</span> <span class="ident">deserialize</span><span class="op">&lt;</span><span class="ident">D</span><span class="op">&gt;</span>(<span class="ident">deserializer</span>: <span class="ident">D</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="self">Self</span>, <span class="ident">D::Error</span><span class="op">&gt;</span>
-    <span class="kw">where</span>
-        <span class="ident">D</span>: <span class="ident">serde::Deserializer</span><span class="op">&lt;</span><span class="lifetime">&#39;de</span><span class="op">&gt;</span>,
+<span class="attribute">#[cfg(feature = <span class="string">&quot;persistence&quot;</span>)]
+</span><span class="kw">impl</span>&lt;<span class="lifetime">&#39;de</span>&gt; serde::Deserialize&lt;<span class="lifetime">&#39;de</span>&gt; <span class="kw">for </span>IdTypeMap {
+    <span class="kw">fn </span>deserialize&lt;D&gt;(deserializer: D) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>, D::Error&gt;
+    <span class="kw">where
+        </span>D: serde::Deserializer&lt;<span class="lifetime">&#39;de</span>&gt;,
     {
-        <span class="op">&lt;</span><span class="ident">PersistedMap</span><span class="op">&gt;</span><span class="ident">::deserialize</span>(<span class="ident">deserializer</span>).<span class="ident">map</span>(<span class="ident">PersistedMap::into_map</span>)
+        &lt;PersistedMap&gt;::deserialize(deserializer).map(PersistedMap::into_map)
     }
 }
 
-<span class="comment">// ----------------------------------------------------------------------------</span>
+<span class="comment">// ----------------------------------------------------------------------------
 
-<span class="attribute">#[<span class="ident">test</span>]</span>
-<span class="kw">fn</span> <span class="ident">test_two_id_two_type</span>() {
-    <span class="kw">let</span> <span class="ident">a</span> <span class="op">=</span> <span class="ident">Id::new</span>(<span class="string">&quot;a&quot;</span>);
-    <span class="kw">let</span> <span class="ident">b</span> <span class="op">=</span> <span class="ident">Id::new</span>(<span class="string">&quot;b&quot;</span>);
+</span><span class="attribute">#[test]
+</span><span class="kw">fn </span>test_two_id_two_type() {
+    <span class="kw">let </span>a = Id::new(<span class="string">&quot;a&quot;</span>);
+    <span class="kw">let </span>b = Id::new(<span class="string">&quot;b&quot;</span>);
 
-    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">map</span>: <span class="ident">IdTypeMap</span> <span class="op">=</span> <span class="ident">Default::default</span>();
-    <span class="ident">map</span>.<span class="ident">insert_persisted</span>(<span class="ident">a</span>, <span class="number">6.28</span>);
-    <span class="ident">map</span>.<span class="ident">insert_temp</span>(<span class="ident">b</span>, <span class="number">42</span>);
-    <span class="macro">assert_eq!</span>(<span class="ident">map</span>.<span class="ident">get_persisted</span>::<span class="op">&lt;</span><span class="ident">f64</span><span class="op">&gt;</span>(<span class="ident">a</span>), <span class="prelude-val">Some</span>(<span class="number">6.28</span>));
-    <span class="macro">assert_eq!</span>(<span class="ident">map</span>.<span class="ident">get_persisted</span>::<span class="op">&lt;</span><span class="ident">i32</span><span class="op">&gt;</span>(<span class="ident">b</span>), <span class="prelude-val">Some</span>(<span class="number">42</span>));
-    <span class="macro">assert_eq!</span>(<span class="ident">map</span>.<span class="ident">get_temp</span>::<span class="op">&lt;</span><span class="ident">f64</span><span class="op">&gt;</span>(<span class="ident">a</span>), <span class="prelude-val">Some</span>(<span class="number">6.28</span>));
-    <span class="macro">assert_eq!</span>(<span class="ident">map</span>.<span class="ident">get_temp</span>::<span class="op">&lt;</span><span class="ident">i32</span><span class="op">&gt;</span>(<span class="ident">b</span>), <span class="prelude-val">Some</span>(<span class="number">42</span>));
+    <span class="kw">let </span><span class="kw-2">mut </span>map: IdTypeMap = Default::default();
+    map.insert_persisted(a, <span class="number">6.28</span>);
+    map.insert_temp(b, <span class="number">42</span>);
+    <span class="macro">assert_eq!</span>(map.get_persisted::&lt;f64&gt;(a), <span class="prelude-val">Some</span>(<span class="number">6.28</span>));
+    <span class="macro">assert_eq!</span>(map.get_persisted::&lt;i32&gt;(b), <span class="prelude-val">Some</span>(<span class="number">42</span>));
+    <span class="macro">assert_eq!</span>(map.get_temp::&lt;f64&gt;(a), <span class="prelude-val">Some</span>(<span class="number">6.28</span>));
+    <span class="macro">assert_eq!</span>(map.get_temp::&lt;i32&gt;(b), <span class="prelude-val">Some</span>(<span class="number">42</span>));
 }
 
-<span class="attribute">#[<span class="ident">test</span>]</span>
-<span class="kw">fn</span> <span class="ident">test_two_id_x_two_types</span>() {
-    <span class="attribute">#![<span class="ident">allow</span>(<span class="ident">clippy::approx_constant</span>)]</span>
+<span class="attribute">#[test]
+</span><span class="kw">fn </span>test_two_id_x_two_types() {
+    <span class="attribute">#![allow(clippy::approx_constant)]
 
-    <span class="kw">let</span> <span class="ident">a</span> <span class="op">=</span> <span class="ident">Id::new</span>(<span class="string">&quot;a&quot;</span>);
-    <span class="kw">let</span> <span class="ident">b</span> <span class="op">=</span> <span class="ident">Id::new</span>(<span class="string">&quot;b&quot;</span>);
-    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">map</span>: <span class="ident">IdTypeMap</span> <span class="op">=</span> <span class="ident">Default::default</span>();
+    </span><span class="kw">let </span>a = Id::new(<span class="string">&quot;a&quot;</span>);
+    <span class="kw">let </span>b = Id::new(<span class="string">&quot;b&quot;</span>);
+    <span class="kw">let </span><span class="kw-2">mut </span>map: IdTypeMap = Default::default();
 
-    <span class="comment">// `a` associated with an f64 and an i32</span>
-    <span class="ident">map</span>.<span class="ident">insert_persisted</span>(<span class="ident">a</span>, <span class="number">3.14</span>);
-    <span class="ident">map</span>.<span class="ident">insert_temp</span>(<span class="ident">a</span>, <span class="number">42</span>);
+    <span class="comment">// `a` associated with an f64 and an i32
+    </span>map.insert_persisted(a, <span class="number">3.14</span>);
+    map.insert_temp(a, <span class="number">42</span>);
 
-    <span class="comment">// `b` associated with an f64 and a `&amp;&#39;static str`</span>
-    <span class="ident">map</span>.<span class="ident">insert_persisted</span>(<span class="ident">b</span>, <span class="number">6.28</span>);
-    <span class="ident">map</span>.<span class="ident">insert_temp</span>(<span class="ident">b</span>, <span class="string">&quot;Hello World&quot;</span>.<span class="ident">to_string</span>());
+    <span class="comment">// `b` associated with an f64 and a `&amp;&#39;static str`
+    </span>map.insert_persisted(b, <span class="number">6.28</span>);
+    map.insert_temp(b, <span class="string">&quot;Hello World&quot;</span>.to_string());
 
-    <span class="comment">// we can retrieve all four values:</span>
-    <span class="macro">assert_eq!</span>(<span class="ident">map</span>.<span class="ident">get_temp</span>::<span class="op">&lt;</span><span class="ident">f64</span><span class="op">&gt;</span>(<span class="ident">a</span>), <span class="prelude-val">Some</span>(<span class="number">3.14</span>));
-    <span class="macro">assert_eq!</span>(<span class="ident">map</span>.<span class="ident">get_temp</span>::<span class="op">&lt;</span><span class="ident">i32</span><span class="op">&gt;</span>(<span class="ident">a</span>), <span class="prelude-val">Some</span>(<span class="number">42</span>));
-    <span class="macro">assert_eq!</span>(<span class="ident">map</span>.<span class="ident">get_temp</span>::<span class="op">&lt;</span><span class="ident">f64</span><span class="op">&gt;</span>(<span class="ident">b</span>), <span class="prelude-val">Some</span>(<span class="number">6.28</span>));
-    <span class="macro">assert_eq!</span>(<span class="ident">map</span>.<span class="ident">get_temp</span>::<span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span>(<span class="ident">b</span>), <span class="prelude-val">Some</span>(<span class="string">&quot;Hello World&quot;</span>.<span class="ident">to_string</span>()));
+    <span class="comment">// we can retrieve all four values:
+    </span><span class="macro">assert_eq!</span>(map.get_temp::&lt;f64&gt;(a), <span class="prelude-val">Some</span>(<span class="number">3.14</span>));
+    <span class="macro">assert_eq!</span>(map.get_temp::&lt;i32&gt;(a), <span class="prelude-val">Some</span>(<span class="number">42</span>));
+    <span class="macro">assert_eq!</span>(map.get_temp::&lt;f64&gt;(b), <span class="prelude-val">Some</span>(<span class="number">6.28</span>));
+    <span class="macro">assert_eq!</span>(map.get_temp::&lt;String&gt;(b), <span class="prelude-val">Some</span>(<span class="string">&quot;Hello World&quot;</span>.to_string()));
 
-    <span class="comment">// we can retrieve them like so also:</span>
-    <span class="macro">assert_eq!</span>(<span class="ident">map</span>.<span class="ident">get_persisted</span>::<span class="op">&lt;</span><span class="ident">f64</span><span class="op">&gt;</span>(<span class="ident">a</span>), <span class="prelude-val">Some</span>(<span class="number">3.14</span>));
-    <span class="macro">assert_eq!</span>(<span class="ident">map</span>.<span class="ident">get_persisted</span>::<span class="op">&lt;</span><span class="ident">i32</span><span class="op">&gt;</span>(<span class="ident">a</span>), <span class="prelude-val">Some</span>(<span class="number">42</span>));
-    <span class="macro">assert_eq!</span>(<span class="ident">map</span>.<span class="ident">get_persisted</span>::<span class="op">&lt;</span><span class="ident">f64</span><span class="op">&gt;</span>(<span class="ident">b</span>), <span class="prelude-val">Some</span>(<span class="number">6.28</span>));
-    <span class="macro">assert_eq!</span>(<span class="ident">map</span>.<span class="ident">get_temp</span>::<span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span>(<span class="ident">b</span>), <span class="prelude-val">Some</span>(<span class="string">&quot;Hello World&quot;</span>.<span class="ident">to_string</span>()));
+    <span class="comment">// we can retrieve them like so also:
+    </span><span class="macro">assert_eq!</span>(map.get_persisted::&lt;f64&gt;(a), <span class="prelude-val">Some</span>(<span class="number">3.14</span>));
+    <span class="macro">assert_eq!</span>(map.get_persisted::&lt;i32&gt;(a), <span class="prelude-val">Some</span>(<span class="number">42</span>));
+    <span class="macro">assert_eq!</span>(map.get_persisted::&lt;f64&gt;(b), <span class="prelude-val">Some</span>(<span class="number">6.28</span>));
+    <span class="macro">assert_eq!</span>(map.get_temp::&lt;String&gt;(b), <span class="prelude-val">Some</span>(<span class="string">&quot;Hello World&quot;</span>.to_string()));
 }
 
-<span class="attribute">#[<span class="ident">test</span>]</span>
-<span class="kw">fn</span> <span class="ident">test_one_id_two_types</span>() {
-    <span class="kw">let</span> <span class="ident">id</span> <span class="op">=</span> <span class="ident">Id::new</span>(<span class="string">&quot;a&quot;</span>);
+<span class="attribute">#[test]
+</span><span class="kw">fn </span>test_one_id_two_types() {
+    <span class="kw">let </span>id = Id::new(<span class="string">&quot;a&quot;</span>);
 
-    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">map</span>: <span class="ident">IdTypeMap</span> <span class="op">=</span> <span class="ident">Default::default</span>();
-    <span class="ident">map</span>.<span class="ident">insert_persisted</span>(<span class="ident">id</span>, <span class="number">6.28</span>);
-    <span class="ident">map</span>.<span class="ident">insert_temp</span>(<span class="ident">id</span>, <span class="number">42</span>);
+    <span class="kw">let </span><span class="kw-2">mut </span>map: IdTypeMap = Default::default();
+    map.insert_persisted(id, <span class="number">6.28</span>);
+    map.insert_temp(id, <span class="number">42</span>);
 
-    <span class="macro">assert_eq!</span>(<span class="ident">map</span>.<span class="ident">get_temp</span>::<span class="op">&lt;</span><span class="ident">f64</span><span class="op">&gt;</span>(<span class="ident">id</span>), <span class="prelude-val">Some</span>(<span class="number">6.28</span>));
-    <span class="macro">assert_eq!</span>(<span class="ident">map</span>.<span class="ident">get_persisted</span>::<span class="op">&lt;</span><span class="ident">f64</span><span class="op">&gt;</span>(<span class="ident">id</span>), <span class="prelude-val">Some</span>(<span class="number">6.28</span>));
-    <span class="macro">assert_eq!</span>(<span class="ident">map</span>.<span class="ident">get_temp</span>::<span class="op">&lt;</span><span class="ident">i32</span><span class="op">&gt;</span>(<span class="ident">id</span>), <span class="prelude-val">Some</span>(<span class="number">42</span>));
+    <span class="macro">assert_eq!</span>(map.get_temp::&lt;f64&gt;(id), <span class="prelude-val">Some</span>(<span class="number">6.28</span>));
+    <span class="macro">assert_eq!</span>(map.get_persisted::&lt;f64&gt;(id), <span class="prelude-val">Some</span>(<span class="number">6.28</span>));
+    <span class="macro">assert_eq!</span>(map.get_temp::&lt;i32&gt;(id), <span class="prelude-val">Some</span>(<span class="number">42</span>));
 
-    <span class="comment">// ------------</span>
-    <span class="comment">// Test removal:</span>
+    <span class="comment">// ------------
+    // Test removal:
 
-    <span class="comment">// We can remove:</span>
-    <span class="ident">map</span>.<span class="ident">remove</span>::<span class="op">&lt;</span><span class="ident">i32</span><span class="op">&gt;</span>(<span class="ident">id</span>);
-    <span class="macro">assert_eq!</span>(<span class="ident">map</span>.<span class="ident">get_temp</span>::<span class="op">&lt;</span><span class="ident">i32</span><span class="op">&gt;</span>(<span class="ident">id</span>), <span class="prelude-val">None</span>);
+    // We can remove:
+    </span>map.remove::&lt;i32&gt;(id);
+    <span class="macro">assert_eq!</span>(map.get_temp::&lt;i32&gt;(id), <span class="prelude-val">None</span>);
 
-    <span class="comment">// Other type is still there, even though it is the same if:</span>
-    <span class="macro">assert_eq!</span>(<span class="ident">map</span>.<span class="ident">get_temp</span>::<span class="op">&lt;</span><span class="ident">f64</span><span class="op">&gt;</span>(<span class="ident">id</span>), <span class="prelude-val">Some</span>(<span class="number">6.28</span>));
-    <span class="macro">assert_eq!</span>(<span class="ident">map</span>.<span class="ident">get_persisted</span>::<span class="op">&lt;</span><span class="ident">f64</span><span class="op">&gt;</span>(<span class="ident">id</span>), <span class="prelude-val">Some</span>(<span class="number">6.28</span>));
+    <span class="comment">// Other type is still there, even though it is the same if:
+    </span><span class="macro">assert_eq!</span>(map.get_temp::&lt;f64&gt;(id), <span class="prelude-val">Some</span>(<span class="number">6.28</span>));
+    <span class="macro">assert_eq!</span>(map.get_persisted::&lt;f64&gt;(id), <span class="prelude-val">Some</span>(<span class="number">6.28</span>));
 
-    <span class="comment">// But we can still remove the last:</span>
-    <span class="ident">map</span>.<span class="ident">remove</span>::<span class="op">&lt;</span><span class="ident">f64</span><span class="op">&gt;</span>(<span class="ident">id</span>);
-    <span class="macro">assert_eq!</span>(<span class="ident">map</span>.<span class="ident">get_temp</span>::<span class="op">&lt;</span><span class="ident">f64</span><span class="op">&gt;</span>(<span class="ident">id</span>), <span class="prelude-val">None</span>);
-    <span class="macro">assert_eq!</span>(<span class="ident">map</span>.<span class="ident">get_persisted</span>::<span class="op">&lt;</span><span class="ident">f64</span><span class="op">&gt;</span>(<span class="ident">id</span>), <span class="prelude-val">None</span>);
+    <span class="comment">// But we can still remove the last:
+    </span>map.remove::&lt;f64&gt;(id);
+    <span class="macro">assert_eq!</span>(map.get_temp::&lt;f64&gt;(id), <span class="prelude-val">None</span>);
+    <span class="macro">assert_eq!</span>(map.get_persisted::&lt;f64&gt;(id), <span class="prelude-val">None</span>);
 }
 
-<span class="attribute">#[<span class="ident">test</span>]</span>
-<span class="kw">fn</span> <span class="ident">test_mix</span>() {
-    <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;persistence&quot;</span>, <span class="ident">derive</span>(<span class="ident">serde::Deserialize</span>, <span class="ident">serde::Serialize</span>))]</span>
-    <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>)]</span>
-    <span class="kw">struct</span> <span class="ident">Foo</span>(<span class="ident">i32</span>);
+<span class="attribute">#[test]
+</span><span class="kw">fn </span>test_mix() {
+    <span class="attribute">#[cfg_attr(feature = <span class="string">&quot;persistence&quot;</span>, derive(serde::Deserialize, serde::Serialize))]
+    #[derive(Clone, Debug, PartialEq)]
+    </span><span class="kw">struct </span>Foo(i32);
 
-    <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>)]</span>
-    <span class="kw">struct</span> <span class="ident">Bar</span>(<span class="ident">f32</span>);
+    <span class="attribute">#[derive(Clone, Debug, PartialEq)]
+    </span><span class="kw">struct </span>Bar(f32);
 
-    <span class="kw">let</span> <span class="ident">id</span> <span class="op">=</span> <span class="ident">Id::new</span>(<span class="string">&quot;a&quot;</span>);
+    <span class="kw">let </span>id = Id::new(<span class="string">&quot;a&quot;</span>);
 
-    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">map</span>: <span class="ident">IdTypeMap</span> <span class="op">=</span> <span class="ident">Default::default</span>();
-    <span class="ident">map</span>.<span class="ident">insert_persisted</span>(<span class="ident">id</span>, <span class="ident">Foo</span>(<span class="number">555</span>));
-    <span class="ident">map</span>.<span class="ident">insert_temp</span>(<span class="ident">id</span>, <span class="ident">Bar</span>(<span class="number">1.0</span>));
+    <span class="kw">let </span><span class="kw-2">mut </span>map: IdTypeMap = Default::default();
+    map.insert_persisted(id, Foo(<span class="number">555</span>));
+    map.insert_temp(id, Bar(<span class="number">1.0</span>));
 
-    <span class="macro">assert_eq!</span>(<span class="ident">map</span>.<span class="ident">get_temp</span>::<span class="op">&lt;</span><span class="ident">Foo</span><span class="op">&gt;</span>(<span class="ident">id</span>), <span class="prelude-val">Some</span>(<span class="ident">Foo</span>(<span class="number">555</span>)));
-    <span class="macro">assert_eq!</span>(<span class="ident">map</span>.<span class="ident">get_persisted</span>::<span class="op">&lt;</span><span class="ident">Foo</span><span class="op">&gt;</span>(<span class="ident">id</span>), <span class="prelude-val">Some</span>(<span class="ident">Foo</span>(<span class="number">555</span>)));
-    <span class="macro">assert_eq!</span>(<span class="ident">map</span>.<span class="ident">get_temp</span>::<span class="op">&lt;</span><span class="ident">Bar</span><span class="op">&gt;</span>(<span class="ident">id</span>), <span class="prelude-val">Some</span>(<span class="ident">Bar</span>(<span class="number">1.0</span>)));
+    <span class="macro">assert_eq!</span>(map.get_temp::&lt;Foo&gt;(id), <span class="prelude-val">Some</span>(Foo(<span class="number">555</span>)));
+    <span class="macro">assert_eq!</span>(map.get_persisted::&lt;Foo&gt;(id), <span class="prelude-val">Some</span>(Foo(<span class="number">555</span>)));
+    <span class="macro">assert_eq!</span>(map.get_temp::&lt;Bar&gt;(id), <span class="prelude-val">Some</span>(Bar(<span class="number">1.0</span>)));
 
-    <span class="comment">// ------------</span>
-    <span class="comment">// Test removal:</span>
+    <span class="comment">// ------------
+    // Test removal:
 
-    <span class="comment">// We can remove:</span>
-    <span class="ident">map</span>.<span class="ident">remove</span>::<span class="op">&lt;</span><span class="ident">Bar</span><span class="op">&gt;</span>(<span class="ident">id</span>);
-    <span class="macro">assert_eq!</span>(<span class="ident">map</span>.<span class="ident">get_temp</span>::<span class="op">&lt;</span><span class="ident">Bar</span><span class="op">&gt;</span>(<span class="ident">id</span>), <span class="prelude-val">None</span>);
+    // We can remove:
+    </span>map.remove::&lt;Bar&gt;(id);
+    <span class="macro">assert_eq!</span>(map.get_temp::&lt;Bar&gt;(id), <span class="prelude-val">None</span>);
 
-    <span class="comment">// Other type is still there, even though it is the same if:</span>
-    <span class="macro">assert_eq!</span>(<span class="ident">map</span>.<span class="ident">get_temp</span>::<span class="op">&lt;</span><span class="ident">Foo</span><span class="op">&gt;</span>(<span class="ident">id</span>), <span class="prelude-val">Some</span>(<span class="ident">Foo</span>(<span class="number">555</span>)));
-    <span class="macro">assert_eq!</span>(<span class="ident">map</span>.<span class="ident">get_persisted</span>::<span class="op">&lt;</span><span class="ident">Foo</span><span class="op">&gt;</span>(<span class="ident">id</span>), <span class="prelude-val">Some</span>(<span class="ident">Foo</span>(<span class="number">555</span>)));
+    <span class="comment">// Other type is still there, even though it is the same if:
+    </span><span class="macro">assert_eq!</span>(map.get_temp::&lt;Foo&gt;(id), <span class="prelude-val">Some</span>(Foo(<span class="number">555</span>)));
+    <span class="macro">assert_eq!</span>(map.get_persisted::&lt;Foo&gt;(id), <span class="prelude-val">Some</span>(Foo(<span class="number">555</span>)));
 
-    <span class="comment">// But we can still remove the last:</span>
-    <span class="ident">map</span>.<span class="ident">remove</span>::<span class="op">&lt;</span><span class="ident">Foo</span><span class="op">&gt;</span>(<span class="ident">id</span>);
-    <span class="macro">assert_eq!</span>(<span class="ident">map</span>.<span class="ident">get_temp</span>::<span class="op">&lt;</span><span class="ident">Foo</span><span class="op">&gt;</span>(<span class="ident">id</span>), <span class="prelude-val">None</span>);
-    <span class="macro">assert_eq!</span>(<span class="ident">map</span>.<span class="ident">get_persisted</span>::<span class="op">&lt;</span><span class="ident">Foo</span><span class="op">&gt;</span>(<span class="ident">id</span>), <span class="prelude-val">None</span>);
+    <span class="comment">// But we can still remove the last:
+    </span>map.remove::&lt;Foo&gt;(id);
+    <span class="macro">assert_eq!</span>(map.get_temp::&lt;Foo&gt;(id), <span class="prelude-val">None</span>);
+    <span class="macro">assert_eq!</span>(map.get_persisted::&lt;Foo&gt;(id), <span class="prelude-val">None</span>);
 }
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;persistence&quot;</span>)]</span>
-<span class="attribute">#[<span class="ident">test</span>]</span>
-<span class="kw">fn</span> <span class="ident">test_mix_serialize</span>() {
-    <span class="kw">use</span> <span class="ident">serde</span>::{<span class="ident">Deserialize</span>, <span class="ident">Serialize</span>};
+<span class="attribute">#[cfg(feature = <span class="string">&quot;persistence&quot;</span>)]
+#[test]
+</span><span class="kw">fn </span>test_mix_serialize() {
+    <span class="kw">use </span>serde::{Deserialize, Serialize};
 
-    <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>, <span class="ident">Serialize</span>, <span class="ident">Deserialize</span>)]</span>
-    <span class="kw">struct</span> <span class="ident">Serializable</span>(<span class="ident">i32</span>);
+    <span class="attribute">#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+    </span><span class="kw">struct </span>Serializable(i32);
 
-    <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>)]</span>
-    <span class="kw">struct</span> <span class="ident">NonSerializable</span>(<span class="ident">f32</span>);
+    <span class="attribute">#[derive(Clone, Debug, PartialEq)]
+    </span><span class="kw">struct </span>NonSerializable(f32);
 
-    <span class="kw">let</span> <span class="ident">id</span> <span class="op">=</span> <span class="ident">Id::new</span>(<span class="string">&quot;a&quot;</span>);
+    <span class="kw">let </span>id = Id::new(<span class="string">&quot;a&quot;</span>);
 
-    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">map</span>: <span class="ident">IdTypeMap</span> <span class="op">=</span> <span class="ident">Default::default</span>();
-    <span class="ident">map</span>.<span class="ident">insert_persisted</span>(<span class="ident">id</span>, <span class="ident">Serializable</span>(<span class="number">555</span>));
-    <span class="ident">map</span>.<span class="ident">insert_temp</span>(<span class="ident">id</span>, <span class="ident">NonSerializable</span>(<span class="number">1.0</span>));
+    <span class="kw">let </span><span class="kw-2">mut </span>map: IdTypeMap = Default::default();
+    map.insert_persisted(id, Serializable(<span class="number">555</span>));
+    map.insert_temp(id, NonSerializable(<span class="number">1.0</span>));
 
-    <span class="macro">assert_eq!</span>(<span class="ident">map</span>.<span class="ident">get_temp</span>::<span class="op">&lt;</span><span class="ident">Serializable</span><span class="op">&gt;</span>(<span class="ident">id</span>), <span class="prelude-val">Some</span>(<span class="ident">Serializable</span>(<span class="number">555</span>)));
+    <span class="macro">assert_eq!</span>(map.get_temp::&lt;Serializable&gt;(id), <span class="prelude-val">Some</span>(Serializable(<span class="number">555</span>)));
     <span class="macro">assert_eq!</span>(
-        <span class="ident">map</span>.<span class="ident">get_persisted</span>::<span class="op">&lt;</span><span class="ident">Serializable</span><span class="op">&gt;</span>(<span class="ident">id</span>),
-        <span class="prelude-val">Some</span>(<span class="ident">Serializable</span>(<span class="number">555</span>))
+        map.get_persisted::&lt;Serializable&gt;(id),
+        <span class="prelude-val">Some</span>(Serializable(<span class="number">555</span>))
     );
     <span class="macro">assert_eq!</span>(
-        <span class="ident">map</span>.<span class="ident">get_temp</span>::<span class="op">&lt;</span><span class="ident">NonSerializable</span><span class="op">&gt;</span>(<span class="ident">id</span>),
-        <span class="prelude-val">Some</span>(<span class="ident">NonSerializable</span>(<span class="number">1.0</span>))
+        map.get_temp::&lt;NonSerializable&gt;(id),
+        <span class="prelude-val">Some</span>(NonSerializable(<span class="number">1.0</span>))
     );
 
-    <span class="comment">// -----------</span>
+    <span class="comment">// -----------
 
-    <span class="kw">let</span> <span class="ident">serialized</span> <span class="op">=</span> <span class="ident">ron::to_string</span>(<span class="kw-2">&amp;</span><span class="ident">map</span>).<span class="ident">unwrap</span>();
+    </span><span class="kw">let </span>serialized = ron::to_string(<span class="kw-2">&amp;</span>map).unwrap();
 
-    <span class="comment">// ------------</span>
-    <span class="comment">// Test removal:</span>
+    <span class="comment">// ------------
+    // Test removal:
 
-    <span class="comment">// We can remove:</span>
-    <span class="ident">map</span>.<span class="ident">remove</span>::<span class="op">&lt;</span><span class="ident">NonSerializable</span><span class="op">&gt;</span>(<span class="ident">id</span>);
-    <span class="macro">assert_eq!</span>(<span class="ident">map</span>.<span class="ident">get_temp</span>::<span class="op">&lt;</span><span class="ident">NonSerializable</span><span class="op">&gt;</span>(<span class="ident">id</span>), <span class="prelude-val">None</span>);
+    // We can remove:
+    </span>map.remove::&lt;NonSerializable&gt;(id);
+    <span class="macro">assert_eq!</span>(map.get_temp::&lt;NonSerializable&gt;(id), <span class="prelude-val">None</span>);
 
-    <span class="comment">// Other type is still there, even though it is the same if:</span>
-    <span class="macro">assert_eq!</span>(<span class="ident">map</span>.<span class="ident">get_temp</span>::<span class="op">&lt;</span><span class="ident">Serializable</span><span class="op">&gt;</span>(<span class="ident">id</span>), <span class="prelude-val">Some</span>(<span class="ident">Serializable</span>(<span class="number">555</span>)));
+    <span class="comment">// Other type is still there, even though it is the same if:
+    </span><span class="macro">assert_eq!</span>(map.get_temp::&lt;Serializable&gt;(id), <span class="prelude-val">Some</span>(Serializable(<span class="number">555</span>)));
     <span class="macro">assert_eq!</span>(
-        <span class="ident">map</span>.<span class="ident">get_persisted</span>::<span class="op">&lt;</span><span class="ident">Serializable</span><span class="op">&gt;</span>(<span class="ident">id</span>),
-        <span class="prelude-val">Some</span>(<span class="ident">Serializable</span>(<span class="number">555</span>))
+        map.get_persisted::&lt;Serializable&gt;(id),
+        <span class="prelude-val">Some</span>(Serializable(<span class="number">555</span>))
     );
 
-    <span class="comment">// But we can still remove the last:</span>
-    <span class="ident">map</span>.<span class="ident">remove</span>::<span class="op">&lt;</span><span class="ident">Serializable</span><span class="op">&gt;</span>(<span class="ident">id</span>);
-    <span class="macro">assert_eq!</span>(<span class="ident">map</span>.<span class="ident">get_temp</span>::<span class="op">&lt;</span><span class="ident">Serializable</span><span class="op">&gt;</span>(<span class="ident">id</span>), <span class="prelude-val">None</span>);
-    <span class="macro">assert_eq!</span>(<span class="ident">map</span>.<span class="ident">get_persisted</span>::<span class="op">&lt;</span><span class="ident">Serializable</span><span class="op">&gt;</span>(<span class="ident">id</span>), <span class="prelude-val">None</span>);
+    <span class="comment">// But we can still remove the last:
+    </span>map.remove::&lt;Serializable&gt;(id);
+    <span class="macro">assert_eq!</span>(map.get_temp::&lt;Serializable&gt;(id), <span class="prelude-val">None</span>);
+    <span class="macro">assert_eq!</span>(map.get_persisted::&lt;Serializable&gt;(id), <span class="prelude-val">None</span>);
 
-    <span class="comment">// --------------------</span>
-    <span class="comment">// Test deserialization:</span>
+    <span class="comment">// --------------------
+    // Test deserialization:
 
-    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">map</span>: <span class="ident">IdTypeMap</span> <span class="op">=</span> <span class="ident">ron::from_str</span>(<span class="kw-2">&amp;</span><span class="ident">serialized</span>).<span class="ident">unwrap</span>();
-    <span class="macro">assert_eq!</span>(<span class="ident">map</span>.<span class="ident">get_temp</span>::<span class="op">&lt;</span><span class="ident">Serializable</span><span class="op">&gt;</span>(<span class="ident">id</span>), <span class="prelude-val">None</span>);
+    </span><span class="kw">let </span><span class="kw-2">mut </span>map: IdTypeMap = ron::from_str(<span class="kw-2">&amp;</span>serialized).unwrap();
+    <span class="macro">assert_eq!</span>(map.get_temp::&lt;Serializable&gt;(id), <span class="prelude-val">None</span>);
     <span class="macro">assert_eq!</span>(
-        <span class="ident">map</span>.<span class="ident">get_persisted</span>::<span class="op">&lt;</span><span class="ident">Serializable</span><span class="op">&gt;</span>(<span class="ident">id</span>),
-        <span class="prelude-val">Some</span>(<span class="ident">Serializable</span>(<span class="number">555</span>))
+        map.get_persisted::&lt;Serializable&gt;(id),
+        <span class="prelude-val">Some</span>(Serializable(<span class="number">555</span>))
     );
-    <span class="macro">assert_eq!</span>(<span class="ident">map</span>.<span class="ident">get_temp</span>::<span class="op">&lt;</span><span class="ident">Serializable</span><span class="op">&gt;</span>(<span class="ident">id</span>), <span class="prelude-val">Some</span>(<span class="ident">Serializable</span>(<span class="number">555</span>)));
+    <span class="macro">assert_eq!</span>(map.get_temp::&lt;Serializable&gt;(id), <span class="prelude-val">Some</span>(Serializable(<span class="number">555</span>)));
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="egui" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0 (a55dd71d5 2022-09-19)" ></div></body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="egui" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.66.1 (90743e729 2023-01-10)" ></div></body></html>

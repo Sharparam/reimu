@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/egui-0.16.1/src/containers/resize.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>resize.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../storage.js"></script><script defer src="../../../source-script.js"></script><script defer src="../../../source-files.js"></script><script defer src="../../../main.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../../egui/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../../egui/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../../egui/index.html"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/egui-0.16.1/src/containers/resize.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>resize.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../../normalize.css"><link rel="stylesheet" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../../ayu.css" disabled><link rel="stylesheet" href="../../../dark.css" disabled><link rel="stylesheet" href="../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../storage.js"></script><script defer src="../../../source-script.js"></script><script defer src="../../../source-files.js"></script><script defer src="../../../main.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><div class="width-limiter"><nav class="sub"><a class="sub-logo-container" href="../../../egui/index.html"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../wheel.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -347,354 +347,354 @@
 <span id="347">347</span>
 <span id="348">348</span>
 <span id="349">349</span>
-</pre><pre class="rust"><code><span class="kw">use</span> <span class="kw">crate</span>::<span class="kw-2">*</span>;
+</pre><pre class="rust"><code><span class="kw">use crate</span>::<span class="kw-2">*</span>;
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">Debug</span>)]</span>
-<span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;serde&quot;</span>, <span class="ident">derive</span>(<span class="ident">serde::Deserialize</span>, <span class="ident">serde::Serialize</span>))]</span>
-<span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">struct</span> <span class="ident">State</span> {
-    <span class="doccomment">/// This is the size that the user has picked by dragging the resize handles.</span>
-    <span class="doccomment">/// This may be smaller and/or larger than the actual size.</span>
-    <span class="doccomment">/// For instance, the user may have tried to shrink too much (not fitting the contents).</span>
-    <span class="doccomment">/// Or the user requested a large area, but the content don&#39;t need that much space.</span>
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">desired_size</span>: <span class="ident">Vec2</span>,
+<span class="attribute">#[derive(Clone, Copy, Debug)]
+#[cfg_attr(feature = <span class="string">&quot;serde&quot;</span>, derive(serde::Deserialize, serde::Serialize))]
+</span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">struct </span>State {
+    <span class="doccomment">/// This is the size that the user has picked by dragging the resize handles.
+    /// This may be smaller and/or larger than the actual size.
+    /// For instance, the user may have tried to shrink too much (not fitting the contents).
+    /// Or the user requested a large area, but the content don&#39;t need that much space.
+    </span><span class="kw">pub</span>(<span class="kw">crate</span>) desired_size: Vec2,
 
-    <span class="doccomment">/// Actual size of content last frame</span>
-    <span class="ident">last_content_size</span>: <span class="ident">Vec2</span>,
+    <span class="doccomment">/// Actual size of content last frame
+    </span>last_content_size: Vec2,
 
-    <span class="doccomment">/// Externally requested size (e.g. by Window) for the next frame</span>
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">requested_size</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Vec2</span><span class="op">&gt;</span>,
+    <span class="doccomment">/// Externally requested size (e.g. by Window) for the next frame
+    </span><span class="kw">pub</span>(<span class="kw">crate</span>) requested_size: <span class="prelude-ty">Option</span>&lt;Vec2&gt;,
 }
 
-<span class="kw">impl</span> <span class="ident">State</span> {
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">load</span>(<span class="ident">ctx</span>: <span class="kw-2">&amp;</span><span class="ident">Context</span>, <span class="ident">id</span>: <span class="ident">Id</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
-        <span class="ident">ctx</span>.<span class="ident">memory</span>().<span class="ident">data</span>.<span class="ident">get_persisted</span>(<span class="ident">id</span>)
+<span class="kw">impl </span>State {
+    <span class="kw">pub fn </span>load(ctx: <span class="kw-2">&amp;</span>Context, id: Id) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="self">Self</span>&gt; {
+        ctx.memory().data.get_persisted(id)
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">store</span>(<span class="self">self</span>, <span class="ident">ctx</span>: <span class="kw-2">&amp;</span><span class="ident">Context</span>, <span class="ident">id</span>: <span class="ident">Id</span>) {
-        <span class="ident">ctx</span>.<span class="ident">memory</span>().<span class="ident">data</span>.<span class="ident">insert_persisted</span>(<span class="ident">id</span>, <span class="self">self</span>);
+    <span class="kw">pub fn </span>store(<span class="self">self</span>, ctx: <span class="kw-2">&amp;</span>Context, id: Id) {
+        ctx.memory().data.insert_persisted(id, <span class="self">self</span>);
     }
 }
 
-<span class="doccomment">/// A region that can be resized by dragging the bottom right corner.</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">Debug</span>)]</span>
-<span class="attribute">#[<span class="ident">must_use</span> <span class="op">=</span> <span class="string">&quot;You should call .show()&quot;</span>]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Resize</span> {
-    <span class="ident">id</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Id</span><span class="op">&gt;</span>,
-    <span class="ident">id_source</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Id</span><span class="op">&gt;</span>,
+<span class="doccomment">/// A region that can be resized by dragging the bottom right corner.
+</span><span class="attribute">#[derive(Clone, Copy, Debug)]
+#[must_use = <span class="string">&quot;You should call .show()&quot;</span>]
+</span><span class="kw">pub struct </span>Resize {
+    id: <span class="prelude-ty">Option</span>&lt;Id&gt;,
+    id_source: <span class="prelude-ty">Option</span>&lt;Id&gt;,
 
-    <span class="doccomment">/// If false, we are no enabled</span>
-    <span class="ident">resizable</span>: <span class="ident">bool</span>,
+    <span class="doccomment">/// If false, we are no enabled
+    </span>resizable: bool,
 
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">min_size</span>: <span class="ident">Vec2</span>,
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">max_size</span>: <span class="ident">Vec2</span>,
+    <span class="kw">pub</span>(<span class="kw">crate</span>) min_size: Vec2,
+    <span class="kw">pub</span>(<span class="kw">crate</span>) max_size: Vec2,
 
-    <span class="ident">default_size</span>: <span class="ident">Vec2</span>,
+    default_size: Vec2,
 
-    <span class="ident">with_stroke</span>: <span class="ident">bool</span>,
+    with_stroke: bool,
 }
 
-<span class="kw">impl</span> <span class="ident">Default</span> <span class="kw">for</span> <span class="ident">Resize</span> {
-    <span class="kw">fn</span> <span class="ident">default</span>() -&gt; <span class="self">Self</span> {
-        <span class="self">Self</span> {
-            <span class="ident">id</span>: <span class="prelude-val">None</span>,
-            <span class="ident">id_source</span>: <span class="prelude-val">None</span>,
-            <span class="ident">resizable</span>: <span class="bool-val">true</span>,
-            <span class="ident">min_size</span>: <span class="ident">Vec2::splat</span>(<span class="number">16.0</span>),
-            <span class="ident">max_size</span>: <span class="ident">Vec2::splat</span>(<span class="ident">f32::INFINITY</span>),
-            <span class="ident">default_size</span>: <span class="ident">vec2</span>(<span class="number">320.0</span>, <span class="number">128.0</span>), <span class="comment">// TODO: preferred size of `Resize` area.</span>
-            <span class="ident">with_stroke</span>: <span class="bool-val">true</span>,
+<span class="kw">impl </span>Default <span class="kw">for </span>Resize {
+    <span class="kw">fn </span>default() -&gt; <span class="self">Self </span>{
+        <span class="self">Self </span>{
+            id: <span class="prelude-val">None</span>,
+            id_source: <span class="prelude-val">None</span>,
+            resizable: <span class="bool-val">true</span>,
+            min_size: Vec2::splat(<span class="number">16.0</span>),
+            max_size: Vec2::splat(f32::INFINITY),
+            default_size: vec2(<span class="number">320.0</span>, <span class="number">128.0</span>), <span class="comment">// TODO: preferred size of `Resize` area.
+            </span>with_stroke: <span class="bool-val">true</span>,
         }
     }
 }
 
-<span class="kw">impl</span> <span class="ident">Resize</span> {
-    <span class="doccomment">/// Assign an explicit and globally unique id.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">id</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">id</span>: <span class="ident">Id</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">self</span>.<span class="ident">id</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">id</span>);
-        <span class="self">self</span>
+<span class="kw">impl </span>Resize {
+    <span class="doccomment">/// Assign an explicit and globally unique id.
+    </span><span class="kw">pub fn </span>id(<span class="kw-2">mut </span><span class="self">self</span>, id: Id) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.id = <span class="prelude-val">Some</span>(id);
+        <span class="self">self
+    </span>}
+
+    <span class="doccomment">/// A source for the unique `Id`, e.g. `.id_source(&quot;second_resize_area&quot;)` or `.id_source(loop_index)`.
+    </span><span class="kw">pub fn </span>id_source(<span class="kw-2">mut </span><span class="self">self</span>, id_source: <span class="kw">impl </span>std::hash::Hash) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.id_source = <span class="prelude-val">Some</span>(Id::new(id_source));
+        <span class="self">self
+    </span>}
+
+    <span class="doccomment">/// Preferred / suggested width. Actual width will depend on contents.
+    ///
+    /// Examples:
+    /// * if the contents is text, this will decide where we break long lines.
+    /// * if the contents is a canvas, this decides the width of it,
+    /// * if the contents is some buttons, this is ignored and we will auto-size.
+    </span><span class="kw">pub fn </span>default_width(<span class="kw-2">mut </span><span class="self">self</span>, width: f32) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.default_size.x = width;
+        <span class="self">self
+    </span>}
+
+    <span class="doccomment">/// Preferred / suggested height. Actual height will depend on contents.
+    ///
+    /// Examples:
+    /// * if the contents is a `ScrollArea` then this decides the maximum size.
+    /// * if the contents is a canvas, this decides the height of it,
+    /// * if the contents is text and buttons, then the `default_height` is ignored
+    ///   and the height is picked automatically..
+    </span><span class="kw">pub fn </span>default_height(<span class="kw-2">mut </span><span class="self">self</span>, height: f32) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.default_size.y = height;
+        <span class="self">self
+    </span>}
+
+    <span class="kw">pub fn </span>default_size(<span class="kw-2">mut </span><span class="self">self</span>, default_size: <span class="kw">impl </span>Into&lt;Vec2&gt;) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.default_size = default_size.into();
+        <span class="self">self
+    </span>}
+
+    <span class="doccomment">/// Won&#39;t shrink to smaller than this
+    </span><span class="kw">pub fn </span>min_size(<span class="kw-2">mut </span><span class="self">self</span>, min_size: <span class="kw">impl </span>Into&lt;Vec2&gt;) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.min_size = min_size.into();
+        <span class="self">self
+    </span>}
+    <span class="doccomment">/// Won&#39;t shrink to smaller than this
+    </span><span class="kw">pub fn </span>min_width(<span class="kw-2">mut </span><span class="self">self</span>, min_width: f32) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.min_size.x = min_width;
+        <span class="self">self
+    </span>}
+    <span class="doccomment">/// Won&#39;t shrink to smaller than this
+    </span><span class="kw">pub fn </span>min_height(<span class="kw-2">mut </span><span class="self">self</span>, min_height: f32) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.min_size.y = min_height;
+        <span class="self">self
+    </span>}
+
+    <span class="doccomment">/// Won&#39;t expand to larger than this
+    </span><span class="kw">pub fn </span>max_size(<span class="kw-2">mut </span><span class="self">self</span>, max_size: <span class="kw">impl </span>Into&lt;Vec2&gt;) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.max_size = max_size.into();
+        <span class="self">self
+    </span>}
+
+    <span class="doccomment">/// Can you resize it with the mouse?
+    /// Note that a window can still auto-resize
+    </span><span class="kw">pub fn </span>resizable(<span class="kw-2">mut </span><span class="self">self</span>, resizable: bool) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.resizable = resizable;
+        <span class="self">self
+    </span>}
+
+    <span class="kw">pub fn </span>is_resizable(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; bool {
+        <span class="self">self</span>.resizable
     }
 
-    <span class="doccomment">/// A source for the unique `Id`, e.g. `.id_source(&quot;second_resize_area&quot;)` or `.id_source(loop_index)`.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">id_source</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">id_source</span>: <span class="kw">impl</span> <span class="ident">std::hash::Hash</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">self</span>.<span class="ident">id_source</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">Id::new</span>(<span class="ident">id_source</span>));
-        <span class="self">self</span>
+    <span class="doccomment">/// Not manually resizable, just takes the size of its contents.
+    /// Text will not wrap, but will instead make your window width expand.
+    </span><span class="kw">pub fn </span>auto_sized(<span class="self">self</span>) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.min_size(Vec2::ZERO)
+            .default_size(Vec2::splat(f32::INFINITY))
+            .resizable(<span class="bool-val">false</span>)
     }
 
-    <span class="doccomment">/// Preferred / suggested width. Actual width will depend on contents.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// Examples:</span>
-    <span class="doccomment">/// * if the contents is text, this will decide where we break long lines.</span>
-    <span class="doccomment">/// * if the contents is a canvas, this decides the width of it,</span>
-    <span class="doccomment">/// * if the contents is some buttons, this is ignored and we will auto-size.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">default_width</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">width</span>: <span class="ident">f32</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">self</span>.<span class="ident">default_size</span>.<span class="ident">x</span> <span class="op">=</span> <span class="ident">width</span>;
-        <span class="self">self</span>
-    }
+    <span class="kw">pub fn </span>fixed_size(<span class="kw-2">mut </span><span class="self">self</span>, size: <span class="kw">impl </span>Into&lt;Vec2&gt;) -&gt; <span class="self">Self </span>{
+        <span class="kw">let </span>size = size.into();
+        <span class="self">self</span>.default_size = size;
+        <span class="self">self</span>.min_size = size;
+        <span class="self">self</span>.max_size = size;
+        <span class="self">self</span>.resizable = <span class="bool-val">false</span>;
+        <span class="self">self
+    </span>}
 
-    <span class="doccomment">/// Preferred / suggested height. Actual height will depend on contents.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// Examples:</span>
-    <span class="doccomment">/// * if the contents is a `ScrollArea` then this decides the maximum size.</span>
-    <span class="doccomment">/// * if the contents is a canvas, this decides the height of it,</span>
-    <span class="doccomment">/// * if the contents is text and buttons, then the `default_height` is ignored</span>
-    <span class="doccomment">///   and the height is picked automatically..</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">default_height</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">height</span>: <span class="ident">f32</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">self</span>.<span class="ident">default_size</span>.<span class="ident">y</span> <span class="op">=</span> <span class="ident">height</span>;
-        <span class="self">self</span>
-    }
-
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">default_size</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">default_size</span>: <span class="kw">impl</span> <span class="ident">Into</span><span class="op">&lt;</span><span class="ident">Vec2</span><span class="op">&gt;</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">self</span>.<span class="ident">default_size</span> <span class="op">=</span> <span class="ident">default_size</span>.<span class="ident">into</span>();
-        <span class="self">self</span>
-    }
-
-    <span class="doccomment">/// Won&#39;t shrink to smaller than this</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">min_size</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">min_size</span>: <span class="kw">impl</span> <span class="ident">Into</span><span class="op">&lt;</span><span class="ident">Vec2</span><span class="op">&gt;</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">self</span>.<span class="ident">min_size</span> <span class="op">=</span> <span class="ident">min_size</span>.<span class="ident">into</span>();
-        <span class="self">self</span>
-    }
-    <span class="doccomment">/// Won&#39;t shrink to smaller than this</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">min_width</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">min_width</span>: <span class="ident">f32</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">self</span>.<span class="ident">min_size</span>.<span class="ident">x</span> <span class="op">=</span> <span class="ident">min_width</span>;
-        <span class="self">self</span>
-    }
-    <span class="doccomment">/// Won&#39;t shrink to smaller than this</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">min_height</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">min_height</span>: <span class="ident">f32</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">self</span>.<span class="ident">min_size</span>.<span class="ident">y</span> <span class="op">=</span> <span class="ident">min_height</span>;
-        <span class="self">self</span>
-    }
-
-    <span class="doccomment">/// Won&#39;t expand to larger than this</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">max_size</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">max_size</span>: <span class="kw">impl</span> <span class="ident">Into</span><span class="op">&lt;</span><span class="ident">Vec2</span><span class="op">&gt;</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">self</span>.<span class="ident">max_size</span> <span class="op">=</span> <span class="ident">max_size</span>.<span class="ident">into</span>();
-        <span class="self">self</span>
-    }
-
-    <span class="doccomment">/// Can you resize it with the mouse?</span>
-    <span class="doccomment">/// Note that a window can still auto-resize</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">resizable</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">resizable</span>: <span class="ident">bool</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">self</span>.<span class="ident">resizable</span> <span class="op">=</span> <span class="ident">resizable</span>;
-        <span class="self">self</span>
-    }
-
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_resizable</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span> {
-        <span class="self">self</span>.<span class="ident">resizable</span>
-    }
-
-    <span class="doccomment">/// Not manually resizable, just takes the size of its contents.</span>
-    <span class="doccomment">/// Text will not wrap, but will instead make your window width expand.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">auto_sized</span>(<span class="self">self</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">self</span>.<span class="ident">min_size</span>(<span class="ident">Vec2::ZERO</span>)
-            .<span class="ident">default_size</span>(<span class="ident">Vec2::splat</span>(<span class="ident">f32::INFINITY</span>))
-            .<span class="ident">resizable</span>(<span class="bool-val">false</span>)
-    }
-
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">fixed_size</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">size</span>: <span class="kw">impl</span> <span class="ident">Into</span><span class="op">&lt;</span><span class="ident">Vec2</span><span class="op">&gt;</span>) -&gt; <span class="self">Self</span> {
-        <span class="kw">let</span> <span class="ident">size</span> <span class="op">=</span> <span class="ident">size</span>.<span class="ident">into</span>();
-        <span class="self">self</span>.<span class="ident">default_size</span> <span class="op">=</span> <span class="ident">size</span>;
-        <span class="self">self</span>.<span class="ident">min_size</span> <span class="op">=</span> <span class="ident">size</span>;
-        <span class="self">self</span>.<span class="ident">max_size</span> <span class="op">=</span> <span class="ident">size</span>;
-        <span class="self">self</span>.<span class="ident">resizable</span> <span class="op">=</span> <span class="bool-val">false</span>;
-        <span class="self">self</span>
-    }
-
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">with_stroke</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">with_stroke</span>: <span class="ident">bool</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">self</span>.<span class="ident">with_stroke</span> <span class="op">=</span> <span class="ident">with_stroke</span>;
-        <span class="self">self</span>
-    }
+    <span class="kw">pub fn </span>with_stroke(<span class="kw-2">mut </span><span class="self">self</span>, with_stroke: bool) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.with_stroke = with_stroke;
+        <span class="self">self
+    </span>}
 }
 
-<span class="kw">struct</span> <span class="ident">Prepared</span> {
-    <span class="ident">id</span>: <span class="ident">Id</span>,
-    <span class="ident">state</span>: <span class="ident">State</span>,
-    <span class="ident">corner_response</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Response</span><span class="op">&gt;</span>,
-    <span class="ident">content_ui</span>: <span class="ident">Ui</span>,
+<span class="kw">struct </span>Prepared {
+    id: Id,
+    state: State,
+    corner_response: <span class="prelude-ty">Option</span>&lt;Response&gt;,
+    content_ui: Ui,
 }
 
-<span class="kw">impl</span> <span class="ident">Resize</span> {
-    <span class="kw">fn</span> <span class="ident">begin</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">ui</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Ui</span>) -&gt; <span class="ident">Prepared</span> {
-        <span class="kw">let</span> <span class="ident">position</span> <span class="op">=</span> <span class="ident">ui</span>.<span class="ident">available_rect_before_wrap</span>().<span class="ident">min</span>;
-        <span class="kw">let</span> <span class="ident">id</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">id</span>.<span class="ident">unwrap_or_else</span>(<span class="op">|</span><span class="op">|</span> {
-            <span class="kw">let</span> <span class="ident">id_source</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">id_source</span>.<span class="ident">unwrap_or_else</span>(<span class="op">|</span><span class="op">|</span> <span class="ident">Id::new</span>(<span class="string">&quot;resize&quot;</span>));
-            <span class="ident">ui</span>.<span class="ident">make_persistent_id</span>(<span class="ident">id_source</span>)
+<span class="kw">impl </span>Resize {
+    <span class="kw">fn </span>begin(<span class="kw-2">&amp;mut </span><span class="self">self</span>, ui: <span class="kw-2">&amp;mut </span>Ui) -&gt; Prepared {
+        <span class="kw">let </span>position = ui.available_rect_before_wrap().min;
+        <span class="kw">let </span>id = <span class="self">self</span>.id.unwrap_or_else(|| {
+            <span class="kw">let </span>id_source = <span class="self">self</span>.id_source.unwrap_or_else(|| Id::new(<span class="string">&quot;resize&quot;</span>));
+            ui.make_persistent_id(id_source)
         });
 
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">state</span> <span class="op">=</span> <span class="ident">State::load</span>(<span class="ident">ui</span>.<span class="ident">ctx</span>(), <span class="ident">id</span>).<span class="ident">unwrap_or_else</span>(<span class="op">|</span><span class="op">|</span> {
-            <span class="ident">ui</span>.<span class="ident">ctx</span>().<span class="ident">request_repaint</span>(); <span class="comment">// counter frame delay</span>
+        <span class="kw">let </span><span class="kw-2">mut </span>state = State::load(ui.ctx(), id).unwrap_or_else(|| {
+            ui.ctx().request_repaint(); <span class="comment">// counter frame delay
 
-            <span class="kw">let</span> <span class="ident">default_size</span> <span class="op">=</span> <span class="self">self</span>
-                .<span class="ident">default_size</span>
-                .<span class="ident">at_least</span>(<span class="self">self</span>.<span class="ident">min_size</span>)
-                .<span class="ident">at_most</span>(<span class="self">self</span>.<span class="ident">max_size</span>)
-                .<span class="ident">at_most</span>(
-                    <span class="ident">ui</span>.<span class="ident">input</span>().<span class="ident">screen_rect</span>().<span class="ident">size</span>() <span class="op">-</span> <span class="number">2.0</span> <span class="op">*</span> <span class="ident">ui</span>.<span class="ident">spacing</span>().<span class="ident">window_padding</span>, <span class="comment">// hack for windows</span>
-                );
+            </span><span class="kw">let </span>default_size = <span class="self">self
+                </span>.default_size
+                .at_least(<span class="self">self</span>.min_size)
+                .at_most(<span class="self">self</span>.max_size)
+                .at_most(
+                    ui.input().screen_rect().size() - <span class="number">2.0 </span>* ui.spacing().window_padding, <span class="comment">// hack for windows
+                </span>);
 
-            <span class="ident">State</span> {
-                <span class="ident">desired_size</span>: <span class="ident">default_size</span>,
-                <span class="ident">last_content_size</span>: <span class="ident">vec2</span>(<span class="number">0.0</span>, <span class="number">0.0</span>),
-                <span class="ident">requested_size</span>: <span class="prelude-val">None</span>,
+            State {
+                desired_size: default_size,
+                last_content_size: vec2(<span class="number">0.0</span>, <span class="number">0.0</span>),
+                requested_size: <span class="prelude-val">None</span>,
             }
         });
 
-        <span class="ident">state</span>.<span class="ident">desired_size</span> <span class="op">=</span> <span class="ident">state</span>
-            .<span class="ident">desired_size</span>
-            .<span class="ident">at_least</span>(<span class="self">self</span>.<span class="ident">min_size</span>)
-            .<span class="ident">at_most</span>(<span class="self">self</span>.<span class="ident">max_size</span>);
+        state.desired_size = state
+            .desired_size
+            .at_least(<span class="self">self</span>.min_size)
+            .at_most(<span class="self">self</span>.max_size);
 
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">user_requested_size</span> <span class="op">=</span> <span class="ident">state</span>.<span class="ident">requested_size</span>.<span class="ident">take</span>();
+        <span class="kw">let </span><span class="kw-2">mut </span>user_requested_size = state.requested_size.take();
 
-        <span class="kw">let</span> <span class="ident">corner_response</span> <span class="op">=</span> <span class="kw">if</span> <span class="self">self</span>.<span class="ident">resizable</span> {
-            <span class="comment">// Resize-corner:</span>
-            <span class="kw">let</span> <span class="ident">corner_size</span> <span class="op">=</span> <span class="ident">Vec2::splat</span>(<span class="ident">ui</span>.<span class="ident">visuals</span>().<span class="ident">resize_corner_size</span>);
-            <span class="kw">let</span> <span class="ident">corner_rect</span> <span class="op">=</span>
-                <span class="ident">Rect::from_min_size</span>(<span class="ident">position</span> <span class="op">+</span> <span class="ident">state</span>.<span class="ident">desired_size</span> <span class="op">-</span> <span class="ident">corner_size</span>, <span class="ident">corner_size</span>);
-            <span class="kw">let</span> <span class="ident">corner_response</span> <span class="op">=</span> <span class="ident">ui</span>.<span class="ident">interact</span>(<span class="ident">corner_rect</span>, <span class="ident">id</span>.<span class="ident">with</span>(<span class="string">&quot;corner&quot;</span>), <span class="ident">Sense::drag</span>());
+        <span class="kw">let </span>corner_response = <span class="kw">if </span><span class="self">self</span>.resizable {
+            <span class="comment">// Resize-corner:
+            </span><span class="kw">let </span>corner_size = Vec2::splat(ui.visuals().resize_corner_size);
+            <span class="kw">let </span>corner_rect =
+                Rect::from_min_size(position + state.desired_size - corner_size, corner_size);
+            <span class="kw">let </span>corner_response = ui.interact(corner_rect, id.with(<span class="string">&quot;corner&quot;</span>), Sense::drag());
 
-            <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">pointer_pos</span>) <span class="op">=</span> <span class="ident">corner_response</span>.<span class="ident">interact_pointer_pos</span>() {
-                <span class="ident">user_requested_size</span> <span class="op">=</span>
-                    <span class="prelude-val">Some</span>(<span class="ident">pointer_pos</span> <span class="op">-</span> <span class="ident">position</span> <span class="op">+</span> <span class="number">0.5</span> <span class="op">*</span> <span class="ident">corner_response</span>.<span class="ident">rect</span>.<span class="ident">size</span>());
+            <span class="kw">if let </span><span class="prelude-val">Some</span>(pointer_pos) = corner_response.interact_pointer_pos() {
+                user_requested_size =
+                    <span class="prelude-val">Some</span>(pointer_pos - position + <span class="number">0.5 </span>* corner_response.rect.size());
             }
 
-            <span class="prelude-val">Some</span>(<span class="ident">corner_response</span>)
-        } <span class="kw">else</span> {
-            <span class="prelude-val">None</span>
-        };
+            <span class="prelude-val">Some</span>(corner_response)
+        } <span class="kw">else </span>{
+            <span class="prelude-val">None
+        </span>};
 
-        <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">user_requested_size</span>) <span class="op">=</span> <span class="ident">user_requested_size</span> {
-            <span class="ident">state</span>.<span class="ident">desired_size</span> <span class="op">=</span> <span class="ident">user_requested_size</span>;
-        } <span class="kw">else</span> {
-            <span class="comment">// We are not being actively resized, so auto-expand to include size of last frame.</span>
-            <span class="comment">// This prevents auto-shrinking if the contents contain width-filling widgets (separators etc)</span>
-            <span class="comment">// but it makes a lot of interactions with `Window`s nicer.</span>
-            <span class="ident">state</span>.<span class="ident">desired_size</span> <span class="op">=</span> <span class="ident">state</span>.<span class="ident">desired_size</span>.<span class="ident">max</span>(<span class="ident">state</span>.<span class="ident">last_content_size</span>);
+        <span class="kw">if let </span><span class="prelude-val">Some</span>(user_requested_size) = user_requested_size {
+            state.desired_size = user_requested_size;
+        } <span class="kw">else </span>{
+            <span class="comment">// We are not being actively resized, so auto-expand to include size of last frame.
+            // This prevents auto-shrinking if the contents contain width-filling widgets (separators etc)
+            // but it makes a lot of interactions with `Window`s nicer.
+            </span>state.desired_size = state.desired_size.max(state.last_content_size);
         }
 
-        <span class="ident">state</span>.<span class="ident">desired_size</span> <span class="op">=</span> <span class="ident">state</span>
-            .<span class="ident">desired_size</span>
-            .<span class="ident">at_least</span>(<span class="self">self</span>.<span class="ident">min_size</span>)
-            .<span class="ident">at_most</span>(<span class="self">self</span>.<span class="ident">max_size</span>);
+        state.desired_size = state
+            .desired_size
+            .at_least(<span class="self">self</span>.min_size)
+            .at_most(<span class="self">self</span>.max_size);
 
-        <span class="comment">// ------------------------------</span>
+        <span class="comment">// ------------------------------
 
-        <span class="kw">let</span> <span class="ident">inner_rect</span> <span class="op">=</span> <span class="ident">Rect::from_min_size</span>(<span class="ident">position</span>, <span class="ident">state</span>.<span class="ident">desired_size</span>);
+        </span><span class="kw">let </span>inner_rect = Rect::from_min_size(position, state.desired_size);
 
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">content_clip_rect</span> <span class="op">=</span> <span class="ident">inner_rect</span>.<span class="ident">expand</span>(<span class="ident">ui</span>.<span class="ident">visuals</span>().<span class="ident">clip_rect_margin</span>);
+        <span class="kw">let </span><span class="kw-2">mut </span>content_clip_rect = inner_rect.expand(ui.visuals().clip_rect_margin);
 
-        <span class="comment">// If we pull the resize handle to shrink, we want to TRY to shrink it.</span>
-        <span class="comment">// After laying out the contents, we might be much bigger.</span>
-        <span class="comment">// In those cases we don&#39;t want the clip_rect to be smaller, because</span>
-        <span class="comment">// then we will clip the contents of the region even thought the result gets larger. This is simply ugly!</span>
-        <span class="comment">// So we use the memory of last_content_size to make the clip rect large enough.</span>
-        <span class="ident">content_clip_rect</span>.<span class="ident">max</span> <span class="op">=</span> <span class="ident">content_clip_rect</span>.<span class="ident">max</span>.<span class="ident">max</span>(
-            <span class="ident">inner_rect</span>.<span class="ident">min</span> <span class="op">+</span> <span class="ident">state</span>.<span class="ident">last_content_size</span> <span class="op">+</span> <span class="ident">Vec2::splat</span>(<span class="ident">ui</span>.<span class="ident">visuals</span>().<span class="ident">clip_rect_margin</span>),
+        <span class="comment">// If we pull the resize handle to shrink, we want to TRY to shrink it.
+        // After laying out the contents, we might be much bigger.
+        // In those cases we don&#39;t want the clip_rect to be smaller, because
+        // then we will clip the contents of the region even thought the result gets larger. This is simply ugly!
+        // So we use the memory of last_content_size to make the clip rect large enough.
+        </span>content_clip_rect.max = content_clip_rect.max.max(
+            inner_rect.min + state.last_content_size + Vec2::splat(ui.visuals().clip_rect_margin),
         );
 
-        <span class="ident">content_clip_rect</span> <span class="op">=</span> <span class="ident">content_clip_rect</span>.<span class="ident">intersect</span>(<span class="ident">ui</span>.<span class="ident">clip_rect</span>()); <span class="comment">// Respect parent region</span>
+        content_clip_rect = content_clip_rect.intersect(ui.clip_rect()); <span class="comment">// Respect parent region
 
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">content_ui</span> <span class="op">=</span> <span class="ident">ui</span>.<span class="ident">child_ui</span>(<span class="ident">inner_rect</span>, <span class="kw-2">*</span><span class="ident">ui</span>.<span class="ident">layout</span>());
-        <span class="ident">content_ui</span>.<span class="ident">set_clip_rect</span>(<span class="ident">content_clip_rect</span>);
+        </span><span class="kw">let </span><span class="kw-2">mut </span>content_ui = ui.child_ui(inner_rect, <span class="kw-2">*</span>ui.layout());
+        content_ui.set_clip_rect(content_clip_rect);
 
-        <span class="ident">Prepared</span> {
-            <span class="ident">id</span>,
-            <span class="ident">state</span>,
-            <span class="ident">corner_response</span>,
-            <span class="ident">content_ui</span>,
+        Prepared {
+            id,
+            state,
+            corner_response,
+            content_ui,
         }
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">show</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">ui</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Ui</span>, <span class="ident">add_contents</span>: <span class="kw">impl</span> <span class="ident">FnOnce</span>(<span class="kw-2">&amp;mut</span> <span class="ident">Ui</span>) -&gt; <span class="ident">R</span>) -&gt; <span class="ident">R</span> {
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">prepared</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">begin</span>(<span class="ident">ui</span>);
-        <span class="kw">let</span> <span class="ident">ret</span> <span class="op">=</span> <span class="ident">add_contents</span>(<span class="kw-2">&amp;mut</span> <span class="ident">prepared</span>.<span class="ident">content_ui</span>);
-        <span class="self">self</span>.<span class="ident">end</span>(<span class="ident">ui</span>, <span class="ident">prepared</span>);
-        <span class="ident">ret</span>
+    <span class="kw">pub fn </span>show&lt;R&gt;(<span class="kw-2">mut </span><span class="self">self</span>, ui: <span class="kw-2">&amp;mut </span>Ui, add_contents: <span class="kw">impl </span>FnOnce(<span class="kw-2">&amp;mut </span>Ui) -&gt; R) -&gt; R {
+        <span class="kw">let </span><span class="kw-2">mut </span>prepared = <span class="self">self</span>.begin(ui);
+        <span class="kw">let </span>ret = add_contents(<span class="kw-2">&amp;mut </span>prepared.content_ui);
+        <span class="self">self</span>.end(ui, prepared);
+        ret
     }
 
-    <span class="kw">fn</span> <span class="ident">end</span>(<span class="self">self</span>, <span class="ident">ui</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Ui</span>, <span class="ident">prepared</span>: <span class="ident">Prepared</span>) {
-        <span class="kw">let</span> <span class="ident">Prepared</span> {
-            <span class="ident">id</span>,
-            <span class="kw-2">mut</span> <span class="ident">state</span>,
-            <span class="ident">corner_response</span>,
-            <span class="ident">content_ui</span>,
-        } <span class="op">=</span> <span class="ident">prepared</span>;
+    <span class="kw">fn </span>end(<span class="self">self</span>, ui: <span class="kw-2">&amp;mut </span>Ui, prepared: Prepared) {
+        <span class="kw">let </span>Prepared {
+            id,
+            <span class="kw-2">mut </span>state,
+            corner_response,
+            content_ui,
+        } = prepared;
 
-        <span class="ident">state</span>.<span class="ident">last_content_size</span> <span class="op">=</span> <span class="ident">content_ui</span>.<span class="ident">min_size</span>();
+        state.last_content_size = content_ui.min_size();
 
-        <span class="comment">// ------------------------------</span>
+        <span class="comment">// ------------------------------
 
-        <span class="kw">let</span> <span class="ident">size</span> <span class="op">=</span> <span class="kw">if</span> <span class="self">self</span>.<span class="ident">with_stroke</span> <span class="op">|</span><span class="op">|</span> <span class="self">self</span>.<span class="ident">resizable</span> {
-            <span class="comment">// We show how large we are,</span>
-            <span class="comment">// so we must follow the contents:</span>
+        </span><span class="kw">let </span>size = <span class="kw">if </span><span class="self">self</span>.with_stroke || <span class="self">self</span>.resizable {
+            <span class="comment">// We show how large we are,
+            // so we must follow the contents:
 
-            <span class="ident">state</span>.<span class="ident">desired_size</span> <span class="op">=</span> <span class="ident">state</span>.<span class="ident">desired_size</span>.<span class="ident">max</span>(<span class="ident">state</span>.<span class="ident">last_content_size</span>);
+            </span>state.desired_size = state.desired_size.max(state.last_content_size);
 
-            <span class="comment">// We are as large as we look</span>
-            <span class="ident">state</span>.<span class="ident">desired_size</span>
-        } <span class="kw">else</span> {
-            <span class="comment">// Probably a window.</span>
-            <span class="ident">state</span>.<span class="ident">last_content_size</span>
+            <span class="comment">// We are as large as we look
+            </span>state.desired_size
+        } <span class="kw">else </span>{
+            <span class="comment">// Probably a window.
+            </span>state.last_content_size
         };
-        <span class="ident">ui</span>.<span class="ident">advance_cursor_after_rect</span>(<span class="ident">Rect::from_min_size</span>(<span class="ident">content_ui</span>.<span class="ident">min_rect</span>().<span class="ident">min</span>, <span class="ident">size</span>));
+        ui.advance_cursor_after_rect(Rect::from_min_size(content_ui.min_rect().min, size));
 
-        <span class="comment">// ------------------------------</span>
+        <span class="comment">// ------------------------------
 
-        <span class="kw">if</span> <span class="self">self</span>.<span class="ident">with_stroke</span> <span class="op">&amp;&amp;</span> <span class="ident">corner_response</span>.<span class="ident">is_some</span>() {
-            <span class="kw">let</span> <span class="ident">rect</span> <span class="op">=</span> <span class="ident">Rect::from_min_size</span>(<span class="ident">content_ui</span>.<span class="ident">min_rect</span>().<span class="ident">left_top</span>(), <span class="ident">state</span>.<span class="ident">desired_size</span>);
-            <span class="kw">let</span> <span class="ident">rect</span> <span class="op">=</span> <span class="ident">rect</span>.<span class="ident">expand</span>(<span class="number">2.0</span>); <span class="comment">// breathing room for content</span>
-            <span class="ident">ui</span>.<span class="ident">painter</span>().<span class="ident">add</span>(<span class="ident">Shape::rect_stroke</span>(
-                <span class="ident">rect</span>,
+        </span><span class="kw">if </span><span class="self">self</span>.with_stroke &amp;&amp; corner_response.is_some() {
+            <span class="kw">let </span>rect = Rect::from_min_size(content_ui.min_rect().left_top(), state.desired_size);
+            <span class="kw">let </span>rect = rect.expand(<span class="number">2.0</span>); <span class="comment">// breathing room for content
+            </span>ui.painter().add(Shape::rect_stroke(
+                rect,
                 <span class="number">3.0</span>,
-                <span class="ident">ui</span>.<span class="ident">visuals</span>().<span class="ident">widgets</span>.<span class="ident">noninteractive</span>.<span class="ident">bg_stroke</span>,
+                ui.visuals().widgets.noninteractive.bg_stroke,
             ));
         }
 
-        <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">corner_response</span>) <span class="op">=</span> <span class="ident">corner_response</span> {
-            <span class="ident">paint_resize_corner</span>(<span class="ident">ui</span>, <span class="kw-2">&amp;</span><span class="ident">corner_response</span>);
+        <span class="kw">if let </span><span class="prelude-val">Some</span>(corner_response) = corner_response {
+            paint_resize_corner(ui, <span class="kw-2">&amp;</span>corner_response);
 
-            <span class="kw">if</span> <span class="ident">corner_response</span>.<span class="ident">hovered</span>() <span class="op">|</span><span class="op">|</span> <span class="ident">corner_response</span>.<span class="ident">dragged</span>() {
-                <span class="ident">ui</span>.<span class="ident">ctx</span>().<span class="ident">output</span>().<span class="ident">cursor_icon</span> <span class="op">=</span> <span class="ident">CursorIcon::ResizeNwSe</span>;
+            <span class="kw">if </span>corner_response.hovered() || corner_response.dragged() {
+                ui.ctx().output().cursor_icon = CursorIcon::ResizeNwSe;
             }
         }
 
-        <span class="ident">state</span>.<span class="ident">store</span>(<span class="ident">ui</span>.<span class="ident">ctx</span>(), <span class="ident">id</span>);
+        state.store(ui.ctx(), id);
 
-        <span class="kw">if</span> <span class="ident">ui</span>.<span class="ident">ctx</span>().<span class="ident">style</span>().<span class="ident">debug</span>.<span class="ident">show_resize</span> {
-            <span class="ident">ui</span>.<span class="ident">ctx</span>().<span class="ident">debug_painter</span>().<span class="ident">debug_rect</span>(
-                <span class="ident">Rect::from_min_size</span>(<span class="ident">content_ui</span>.<span class="ident">min_rect</span>().<span class="ident">left_top</span>(), <span class="ident">state</span>.<span class="ident">desired_size</span>),
-                <span class="ident">Color32::GREEN</span>,
+        <span class="kw">if </span>ui.ctx().style().debug.show_resize {
+            ui.ctx().debug_painter().debug_rect(
+                Rect::from_min_size(content_ui.min_rect().left_top(), state.desired_size),
+                Color32::GREEN,
                 <span class="string">&quot;desired_size&quot;</span>,
             );
-            <span class="ident">ui</span>.<span class="ident">ctx</span>().<span class="ident">debug_painter</span>().<span class="ident">debug_rect</span>(
-                <span class="ident">Rect::from_min_size</span>(<span class="ident">content_ui</span>.<span class="ident">min_rect</span>().<span class="ident">left_top</span>(), <span class="ident">state</span>.<span class="ident">last_content_size</span>),
-                <span class="ident">Color32::LIGHT_BLUE</span>,
+            ui.ctx().debug_painter().debug_rect(
+                Rect::from_min_size(content_ui.min_rect().left_top(), state.last_content_size),
+                Color32::LIGHT_BLUE,
                 <span class="string">&quot;last_content_size&quot;</span>,
             );
         }
     }
 }
 
-<span class="kw">use</span> <span class="ident">epaint::Stroke</span>;
+<span class="kw">use </span>epaint::Stroke;
 
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">paint_resize_corner</span>(<span class="ident">ui</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Ui</span>, <span class="ident">response</span>: <span class="kw-2">&amp;</span><span class="ident">Response</span>) {
-    <span class="kw">let</span> <span class="ident">stroke</span> <span class="op">=</span> <span class="ident">ui</span>.<span class="ident">style</span>().<span class="ident">interact</span>(<span class="ident">response</span>).<span class="ident">fg_stroke</span>;
-    <span class="ident">paint_resize_corner_with_style</span>(<span class="ident">ui</span>, <span class="kw-2">&amp;</span><span class="ident">response</span>.<span class="ident">rect</span>, <span class="ident">stroke</span>, <span class="ident">Align2::RIGHT_BOTTOM</span>);
+<span class="kw">pub fn </span>paint_resize_corner(ui: <span class="kw-2">&amp;mut </span>Ui, response: <span class="kw-2">&amp;</span>Response) {
+    <span class="kw">let </span>stroke = ui.style().interact(response).fg_stroke;
+    paint_resize_corner_with_style(ui, <span class="kw-2">&amp;</span>response.rect, stroke, Align2::RIGHT_BOTTOM);
 }
 
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">paint_resize_corner_with_style</span>(<span class="ident">ui</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Ui</span>, <span class="ident">rect</span>: <span class="kw-2">&amp;</span><span class="ident">Rect</span>, <span class="ident">stroke</span>: <span class="ident">Stroke</span>, <span class="ident">corner</span>: <span class="ident">Align2</span>) {
-    <span class="kw">let</span> <span class="ident">painter</span> <span class="op">=</span> <span class="ident">ui</span>.<span class="ident">painter</span>();
-    <span class="kw">let</span> <span class="ident">cp</span> <span class="op">=</span> <span class="ident">painter</span>.<span class="ident">round_pos_to_pixels</span>(<span class="ident">corner</span>.<span class="ident">pos_in_rect</span>(<span class="ident">rect</span>));
-    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">w</span> <span class="op">=</span> <span class="number">2.0</span>;
+<span class="kw">pub fn </span>paint_resize_corner_with_style(ui: <span class="kw-2">&amp;mut </span>Ui, rect: <span class="kw-2">&amp;</span>Rect, stroke: Stroke, corner: Align2) {
+    <span class="kw">let </span>painter = ui.painter();
+    <span class="kw">let </span>cp = painter.round_pos_to_pixels(corner.pos_in_rect(rect));
+    <span class="kw">let </span><span class="kw-2">mut </span>w = <span class="number">2.0</span>;
 
-    <span class="kw">while</span> <span class="ident">w</span> <span class="op">&lt;</span><span class="op">=</span> <span class="ident">rect</span>.<span class="ident">width</span>() <span class="op">&amp;&amp;</span> <span class="ident">w</span> <span class="op">&lt;</span><span class="op">=</span> <span class="ident">rect</span>.<span class="ident">height</span>() {
-        <span class="ident">painter</span>.<span class="ident">line_segment</span>(
+    <span class="kw">while </span>w &lt;= rect.width() &amp;&amp; w &lt;= rect.height() {
+        painter.line_segment(
             [
-                <span class="ident">pos2</span>(<span class="ident">cp</span>.<span class="ident">x</span> <span class="op">-</span> <span class="ident">w</span> <span class="op">*</span> <span class="ident">corner</span>.<span class="ident">x</span>().<span class="ident">to_sign</span>(), <span class="ident">cp</span>.<span class="ident">y</span>),
-                <span class="ident">pos2</span>(<span class="ident">cp</span>.<span class="ident">x</span>, <span class="ident">cp</span>.<span class="ident">y</span> <span class="op">-</span> <span class="ident">w</span> <span class="op">*</span> <span class="ident">corner</span>.<span class="ident">y</span>().<span class="ident">to_sign</span>()),
+                pos2(cp.x - w * corner.x().to_sign(), cp.y),
+                pos2(cp.x, cp.y - w * corner.y().to_sign()),
             ],
-            <span class="ident">stroke</span>,
+            stroke,
         );
-        <span class="ident">w</span> <span class="op">+</span><span class="op">=</span> <span class="number">4.0</span>;
+        w += <span class="number">4.0</span>;
     }
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="egui" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0 (a55dd71d5 2022-09-19)" ></div></body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="egui" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.66.1 (90743e729 2023-01-10)" ></div></body></html>

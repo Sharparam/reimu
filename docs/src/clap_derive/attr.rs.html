@@ -1,6 +1,5 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/clap_derive-4.0.18/src/attr.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>attr.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../clap_derive/index.html"><div class="logo-container"><img src="https://raw.githubusercontent.com/clap-rs/clap/master/assets/clap.png" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../clap_derive/index.html"><div class="logo-container">
-                    <img src="https://raw.githubusercontent.com/clap-rs/clap/master/assets/clap.png" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../clap_derive/index.html">
-                        <img src="https://raw.githubusercontent.com/clap-rs/clap/master/assets/clap.png" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/clap_derive-4.0.18/src/attr.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>attr.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../normalize.css"><link rel="stylesheet" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../ayu.css" disabled><link rel="stylesheet" href="../../dark.css" disabled><link rel="stylesheet" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><div class="width-limiter"><nav class="sub"><a class="sub-logo-container" href="../../clap_derive/index.html">
+                        <img src="https://raw.githubusercontent.com/clap-rs/clap/master/assets/clap.png" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -218,223 +217,223 @@
 <span id="216">216</span>
 <span id="217">217</span>
 <span id="218">218</span>
-</pre><pre class="rust"><code><span class="kw">use</span> <span class="ident">std::iter::FromIterator</span>;
+</pre><pre class="rust"><code><span class="kw">use </span>std::iter::FromIterator;
 
-<span class="kw">use</span> <span class="ident">proc_macro2::TokenStream</span>;
-<span class="kw">use</span> <span class="ident">proc_macro_error::abort</span>;
-<span class="kw">use</span> <span class="ident">proc_macro_error::ResultExt</span>;
-<span class="kw">use</span> <span class="ident">quote::quote</span>;
-<span class="kw">use</span> <span class="ident">quote::ToTokens</span>;
-<span class="kw">use</span> <span class="ident">syn::spanned::Spanned</span>;
-<span class="kw">use</span> <span class="ident">syn</span>::{
-    <span class="ident">parenthesized</span>,
-    <span class="ident">parse</span>::{<span class="ident">Parse</span>, <span class="ident">ParseStream</span>},
-    <span class="ident">punctuated::Punctuated</span>,
-    <span class="ident">Attribute</span>, <span class="ident">Expr</span>, <span class="ident">Ident</span>, <span class="ident">LitStr</span>, <span class="ident">Token</span>,
+<span class="kw">use </span>proc_macro2::TokenStream;
+<span class="kw">use </span>proc_macro_error::abort;
+<span class="kw">use </span>proc_macro_error::ResultExt;
+<span class="kw">use </span>quote::quote;
+<span class="kw">use </span>quote::ToTokens;
+<span class="kw">use </span>syn::spanned::Spanned;
+<span class="kw">use </span>syn::{
+    parenthesized,
+    parse::{Parse, ParseStream},
+    punctuated::Punctuated,
+    Attribute, Expr, Ident, LitStr, Token,
 };
 
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::utils::Sp</span>;
+<span class="kw">use </span><span class="kw">crate</span>::utils::Sp;
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ClapAttr</span> {
-    <span class="kw">pub</span> <span class="ident">kind</span>: <span class="ident">Sp</span><span class="op">&lt;</span><span class="ident">AttrKind</span><span class="op">&gt;</span>,
-    <span class="kw">pub</span> <span class="ident">name</span>: <span class="ident">Ident</span>,
-    <span class="kw">pub</span> <span class="ident">magic</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">MagicAttrName</span><span class="op">&gt;</span>,
-    <span class="kw">pub</span> <span class="ident">value</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">AttrValue</span><span class="op">&gt;</span>,
+<span class="attribute">#[derive(Clone)]
+</span><span class="kw">pub struct </span>ClapAttr {
+    <span class="kw">pub </span>kind: Sp&lt;AttrKind&gt;,
+    <span class="kw">pub </span>name: Ident,
+    <span class="kw">pub </span>magic: <span class="prelude-ty">Option</span>&lt;MagicAttrName&gt;,
+    <span class="kw">pub </span>value: <span class="prelude-ty">Option</span>&lt;AttrValue&gt;,
 }
 
-<span class="kw">impl</span> <span class="ident">ClapAttr</span> {
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">parse_all</span>(<span class="ident">all_attrs</span>: <span class="kw-2">&amp;</span>[<span class="ident">Attribute</span>]) -&gt; <span class="ident">Vec</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
-        <span class="ident">all_attrs</span>
-            .<span class="ident">iter</span>()
-            .<span class="ident">filter_map</span>(<span class="op">|</span><span class="ident">attr</span><span class="op">|</span> {
-                <span class="kw">let</span> <span class="ident">kind</span> <span class="op">=</span> <span class="kw">if</span> <span class="ident">attr</span>.<span class="ident">path</span>.<span class="ident">is_ident</span>(<span class="string">&quot;clap&quot;</span>) {
-                    <span class="prelude-val">Some</span>(<span class="ident">Sp::new</span>(<span class="ident">AttrKind::Clap</span>, <span class="ident">attr</span>.<span class="ident">path</span>.<span class="ident">span</span>()))
-                } <span class="kw">else</span> <span class="kw">if</span> <span class="ident">attr</span>.<span class="ident">path</span>.<span class="ident">is_ident</span>(<span class="string">&quot;structopt&quot;</span>) {
-                    <span class="prelude-val">Some</span>(<span class="ident">Sp::new</span>(<span class="ident">AttrKind::StructOpt</span>, <span class="ident">attr</span>.<span class="ident">path</span>.<span class="ident">span</span>()))
-                } <span class="kw">else</span> <span class="kw">if</span> <span class="ident">attr</span>.<span class="ident">path</span>.<span class="ident">is_ident</span>(<span class="string">&quot;command&quot;</span>) {
-                    <span class="prelude-val">Some</span>(<span class="ident">Sp::new</span>(<span class="ident">AttrKind::Command</span>, <span class="ident">attr</span>.<span class="ident">path</span>.<span class="ident">span</span>()))
-                } <span class="kw">else</span> <span class="kw">if</span> <span class="ident">attr</span>.<span class="ident">path</span>.<span class="ident">is_ident</span>(<span class="string">&quot;group&quot;</span>) {
-                    <span class="prelude-val">Some</span>(<span class="ident">Sp::new</span>(<span class="ident">AttrKind::Group</span>, <span class="ident">attr</span>.<span class="ident">path</span>.<span class="ident">span</span>()))
-                } <span class="kw">else</span> <span class="kw">if</span> <span class="ident">attr</span>.<span class="ident">path</span>.<span class="ident">is_ident</span>(<span class="string">&quot;arg&quot;</span>) {
-                    <span class="prelude-val">Some</span>(<span class="ident">Sp::new</span>(<span class="ident">AttrKind::Arg</span>, <span class="ident">attr</span>.<span class="ident">path</span>.<span class="ident">span</span>()))
-                } <span class="kw">else</span> <span class="kw">if</span> <span class="ident">attr</span>.<span class="ident">path</span>.<span class="ident">is_ident</span>(<span class="string">&quot;value&quot;</span>) {
-                    <span class="prelude-val">Some</span>(<span class="ident">Sp::new</span>(<span class="ident">AttrKind::Value</span>, <span class="ident">attr</span>.<span class="ident">path</span>.<span class="ident">span</span>()))
-                } <span class="kw">else</span> {
-                    <span class="prelude-val">None</span>
-                };
-                <span class="ident">kind</span>.<span class="ident">map</span>(<span class="op">|</span><span class="ident">k</span><span class="op">|</span> (<span class="ident">k</span>, <span class="ident">attr</span>))
+<span class="kw">impl </span>ClapAttr {
+    <span class="kw">pub fn </span>parse_all(all_attrs: <span class="kw-2">&amp;</span>[Attribute]) -&gt; Vec&lt;<span class="self">Self</span>&gt; {
+        all_attrs
+            .iter()
+            .filter_map(|attr| {
+                <span class="kw">let </span>kind = <span class="kw">if </span>attr.path.is_ident(<span class="string">&quot;clap&quot;</span>) {
+                    <span class="prelude-val">Some</span>(Sp::new(AttrKind::Clap, attr.path.span()))
+                } <span class="kw">else if </span>attr.path.is_ident(<span class="string">&quot;structopt&quot;</span>) {
+                    <span class="prelude-val">Some</span>(Sp::new(AttrKind::StructOpt, attr.path.span()))
+                } <span class="kw">else if </span>attr.path.is_ident(<span class="string">&quot;command&quot;</span>) {
+                    <span class="prelude-val">Some</span>(Sp::new(AttrKind::Command, attr.path.span()))
+                } <span class="kw">else if </span>attr.path.is_ident(<span class="string">&quot;group&quot;</span>) {
+                    <span class="prelude-val">Some</span>(Sp::new(AttrKind::Group, attr.path.span()))
+                } <span class="kw">else if </span>attr.path.is_ident(<span class="string">&quot;arg&quot;</span>) {
+                    <span class="prelude-val">Some</span>(Sp::new(AttrKind::Arg, attr.path.span()))
+                } <span class="kw">else if </span>attr.path.is_ident(<span class="string">&quot;value&quot;</span>) {
+                    <span class="prelude-val">Some</span>(Sp::new(AttrKind::Value, attr.path.span()))
+                } <span class="kw">else </span>{
+                    <span class="prelude-val">None
+                </span>};
+                kind.map(|k| (k, attr))
             })
-            .<span class="ident">flat_map</span>(<span class="op">|</span>(<span class="ident">k</span>, <span class="ident">attr</span>)<span class="op">|</span> {
-                <span class="ident">attr</span>.<span class="ident">parse_args_with</span>(<span class="ident">Punctuated</span>::<span class="op">&lt;</span><span class="ident">ClapAttr</span>, <span class="macro">Token!</span>[,]<span class="op">&gt;</span><span class="ident">::parse_terminated</span>)
-                    .<span class="ident">unwrap_or_abort</span>()
-                    .<span class="ident">into_iter</span>()
-                    .<span class="ident">map</span>(<span class="kw">move</span> <span class="op">|</span><span class="kw-2">mut</span> <span class="ident">a</span><span class="op">|</span> {
-                        <span class="ident">a</span>.<span class="ident">kind</span> <span class="op">=</span> <span class="ident">k</span>;
-                        <span class="ident">a</span>
+            .flat_map(|(k, attr)| {
+                attr.parse_args_with(Punctuated::&lt;ClapAttr, <span class="macro">Token!</span>[,]&gt;::parse_terminated)
+                    .unwrap_or_abort()
+                    .into_iter()
+                    .map(<span class="kw">move </span>|<span class="kw-2">mut </span>a| {
+                        a.kind = k;
+                        a
                     })
             })
-            .<span class="ident">collect</span>()
+            .collect()
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">value_or_abort</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span><span class="ident">AttrValue</span> {
-        <span class="self">self</span>.<span class="ident">value</span>
-            .<span class="ident">as_ref</span>()
-            .<span class="ident">unwrap_or_else</span>(<span class="op">|</span><span class="op">|</span> <span class="macro">abort!</span>(<span class="self">self</span>.<span class="ident">name</span>, <span class="string">&quot;attribute `{}` requires a value&quot;</span>, <span class="self">self</span>.<span class="ident">name</span>))
+    <span class="kw">pub fn </span>value_or_abort(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span>AttrValue {
+        <span class="self">self</span>.value
+            .as_ref()
+            .unwrap_or_else(|| <span class="macro">abort!</span>(<span class="self">self</span>.name, <span class="string">&quot;attribute `{}` requires a value&quot;</span>, <span class="self">self</span>.name))
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">lit_str_or_abort</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span><span class="ident">LitStr</span> {
-        <span class="kw">let</span> <span class="ident">value</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">value_or_abort</span>();
-        <span class="kw">match</span> <span class="ident">value</span> {
-            <span class="ident">AttrValue::LitStr</span>(<span class="ident">tokens</span>) =&gt; <span class="ident">tokens</span>,
-            <span class="ident">AttrValue::Expr</span>(<span class="kw">_</span>) <span class="op">|</span> <span class="ident">AttrValue::Call</span>(<span class="kw">_</span>) =&gt; {
+    <span class="kw">pub fn </span>lit_str_or_abort(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span>LitStr {
+        <span class="kw">let </span>value = <span class="self">self</span>.value_or_abort();
+        <span class="kw">match </span>value {
+            AttrValue::LitStr(tokens) =&gt; tokens,
+            AttrValue::Expr(<span class="kw">_</span>) | AttrValue::Call(<span class="kw">_</span>) =&gt; {
                 <span class="macro">abort!</span>(
-                    <span class="self">self</span>.<span class="ident">name</span>,
+                    <span class="self">self</span>.name,
                     <span class="string">&quot;attribute `{}` can only accept string litersl&quot;</span>,
-                    <span class="self">self</span>.<span class="ident">name</span>
+                    <span class="self">self</span>.name
                 )
             }
         }
     }
 }
 
-<span class="kw">impl</span> <span class="ident">Parse</span> <span class="kw">for</span> <span class="ident">ClapAttr</span> {
-    <span class="kw">fn</span> <span class="ident">parse</span>(<span class="ident">input</span>: <span class="ident">ParseStream</span>) -&gt; <span class="ident">syn::Result</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="ident">name</span>: <span class="ident">Ident</span> <span class="op">=</span> <span class="ident">input</span>.<span class="ident">parse</span>()<span class="question-mark">?</span>;
-        <span class="kw">let</span> <span class="ident">name_str</span> <span class="op">=</span> <span class="ident">name</span>.<span class="ident">to_string</span>();
+<span class="kw">impl </span>Parse <span class="kw">for </span>ClapAttr {
+    <span class="kw">fn </span>parse(input: ParseStream) -&gt; syn::Result&lt;<span class="self">Self</span>&gt; {
+        <span class="kw">let </span>name: Ident = input.parse()<span class="question-mark">?</span>;
+        <span class="kw">let </span>name_str = name.to_string();
 
-        <span class="kw">let</span> <span class="ident">magic</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">name_str</span>.<span class="ident">as_str</span>() {
-            <span class="string">&quot;rename_all&quot;</span> =&gt; <span class="prelude-val">Some</span>(<span class="ident">MagicAttrName::RenameAll</span>),
-            <span class="string">&quot;rename_all_env&quot;</span> =&gt; <span class="prelude-val">Some</span>(<span class="ident">MagicAttrName::RenameAllEnv</span>),
-            <span class="string">&quot;skip&quot;</span> =&gt; <span class="prelude-val">Some</span>(<span class="ident">MagicAttrName::Skip</span>),
-            <span class="string">&quot;next_display_order&quot;</span> =&gt; <span class="prelude-val">Some</span>(<span class="ident">MagicAttrName::NextDisplayOrder</span>),
-            <span class="string">&quot;next_help_heading&quot;</span> =&gt; <span class="prelude-val">Some</span>(<span class="ident">MagicAttrName::NextHelpHeading</span>),
-            <span class="string">&quot;default_value_t&quot;</span> =&gt; <span class="prelude-val">Some</span>(<span class="ident">MagicAttrName::DefaultValueT</span>),
-            <span class="string">&quot;default_values_t&quot;</span> =&gt; <span class="prelude-val">Some</span>(<span class="ident">MagicAttrName::DefaultValuesT</span>),
-            <span class="string">&quot;default_value_os_t&quot;</span> =&gt; <span class="prelude-val">Some</span>(<span class="ident">MagicAttrName::DefaultValueOsT</span>),
-            <span class="string">&quot;default_values_os_t&quot;</span> =&gt; <span class="prelude-val">Some</span>(<span class="ident">MagicAttrName::DefaultValuesOsT</span>),
-            <span class="string">&quot;long&quot;</span> =&gt; <span class="prelude-val">Some</span>(<span class="ident">MagicAttrName::Long</span>),
-            <span class="string">&quot;short&quot;</span> =&gt; <span class="prelude-val">Some</span>(<span class="ident">MagicAttrName::Short</span>),
-            <span class="string">&quot;value_parser&quot;</span> =&gt; <span class="prelude-val">Some</span>(<span class="ident">MagicAttrName::ValueParser</span>),
-            <span class="string">&quot;action&quot;</span> =&gt; <span class="prelude-val">Some</span>(<span class="ident">MagicAttrName::Action</span>),
-            <span class="string">&quot;env&quot;</span> =&gt; <span class="prelude-val">Some</span>(<span class="ident">MagicAttrName::Env</span>),
-            <span class="string">&quot;flatten&quot;</span> =&gt; <span class="prelude-val">Some</span>(<span class="ident">MagicAttrName::Flatten</span>),
-            <span class="string">&quot;value_enum&quot;</span> =&gt; <span class="prelude-val">Some</span>(<span class="ident">MagicAttrName::ValueEnum</span>),
-            <span class="string">&quot;from_global&quot;</span> =&gt; <span class="prelude-val">Some</span>(<span class="ident">MagicAttrName::FromGlobal</span>),
-            <span class="string">&quot;subcommand&quot;</span> =&gt; <span class="prelude-val">Some</span>(<span class="ident">MagicAttrName::Subcommand</span>),
-            <span class="string">&quot;external_subcommand&quot;</span> =&gt; <span class="prelude-val">Some</span>(<span class="ident">MagicAttrName::ExternalSubcommand</span>),
-            <span class="string">&quot;verbatim_doc_comment&quot;</span> =&gt; <span class="prelude-val">Some</span>(<span class="ident">MagicAttrName::VerbatimDocComment</span>),
-            <span class="string">&quot;about&quot;</span> =&gt; <span class="prelude-val">Some</span>(<span class="ident">MagicAttrName::About</span>),
-            <span class="string">&quot;author&quot;</span> =&gt; <span class="prelude-val">Some</span>(<span class="ident">MagicAttrName::Author</span>),
-            <span class="string">&quot;version&quot;</span> =&gt; <span class="prelude-val">Some</span>(<span class="ident">MagicAttrName::Version</span>),
-            <span class="kw">_</span> =&gt; <span class="prelude-val">None</span>,
+        <span class="kw">let </span>magic = <span class="kw">match </span>name_str.as_str() {
+            <span class="string">&quot;rename_all&quot; </span>=&gt; <span class="prelude-val">Some</span>(MagicAttrName::RenameAll),
+            <span class="string">&quot;rename_all_env&quot; </span>=&gt; <span class="prelude-val">Some</span>(MagicAttrName::RenameAllEnv),
+            <span class="string">&quot;skip&quot; </span>=&gt; <span class="prelude-val">Some</span>(MagicAttrName::Skip),
+            <span class="string">&quot;next_display_order&quot; </span>=&gt; <span class="prelude-val">Some</span>(MagicAttrName::NextDisplayOrder),
+            <span class="string">&quot;next_help_heading&quot; </span>=&gt; <span class="prelude-val">Some</span>(MagicAttrName::NextHelpHeading),
+            <span class="string">&quot;default_value_t&quot; </span>=&gt; <span class="prelude-val">Some</span>(MagicAttrName::DefaultValueT),
+            <span class="string">&quot;default_values_t&quot; </span>=&gt; <span class="prelude-val">Some</span>(MagicAttrName::DefaultValuesT),
+            <span class="string">&quot;default_value_os_t&quot; </span>=&gt; <span class="prelude-val">Some</span>(MagicAttrName::DefaultValueOsT),
+            <span class="string">&quot;default_values_os_t&quot; </span>=&gt; <span class="prelude-val">Some</span>(MagicAttrName::DefaultValuesOsT),
+            <span class="string">&quot;long&quot; </span>=&gt; <span class="prelude-val">Some</span>(MagicAttrName::Long),
+            <span class="string">&quot;short&quot; </span>=&gt; <span class="prelude-val">Some</span>(MagicAttrName::Short),
+            <span class="string">&quot;value_parser&quot; </span>=&gt; <span class="prelude-val">Some</span>(MagicAttrName::ValueParser),
+            <span class="string">&quot;action&quot; </span>=&gt; <span class="prelude-val">Some</span>(MagicAttrName::Action),
+            <span class="string">&quot;env&quot; </span>=&gt; <span class="prelude-val">Some</span>(MagicAttrName::Env),
+            <span class="string">&quot;flatten&quot; </span>=&gt; <span class="prelude-val">Some</span>(MagicAttrName::Flatten),
+            <span class="string">&quot;value_enum&quot; </span>=&gt; <span class="prelude-val">Some</span>(MagicAttrName::ValueEnum),
+            <span class="string">&quot;from_global&quot; </span>=&gt; <span class="prelude-val">Some</span>(MagicAttrName::FromGlobal),
+            <span class="string">&quot;subcommand&quot; </span>=&gt; <span class="prelude-val">Some</span>(MagicAttrName::Subcommand),
+            <span class="string">&quot;external_subcommand&quot; </span>=&gt; <span class="prelude-val">Some</span>(MagicAttrName::ExternalSubcommand),
+            <span class="string">&quot;verbatim_doc_comment&quot; </span>=&gt; <span class="prelude-val">Some</span>(MagicAttrName::VerbatimDocComment),
+            <span class="string">&quot;about&quot; </span>=&gt; <span class="prelude-val">Some</span>(MagicAttrName::About),
+            <span class="string">&quot;author&quot; </span>=&gt; <span class="prelude-val">Some</span>(MagicAttrName::Author),
+            <span class="string">&quot;version&quot; </span>=&gt; <span class="prelude-val">Some</span>(MagicAttrName::Version),
+            <span class="kw">_ </span>=&gt; <span class="prelude-val">None</span>,
         };
 
-        <span class="kw">let</span> <span class="ident">value</span> <span class="op">=</span> <span class="kw">if</span> <span class="ident">input</span>.<span class="ident">peek</span>(<span class="macro">Token!</span>[<span class="op">=</span>]) {
-            <span class="comment">// `name = value` attributes.</span>
-            <span class="kw">let</span> <span class="ident">assign_token</span> <span class="op">=</span> <span class="ident">input</span>.<span class="ident">parse</span>::<span class="op">&lt;</span><span class="macro">Token!</span>[<span class="op">=</span>]<span class="op">&gt;</span>()<span class="question-mark">?</span>; <span class="comment">// skip &#39;=&#39;</span>
-            <span class="kw">if</span> <span class="ident">input</span>.<span class="ident">peek</span>(<span class="ident">LitStr</span>) {
-                <span class="kw">let</span> <span class="ident">lit</span>: <span class="ident">LitStr</span> <span class="op">=</span> <span class="ident">input</span>.<span class="ident">parse</span>()<span class="question-mark">?</span>;
-                <span class="prelude-val">Some</span>(<span class="ident">AttrValue::LitStr</span>(<span class="ident">lit</span>))
-            } <span class="kw">else</span> {
-                <span class="kw">match</span> <span class="ident">input</span>.<span class="ident">parse</span>::<span class="op">&lt;</span><span class="ident">Expr</span><span class="op">&gt;</span>() {
-                    <span class="prelude-val">Ok</span>(<span class="ident">expr</span>) =&gt; <span class="prelude-val">Some</span>(<span class="ident">AttrValue::Expr</span>(<span class="ident">expr</span>)),
+        <span class="kw">let </span>value = <span class="kw">if </span>input.peek(<span class="macro">Token!</span>[=]) {
+            <span class="comment">// `name = value` attributes.
+            </span><span class="kw">let </span>assign_token = input.parse::&lt;<span class="macro">Token!</span>[=]&gt;()<span class="question-mark">?</span>; <span class="comment">// skip &#39;=&#39;
+            </span><span class="kw">if </span>input.peek(LitStr) {
+                <span class="kw">let </span>lit: LitStr = input.parse()<span class="question-mark">?</span>;
+                <span class="prelude-val">Some</span>(AttrValue::LitStr(lit))
+            } <span class="kw">else </span>{
+                <span class="kw">match </span>input.parse::&lt;Expr&gt;() {
+                    <span class="prelude-val">Ok</span>(expr) =&gt; <span class="prelude-val">Some</span>(AttrValue::Expr(expr)),
 
-                    <span class="prelude-val">Err</span>(<span class="kw">_</span>) =&gt; <span class="macro">abort!</span> {
-                        <span class="ident">assign_token</span>,
-                        <span class="string">&quot;expected `string literal` or `expression` after `=`&quot;</span>
-                    },
+                    <span class="prelude-val">Err</span>(<span class="kw">_</span>) =&gt; <span class="macro">abort! </span>{
+                        assign_token,
+                        <span class="string">&quot;expected `string literal` or `expression` after `=`&quot;
+                    </span>},
                 }
             }
-        } <span class="kw">else</span> <span class="kw">if</span> <span class="ident">input</span>.<span class="ident">peek</span>(<span class="ident">syn::token::Paren</span>) {
-            <span class="comment">// `name(...)` attributes.</span>
-            <span class="kw">let</span> <span class="ident">nested</span>;
-            <span class="macro">parenthesized!</span>(<span class="ident">nested</span> <span class="kw">in</span> <span class="ident">input</span>);
+        } <span class="kw">else if </span>input.peek(syn::token::Paren) {
+            <span class="comment">// `name(...)` attributes.
+            </span><span class="kw">let </span>nested;
+            <span class="macro">parenthesized!</span>(nested <span class="kw">in </span>input);
 
-            <span class="kw">let</span> <span class="ident">method_args</span>: <span class="ident">Punctuated</span><span class="op">&lt;</span><span class="kw">_</span>, <span class="macro">Token!</span>[,]<span class="op">&gt;</span> <span class="op">=</span> <span class="ident">nested</span>.<span class="ident">parse_terminated</span>(<span class="ident">Expr::parse</span>)<span class="question-mark">?</span>;
-            <span class="prelude-val">Some</span>(<span class="ident">AttrValue::Call</span>(<span class="ident">Vec::from_iter</span>(<span class="ident">method_args</span>)))
-        } <span class="kw">else</span> {
-            <span class="prelude-val">None</span>
-        };
+            <span class="kw">let </span>method_args: Punctuated&lt;<span class="kw">_</span>, <span class="macro">Token!</span>[,]&gt; = nested.parse_terminated(Expr::parse)<span class="question-mark">?</span>;
+            <span class="prelude-val">Some</span>(AttrValue::Call(Vec::from_iter(method_args)))
+        } <span class="kw">else </span>{
+            <span class="prelude-val">None
+        </span>};
 
-        <span class="prelude-val">Ok</span>(<span class="self">Self</span> {
-            <span class="ident">kind</span>: <span class="ident">Sp::new</span>(<span class="ident">AttrKind::Clap</span>, <span class="ident">name</span>.<span class="ident">span</span>()),
-            <span class="ident">name</span>,
-            <span class="ident">magic</span>,
-            <span class="ident">value</span>,
+        <span class="prelude-val">Ok</span>(<span class="self">Self </span>{
+            kind: Sp::new(AttrKind::Clap, name.span()),
+            name,
+            magic,
+            value,
         })
     }
 }
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>)]</span>
-<span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">MagicAttrName</span> {
-    <span class="ident">Short</span>,
-    <span class="ident">Long</span>,
-    <span class="ident">ValueParser</span>,
-    <span class="ident">Action</span>,
-    <span class="ident">Env</span>,
-    <span class="ident">Flatten</span>,
-    <span class="ident">ValueEnum</span>,
-    <span class="ident">FromGlobal</span>,
-    <span class="ident">Subcommand</span>,
-    <span class="ident">VerbatimDocComment</span>,
-    <span class="ident">ExternalSubcommand</span>,
-    <span class="ident">About</span>,
-    <span class="ident">Author</span>,
-    <span class="ident">Version</span>,
-    <span class="ident">RenameAllEnv</span>,
-    <span class="ident">RenameAll</span>,
-    <span class="ident">Skip</span>,
-    <span class="ident">DefaultValueT</span>,
-    <span class="ident">DefaultValuesT</span>,
-    <span class="ident">DefaultValueOsT</span>,
-    <span class="ident">DefaultValuesOsT</span>,
-    <span class="ident">NextDisplayOrder</span>,
-    <span class="ident">NextHelpHeading</span>,
+<span class="attribute">#[derive(Copy, Clone, PartialEq, Eq)]
+</span><span class="kw">pub enum </span>MagicAttrName {
+    Short,
+    Long,
+    ValueParser,
+    Action,
+    Env,
+    Flatten,
+    ValueEnum,
+    FromGlobal,
+    Subcommand,
+    VerbatimDocComment,
+    ExternalSubcommand,
+    About,
+    Author,
+    Version,
+    RenameAllEnv,
+    RenameAll,
+    Skip,
+    DefaultValueT,
+    DefaultValuesT,
+    DefaultValueOsT,
+    DefaultValuesOsT,
+    NextDisplayOrder,
+    NextHelpHeading,
 }
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>)]</span>
-<span class="attribute">#[<span class="ident">allow</span>(<span class="ident">clippy::large_enum_variant</span>)]</span>
-<span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">AttrValue</span> {
-    <span class="ident">LitStr</span>(<span class="ident">LitStr</span>),
-    <span class="ident">Expr</span>(<span class="ident">Expr</span>),
-    <span class="ident">Call</span>(<span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Expr</span><span class="op">&gt;</span>),
+<span class="attribute">#[derive(Clone)]
+#[allow(clippy::large_enum_variant)]
+</span><span class="kw">pub enum </span>AttrValue {
+    LitStr(LitStr),
+    Expr(Expr),
+    Call(Vec&lt;Expr&gt;),
 }
 
-<span class="kw">impl</span> <span class="ident">ToTokens</span> <span class="kw">for</span> <span class="ident">AttrValue</span> {
-    <span class="kw">fn</span> <span class="ident">to_tokens</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">tokens</span>: <span class="kw-2">&amp;mut</span> <span class="ident">TokenStream</span>) {
-        <span class="kw">match</span> <span class="self">self</span> {
-            <span class="ident"><span class="self">Self</span>::LitStr</span>(<span class="ident">t</span>) =&gt; <span class="ident">t</span>.<span class="ident">to_tokens</span>(<span class="ident">tokens</span>),
-            <span class="ident"><span class="self">Self</span>::Expr</span>(<span class="ident">t</span>) =&gt; <span class="ident">t</span>.<span class="ident">to_tokens</span>(<span class="ident">tokens</span>),
-            <span class="ident"><span class="self">Self</span>::Call</span>(<span class="ident">t</span>) =&gt; {
-                <span class="kw">let</span> <span class="ident">t</span> <span class="op">=</span> <span class="macro">quote!</span>(#(#<span class="ident">t</span>),<span class="kw-2">*</span>);
-                <span class="ident">t</span>.<span class="ident">to_tokens</span>(<span class="ident">tokens</span>)
+<span class="kw">impl </span>ToTokens <span class="kw">for </span>AttrValue {
+    <span class="kw">fn </span>to_tokens(<span class="kw-2">&amp;</span><span class="self">self</span>, tokens: <span class="kw-2">&amp;mut </span>TokenStream) {
+        <span class="kw">match </span><span class="self">self </span>{
+            <span class="self">Self</span>::LitStr(t) =&gt; t.to_tokens(tokens),
+            <span class="self">Self</span>::Expr(t) =&gt; t.to_tokens(tokens),
+            <span class="self">Self</span>::Call(t) =&gt; {
+                <span class="kw">let </span>t = <span class="macro">quote!</span>(#(#t),<span class="kw-2">*</span>);
+                t.to_tokens(tokens)
             }
         }
     }
 }
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>)]</span>
-<span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">AttrKind</span> {
-    <span class="ident">Clap</span>,
-    <span class="ident">StructOpt</span>,
-    <span class="ident">Command</span>,
-    <span class="ident">Group</span>,
-    <span class="ident">Arg</span>,
-    <span class="ident">Value</span>,
+<span class="attribute">#[derive(Copy, Clone, PartialEq, Eq)]
+</span><span class="kw">pub enum </span>AttrKind {
+    Clap,
+    StructOpt,
+    Command,
+    Group,
+    Arg,
+    Value,
 }
 
-<span class="kw">impl</span> <span class="ident">AttrKind</span> {
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">as_str</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> {
-        <span class="kw">match</span> <span class="self">self</span> {
-            <span class="ident"><span class="self">Self</span>::Clap</span> =&gt; <span class="string">&quot;clap&quot;</span>,
-            <span class="ident"><span class="self">Self</span>::StructOpt</span> =&gt; <span class="string">&quot;structopt&quot;</span>,
-            <span class="ident"><span class="self">Self</span>::Command</span> =&gt; <span class="string">&quot;command&quot;</span>,
-            <span class="ident"><span class="self">Self</span>::Group</span> =&gt; <span class="string">&quot;group&quot;</span>,
-            <span class="ident"><span class="self">Self</span>::Arg</span> =&gt; <span class="string">&quot;arg&quot;</span>,
-            <span class="ident"><span class="self">Self</span>::Value</span> =&gt; <span class="string">&quot;value&quot;</span>,
+<span class="kw">impl </span>AttrKind {
+    <span class="kw">pub fn </span>as_str(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str {
+        <span class="kw">match </span><span class="self">self </span>{
+            <span class="self">Self</span>::Clap =&gt; <span class="string">&quot;clap&quot;</span>,
+            <span class="self">Self</span>::StructOpt =&gt; <span class="string">&quot;structopt&quot;</span>,
+            <span class="self">Self</span>::Command =&gt; <span class="string">&quot;command&quot;</span>,
+            <span class="self">Self</span>::Group =&gt; <span class="string">&quot;group&quot;</span>,
+            <span class="self">Self</span>::Arg =&gt; <span class="string">&quot;arg&quot;</span>,
+            <span class="self">Self</span>::Value =&gt; <span class="string">&quot;value&quot;</span>,
         }
     }
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="clap_derive" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0 (a55dd71d5 2022-09-19)" ></div></body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="clap_derive" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.66.1 (90743e729 2023-01-10)" ></div></body></html>

@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src/gpu.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>gpu.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../reimu/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../reimu/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../reimu/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src/gpu.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>gpu.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../normalize.css"><link rel="stylesheet" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../ayu.css" disabled><link rel="stylesheet" href="../../dark.css" disabled><link rel="stylesheet" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><div class="width-limiter"><nav class="sub"><a class="sub-logo-container" href="../../reimu/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -78,85 +78,85 @@
 <span id="78">78</span>
 <span id="79">79</span>
 <span id="80">80</span>
-</pre><pre class="rust"><code><span class="kw">pub</span> <span class="kw">const</span> <span class="ident">SCREEN_WIDTH</span>: <span class="ident">usize</span> <span class="op">=</span> <span class="number">64</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">SCREEN_HEIGHT</span>: <span class="ident">usize</span> <span class="op">=</span> <span class="number">32</span>;
-<span class="kw">const</span> <span class="ident">SCREEN_SIZE</span>: <span class="ident">usize</span> <span class="op">=</span> <span class="ident">SCREEN_WIDTH</span> <span class="op">*</span> <span class="ident">SCREEN_HEIGHT</span>;
+</pre><pre class="rust"><code><span class="kw">pub const </span>SCREEN_WIDTH: usize = <span class="number">64</span>;
+<span class="kw">pub const </span>SCREEN_HEIGHT: usize = <span class="number">32</span>;
+<span class="kw">const </span>SCREEN_SIZE: usize = SCREEN_WIDTH * SCREEN_HEIGHT;
 
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Gpu</span> {
-    <span class="ident">screen</span>: [<span class="ident">bool</span>; <span class="ident">SCREEN_SIZE</span>],
+<span class="kw">pub struct </span>Gpu {
+    screen: [bool; SCREEN_SIZE],
 }
 
-<span class="kw">impl</span> <span class="ident">Gpu</span> {
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>() -&gt; <span class="self">Self</span> {
-        <span class="self">Self</span> {
-            <span class="ident">screen</span>: [<span class="bool-val">false</span>; <span class="ident">SCREEN_SIZE</span>],
+<span class="kw">impl </span>Gpu {
+    <span class="kw">pub fn </span>new() -&gt; <span class="self">Self </span>{
+        <span class="self">Self </span>{
+            screen: [<span class="bool-val">false</span>; SCREEN_SIZE],
         }
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">screen</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span>[<span class="ident">bool</span>] {
-        <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">screen</span>
+    <span class="kw">pub fn </span>screen(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span>[bool] {
+        <span class="kw-2">&amp;</span><span class="self">self</span>.screen
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">clear</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>) {
-        <span class="self">self</span>.<span class="ident">screen</span>.<span class="ident">fill</span>(<span class="bool-val">false</span>);
+    <span class="kw">pub fn </span>clear(<span class="kw-2">&amp;mut </span><span class="self">self</span>) {
+        <span class="self">self</span>.screen.fill(<span class="bool-val">false</span>);
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">x</span>: <span class="ident">usize</span>, <span class="ident">y</span>: <span class="ident">usize</span>, <span class="ident">value</span>: <span class="ident">bool</span>) -&gt; <span class="ident">bool</span> {
-        <span class="kw">let</span> <span class="ident">adj_x</span> <span class="op">=</span> <span class="ident">x</span> <span class="op">%</span> <span class="ident">SCREEN_WIDTH</span>;
-        <span class="kw">let</span> <span class="ident">adj_y</span> <span class="op">=</span> <span class="ident">y</span> <span class="op">%</span> <span class="ident">SCREEN_HEIGHT</span>;
-        <span class="kw">let</span> <span class="ident">idx</span> <span class="op">=</span> <span class="ident">adj_y</span> <span class="op">*</span> <span class="ident">SCREEN_WIDTH</span> <span class="op">+</span> <span class="ident">adj_x</span>;
-        <span class="kw">let</span> <span class="ident">current</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">screen</span>[<span class="ident">idx</span>];
-        <span class="kw">let</span> <span class="ident">hit</span> <span class="op">=</span> <span class="ident">current</span> <span class="op">&amp;&amp;</span> <span class="ident">value</span>;
-        <span class="self">self</span>.<span class="ident">screen</span>[<span class="ident">idx</span>] <span class="op">^</span><span class="op">=</span> <span class="ident">value</span>;
-        <span class="ident">hit</span>
+    <span class="kw">pub fn </span>set(<span class="kw-2">&amp;mut </span><span class="self">self</span>, x: usize, y: usize, value: bool) -&gt; bool {
+        <span class="kw">let </span>adj_x = x % SCREEN_WIDTH;
+        <span class="kw">let </span>adj_y = y % SCREEN_HEIGHT;
+        <span class="kw">let </span>idx = adj_y * SCREEN_WIDTH + adj_x;
+        <span class="kw">let </span>current = <span class="self">self</span>.screen[idx];
+        <span class="kw">let </span>hit = current &amp;&amp; value;
+        <span class="self">self</span>.screen[idx] ^= value;
+        hit
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">draw_sprite</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">x</span>: <span class="ident">usize</span>, <span class="ident">y</span>: <span class="ident">usize</span>, <span class="ident">sprite</span>: <span class="kw-2">&amp;</span>[<span class="ident">u8</span>]) -&gt; <span class="ident">bool</span> {
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">hit</span> <span class="op">=</span> <span class="bool-val">false</span>;
+    <span class="kw">pub fn </span>draw_sprite(<span class="kw-2">&amp;mut </span><span class="self">self</span>, x: usize, y: usize, sprite: <span class="kw-2">&amp;</span>[u8]) -&gt; bool {
+        <span class="kw">let </span><span class="kw-2">mut </span>hit = <span class="bool-val">false</span>;
 
-        <span class="kw">for</span> (<span class="ident">row</span>, <span class="ident">byte</span>) <span class="kw">in</span> <span class="ident">sprite</span>.<span class="ident">iter</span>().<span class="ident">enumerate</span>() {
-            <span class="kw">for</span> <span class="ident">col</span> <span class="kw">in</span> <span class="number">0</span>..<span class="number">8</span> {
-                <span class="kw">let</span> <span class="ident">mask</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="ident">col</span>;
-                <span class="kw">let</span> <span class="ident">masked</span> <span class="op">=</span> <span class="ident">byte</span> <span class="op">&amp;</span> <span class="ident">mask</span>;
-                <span class="kw">let</span> <span class="ident">value</span> <span class="op">=</span> <span class="ident">masked</span> <span class="op">==</span> <span class="ident">mask</span>;
-                <span class="kw">let</span> <span class="ident">adj_col</span> <span class="op">=</span> <span class="number">7</span> <span class="op">-</span> <span class="ident">col</span>;
-                <span class="ident">hit</span> <span class="op">|</span><span class="op">=</span> <span class="self">self</span>.<span class="ident">set</span>(<span class="ident">x</span> <span class="op">+</span> <span class="ident">adj_col</span>, <span class="ident">y</span> <span class="op">+</span> <span class="ident">row</span>, <span class="ident">value</span>);
+        <span class="kw">for </span>(row, byte) <span class="kw">in </span>sprite.iter().enumerate() {
+            <span class="kw">for </span>col <span class="kw">in </span><span class="number">0</span>..<span class="number">8 </span>{
+                <span class="kw">let </span>mask = <span class="number">1 </span>&lt;&lt; col;
+                <span class="kw">let </span>masked = byte &amp; mask;
+                <span class="kw">let </span>value = masked == mask;
+                <span class="kw">let </span>adj_col = <span class="number">7 </span>- col;
+                hit |= <span class="self">self</span>.set(x + adj_col, y + row, value);
             }
         }
 
-        <span class="ident">hit</span>
+        hit
     }
 
-    <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">dead_code</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">dump</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) {
-        <span class="kw">const</span> <span class="ident">FULL</span>: <span class="ident">char</span> <span class="op">=</span> <span class="string">&#39;█&#39;</span>;
-        <span class="kw">const</span> <span class="ident">UPPER_HALF</span>: <span class="ident">char</span> <span class="op">=</span> <span class="string">&#39;▀&#39;</span>; <span class="comment">// &#39;🮑&#39;;</span>
-        <span class="kw">const</span> <span class="ident">LOWER_HALF</span>: <span class="ident">char</span> <span class="op">=</span> <span class="string">&#39;▄&#39;</span>; <span class="comment">// &#39;🮒&#39;;</span>
-        <span class="kw">const</span> <span class="ident">EMPTY</span>: <span class="ident">char</span> <span class="op">=</span> <span class="string">&#39; &#39;</span>; <span class="comment">// &#39;🮐&#39;;</span>
+    <span class="attribute">#[allow(dead_code)]
+    </span><span class="kw">pub fn </span>dump(<span class="kw-2">&amp;</span><span class="self">self</span>) {
+        <span class="kw">const </span>FULL: char = <span class="string">&#39;█&#39;</span>;
+        <span class="kw">const </span>UPPER_HALF: char = <span class="string">&#39;▀&#39;</span>; <span class="comment">// &#39;🮑&#39;;
+        </span><span class="kw">const </span>LOWER_HALF: char = <span class="string">&#39;▄&#39;</span>; <span class="comment">// &#39;🮒&#39;;
+        </span><span class="kw">const </span>EMPTY: char = <span class="string">&#39; &#39;</span>; <span class="comment">// &#39;🮐&#39;;
 
-        <span class="kw">for</span> <span class="ident">top_row</span> <span class="kw">in</span> (<span class="number">0</span>..<span class="ident">SCREEN_HEIGHT</span>).<span class="ident">step_by</span>(<span class="number">2</span>) {
-            <span class="kw">let</span> <span class="ident">bot_row</span> <span class="op">=</span> <span class="ident">top_row</span> <span class="op">+</span> <span class="number">1</span>;
-            <span class="kw">for</span> <span class="ident">col</span> <span class="kw">in</span> <span class="number">0</span>..<span class="ident">SCREEN_WIDTH</span> {
-                <span class="kw">let</span> <span class="ident">top_idx</span> <span class="op">=</span> <span class="ident">top_row</span> <span class="op">*</span> <span class="ident">SCREEN_WIDTH</span> <span class="op">+</span> <span class="ident">col</span>;
-                <span class="kw">let</span> <span class="ident">bot_idx</span> <span class="op">=</span> <span class="ident">bot_row</span> <span class="op">*</span> <span class="ident">SCREEN_WIDTH</span> <span class="op">+</span> <span class="ident">col</span>;
-                <span class="kw">let</span> <span class="ident">top_val</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">screen</span>[<span class="ident">top_idx</span>];
-                <span class="kw">let</span> <span class="ident">bot_val</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">screen</span>[<span class="ident">bot_idx</span>];
+        </span><span class="kw">for </span>top_row <span class="kw">in </span>(<span class="number">0</span>..SCREEN_HEIGHT).step_by(<span class="number">2</span>) {
+            <span class="kw">let </span>bot_row = top_row + <span class="number">1</span>;
+            <span class="kw">for </span>col <span class="kw">in </span><span class="number">0</span>..SCREEN_WIDTH {
+                <span class="kw">let </span>top_idx = top_row * SCREEN_WIDTH + col;
+                <span class="kw">let </span>bot_idx = bot_row * SCREEN_WIDTH + col;
+                <span class="kw">let </span>top_val = <span class="self">self</span>.screen[top_idx];
+                <span class="kw">let </span>bot_val = <span class="self">self</span>.screen[bot_idx];
 
-                <span class="kw">let</span> <span class="ident">chr</span> <span class="op">=</span> <span class="kw">if</span> <span class="ident">top_val</span> <span class="op">&amp;&amp;</span> <span class="ident">bot_val</span> {
-                    <span class="ident">FULL</span>
-                } <span class="kw">else</span> <span class="kw">if</span> <span class="ident">top_val</span> {
-                    <span class="ident">UPPER_HALF</span>
-                } <span class="kw">else</span> <span class="kw">if</span> <span class="ident">bot_val</span> {
-                    <span class="ident">LOWER_HALF</span>
-                } <span class="kw">else</span> {
-                    <span class="ident">EMPTY</span>
+                <span class="kw">let </span>chr = <span class="kw">if </span>top_val &amp;&amp; bot_val {
+                    FULL
+                } <span class="kw">else if </span>top_val {
+                    UPPER_HALF
+                } <span class="kw">else if </span>bot_val {
+                    LOWER_HALF
+                } <span class="kw">else </span>{
+                    EMPTY
                 };
 
-                <span class="macro">print!</span>(<span class="string">&quot;{}&quot;</span>, <span class="ident">chr</span>);
+                <span class="macro">print!</span>(<span class="string">&quot;{}&quot;</span>, chr);
             }
             <span class="macro">println!</span>();
         }
     }
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="reimu" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0 (a55dd71d5 2022-09-19)" ></div></body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="reimu" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.66.1 (90743e729 2023-01-10)" ></div></body></html>

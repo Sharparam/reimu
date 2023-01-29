@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/emath-0.16.0/src/align.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>align.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../emath/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../emath/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../emath/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/emath-0.16.0/src/align.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>align.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../normalize.css"><link rel="stylesheet" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../ayu.css" disabled><link rel="stylesheet" href="../../dark.css" disabled><link rel="stylesheet" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><div class="width-limiter"><nav class="sub"><a class="sub-logo-container" href="../../emath/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -191,198 +191,198 @@
 <span id="191">191</span>
 <span id="192">192</span>
 <span id="193">193</span>
-</pre><pre class="rust"><code><span class="doccomment">//! One- and two-dimensional alignment ([`Align::Center`], [`Align2::LEFT_TOP`] etc).</span>
+</pre><pre class="rust"><code><span class="doccomment">//! One- and two-dimensional alignment ([`Align::Center`], [`Align2::LEFT_TOP`] etc).
 
-<span class="kw">use</span> <span class="kw">crate</span>::<span class="kw-2">*</span>;
+</span><span class="kw">use crate</span>::<span class="kw-2">*</span>;
 
-<span class="doccomment">/// left/center/right or top/center/bottom alignment for e.g. anchors and layouts.</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>, <span class="ident">Hash</span>)]</span>
-<span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;serde&quot;</span>, <span class="ident">derive</span>(<span class="ident">serde::Deserialize</span>, <span class="ident">serde::Serialize</span>))]</span>
-<span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;serde&quot;</span>, <span class="ident">serde</span>(<span class="ident">rename_all</span> <span class="op">=</span> <span class="string">&quot;snake_case&quot;</span>))]</span>
-<span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">Align</span> {
-    <span class="doccomment">/// Left or top.</span>
-    <span class="ident">Min</span>,
+<span class="doccomment">/// left/center/right or top/center/bottom alignment for e.g. anchors and layouts.
+</span><span class="attribute">#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash)]
+#[cfg_attr(feature = <span class="string">&quot;serde&quot;</span>, derive(serde::Deserialize, serde::Serialize))]
+#[cfg_attr(feature = <span class="string">&quot;serde&quot;</span>, serde(rename_all = <span class="string">&quot;snake_case&quot;</span>))]
+</span><span class="kw">pub enum </span>Align {
+    <span class="doccomment">/// Left or top.
+    </span>Min,
 
-    <span class="doccomment">/// Horizontal or vertical center.</span>
-    <span class="ident">Center</span>,
+    <span class="doccomment">/// Horizontal or vertical center.
+    </span>Center,
 
-    <span class="doccomment">/// Right or bottom.</span>
-    <span class="ident">Max</span>,
+    <span class="doccomment">/// Right or bottom.
+    </span>Max,
 }
 
-<span class="kw">impl</span> <span class="ident">Align</span> {
-    <span class="doccomment">/// Convenience for [`Self::Min`]</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">LEFT</span>: <span class="self">Self</span> <span class="op">=</span> <span class="ident"><span class="self">Self</span>::Min</span>;
-    <span class="doccomment">/// Convenience for [`Self::Max`]</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">RIGHT</span>: <span class="self">Self</span> <span class="op">=</span> <span class="ident"><span class="self">Self</span>::Max</span>;
-    <span class="doccomment">/// Convenience for [`Self::Min`]</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">TOP</span>: <span class="self">Self</span> <span class="op">=</span> <span class="ident"><span class="self">Self</span>::Min</span>;
-    <span class="doccomment">/// Convenience for [`Self::Max`]</span>
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">BOTTOM</span>: <span class="self">Self</span> <span class="op">=</span> <span class="ident"><span class="self">Self</span>::Max</span>;
+<span class="kw">impl </span>Align {
+    <span class="doccomment">/// Convenience for [`Self::Min`]
+    </span><span class="kw">pub const </span>LEFT: <span class="self">Self </span>= <span class="self">Self</span>::Min;
+    <span class="doccomment">/// Convenience for [`Self::Max`]
+    </span><span class="kw">pub const </span>RIGHT: <span class="self">Self </span>= <span class="self">Self</span>::Max;
+    <span class="doccomment">/// Convenience for [`Self::Min`]
+    </span><span class="kw">pub const </span>TOP: <span class="self">Self </span>= <span class="self">Self</span>::Min;
+    <span class="doccomment">/// Convenience for [`Self::Max`]
+    </span><span class="kw">pub const </span>BOTTOM: <span class="self">Self </span>= <span class="self">Self</span>::Max;
 
-    <span class="doccomment">/// Convert `Min =&gt; 0.0`, `Center =&gt; 0.5` or `Max =&gt; 1.0`.</span>
-    <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">to_factor</span>(<span class="self">self</span>) -&gt; <span class="ident">f32</span> {
-        <span class="kw">match</span> <span class="self">self</span> {
-            <span class="ident"><span class="self">Self</span>::Min</span> =&gt; <span class="number">0.0</span>,
-            <span class="ident"><span class="self">Self</span>::Center</span> =&gt; <span class="number">0.5</span>,
-            <span class="ident"><span class="self">Self</span>::Max</span> =&gt; <span class="number">1.0</span>,
+    <span class="doccomment">/// Convert `Min =&gt; 0.0`, `Center =&gt; 0.5` or `Max =&gt; 1.0`.
+    </span><span class="attribute">#[inline(always)]
+    </span><span class="kw">pub fn </span>to_factor(<span class="self">self</span>) -&gt; f32 {
+        <span class="kw">match </span><span class="self">self </span>{
+            <span class="self">Self</span>::Min =&gt; <span class="number">0.0</span>,
+            <span class="self">Self</span>::Center =&gt; <span class="number">0.5</span>,
+            <span class="self">Self</span>::Max =&gt; <span class="number">1.0</span>,
         }
     }
 
-    <span class="doccomment">/// Convert `Min =&gt; -1.0`, `Center =&gt; 0.0` or `Max =&gt; 1.0`.</span>
-    <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">to_sign</span>(<span class="self">self</span>) -&gt; <span class="ident">f32</span> {
-        <span class="kw">match</span> <span class="self">self</span> {
-            <span class="ident"><span class="self">Self</span>::Min</span> =&gt; <span class="op">-</span><span class="number">1.0</span>,
-            <span class="ident"><span class="self">Self</span>::Center</span> =&gt; <span class="number">0.0</span>,
-            <span class="ident"><span class="self">Self</span>::Max</span> =&gt; <span class="number">1.0</span>,
+    <span class="doccomment">/// Convert `Min =&gt; -1.0`, `Center =&gt; 0.0` or `Max =&gt; 1.0`.
+    </span><span class="attribute">#[inline(always)]
+    </span><span class="kw">pub fn </span>to_sign(<span class="self">self</span>) -&gt; f32 {
+        <span class="kw">match </span><span class="self">self </span>{
+            <span class="self">Self</span>::Min =&gt; -<span class="number">1.0</span>,
+            <span class="self">Self</span>::Center =&gt; <span class="number">0.0</span>,
+            <span class="self">Self</span>::Max =&gt; <span class="number">1.0</span>,
         }
     }
 
-    <span class="doccomment">/// ``` rust</span>
-    <span class="doccomment">/// assert_eq!(emath::Align::Min.align_size_within_range(2.0, 10.0..=20.0), 10.0..=12.0);</span>
-    <span class="doccomment">/// assert_eq!(emath::Align::Center.align_size_within_range(2.0, 10.0..=20.0), 14.0..=16.0);</span>
-    <span class="doccomment">/// assert_eq!(emath::Align::Max.align_size_within_range(2.0, 10.0..=20.0), 18.0..=20.0);</span>
-    <span class="doccomment">/// assert_eq!(emath::Align::Min.align_size_within_range(f32::INFINITY, 10.0..=20.0), 10.0..=f32::INFINITY);</span>
-    <span class="doccomment">/// assert_eq!(emath::Align::Center.align_size_within_range(f32::INFINITY, 10.0..=20.0), f32::NEG_INFINITY..=f32::INFINITY);</span>
-    <span class="doccomment">/// assert_eq!(emath::Align::Max.align_size_within_range(f32::INFINITY, 10.0..=20.0), f32::NEG_INFINITY..=20.0);</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// assert_eq!(emath::Align::Min.align_size_within_range(f32::INFINITY, 10.0..=f32::INFINITY), 10.0..=f32::INFINITY);</span>
-    <span class="doccomment">/// assert_eq!(emath::Align::Min.align_size_within_range(f32::INFINITY, f32::NEG_INFINITY..=10.0), f32::NEG_INFINITY..=10.0);</span>
-    <span class="doccomment">/// assert_eq!(emath::Align::Center.align_size_within_range(f32::INFINITY, 10.0..=f32::INFINITY), 10.0..=f32::INFINITY);</span>
-    <span class="doccomment">/// assert_eq!(emath::Align::Center.align_size_within_range(f32::INFINITY, f32::NEG_INFINITY..=10.0), f32::NEG_INFINITY..=10.0);</span>
-    <span class="doccomment">/// assert_eq!(emath::Align::Max.align_size_within_range(f32::INFINITY, 10.0..=f32::INFINITY), 10.0..=f32::INFINITY);</span>
-    <span class="doccomment">/// assert_eq!(emath::Align::Max.align_size_within_range(f32::INFINITY, f32::NEG_INFINITY..=10.0), f32::NEG_INFINITY..=10.0);</span>
-    <span class="doccomment">/// ```</span>
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">align_size_within_range</span>(
+    <span class="doccomment">/// ``` rust
+    /// assert_eq!(emath::Align::Min.align_size_within_range(2.0, 10.0..=20.0), 10.0..=12.0);
+    /// assert_eq!(emath::Align::Center.align_size_within_range(2.0, 10.0..=20.0), 14.0..=16.0);
+    /// assert_eq!(emath::Align::Max.align_size_within_range(2.0, 10.0..=20.0), 18.0..=20.0);
+    /// assert_eq!(emath::Align::Min.align_size_within_range(f32::INFINITY, 10.0..=20.0), 10.0..=f32::INFINITY);
+    /// assert_eq!(emath::Align::Center.align_size_within_range(f32::INFINITY, 10.0..=20.0), f32::NEG_INFINITY..=f32::INFINITY);
+    /// assert_eq!(emath::Align::Max.align_size_within_range(f32::INFINITY, 10.0..=20.0), f32::NEG_INFINITY..=20.0);
+    ///
+    /// assert_eq!(emath::Align::Min.align_size_within_range(f32::INFINITY, 10.0..=f32::INFINITY), 10.0..=f32::INFINITY);
+    /// assert_eq!(emath::Align::Min.align_size_within_range(f32::INFINITY, f32::NEG_INFINITY..=10.0), f32::NEG_INFINITY..=10.0);
+    /// assert_eq!(emath::Align::Center.align_size_within_range(f32::INFINITY, 10.0..=f32::INFINITY), 10.0..=f32::INFINITY);
+    /// assert_eq!(emath::Align::Center.align_size_within_range(f32::INFINITY, f32::NEG_INFINITY..=10.0), f32::NEG_INFINITY..=10.0);
+    /// assert_eq!(emath::Align::Max.align_size_within_range(f32::INFINITY, 10.0..=f32::INFINITY), 10.0..=f32::INFINITY);
+    /// assert_eq!(emath::Align::Max.align_size_within_range(f32::INFINITY, f32::NEG_INFINITY..=10.0), f32::NEG_INFINITY..=10.0);
+    /// ```
+    </span><span class="attribute">#[inline]
+    </span><span class="kw">pub fn </span>align_size_within_range(
         <span class="self">self</span>,
-        <span class="ident">size</span>: <span class="ident">f32</span>,
-        <span class="ident">range</span>: <span class="ident">RangeInclusive</span><span class="op">&lt;</span><span class="ident">f32</span><span class="op">&gt;</span>,
-    ) -&gt; <span class="ident">RangeInclusive</span><span class="op">&lt;</span><span class="ident">f32</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="ident">min</span> <span class="op">=</span> <span class="kw-2">*</span><span class="ident">range</span>.<span class="ident">start</span>();
-        <span class="kw">let</span> <span class="ident">max</span> <span class="op">=</span> <span class="kw-2">*</span><span class="ident">range</span>.<span class="ident">end</span>();
+        size: f32,
+        range: RangeInclusive&lt;f32&gt;,
+    ) -&gt; RangeInclusive&lt;f32&gt; {
+        <span class="kw">let </span>min = <span class="kw-2">*</span>range.start();
+        <span class="kw">let </span>max = <span class="kw-2">*</span>range.end();
 
-        <span class="kw">if</span> <span class="ident">max</span> <span class="op">-</span> <span class="ident">min</span> <span class="op">==</span> <span class="ident">f32::INFINITY</span> <span class="op">&amp;&amp;</span> <span class="ident">size</span> <span class="op">==</span> <span class="ident">f32::INFINITY</span> {
-            <span class="kw">return</span> <span class="ident">range</span>;
+        <span class="kw">if </span>max - min == f32::INFINITY &amp;&amp; size == f32::INFINITY {
+            <span class="kw">return </span>range;
         }
 
-        <span class="kw">match</span> <span class="self">self</span> {
-            <span class="ident"><span class="self">Self</span>::Min</span> =&gt; <span class="ident">min</span>..<span class="op">=</span><span class="ident">min</span> <span class="op">+</span> <span class="ident">size</span>,
-            <span class="ident"><span class="self">Self</span>::Center</span> =&gt; {
-                <span class="kw">if</span> <span class="ident">size</span> <span class="op">==</span> <span class="ident">f32::INFINITY</span> {
-                    <span class="ident">f32::NEG_INFINITY</span>..<span class="op">=</span><span class="ident">f32::INFINITY</span>
-                } <span class="kw">else</span> {
-                    <span class="kw">let</span> <span class="ident">left</span> <span class="op">=</span> (<span class="ident">min</span> <span class="op">+</span> <span class="ident">max</span>) <span class="op">/</span> <span class="number">2.0</span> <span class="op">-</span> <span class="ident">size</span> <span class="op">/</span> <span class="number">2.0</span>;
-                    <span class="ident">left</span>..<span class="op">=</span><span class="ident">left</span> <span class="op">+</span> <span class="ident">size</span>
+        <span class="kw">match </span><span class="self">self </span>{
+            <span class="self">Self</span>::Min =&gt; min..=min + size,
+            <span class="self">Self</span>::Center =&gt; {
+                <span class="kw">if </span>size == f32::INFINITY {
+                    f32::NEG_INFINITY..=f32::INFINITY
+                } <span class="kw">else </span>{
+                    <span class="kw">let </span>left = (min + max) / <span class="number">2.0 </span>- size / <span class="number">2.0</span>;
+                    left..=left + size
                 }
             }
-            <span class="ident"><span class="self">Self</span>::Max</span> =&gt; <span class="ident">max</span> <span class="op">-</span> <span class="ident">size</span>..<span class="op">=</span><span class="ident">max</span>,
+            <span class="self">Self</span>::Max =&gt; max - size..=max,
         }
     }
 }
 
-<span class="kw">impl</span> <span class="ident">Default</span> <span class="kw">for</span> <span class="ident">Align</span> {
-    <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-    <span class="kw">fn</span> <span class="ident">default</span>() -&gt; <span class="ident">Align</span> {
-        <span class="ident">Align::Min</span>
+<span class="kw">impl </span>Default <span class="kw">for </span>Align {
+    <span class="attribute">#[inline(always)]
+    </span><span class="kw">fn </span>default() -&gt; Align {
+        Align::Min
     }
 }
 
-<span class="comment">// ----------------------------------------------------------------------------</span>
+<span class="comment">// ----------------------------------------------------------------------------
 
-<span class="doccomment">/// Two-dimension alignment, e.g. [`Align2::LEFT_TOP`].</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>, <span class="ident">Hash</span>)]</span>
-<span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;serde&quot;</span>, <span class="ident">derive</span>(<span class="ident">serde::Deserialize</span>, <span class="ident">serde::Serialize</span>))]</span>
-<span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;serde&quot;</span>, <span class="ident">serde</span>(<span class="ident">rename_all</span> <span class="op">=</span> <span class="string">&quot;snake_case&quot;</span>))]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Align2</span>(<span class="kw">pub</span> [<span class="ident">Align</span>; <span class="number">2</span>]);
+</span><span class="doccomment">/// Two-dimension alignment, e.g. [`Align2::LEFT_TOP`].
+</span><span class="attribute">#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash)]
+#[cfg_attr(feature = <span class="string">&quot;serde&quot;</span>, derive(serde::Deserialize, serde::Serialize))]
+#[cfg_attr(feature = <span class="string">&quot;serde&quot;</span>, serde(rename_all = <span class="string">&quot;snake_case&quot;</span>))]
+</span><span class="kw">pub struct </span>Align2(<span class="kw">pub </span>[Align; <span class="number">2</span>]);
 
-<span class="kw">impl</span> <span class="ident">Align2</span> {
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">LEFT_BOTTOM</span>: <span class="ident">Align2</span> <span class="op">=</span> <span class="ident">Align2</span>([<span class="ident">Align::Min</span>, <span class="ident">Align::Max</span>]);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">LEFT_CENTER</span>: <span class="ident">Align2</span> <span class="op">=</span> <span class="ident">Align2</span>([<span class="ident">Align::Min</span>, <span class="ident">Align::Center</span>]);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">LEFT_TOP</span>: <span class="ident">Align2</span> <span class="op">=</span> <span class="ident">Align2</span>([<span class="ident">Align::Min</span>, <span class="ident">Align::Min</span>]);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">CENTER_BOTTOM</span>: <span class="ident">Align2</span> <span class="op">=</span> <span class="ident">Align2</span>([<span class="ident">Align::Center</span>, <span class="ident">Align::Max</span>]);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">CENTER_CENTER</span>: <span class="ident">Align2</span> <span class="op">=</span> <span class="ident">Align2</span>([<span class="ident">Align::Center</span>, <span class="ident">Align::Center</span>]);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">CENTER_TOP</span>: <span class="ident">Align2</span> <span class="op">=</span> <span class="ident">Align2</span>([<span class="ident">Align::Center</span>, <span class="ident">Align::Min</span>]);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">RIGHT_BOTTOM</span>: <span class="ident">Align2</span> <span class="op">=</span> <span class="ident">Align2</span>([<span class="ident">Align::Max</span>, <span class="ident">Align::Max</span>]);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">RIGHT_CENTER</span>: <span class="ident">Align2</span> <span class="op">=</span> <span class="ident">Align2</span>([<span class="ident">Align::Max</span>, <span class="ident">Align::Center</span>]);
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">RIGHT_TOP</span>: <span class="ident">Align2</span> <span class="op">=</span> <span class="ident">Align2</span>([<span class="ident">Align::Max</span>, <span class="ident">Align::Min</span>]);
+<span class="kw">impl </span>Align2 {
+    <span class="kw">pub const </span>LEFT_BOTTOM: Align2 = Align2([Align::Min, Align::Max]);
+    <span class="kw">pub const </span>LEFT_CENTER: Align2 = Align2([Align::Min, Align::Center]);
+    <span class="kw">pub const </span>LEFT_TOP: Align2 = Align2([Align::Min, Align::Min]);
+    <span class="kw">pub const </span>CENTER_BOTTOM: Align2 = Align2([Align::Center, Align::Max]);
+    <span class="kw">pub const </span>CENTER_CENTER: Align2 = Align2([Align::Center, Align::Center]);
+    <span class="kw">pub const </span>CENTER_TOP: Align2 = Align2([Align::Center, Align::Min]);
+    <span class="kw">pub const </span>RIGHT_BOTTOM: Align2 = Align2([Align::Max, Align::Max]);
+    <span class="kw">pub const </span>RIGHT_CENTER: Align2 = Align2([Align::Max, Align::Center]);
+    <span class="kw">pub const </span>RIGHT_TOP: Align2 = Align2([Align::Max, Align::Min]);
 }
 
-<span class="kw">impl</span> <span class="ident">Align2</span> {
-    <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">x</span>(<span class="self">self</span>) -&gt; <span class="ident">Align</span> {
+<span class="kw">impl </span>Align2 {
+    <span class="attribute">#[inline(always)]
+    </span><span class="kw">pub fn </span>x(<span class="self">self</span>) -&gt; Align {
         <span class="self">self</span>.<span class="number">0</span>[<span class="number">0</span>]
     }
 
-    <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">y</span>(<span class="self">self</span>) -&gt; <span class="ident">Align</span> {
+    <span class="attribute">#[inline(always)]
+    </span><span class="kw">pub fn </span>y(<span class="self">self</span>) -&gt; Align {
         <span class="self">self</span>.<span class="number">0</span>[<span class="number">1</span>]
     }
 
-    <span class="doccomment">/// -1, 0, or +1 for each axis</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">to_sign</span>(<span class="self">self</span>) -&gt; <span class="ident">Vec2</span> {
-        <span class="ident">vec2</span>(<span class="self">self</span>.<span class="ident">x</span>().<span class="ident">to_sign</span>(), <span class="self">self</span>.<span class="ident">y</span>().<span class="ident">to_sign</span>())
+    <span class="doccomment">/// -1, 0, or +1 for each axis
+    </span><span class="kw">pub fn </span>to_sign(<span class="self">self</span>) -&gt; Vec2 {
+        vec2(<span class="self">self</span>.x().to_sign(), <span class="self">self</span>.y().to_sign())
     }
 
-    <span class="doccomment">/// Used e.g. to anchor a piece of text to a part of the rectangle.</span>
-    <span class="doccomment">/// Give a position within the rect, specified by the aligns</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">anchor_rect</span>(<span class="self">self</span>, <span class="ident">rect</span>: <span class="ident">Rect</span>) -&gt; <span class="ident">Rect</span> {
-        <span class="kw">let</span> <span class="ident">x</span> <span class="op">=</span> <span class="kw">match</span> <span class="self">self</span>.<span class="ident">x</span>() {
-            <span class="ident">Align::Min</span> =&gt; <span class="ident">rect</span>.<span class="ident">left</span>(),
-            <span class="ident">Align::Center</span> =&gt; <span class="ident">rect</span>.<span class="ident">left</span>() <span class="op">-</span> <span class="number">0.5</span> <span class="op">*</span> <span class="ident">rect</span>.<span class="ident">width</span>(),
-            <span class="ident">Align::Max</span> =&gt; <span class="ident">rect</span>.<span class="ident">left</span>() <span class="op">-</span> <span class="ident">rect</span>.<span class="ident">width</span>(),
+    <span class="doccomment">/// Used e.g. to anchor a piece of text to a part of the rectangle.
+    /// Give a position within the rect, specified by the aligns
+    </span><span class="kw">pub fn </span>anchor_rect(<span class="self">self</span>, rect: Rect) -&gt; Rect {
+        <span class="kw">let </span>x = <span class="kw">match </span><span class="self">self</span>.x() {
+            Align::Min =&gt; rect.left(),
+            Align::Center =&gt; rect.left() - <span class="number">0.5 </span>* rect.width(),
+            Align::Max =&gt; rect.left() - rect.width(),
         };
-        <span class="kw">let</span> <span class="ident">y</span> <span class="op">=</span> <span class="kw">match</span> <span class="self">self</span>.<span class="ident">y</span>() {
-            <span class="ident">Align::Min</span> =&gt; <span class="ident">rect</span>.<span class="ident">top</span>(),
-            <span class="ident">Align::Center</span> =&gt; <span class="ident">rect</span>.<span class="ident">top</span>() <span class="op">-</span> <span class="number">0.5</span> <span class="op">*</span> <span class="ident">rect</span>.<span class="ident">height</span>(),
-            <span class="ident">Align::Max</span> =&gt; <span class="ident">rect</span>.<span class="ident">top</span>() <span class="op">-</span> <span class="ident">rect</span>.<span class="ident">height</span>(),
+        <span class="kw">let </span>y = <span class="kw">match </span><span class="self">self</span>.y() {
+            Align::Min =&gt; rect.top(),
+            Align::Center =&gt; rect.top() - <span class="number">0.5 </span>* rect.height(),
+            Align::Max =&gt; rect.top() - rect.height(),
         };
-        <span class="ident">Rect::from_min_size</span>(<span class="ident">pos2</span>(<span class="ident">x</span>, <span class="ident">y</span>), <span class="ident">rect</span>.<span class="ident">size</span>())
+        Rect::from_min_size(pos2(x, y), rect.size())
     }
 
-    <span class="doccomment">/// e.g. center a size within a given frame</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">align_size_within_rect</span>(<span class="self">self</span>, <span class="ident">size</span>: <span class="ident">Vec2</span>, <span class="ident">frame</span>: <span class="ident">Rect</span>) -&gt; <span class="ident">Rect</span> {
-        <span class="kw">let</span> <span class="ident">x_range</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">x</span>().<span class="ident">align_size_within_range</span>(<span class="ident">size</span>.<span class="ident">x</span>, <span class="ident">frame</span>.<span class="ident">x_range</span>());
-        <span class="kw">let</span> <span class="ident">y_range</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">y</span>().<span class="ident">align_size_within_range</span>(<span class="ident">size</span>.<span class="ident">y</span>, <span class="ident">frame</span>.<span class="ident">y_range</span>());
-        <span class="ident">Rect::from_x_y_ranges</span>(<span class="ident">x_range</span>, <span class="ident">y_range</span>)
+    <span class="doccomment">/// e.g. center a size within a given frame
+    </span><span class="kw">pub fn </span>align_size_within_rect(<span class="self">self</span>, size: Vec2, frame: Rect) -&gt; Rect {
+        <span class="kw">let </span>x_range = <span class="self">self</span>.x().align_size_within_range(size.x, frame.x_range());
+        <span class="kw">let </span>y_range = <span class="self">self</span>.y().align_size_within_range(size.y, frame.y_range());
+        Rect::from_x_y_ranges(x_range, y_range)
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">pos_in_rect</span>(<span class="self">self</span>, <span class="ident">frame</span>: <span class="kw-2">&amp;</span><span class="ident">Rect</span>) -&gt; <span class="ident">Pos2</span> {
-        <span class="kw">let</span> <span class="ident">x</span> <span class="op">=</span> <span class="kw">match</span> <span class="self">self</span>.<span class="ident">x</span>() {
-            <span class="ident">Align::Min</span> =&gt; <span class="ident">frame</span>.<span class="ident">left</span>(),
-            <span class="ident">Align::Center</span> =&gt; <span class="ident">frame</span>.<span class="ident">center</span>().<span class="ident">x</span>,
-            <span class="ident">Align::Max</span> =&gt; <span class="ident">frame</span>.<span class="ident">right</span>(),
+    <span class="kw">pub fn </span>pos_in_rect(<span class="self">self</span>, frame: <span class="kw-2">&amp;</span>Rect) -&gt; Pos2 {
+        <span class="kw">let </span>x = <span class="kw">match </span><span class="self">self</span>.x() {
+            Align::Min =&gt; frame.left(),
+            Align::Center =&gt; frame.center().x,
+            Align::Max =&gt; frame.right(),
         };
-        <span class="kw">let</span> <span class="ident">y</span> <span class="op">=</span> <span class="kw">match</span> <span class="self">self</span>.<span class="ident">y</span>() {
-            <span class="ident">Align::Min</span> =&gt; <span class="ident">frame</span>.<span class="ident">top</span>(),
-            <span class="ident">Align::Center</span> =&gt; <span class="ident">frame</span>.<span class="ident">center</span>().<span class="ident">y</span>,
-            <span class="ident">Align::Max</span> =&gt; <span class="ident">frame</span>.<span class="ident">bottom</span>(),
+        <span class="kw">let </span>y = <span class="kw">match </span><span class="self">self</span>.y() {
+            Align::Min =&gt; frame.top(),
+            Align::Center =&gt; frame.center().y,
+            Align::Max =&gt; frame.bottom(),
         };
 
-        <span class="ident">pos2</span>(<span class="ident">x</span>, <span class="ident">y</span>)
+        pos2(x, y)
     }
 }
 
-<span class="kw">impl</span> <span class="ident">std::ops::Index</span><span class="op">&lt;</span><span class="ident">usize</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Align2</span> {
-    <span class="kw">type</span> <span class="ident">Output</span> <span class="op">=</span> <span class="ident">Align</span>;
+<span class="kw">impl </span>std::ops::Index&lt;usize&gt; <span class="kw">for </span>Align2 {
+    <span class="kw">type </span>Output = Align;
 
-    <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-    <span class="kw">fn</span> <span class="ident">index</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">index</span>: <span class="ident">usize</span>) -&gt; <span class="kw-2">&amp;</span><span class="ident">Align</span> {
-        <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="number">0</span>[<span class="ident">index</span>]
+    <span class="attribute">#[inline(always)]
+    </span><span class="kw">fn </span>index(<span class="kw-2">&amp;</span><span class="self">self</span>, index: usize) -&gt; <span class="kw-2">&amp;</span>Align {
+        <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="number">0</span>[index]
     }
 }
 
-<span class="kw">impl</span> <span class="ident">std::ops::IndexMut</span><span class="op">&lt;</span><span class="ident">usize</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Align2</span> {
-    <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-    <span class="kw">fn</span> <span class="ident">index_mut</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">index</span>: <span class="ident">usize</span>) -&gt; <span class="kw-2">&amp;mut</span> <span class="ident">Align</span> {
-        <span class="kw-2">&amp;mut</span> <span class="self">self</span>.<span class="number">0</span>[<span class="ident">index</span>]
+<span class="kw">impl </span>std::ops::IndexMut&lt;usize&gt; <span class="kw">for </span>Align2 {
+    <span class="attribute">#[inline(always)]
+    </span><span class="kw">fn </span>index_mut(<span class="kw-2">&amp;mut </span><span class="self">self</span>, index: usize) -&gt; <span class="kw-2">&amp;mut </span>Align {
+        <span class="kw-2">&amp;mut </span><span class="self">self</span>.<span class="number">0</span>[index]
     }
 }
 
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">center_size_in_rect</span>(<span class="ident">size</span>: <span class="ident">Vec2</span>, <span class="ident">frame</span>: <span class="ident">Rect</span>) -&gt; <span class="ident">Rect</span> {
-    <span class="ident">Align2::CENTER_CENTER</span>.<span class="ident">align_size_within_rect</span>(<span class="ident">size</span>, <span class="ident">frame</span>)
+<span class="kw">pub fn </span>center_size_in_rect(size: Vec2, frame: Rect) -&gt; Rect {
+    Align2::CENTER_CENTER.align_size_within_rect(size, frame)
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="emath" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0 (a55dd71d5 2022-09-19)" ></div></body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="emath" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.66.1 (90743e729 2023-01-10)" ></div></body></html>

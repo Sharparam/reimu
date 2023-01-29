@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/egui-0.16.1/src/data/output.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>output.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../storage.js"></script><script defer src="../../../source-script.js"></script><script defer src="../../../source-files.js"></script><script defer src="../../../main.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../../egui/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../../egui/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../../egui/index.html"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/egui-0.16.1/src/data/output.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>output.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../../normalize.css"><link rel="stylesheet" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../../ayu.css" disabled><link rel="stylesheet" href="../../../dark.css" disabled><link rel="stylesheet" href="../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../storage.js"></script><script defer src="../../../source-script.js"></script><script defer src="../../../source-files.js"></script><script defer src="../../../main.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><div class="width-limiter"><nav class="sub"><a class="sub-logo-container" href="../../../egui/index.html"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../wheel.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -486,493 +486,493 @@
 <span id="486">486</span>
 <span id="487">487</span>
 <span id="488">488</span>
-</pre><pre class="rust"><code><span class="doccomment">//! All the data egui returns to the backend at the end of each frame.</span>
+</pre><pre class="rust"><code><span class="doccomment">//! All the data egui returns to the backend at the end of each frame.
 
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::WidgetType</span>;
+</span><span class="kw">use </span><span class="kw">crate</span>::WidgetType;
 
-<span class="doccomment">/// What egui emits each frame.</span>
-<span class="doccomment">/// The backend should use this.</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Default</span>, <span class="ident">PartialEq</span>)]</span>
-<span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;serde&quot;</span>, <span class="ident">derive</span>(<span class="ident">serde::Deserialize</span>, <span class="ident">serde::Serialize</span>))]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Output</span> {
-    <span class="doccomment">/// Set the cursor to this icon.</span>
-    <span class="kw">pub</span> <span class="ident">cursor_icon</span>: <span class="ident">CursorIcon</span>,
+<span class="doccomment">/// What egui emits each frame.
+/// The backend should use this.
+</span><span class="attribute">#[derive(Clone, Default, PartialEq)]
+#[cfg_attr(feature = <span class="string">&quot;serde&quot;</span>, derive(serde::Deserialize, serde::Serialize))]
+</span><span class="kw">pub struct </span>Output {
+    <span class="doccomment">/// Set the cursor to this icon.
+    </span><span class="kw">pub </span>cursor_icon: CursorIcon,
 
-    <span class="doccomment">/// If set, open this url.</span>
-    <span class="kw">pub</span> <span class="ident">open_url</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">OpenUrl</span><span class="op">&gt;</span>,
+    <span class="doccomment">/// If set, open this url.
+    </span><span class="kw">pub </span>open_url: <span class="prelude-ty">Option</span>&lt;OpenUrl&gt;,
 
-    <span class="doccomment">/// If set, put this text in the system clipboard. Ignore if empty.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// This is often a response to [`crate::Event::Copy`] or [`crate::Event::Cut`].</span>
-    <span class="kw">pub</span> <span class="ident">copied_text</span>: <span class="ident">String</span>,
+    <span class="doccomment">/// If set, put this text in the system clipboard. Ignore if empty.
+    ///
+    /// This is often a response to [`crate::Event::Copy`] or [`crate::Event::Cut`].
+    </span><span class="kw">pub </span>copied_text: String,
 
-    <span class="doccomment">/// If `true`, egui is requesting immediate repaint (i.e. on the next frame).</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// This happens for instance when there is an animation, or if a user has called `Context::request_repaint()`.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// As an egui user: don&#39;t set this value directly.</span>
-    <span class="doccomment">/// Call `Context::request_repaint()` instead and it will do so for you.</span>
-    <span class="kw">pub</span> <span class="ident">needs_repaint</span>: <span class="ident">bool</span>,
+    <span class="doccomment">/// If `true`, egui is requesting immediate repaint (i.e. on the next frame).
+    ///
+    /// This happens for instance when there is an animation, or if a user has called `Context::request_repaint()`.
+    ///
+    /// As an egui user: don&#39;t set this value directly.
+    /// Call `Context::request_repaint()` instead and it will do so for you.
+    </span><span class="kw">pub </span>needs_repaint: bool,
 
-    <span class="doccomment">/// Events that may be useful to e.g. a screen reader.</span>
-    <span class="kw">pub</span> <span class="ident">events</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">OutputEvent</span><span class="op">&gt;</span>,
+    <span class="doccomment">/// Events that may be useful to e.g. a screen reader.
+    </span><span class="kw">pub </span>events: Vec&lt;OutputEvent&gt;,
 
-    <span class="doccomment">/// Is there a mutable `TextEdit` under the cursor?</span>
-    <span class="doccomment">/// Use by `egui_web` to show/hide mobile keyboard and IME agent.</span>
-    <span class="kw">pub</span> <span class="ident">mutable_text_under_cursor</span>: <span class="ident">bool</span>,
+    <span class="doccomment">/// Is there a mutable `TextEdit` under the cursor?
+    /// Use by `egui_web` to show/hide mobile keyboard and IME agent.
+    </span><span class="kw">pub </span>mutable_text_under_cursor: bool,
 
-    <span class="doccomment">/// Screen-space position of text edit cursor (used for IME).</span>
-    <span class="kw">pub</span> <span class="ident">text_cursor_pos</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident"><span class="kw">crate</span>::Pos2</span><span class="op">&gt;</span>,
+    <span class="doccomment">/// Screen-space position of text edit cursor (used for IME).
+    </span><span class="kw">pub </span>text_cursor_pos: <span class="prelude-ty">Option</span>&lt;<span class="kw">crate</span>::Pos2&gt;,
 }
 
-<span class="kw">impl</span> <span class="ident">Output</span> {
-    <span class="doccomment">/// Open the given url in a web browser.</span>
-    <span class="doccomment">/// If egui is running in a browser, the same tab will be reused.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">open_url</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">url</span>: <span class="kw">impl</span> <span class="ident">ToString</span>) {
-        <span class="self">self</span>.<span class="ident">open_url</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">OpenUrl::same_tab</span>(<span class="ident">url</span>));
+<span class="kw">impl </span>Output {
+    <span class="doccomment">/// Open the given url in a web browser.
+    /// If egui is running in a browser, the same tab will be reused.
+    </span><span class="kw">pub fn </span>open_url(<span class="kw-2">&amp;mut </span><span class="self">self</span>, url: <span class="kw">impl </span>ToString) {
+        <span class="self">self</span>.open_url = <span class="prelude-val">Some</span>(OpenUrl::same_tab(url));
     }
 
-    <span class="doccomment">/// This can be used by a text-to-speech system to describe the events (if any).</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">events_description</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">String</span> {
-        <span class="comment">// only describe last event:</span>
-        <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">event</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">events</span>.<span class="ident">iter</span>().<span class="ident">rev</span>().<span class="ident">next</span>() {
-            <span class="kw">match</span> <span class="ident">event</span> {
-                <span class="ident">OutputEvent::Clicked</span>(<span class="ident">widget_info</span>)
-                <span class="op">|</span> <span class="ident">OutputEvent::DoubleClicked</span>(<span class="ident">widget_info</span>)
-                <span class="op">|</span> <span class="ident">OutputEvent::FocusGained</span>(<span class="ident">widget_info</span>)
-                <span class="op">|</span> <span class="ident">OutputEvent::TextSelectionChanged</span>(<span class="ident">widget_info</span>)
-                <span class="op">|</span> <span class="ident">OutputEvent::ValueChanged</span>(<span class="ident">widget_info</span>) =&gt; {
-                    <span class="kw">return</span> <span class="ident">widget_info</span>.<span class="ident">description</span>();
+    <span class="doccomment">/// This can be used by a text-to-speech system to describe the events (if any).
+    </span><span class="kw">pub fn </span>events_description(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; String {
+        <span class="comment">// only describe last event:
+        </span><span class="kw">if let </span><span class="prelude-val">Some</span>(event) = <span class="self">self</span>.events.iter().rev().next() {
+            <span class="kw">match </span>event {
+                OutputEvent::Clicked(widget_info)
+                | OutputEvent::DoubleClicked(widget_info)
+                | OutputEvent::FocusGained(widget_info)
+                | OutputEvent::TextSelectionChanged(widget_info)
+                | OutputEvent::ValueChanged(widget_info) =&gt; {
+                    <span class="kw">return </span>widget_info.description();
                 }
             }
         }
-        <span class="ident">Default::default</span>()
+        Default::default()
     }
 
-    <span class="doccomment">/// Add on new output.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">append</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">newer</span>: <span class="self">Self</span>) {
-        <span class="kw">let</span> <span class="self">Self</span> {
-            <span class="ident">cursor_icon</span>,
-            <span class="ident">open_url</span>,
-            <span class="ident">copied_text</span>,
-            <span class="ident">needs_repaint</span>,
-            <span class="kw-2">mut</span> <span class="ident">events</span>,
-            <span class="ident">mutable_text_under_cursor</span>,
-            <span class="ident">text_cursor_pos</span>,
-        } <span class="op">=</span> <span class="ident">newer</span>;
+    <span class="doccomment">/// Add on new output.
+    </span><span class="kw">pub fn </span>append(<span class="kw-2">&amp;mut </span><span class="self">self</span>, newer: <span class="self">Self</span>) {
+        <span class="kw">let </span><span class="self">Self </span>{
+            cursor_icon,
+            open_url,
+            copied_text,
+            needs_repaint,
+            <span class="kw-2">mut </span>events,
+            mutable_text_under_cursor,
+            text_cursor_pos,
+        } = newer;
 
-        <span class="self">self</span>.<span class="ident">cursor_icon</span> <span class="op">=</span> <span class="ident">cursor_icon</span>;
-        <span class="kw">if</span> <span class="ident">open_url</span>.<span class="ident">is_some</span>() {
-            <span class="self">self</span>.<span class="ident">open_url</span> <span class="op">=</span> <span class="ident">open_url</span>;
+        <span class="self">self</span>.cursor_icon = cursor_icon;
+        <span class="kw">if </span>open_url.is_some() {
+            <span class="self">self</span>.open_url = open_url;
         }
-        <span class="kw">if</span> <span class="op">!</span><span class="ident">copied_text</span>.<span class="ident">is_empty</span>() {
-            <span class="self">self</span>.<span class="ident">copied_text</span> <span class="op">=</span> <span class="ident">copied_text</span>;
+        <span class="kw">if </span>!copied_text.is_empty() {
+            <span class="self">self</span>.copied_text = copied_text;
         }
-        <span class="self">self</span>.<span class="ident">needs_repaint</span> <span class="op">=</span> <span class="ident">needs_repaint</span>; <span class="comment">// if the last frame doesn&#39;t need a repaint, then we don&#39;t need to repaint</span>
-        <span class="self">self</span>.<span class="ident">events</span>.<span class="ident">append</span>(<span class="kw-2">&amp;mut</span> <span class="ident">events</span>);
-        <span class="self">self</span>.<span class="ident">mutable_text_under_cursor</span> <span class="op">=</span> <span class="ident">mutable_text_under_cursor</span>;
-        <span class="self">self</span>.<span class="ident">text_cursor_pos</span> <span class="op">=</span> <span class="ident">text_cursor_pos</span>.<span class="ident">or</span>(<span class="self">self</span>.<span class="ident">text_cursor_pos</span>);
+        <span class="self">self</span>.needs_repaint = needs_repaint; <span class="comment">// if the last frame doesn&#39;t need a repaint, then we don&#39;t need to repaint
+        </span><span class="self">self</span>.events.append(<span class="kw-2">&amp;mut </span>events);
+        <span class="self">self</span>.mutable_text_under_cursor = mutable_text_under_cursor;
+        <span class="self">self</span>.text_cursor_pos = text_cursor_pos.or(<span class="self">self</span>.text_cursor_pos);
     }
 
-    <span class="doccomment">/// Take everything ephemeral (everything except `cursor_icon` currently)</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">take</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>) -&gt; <span class="self">Self</span> {
-        <span class="kw">let</span> <span class="ident">taken</span> <span class="op">=</span> <span class="ident">std::mem::take</span>(<span class="self">self</span>);
-        <span class="self">self</span>.<span class="ident">cursor_icon</span> <span class="op">=</span> <span class="ident">taken</span>.<span class="ident">cursor_icon</span>; <span class="comment">// eveything else is ephemeral</span>
-        <span class="ident">taken</span>
+    <span class="doccomment">/// Take everything ephemeral (everything except `cursor_icon` currently)
+    </span><span class="kw">pub fn </span>take(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; <span class="self">Self </span>{
+        <span class="kw">let </span>taken = std::mem::take(<span class="self">self</span>);
+        <span class="self">self</span>.cursor_icon = taken.cursor_icon; <span class="comment">// eveything else is ephemeral
+        </span>taken
     }
 }
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">PartialEq</span>)]</span>
-<span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;serde&quot;</span>, <span class="ident">derive</span>(<span class="ident">serde::Deserialize</span>, <span class="ident">serde::Serialize</span>))]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">OpenUrl</span> {
-    <span class="kw">pub</span> <span class="ident">url</span>: <span class="ident">String</span>,
-    <span class="doccomment">/// If `true`, open the url in a new tab.</span>
-    <span class="doccomment">/// If `false` open it in the same tab.</span>
-    <span class="doccomment">/// Only matters when in a web browser.</span>
-    <span class="kw">pub</span> <span class="ident">new_tab</span>: <span class="ident">bool</span>,
+<span class="attribute">#[derive(Clone, PartialEq)]
+#[cfg_attr(feature = <span class="string">&quot;serde&quot;</span>, derive(serde::Deserialize, serde::Serialize))]
+</span><span class="kw">pub struct </span>OpenUrl {
+    <span class="kw">pub </span>url: String,
+    <span class="doccomment">/// If `true`, open the url in a new tab.
+    /// If `false` open it in the same tab.
+    /// Only matters when in a web browser.
+    </span><span class="kw">pub </span>new_tab: bool,
 }
 
-<span class="kw">impl</span> <span class="ident">OpenUrl</span> {
-    <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">clippy::needless_pass_by_value</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">same_tab</span>(<span class="ident">url</span>: <span class="kw">impl</span> <span class="ident">ToString</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">Self</span> {
-            <span class="ident">url</span>: <span class="ident">url</span>.<span class="ident">to_string</span>(),
-            <span class="ident">new_tab</span>: <span class="bool-val">false</span>,
+<span class="kw">impl </span>OpenUrl {
+    <span class="attribute">#[allow(clippy::needless_pass_by_value)]
+    </span><span class="kw">pub fn </span>same_tab(url: <span class="kw">impl </span>ToString) -&gt; <span class="self">Self </span>{
+        <span class="self">Self </span>{
+            url: url.to_string(),
+            new_tab: <span class="bool-val">false</span>,
         }
     }
 
-    <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">clippy::needless_pass_by_value</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new_tab</span>(<span class="ident">url</span>: <span class="kw">impl</span> <span class="ident">ToString</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">Self</span> {
-            <span class="ident">url</span>: <span class="ident">url</span>.<span class="ident">to_string</span>(),
-            <span class="ident">new_tab</span>: <span class="bool-val">true</span>,
+    <span class="attribute">#[allow(clippy::needless_pass_by_value)]
+    </span><span class="kw">pub fn </span>new_tab(url: <span class="kw">impl </span>ToString) -&gt; <span class="self">Self </span>{
+        <span class="self">Self </span>{
+            url: url.to_string(),
+            new_tab: <span class="bool-val">true</span>,
         }
     }
 }
 
-<span class="doccomment">/// A mouse cursor icon.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// egui emits a [`CursorIcon`] in [`Output`] each frame as a request to the integration.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// Loosely based on &lt;https://developer.mozilla.org/en-US/docs/Web/CSS/cursor&gt;.</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>)]</span>
-<span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;serde&quot;</span>, <span class="ident">derive</span>(<span class="ident">serde::Deserialize</span>, <span class="ident">serde::Serialize</span>))]</span>
-<span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">CursorIcon</span> {
-    <span class="doccomment">/// Normal cursor icon, whatever that is.</span>
-    <span class="ident">Default</span>,
+<span class="doccomment">/// A mouse cursor icon.
+///
+/// egui emits a [`CursorIcon`] in [`Output`] each frame as a request to the integration.
+///
+/// Loosely based on &lt;https://developer.mozilla.org/en-US/docs/Web/CSS/cursor&gt;.
+</span><span class="attribute">#[derive(Clone, Copy, Debug, PartialEq)]
+#[cfg_attr(feature = <span class="string">&quot;serde&quot;</span>, derive(serde::Deserialize, serde::Serialize))]
+</span><span class="kw">pub enum </span>CursorIcon {
+    <span class="doccomment">/// Normal cursor icon, whatever that is.
+    </span>Default,
 
-    <span class="doccomment">/// Show no cursor</span>
-    <span class="prelude-val">None</span>,
+    <span class="doccomment">/// Show no cursor
+    </span><span class="prelude-val">None</span>,
 
-    <span class="comment">// ------------------------------------</span>
-    <span class="comment">// Links and status:</span>
-    <span class="doccomment">/// A context menu is available</span>
-    <span class="ident">ContextMenu</span>,
+    <span class="comment">// ------------------------------------
+    // Links and status:
+    </span><span class="doccomment">/// A context menu is available
+    </span>ContextMenu,
 
-    <span class="doccomment">/// Question mark</span>
-    <span class="ident">Help</span>,
+    <span class="doccomment">/// Question mark
+    </span>Help,
 
-    <span class="doccomment">/// Pointing hand, used for e.g. web links</span>
-    <span class="ident">PointingHand</span>,
+    <span class="doccomment">/// Pointing hand, used for e.g. web links
+    </span>PointingHand,
 
-    <span class="doccomment">/// Shows that processing is being done, but that the program is still interactive.</span>
-    <span class="ident">Progress</span>,
+    <span class="doccomment">/// Shows that processing is being done, but that the program is still interactive.
+    </span>Progress,
 
-    <span class="doccomment">/// Not yet ready, try later.</span>
-    <span class="ident">Wait</span>,
+    <span class="doccomment">/// Not yet ready, try later.
+    </span>Wait,
 
-    <span class="comment">// ------------------------------------</span>
-    <span class="comment">// Selection:</span>
-    <span class="doccomment">/// Hover a cell in a table</span>
-    <span class="ident">Cell</span>,
+    <span class="comment">// ------------------------------------
+    // Selection:
+    </span><span class="doccomment">/// Hover a cell in a table
+    </span>Cell,
 
-    <span class="doccomment">/// For precision work</span>
-    <span class="ident">Crosshair</span>,
+    <span class="doccomment">/// For precision work
+    </span>Crosshair,
 
-    <span class="doccomment">/// Text caret, e.g. &quot;Click here to edit text&quot;</span>
-    <span class="ident">Text</span>,
+    <span class="doccomment">/// Text caret, e.g. &quot;Click here to edit text&quot;
+    </span>Text,
 
-    <span class="doccomment">/// Vertical text caret, e.g. &quot;Click here to edit vertical text&quot;</span>
-    <span class="ident">VerticalText</span>,
+    <span class="doccomment">/// Vertical text caret, e.g. &quot;Click here to edit vertical text&quot;
+    </span>VerticalText,
 
-    <span class="comment">// ------------------------------------</span>
-    <span class="comment">// Drag-and-drop:</span>
-    <span class="doccomment">/// Indicated an alias, e.g. a shortcut</span>
-    <span class="ident">Alias</span>,
+    <span class="comment">// ------------------------------------
+    // Drag-and-drop:
+    </span><span class="doccomment">/// Indicated an alias, e.g. a shortcut
+    </span>Alias,
 
-    <span class="doccomment">/// Indicate that a copy will be made</span>
-    <span class="ident">Copy</span>,
+    <span class="doccomment">/// Indicate that a copy will be made
+    </span>Copy,
 
-    <span class="doccomment">/// Omnidirectional move icon (e.g. arrows in all cardinal directions)</span>
-    <span class="ident">Move</span>,
+    <span class="doccomment">/// Omnidirectional move icon (e.g. arrows in all cardinal directions)
+    </span>Move,
 
-    <span class="doccomment">/// Can&#39;t drop here</span>
-    <span class="ident">NoDrop</span>,
+    <span class="doccomment">/// Can&#39;t drop here
+    </span>NoDrop,
 
-    <span class="doccomment">/// Forbidden</span>
-    <span class="ident">NotAllowed</span>,
+    <span class="doccomment">/// Forbidden
+    </span>NotAllowed,
 
-    <span class="doccomment">/// The thing you are hovering can be grabbed</span>
-    <span class="ident">Grab</span>,
+    <span class="doccomment">/// The thing you are hovering can be grabbed
+    </span>Grab,
 
-    <span class="doccomment">/// You are grabbing the thing you are hovering</span>
-    <span class="ident">Grabbing</span>,
+    <span class="doccomment">/// You are grabbing the thing you are hovering
+    </span>Grabbing,
 
-    <span class="comment">// ------------------------------------</span>
-    <span class="comment">// Resizing and scrolling</span>
-    <span class="doccomment">/// Something can be scrolled in any direction (panned).</span>
-    <span class="ident">AllScroll</span>,
+    <span class="comment">// ------------------------------------
+    // Resizing and scrolling
+    </span><span class="doccomment">/// Something can be scrolled in any direction (panned).
+    </span>AllScroll,
 
-    <span class="doccomment">/// Horizontal resize `-` to make something wider or more narrow (left to/from right)</span>
-    <span class="ident">ResizeHorizontal</span>,
-    <span class="doccomment">/// Diagonal resize `/` (right-up to/from left-down)</span>
-    <span class="ident">ResizeNeSw</span>,
-    <span class="doccomment">/// Diagonal resize `\` (left-up to/from right-down)</span>
-    <span class="ident">ResizeNwSe</span>,
-    <span class="doccomment">/// Vertical resize `|` (up-down or down-up)</span>
-    <span class="ident">ResizeVertical</span>,
+    <span class="doccomment">/// Horizontal resize `-` to make something wider or more narrow (left to/from right)
+    </span>ResizeHorizontal,
+    <span class="doccomment">/// Diagonal resize `/` (right-up to/from left-down)
+    </span>ResizeNeSw,
+    <span class="doccomment">/// Diagonal resize `\` (left-up to/from right-down)
+    </span>ResizeNwSe,
+    <span class="doccomment">/// Vertical resize `|` (up-down or down-up)
+    </span>ResizeVertical,
 
-    <span class="doccomment">/// Enhance!</span>
-    <span class="ident">ZoomIn</span>,
-    <span class="doccomment">/// Let&#39;s get a better overview</span>
-    <span class="ident">ZoomOut</span>,
+    <span class="doccomment">/// Enhance!
+    </span>ZoomIn,
+    <span class="doccomment">/// Let&#39;s get a better overview
+    </span>ZoomOut,
 }
 
-<span class="kw">impl</span> <span class="ident">CursorIcon</span> {
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">ALL</span>: [<span class="ident">CursorIcon</span>; <span class="number">25</span>] <span class="op">=</span> [
-        <span class="ident">CursorIcon::Default</span>,
-        <span class="ident">CursorIcon::None</span>,
-        <span class="ident">CursorIcon::ContextMenu</span>,
-        <span class="ident">CursorIcon::Help</span>,
-        <span class="ident">CursorIcon::PointingHand</span>,
-        <span class="ident">CursorIcon::Progress</span>,
-        <span class="ident">CursorIcon::Wait</span>,
-        <span class="ident">CursorIcon::Cell</span>,
-        <span class="ident">CursorIcon::Crosshair</span>,
-        <span class="ident">CursorIcon::Text</span>,
-        <span class="ident">CursorIcon::VerticalText</span>,
-        <span class="ident">CursorIcon::Alias</span>,
-        <span class="ident">CursorIcon::Copy</span>,
-        <span class="ident">CursorIcon::Move</span>,
-        <span class="ident">CursorIcon::NoDrop</span>,
-        <span class="ident">CursorIcon::NotAllowed</span>,
-        <span class="ident">CursorIcon::Grab</span>,
-        <span class="ident">CursorIcon::Grabbing</span>,
-        <span class="ident">CursorIcon::AllScroll</span>,
-        <span class="ident">CursorIcon::ResizeHorizontal</span>,
-        <span class="ident">CursorIcon::ResizeNeSw</span>,
-        <span class="ident">CursorIcon::ResizeNwSe</span>,
-        <span class="ident">CursorIcon::ResizeVertical</span>,
-        <span class="ident">CursorIcon::ZoomIn</span>,
-        <span class="ident">CursorIcon::ZoomOut</span>,
+<span class="kw">impl </span>CursorIcon {
+    <span class="kw">pub const </span>ALL: [CursorIcon; <span class="number">25</span>] = [
+        CursorIcon::Default,
+        CursorIcon::None,
+        CursorIcon::ContextMenu,
+        CursorIcon::Help,
+        CursorIcon::PointingHand,
+        CursorIcon::Progress,
+        CursorIcon::Wait,
+        CursorIcon::Cell,
+        CursorIcon::Crosshair,
+        CursorIcon::Text,
+        CursorIcon::VerticalText,
+        CursorIcon::Alias,
+        CursorIcon::Copy,
+        CursorIcon::Move,
+        CursorIcon::NoDrop,
+        CursorIcon::NotAllowed,
+        CursorIcon::Grab,
+        CursorIcon::Grabbing,
+        CursorIcon::AllScroll,
+        CursorIcon::ResizeHorizontal,
+        CursorIcon::ResizeNeSw,
+        CursorIcon::ResizeNwSe,
+        CursorIcon::ResizeVertical,
+        CursorIcon::ZoomIn,
+        CursorIcon::ZoomOut,
     ];
 }
 
-<span class="kw">impl</span> <span class="ident">Default</span> <span class="kw">for</span> <span class="ident">CursorIcon</span> {
-    <span class="kw">fn</span> <span class="ident">default</span>() -&gt; <span class="self">Self</span> {
-        <span class="ident"><span class="self">Self</span>::Default</span>
+<span class="kw">impl </span>Default <span class="kw">for </span>CursorIcon {
+    <span class="kw">fn </span>default() -&gt; <span class="self">Self </span>{
+        <span class="self">Self</span>::Default
     }
 }
 
-<span class="doccomment">/// Things that happened during this frame that the integration may be interested in.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// In particular, these events may be useful for accessability, i.e. for screen readers.</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">PartialEq</span>)]</span>
-<span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;serde&quot;</span>, <span class="ident">derive</span>(<span class="ident">serde::Deserialize</span>, <span class="ident">serde::Serialize</span>))]</span>
-<span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">OutputEvent</span> {
-    <span class="comment">// A widget was clicked.</span>
-    <span class="ident">Clicked</span>(<span class="ident">WidgetInfo</span>),
-    <span class="comment">// A widget was double-clicked.</span>
-    <span class="ident">DoubleClicked</span>(<span class="ident">WidgetInfo</span>),
-    <span class="doccomment">/// A widget gained keyboard focus (by tab key).</span>
-    <span class="ident">FocusGained</span>(<span class="ident">WidgetInfo</span>),
-    <span class="comment">// Text selection was updated.</span>
-    <span class="ident">TextSelectionChanged</span>(<span class="ident">WidgetInfo</span>),
-    <span class="comment">// A widget&#39;s value changed.</span>
-    <span class="ident">ValueChanged</span>(<span class="ident">WidgetInfo</span>),
+<span class="doccomment">/// Things that happened during this frame that the integration may be interested in.
+///
+/// In particular, these events may be useful for accessability, i.e. for screen readers.
+</span><span class="attribute">#[derive(Clone, PartialEq)]
+#[cfg_attr(feature = <span class="string">&quot;serde&quot;</span>, derive(serde::Deserialize, serde::Serialize))]
+</span><span class="kw">pub enum </span>OutputEvent {
+    <span class="comment">// A widget was clicked.
+    </span>Clicked(WidgetInfo),
+    <span class="comment">// A widget was double-clicked.
+    </span>DoubleClicked(WidgetInfo),
+    <span class="doccomment">/// A widget gained keyboard focus (by tab key).
+    </span>FocusGained(WidgetInfo),
+    <span class="comment">// Text selection was updated.
+    </span>TextSelectionChanged(WidgetInfo),
+    <span class="comment">// A widget&#39;s value changed.
+    </span>ValueChanged(WidgetInfo),
 }
 
-<span class="kw">impl</span> <span class="ident">std::fmt::Debug</span> <span class="kw">for</span> <span class="ident">OutputEvent</span> {
-    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;mut</span> <span class="ident">std::fmt::Formatter</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>) -&gt; <span class="ident">std::fmt::Result</span> {
-        <span class="kw">match</span> <span class="self">self</span> {
-            <span class="ident"><span class="self">Self</span>::Clicked</span>(<span class="ident">wi</span>) =&gt; <span class="macro">write!</span>(<span class="ident">f</span>, <span class="string">&quot;Clicked({:?})&quot;</span>, <span class="ident">wi</span>),
-            <span class="ident"><span class="self">Self</span>::DoubleClicked</span>(<span class="ident">wi</span>) =&gt; <span class="macro">write!</span>(<span class="ident">f</span>, <span class="string">&quot;DoubleClicked({:?})&quot;</span>, <span class="ident">wi</span>),
-            <span class="ident"><span class="self">Self</span>::FocusGained</span>(<span class="ident">wi</span>) =&gt; <span class="macro">write!</span>(<span class="ident">f</span>, <span class="string">&quot;FocusGained({:?})&quot;</span>, <span class="ident">wi</span>),
-            <span class="ident"><span class="self">Self</span>::TextSelectionChanged</span>(<span class="ident">wi</span>) =&gt; <span class="macro">write!</span>(<span class="ident">f</span>, <span class="string">&quot;TextSelectionChanged({:?})&quot;</span>, <span class="ident">wi</span>),
-            <span class="ident"><span class="self">Self</span>::ValueChanged</span>(<span class="ident">wi</span>) =&gt; <span class="macro">write!</span>(<span class="ident">f</span>, <span class="string">&quot;ValueChanged({:?})&quot;</span>, <span class="ident">wi</span>),
+<span class="kw">impl </span>std::fmt::Debug <span class="kw">for </span>OutputEvent {
+    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>std::fmt::Formatter&lt;<span class="lifetime">&#39;_</span>&gt;) -&gt; std::fmt::Result {
+        <span class="kw">match </span><span class="self">self </span>{
+            <span class="self">Self</span>::Clicked(wi) =&gt; <span class="macro">write!</span>(f, <span class="string">&quot;Clicked({:?})&quot;</span>, wi),
+            <span class="self">Self</span>::DoubleClicked(wi) =&gt; <span class="macro">write!</span>(f, <span class="string">&quot;DoubleClicked({:?})&quot;</span>, wi),
+            <span class="self">Self</span>::FocusGained(wi) =&gt; <span class="macro">write!</span>(f, <span class="string">&quot;FocusGained({:?})&quot;</span>, wi),
+            <span class="self">Self</span>::TextSelectionChanged(wi) =&gt; <span class="macro">write!</span>(f, <span class="string">&quot;TextSelectionChanged({:?})&quot;</span>, wi),
+            <span class="self">Self</span>::ValueChanged(wi) =&gt; <span class="macro">write!</span>(f, <span class="string">&quot;ValueChanged({:?})&quot;</span>, wi),
         }
-    }
-}
-
-<span class="doccomment">/// Describes a widget such as a [`crate::Button`] or a [`crate::TextEdit`].</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">PartialEq</span>)]</span>
-<span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;serde&quot;</span>, <span class="ident">derive</span>(<span class="ident">serde::Deserialize</span>, <span class="ident">serde::Serialize</span>))]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">WidgetInfo</span> {
-    <span class="doccomment">/// The type of widget this is.</span>
-    <span class="kw">pub</span> <span class="ident">typ</span>: <span class="ident">WidgetType</span>,
-    <span class="comment">// Whether the widget is enabled.</span>
-    <span class="kw">pub</span> <span class="ident">enabled</span>: <span class="ident">bool</span>,
-    <span class="doccomment">/// The text on labels, buttons, checkboxes etc.</span>
-    <span class="kw">pub</span> <span class="ident">label</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span>,
-    <span class="doccomment">/// The contents of some editable text (for `TextEdit` fields).</span>
-    <span class="kw">pub</span> <span class="ident">current_text_value</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span>,
-    <span class="comment">// The previous text value.</span>
-    <span class="kw">pub</span> <span class="ident">prev_text_value</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span>,
-    <span class="doccomment">/// The current value of checkboxes and radio buttons.</span>
-    <span class="kw">pub</span> <span class="ident">selected</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">bool</span><span class="op">&gt;</span>,
-    <span class="doccomment">/// The current value of sliders etc.</span>
-    <span class="kw">pub</span> <span class="ident">value</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">f64</span><span class="op">&gt;</span>,
-    <span class="comment">// Selected range of characters in [`Self::current_text_value`].</span>
-    <span class="kw">pub</span> <span class="ident">text_selection</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">std::ops::RangeInclusive</span><span class="op">&lt;</span><span class="ident">usize</span><span class="op">&gt;</span><span class="op">&gt;</span>,
-}
-
-<span class="kw">impl</span> <span class="ident">std::fmt::Debug</span> <span class="kw">for</span> <span class="ident">WidgetInfo</span> {
-    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;mut</span> <span class="ident">std::fmt::Formatter</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>) -&gt; <span class="ident">std::fmt::Result</span> {
-        <span class="kw">let</span> <span class="self">Self</span> {
-            <span class="ident">typ</span>,
-            <span class="ident">enabled</span>,
-            <span class="ident">label</span>,
-            <span class="ident">current_text_value</span>: <span class="ident">text_value</span>,
-            <span class="ident">prev_text_value</span>,
-            <span class="ident">selected</span>,
-            <span class="ident">value</span>,
-            <span class="ident">text_selection</span>,
-        } <span class="op">=</span> <span class="self">self</span>;
-
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">s</span> <span class="op">=</span> <span class="ident">f</span>.<span class="ident">debug_struct</span>(<span class="string">&quot;WidgetInfo&quot;</span>);
-
-        <span class="ident">s</span>.<span class="ident">field</span>(<span class="string">&quot;typ&quot;</span>, <span class="ident">typ</span>);
-        <span class="ident">s</span>.<span class="ident">field</span>(<span class="string">&quot;enabled&quot;</span>, <span class="ident">enabled</span>);
-
-        <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">label</span>) <span class="op">=</span> <span class="ident">label</span> {
-            <span class="ident">s</span>.<span class="ident">field</span>(<span class="string">&quot;label&quot;</span>, <span class="ident">label</span>);
-        }
-        <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">text_value</span>) <span class="op">=</span> <span class="ident">text_value</span> {
-            <span class="ident">s</span>.<span class="ident">field</span>(<span class="string">&quot;text_value&quot;</span>, <span class="ident">text_value</span>);
-        }
-        <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">prev_text_value</span>) <span class="op">=</span> <span class="ident">prev_text_value</span> {
-            <span class="ident">s</span>.<span class="ident">field</span>(<span class="string">&quot;prev_text_value&quot;</span>, <span class="ident">prev_text_value</span>);
-        }
-        <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">selected</span>) <span class="op">=</span> <span class="ident">selected</span> {
-            <span class="ident">s</span>.<span class="ident">field</span>(<span class="string">&quot;selected&quot;</span>, <span class="ident">selected</span>);
-        }
-        <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">value</span>) <span class="op">=</span> <span class="ident">value</span> {
-            <span class="ident">s</span>.<span class="ident">field</span>(<span class="string">&quot;value&quot;</span>, <span class="ident">value</span>);
-        }
-        <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">text_selection</span>) <span class="op">=</span> <span class="ident">text_selection</span> {
-            <span class="ident">s</span>.<span class="ident">field</span>(<span class="string">&quot;text_selection&quot;</span>, <span class="ident">text_selection</span>);
-        }
-
-        <span class="ident">s</span>.<span class="ident">finish</span>()
     }
 }
 
-<span class="kw">impl</span> <span class="ident">WidgetInfo</span> {
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">typ</span>: <span class="ident">WidgetType</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">Self</span> {
-            <span class="ident">typ</span>,
-            <span class="ident">enabled</span>: <span class="bool-val">true</span>,
-            <span class="ident">label</span>: <span class="prelude-val">None</span>,
-            <span class="ident">current_text_value</span>: <span class="prelude-val">None</span>,
-            <span class="ident">prev_text_value</span>: <span class="prelude-val">None</span>,
-            <span class="ident">selected</span>: <span class="prelude-val">None</span>,
-            <span class="ident">value</span>: <span class="prelude-val">None</span>,
-            <span class="ident">text_selection</span>: <span class="prelude-val">None</span>,
+<span class="doccomment">/// Describes a widget such as a [`crate::Button`] or a [`crate::TextEdit`].
+</span><span class="attribute">#[derive(Clone, PartialEq)]
+#[cfg_attr(feature = <span class="string">&quot;serde&quot;</span>, derive(serde::Deserialize, serde::Serialize))]
+</span><span class="kw">pub struct </span>WidgetInfo {
+    <span class="doccomment">/// The type of widget this is.
+    </span><span class="kw">pub </span>typ: WidgetType,
+    <span class="comment">// Whether the widget is enabled.
+    </span><span class="kw">pub </span>enabled: bool,
+    <span class="doccomment">/// The text on labels, buttons, checkboxes etc.
+    </span><span class="kw">pub </span>label: <span class="prelude-ty">Option</span>&lt;String&gt;,
+    <span class="doccomment">/// The contents of some editable text (for `TextEdit` fields).
+    </span><span class="kw">pub </span>current_text_value: <span class="prelude-ty">Option</span>&lt;String&gt;,
+    <span class="comment">// The previous text value.
+    </span><span class="kw">pub </span>prev_text_value: <span class="prelude-ty">Option</span>&lt;String&gt;,
+    <span class="doccomment">/// The current value of checkboxes and radio buttons.
+    </span><span class="kw">pub </span>selected: <span class="prelude-ty">Option</span>&lt;bool&gt;,
+    <span class="doccomment">/// The current value of sliders etc.
+    </span><span class="kw">pub </span>value: <span class="prelude-ty">Option</span>&lt;f64&gt;,
+    <span class="comment">// Selected range of characters in [`Self::current_text_value`].
+    </span><span class="kw">pub </span>text_selection: <span class="prelude-ty">Option</span>&lt;std::ops::RangeInclusive&lt;usize&gt;&gt;,
+}
+
+<span class="kw">impl </span>std::fmt::Debug <span class="kw">for </span>WidgetInfo {
+    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>std::fmt::Formatter&lt;<span class="lifetime">&#39;_</span>&gt;) -&gt; std::fmt::Result {
+        <span class="kw">let </span><span class="self">Self </span>{
+            typ,
+            enabled,
+            label,
+            current_text_value: text_value,
+            prev_text_value,
+            selected,
+            value,
+            text_selection,
+        } = <span class="self">self</span>;
+
+        <span class="kw">let </span><span class="kw-2">mut </span>s = f.debug_struct(<span class="string">&quot;WidgetInfo&quot;</span>);
+
+        s.field(<span class="string">&quot;typ&quot;</span>, typ);
+        s.field(<span class="string">&quot;enabled&quot;</span>, enabled);
+
+        <span class="kw">if let </span><span class="prelude-val">Some</span>(label) = label {
+            s.field(<span class="string">&quot;label&quot;</span>, label);
+        }
+        <span class="kw">if let </span><span class="prelude-val">Some</span>(text_value) = text_value {
+            s.field(<span class="string">&quot;text_value&quot;</span>, text_value);
+        }
+        <span class="kw">if let </span><span class="prelude-val">Some</span>(prev_text_value) = prev_text_value {
+            s.field(<span class="string">&quot;prev_text_value&quot;</span>, prev_text_value);
+        }
+        <span class="kw">if let </span><span class="prelude-val">Some</span>(selected) = selected {
+            s.field(<span class="string">&quot;selected&quot;</span>, selected);
+        }
+        <span class="kw">if let </span><span class="prelude-val">Some</span>(value) = value {
+            s.field(<span class="string">&quot;value&quot;</span>, value);
+        }
+        <span class="kw">if let </span><span class="prelude-val">Some</span>(text_selection) = text_selection {
+            s.field(<span class="string">&quot;text_selection&quot;</span>, text_selection);
+        }
+
+        s.finish()
+    }
+}
+
+<span class="kw">impl </span>WidgetInfo {
+    <span class="kw">pub fn </span>new(typ: WidgetType) -&gt; <span class="self">Self </span>{
+        <span class="self">Self </span>{
+            typ,
+            enabled: <span class="bool-val">true</span>,
+            label: <span class="prelude-val">None</span>,
+            current_text_value: <span class="prelude-val">None</span>,
+            prev_text_value: <span class="prelude-val">None</span>,
+            selected: <span class="prelude-val">None</span>,
+            value: <span class="prelude-val">None</span>,
+            text_selection: <span class="prelude-val">None</span>,
         }
     }
 
-    <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">clippy::needless_pass_by_value</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">labeled</span>(<span class="ident">typ</span>: <span class="ident">WidgetType</span>, <span class="ident">label</span>: <span class="kw">impl</span> <span class="ident">ToString</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">Self</span> {
-            <span class="ident">label</span>: <span class="prelude-val">Some</span>(<span class="ident">label</span>.<span class="ident">to_string</span>()),
-            ..<span class="ident"><span class="self">Self</span>::new</span>(<span class="ident">typ</span>)
+    <span class="attribute">#[allow(clippy::needless_pass_by_value)]
+    </span><span class="kw">pub fn </span>labeled(typ: WidgetType, label: <span class="kw">impl </span>ToString) -&gt; <span class="self">Self </span>{
+        <span class="self">Self </span>{
+            label: <span class="prelude-val">Some</span>(label.to_string()),
+            ..<span class="self">Self</span>::new(typ)
         }
     }
 
-    <span class="doccomment">/// checkboxes, radio-buttons etc</span>
-    <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">clippy::needless_pass_by_value</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">selected</span>(<span class="ident">typ</span>: <span class="ident">WidgetType</span>, <span class="ident">selected</span>: <span class="ident">bool</span>, <span class="ident">label</span>: <span class="kw">impl</span> <span class="ident">ToString</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">Self</span> {
-            <span class="ident">label</span>: <span class="prelude-val">Some</span>(<span class="ident">label</span>.<span class="ident">to_string</span>()),
-            <span class="ident">selected</span>: <span class="prelude-val">Some</span>(<span class="ident">selected</span>),
-            ..<span class="ident"><span class="self">Self</span>::new</span>(<span class="ident">typ</span>)
+    <span class="doccomment">/// checkboxes, radio-buttons etc
+    </span><span class="attribute">#[allow(clippy::needless_pass_by_value)]
+    </span><span class="kw">pub fn </span>selected(typ: WidgetType, selected: bool, label: <span class="kw">impl </span>ToString) -&gt; <span class="self">Self </span>{
+        <span class="self">Self </span>{
+            label: <span class="prelude-val">Some</span>(label.to_string()),
+            selected: <span class="prelude-val">Some</span>(selected),
+            ..<span class="self">Self</span>::new(typ)
         }
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">drag_value</span>(<span class="ident">value</span>: <span class="ident">f64</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">Self</span> {
-            <span class="ident">value</span>: <span class="prelude-val">Some</span>(<span class="ident">value</span>),
-            ..<span class="ident"><span class="self">Self</span>::new</span>(<span class="ident">WidgetType::DragValue</span>)
+    <span class="kw">pub fn </span>drag_value(value: f64) -&gt; <span class="self">Self </span>{
+        <span class="self">Self </span>{
+            value: <span class="prelude-val">Some</span>(value),
+            ..<span class="self">Self</span>::new(WidgetType::DragValue)
         }
     }
 
-    <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">clippy::needless_pass_by_value</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">slider</span>(<span class="ident">value</span>: <span class="ident">f64</span>, <span class="ident">label</span>: <span class="kw">impl</span> <span class="ident">ToString</span>) -&gt; <span class="self">Self</span> {
-        <span class="kw">let</span> <span class="ident">label</span> <span class="op">=</span> <span class="ident">label</span>.<span class="ident">to_string</span>();
-        <span class="self">Self</span> {
-            <span class="ident">label</span>: <span class="kw">if</span> <span class="ident">label</span>.<span class="ident">is_empty</span>() { <span class="prelude-val">None</span> } <span class="kw">else</span> { <span class="prelude-val">Some</span>(<span class="ident">label</span>) },
-            <span class="ident">value</span>: <span class="prelude-val">Some</span>(<span class="ident">value</span>),
-            ..<span class="ident"><span class="self">Self</span>::new</span>(<span class="ident">WidgetType::Slider</span>)
+    <span class="attribute">#[allow(clippy::needless_pass_by_value)]
+    </span><span class="kw">pub fn </span>slider(value: f64, label: <span class="kw">impl </span>ToString) -&gt; <span class="self">Self </span>{
+        <span class="kw">let </span>label = label.to_string();
+        <span class="self">Self </span>{
+            label: <span class="kw">if </span>label.is_empty() { <span class="prelude-val">None </span>} <span class="kw">else </span>{ <span class="prelude-val">Some</span>(label) },
+            value: <span class="prelude-val">Some</span>(value),
+            ..<span class="self">Self</span>::new(WidgetType::Slider)
         }
     }
 
-    <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">clippy::needless_pass_by_value</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">text_edit</span>(<span class="ident">prev_text_value</span>: <span class="kw">impl</span> <span class="ident">ToString</span>, <span class="ident">text_value</span>: <span class="kw">impl</span> <span class="ident">ToString</span>) -&gt; <span class="self">Self</span> {
-        <span class="kw">let</span> <span class="ident">text_value</span> <span class="op">=</span> <span class="ident">text_value</span>.<span class="ident">to_string</span>();
-        <span class="kw">let</span> <span class="ident">prev_text_value</span> <span class="op">=</span> <span class="ident">prev_text_value</span>.<span class="ident">to_string</span>();
-        <span class="kw">let</span> <span class="ident">prev_text_value</span> <span class="op">=</span> <span class="kw">if</span> <span class="ident">text_value</span> <span class="op">==</span> <span class="ident">prev_text_value</span> {
-            <span class="prelude-val">None</span>
-        } <span class="kw">else</span> {
-            <span class="prelude-val">Some</span>(<span class="ident">prev_text_value</span>)
+    <span class="attribute">#[allow(clippy::needless_pass_by_value)]
+    </span><span class="kw">pub fn </span>text_edit(prev_text_value: <span class="kw">impl </span>ToString, text_value: <span class="kw">impl </span>ToString) -&gt; <span class="self">Self </span>{
+        <span class="kw">let </span>text_value = text_value.to_string();
+        <span class="kw">let </span>prev_text_value = prev_text_value.to_string();
+        <span class="kw">let </span>prev_text_value = <span class="kw">if </span>text_value == prev_text_value {
+            <span class="prelude-val">None
+        </span>} <span class="kw">else </span>{
+            <span class="prelude-val">Some</span>(prev_text_value)
         };
-        <span class="self">Self</span> {
-            <span class="ident">current_text_value</span>: <span class="prelude-val">Some</span>(<span class="ident">text_value</span>),
-            <span class="ident">prev_text_value</span>,
-            ..<span class="ident"><span class="self">Self</span>::new</span>(<span class="ident">WidgetType::TextEdit</span>)
+        <span class="self">Self </span>{
+            current_text_value: <span class="prelude-val">Some</span>(text_value),
+            prev_text_value,
+            ..<span class="self">Self</span>::new(WidgetType::TextEdit)
         }
     }
 
-    <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">clippy::needless_pass_by_value</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">text_selection_changed</span>(
-        <span class="ident">text_selection</span>: <span class="ident">std::ops::RangeInclusive</span><span class="op">&lt;</span><span class="ident">usize</span><span class="op">&gt;</span>,
-        <span class="ident">current_text_value</span>: <span class="kw">impl</span> <span class="ident">ToString</span>,
-    ) -&gt; <span class="self">Self</span> {
-        <span class="self">Self</span> {
-            <span class="ident">text_selection</span>: <span class="prelude-val">Some</span>(<span class="ident">text_selection</span>),
-            <span class="ident">current_text_value</span>: <span class="prelude-val">Some</span>(<span class="ident">current_text_value</span>.<span class="ident">to_string</span>()),
-            ..<span class="ident"><span class="self">Self</span>::new</span>(<span class="ident">WidgetType::TextEdit</span>)
+    <span class="attribute">#[allow(clippy::needless_pass_by_value)]
+    </span><span class="kw">pub fn </span>text_selection_changed(
+        text_selection: std::ops::RangeInclusive&lt;usize&gt;,
+        current_text_value: <span class="kw">impl </span>ToString,
+    ) -&gt; <span class="self">Self </span>{
+        <span class="self">Self </span>{
+            text_selection: <span class="prelude-val">Some</span>(text_selection),
+            current_text_value: <span class="prelude-val">Some</span>(current_text_value.to_string()),
+            ..<span class="self">Self</span>::new(WidgetType::TextEdit)
         }
     }
 
-    <span class="doccomment">/// This can be used by a text-to-speech system to describe the widget.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">description</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">String</span> {
-        <span class="kw">let</span> <span class="self">Self</span> {
-            <span class="ident">typ</span>,
-            <span class="ident">enabled</span>,
-            <span class="ident">label</span>,
-            <span class="ident">current_text_value</span>: <span class="ident">text_value</span>,
-            <span class="ident">prev_text_value</span>: <span class="kw">_</span>,
-            <span class="ident">selected</span>,
-            <span class="ident">value</span>,
-            <span class="ident">text_selection</span>: <span class="kw">_</span>,
-        } <span class="op">=</span> <span class="self">self</span>;
+    <span class="doccomment">/// This can be used by a text-to-speech system to describe the widget.
+    </span><span class="kw">pub fn </span>description(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; String {
+        <span class="kw">let </span><span class="self">Self </span>{
+            typ,
+            enabled,
+            label,
+            current_text_value: text_value,
+            prev_text_value: <span class="kw">_</span>,
+            selected,
+            value,
+            text_selection: <span class="kw">_</span>,
+        } = <span class="self">self</span>;
 
-        <span class="comment">// TODO: localization</span>
-        <span class="kw">let</span> <span class="ident">widget_type</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">typ</span> {
-            <span class="ident">WidgetType::Hyperlink</span> =&gt; <span class="string">&quot;link&quot;</span>,
-            <span class="ident">WidgetType::TextEdit</span> =&gt; <span class="string">&quot;text edit&quot;</span>,
-            <span class="ident">WidgetType::Button</span> =&gt; <span class="string">&quot;button&quot;</span>,
-            <span class="ident">WidgetType::Checkbox</span> =&gt; <span class="string">&quot;checkbox&quot;</span>,
-            <span class="ident">WidgetType::RadioButton</span> =&gt; <span class="string">&quot;radio&quot;</span>,
-            <span class="ident">WidgetType::SelectableLabel</span> =&gt; <span class="string">&quot;selectable&quot;</span>,
-            <span class="ident">WidgetType::ComboBox</span> =&gt; <span class="string">&quot;combo&quot;</span>,
-            <span class="ident">WidgetType::Slider</span> =&gt; <span class="string">&quot;slider&quot;</span>,
-            <span class="ident">WidgetType::DragValue</span> =&gt; <span class="string">&quot;drag value&quot;</span>,
-            <span class="ident">WidgetType::ColorButton</span> =&gt; <span class="string">&quot;color button&quot;</span>,
-            <span class="ident">WidgetType::ImageButton</span> =&gt; <span class="string">&quot;image button&quot;</span>,
-            <span class="ident">WidgetType::CollapsingHeader</span> =&gt; <span class="string">&quot;collapsing header&quot;</span>,
-            <span class="ident">WidgetType::Label</span> <span class="op">|</span> <span class="ident">WidgetType::Other</span> =&gt; <span class="string">&quot;&quot;</span>,
+        <span class="comment">// TODO: localization
+        </span><span class="kw">let </span>widget_type = <span class="kw">match </span>typ {
+            WidgetType::Hyperlink =&gt; <span class="string">&quot;link&quot;</span>,
+            WidgetType::TextEdit =&gt; <span class="string">&quot;text edit&quot;</span>,
+            WidgetType::Button =&gt; <span class="string">&quot;button&quot;</span>,
+            WidgetType::Checkbox =&gt; <span class="string">&quot;checkbox&quot;</span>,
+            WidgetType::RadioButton =&gt; <span class="string">&quot;radio&quot;</span>,
+            WidgetType::SelectableLabel =&gt; <span class="string">&quot;selectable&quot;</span>,
+            WidgetType::ComboBox =&gt; <span class="string">&quot;combo&quot;</span>,
+            WidgetType::Slider =&gt; <span class="string">&quot;slider&quot;</span>,
+            WidgetType::DragValue =&gt; <span class="string">&quot;drag value&quot;</span>,
+            WidgetType::ColorButton =&gt; <span class="string">&quot;color button&quot;</span>,
+            WidgetType::ImageButton =&gt; <span class="string">&quot;image button&quot;</span>,
+            WidgetType::CollapsingHeader =&gt; <span class="string">&quot;collapsing header&quot;</span>,
+            WidgetType::Label | WidgetType::Other =&gt; <span class="string">&quot;&quot;</span>,
         };
 
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">description</span> <span class="op">=</span> <span class="ident">widget_type</span>.<span class="ident">to_owned</span>();
+        <span class="kw">let </span><span class="kw-2">mut </span>description = widget_type.to_owned();
 
-        <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">selected</span>) <span class="op">=</span> <span class="ident">selected</span> {
-            <span class="kw">if</span> <span class="kw-2">*</span><span class="ident">typ</span> <span class="op">==</span> <span class="ident">WidgetType::Checkbox</span> {
-                <span class="kw">let</span> <span class="ident">state</span> <span class="op">=</span> <span class="kw">if</span> <span class="kw-2">*</span><span class="ident">selected</span> { <span class="string">&quot;checked&quot;</span> } <span class="kw">else</span> { <span class="string">&quot;unchecked&quot;</span> };
-                <span class="ident">description</span> <span class="op">=</span> <span class="macro">format!</span>(<span class="string">&quot;{} {}&quot;</span>, <span class="ident">state</span>, <span class="ident">description</span>);
-            } <span class="kw">else</span> {
-                <span class="ident">description</span> <span class="op">+</span><span class="op">=</span> <span class="kw">if</span> <span class="kw-2">*</span><span class="ident">selected</span> { <span class="string">&quot;selected&quot;</span> } <span class="kw">else</span> { <span class="string">&quot;&quot;</span> };
+        <span class="kw">if let </span><span class="prelude-val">Some</span>(selected) = selected {
+            <span class="kw">if </span><span class="kw-2">*</span>typ == WidgetType::Checkbox {
+                <span class="kw">let </span>state = <span class="kw">if </span><span class="kw-2">*</span>selected { <span class="string">&quot;checked&quot; </span>} <span class="kw">else </span>{ <span class="string">&quot;unchecked&quot; </span>};
+                description = <span class="macro">format!</span>(<span class="string">&quot;{} {}&quot;</span>, state, description);
+            } <span class="kw">else </span>{
+                description += <span class="kw">if </span><span class="kw-2">*</span>selected { <span class="string">&quot;selected&quot; </span>} <span class="kw">else </span>{ <span class="string">&quot;&quot; </span>};
             };
         }
 
-        <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">label</span>) <span class="op">=</span> <span class="ident">label</span> {
-            <span class="ident">description</span> <span class="op">=</span> <span class="macro">format!</span>(<span class="string">&quot;{}: {}&quot;</span>, <span class="ident">label</span>, <span class="ident">description</span>);
+        <span class="kw">if let </span><span class="prelude-val">Some</span>(label) = label {
+            description = <span class="macro">format!</span>(<span class="string">&quot;{}: {}&quot;</span>, label, description);
         }
 
-        <span class="kw">if</span> <span class="ident">typ</span> <span class="op">==</span> <span class="kw-2">&amp;</span><span class="ident">WidgetType::TextEdit</span> {
-            <span class="kw">let</span> <span class="ident">text</span>;
-            <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">text_value</span>) <span class="op">=</span> <span class="ident">text_value</span> {
-                <span class="kw">if</span> <span class="ident">text_value</span>.<span class="ident">is_empty</span>() {
-                    <span class="ident">text</span> <span class="op">=</span> <span class="string">&quot;blank&quot;</span>.<span class="ident">into</span>();
-                } <span class="kw">else</span> {
-                    <span class="ident">text</span> <span class="op">=</span> <span class="ident">text_value</span>.<span class="ident">to_string</span>();
+        <span class="kw">if </span>typ == <span class="kw-2">&amp;</span>WidgetType::TextEdit {
+            <span class="kw">let </span>text;
+            <span class="kw">if let </span><span class="prelude-val">Some</span>(text_value) = text_value {
+                <span class="kw">if </span>text_value.is_empty() {
+                    text = <span class="string">&quot;blank&quot;</span>.into();
+                } <span class="kw">else </span>{
+                    text = text_value.to_string();
                 }
-            } <span class="kw">else</span> {
-                <span class="ident">text</span> <span class="op">=</span> <span class="string">&quot;blank&quot;</span>.<span class="ident">into</span>();
+            } <span class="kw">else </span>{
+                text = <span class="string">&quot;blank&quot;</span>.into();
             }
-            <span class="ident">description</span> <span class="op">=</span> <span class="macro">format!</span>(<span class="string">&quot;{}: {}&quot;</span>, <span class="ident">text</span>, <span class="ident">description</span>);
+            description = <span class="macro">format!</span>(<span class="string">&quot;{}: {}&quot;</span>, text, description);
         }
 
-        <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">value</span>) <span class="op">=</span> <span class="ident">value</span> {
-            <span class="ident">description</span> <span class="op">+</span><span class="op">=</span> <span class="string">&quot; &quot;</span>;
-            <span class="ident">description</span> <span class="op">+</span><span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">value</span>.<span class="ident">to_string</span>();
+        <span class="kw">if let </span><span class="prelude-val">Some</span>(value) = value {
+            description += <span class="string">&quot; &quot;</span>;
+            description += <span class="kw-2">&amp;</span>value.to_string();
         }
 
-        <span class="kw">if</span> <span class="op">!</span><span class="ident">enabled</span> {
-            <span class="ident">description</span> <span class="op">+</span><span class="op">=</span> <span class="string">&quot;: disabled&quot;</span>;
+        <span class="kw">if </span>!enabled {
+            description += <span class="string">&quot;: disabled&quot;</span>;
         }
-        <span class="ident">description</span>.<span class="ident">trim</span>().<span class="ident">to_owned</span>()
+        description.trim().to_owned()
     }
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="egui" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0 (a55dd71d5 2022-09-19)" ></div></body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="egui" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.66.1 (90743e729 2023-01-10)" ></div></body></html>

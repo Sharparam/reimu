@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/egui-0.16.1/src/containers/collapsing_header.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>collapsing_header.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../storage.js"></script><script defer src="../../../source-script.js"></script><script defer src="../../../source-files.js"></script><script defer src="../../../main.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../../egui/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../../egui/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../../egui/index.html"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/egui-0.16.1/src/containers/collapsing_header.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>collapsing_header.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../../normalize.css"><link rel="stylesheet" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../../ayu.css" disabled><link rel="stylesheet" href="../../../dark.css" disabled><link rel="stylesheet" href="../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../storage.js"></script><script defer src="../../../source-script.js"></script><script defer src="../../../source-files.js"></script><script defer src="../../../main.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><div class="width-limiter"><nav class="sub"><a class="sub-logo-container" href="../../../egui/index.html"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../wheel.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -427,434 +427,434 @@
 <span id="427">427</span>
 <span id="428">428</span>
 <span id="429">429</span>
-</pre><pre class="rust"><code><span class="kw">use</span> <span class="ident">std::hash::Hash</span>;
+</pre><pre class="rust"><code><span class="kw">use </span>std::hash::Hash;
 
-<span class="kw">use</span> <span class="kw">crate</span>::<span class="kw-2">*</span>;
-<span class="kw">use</span> <span class="ident">epaint</span>::{<span class="ident">Shape</span>, <span class="ident">TextStyle</span>};
+<span class="kw">use crate</span>::<span class="kw-2">*</span>;
+<span class="kw">use </span>epaint::{Shape, TextStyle};
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">Debug</span>)]</span>
-<span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;serde&quot;</span>, <span class="ident">derive</span>(<span class="ident">serde::Deserialize</span>, <span class="ident">serde::Serialize</span>))]</span>
-<span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;serde&quot;</span>, <span class="ident">serde</span>(<span class="ident">default</span>))]</span>
-<span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">struct</span> <span class="ident">State</span> {
-    <span class="ident">open</span>: <span class="ident">bool</span>,
+<span class="attribute">#[derive(Clone, Copy, Debug)]
+#[cfg_attr(feature = <span class="string">&quot;serde&quot;</span>, derive(serde::Deserialize, serde::Serialize))]
+#[cfg_attr(feature = <span class="string">&quot;serde&quot;</span>, serde(default))]
+</span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">struct </span>State {
+    open: bool,
 
-    <span class="doccomment">/// Height of the region when open. Used for animations</span>
-    <span class="ident">open_height</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">f32</span><span class="op">&gt;</span>,
+    <span class="doccomment">/// Height of the region when open. Used for animations
+    </span>open_height: <span class="prelude-ty">Option</span>&lt;f32&gt;,
 }
 
-<span class="kw">impl</span> <span class="ident">Default</span> <span class="kw">for</span> <span class="ident">State</span> {
-    <span class="kw">fn</span> <span class="ident">default</span>() -&gt; <span class="self">Self</span> {
-        <span class="self">Self</span> {
-            <span class="ident">open</span>: <span class="bool-val">false</span>,
-            <span class="ident">open_height</span>: <span class="prelude-val">None</span>,
+<span class="kw">impl </span>Default <span class="kw">for </span>State {
+    <span class="kw">fn </span>default() -&gt; <span class="self">Self </span>{
+        <span class="self">Self </span>{
+            open: <span class="bool-val">false</span>,
+            open_height: <span class="prelude-val">None</span>,
         }
     }
 }
 
-<span class="kw">impl</span> <span class="ident">State</span> {
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">load</span>(<span class="ident">ctx</span>: <span class="kw-2">&amp;</span><span class="ident">Context</span>, <span class="ident">id</span>: <span class="ident">Id</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
-        <span class="ident">ctx</span>.<span class="ident">memory</span>().<span class="ident">data</span>.<span class="ident">get_persisted</span>(<span class="ident">id</span>)
+<span class="kw">impl </span>State {
+    <span class="kw">pub fn </span>load(ctx: <span class="kw-2">&amp;</span>Context, id: Id) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="self">Self</span>&gt; {
+        ctx.memory().data.get_persisted(id)
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">store</span>(<span class="self">self</span>, <span class="ident">ctx</span>: <span class="kw-2">&amp;</span><span class="ident">Context</span>, <span class="ident">id</span>: <span class="ident">Id</span>) {
-        <span class="ident">ctx</span>.<span class="ident">memory</span>().<span class="ident">data</span>.<span class="ident">insert_persisted</span>(<span class="ident">id</span>, <span class="self">self</span>);
+    <span class="kw">pub fn </span>store(<span class="self">self</span>, ctx: <span class="kw-2">&amp;</span>Context, id: Id) {
+        ctx.memory().data.insert_persisted(id, <span class="self">self</span>);
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">from_memory_with_default_open</span>(<span class="ident">ctx</span>: <span class="kw-2">&amp;</span><span class="ident">Context</span>, <span class="ident">id</span>: <span class="ident">Id</span>, <span class="ident">default_open</span>: <span class="ident">bool</span>) -&gt; <span class="self">Self</span> {
-        <span class="ident"><span class="self">Self</span>::load</span>(<span class="ident">ctx</span>, <span class="ident">id</span>).<span class="ident">unwrap_or_else</span>(<span class="op">|</span><span class="op">|</span> <span class="ident">State</span> {
-            <span class="ident">open</span>: <span class="ident">default_open</span>,
-            ..<span class="ident">Default::default</span>()
+    <span class="kw">pub fn </span>from_memory_with_default_open(ctx: <span class="kw-2">&amp;</span>Context, id: Id, default_open: bool) -&gt; <span class="self">Self </span>{
+        <span class="self">Self</span>::load(ctx, id).unwrap_or_else(|| State {
+            open: default_open,
+            ..Default::default()
         })
     }
 
-    <span class="comment">// Helper</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_open</span>(<span class="ident">ctx</span>: <span class="kw-2">&amp;</span><span class="ident">Context</span>, <span class="ident">id</span>: <span class="ident">Id</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">bool</span><span class="op">&gt;</span> {
-        <span class="kw">if</span> <span class="ident">ctx</span>.<span class="ident">memory</span>().<span class="ident">everything_is_visible</span>() {
+    <span class="comment">// Helper
+    </span><span class="kw">pub fn </span>is_open(ctx: <span class="kw-2">&amp;</span>Context, id: Id) -&gt; <span class="prelude-ty">Option</span>&lt;bool&gt; {
+        <span class="kw">if </span>ctx.memory().everything_is_visible() {
             <span class="prelude-val">Some</span>(<span class="bool-val">true</span>)
-        } <span class="kw">else</span> {
-            <span class="ident">State::load</span>(<span class="ident">ctx</span>, <span class="ident">id</span>).<span class="ident">map</span>(<span class="op">|</span><span class="ident">state</span><span class="op">|</span> <span class="ident">state</span>.<span class="ident">open</span>)
+        } <span class="kw">else </span>{
+            State::load(ctx, id).map(|state| state.open)
         }
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">toggle</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">ui</span>: <span class="kw-2">&amp;</span><span class="ident">Ui</span>) {
-        <span class="self">self</span>.<span class="ident">open</span> <span class="op">=</span> <span class="op">!</span><span class="self">self</span>.<span class="ident">open</span>;
-        <span class="ident">ui</span>.<span class="ident">ctx</span>().<span class="ident">request_repaint</span>();
+    <span class="kw">pub fn </span>toggle(<span class="kw-2">&amp;mut </span><span class="self">self</span>, ui: <span class="kw-2">&amp;</span>Ui) {
+        <span class="self">self</span>.open = !<span class="self">self</span>.open;
+        ui.ctx().request_repaint();
     }
 
-    <span class="doccomment">/// 0 for closed, 1 for open, with tweening</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">openness</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">ctx</span>: <span class="kw-2">&amp;</span><span class="ident">Context</span>, <span class="ident">id</span>: <span class="ident">Id</span>) -&gt; <span class="ident">f32</span> {
-        <span class="kw">if</span> <span class="ident">ctx</span>.<span class="ident">memory</span>().<span class="ident">everything_is_visible</span>() {
-            <span class="number">1.0</span>
-        } <span class="kw">else</span> {
-            <span class="ident">ctx</span>.<span class="ident">animate_bool</span>(<span class="ident">id</span>, <span class="self">self</span>.<span class="ident">open</span>)
+    <span class="doccomment">/// 0 for closed, 1 for open, with tweening
+    </span><span class="kw">pub fn </span>openness(<span class="kw-2">&amp;</span><span class="self">self</span>, ctx: <span class="kw-2">&amp;</span>Context, id: Id) -&gt; f32 {
+        <span class="kw">if </span>ctx.memory().everything_is_visible() {
+            <span class="number">1.0
+        </span>} <span class="kw">else </span>{
+            ctx.animate_bool(id, <span class="self">self</span>.open)
         }
     }
 
-    <span class="doccomment">/// Show contents if we are open, with a nice animation between closed and open</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">add_contents</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span>(
-        <span class="kw-2">&amp;mut</span> <span class="self">self</span>,
-        <span class="ident">ui</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Ui</span>,
-        <span class="ident">id</span>: <span class="ident">Id</span>,
-        <span class="ident">add_contents</span>: <span class="kw">impl</span> <span class="ident">FnOnce</span>(<span class="kw-2">&amp;mut</span> <span class="ident">Ui</span>) -&gt; <span class="ident">R</span>,
-    ) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">InnerResponse</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="ident">openness</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">openness</span>(<span class="ident">ui</span>.<span class="ident">ctx</span>(), <span class="ident">id</span>);
-        <span class="kw">if</span> <span class="ident">openness</span> <span class="op">&lt;</span><span class="op">=</span> <span class="number">0.0</span> {
-            <span class="prelude-val">None</span>
-        } <span class="kw">else</span> <span class="kw">if</span> <span class="ident">openness</span> <span class="op">&lt;</span> <span class="number">1.0</span> {
-            <span class="prelude-val">Some</span>(<span class="ident">ui</span>.<span class="ident">scope</span>(<span class="op">|</span><span class="ident">child_ui</span><span class="op">|</span> {
-                <span class="kw">let</span> <span class="ident">max_height</span> <span class="op">=</span> <span class="kw">if</span> <span class="self">self</span>.<span class="ident">open</span> <span class="op">&amp;&amp;</span> <span class="self">self</span>.<span class="ident">open_height</span>.<span class="ident">is_none</span>() {
-                    <span class="comment">// First frame of expansion.</span>
-                    <span class="comment">// We don&#39;t know full height yet, but we will next frame.</span>
-                    <span class="comment">// Just use a placeholder value that shows some movement:</span>
-                    <span class="number">10.0</span>
-                } <span class="kw">else</span> {
-                    <span class="kw">let</span> <span class="ident">full_height</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">open_height</span>.<span class="ident">unwrap_or_default</span>();
-                    <span class="ident">remap_clamp</span>(<span class="ident">openness</span>, <span class="number">0.0</span>..<span class="op">=</span><span class="number">1.0</span>, <span class="number">0.0</span>..<span class="op">=</span><span class="ident">full_height</span>)
+    <span class="doccomment">/// Show contents if we are open, with a nice animation between closed and open
+    </span><span class="kw">pub fn </span>add_contents&lt;R&gt;(
+        <span class="kw-2">&amp;mut </span><span class="self">self</span>,
+        ui: <span class="kw-2">&amp;mut </span>Ui,
+        id: Id,
+        add_contents: <span class="kw">impl </span>FnOnce(<span class="kw-2">&amp;mut </span>Ui) -&gt; R,
+    ) -&gt; <span class="prelude-ty">Option</span>&lt;InnerResponse&lt;R&gt;&gt; {
+        <span class="kw">let </span>openness = <span class="self">self</span>.openness(ui.ctx(), id);
+        <span class="kw">if </span>openness &lt;= <span class="number">0.0 </span>{
+            <span class="prelude-val">None
+        </span>} <span class="kw">else if </span>openness &lt; <span class="number">1.0 </span>{
+            <span class="prelude-val">Some</span>(ui.scope(|child_ui| {
+                <span class="kw">let </span>max_height = <span class="kw">if </span><span class="self">self</span>.open &amp;&amp; <span class="self">self</span>.open_height.is_none() {
+                    <span class="comment">// First frame of expansion.
+                    // We don&#39;t know full height yet, but we will next frame.
+                    // Just use a placeholder value that shows some movement:
+                    </span><span class="number">10.0
+                </span>} <span class="kw">else </span>{
+                    <span class="kw">let </span>full_height = <span class="self">self</span>.open_height.unwrap_or_default();
+                    remap_clamp(openness, <span class="number">0.0</span>..=<span class="number">1.0</span>, <span class="number">0.0</span>..=full_height)
                 };
 
-                <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">clip_rect</span> <span class="op">=</span> <span class="ident">child_ui</span>.<span class="ident">clip_rect</span>();
-                <span class="ident">clip_rect</span>.<span class="ident">max</span>.<span class="ident">y</span> <span class="op">=</span> <span class="ident">clip_rect</span>.<span class="ident">max</span>.<span class="ident">y</span>.<span class="ident">min</span>(<span class="ident">child_ui</span>.<span class="ident">max_rect</span>().<span class="ident">top</span>() <span class="op">+</span> <span class="ident">max_height</span>);
-                <span class="ident">child_ui</span>.<span class="ident">set_clip_rect</span>(<span class="ident">clip_rect</span>);
+                <span class="kw">let </span><span class="kw-2">mut </span>clip_rect = child_ui.clip_rect();
+                clip_rect.max.y = clip_rect.max.y.min(child_ui.max_rect().top() + max_height);
+                child_ui.set_clip_rect(clip_rect);
 
-                <span class="kw">let</span> <span class="ident">ret</span> <span class="op">=</span> <span class="ident">add_contents</span>(<span class="ident">child_ui</span>);
+                <span class="kw">let </span>ret = add_contents(child_ui);
 
-                <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">min_rect</span> <span class="op">=</span> <span class="ident">child_ui</span>.<span class="ident">min_rect</span>();
-                <span class="self">self</span>.<span class="ident">open_height</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">min_rect</span>.<span class="ident">height</span>());
+                <span class="kw">let </span><span class="kw-2">mut </span>min_rect = child_ui.min_rect();
+                <span class="self">self</span>.open_height = <span class="prelude-val">Some</span>(min_rect.height());
 
-                <span class="comment">// Pretend children took up at most `max_height` space:</span>
-                <span class="ident">min_rect</span>.<span class="ident">max</span>.<span class="ident">y</span> <span class="op">=</span> <span class="ident">min_rect</span>.<span class="ident">max</span>.<span class="ident">y</span>.<span class="ident">at_most</span>(<span class="ident">min_rect</span>.<span class="ident">top</span>() <span class="op">+</span> <span class="ident">max_height</span>);
-                <span class="ident">child_ui</span>.<span class="ident">force_set_min_rect</span>(<span class="ident">min_rect</span>);
-                <span class="ident">ret</span>
+                <span class="comment">// Pretend children took up at most `max_height` space:
+                </span>min_rect.max.y = min_rect.max.y.at_most(min_rect.top() + max_height);
+                child_ui.force_set_min_rect(min_rect);
+                ret
             }))
-        } <span class="kw">else</span> {
-            <span class="kw">let</span> <span class="ident">ret_response</span> <span class="op">=</span> <span class="ident">ui</span>.<span class="ident">scope</span>(<span class="ident">add_contents</span>);
-            <span class="kw">let</span> <span class="ident">full_size</span> <span class="op">=</span> <span class="ident">ret_response</span>.<span class="ident">response</span>.<span class="ident">rect</span>.<span class="ident">size</span>();
-            <span class="self">self</span>.<span class="ident">open_height</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">full_size</span>.<span class="ident">y</span>);
-            <span class="prelude-val">Some</span>(<span class="ident">ret_response</span>)
+        } <span class="kw">else </span>{
+            <span class="kw">let </span>ret_response = ui.scope(add_contents);
+            <span class="kw">let </span>full_size = ret_response.response.rect.size();
+            <span class="self">self</span>.open_height = <span class="prelude-val">Some</span>(full_size.y);
+            <span class="prelude-val">Some</span>(ret_response)
         }
     }
 }
 
-<span class="doccomment">/// Paint the arrow icon that indicated if the region is open or not</span>
-<span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">paint_icon</span>(<span class="ident">ui</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Ui</span>, <span class="ident">openness</span>: <span class="ident">f32</span>, <span class="ident">response</span>: <span class="kw-2">&amp;</span><span class="ident">Response</span>) {
-    <span class="kw">let</span> <span class="ident">visuals</span> <span class="op">=</span> <span class="ident">ui</span>.<span class="ident">style</span>().<span class="ident">interact</span>(<span class="ident">response</span>);
-    <span class="kw">let</span> <span class="ident">stroke</span> <span class="op">=</span> <span class="ident">visuals</span>.<span class="ident">fg_stroke</span>;
+<span class="doccomment">/// Paint the arrow icon that indicated if the region is open or not
+</span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>paint_icon(ui: <span class="kw-2">&amp;mut </span>Ui, openness: f32, response: <span class="kw-2">&amp;</span>Response) {
+    <span class="kw">let </span>visuals = ui.style().interact(response);
+    <span class="kw">let </span>stroke = visuals.fg_stroke;
 
-    <span class="kw">let</span> <span class="ident">rect</span> <span class="op">=</span> <span class="ident">response</span>.<span class="ident">rect</span>;
+    <span class="kw">let </span>rect = response.rect;
 
-    <span class="comment">// Draw a pointy triangle arrow:</span>
-    <span class="kw">let</span> <span class="ident">rect</span> <span class="op">=</span> <span class="ident">Rect::from_center_size</span>(<span class="ident">rect</span>.<span class="ident">center</span>(), <span class="ident">vec2</span>(<span class="ident">rect</span>.<span class="ident">width</span>(), <span class="ident">rect</span>.<span class="ident">height</span>()) <span class="op">*</span> <span class="number">0.75</span>);
-    <span class="kw">let</span> <span class="ident">rect</span> <span class="op">=</span> <span class="ident">rect</span>.<span class="ident">expand</span>(<span class="ident">visuals</span>.<span class="ident">expansion</span>);
-    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">points</span> <span class="op">=</span> <span class="macro">vec!</span>[<span class="ident">rect</span>.<span class="ident">left_top</span>(), <span class="ident">rect</span>.<span class="ident">right_top</span>(), <span class="ident">rect</span>.<span class="ident">center_bottom</span>()];
-    <span class="kw">use</span> <span class="ident">std::f32::consts::TAU</span>;
-    <span class="kw">let</span> <span class="ident">rotation</span> <span class="op">=</span> <span class="ident">emath::Rot2::from_angle</span>(<span class="ident">remap</span>(<span class="ident">openness</span>, <span class="number">0.0</span>..<span class="op">=</span><span class="number">1.0</span>, <span class="op">-</span><span class="ident">TAU</span> <span class="op">/</span> <span class="number">4.0</span>..<span class="op">=</span><span class="number">0.0</span>));
-    <span class="kw">for</span> <span class="ident">p</span> <span class="kw">in</span> <span class="kw-2">&amp;mut</span> <span class="ident">points</span> {
-        <span class="kw-2">*</span><span class="ident">p</span> <span class="op">=</span> <span class="ident">rect</span>.<span class="ident">center</span>() <span class="op">+</span> <span class="ident">rotation</span> <span class="op">*</span> (<span class="kw-2">*</span><span class="ident">p</span> <span class="op">-</span> <span class="ident">rect</span>.<span class="ident">center</span>());
+    <span class="comment">// Draw a pointy triangle arrow:
+    </span><span class="kw">let </span>rect = Rect::from_center_size(rect.center(), vec2(rect.width(), rect.height()) * <span class="number">0.75</span>);
+    <span class="kw">let </span>rect = rect.expand(visuals.expansion);
+    <span class="kw">let </span><span class="kw-2">mut </span>points = <span class="macro">vec!</span>[rect.left_top(), rect.right_top(), rect.center_bottom()];
+    <span class="kw">use </span>std::f32::consts::TAU;
+    <span class="kw">let </span>rotation = emath::Rot2::from_angle(remap(openness, <span class="number">0.0</span>..=<span class="number">1.0</span>, -TAU / <span class="number">4.0</span>..=<span class="number">0.0</span>));
+    <span class="kw">for </span>p <span class="kw">in </span><span class="kw-2">&amp;mut </span>points {
+        <span class="kw-2">*</span>p = rect.center() + rotation * (<span class="kw-2">*</span>p - rect.center());
     }
 
-    <span class="ident">ui</span>.<span class="ident">painter</span>().<span class="ident">add</span>(<span class="ident">Shape::closed_line</span>(<span class="ident">points</span>, <span class="ident">stroke</span>));
+    ui.painter().add(Shape::closed_line(points, stroke));
 }
 
-<span class="doccomment">/// A header which can be collapsed/expanded, revealing a contained [`Ui`] region.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// ```</span>
-<span class="doccomment">/// # egui::__run_test_ui(|ui| {</span>
-<span class="doccomment">/// egui::CollapsingHeader::new(&quot;Heading&quot;)</span>
-<span class="doccomment">///     .show(ui, |ui| {</span>
-<span class="doccomment">///         ui.label(&quot;Contents&quot;);</span>
-<span class="doccomment">///     });</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// // Short version:</span>
-<span class="doccomment">/// ui.collapsing(&quot;Heading&quot;, |ui| { ui.label(&quot;Contents&quot;); });</span>
-<span class="doccomment">/// # });</span>
-<span class="doccomment">/// ```</span>
-<span class="attribute">#[<span class="ident">must_use</span> <span class="op">=</span> <span class="string">&quot;You should call .show()&quot;</span>]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">CollapsingHeader</span> {
-    <span class="ident">text</span>: <span class="ident">WidgetText</span>,
-    <span class="ident">default_open</span>: <span class="ident">bool</span>,
-    <span class="ident">open</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">bool</span><span class="op">&gt;</span>,
-    <span class="ident">id_source</span>: <span class="ident">Id</span>,
-    <span class="ident">enabled</span>: <span class="ident">bool</span>,
-    <span class="ident">selectable</span>: <span class="ident">bool</span>,
-    <span class="ident">selected</span>: <span class="ident">bool</span>,
-    <span class="ident">show_background</span>: <span class="ident">bool</span>,
+<span class="doccomment">/// A header which can be collapsed/expanded, revealing a contained [`Ui`] region.
+///
+///
+/// ```
+/// # egui::__run_test_ui(|ui| {
+/// egui::CollapsingHeader::new(&quot;Heading&quot;)
+///     .show(ui, |ui| {
+///         ui.label(&quot;Contents&quot;);
+///     });
+///
+/// // Short version:
+/// ui.collapsing(&quot;Heading&quot;, |ui| { ui.label(&quot;Contents&quot;); });
+/// # });
+/// ```
+</span><span class="attribute">#[must_use = <span class="string">&quot;You should call .show()&quot;</span>]
+</span><span class="kw">pub struct </span>CollapsingHeader {
+    text: WidgetText,
+    default_open: bool,
+    open: <span class="prelude-ty">Option</span>&lt;bool&gt;,
+    id_source: Id,
+    enabled: bool,
+    selectable: bool,
+    selected: bool,
+    show_background: bool,
 }
 
-<span class="kw">impl</span> <span class="ident">CollapsingHeader</span> {
-    <span class="doccomment">/// The `CollapsingHeader` starts out collapsed unless you call `default_open`.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// The label is used as an [`Id`] source.</span>
-    <span class="doccomment">/// If the label is unique and static this is fine,</span>
-    <span class="doccomment">/// but if it changes or there are several `CollapsingHeader` with the same title</span>
-    <span class="doccomment">/// you need to provide a unique id source with [`Self::id_source`].</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">text</span>: <span class="kw">impl</span> <span class="ident">Into</span><span class="op">&lt;</span><span class="ident">WidgetText</span><span class="op">&gt;</span>) -&gt; <span class="self">Self</span> {
-        <span class="kw">let</span> <span class="ident">text</span> <span class="op">=</span> <span class="ident">text</span>.<span class="ident">into</span>();
-        <span class="kw">let</span> <span class="ident">id_source</span> <span class="op">=</span> <span class="ident">Id::new</span>(<span class="ident">text</span>.<span class="ident">text</span>());
-        <span class="self">Self</span> {
-            <span class="ident">text</span>,
-            <span class="ident">default_open</span>: <span class="bool-val">false</span>,
-            <span class="ident">open</span>: <span class="prelude-val">None</span>,
-            <span class="ident">id_source</span>,
-            <span class="ident">enabled</span>: <span class="bool-val">true</span>,
-            <span class="ident">selectable</span>: <span class="bool-val">false</span>,
-            <span class="ident">selected</span>: <span class="bool-val">false</span>,
-            <span class="ident">show_background</span>: <span class="bool-val">false</span>,
+<span class="kw">impl </span>CollapsingHeader {
+    <span class="doccomment">/// The `CollapsingHeader` starts out collapsed unless you call `default_open`.
+    ///
+    /// The label is used as an [`Id`] source.
+    /// If the label is unique and static this is fine,
+    /// but if it changes or there are several `CollapsingHeader` with the same title
+    /// you need to provide a unique id source with [`Self::id_source`].
+    </span><span class="kw">pub fn </span>new(text: <span class="kw">impl </span>Into&lt;WidgetText&gt;) -&gt; <span class="self">Self </span>{
+        <span class="kw">let </span>text = text.into();
+        <span class="kw">let </span>id_source = Id::new(text.text());
+        <span class="self">Self </span>{
+            text,
+            default_open: <span class="bool-val">false</span>,
+            open: <span class="prelude-val">None</span>,
+            id_source,
+            enabled: <span class="bool-val">true</span>,
+            selectable: <span class="bool-val">false</span>,
+            selected: <span class="bool-val">false</span>,
+            show_background: <span class="bool-val">false</span>,
         }
     }
 
-    <span class="doccomment">/// By default, the `CollapsingHeader` is collapsed.</span>
-    <span class="doccomment">/// Call `.default_open(true)` to change this.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">default_open</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">open</span>: <span class="ident">bool</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">self</span>.<span class="ident">default_open</span> <span class="op">=</span> <span class="ident">open</span>;
-        <span class="self">self</span>
-    }
+    <span class="doccomment">/// By default, the `CollapsingHeader` is collapsed.
+    /// Call `.default_open(true)` to change this.
+    </span><span class="kw">pub fn </span>default_open(<span class="kw-2">mut </span><span class="self">self</span>, open: bool) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.default_open = open;
+        <span class="self">self
+    </span>}
 
-    <span class="doccomment">/// Calling `.open(Some(true))` will make the collapsing header open this frame (or stay open).</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// Calling `.open(Some(false))` will make the collapsing header close this frame (or stay closed).</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// Calling `.open(None)` has no effect (default).</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">open</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">open</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">bool</span><span class="op">&gt;</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">self</span>.<span class="ident">open</span> <span class="op">=</span> <span class="ident">open</span>;
-        <span class="self">self</span>
-    }
+    <span class="doccomment">/// Calling `.open(Some(true))` will make the collapsing header open this frame (or stay open).
+    ///
+    /// Calling `.open(Some(false))` will make the collapsing header close this frame (or stay closed).
+    ///
+    /// Calling `.open(None)` has no effect (default).
+    </span><span class="kw">pub fn </span>open(<span class="kw-2">mut </span><span class="self">self</span>, open: <span class="prelude-ty">Option</span>&lt;bool&gt;) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.open = open;
+        <span class="self">self
+    </span>}
 
-    <span class="doccomment">/// Explicitly set the source of the `Id` of this widget, instead of using title label.</span>
-    <span class="doccomment">/// This is useful if the title label is dynamic or not unique.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">id_source</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">id_source</span>: <span class="kw">impl</span> <span class="ident">Hash</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">self</span>.<span class="ident">id_source</span> <span class="op">=</span> <span class="ident">Id::new</span>(<span class="ident">id_source</span>);
-        <span class="self">self</span>
-    }
+    <span class="doccomment">/// Explicitly set the source of the `Id` of this widget, instead of using title label.
+    /// This is useful if the title label is dynamic or not unique.
+    </span><span class="kw">pub fn </span>id_source(<span class="kw-2">mut </span><span class="self">self</span>, id_source: <span class="kw">impl </span>Hash) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.id_source = Id::new(id_source);
+        <span class="self">self
+    </span>}
 
-    <span class="attribute">#[<span class="ident">deprecated</span> <span class="op">=</span> <span class="string">&quot;Replaced by: CollapsingHeader::new(RichText::new(text).text_style(…))&quot;</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">text_style</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">text_style</span>: <span class="ident">TextStyle</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">self</span>.<span class="ident">text</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">text</span>.<span class="ident">text_style</span>(<span class="ident">text_style</span>);
-        <span class="self">self</span>
-    }
+    <span class="attribute">#[deprecated = <span class="string">&quot;Replaced by: CollapsingHeader::new(RichText::new(text).text_style(…))&quot;</span>]
+    </span><span class="kw">pub fn </span>text_style(<span class="kw-2">mut </span><span class="self">self</span>, text_style: TextStyle) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.text = <span class="self">self</span>.text.text_style(text_style);
+        <span class="self">self
+    </span>}
 
-    <span class="doccomment">/// If you set this to `false`, the `CollapsingHeader` will be grayed out and un-clickable.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// This is a convenience for [`Ui::set_enabled`].</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">enabled</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">enabled</span>: <span class="ident">bool</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">self</span>.<span class="ident">enabled</span> <span class="op">=</span> <span class="ident">enabled</span>;
-        <span class="self">self</span>
-    }
+    <span class="doccomment">/// If you set this to `false`, the `CollapsingHeader` will be grayed out and un-clickable.
+    ///
+    /// This is a convenience for [`Ui::set_enabled`].
+    </span><span class="kw">pub fn </span>enabled(<span class="kw-2">mut </span><span class="self">self</span>, enabled: bool) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.enabled = enabled;
+        <span class="self">self
+    </span>}
 
-    <span class="doccomment">/// Can the `CollapsingHeader` be selected by clicking it? Default: `false`.</span>
-    <span class="doccomment">///</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">selectable</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">selectable</span>: <span class="ident">bool</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">self</span>.<span class="ident">selectable</span> <span class="op">=</span> <span class="ident">selectable</span>;
-        <span class="self">self</span>
-    }
+    <span class="doccomment">/// Can the `CollapsingHeader` be selected by clicking it? Default: `false`.
+    ///
+    </span><span class="kw">pub fn </span>selectable(<span class="kw-2">mut </span><span class="self">self</span>, selectable: bool) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.selectable = selectable;
+        <span class="self">self
+    </span>}
 
-    <span class="doccomment">/// If you set this to &#39;true&#39;, the `CollapsingHeader` will be shown as selected.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// Example:</span>
-    <span class="doccomment">/// ```</span>
-    <span class="doccomment">/// # egui::__run_test_ui(|ui| {</span>
-    <span class="doccomment">/// let mut selected = false;</span>
-    <span class="doccomment">/// let response = egui::CollapsingHeader::new(&quot;Select and open me&quot;)</span>
-    <span class="doccomment">///     .selectable(true)</span>
-    <span class="doccomment">///     .selected(selected)</span>
-    <span class="doccomment">///     .show(ui, |ui| ui.label(&quot;Content&quot;));</span>
-    <span class="doccomment">/// if response.header_response.clicked() {</span>
-    <span class="doccomment">///     selected = true;</span>
-    <span class="doccomment">/// }</span>
-    <span class="doccomment">/// # });</span>
-    <span class="doccomment">/// ```</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">selected</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">selected</span>: <span class="ident">bool</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">self</span>.<span class="ident">selected</span> <span class="op">=</span> <span class="ident">selected</span>;
-        <span class="self">self</span>
-    }
+    <span class="doccomment">/// If you set this to &#39;true&#39;, the `CollapsingHeader` will be shown as selected.
+    ///
+    /// Example:
+    /// ```
+    /// # egui::__run_test_ui(|ui| {
+    /// let mut selected = false;
+    /// let response = egui::CollapsingHeader::new(&quot;Select and open me&quot;)
+    ///     .selectable(true)
+    ///     .selected(selected)
+    ///     .show(ui, |ui| ui.label(&quot;Content&quot;));
+    /// if response.header_response.clicked() {
+    ///     selected = true;
+    /// }
+    /// # });
+    /// ```
+    </span><span class="kw">pub fn </span>selected(<span class="kw-2">mut </span><span class="self">self</span>, selected: bool) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.selected = selected;
+        <span class="self">self
+    </span>}
 
-    <span class="doccomment">/// Should the `CollapsingHeader` show a background behind it? Default: `false`.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// To show it behind all `CollapsingHeader` you can just use:</span>
-    <span class="doccomment">/// ```</span>
-    <span class="doccomment">/// # egui::__run_test_ui(|ui| {</span>
-    <span class="doccomment">/// ui.visuals_mut().collapsing_header_frame = true;</span>
-    <span class="doccomment">/// # });</span>
-    <span class="doccomment">/// ```</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">show_background</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">show_background</span>: <span class="ident">bool</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">self</span>.<span class="ident">show_background</span> <span class="op">=</span> <span class="ident">show_background</span>;
-        <span class="self">self</span>
-    }
+    <span class="doccomment">/// Should the `CollapsingHeader` show a background behind it? Default: `false`.
+    ///
+    /// To show it behind all `CollapsingHeader` you can just use:
+    /// ```
+    /// # egui::__run_test_ui(|ui| {
+    /// ui.visuals_mut().collapsing_header_frame = true;
+    /// # });
+    /// ```
+    </span><span class="kw">pub fn </span>show_background(<span class="kw-2">mut </span><span class="self">self</span>, show_background: bool) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.show_background = show_background;
+        <span class="self">self
+    </span>}
 }
 
-<span class="kw">struct</span> <span class="ident">Prepared</span> {
-    <span class="ident">id</span>: <span class="ident">Id</span>,
-    <span class="ident">header_response</span>: <span class="ident">Response</span>,
-    <span class="ident">state</span>: <span class="ident">State</span>,
+<span class="kw">struct </span>Prepared {
+    id: Id,
+    header_response: Response,
+    state: State,
 }
 
-<span class="kw">impl</span> <span class="ident">CollapsingHeader</span> {
-    <span class="kw">fn</span> <span class="ident">begin</span>(<span class="self">self</span>, <span class="ident">ui</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Ui</span>) -&gt; <span class="ident">Prepared</span> {
+<span class="kw">impl </span>CollapsingHeader {
+    <span class="kw">fn </span>begin(<span class="self">self</span>, ui: <span class="kw-2">&amp;mut </span>Ui) -&gt; Prepared {
         <span class="macro">assert!</span>(
-            <span class="ident">ui</span>.<span class="ident">layout</span>().<span class="ident">main_dir</span>().<span class="ident">is_vertical</span>(),
-            <span class="string">&quot;Horizontal collapsing is unimplemented&quot;</span>
+            ui.layout().main_dir().is_vertical(),
+            <span class="string">&quot;Horizontal collapsing is unimplemented&quot;
+        </span>);
+        <span class="kw">let </span><span class="self">Self </span>{
+            text,
+            default_open,
+            open,
+            id_source,
+            enabled: <span class="kw">_</span>,
+            selectable: <span class="kw">_</span>,
+            selected: <span class="kw">_</span>,
+            show_background: <span class="kw">_</span>,
+        } = <span class="self">self</span>;
+
+        <span class="comment">// TODO: horizontal layout, with icon and text as labels. Insert background behind using Frame.
+
+        </span><span class="kw">let </span>id = ui.make_persistent_id(id_source);
+        <span class="kw">let </span>button_padding = ui.spacing().button_padding;
+
+        <span class="kw">let </span>available = ui.available_rect_before_wrap();
+        <span class="kw">let </span>text_pos = available.min + vec2(ui.spacing().indent, <span class="number">0.0</span>);
+        <span class="kw">let </span>wrap_width = available.right() - text_pos.x;
+        <span class="kw">let </span>wrap = <span class="prelude-val">Some</span>(<span class="bool-val">false</span>);
+        <span class="kw">let </span>text = text.into_galley(ui, wrap, wrap_width, TextStyle::Button);
+        <span class="kw">let </span>text_max_x = text_pos.x + text.size().x;
+
+        <span class="kw">let </span><span class="kw-2">mut </span>desired_width = text_max_x + button_padding.x - available.left();
+        <span class="kw">if </span>ui.visuals().collapsing_header_frame {
+            desired_width = desired_width.max(available.width()); <span class="comment">// fill full width
+        </span>}
+
+        <span class="kw">let </span><span class="kw-2">mut </span>desired_size = vec2(desired_width, text.size().y + <span class="number">2.0 </span>* button_padding.y);
+        desired_size = desired_size.at_least(ui.spacing().interact_size);
+        <span class="kw">let </span>(<span class="kw">_</span>, rect) = ui.allocate_space(desired_size);
+
+        <span class="kw">let </span><span class="kw-2">mut </span>header_response = ui.interact(rect, id, Sense::click());
+        <span class="kw">let </span>text_pos = pos2(
+            text_pos.x,
+            header_response.rect.center().y - text.size().y / <span class="number">2.0</span>,
         );
-        <span class="kw">let</span> <span class="self">Self</span> {
-            <span class="ident">text</span>,
-            <span class="ident">default_open</span>,
-            <span class="ident">open</span>,
-            <span class="ident">id_source</span>,
-            <span class="ident">enabled</span>: <span class="kw">_</span>,
-            <span class="ident">selectable</span>: <span class="kw">_</span>,
-            <span class="ident">selected</span>: <span class="kw">_</span>,
-            <span class="ident">show_background</span>: <span class="kw">_</span>,
-        } <span class="op">=</span> <span class="self">self</span>;
 
-        <span class="comment">// TODO: horizontal layout, with icon and text as labels. Insert background behind using Frame.</span>
-
-        <span class="kw">let</span> <span class="ident">id</span> <span class="op">=</span> <span class="ident">ui</span>.<span class="ident">make_persistent_id</span>(<span class="ident">id_source</span>);
-        <span class="kw">let</span> <span class="ident">button_padding</span> <span class="op">=</span> <span class="ident">ui</span>.<span class="ident">spacing</span>().<span class="ident">button_padding</span>;
-
-        <span class="kw">let</span> <span class="ident">available</span> <span class="op">=</span> <span class="ident">ui</span>.<span class="ident">available_rect_before_wrap</span>();
-        <span class="kw">let</span> <span class="ident">text_pos</span> <span class="op">=</span> <span class="ident">available</span>.<span class="ident">min</span> <span class="op">+</span> <span class="ident">vec2</span>(<span class="ident">ui</span>.<span class="ident">spacing</span>().<span class="ident">indent</span>, <span class="number">0.0</span>);
-        <span class="kw">let</span> <span class="ident">wrap_width</span> <span class="op">=</span> <span class="ident">available</span>.<span class="ident">right</span>() <span class="op">-</span> <span class="ident">text_pos</span>.<span class="ident">x</span>;
-        <span class="kw">let</span> <span class="ident">wrap</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="bool-val">false</span>);
-        <span class="kw">let</span> <span class="ident">text</span> <span class="op">=</span> <span class="ident">text</span>.<span class="ident">into_galley</span>(<span class="ident">ui</span>, <span class="ident">wrap</span>, <span class="ident">wrap_width</span>, <span class="ident">TextStyle::Button</span>);
-        <span class="kw">let</span> <span class="ident">text_max_x</span> <span class="op">=</span> <span class="ident">text_pos</span>.<span class="ident">x</span> <span class="op">+</span> <span class="ident">text</span>.<span class="ident">size</span>().<span class="ident">x</span>;
-
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">desired_width</span> <span class="op">=</span> <span class="ident">text_max_x</span> <span class="op">+</span> <span class="ident">button_padding</span>.<span class="ident">x</span> <span class="op">-</span> <span class="ident">available</span>.<span class="ident">left</span>();
-        <span class="kw">if</span> <span class="ident">ui</span>.<span class="ident">visuals</span>().<span class="ident">collapsing_header_frame</span> {
-            <span class="ident">desired_width</span> <span class="op">=</span> <span class="ident">desired_width</span>.<span class="ident">max</span>(<span class="ident">available</span>.<span class="ident">width</span>()); <span class="comment">// fill full width</span>
+        <span class="kw">let </span><span class="kw-2">mut </span>state = State::from_memory_with_default_open(ui.ctx(), id, default_open);
+        <span class="kw">if let </span><span class="prelude-val">Some</span>(open) = open {
+            <span class="kw">if </span>open != state.open {
+                state.toggle(ui);
+                header_response.mark_changed();
+            }
+        } <span class="kw">else if </span>header_response.clicked() {
+            state.toggle(ui);
+            header_response.mark_changed();
         }
 
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">desired_size</span> <span class="op">=</span> <span class="ident">vec2</span>(<span class="ident">desired_width</span>, <span class="ident">text</span>.<span class="ident">size</span>().<span class="ident">y</span> <span class="op">+</span> <span class="number">2.0</span> <span class="op">*</span> <span class="ident">button_padding</span>.<span class="ident">y</span>);
-        <span class="ident">desired_size</span> <span class="op">=</span> <span class="ident">desired_size</span>.<span class="ident">at_least</span>(<span class="ident">ui</span>.<span class="ident">spacing</span>().<span class="ident">interact_size</span>);
-        <span class="kw">let</span> (<span class="kw">_</span>, <span class="ident">rect</span>) <span class="op">=</span> <span class="ident">ui</span>.<span class="ident">allocate_space</span>(<span class="ident">desired_size</span>);
+        header_response
+            .widget_info(|| WidgetInfo::labeled(WidgetType::CollapsingHeader, text.text()));
 
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">header_response</span> <span class="op">=</span> <span class="ident">ui</span>.<span class="ident">interact</span>(<span class="ident">rect</span>, <span class="ident">id</span>, <span class="ident">Sense::click</span>());
-        <span class="kw">let</span> <span class="ident">text_pos</span> <span class="op">=</span> <span class="ident">pos2</span>(
-            <span class="ident">text_pos</span>.<span class="ident">x</span>,
-            <span class="ident">header_response</span>.<span class="ident">rect</span>.<span class="ident">center</span>().<span class="ident">y</span> <span class="op">-</span> <span class="ident">text</span>.<span class="ident">size</span>().<span class="ident">y</span> <span class="op">/</span> <span class="number">2.0</span>,
-        );
+        <span class="kw">if </span>ui.is_rect_visible(rect) {
+            <span class="kw">let </span>visuals = ui
+                .style()
+                .interact_selectable(<span class="kw-2">&amp;</span>header_response, <span class="self">self</span>.selected);
 
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">state</span> <span class="op">=</span> <span class="ident">State::from_memory_with_default_open</span>(<span class="ident">ui</span>.<span class="ident">ctx</span>(), <span class="ident">id</span>, <span class="ident">default_open</span>);
-        <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">open</span>) <span class="op">=</span> <span class="ident">open</span> {
-            <span class="kw">if</span> <span class="ident">open</span> <span class="op">!</span><span class="op">=</span> <span class="ident">state</span>.<span class="ident">open</span> {
-                <span class="ident">state</span>.<span class="ident">toggle</span>(<span class="ident">ui</span>);
-                <span class="ident">header_response</span>.<span class="ident">mark_changed</span>();
-            }
-        } <span class="kw">else</span> <span class="kw">if</span> <span class="ident">header_response</span>.<span class="ident">clicked</span>() {
-            <span class="ident">state</span>.<span class="ident">toggle</span>(<span class="ident">ui</span>);
-            <span class="ident">header_response</span>.<span class="ident">mark_changed</span>();
-        }
-
-        <span class="ident">header_response</span>
-            .<span class="ident">widget_info</span>(<span class="op">|</span><span class="op">|</span> <span class="ident">WidgetInfo::labeled</span>(<span class="ident">WidgetType::CollapsingHeader</span>, <span class="ident">text</span>.<span class="ident">text</span>()));
-
-        <span class="kw">if</span> <span class="ident">ui</span>.<span class="ident">is_rect_visible</span>(<span class="ident">rect</span>) {
-            <span class="kw">let</span> <span class="ident">visuals</span> <span class="op">=</span> <span class="ident">ui</span>
-                .<span class="ident">style</span>()
-                .<span class="ident">interact_selectable</span>(<span class="kw-2">&amp;</span><span class="ident">header_response</span>, <span class="self">self</span>.<span class="ident">selected</span>);
-
-            <span class="kw">if</span> <span class="ident">ui</span>.<span class="ident">visuals</span>().<span class="ident">collapsing_header_frame</span> <span class="op">|</span><span class="op">|</span> <span class="self">self</span>.<span class="ident">show_background</span> {
-                <span class="ident">ui</span>.<span class="ident">painter</span>().<span class="ident">add</span>(<span class="ident">epaint::RectShape</span> {
-                    <span class="ident">rect</span>: <span class="ident">header_response</span>.<span class="ident">rect</span>.<span class="ident">expand</span>(<span class="ident">visuals</span>.<span class="ident">expansion</span>),
-                    <span class="ident">corner_radius</span>: <span class="ident">visuals</span>.<span class="ident">corner_radius</span>,
-                    <span class="ident">fill</span>: <span class="ident">visuals</span>.<span class="ident">bg_fill</span>,
-                    <span class="ident">stroke</span>: <span class="ident">visuals</span>.<span class="ident">bg_stroke</span>,
-                    <span class="comment">// stroke: Default::default(),</span>
-                });
+            <span class="kw">if </span>ui.visuals().collapsing_header_frame || <span class="self">self</span>.show_background {
+                ui.painter().add(epaint::RectShape {
+                    rect: header_response.rect.expand(visuals.expansion),
+                    corner_radius: visuals.corner_radius,
+                    fill: visuals.bg_fill,
+                    stroke: visuals.bg_stroke,
+                    <span class="comment">// stroke: Default::default(),
+                </span>});
             }
 
-            <span class="kw">if</span> <span class="self">self</span>.<span class="ident">selected</span>
-                <span class="op">|</span><span class="op">|</span> <span class="self">self</span>.<span class="ident">selectable</span> <span class="op">&amp;&amp;</span> (<span class="ident">header_response</span>.<span class="ident">hovered</span>() <span class="op">|</span><span class="op">|</span> <span class="ident">header_response</span>.<span class="ident">has_focus</span>())
+            <span class="kw">if </span><span class="self">self</span>.selected
+                || <span class="self">self</span>.selectable &amp;&amp; (header_response.hovered() || header_response.has_focus())
             {
-                <span class="kw">let</span> <span class="ident">rect</span> <span class="op">=</span> <span class="ident">rect</span>.<span class="ident">expand</span>(<span class="ident">visuals</span>.<span class="ident">expansion</span>);
+                <span class="kw">let </span>rect = rect.expand(visuals.expansion);
 
-                <span class="kw">let</span> <span class="ident">corner_radius</span> <span class="op">=</span> <span class="number">2.0</span>;
-                <span class="ident">ui</span>.<span class="ident">painter</span>()
-                    .<span class="ident">rect</span>(<span class="ident">rect</span>, <span class="ident">corner_radius</span>, <span class="ident">visuals</span>.<span class="ident">bg_fill</span>, <span class="ident">visuals</span>.<span class="ident">bg_stroke</span>);
+                <span class="kw">let </span>corner_radius = <span class="number">2.0</span>;
+                ui.painter()
+                    .rect(rect, corner_radius, visuals.bg_fill, visuals.bg_stroke);
             }
 
             {
-                <span class="kw">let</span> (<span class="kw-2">mut</span> <span class="ident">icon_rect</span>, <span class="kw">_</span>) <span class="op">=</span> <span class="ident">ui</span>.<span class="ident">spacing</span>().<span class="ident">icon_rectangles</span>(<span class="ident">header_response</span>.<span class="ident">rect</span>);
-                <span class="ident">icon_rect</span>.<span class="ident">set_center</span>(<span class="ident">pos2</span>(
-                    <span class="ident">header_response</span>.<span class="ident">rect</span>.<span class="ident">left</span>() <span class="op">+</span> <span class="ident">ui</span>.<span class="ident">spacing</span>().<span class="ident">indent</span> <span class="op">/</span> <span class="number">2.0</span>,
-                    <span class="ident">header_response</span>.<span class="ident">rect</span>.<span class="ident">center</span>().<span class="ident">y</span>,
+                <span class="kw">let </span>(<span class="kw-2">mut </span>icon_rect, <span class="kw">_</span>) = ui.spacing().icon_rectangles(header_response.rect);
+                icon_rect.set_center(pos2(
+                    header_response.rect.left() + ui.spacing().indent / <span class="number">2.0</span>,
+                    header_response.rect.center().y,
                 ));
-                <span class="kw">let</span> <span class="ident">icon_response</span> <span class="op">=</span> <span class="ident">Response</span> {
-                    <span class="ident">rect</span>: <span class="ident">icon_rect</span>,
-                    ..<span class="ident">header_response</span>.<span class="ident">clone</span>()
+                <span class="kw">let </span>icon_response = Response {
+                    rect: icon_rect,
+                    ..header_response.clone()
                 };
-                <span class="kw">let</span> <span class="ident">openness</span> <span class="op">=</span> <span class="ident">state</span>.<span class="ident">openness</span>(<span class="ident">ui</span>.<span class="ident">ctx</span>(), <span class="ident">id</span>);
-                <span class="ident">paint_icon</span>(<span class="ident">ui</span>, <span class="ident">openness</span>, <span class="kw-2">&amp;</span><span class="ident">icon_response</span>);
+                <span class="kw">let </span>openness = state.openness(ui.ctx(), id);
+                paint_icon(ui, openness, <span class="kw-2">&amp;</span>icon_response);
             }
 
-            <span class="ident">text</span>.<span class="ident">paint_with_visuals</span>(<span class="ident">ui</span>.<span class="ident">painter</span>(), <span class="ident">text_pos</span>, <span class="kw-2">&amp;</span><span class="ident">visuals</span>);
+            text.paint_with_visuals(ui.painter(), text_pos, <span class="kw-2">&amp;</span>visuals);
         }
 
-        <span class="ident">Prepared</span> {
-            <span class="ident">id</span>,
-            <span class="ident">header_response</span>,
-            <span class="ident">state</span>,
+        Prepared {
+            id,
+            header_response,
+            state,
         }
     }
 
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">show</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span>(
+    <span class="attribute">#[inline]
+    </span><span class="kw">pub fn </span>show&lt;R&gt;(
         <span class="self">self</span>,
-        <span class="ident">ui</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Ui</span>,
-        <span class="ident">add_contents</span>: <span class="kw">impl</span> <span class="ident">FnOnce</span>(<span class="kw-2">&amp;mut</span> <span class="ident">Ui</span>) -&gt; <span class="ident">R</span>,
-    ) -&gt; <span class="ident">CollapsingResponse</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span> {
-        <span class="self">self</span>.<span class="ident">show_dyn</span>(<span class="ident">ui</span>, <span class="ident">Box::new</span>(<span class="ident">add_contents</span>))
+        ui: <span class="kw-2">&amp;mut </span>Ui,
+        add_contents: <span class="kw">impl </span>FnOnce(<span class="kw-2">&amp;mut </span>Ui) -&gt; R,
+    ) -&gt; CollapsingResponse&lt;R&gt; {
+        <span class="self">self</span>.show_dyn(ui, Box::new(add_contents))
     }
 
-    <span class="kw">fn</span> <span class="ident">show_dyn</span><span class="op">&lt;</span><span class="lifetime">&#39;c</span>, <span class="ident">R</span><span class="op">&gt;</span>(
+    <span class="kw">fn </span>show_dyn&lt;<span class="lifetime">&#39;c</span>, R&gt;(
         <span class="self">self</span>,
-        <span class="ident">ui</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Ui</span>,
-        <span class="ident">add_contents</span>: <span class="ident">Box</span><span class="op">&lt;</span><span class="kw">dyn</span> <span class="ident">FnOnce</span>(<span class="kw-2">&amp;mut</span> <span class="ident">Ui</span>) -&gt; <span class="ident">R</span> <span class="op">+</span> <span class="lifetime">&#39;c</span><span class="op">&gt;</span>,
-    ) -&gt; <span class="ident">CollapsingResponse</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span> {
-        <span class="comment">// Make sure contents are bellow header,</span>
-        <span class="comment">// and make sure it is one unit (necessary for putting a `CollapsingHeader` in a grid).</span>
-        <span class="ident">ui</span>.<span class="ident">vertical</span>(<span class="op">|</span><span class="ident">ui</span><span class="op">|</span> {
-            <span class="ident">ui</span>.<span class="ident">set_enabled</span>(<span class="self">self</span>.<span class="ident">enabled</span>);
+        ui: <span class="kw-2">&amp;mut </span>Ui,
+        add_contents: Box&lt;<span class="kw">dyn </span>FnOnce(<span class="kw-2">&amp;mut </span>Ui) -&gt; R + <span class="lifetime">&#39;c</span>&gt;,
+    ) -&gt; CollapsingResponse&lt;R&gt; {
+        <span class="comment">// Make sure contents are bellow header,
+        // and make sure it is one unit (necessary for putting a `CollapsingHeader` in a grid).
+        </span>ui.vertical(|ui| {
+            ui.set_enabled(<span class="self">self</span>.enabled);
 
-            <span class="kw">let</span> <span class="ident">Prepared</span> {
-                <span class="ident">id</span>,
-                <span class="ident">header_response</span>,
-                <span class="kw-2">mut</span> <span class="ident">state</span>,
-            } <span class="op">=</span> <span class="self">self</span>.<span class="ident">begin</span>(<span class="ident">ui</span>);
+            <span class="kw">let </span>Prepared {
+                id,
+                header_response,
+                <span class="kw-2">mut </span>state,
+            } = <span class="self">self</span>.begin(ui);
 
-            <span class="kw">let</span> <span class="ident">ret_response</span> <span class="op">=</span> <span class="ident">state</span>.<span class="ident">add_contents</span>(<span class="ident">ui</span>, <span class="ident">id</span>, <span class="op">|</span><span class="ident">ui</span><span class="op">|</span> {
-                <span class="ident">ui</span>.<span class="ident">indent</span>(<span class="ident">id</span>, <span class="op">|</span><span class="ident">ui</span><span class="op">|</span> {
-                    <span class="comment">// make as wide as the header:</span>
-                    <span class="ident">ui</span>.<span class="ident">expand_to_include_x</span>(<span class="ident">header_response</span>.<span class="ident">rect</span>.<span class="ident">right</span>());
-                    <span class="ident">add_contents</span>(<span class="ident">ui</span>)
+            <span class="kw">let </span>ret_response = state.add_contents(ui, id, |ui| {
+                ui.indent(id, |ui| {
+                    <span class="comment">// make as wide as the header:
+                    </span>ui.expand_to_include_x(header_response.rect.right());
+                    add_contents(ui)
                 })
-                .<span class="ident">inner</span>
+                .inner
             });
-            <span class="ident">state</span>.<span class="ident">store</span>(<span class="ident">ui</span>.<span class="ident">ctx</span>(), <span class="ident">id</span>);
+            state.store(ui.ctx(), id);
 
-            <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">ret_response</span>) <span class="op">=</span> <span class="ident">ret_response</span> {
-                <span class="ident">CollapsingResponse</span> {
-                    <span class="ident">header_response</span>,
-                    <span class="ident">body_response</span>: <span class="prelude-val">Some</span>(<span class="ident">ret_response</span>.<span class="ident">response</span>),
-                    <span class="ident">body_returned</span>: <span class="prelude-val">Some</span>(<span class="ident">ret_response</span>.<span class="ident">inner</span>),
+            <span class="kw">if let </span><span class="prelude-val">Some</span>(ret_response) = ret_response {
+                CollapsingResponse {
+                    header_response,
+                    body_response: <span class="prelude-val">Some</span>(ret_response.response),
+                    body_returned: <span class="prelude-val">Some</span>(ret_response.inner),
                 }
-            } <span class="kw">else</span> {
-                <span class="ident">CollapsingResponse</span> {
-                    <span class="ident">header_response</span>,
-                    <span class="ident">body_response</span>: <span class="prelude-val">None</span>,
-                    <span class="ident">body_returned</span>: <span class="prelude-val">None</span>,
+            } <span class="kw">else </span>{
+                CollapsingResponse {
+                    header_response,
+                    body_response: <span class="prelude-val">None</span>,
+                    body_returned: <span class="prelude-val">None</span>,
                 }
             }
         })
-        .<span class="ident">inner</span>
+        .inner
     }
 }
 
-<span class="doccomment">/// The response from showing a [`CollapsingHeader`].</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">CollapsingResponse</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span> {
-    <span class="kw">pub</span> <span class="ident">header_response</span>: <span class="ident">Response</span>,
-    <span class="doccomment">/// None iff collapsed.</span>
-    <span class="kw">pub</span> <span class="ident">body_response</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Response</span><span class="op">&gt;</span>,
-    <span class="doccomment">/// None iff collapsed.</span>
-    <span class="kw">pub</span> <span class="ident">body_returned</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span>,
+<span class="doccomment">/// The response from showing a [`CollapsingHeader`].
+</span><span class="kw">pub struct </span>CollapsingResponse&lt;R&gt; {
+    <span class="kw">pub </span>header_response: Response,
+    <span class="doccomment">/// None iff collapsed.
+    </span><span class="kw">pub </span>body_response: <span class="prelude-ty">Option</span>&lt;Response&gt;,
+    <span class="doccomment">/// None iff collapsed.
+    </span><span class="kw">pub </span>body_returned: <span class="prelude-ty">Option</span>&lt;R&gt;,
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="egui" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0 (a55dd71d5 2022-09-19)" ></div></body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="egui" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.66.1 (90743e729 2023-01-10)" ></div></body></html>

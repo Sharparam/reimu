@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/egui-0.16.1/src/containers/popup.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>popup.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../storage.js"></script><script defer src="../../../source-script.js"></script><script defer src="../../../source-files.js"></script><script defer src="../../../main.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../../egui/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../../egui/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../../egui/index.html"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/egui-0.16.1/src/containers/popup.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>popup.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../../normalize.css"><link rel="stylesheet" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../../ayu.css" disabled><link rel="stylesheet" href="../../../dark.css" disabled><link rel="stylesheet" href="../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../storage.js"></script><script defer src="../../../source-script.js"></script><script defer src="../../../source-files.js"></script><script defer src="../../../main.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><div class="width-limiter"><nav class="sub"><a class="sub-logo-container" href="../../../egui/index.html"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../wheel.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -315,322 +315,322 @@
 <span id="315">315</span>
 <span id="316">316</span>
 <span id="317">317</span>
-</pre><pre class="rust"><code><span class="doccomment">//! Show popup windows, tooltips, context menus etc.</span>
+</pre><pre class="rust"><code><span class="doccomment">//! Show popup windows, tooltips, context menus etc.
 
-<span class="kw">use</span> <span class="kw">crate</span>::<span class="kw-2">*</span>;
+</span><span class="kw">use crate</span>::<span class="kw-2">*</span>;
 
-<span class="comment">// ----------------------------------------------------------------------------</span>
+<span class="comment">// ----------------------------------------------------------------------------
 
-<span class="doccomment">/// Same state for all tooltips.</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">Default</span>)]</span>
-<span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">struct</span> <span class="ident">MonoState</span> {
-    <span class="ident">last_id</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Id</span><span class="op">&gt;</span>,
-    <span class="ident">last_size</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Vec2</span><span class="op">&gt;</span>,
+</span><span class="doccomment">/// Same state for all tooltips.
+</span><span class="attribute">#[derive(Clone, Debug, Default)]
+</span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">struct </span>MonoState {
+    last_id: <span class="prelude-ty">Option</span>&lt;Id&gt;,
+    last_size: Vec&lt;Vec2&gt;,
 }
 
-<span class="kw">impl</span> <span class="ident">MonoState</span> {
-    <span class="kw">fn</span> <span class="ident">load</span>(<span class="ident">ctx</span>: <span class="kw-2">&amp;</span><span class="ident">Context</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
-        <span class="ident">ctx</span>.<span class="ident">memory</span>().<span class="ident">data</span>.<span class="ident">get_temp</span>(<span class="ident">Id::null</span>())
+<span class="kw">impl </span>MonoState {
+    <span class="kw">fn </span>load(ctx: <span class="kw-2">&amp;</span>Context) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="self">Self</span>&gt; {
+        ctx.memory().data.get_temp(Id::null())
     }
 
-    <span class="kw">fn</span> <span class="ident">store</span>(<span class="self">self</span>, <span class="ident">ctx</span>: <span class="kw-2">&amp;</span><span class="ident">Context</span>) {
-        <span class="ident">ctx</span>.<span class="ident">memory</span>().<span class="ident">data</span>.<span class="ident">insert_temp</span>(<span class="ident">Id::null</span>(), <span class="self">self</span>);
+    <span class="kw">fn </span>store(<span class="self">self</span>, ctx: <span class="kw-2">&amp;</span>Context) {
+        ctx.memory().data.insert_temp(Id::null(), <span class="self">self</span>);
     }
 
-    <span class="kw">fn</span> <span class="ident">tooltip_size</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">id</span>: <span class="ident">Id</span>, <span class="ident">index</span>: <span class="ident">usize</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Vec2</span><span class="op">&gt;</span> {
-        <span class="kw">if</span> <span class="self">self</span>.<span class="ident">last_id</span> <span class="op">==</span> <span class="prelude-val">Some</span>(<span class="ident">id</span>) {
-            <span class="self">self</span>.<span class="ident">last_size</span>.<span class="ident">get</span>(<span class="ident">index</span>).<span class="ident">cloned</span>()
-        } <span class="kw">else</span> {
-            <span class="prelude-val">None</span>
-        }
+    <span class="kw">fn </span>tooltip_size(<span class="kw-2">&amp;</span><span class="self">self</span>, id: Id, index: usize) -&gt; <span class="prelude-ty">Option</span>&lt;Vec2&gt; {
+        <span class="kw">if </span><span class="self">self</span>.last_id == <span class="prelude-val">Some</span>(id) {
+            <span class="self">self</span>.last_size.get(index).cloned()
+        } <span class="kw">else </span>{
+            <span class="prelude-val">None
+        </span>}
     }
 
-    <span class="kw">fn</span> <span class="ident">set_tooltip_size</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">id</span>: <span class="ident">Id</span>, <span class="ident">index</span>: <span class="ident">usize</span>, <span class="ident">size</span>: <span class="ident">Vec2</span>) {
-        <span class="kw">if</span> <span class="self">self</span>.<span class="ident">last_id</span> <span class="op">==</span> <span class="prelude-val">Some</span>(<span class="ident">id</span>) {
-            <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">stored_size</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">last_size</span>.<span class="ident">get_mut</span>(<span class="ident">index</span>) {
-                <span class="kw-2">*</span><span class="ident">stored_size</span> <span class="op">=</span> <span class="ident">size</span>;
-            } <span class="kw">else</span> {
-                <span class="self">self</span>.<span class="ident">last_size</span>
-                    .<span class="ident">extend</span>((<span class="number">0</span>..<span class="ident">index</span> <span class="op">-</span> <span class="self">self</span>.<span class="ident">last_size</span>.<span class="ident">len</span>()).<span class="ident">map</span>(<span class="op">|</span><span class="kw">_</span><span class="op">|</span> <span class="ident">Vec2::ZERO</span>));
-                <span class="self">self</span>.<span class="ident">last_size</span>.<span class="ident">push</span>(<span class="ident">size</span>);
+    <span class="kw">fn </span>set_tooltip_size(<span class="kw-2">&amp;mut </span><span class="self">self</span>, id: Id, index: usize, size: Vec2) {
+        <span class="kw">if </span><span class="self">self</span>.last_id == <span class="prelude-val">Some</span>(id) {
+            <span class="kw">if let </span><span class="prelude-val">Some</span>(stored_size) = <span class="self">self</span>.last_size.get_mut(index) {
+                <span class="kw-2">*</span>stored_size = size;
+            } <span class="kw">else </span>{
+                <span class="self">self</span>.last_size
+                    .extend((<span class="number">0</span>..index - <span class="self">self</span>.last_size.len()).map(|<span class="kw">_</span>| Vec2::ZERO));
+                <span class="self">self</span>.last_size.push(size);
             }
             <span class="kw">return</span>;
         }
 
-        <span class="self">self</span>.<span class="ident">last_id</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">id</span>);
-        <span class="self">self</span>.<span class="ident">last_size</span>.<span class="ident">clear</span>();
-        <span class="self">self</span>.<span class="ident">last_size</span>.<span class="ident">extend</span>((<span class="number">0</span>..<span class="ident">index</span>).<span class="ident">map</span>(<span class="op">|</span><span class="kw">_</span><span class="op">|</span> <span class="ident">Vec2::ZERO</span>));
-        <span class="self">self</span>.<span class="ident">last_size</span>.<span class="ident">push</span>(<span class="ident">size</span>);
+        <span class="self">self</span>.last_id = <span class="prelude-val">Some</span>(id);
+        <span class="self">self</span>.last_size.clear();
+        <span class="self">self</span>.last_size.extend((<span class="number">0</span>..index).map(|<span class="kw">_</span>| Vec2::ZERO));
+        <span class="self">self</span>.last_size.push(size);
     }
 }
 
-<span class="comment">// ----------------------------------------------------------------------------</span>
+<span class="comment">// ----------------------------------------------------------------------------
 
-<span class="doccomment">/// Show a tooltip at the current pointer position (if any).</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// Most of the time it is easier to use [`Response::on_hover_ui`].</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// See also [`show_tooltip_text`].</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// Returns `None` if the tooltip could not be placed.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// ```</span>
-<span class="doccomment">/// # egui::__run_test_ui(|ui| {</span>
-<span class="doccomment">/// if ui.ui_contains_pointer() {</span>
-<span class="doccomment">///     egui::show_tooltip(ui.ctx(), egui::Id::new(&quot;my_tooltip&quot;), |ui| {</span>
-<span class="doccomment">///         ui.label(&quot;Helpful text&quot;);</span>
-<span class="doccomment">///     });</span>
-<span class="doccomment">/// }</span>
-<span class="doccomment">/// # });</span>
-<span class="doccomment">/// ```</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">show_tooltip</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span>(<span class="ident">ctx</span>: <span class="kw-2">&amp;</span><span class="ident">CtxRef</span>, <span class="ident">id</span>: <span class="ident">Id</span>, <span class="ident">add_contents</span>: <span class="kw">impl</span> <span class="ident">FnOnce</span>(<span class="kw-2">&amp;mut</span> <span class="ident">Ui</span>) -&gt; <span class="ident">R</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span> {
-    <span class="ident">show_tooltip_at_pointer</span>(<span class="ident">ctx</span>, <span class="ident">id</span>, <span class="ident">add_contents</span>)
+</span><span class="doccomment">/// Show a tooltip at the current pointer position (if any).
+///
+/// Most of the time it is easier to use [`Response::on_hover_ui`].
+///
+/// See also [`show_tooltip_text`].
+///
+/// Returns `None` if the tooltip could not be placed.
+///
+/// ```
+/// # egui::__run_test_ui(|ui| {
+/// if ui.ui_contains_pointer() {
+///     egui::show_tooltip(ui.ctx(), egui::Id::new(&quot;my_tooltip&quot;), |ui| {
+///         ui.label(&quot;Helpful text&quot;);
+///     });
+/// }
+/// # });
+/// ```
+</span><span class="kw">pub fn </span>show_tooltip&lt;R&gt;(ctx: <span class="kw-2">&amp;</span>CtxRef, id: Id, add_contents: <span class="kw">impl </span>FnOnce(<span class="kw-2">&amp;mut </span>Ui) -&gt; R) -&gt; <span class="prelude-ty">Option</span>&lt;R&gt; {
+    show_tooltip_at_pointer(ctx, id, add_contents)
 }
 
-<span class="doccomment">/// Show a tooltip at the current pointer position (if any).</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// Most of the time it is easier to use [`Response::on_hover_ui`].</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// See also [`show_tooltip_text`].</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// Returns `None` if the tooltip could not be placed.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// ```</span>
-<span class="doccomment">/// # egui::__run_test_ui(|ui| {</span>
-<span class="doccomment">/// if ui.ui_contains_pointer() {</span>
-<span class="doccomment">///     egui::show_tooltip_at_pointer(ui.ctx(), egui::Id::new(&quot;my_tooltip&quot;), |ui| {</span>
-<span class="doccomment">///         ui.label(&quot;Helpful text&quot;);</span>
-<span class="doccomment">///     });</span>
-<span class="doccomment">/// }</span>
-<span class="doccomment">/// # });</span>
-<span class="doccomment">/// ```</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">show_tooltip_at_pointer</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span>(
-    <span class="ident">ctx</span>: <span class="kw-2">&amp;</span><span class="ident">CtxRef</span>,
-    <span class="ident">id</span>: <span class="ident">Id</span>,
-    <span class="ident">add_contents</span>: <span class="kw">impl</span> <span class="ident">FnOnce</span>(<span class="kw-2">&amp;mut</span> <span class="ident">Ui</span>) -&gt; <span class="ident">R</span>,
-) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span> {
-    <span class="kw">let</span> <span class="ident">suggested_pos</span> <span class="op">=</span> <span class="ident">ctx</span>
-        .<span class="ident">input</span>()
-        .<span class="ident">pointer</span>
-        .<span class="ident">hover_pos</span>()
-        .<span class="ident">map</span>(<span class="op">|</span><span class="ident">pointer_pos</span><span class="op">|</span> <span class="ident">pointer_pos</span> <span class="op">+</span> <span class="ident">vec2</span>(<span class="number">16.0</span>, <span class="number">16.0</span>));
-    <span class="ident">show_tooltip_at</span>(<span class="ident">ctx</span>, <span class="ident">id</span>, <span class="ident">suggested_pos</span>, <span class="ident">add_contents</span>)
+<span class="doccomment">/// Show a tooltip at the current pointer position (if any).
+///
+/// Most of the time it is easier to use [`Response::on_hover_ui`].
+///
+/// See also [`show_tooltip_text`].
+///
+/// Returns `None` if the tooltip could not be placed.
+///
+/// ```
+/// # egui::__run_test_ui(|ui| {
+/// if ui.ui_contains_pointer() {
+///     egui::show_tooltip_at_pointer(ui.ctx(), egui::Id::new(&quot;my_tooltip&quot;), |ui| {
+///         ui.label(&quot;Helpful text&quot;);
+///     });
+/// }
+/// # });
+/// ```
+</span><span class="kw">pub fn </span>show_tooltip_at_pointer&lt;R&gt;(
+    ctx: <span class="kw-2">&amp;</span>CtxRef,
+    id: Id,
+    add_contents: <span class="kw">impl </span>FnOnce(<span class="kw-2">&amp;mut </span>Ui) -&gt; R,
+) -&gt; <span class="prelude-ty">Option</span>&lt;R&gt; {
+    <span class="kw">let </span>suggested_pos = ctx
+        .input()
+        .pointer
+        .hover_pos()
+        .map(|pointer_pos| pointer_pos + vec2(<span class="number">16.0</span>, <span class="number">16.0</span>));
+    show_tooltip_at(ctx, id, suggested_pos, add_contents)
 }
 
-<span class="doccomment">/// Show a tooltip under the given area.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// If the tooltip does not fit under the area, it tries to place it above it instead.</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">show_tooltip_for</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span>(
-    <span class="ident">ctx</span>: <span class="kw-2">&amp;</span><span class="ident">CtxRef</span>,
-    <span class="ident">id</span>: <span class="ident">Id</span>,
-    <span class="ident">rect</span>: <span class="kw-2">&amp;</span><span class="ident">Rect</span>,
-    <span class="ident">add_contents</span>: <span class="kw">impl</span> <span class="ident">FnOnce</span>(<span class="kw-2">&amp;mut</span> <span class="ident">Ui</span>) -&gt; <span class="ident">R</span>,
-) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span> {
-    <span class="kw">let</span> <span class="ident">expanded_rect</span> <span class="op">=</span> <span class="ident">rect</span>.<span class="ident">expand2</span>(<span class="ident">vec2</span>(<span class="number">2.0</span>, <span class="number">4.0</span>));
-    <span class="kw">let</span> (<span class="ident">above</span>, <span class="ident">position</span>) <span class="op">=</span> <span class="kw">if</span> <span class="ident">ctx</span>.<span class="ident">input</span>().<span class="ident">any_touches</span>() {
-        (<span class="bool-val">true</span>, <span class="ident">expanded_rect</span>.<span class="ident">left_top</span>())
-    } <span class="kw">else</span> {
-        (<span class="bool-val">false</span>, <span class="ident">expanded_rect</span>.<span class="ident">left_bottom</span>())
+<span class="doccomment">/// Show a tooltip under the given area.
+///
+/// If the tooltip does not fit under the area, it tries to place it above it instead.
+</span><span class="kw">pub fn </span>show_tooltip_for&lt;R&gt;(
+    ctx: <span class="kw-2">&amp;</span>CtxRef,
+    id: Id,
+    rect: <span class="kw-2">&amp;</span>Rect,
+    add_contents: <span class="kw">impl </span>FnOnce(<span class="kw-2">&amp;mut </span>Ui) -&gt; R,
+) -&gt; <span class="prelude-ty">Option</span>&lt;R&gt; {
+    <span class="kw">let </span>expanded_rect = rect.expand2(vec2(<span class="number">2.0</span>, <span class="number">4.0</span>));
+    <span class="kw">let </span>(above, position) = <span class="kw">if </span>ctx.input().any_touches() {
+        (<span class="bool-val">true</span>, expanded_rect.left_top())
+    } <span class="kw">else </span>{
+        (<span class="bool-val">false</span>, expanded_rect.left_bottom())
     };
-    <span class="ident">show_tooltip_at_avoid_dyn</span>(
-        <span class="ident">ctx</span>,
-        <span class="ident">id</span>,
-        <span class="prelude-val">Some</span>(<span class="ident">position</span>),
-        <span class="ident">above</span>,
-        <span class="ident">expanded_rect</span>,
-        <span class="ident">Box::new</span>(<span class="ident">add_contents</span>),
+    show_tooltip_at_avoid_dyn(
+        ctx,
+        id,
+        <span class="prelude-val">Some</span>(position),
+        above,
+        expanded_rect,
+        Box::new(add_contents),
     )
 }
 
-<span class="doccomment">/// Show a tooltip at the given position.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// Returns `None` if the tooltip could not be placed.</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">show_tooltip_at</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span>(
-    <span class="ident">ctx</span>: <span class="kw-2">&amp;</span><span class="ident">CtxRef</span>,
-    <span class="ident">id</span>: <span class="ident">Id</span>,
-    <span class="ident">suggested_position</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Pos2</span><span class="op">&gt;</span>,
-    <span class="ident">add_contents</span>: <span class="kw">impl</span> <span class="ident">FnOnce</span>(<span class="kw-2">&amp;mut</span> <span class="ident">Ui</span>) -&gt; <span class="ident">R</span>,
-) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span> {
-    <span class="kw">let</span> <span class="ident">above</span> <span class="op">=</span> <span class="bool-val">false</span>;
-    <span class="ident">show_tooltip_at_avoid_dyn</span>(
-        <span class="ident">ctx</span>,
-        <span class="ident">id</span>,
-        <span class="ident">suggested_position</span>,
-        <span class="ident">above</span>,
-        <span class="ident">Rect::NOTHING</span>,
-        <span class="ident">Box::new</span>(<span class="ident">add_contents</span>),
+<span class="doccomment">/// Show a tooltip at the given position.
+///
+/// Returns `None` if the tooltip could not be placed.
+</span><span class="kw">pub fn </span>show_tooltip_at&lt;R&gt;(
+    ctx: <span class="kw-2">&amp;</span>CtxRef,
+    id: Id,
+    suggested_position: <span class="prelude-ty">Option</span>&lt;Pos2&gt;,
+    add_contents: <span class="kw">impl </span>FnOnce(<span class="kw-2">&amp;mut </span>Ui) -&gt; R,
+) -&gt; <span class="prelude-ty">Option</span>&lt;R&gt; {
+    <span class="kw">let </span>above = <span class="bool-val">false</span>;
+    show_tooltip_at_avoid_dyn(
+        ctx,
+        id,
+        suggested_position,
+        above,
+        Rect::NOTHING,
+        Box::new(add_contents),
     )
 }
 
-<span class="kw">fn</span> <span class="ident">show_tooltip_at_avoid_dyn</span><span class="op">&lt;</span><span class="lifetime">&#39;c</span>, <span class="ident">R</span><span class="op">&gt;</span>(
-    <span class="ident">ctx</span>: <span class="kw-2">&amp;</span><span class="ident">CtxRef</span>,
-    <span class="kw-2">mut</span> <span class="ident">id</span>: <span class="ident">Id</span>,
-    <span class="ident">suggested_position</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Pos2</span><span class="op">&gt;</span>,
-    <span class="ident">above</span>: <span class="ident">bool</span>,
-    <span class="kw-2">mut</span> <span class="ident">avoid_rect</span>: <span class="ident">Rect</span>,
-    <span class="ident">add_contents</span>: <span class="ident">Box</span><span class="op">&lt;</span><span class="kw">dyn</span> <span class="ident">FnOnce</span>(<span class="kw-2">&amp;mut</span> <span class="ident">Ui</span>) -&gt; <span class="ident">R</span> <span class="op">+</span> <span class="lifetime">&#39;c</span><span class="op">&gt;</span>,
-) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span> {
-    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">tooltip_rect</span> <span class="op">=</span> <span class="ident">Rect::NOTHING</span>;
-    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">count</span> <span class="op">=</span> <span class="number">0</span>;
+<span class="kw">fn </span>show_tooltip_at_avoid_dyn&lt;<span class="lifetime">&#39;c</span>, R&gt;(
+    ctx: <span class="kw-2">&amp;</span>CtxRef,
+    <span class="kw-2">mut </span>id: Id,
+    suggested_position: <span class="prelude-ty">Option</span>&lt;Pos2&gt;,
+    above: bool,
+    <span class="kw-2">mut </span>avoid_rect: Rect,
+    add_contents: Box&lt;<span class="kw">dyn </span>FnOnce(<span class="kw-2">&amp;mut </span>Ui) -&gt; R + <span class="lifetime">&#39;c</span>&gt;,
+) -&gt; <span class="prelude-ty">Option</span>&lt;R&gt; {
+    <span class="kw">let </span><span class="kw-2">mut </span>tooltip_rect = Rect::NOTHING;
+    <span class="kw">let </span><span class="kw-2">mut </span>count = <span class="number">0</span>;
 
-    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">position</span> <span class="op">=</span> <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>((<span class="ident">stored_id</span>, <span class="ident">stored_tooltip_rect</span>, <span class="ident">stored_count</span>)) <span class="op">=</span>
-        <span class="ident">ctx</span>.<span class="ident">frame_state</span>().<span class="ident">tooltip_rect</span>
+    <span class="kw">let </span><span class="kw-2">mut </span>position = <span class="kw">if let </span><span class="prelude-val">Some</span>((stored_id, stored_tooltip_rect, stored_count)) =
+        ctx.frame_state().tooltip_rect
     {
-        <span class="comment">// if there are multiple tooltips open they should use the same id for the `tooltip_size` caching to work.</span>
-        <span class="ident">id</span> <span class="op">=</span> <span class="ident">stored_id</span>;
-        <span class="ident">tooltip_rect</span> <span class="op">=</span> <span class="ident">stored_tooltip_rect</span>;
-        <span class="ident">count</span> <span class="op">=</span> <span class="ident">stored_count</span>;
-        <span class="ident">avoid_rect</span> <span class="op">=</span> <span class="ident">avoid_rect</span>.<span class="ident">union</span>(<span class="ident">tooltip_rect</span>);
-        <span class="kw">if</span> <span class="ident">above</span> {
-            <span class="ident">tooltip_rect</span>.<span class="ident">left_top</span>()
-        } <span class="kw">else</span> {
-            <span class="ident">tooltip_rect</span>.<span class="ident">left_bottom</span>()
+        <span class="comment">// if there are multiple tooltips open they should use the same id for the `tooltip_size` caching to work.
+        </span>id = stored_id;
+        tooltip_rect = stored_tooltip_rect;
+        count = stored_count;
+        avoid_rect = avoid_rect.union(tooltip_rect);
+        <span class="kw">if </span>above {
+            tooltip_rect.left_top()
+        } <span class="kw">else </span>{
+            tooltip_rect.left_bottom()
         }
-    } <span class="kw">else</span> <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">position</span>) <span class="op">=</span> <span class="ident">suggested_position</span> {
-        <span class="ident">position</span>
-    } <span class="kw">else</span> <span class="kw">if</span> <span class="ident">ctx</span>.<span class="ident">memory</span>().<span class="ident">everything_is_visible</span>() {
-        <span class="ident">Pos2::ZERO</span>
-    } <span class="kw">else</span> {
-        <span class="kw">return</span> <span class="prelude-val">None</span>; <span class="comment">// No good place for a tooltip :(</span>
-    };
+    } <span class="kw">else if let </span><span class="prelude-val">Some</span>(position) = suggested_position {
+        position
+    } <span class="kw">else if </span>ctx.memory().everything_is_visible() {
+        Pos2::ZERO
+    } <span class="kw">else </span>{
+        <span class="kw">return </span><span class="prelude-val">None</span>; <span class="comment">// No good place for a tooltip :(
+    </span>};
 
-    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">state</span> <span class="op">=</span> <span class="ident">MonoState::load</span>(<span class="ident">ctx</span>).<span class="ident">unwrap_or_default</span>();
-    <span class="kw">let</span> <span class="ident">expected_size</span> <span class="op">=</span> <span class="ident">state</span>.<span class="ident">tooltip_size</span>(<span class="ident">id</span>, <span class="ident">count</span>);
-    <span class="kw">let</span> <span class="ident">expected_size</span> <span class="op">=</span> <span class="ident">expected_size</span>.<span class="ident">unwrap_or_else</span>(<span class="op">|</span><span class="op">|</span> <span class="ident">vec2</span>(<span class="number">64.0</span>, <span class="number">32.0</span>));
+    <span class="kw">let </span><span class="kw-2">mut </span>state = MonoState::load(ctx).unwrap_or_default();
+    <span class="kw">let </span>expected_size = state.tooltip_size(id, count);
+    <span class="kw">let </span>expected_size = expected_size.unwrap_or_else(|| vec2(<span class="number">64.0</span>, <span class="number">32.0</span>));
 
-    <span class="kw">if</span> <span class="ident">above</span> {
-        <span class="ident">position</span>.<span class="ident">y</span> <span class="op">-</span><span class="op">=</span> <span class="ident">expected_size</span>.<span class="ident">y</span>;
+    <span class="kw">if </span>above {
+        position.y -= expected_size.y;
     }
 
-    <span class="ident">position</span> <span class="op">=</span> <span class="ident">position</span>.<span class="ident">at_most</span>(<span class="ident">ctx</span>.<span class="ident">input</span>().<span class="ident">screen_rect</span>().<span class="ident">max</span> <span class="op">-</span> <span class="ident">expected_size</span>);
+    position = position.at_most(ctx.input().screen_rect().max - expected_size);
 
-    <span class="comment">// check if we intersect the avoid_rect</span>
-    {
-        <span class="kw">let</span> <span class="ident">new_rect</span> <span class="op">=</span> <span class="ident">Rect::from_min_size</span>(<span class="ident">position</span>, <span class="ident">expected_size</span>);
+    <span class="comment">// check if we intersect the avoid_rect
+    </span>{
+        <span class="kw">let </span>new_rect = Rect::from_min_size(position, expected_size);
 
-        <span class="comment">// Note: We do not use Rect::intersects() since it returns true even if the rects only touch.</span>
-        <span class="kw">if</span> <span class="ident">new_rect</span>.<span class="ident">shrink</span>(<span class="number">1.0</span>).<span class="ident">intersects</span>(<span class="ident">avoid_rect</span>) {
-            <span class="kw">if</span> <span class="ident">above</span> {
-                <span class="comment">// place below instead:</span>
-                <span class="ident">position</span> <span class="op">=</span> <span class="ident">avoid_rect</span>.<span class="ident">left_bottom</span>();
-            } <span class="kw">else</span> {
-                <span class="comment">// place above instead:</span>
-                <span class="ident">position</span> <span class="op">=</span> <span class="ident">Pos2::new</span>(<span class="ident">position</span>.<span class="ident">x</span>, <span class="ident">avoid_rect</span>.<span class="ident">min</span>.<span class="ident">y</span> <span class="op">-</span> <span class="ident">expected_size</span>.<span class="ident">y</span>);
+        <span class="comment">// Note: We do not use Rect::intersects() since it returns true even if the rects only touch.
+        </span><span class="kw">if </span>new_rect.shrink(<span class="number">1.0</span>).intersects(avoid_rect) {
+            <span class="kw">if </span>above {
+                <span class="comment">// place below instead:
+                </span>position = avoid_rect.left_bottom();
+            } <span class="kw">else </span>{
+                <span class="comment">// place above instead:
+                </span>position = Pos2::new(position.x, avoid_rect.min.y - expected_size.y);
             }
         }
     }
 
-    <span class="kw">let</span> <span class="ident">position</span> <span class="op">=</span> <span class="ident">position</span>.<span class="ident">at_least</span>(<span class="ident">ctx</span>.<span class="ident">input</span>().<span class="ident">screen_rect</span>().<span class="ident">min</span>);
+    <span class="kw">let </span>position = position.at_least(ctx.input().screen_rect().min);
 
-    <span class="kw">let</span> <span class="ident">InnerResponse</span> { <span class="ident">inner</span>, <span class="ident">response</span> } <span class="op">=</span> <span class="ident">show_tooltip_area_dyn</span>(<span class="ident">ctx</span>, <span class="ident">id</span>, <span class="ident">position</span>, <span class="ident">add_contents</span>);
+    <span class="kw">let </span>InnerResponse { inner, response } = show_tooltip_area_dyn(ctx, id, position, add_contents);
 
-    <span class="ident">state</span>.<span class="ident">set_tooltip_size</span>(<span class="ident">id</span>, <span class="ident">count</span>, <span class="ident">response</span>.<span class="ident">rect</span>.<span class="ident">size</span>());
-    <span class="ident">state</span>.<span class="ident">store</span>(<span class="ident">ctx</span>);
+    state.set_tooltip_size(id, count, response.rect.size());
+    state.store(ctx);
 
-    <span class="ident">ctx</span>.<span class="ident">frame_state</span>().<span class="ident">tooltip_rect</span> <span class="op">=</span> <span class="prelude-val">Some</span>((<span class="ident">id</span>, <span class="ident">tooltip_rect</span>.<span class="ident">union</span>(<span class="ident">response</span>.<span class="ident">rect</span>), <span class="ident">count</span> <span class="op">+</span> <span class="number">1</span>));
-    <span class="prelude-val">Some</span>(<span class="ident">inner</span>)
+    ctx.frame_state().tooltip_rect = <span class="prelude-val">Some</span>((id, tooltip_rect.union(response.rect), count + <span class="number">1</span>));
+    <span class="prelude-val">Some</span>(inner)
 }
 
-<span class="doccomment">/// Show some text at the current pointer position (if any).</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// Most of the time it is easier to use [`Response::on_hover_text`].</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// See also [`show_tooltip`].</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// Returns `None` if the tooltip could not be placed.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// ```</span>
-<span class="doccomment">/// # egui::__run_test_ui(|ui| {</span>
-<span class="doccomment">/// if ui.ui_contains_pointer() {</span>
-<span class="doccomment">///     egui::show_tooltip_text(ui.ctx(), egui::Id::new(&quot;my_tooltip&quot;), &quot;Helpful text&quot;);</span>
-<span class="doccomment">/// }</span>
-<span class="doccomment">/// # });</span>
-<span class="doccomment">/// ```</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">show_tooltip_text</span>(<span class="ident">ctx</span>: <span class="kw-2">&amp;</span><span class="ident">CtxRef</span>, <span class="ident">id</span>: <span class="ident">Id</span>, <span class="ident">text</span>: <span class="kw">impl</span> <span class="ident">Into</span><span class="op">&lt;</span><span class="ident">WidgetText</span><span class="op">&gt;</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
-    <span class="ident">show_tooltip</span>(<span class="ident">ctx</span>, <span class="ident">id</span>, <span class="op">|</span><span class="ident">ui</span><span class="op">|</span> {
-        <span class="ident"><span class="kw">crate</span>::widgets::Label::new</span>(<span class="ident">text</span>).<span class="ident">ui</span>(<span class="ident">ui</span>);
+<span class="doccomment">/// Show some text at the current pointer position (if any).
+///
+/// Most of the time it is easier to use [`Response::on_hover_text`].
+///
+/// See also [`show_tooltip`].
+///
+/// Returns `None` if the tooltip could not be placed.
+///
+/// ```
+/// # egui::__run_test_ui(|ui| {
+/// if ui.ui_contains_pointer() {
+///     egui::show_tooltip_text(ui.ctx(), egui::Id::new(&quot;my_tooltip&quot;), &quot;Helpful text&quot;);
+/// }
+/// # });
+/// ```
+</span><span class="kw">pub fn </span>show_tooltip_text(ctx: <span class="kw-2">&amp;</span>CtxRef, id: Id, text: <span class="kw">impl </span>Into&lt;WidgetText&gt;) -&gt; <span class="prelude-ty">Option</span>&lt;()&gt; {
+    show_tooltip(ctx, id, |ui| {
+        <span class="kw">crate</span>::widgets::Label::new(text).ui(ui);
     })
 }
 
-<span class="doccomment">/// Show a pop-over window.</span>
-<span class="kw">fn</span> <span class="ident">show_tooltip_area_dyn</span><span class="op">&lt;</span><span class="lifetime">&#39;c</span>, <span class="ident">R</span><span class="op">&gt;</span>(
-    <span class="ident">ctx</span>: <span class="kw-2">&amp;</span><span class="ident">CtxRef</span>,
-    <span class="ident">id</span>: <span class="ident">Id</span>,
-    <span class="ident">window_pos</span>: <span class="ident">Pos2</span>,
-    <span class="ident">add_contents</span>: <span class="ident">Box</span><span class="op">&lt;</span><span class="kw">dyn</span> <span class="ident">FnOnce</span>(<span class="kw-2">&amp;mut</span> <span class="ident">Ui</span>) -&gt; <span class="ident">R</span> <span class="op">+</span> <span class="lifetime">&#39;c</span><span class="op">&gt;</span>,
-) -&gt; <span class="ident">InnerResponse</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span> {
-    <span class="kw">use</span> <span class="ident">containers</span>::<span class="kw-2">*</span>;
-    <span class="ident">Area::new</span>(<span class="ident">id</span>)
-        .<span class="ident">order</span>(<span class="ident">Order::Tooltip</span>)
-        .<span class="ident">fixed_pos</span>(<span class="ident">window_pos</span>)
-        .<span class="ident">interactable</span>(<span class="bool-val">false</span>)
-        .<span class="ident">drag_bounds</span>(<span class="ident">Rect::EVERYTHING</span>) <span class="comment">// disable clip rect</span>
-        .<span class="ident">show</span>(<span class="ident">ctx</span>, <span class="op">|</span><span class="ident">ui</span><span class="op">|</span> {
-            <span class="ident">Frame::popup</span>(<span class="kw-2">&amp;</span><span class="ident">ctx</span>.<span class="ident">style</span>())
-                .<span class="ident">show</span>(<span class="ident">ui</span>, <span class="op">|</span><span class="ident">ui</span><span class="op">|</span> {
-                    <span class="ident">ui</span>.<span class="ident">set_max_width</span>(<span class="ident">ui</span>.<span class="ident">spacing</span>().<span class="ident">tooltip_width</span>);
-                    <span class="ident">add_contents</span>(<span class="ident">ui</span>)
+<span class="doccomment">/// Show a pop-over window.
+</span><span class="kw">fn </span>show_tooltip_area_dyn&lt;<span class="lifetime">&#39;c</span>, R&gt;(
+    ctx: <span class="kw-2">&amp;</span>CtxRef,
+    id: Id,
+    window_pos: Pos2,
+    add_contents: Box&lt;<span class="kw">dyn </span>FnOnce(<span class="kw-2">&amp;mut </span>Ui) -&gt; R + <span class="lifetime">&#39;c</span>&gt;,
+) -&gt; InnerResponse&lt;R&gt; {
+    <span class="kw">use </span>containers::<span class="kw-2">*</span>;
+    Area::new(id)
+        .order(Order::Tooltip)
+        .fixed_pos(window_pos)
+        .interactable(<span class="bool-val">false</span>)
+        .drag_bounds(Rect::EVERYTHING) <span class="comment">// disable clip rect
+        </span>.show(ctx, |ui| {
+            Frame::popup(<span class="kw-2">&amp;</span>ctx.style())
+                .show(ui, |ui| {
+                    ui.set_max_width(ui.spacing().tooltip_width);
+                    add_contents(ui)
                 })
-                .<span class="ident">inner</span>
+                .inner
         })
 }
 
-<span class="doccomment">/// Shows a popup below another widget.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// Useful for drop-down menus (combo boxes) or suggestion menus under text fields.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// You must open the popup with [`Memory::open_popup`] or  [`Memory::toggle_popup`].</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// Returns `None` if the popup is not open.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// ```</span>
-<span class="doccomment">/// # egui::__run_test_ui(|ui| {</span>
-<span class="doccomment">/// let response = ui.button(&quot;Open popup&quot;);</span>
-<span class="doccomment">/// let popup_id = ui.make_persistent_id(&quot;my_unique_id&quot;);</span>
-<span class="doccomment">/// if response.clicked() {</span>
-<span class="doccomment">///     ui.memory().toggle_popup(popup_id);</span>
-<span class="doccomment">/// }</span>
-<span class="doccomment">/// egui::popup::popup_below_widget(ui, popup_id, &amp;response, |ui| {</span>
-<span class="doccomment">///     ui.set_min_width(200.0); // if you want to control the size</span>
-<span class="doccomment">///     ui.label(&quot;Some more info, or things you can select:&quot;);</span>
-<span class="doccomment">///     ui.label(&quot;…&quot;);</span>
-<span class="doccomment">/// });</span>
-<span class="doccomment">/// # });</span>
-<span class="doccomment">/// ```</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">popup_below_widget</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span>(
-    <span class="ident">ui</span>: <span class="kw-2">&amp;</span><span class="ident">Ui</span>,
-    <span class="ident">popup_id</span>: <span class="ident">Id</span>,
-    <span class="ident">widget_response</span>: <span class="kw-2">&amp;</span><span class="ident">Response</span>,
-    <span class="ident">add_contents</span>: <span class="kw">impl</span> <span class="ident">FnOnce</span>(<span class="kw-2">&amp;mut</span> <span class="ident">Ui</span>) -&gt; <span class="ident">R</span>,
-) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span> {
-    <span class="kw">if</span> <span class="ident">ui</span>.<span class="ident">memory</span>().<span class="ident">is_popup_open</span>(<span class="ident">popup_id</span>) {
-        <span class="kw">let</span> <span class="ident">inner</span> <span class="op">=</span> <span class="ident">Area::new</span>(<span class="ident">popup_id</span>)
-            .<span class="ident">order</span>(<span class="ident">Order::Foreground</span>)
-            .<span class="ident">fixed_pos</span>(<span class="ident">widget_response</span>.<span class="ident">rect</span>.<span class="ident">left_bottom</span>())
-            .<span class="ident">show</span>(<span class="ident">ui</span>.<span class="ident">ctx</span>(), <span class="op">|</span><span class="ident">ui</span><span class="op">|</span> {
-                <span class="comment">// Note: we use a separate clip-rect for this area, so the popup can be outside the parent.</span>
-                <span class="comment">// See https://github.com/emilk/egui/issues/825</span>
-                <span class="kw">let</span> <span class="ident">frame</span> <span class="op">=</span> <span class="ident">Frame::popup</span>(<span class="ident">ui</span>.<span class="ident">style</span>());
-                <span class="kw">let</span> <span class="ident">frame_margin</span> <span class="op">=</span> <span class="ident">frame</span>.<span class="ident">margin</span>;
-                <span class="ident">frame</span>
-                    .<span class="ident">show</span>(<span class="ident">ui</span>, <span class="op">|</span><span class="ident">ui</span><span class="op">|</span> {
-                        <span class="ident">ui</span>.<span class="ident">with_layout</span>(<span class="ident">Layout::top_down_justified</span>(<span class="ident">Align::LEFT</span>), <span class="op">|</span><span class="ident">ui</span><span class="op">|</span> {
-                            <span class="ident">ui</span>.<span class="ident">set_width</span>(<span class="ident">widget_response</span>.<span class="ident">rect</span>.<span class="ident">width</span>() <span class="op">-</span> <span class="number">2.0</span> <span class="op">*</span> <span class="ident">frame_margin</span>.<span class="ident">x</span>);
-                            <span class="ident">add_contents</span>(<span class="ident">ui</span>)
+<span class="doccomment">/// Shows a popup below another widget.
+///
+/// Useful for drop-down menus (combo boxes) or suggestion menus under text fields.
+///
+/// You must open the popup with [`Memory::open_popup`] or  [`Memory::toggle_popup`].
+///
+/// Returns `None` if the popup is not open.
+///
+/// ```
+/// # egui::__run_test_ui(|ui| {
+/// let response = ui.button(&quot;Open popup&quot;);
+/// let popup_id = ui.make_persistent_id(&quot;my_unique_id&quot;);
+/// if response.clicked() {
+///     ui.memory().toggle_popup(popup_id);
+/// }
+/// egui::popup::popup_below_widget(ui, popup_id, &amp;response, |ui| {
+///     ui.set_min_width(200.0); // if you want to control the size
+///     ui.label(&quot;Some more info, or things you can select:&quot;);
+///     ui.label(&quot;…&quot;);
+/// });
+/// # });
+/// ```
+</span><span class="kw">pub fn </span>popup_below_widget&lt;R&gt;(
+    ui: <span class="kw-2">&amp;</span>Ui,
+    popup_id: Id,
+    widget_response: <span class="kw-2">&amp;</span>Response,
+    add_contents: <span class="kw">impl </span>FnOnce(<span class="kw-2">&amp;mut </span>Ui) -&gt; R,
+) -&gt; <span class="prelude-ty">Option</span>&lt;R&gt; {
+    <span class="kw">if </span>ui.memory().is_popup_open(popup_id) {
+        <span class="kw">let </span>inner = Area::new(popup_id)
+            .order(Order::Foreground)
+            .fixed_pos(widget_response.rect.left_bottom())
+            .show(ui.ctx(), |ui| {
+                <span class="comment">// Note: we use a separate clip-rect for this area, so the popup can be outside the parent.
+                // See https://github.com/emilk/egui/issues/825
+                </span><span class="kw">let </span>frame = Frame::popup(ui.style());
+                <span class="kw">let </span>frame_margin = frame.margin;
+                frame
+                    .show(ui, |ui| {
+                        ui.with_layout(Layout::top_down_justified(Align::LEFT), |ui| {
+                            ui.set_width(widget_response.rect.width() - <span class="number">2.0 </span>* frame_margin.x);
+                            add_contents(ui)
                         })
-                        .<span class="ident">inner</span>
+                        .inner
                     })
-                    .<span class="ident">inner</span>
+                    .inner
             })
-            .<span class="ident">inner</span>;
+            .inner;
 
-        <span class="kw">if</span> <span class="ident">ui</span>.<span class="ident">input</span>().<span class="ident">key_pressed</span>(<span class="ident">Key::Escape</span>) <span class="op">|</span><span class="op">|</span> <span class="ident">widget_response</span>.<span class="ident">clicked_elsewhere</span>() {
-            <span class="ident">ui</span>.<span class="ident">memory</span>().<span class="ident">close_popup</span>();
+        <span class="kw">if </span>ui.input().key_pressed(Key::Escape) || widget_response.clicked_elsewhere() {
+            ui.memory().close_popup();
         }
-        <span class="prelude-val">Some</span>(<span class="ident">inner</span>)
-    } <span class="kw">else</span> {
-        <span class="prelude-val">None</span>
-    }
+        <span class="prelude-val">Some</span>(inner)
+    } <span class="kw">else </span>{
+        <span class="prelude-val">None
+    </span>}
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="egui" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0 (a55dd71d5 2022-09-19)" ></div></body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="egui" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.66.1 (90743e729 2023-01-10)" ></div></body></html>

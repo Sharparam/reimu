@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/epaint-0.16.0/src/texture_atlas.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>texture_atlas.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../epaint/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../epaint/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../epaint/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/epaint-0.16.0/src/texture_atlas.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>texture_atlas.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../normalize.css"><link rel="stylesheet" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../ayu.css" disabled><link rel="stylesheet" href="../../dark.css" disabled><link rel="stylesheet" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><div class="width-limiter"><nav class="sub"><a class="sub-logo-container" href="../../epaint/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -126,133 +126,133 @@
 <span id="126">126</span>
 <span id="127">127</span>
 <span id="128">128</span>
-</pre><pre class="rust"><code><span class="doccomment">/// An 8-bit texture containing font data.</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Default</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">FontImage</span> {
-    <span class="doccomment">/// e.g. a hash of the data. Use this to detect changes!</span>
-    <span class="doccomment">/// If the texture changes, this too will change.</span>
-    <span class="kw">pub</span> <span class="ident">version</span>: <span class="ident">u64</span>,
-    <span class="kw">pub</span> <span class="ident">width</span>: <span class="ident">usize</span>,
-    <span class="kw">pub</span> <span class="ident">height</span>: <span class="ident">usize</span>,
-    <span class="doccomment">/// White color with the given alpha (linear space 0-255).</span>
-    <span class="kw">pub</span> <span class="ident">pixels</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span>,
+</pre><pre class="rust"><code><span class="doccomment">/// An 8-bit texture containing font data.
+</span><span class="attribute">#[derive(Clone, Default)]
+</span><span class="kw">pub struct </span>FontImage {
+    <span class="doccomment">/// e.g. a hash of the data. Use this to detect changes!
+    /// If the texture changes, this too will change.
+    </span><span class="kw">pub </span>version: u64,
+    <span class="kw">pub </span>width: usize,
+    <span class="kw">pub </span>height: usize,
+    <span class="doccomment">/// White color with the given alpha (linear space 0-255).
+    </span><span class="kw">pub </span>pixels: Vec&lt;u8&gt;,
 }
 
-<span class="kw">impl</span> <span class="ident">FontImage</span> {
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">size</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; [<span class="ident">usize</span>; <span class="number">2</span>] {
-        [<span class="self">self</span>.<span class="ident">width</span>, <span class="self">self</span>.<span class="ident">height</span>]
+<span class="kw">impl </span>FontImage {
+    <span class="kw">pub fn </span>size(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; [usize; <span class="number">2</span>] {
+        [<span class="self">self</span>.width, <span class="self">self</span>.height]
     }
 
-    <span class="doccomment">/// Returns the textures as `sRGBA` premultiplied pixels, row by row, top to bottom.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// `gamma` should normally be set to 1.0.</span>
-    <span class="doccomment">/// If you are having problems with egui text looking skinny and pixelated, try</span>
-    <span class="doccomment">/// setting a lower gamma, e.g. `0.5`.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">srgba_pixels</span>(<span class="kw-2">&amp;</span><span class="lifetime">&#39;_</span> <span class="self">self</span>, <span class="ident">gamma</span>: <span class="ident">f32</span>) -&gt; <span class="kw">impl</span> <span class="ident">Iterator</span><span class="op">&lt;</span><span class="ident">Item</span> <span class="op">=</span> <span class="ident"><span class="kw">super</span>::Color32</span><span class="op">&gt;</span> <span class="op">+</span> <span class="lifetime">&#39;_</span> {
-        <span class="kw">use</span> <span class="ident"><span class="kw">super</span>::Color32</span>;
+    <span class="doccomment">/// Returns the textures as `sRGBA` premultiplied pixels, row by row, top to bottom.
+    ///
+    /// `gamma` should normally be set to 1.0.
+    /// If you are having problems with egui text looking skinny and pixelated, try
+    /// setting a lower gamma, e.g. `0.5`.
+    </span><span class="kw">pub fn </span>srgba_pixels(<span class="kw-2">&amp;</span><span class="lifetime">&#39;_ </span><span class="self">self</span>, gamma: f32) -&gt; <span class="kw">impl </span>Iterator&lt;Item = <span class="kw">super</span>::Color32&gt; + <span class="lifetime">&#39;_ </span>{
+        <span class="kw">use </span><span class="kw">super</span>::Color32;
 
-        <span class="kw">let</span> <span class="ident">srgba_from_luminance_lut</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Color32</span><span class="op">&gt;</span> <span class="op">=</span> (<span class="number">0</span>..<span class="op">=</span><span class="number">255</span>)
-            .<span class="ident">map</span>(<span class="op">|</span><span class="ident">a</span><span class="op">|</span> {
-                <span class="kw">let</span> <span class="ident">a</span> <span class="op">=</span> <span class="ident"><span class="kw">super</span>::color::linear_f32_from_linear_u8</span>(<span class="ident">a</span>).<span class="ident">powf</span>(<span class="ident">gamma</span>);
-                <span class="ident"><span class="kw">super</span>::Rgba::from_white_alpha</span>(<span class="ident">a</span>).<span class="ident">into</span>()
+        <span class="kw">let </span>srgba_from_luminance_lut: Vec&lt;Color32&gt; = (<span class="number">0</span>..=<span class="number">255</span>)
+            .map(|a| {
+                <span class="kw">let </span>a = <span class="kw">super</span>::color::linear_f32_from_linear_u8(a).powf(gamma);
+                <span class="kw">super</span>::Rgba::from_white_alpha(a).into()
             })
-            .<span class="ident">collect</span>();
-        <span class="self">self</span>.<span class="ident">pixels</span>
-            .<span class="ident">iter</span>()
-            .<span class="ident">map</span>(<span class="kw">move</span> <span class="op">|</span><span class="kw-2">&amp;</span><span class="ident">l</span><span class="op">|</span> <span class="ident">srgba_from_luminance_lut</span>[<span class="ident">l</span> <span class="kw">as</span> <span class="ident">usize</span>])
+            .collect();
+        <span class="self">self</span>.pixels
+            .iter()
+            .map(<span class="kw">move </span>|<span class="kw-2">&amp;</span>l| srgba_from_luminance_lut[l <span class="kw">as </span>usize])
     }
 }
 
-<span class="kw">impl</span> <span class="ident">std::ops::Index</span><span class="op">&lt;</span>(<span class="ident">usize</span>, <span class="ident">usize</span>)<span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">FontImage</span> {
-    <span class="kw">type</span> <span class="ident">Output</span> <span class="op">=</span> <span class="ident">u8</span>;
+<span class="kw">impl </span>std::ops::Index&lt;(usize, usize)&gt; <span class="kw">for </span>FontImage {
+    <span class="kw">type </span>Output = u8;
 
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">index</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, (<span class="ident">x</span>, <span class="ident">y</span>): (<span class="ident">usize</span>, <span class="ident">usize</span>)) -&gt; <span class="kw-2">&amp;</span><span class="ident">u8</span> {
-        <span class="macro">assert!</span>(<span class="ident">x</span> <span class="op">&lt;</span> <span class="self">self</span>.<span class="ident">width</span>);
-        <span class="macro">assert!</span>(<span class="ident">y</span> <span class="op">&lt;</span> <span class="self">self</span>.<span class="ident">height</span>);
-        <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">pixels</span>[<span class="ident">y</span> <span class="op">*</span> <span class="self">self</span>.<span class="ident">width</span> <span class="op">+</span> <span class="ident">x</span>]
+    <span class="attribute">#[inline]
+    </span><span class="kw">fn </span>index(<span class="kw-2">&amp;</span><span class="self">self</span>, (x, y): (usize, usize)) -&gt; <span class="kw-2">&amp;</span>u8 {
+        <span class="macro">assert!</span>(x &lt; <span class="self">self</span>.width);
+        <span class="macro">assert!</span>(y &lt; <span class="self">self</span>.height);
+        <span class="kw-2">&amp;</span><span class="self">self</span>.pixels[y * <span class="self">self</span>.width + x]
     }
 }
 
-<span class="kw">impl</span> <span class="ident">std::ops::IndexMut</span><span class="op">&lt;</span>(<span class="ident">usize</span>, <span class="ident">usize</span>)<span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">FontImage</span> {
-    <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">index_mut</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, (<span class="ident">x</span>, <span class="ident">y</span>): (<span class="ident">usize</span>, <span class="ident">usize</span>)) -&gt; <span class="kw-2">&amp;mut</span> <span class="ident">u8</span> {
-        <span class="macro">assert!</span>(<span class="ident">x</span> <span class="op">&lt;</span> <span class="self">self</span>.<span class="ident">width</span>);
-        <span class="macro">assert!</span>(<span class="ident">y</span> <span class="op">&lt;</span> <span class="self">self</span>.<span class="ident">height</span>);
-        <span class="kw-2">&amp;mut</span> <span class="self">self</span>.<span class="ident">pixels</span>[<span class="ident">y</span> <span class="op">*</span> <span class="self">self</span>.<span class="ident">width</span> <span class="op">+</span> <span class="ident">x</span>]
+<span class="kw">impl </span>std::ops::IndexMut&lt;(usize, usize)&gt; <span class="kw">for </span>FontImage {
+    <span class="attribute">#[inline]
+    </span><span class="kw">fn </span>index_mut(<span class="kw-2">&amp;mut </span><span class="self">self</span>, (x, y): (usize, usize)) -&gt; <span class="kw-2">&amp;mut </span>u8 {
+        <span class="macro">assert!</span>(x &lt; <span class="self">self</span>.width);
+        <span class="macro">assert!</span>(y &lt; <span class="self">self</span>.height);
+        <span class="kw-2">&amp;mut </span><span class="self">self</span>.pixels[y * <span class="self">self</span>.width + x]
     }
 }
 
-<span class="doccomment">/// Contains font data in an atlas, where each character occupied a small rectangle.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// More characters can be added, possibly expanding the texture.</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Default</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">TextureAtlas</span> {
-    <span class="ident">image</span>: <span class="ident">FontImage</span>,
+<span class="doccomment">/// Contains font data in an atlas, where each character occupied a small rectangle.
+///
+/// More characters can be added, possibly expanding the texture.
+</span><span class="attribute">#[derive(Clone, Default)]
+</span><span class="kw">pub struct </span>TextureAtlas {
+    image: FontImage,
 
-    <span class="doccomment">/// Used for when allocating new rectangles.</span>
-    <span class="ident">cursor</span>: (<span class="ident">usize</span>, <span class="ident">usize</span>),
-    <span class="ident">row_height</span>: <span class="ident">usize</span>,
+    <span class="doccomment">/// Used for when allocating new rectangles.
+    </span>cursor: (usize, usize),
+    row_height: usize,
 }
 
-<span class="kw">impl</span> <span class="ident">TextureAtlas</span> {
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">width</span>: <span class="ident">usize</span>, <span class="ident">height</span>: <span class="ident">usize</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">Self</span> {
-            <span class="ident">image</span>: <span class="ident">FontImage</span> {
-                <span class="ident">version</span>: <span class="number">0</span>,
-                <span class="ident">width</span>,
-                <span class="ident">height</span>,
-                <span class="ident">pixels</span>: <span class="macro">vec!</span>[<span class="number">0</span>; <span class="ident">width</span> <span class="op">*</span> <span class="ident">height</span>],
+<span class="kw">impl </span>TextureAtlas {
+    <span class="kw">pub fn </span>new(width: usize, height: usize) -&gt; <span class="self">Self </span>{
+        <span class="self">Self </span>{
+            image: FontImage {
+                version: <span class="number">0</span>,
+                width,
+                height,
+                pixels: <span class="macro">vec!</span>[<span class="number">0</span>; width * height],
             },
-            ..<span class="ident">Default::default</span>()
+            ..Default::default()
         }
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">image</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span><span class="ident">FontImage</span> {
-        <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">image</span>
+    <span class="kw">pub fn </span>image(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span>FontImage {
+        <span class="kw-2">&amp;</span><span class="self">self</span>.image
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">image_mut</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>) -&gt; <span class="kw-2">&amp;mut</span> <span class="ident">FontImage</span> {
-        <span class="self">self</span>.<span class="ident">image</span>.<span class="ident">version</span> <span class="op">+</span><span class="op">=</span> <span class="number">1</span>;
-        <span class="kw-2">&amp;mut</span> <span class="self">self</span>.<span class="ident">image</span>
+    <span class="kw">pub fn </span>image_mut(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;mut </span>FontImage {
+        <span class="self">self</span>.image.version += <span class="number">1</span>;
+        <span class="kw-2">&amp;mut </span><span class="self">self</span>.image
     }
 
-    <span class="doccomment">/// Returns the coordinates of where the rect ended up.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">allocate</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, (<span class="ident">w</span>, <span class="ident">h</span>): (<span class="ident">usize</span>, <span class="ident">usize</span>)) -&gt; (<span class="ident">usize</span>, <span class="ident">usize</span>) {
-        <span class="doccomment">/// On some low-precision GPUs (my old iPad) characters get muddled up</span>
-        <span class="doccomment">/// if we don&#39;t add some empty pixels between the characters.</span>
-        <span class="doccomment">/// On modern high-precision GPUs this is not needed.</span>
-        <span class="kw">const</span> <span class="ident">PADDING</span>: <span class="ident">usize</span> <span class="op">=</span> <span class="number">1</span>;
+    <span class="doccomment">/// Returns the coordinates of where the rect ended up.
+    </span><span class="kw">pub fn </span>allocate(<span class="kw-2">&amp;mut </span><span class="self">self</span>, (w, h): (usize, usize)) -&gt; (usize, usize) {
+        <span class="doccomment">/// On some low-precision GPUs (my old iPad) characters get muddled up
+        /// if we don&#39;t add some empty pixels between the characters.
+        /// On modern high-precision GPUs this is not needed.
+        </span><span class="kw">const </span>PADDING: usize = <span class="number">1</span>;
 
         <span class="macro">assert!</span>(
-            <span class="ident">w</span> <span class="op">&lt;</span><span class="op">=</span> <span class="self">self</span>.<span class="ident">image</span>.<span class="ident">width</span>,
+            w &lt;= <span class="self">self</span>.image.width,
             <span class="string">&quot;Tried to allocate a {} wide glyph in a {} wide texture atlas&quot;</span>,
-            <span class="ident">w</span>,
-            <span class="self">self</span>.<span class="ident">image</span>.<span class="ident">width</span>
+            w,
+            <span class="self">self</span>.image.width
         );
-        <span class="kw">if</span> <span class="self">self</span>.<span class="ident">cursor</span>.<span class="number">0</span> <span class="op">+</span> <span class="ident">w</span> <span class="op">&gt;</span> <span class="self">self</span>.<span class="ident">image</span>.<span class="ident">width</span> {
-            <span class="comment">// New row:</span>
-            <span class="self">self</span>.<span class="ident">cursor</span>.<span class="number">0</span> <span class="op">=</span> <span class="number">0</span>;
-            <span class="self">self</span>.<span class="ident">cursor</span>.<span class="number">1</span> <span class="op">+</span><span class="op">=</span> <span class="self">self</span>.<span class="ident">row_height</span> <span class="op">+</span> <span class="ident">PADDING</span>;
-            <span class="self">self</span>.<span class="ident">row_height</span> <span class="op">=</span> <span class="number">0</span>;
+        <span class="kw">if </span><span class="self">self</span>.cursor.<span class="number">0 </span>+ w &gt; <span class="self">self</span>.image.width {
+            <span class="comment">// New row:
+            </span><span class="self">self</span>.cursor.<span class="number">0 </span>= <span class="number">0</span>;
+            <span class="self">self</span>.cursor.<span class="number">1 </span>+= <span class="self">self</span>.row_height + PADDING;
+            <span class="self">self</span>.row_height = <span class="number">0</span>;
         }
 
-        <span class="self">self</span>.<span class="ident">row_height</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">row_height</span>.<span class="ident">max</span>(<span class="ident">h</span>);
-        <span class="kw">while</span> <span class="self">self</span>.<span class="ident">cursor</span>.<span class="number">1</span> <span class="op">+</span> <span class="self">self</span>.<span class="ident">row_height</span> <span class="op">&gt;</span><span class="op">=</span> <span class="self">self</span>.<span class="ident">image</span>.<span class="ident">height</span> {
-            <span class="self">self</span>.<span class="ident">image</span>.<span class="ident">height</span> <span class="kw-2">*</span><span class="op">=</span> <span class="number">2</span>;
+        <span class="self">self</span>.row_height = <span class="self">self</span>.row_height.max(h);
+        <span class="kw">while </span><span class="self">self</span>.cursor.<span class="number">1 </span>+ <span class="self">self</span>.row_height &gt;= <span class="self">self</span>.image.height {
+            <span class="self">self</span>.image.height <span class="kw-2">*</span>= <span class="number">2</span>;
         }
 
-        <span class="kw">if</span> <span class="self">self</span>.<span class="ident">image</span>.<span class="ident">width</span> <span class="op">*</span> <span class="self">self</span>.<span class="ident">image</span>.<span class="ident">height</span> <span class="op">&gt;</span> <span class="self">self</span>.<span class="ident">image</span>.<span class="ident">pixels</span>.<span class="ident">len</span>() {
-            <span class="self">self</span>.<span class="ident">image</span>
-                .<span class="ident">pixels</span>
-                .<span class="ident">resize</span>(<span class="self">self</span>.<span class="ident">image</span>.<span class="ident">width</span> <span class="op">*</span> <span class="self">self</span>.<span class="ident">image</span>.<span class="ident">height</span>, <span class="number">0</span>);
+        <span class="kw">if </span><span class="self">self</span>.image.width * <span class="self">self</span>.image.height &gt; <span class="self">self</span>.image.pixels.len() {
+            <span class="self">self</span>.image
+                .pixels
+                .resize(<span class="self">self</span>.image.width * <span class="self">self</span>.image.height, <span class="number">0</span>);
         }
 
-        <span class="kw">let</span> <span class="ident">pos</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">cursor</span>;
-        <span class="self">self</span>.<span class="ident">cursor</span>.<span class="number">0</span> <span class="op">+</span><span class="op">=</span> <span class="ident">w</span> <span class="op">+</span> <span class="ident">PADDING</span>;
-        <span class="self">self</span>.<span class="ident">image</span>.<span class="ident">version</span> <span class="op">+</span><span class="op">=</span> <span class="number">1</span>;
-        (<span class="ident">pos</span>.<span class="number">0</span> <span class="kw">as</span> <span class="ident">usize</span>, <span class="ident">pos</span>.<span class="number">1</span> <span class="kw">as</span> <span class="ident">usize</span>)
+        <span class="kw">let </span>pos = <span class="self">self</span>.cursor;
+        <span class="self">self</span>.cursor.<span class="number">0 </span>+= w + PADDING;
+        <span class="self">self</span>.image.version += <span class="number">1</span>;
+        (pos.<span class="number">0 </span><span class="kw">as </span>usize, pos.<span class="number">1 </span><span class="kw">as </span>usize)
     }
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="epaint" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0 (a55dd71d5 2022-09-19)" ></div></body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="epaint" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.66.1 (90743e729 2023-01-10)" ></div></body></html>

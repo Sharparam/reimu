@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/egui-0.16.1/src/widgets/plot/transform.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>transform.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../../storage.js"></script><script defer src="../../../../source-script.js"></script><script defer src="../../../../source-files.js"></script><script defer src="../../../../main.js"></script><noscript><link rel="stylesheet" href="../../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../../../egui/index.html"><div class="logo-container"><img class="rust-logo" src="../../../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../../../egui/index.html"><div class="logo-container"><img class="rust-logo" src="../../../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../../../egui/index.html"><img class="rust-logo" src="../../../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/egui-0.16.1/src/widgets/plot/transform.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>transform.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../../../normalize.css"><link rel="stylesheet" href="../../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../../../ayu.css" disabled><link rel="stylesheet" href="../../../../dark.css" disabled><link rel="stylesheet" href="../../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../../storage.js"></script><script defer src="../../../../source-script.js"></script><script defer src="../../../../source-files.js"></script><script defer src="../../../../main.js"></script><noscript><link rel="stylesheet" href="../../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><div class="width-limiter"><nav class="sub"><a class="sub-logo-container" href="../../../../egui/index.html"><img class="rust-logo" src="../../../../rust-logo.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../../wheel.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -285,292 +285,292 @@
 <span id="285">285</span>
 <span id="286">286</span>
 <span id="287">287</span>
-</pre><pre class="rust"><code><span class="kw">use</span> <span class="ident">std::ops::RangeInclusive</span>;
+</pre><pre class="rust"><code><span class="kw">use </span>std::ops::RangeInclusive;
 
-<span class="kw">use</span> <span class="ident"><span class="kw">super</span>::items::Value</span>;
-<span class="kw">use</span> <span class="kw">crate</span>::<span class="kw-2">*</span>;
+<span class="kw">use </span><span class="kw">super</span>::items::Value;
+<span class="kw">use crate</span>::<span class="kw-2">*</span>;
 
-<span class="doccomment">/// 2D bounding box of f64 precision.</span>
-<span class="doccomment">/// The range of data values we show.</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">PartialEq</span>, <span class="ident">Debug</span>)]</span>
-<span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;serde&quot;</span>, <span class="ident">derive</span>(<span class="ident">serde::Deserialize</span>, <span class="ident">serde::Serialize</span>))]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">PlotBounds</span> {
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">min</span>: [<span class="ident">f64</span>; <span class="number">2</span>],
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">max</span>: [<span class="ident">f64</span>; <span class="number">2</span>],
+<span class="doccomment">/// 2D bounding box of f64 precision.
+/// The range of data values we show.
+</span><span class="attribute">#[derive(Clone, Copy, PartialEq, Debug)]
+#[cfg_attr(feature = <span class="string">&quot;serde&quot;</span>, derive(serde::Deserialize, serde::Serialize))]
+</span><span class="kw">pub struct </span>PlotBounds {
+    <span class="kw">pub</span>(<span class="kw">crate</span>) min: [f64; <span class="number">2</span>],
+    <span class="kw">pub</span>(<span class="kw">crate</span>) max: [f64; <span class="number">2</span>],
 }
 
-<span class="kw">impl</span> <span class="ident">PlotBounds</span> {
-    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">NOTHING</span>: <span class="self">Self</span> <span class="op">=</span> <span class="self">Self</span> {
-        <span class="ident">min</span>: [<span class="ident">f64::INFINITY</span>; <span class="number">2</span>],
-        <span class="ident">max</span>: [<span class="op">-</span><span class="ident">f64::INFINITY</span>; <span class="number">2</span>],
+<span class="kw">impl </span>PlotBounds {
+    <span class="kw">pub const </span>NOTHING: <span class="self">Self </span>= <span class="self">Self </span>{
+        min: [f64::INFINITY; <span class="number">2</span>],
+        max: [-f64::INFINITY; <span class="number">2</span>],
     };
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">min</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; [<span class="ident">f64</span>; <span class="number">2</span>] {
-        <span class="self">self</span>.<span class="ident">min</span>
+    <span class="kw">pub fn </span>min(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; [f64; <span class="number">2</span>] {
+        <span class="self">self</span>.min
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">max</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; [<span class="ident">f64</span>; <span class="number">2</span>] {
-        <span class="self">self</span>.<span class="ident">max</span>
+    <span class="kw">pub fn </span>max(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; [f64; <span class="number">2</span>] {
+        <span class="self">self</span>.max
     }
 
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">new_symmetrical</span>(<span class="ident">half_extent</span>: <span class="ident">f64</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">Self</span> {
-            <span class="ident">min</span>: [<span class="op">-</span><span class="ident">half_extent</span>; <span class="number">2</span>],
-            <span class="ident">max</span>: [<span class="ident">half_extent</span>; <span class="number">2</span>],
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>new_symmetrical(half_extent: f64) -&gt; <span class="self">Self </span>{
+        <span class="self">Self </span>{
+            min: [-half_extent; <span class="number">2</span>],
+            max: [half_extent; <span class="number">2</span>],
         }
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_finite</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span> {
-        <span class="self">self</span>.<span class="ident">min</span>[<span class="number">0</span>].<span class="ident">is_finite</span>()
-            <span class="op">&amp;&amp;</span> <span class="self">self</span>.<span class="ident">min</span>[<span class="number">1</span>].<span class="ident">is_finite</span>()
-            <span class="op">&amp;&amp;</span> <span class="self">self</span>.<span class="ident">max</span>[<span class="number">0</span>].<span class="ident">is_finite</span>()
-            <span class="op">&amp;&amp;</span> <span class="self">self</span>.<span class="ident">max</span>[<span class="number">1</span>].<span class="ident">is_finite</span>()
+    <span class="kw">pub fn </span>is_finite(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; bool {
+        <span class="self">self</span>.min[<span class="number">0</span>].is_finite()
+            &amp;&amp; <span class="self">self</span>.min[<span class="number">1</span>].is_finite()
+            &amp;&amp; <span class="self">self</span>.max[<span class="number">0</span>].is_finite()
+            &amp;&amp; <span class="self">self</span>.max[<span class="number">1</span>].is_finite()
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_valid</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span> {
-        <span class="self">self</span>.<span class="ident">is_finite</span>() <span class="op">&amp;&amp;</span> <span class="self">self</span>.<span class="ident">width</span>() <span class="op">&gt;</span> <span class="number">0.0</span> <span class="op">&amp;&amp;</span> <span class="self">self</span>.<span class="ident">height</span>() <span class="op">&gt;</span> <span class="number">0.0</span>
+    <span class="kw">pub fn </span>is_valid(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; bool {
+        <span class="self">self</span>.is_finite() &amp;&amp; <span class="self">self</span>.width() &gt; <span class="number">0.0 </span>&amp;&amp; <span class="self">self</span>.height() &gt; <span class="number">0.0
+    </span>}
+
+    <span class="kw">pub fn </span>width(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; f64 {
+        <span class="self">self</span>.max[<span class="number">0</span>] - <span class="self">self</span>.min[<span class="number">0</span>]
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">width</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">f64</span> {
-        <span class="self">self</span>.<span class="ident">max</span>[<span class="number">0</span>] <span class="op">-</span> <span class="self">self</span>.<span class="ident">min</span>[<span class="number">0</span>]
+    <span class="kw">pub fn </span>height(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; f64 {
+        <span class="self">self</span>.max[<span class="number">1</span>] - <span class="self">self</span>.min[<span class="number">1</span>]
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">height</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">f64</span> {
-        <span class="self">self</span>.<span class="ident">max</span>[<span class="number">1</span>] <span class="op">-</span> <span class="self">self</span>.<span class="ident">min</span>[<span class="number">1</span>]
-    }
-
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">center</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">Value</span> {
-        <span class="ident">Value</span> {
-            <span class="ident">x</span>: (<span class="self">self</span>.<span class="ident">min</span>[<span class="number">0</span>] <span class="op">+</span> <span class="self">self</span>.<span class="ident">max</span>[<span class="number">0</span>]) <span class="op">/</span> <span class="number">2.0</span>,
-            <span class="ident">y</span>: (<span class="self">self</span>.<span class="ident">min</span>[<span class="number">1</span>] <span class="op">+</span> <span class="self">self</span>.<span class="ident">max</span>[<span class="number">1</span>]) <span class="op">/</span> <span class="number">2.0</span>,
+    <span class="kw">pub fn </span>center(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; Value {
+        Value {
+            x: (<span class="self">self</span>.min[<span class="number">0</span>] + <span class="self">self</span>.max[<span class="number">0</span>]) / <span class="number">2.0</span>,
+            y: (<span class="self">self</span>.min[<span class="number">1</span>] + <span class="self">self</span>.max[<span class="number">1</span>]) / <span class="number">2.0</span>,
         }
     }
 
-    <span class="doccomment">/// Expand to include the given (x,y) value</span>
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">extend_with</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">value</span>: <span class="kw-2">&amp;</span><span class="ident">Value</span>) {
-        <span class="self">self</span>.<span class="ident">extend_with_x</span>(<span class="ident">value</span>.<span class="ident">x</span>);
-        <span class="self">self</span>.<span class="ident">extend_with_y</span>(<span class="ident">value</span>.<span class="ident">y</span>);
+    <span class="doccomment">/// Expand to include the given (x,y) value
+    </span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>extend_with(<span class="kw-2">&amp;mut </span><span class="self">self</span>, value: <span class="kw-2">&amp;</span>Value) {
+        <span class="self">self</span>.extend_with_x(value.x);
+        <span class="self">self</span>.extend_with_y(value.y);
     }
 
-    <span class="doccomment">/// Expand to include the given x coordinate</span>
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">extend_with_x</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">x</span>: <span class="ident">f64</span>) {
-        <span class="self">self</span>.<span class="ident">min</span>[<span class="number">0</span>] <span class="op">=</span> <span class="self">self</span>.<span class="ident">min</span>[<span class="number">0</span>].<span class="ident">min</span>(<span class="ident">x</span>);
-        <span class="self">self</span>.<span class="ident">max</span>[<span class="number">0</span>] <span class="op">=</span> <span class="self">self</span>.<span class="ident">max</span>[<span class="number">0</span>].<span class="ident">max</span>(<span class="ident">x</span>);
+    <span class="doccomment">/// Expand to include the given x coordinate
+    </span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>extend_with_x(<span class="kw-2">&amp;mut </span><span class="self">self</span>, x: f64) {
+        <span class="self">self</span>.min[<span class="number">0</span>] = <span class="self">self</span>.min[<span class="number">0</span>].min(x);
+        <span class="self">self</span>.max[<span class="number">0</span>] = <span class="self">self</span>.max[<span class="number">0</span>].max(x);
     }
 
-    <span class="doccomment">/// Expand to include the given y coordinate</span>
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">extend_with_y</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">y</span>: <span class="ident">f64</span>) {
-        <span class="self">self</span>.<span class="ident">min</span>[<span class="number">1</span>] <span class="op">=</span> <span class="self">self</span>.<span class="ident">min</span>[<span class="number">1</span>].<span class="ident">min</span>(<span class="ident">y</span>);
-        <span class="self">self</span>.<span class="ident">max</span>[<span class="number">1</span>] <span class="op">=</span> <span class="self">self</span>.<span class="ident">max</span>[<span class="number">1</span>].<span class="ident">max</span>(<span class="ident">y</span>);
+    <span class="doccomment">/// Expand to include the given y coordinate
+    </span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>extend_with_y(<span class="kw-2">&amp;mut </span><span class="self">self</span>, y: f64) {
+        <span class="self">self</span>.min[<span class="number">1</span>] = <span class="self">self</span>.min[<span class="number">1</span>].min(y);
+        <span class="self">self</span>.max[<span class="number">1</span>] = <span class="self">self</span>.max[<span class="number">1</span>].max(y);
     }
 
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">expand_x</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">pad</span>: <span class="ident">f64</span>) {
-        <span class="self">self</span>.<span class="ident">min</span>[<span class="number">0</span>] <span class="op">-</span><span class="op">=</span> <span class="ident">pad</span>;
-        <span class="self">self</span>.<span class="ident">max</span>[<span class="number">0</span>] <span class="op">+</span><span class="op">=</span> <span class="ident">pad</span>;
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>expand_x(<span class="kw-2">&amp;mut </span><span class="self">self</span>, pad: f64) {
+        <span class="self">self</span>.min[<span class="number">0</span>] -= pad;
+        <span class="self">self</span>.max[<span class="number">0</span>] += pad;
     }
 
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">expand_y</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">pad</span>: <span class="ident">f64</span>) {
-        <span class="self">self</span>.<span class="ident">min</span>[<span class="number">1</span>] <span class="op">-</span><span class="op">=</span> <span class="ident">pad</span>;
-        <span class="self">self</span>.<span class="ident">max</span>[<span class="number">1</span>] <span class="op">+</span><span class="op">=</span> <span class="ident">pad</span>;
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>expand_y(<span class="kw-2">&amp;mut </span><span class="self">self</span>, pad: f64) {
+        <span class="self">self</span>.min[<span class="number">1</span>] -= pad;
+        <span class="self">self</span>.max[<span class="number">1</span>] += pad;
     }
 
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">merge</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">other</span>: <span class="kw-2">&amp;</span><span class="ident">PlotBounds</span>) {
-        <span class="self">self</span>.<span class="ident">min</span>[<span class="number">0</span>] <span class="op">=</span> <span class="self">self</span>.<span class="ident">min</span>[<span class="number">0</span>].<span class="ident">min</span>(<span class="ident">other</span>.<span class="ident">min</span>[<span class="number">0</span>]);
-        <span class="self">self</span>.<span class="ident">min</span>[<span class="number">1</span>] <span class="op">=</span> <span class="self">self</span>.<span class="ident">min</span>[<span class="number">1</span>].<span class="ident">min</span>(<span class="ident">other</span>.<span class="ident">min</span>[<span class="number">1</span>]);
-        <span class="self">self</span>.<span class="ident">max</span>[<span class="number">0</span>] <span class="op">=</span> <span class="self">self</span>.<span class="ident">max</span>[<span class="number">0</span>].<span class="ident">max</span>(<span class="ident">other</span>.<span class="ident">max</span>[<span class="number">0</span>]);
-        <span class="self">self</span>.<span class="ident">max</span>[<span class="number">1</span>] <span class="op">=</span> <span class="self">self</span>.<span class="ident">max</span>[<span class="number">1</span>].<span class="ident">max</span>(<span class="ident">other</span>.<span class="ident">max</span>[<span class="number">1</span>]);
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>merge(<span class="kw-2">&amp;mut </span><span class="self">self</span>, other: <span class="kw-2">&amp;</span>PlotBounds) {
+        <span class="self">self</span>.min[<span class="number">0</span>] = <span class="self">self</span>.min[<span class="number">0</span>].min(other.min[<span class="number">0</span>]);
+        <span class="self">self</span>.min[<span class="number">1</span>] = <span class="self">self</span>.min[<span class="number">1</span>].min(other.min[<span class="number">1</span>]);
+        <span class="self">self</span>.max[<span class="number">0</span>] = <span class="self">self</span>.max[<span class="number">0</span>].max(other.max[<span class="number">0</span>]);
+        <span class="self">self</span>.max[<span class="number">1</span>] = <span class="self">self</span>.max[<span class="number">1</span>].max(other.max[<span class="number">1</span>]);
     }
 
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">translate_x</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">delta</span>: <span class="ident">f64</span>) {
-        <span class="self">self</span>.<span class="ident">min</span>[<span class="number">0</span>] <span class="op">+</span><span class="op">=</span> <span class="ident">delta</span>;
-        <span class="self">self</span>.<span class="ident">max</span>[<span class="number">0</span>] <span class="op">+</span><span class="op">=</span> <span class="ident">delta</span>;
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>translate_x(<span class="kw-2">&amp;mut </span><span class="self">self</span>, delta: f64) {
+        <span class="self">self</span>.min[<span class="number">0</span>] += delta;
+        <span class="self">self</span>.max[<span class="number">0</span>] += delta;
     }
 
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">translate_y</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">delta</span>: <span class="ident">f64</span>) {
-        <span class="self">self</span>.<span class="ident">min</span>[<span class="number">1</span>] <span class="op">+</span><span class="op">=</span> <span class="ident">delta</span>;
-        <span class="self">self</span>.<span class="ident">max</span>[<span class="number">1</span>] <span class="op">+</span><span class="op">=</span> <span class="ident">delta</span>;
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>translate_y(<span class="kw-2">&amp;mut </span><span class="self">self</span>, delta: f64) {
+        <span class="self">self</span>.min[<span class="number">1</span>] += delta;
+        <span class="self">self</span>.max[<span class="number">1</span>] += delta;
     }
 
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">translate</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">delta</span>: <span class="ident">Vec2</span>) {
-        <span class="self">self</span>.<span class="ident">translate_x</span>(<span class="ident">delta</span>.<span class="ident">x</span> <span class="kw">as</span> <span class="ident">f64</span>);
-        <span class="self">self</span>.<span class="ident">translate_y</span>(<span class="ident">delta</span>.<span class="ident">y</span> <span class="kw">as</span> <span class="ident">f64</span>);
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>translate(<span class="kw-2">&amp;mut </span><span class="self">self</span>, delta: Vec2) {
+        <span class="self">self</span>.translate_x(delta.x <span class="kw">as </span>f64);
+        <span class="self">self</span>.translate_y(delta.y <span class="kw">as </span>f64);
     }
 
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">add_relative_margin</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">margin_fraction</span>: <span class="ident">Vec2</span>) {
-        <span class="kw">let</span> <span class="ident">width</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">width</span>().<span class="ident">max</span>(<span class="number">0.0</span>);
-        <span class="kw">let</span> <span class="ident">height</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">height</span>().<span class="ident">max</span>(<span class="number">0.0</span>);
-        <span class="self">self</span>.<span class="ident">expand_x</span>(<span class="ident">margin_fraction</span>.<span class="ident">x</span> <span class="kw">as</span> <span class="ident">f64</span> <span class="op">*</span> <span class="ident">width</span>);
-        <span class="self">self</span>.<span class="ident">expand_y</span>(<span class="ident">margin_fraction</span>.<span class="ident">y</span> <span class="kw">as</span> <span class="ident">f64</span> <span class="op">*</span> <span class="ident">height</span>);
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>add_relative_margin(<span class="kw-2">&amp;mut </span><span class="self">self</span>, margin_fraction: Vec2) {
+        <span class="kw">let </span>width = <span class="self">self</span>.width().max(<span class="number">0.0</span>);
+        <span class="kw">let </span>height = <span class="self">self</span>.height().max(<span class="number">0.0</span>);
+        <span class="self">self</span>.expand_x(margin_fraction.x <span class="kw">as </span>f64 * width);
+        <span class="self">self</span>.expand_y(margin_fraction.y <span class="kw">as </span>f64 * height);
     }
 
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">range_x</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">RangeInclusive</span><span class="op">&lt;</span><span class="ident">f64</span><span class="op">&gt;</span> {
-        <span class="self">self</span>.<span class="ident">min</span>[<span class="number">0</span>]..<span class="op">=</span><span class="self">self</span>.<span class="ident">max</span>[<span class="number">0</span>]
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>range_x(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; RangeInclusive&lt;f64&gt; {
+        <span class="self">self</span>.min[<span class="number">0</span>]..=<span class="self">self</span>.max[<span class="number">0</span>]
     }
 
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">make_x_symmetrical</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>) {
-        <span class="kw">let</span> <span class="ident">x_abs</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">min</span>[<span class="number">0</span>].<span class="ident">abs</span>().<span class="ident">max</span>(<span class="self">self</span>.<span class="ident">max</span>[<span class="number">0</span>].<span class="ident">abs</span>());
-        <span class="self">self</span>.<span class="ident">min</span>[<span class="number">0</span>] <span class="op">=</span> <span class="op">-</span><span class="ident">x_abs</span>;
-        <span class="self">self</span>.<span class="ident">max</span>[<span class="number">0</span>] <span class="op">=</span> <span class="ident">x_abs</span>;
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>make_x_symmetrical(<span class="kw-2">&amp;mut </span><span class="self">self</span>) {
+        <span class="kw">let </span>x_abs = <span class="self">self</span>.min[<span class="number">0</span>].abs().max(<span class="self">self</span>.max[<span class="number">0</span>].abs());
+        <span class="self">self</span>.min[<span class="number">0</span>] = -x_abs;
+        <span class="self">self</span>.max[<span class="number">0</span>] = x_abs;
     }
 
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">make_y_symmetrical</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>) {
-        <span class="kw">let</span> <span class="ident">y_abs</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">min</span>[<span class="number">1</span>].<span class="ident">abs</span>().<span class="ident">max</span>(<span class="self">self</span>.<span class="ident">max</span>[<span class="number">1</span>].<span class="ident">abs</span>());
-        <span class="self">self</span>.<span class="ident">min</span>[<span class="number">1</span>] <span class="op">=</span> <span class="op">-</span><span class="ident">y_abs</span>;
-        <span class="self">self</span>.<span class="ident">max</span>[<span class="number">1</span>] <span class="op">=</span> <span class="ident">y_abs</span>;
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>make_y_symmetrical(<span class="kw-2">&amp;mut </span><span class="self">self</span>) {
+        <span class="kw">let </span>y_abs = <span class="self">self</span>.min[<span class="number">1</span>].abs().max(<span class="self">self</span>.max[<span class="number">1</span>].abs());
+        <span class="self">self</span>.min[<span class="number">1</span>] = -y_abs;
+        <span class="self">self</span>.max[<span class="number">1</span>] = y_abs;
     }
 }
 
-<span class="doccomment">/// Contains the screen rectangle and the plot bounds and provides methods to transform them.</span>
-<span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;serde&quot;</span>, <span class="ident">derive</span>(<span class="ident">serde::Deserialize</span>, <span class="ident">serde::Serialize</span>))]</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>)]</span>
-<span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">struct</span> <span class="ident">ScreenTransform</span> {
-    <span class="doccomment">/// The screen rectangle.</span>
-    <span class="ident">frame</span>: <span class="ident">Rect</span>,
-    <span class="doccomment">/// The plot bounds.</span>
-    <span class="ident">bounds</span>: <span class="ident">PlotBounds</span>,
-    <span class="doccomment">/// Whether to always center the x-range of the bounds.</span>
-    <span class="ident">x_centered</span>: <span class="ident">bool</span>,
-    <span class="doccomment">/// Whether to always center the y-range of the bounds.</span>
-    <span class="ident">y_centered</span>: <span class="ident">bool</span>,
+<span class="doccomment">/// Contains the screen rectangle and the plot bounds and provides methods to transform them.
+</span><span class="attribute">#[cfg_attr(feature = <span class="string">&quot;serde&quot;</span>, derive(serde::Deserialize, serde::Serialize))]
+#[derive(Clone)]
+</span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">struct </span>ScreenTransform {
+    <span class="doccomment">/// The screen rectangle.
+    </span>frame: Rect,
+    <span class="doccomment">/// The plot bounds.
+    </span>bounds: PlotBounds,
+    <span class="doccomment">/// Whether to always center the x-range of the bounds.
+    </span>x_centered: bool,
+    <span class="doccomment">/// Whether to always center the y-range of the bounds.
+    </span>y_centered: bool,
 }
 
-<span class="kw">impl</span> <span class="ident">ScreenTransform</span> {
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">frame</span>: <span class="ident">Rect</span>, <span class="kw-2">mut</span> <span class="ident">bounds</span>: <span class="ident">PlotBounds</span>, <span class="ident">x_centered</span>: <span class="ident">bool</span>, <span class="ident">y_centered</span>: <span class="ident">bool</span>) -&gt; <span class="self">Self</span> {
-        <span class="comment">// Make sure they are not empty.</span>
-        <span class="kw">if</span> <span class="op">!</span><span class="ident">bounds</span>.<span class="ident">is_valid</span>() {
-            <span class="ident">bounds</span> <span class="op">=</span> <span class="ident">PlotBounds::new_symmetrical</span>(<span class="number">1.0</span>);
+<span class="kw">impl </span>ScreenTransform {
+    <span class="kw">pub fn </span>new(frame: Rect, <span class="kw-2">mut </span>bounds: PlotBounds, x_centered: bool, y_centered: bool) -&gt; <span class="self">Self </span>{
+        <span class="comment">// Make sure they are not empty.
+        </span><span class="kw">if </span>!bounds.is_valid() {
+            bounds = PlotBounds::new_symmetrical(<span class="number">1.0</span>);
         }
 
-        <span class="comment">// Scale axes so that the origin is in the center.</span>
-        <span class="kw">if</span> <span class="ident">x_centered</span> {
-            <span class="ident">bounds</span>.<span class="ident">make_x_symmetrical</span>();
+        <span class="comment">// Scale axes so that the origin is in the center.
+        </span><span class="kw">if </span>x_centered {
+            bounds.make_x_symmetrical();
         };
-        <span class="kw">if</span> <span class="ident">y_centered</span> {
-            <span class="ident">bounds</span>.<span class="ident">make_y_symmetrical</span>();
+        <span class="kw">if </span>y_centered {
+            bounds.make_y_symmetrical();
         };
 
-        <span class="self">Self</span> {
-            <span class="ident">frame</span>,
-            <span class="ident">bounds</span>,
-            <span class="ident">x_centered</span>,
-            <span class="ident">y_centered</span>,
+        <span class="self">Self </span>{
+            frame,
+            bounds,
+            x_centered,
+            y_centered,
         }
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">frame</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span><span class="ident">Rect</span> {
-        <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">frame</span>
+    <span class="kw">pub fn </span>frame(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span>Rect {
+        <span class="kw-2">&amp;</span><span class="self">self</span>.frame
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">bounds</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span><span class="ident">PlotBounds</span> {
-        <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">bounds</span>
+    <span class="kw">pub fn </span>bounds(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span>PlotBounds {
+        <span class="kw-2">&amp;</span><span class="self">self</span>.bounds
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">translate_bounds</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="kw-2">mut</span> <span class="ident">delta_pos</span>: <span class="ident">Vec2</span>) {
-        <span class="kw">if</span> <span class="self">self</span>.<span class="ident">x_centered</span> {
-            <span class="ident">delta_pos</span>.<span class="ident">x</span> <span class="op">=</span> <span class="number">0.</span>;
+    <span class="kw">pub fn </span>translate_bounds(<span class="kw-2">&amp;mut </span><span class="self">self</span>, <span class="kw-2">mut </span>delta_pos: Vec2) {
+        <span class="kw">if </span><span class="self">self</span>.x_centered {
+            delta_pos.x = <span class="number">0.</span>;
         }
-        <span class="kw">if</span> <span class="self">self</span>.<span class="ident">y_centered</span> {
-            <span class="ident">delta_pos</span>.<span class="ident">y</span> <span class="op">=</span> <span class="number">0.</span>;
+        <span class="kw">if </span><span class="self">self</span>.y_centered {
+            delta_pos.y = <span class="number">0.</span>;
         }
-        <span class="ident">delta_pos</span>.<span class="ident">x</span> <span class="kw-2">*</span><span class="op">=</span> <span class="self">self</span>.<span class="ident">dvalue_dpos</span>()[<span class="number">0</span>] <span class="kw">as</span> <span class="ident">f32</span>;
-        <span class="ident">delta_pos</span>.<span class="ident">y</span> <span class="kw-2">*</span><span class="op">=</span> <span class="self">self</span>.<span class="ident">dvalue_dpos</span>()[<span class="number">1</span>] <span class="kw">as</span> <span class="ident">f32</span>;
-        <span class="self">self</span>.<span class="ident">bounds</span>.<span class="ident">translate</span>(<span class="ident">delta_pos</span>);
+        delta_pos.x <span class="kw-2">*</span>= <span class="self">self</span>.dvalue_dpos()[<span class="number">0</span>] <span class="kw">as </span>f32;
+        delta_pos.y <span class="kw-2">*</span>= <span class="self">self</span>.dvalue_dpos()[<span class="number">1</span>] <span class="kw">as </span>f32;
+        <span class="self">self</span>.bounds.translate(delta_pos);
     }
 
-    <span class="doccomment">/// Zoom by a relative factor with the given screen position as center.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">zoom</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">zoom_factor</span>: <span class="ident">Vec2</span>, <span class="ident">center</span>: <span class="ident">Pos2</span>) {
-        <span class="kw">let</span> <span class="ident">center</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">value_from_position</span>(<span class="ident">center</span>);
+    <span class="doccomment">/// Zoom by a relative factor with the given screen position as center.
+    </span><span class="kw">pub fn </span>zoom(<span class="kw-2">&amp;mut </span><span class="self">self</span>, zoom_factor: Vec2, center: Pos2) {
+        <span class="kw">let </span>center = <span class="self">self</span>.value_from_position(center);
 
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">new_bounds</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">bounds</span>;
-        <span class="ident">new_bounds</span>.<span class="ident">min</span>[<span class="number">0</span>] <span class="op">=</span> <span class="ident">center</span>.<span class="ident">x</span> <span class="op">+</span> (<span class="ident">new_bounds</span>.<span class="ident">min</span>[<span class="number">0</span>] <span class="op">-</span> <span class="ident">center</span>.<span class="ident">x</span>) <span class="op">/</span> (<span class="ident">zoom_factor</span>.<span class="ident">x</span> <span class="kw">as</span> <span class="ident">f64</span>);
-        <span class="ident">new_bounds</span>.<span class="ident">max</span>[<span class="number">0</span>] <span class="op">=</span> <span class="ident">center</span>.<span class="ident">x</span> <span class="op">+</span> (<span class="ident">new_bounds</span>.<span class="ident">max</span>[<span class="number">0</span>] <span class="op">-</span> <span class="ident">center</span>.<span class="ident">x</span>) <span class="op">/</span> (<span class="ident">zoom_factor</span>.<span class="ident">x</span> <span class="kw">as</span> <span class="ident">f64</span>);
-        <span class="ident">new_bounds</span>.<span class="ident">min</span>[<span class="number">1</span>] <span class="op">=</span> <span class="ident">center</span>.<span class="ident">y</span> <span class="op">+</span> (<span class="ident">new_bounds</span>.<span class="ident">min</span>[<span class="number">1</span>] <span class="op">-</span> <span class="ident">center</span>.<span class="ident">y</span>) <span class="op">/</span> (<span class="ident">zoom_factor</span>.<span class="ident">y</span> <span class="kw">as</span> <span class="ident">f64</span>);
-        <span class="ident">new_bounds</span>.<span class="ident">max</span>[<span class="number">1</span>] <span class="op">=</span> <span class="ident">center</span>.<span class="ident">y</span> <span class="op">+</span> (<span class="ident">new_bounds</span>.<span class="ident">max</span>[<span class="number">1</span>] <span class="op">-</span> <span class="ident">center</span>.<span class="ident">y</span>) <span class="op">/</span> (<span class="ident">zoom_factor</span>.<span class="ident">y</span> <span class="kw">as</span> <span class="ident">f64</span>);
+        <span class="kw">let </span><span class="kw-2">mut </span>new_bounds = <span class="self">self</span>.bounds;
+        new_bounds.min[<span class="number">0</span>] = center.x + (new_bounds.min[<span class="number">0</span>] - center.x) / (zoom_factor.x <span class="kw">as </span>f64);
+        new_bounds.max[<span class="number">0</span>] = center.x + (new_bounds.max[<span class="number">0</span>] - center.x) / (zoom_factor.x <span class="kw">as </span>f64);
+        new_bounds.min[<span class="number">1</span>] = center.y + (new_bounds.min[<span class="number">1</span>] - center.y) / (zoom_factor.y <span class="kw">as </span>f64);
+        new_bounds.max[<span class="number">1</span>] = center.y + (new_bounds.max[<span class="number">1</span>] - center.y) / (zoom_factor.y <span class="kw">as </span>f64);
 
-        <span class="kw">if</span> <span class="ident">new_bounds</span>.<span class="ident">is_valid</span>() {
-            <span class="self">self</span>.<span class="ident">bounds</span> <span class="op">=</span> <span class="ident">new_bounds</span>;
+        <span class="kw">if </span>new_bounds.is_valid() {
+            <span class="self">self</span>.bounds = new_bounds;
         }
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">position_from_value</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">value</span>: <span class="kw-2">&amp;</span><span class="ident">Value</span>) -&gt; <span class="ident">Pos2</span> {
-        <span class="kw">let</span> <span class="ident">x</span> <span class="op">=</span> <span class="ident">remap</span>(
-            <span class="ident">value</span>.<span class="ident">x</span>,
-            <span class="self">self</span>.<span class="ident">bounds</span>.<span class="ident">min</span>[<span class="number">0</span>]..<span class="op">=</span><span class="self">self</span>.<span class="ident">bounds</span>.<span class="ident">max</span>[<span class="number">0</span>],
-            (<span class="self">self</span>.<span class="ident">frame</span>.<span class="ident">left</span>() <span class="kw">as</span> <span class="ident">f64</span>)..<span class="op">=</span>(<span class="self">self</span>.<span class="ident">frame</span>.<span class="ident">right</span>() <span class="kw">as</span> <span class="ident">f64</span>),
+    <span class="kw">pub fn </span>position_from_value(<span class="kw-2">&amp;</span><span class="self">self</span>, value: <span class="kw-2">&amp;</span>Value) -&gt; Pos2 {
+        <span class="kw">let </span>x = remap(
+            value.x,
+            <span class="self">self</span>.bounds.min[<span class="number">0</span>]..=<span class="self">self</span>.bounds.max[<span class="number">0</span>],
+            (<span class="self">self</span>.frame.left() <span class="kw">as </span>f64)..=(<span class="self">self</span>.frame.right() <span class="kw">as </span>f64),
         );
-        <span class="kw">let</span> <span class="ident">y</span> <span class="op">=</span> <span class="ident">remap</span>(
-            <span class="ident">value</span>.<span class="ident">y</span>,
-            <span class="self">self</span>.<span class="ident">bounds</span>.<span class="ident">min</span>[<span class="number">1</span>]..<span class="op">=</span><span class="self">self</span>.<span class="ident">bounds</span>.<span class="ident">max</span>[<span class="number">1</span>],
-            (<span class="self">self</span>.<span class="ident">frame</span>.<span class="ident">bottom</span>() <span class="kw">as</span> <span class="ident">f64</span>)..<span class="op">=</span>(<span class="self">self</span>.<span class="ident">frame</span>.<span class="ident">top</span>() <span class="kw">as</span> <span class="ident">f64</span>), <span class="comment">// negated y axis!</span>
+        <span class="kw">let </span>y = remap(
+            value.y,
+            <span class="self">self</span>.bounds.min[<span class="number">1</span>]..=<span class="self">self</span>.bounds.max[<span class="number">1</span>],
+            (<span class="self">self</span>.frame.bottom() <span class="kw">as </span>f64)..=(<span class="self">self</span>.frame.top() <span class="kw">as </span>f64), <span class="comment">// negated y axis!
+        </span>);
+        pos2(x <span class="kw">as </span>f32, y <span class="kw">as </span>f32)
+    }
+
+    <span class="kw">pub fn </span>value_from_position(<span class="kw-2">&amp;</span><span class="self">self</span>, pos: Pos2) -&gt; Value {
+        <span class="kw">let </span>x = remap(
+            pos.x <span class="kw">as </span>f64,
+            (<span class="self">self</span>.frame.left() <span class="kw">as </span>f64)..=(<span class="self">self</span>.frame.right() <span class="kw">as </span>f64),
+            <span class="self">self</span>.bounds.min[<span class="number">0</span>]..=<span class="self">self</span>.bounds.max[<span class="number">0</span>],
         );
-        <span class="ident">pos2</span>(<span class="ident">x</span> <span class="kw">as</span> <span class="ident">f32</span>, <span class="ident">y</span> <span class="kw">as</span> <span class="ident">f32</span>)
-    }
-
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">value_from_position</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">pos</span>: <span class="ident">Pos2</span>) -&gt; <span class="ident">Value</span> {
-        <span class="kw">let</span> <span class="ident">x</span> <span class="op">=</span> <span class="ident">remap</span>(
-            <span class="ident">pos</span>.<span class="ident">x</span> <span class="kw">as</span> <span class="ident">f64</span>,
-            (<span class="self">self</span>.<span class="ident">frame</span>.<span class="ident">left</span>() <span class="kw">as</span> <span class="ident">f64</span>)..<span class="op">=</span>(<span class="self">self</span>.<span class="ident">frame</span>.<span class="ident">right</span>() <span class="kw">as</span> <span class="ident">f64</span>),
-            <span class="self">self</span>.<span class="ident">bounds</span>.<span class="ident">min</span>[<span class="number">0</span>]..<span class="op">=</span><span class="self">self</span>.<span class="ident">bounds</span>.<span class="ident">max</span>[<span class="number">0</span>],
+        <span class="kw">let </span>y = remap(
+            pos.y <span class="kw">as </span>f64,
+            (<span class="self">self</span>.frame.bottom() <span class="kw">as </span>f64)..=(<span class="self">self</span>.frame.top() <span class="kw">as </span>f64), <span class="comment">// negated y axis!
+            </span><span class="self">self</span>.bounds.min[<span class="number">1</span>]..=<span class="self">self</span>.bounds.max[<span class="number">1</span>],
         );
-        <span class="kw">let</span> <span class="ident">y</span> <span class="op">=</span> <span class="ident">remap</span>(
-            <span class="ident">pos</span>.<span class="ident">y</span> <span class="kw">as</span> <span class="ident">f64</span>,
-            (<span class="self">self</span>.<span class="ident">frame</span>.<span class="ident">bottom</span>() <span class="kw">as</span> <span class="ident">f64</span>)..<span class="op">=</span>(<span class="self">self</span>.<span class="ident">frame</span>.<span class="ident">top</span>() <span class="kw">as</span> <span class="ident">f64</span>), <span class="comment">// negated y axis!</span>
-            <span class="self">self</span>.<span class="ident">bounds</span>.<span class="ident">min</span>[<span class="number">1</span>]..<span class="op">=</span><span class="self">self</span>.<span class="ident">bounds</span>.<span class="ident">max</span>[<span class="number">1</span>],
-        );
-        <span class="ident">Value::new</span>(<span class="ident">x</span>, <span class="ident">y</span>)
+        Value::new(x, y)
     }
 
-    <span class="doccomment">/// Transform a rectangle of plot values to a screen-coordinate rectangle.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// This typically means that the rect is mirrored vertically (top becomes bottom and vice versa),</span>
-    <span class="doccomment">/// since the plot&#39;s coordinate system has +Y up, while egui has +Y down.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">rect_from_values</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">value1</span>: <span class="kw-2">&amp;</span><span class="ident">Value</span>, <span class="ident">value2</span>: <span class="kw-2">&amp;</span><span class="ident">Value</span>) -&gt; <span class="ident">Rect</span> {
-        <span class="kw">let</span> <span class="ident">pos1</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">position_from_value</span>(<span class="ident">value1</span>);
-        <span class="kw">let</span> <span class="ident">pos2</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">position_from_value</span>(<span class="ident">value2</span>);
+    <span class="doccomment">/// Transform a rectangle of plot values to a screen-coordinate rectangle.
+    ///
+    /// This typically means that the rect is mirrored vertically (top becomes bottom and vice versa),
+    /// since the plot&#39;s coordinate system has +Y up, while egui has +Y down.
+    </span><span class="kw">pub fn </span>rect_from_values(<span class="kw-2">&amp;</span><span class="self">self</span>, value1: <span class="kw-2">&amp;</span>Value, value2: <span class="kw-2">&amp;</span>Value) -&gt; Rect {
+        <span class="kw">let </span>pos1 = <span class="self">self</span>.position_from_value(value1);
+        <span class="kw">let </span>pos2 = <span class="self">self</span>.position_from_value(value2);
 
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">rect</span> <span class="op">=</span> <span class="ident">Rect::NOTHING</span>;
-        <span class="ident">rect</span>.<span class="ident">extend_with</span>(<span class="ident">pos1</span>);
-        <span class="ident">rect</span>.<span class="ident">extend_with</span>(<span class="ident">pos2</span>);
-        <span class="ident">rect</span>
+        <span class="kw">let </span><span class="kw-2">mut </span>rect = Rect::NOTHING;
+        rect.extend_with(pos1);
+        rect.extend_with(pos2);
+        rect
     }
 
-    <span class="doccomment">/// delta position / delta value</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">dpos_dvalue_x</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">f64</span> {
-        <span class="self">self</span>.<span class="ident">frame</span>.<span class="ident">width</span>() <span class="kw">as</span> <span class="ident">f64</span> <span class="op">/</span> <span class="self">self</span>.<span class="ident">bounds</span>.<span class="ident">width</span>()
+    <span class="doccomment">/// delta position / delta value
+    </span><span class="kw">pub fn </span>dpos_dvalue_x(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; f64 {
+        <span class="self">self</span>.frame.width() <span class="kw">as </span>f64 / <span class="self">self</span>.bounds.width()
     }
 
-    <span class="doccomment">/// delta position / delta value</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">dpos_dvalue_y</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">f64</span> {
-        <span class="op">-</span><span class="self">self</span>.<span class="ident">frame</span>.<span class="ident">height</span>() <span class="kw">as</span> <span class="ident">f64</span> <span class="op">/</span> <span class="self">self</span>.<span class="ident">bounds</span>.<span class="ident">height</span>() <span class="comment">// negated y axis!</span>
+    <span class="doccomment">/// delta position / delta value
+    </span><span class="kw">pub fn </span>dpos_dvalue_y(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; f64 {
+        -<span class="self">self</span>.frame.height() <span class="kw">as </span>f64 / <span class="self">self</span>.bounds.height() <span class="comment">// negated y axis!
+    </span>}
+
+    <span class="doccomment">/// delta position / delta value
+    </span><span class="kw">pub fn </span>dpos_dvalue(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; [f64; <span class="number">2</span>] {
+        [<span class="self">self</span>.dpos_dvalue_x(), <span class="self">self</span>.dpos_dvalue_y()]
     }
 
-    <span class="doccomment">/// delta position / delta value</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">dpos_dvalue</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; [<span class="ident">f64</span>; <span class="number">2</span>] {
-        [<span class="self">self</span>.<span class="ident">dpos_dvalue_x</span>(), <span class="self">self</span>.<span class="ident">dpos_dvalue_y</span>()]
+    <span class="doccomment">/// delta value / delta position
+    </span><span class="kw">pub fn </span>dvalue_dpos(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; [f64; <span class="number">2</span>] {
+        [<span class="number">1.0 </span>/ <span class="self">self</span>.dpos_dvalue_x(), <span class="number">1.0 </span>/ <span class="self">self</span>.dpos_dvalue_y()]
     }
 
-    <span class="doccomment">/// delta value / delta position</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">dvalue_dpos</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; [<span class="ident">f64</span>; <span class="number">2</span>] {
-        [<span class="number">1.0</span> <span class="op">/</span> <span class="self">self</span>.<span class="ident">dpos_dvalue_x</span>(), <span class="number">1.0</span> <span class="op">/</span> <span class="self">self</span>.<span class="ident">dpos_dvalue_y</span>()]
+    <span class="kw">pub fn </span>get_aspect(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; f64 {
+        <span class="kw">let </span>rw = <span class="self">self</span>.frame.width() <span class="kw">as </span>f64;
+        <span class="kw">let </span>rh = <span class="self">self</span>.frame.height() <span class="kw">as </span>f64;
+        (<span class="self">self</span>.bounds.width() / rw) / (<span class="self">self</span>.bounds.height() / rh)
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_aspect</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">f64</span> {
-        <span class="kw">let</span> <span class="ident">rw</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">frame</span>.<span class="ident">width</span>() <span class="kw">as</span> <span class="ident">f64</span>;
-        <span class="kw">let</span> <span class="ident">rh</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">frame</span>.<span class="ident">height</span>() <span class="kw">as</span> <span class="ident">f64</span>;
-        (<span class="self">self</span>.<span class="ident">bounds</span>.<span class="ident">width</span>() <span class="op">/</span> <span class="ident">rw</span>) <span class="op">/</span> (<span class="self">self</span>.<span class="ident">bounds</span>.<span class="ident">height</span>() <span class="op">/</span> <span class="ident">rh</span>)
-    }
-
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_aspect</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">aspect</span>: <span class="ident">f64</span>) {
-        <span class="kw">let</span> <span class="ident">epsilon</span> <span class="op">=</span> <span class="number">1e-5</span>;
-        <span class="kw">let</span> <span class="ident">current_aspect</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">get_aspect</span>();
-        <span class="kw">if</span> <span class="ident">current_aspect</span> <span class="op">&lt;</span> <span class="ident">aspect</span> <span class="op">-</span> <span class="ident">epsilon</span> {
-            <span class="self">self</span>.<span class="ident">bounds</span>
-                .<span class="ident">expand_x</span>((<span class="ident">aspect</span> <span class="op">/</span> <span class="ident">current_aspect</span> <span class="op">-</span> <span class="number">1.0</span>) <span class="op">*</span> <span class="self">self</span>.<span class="ident">bounds</span>.<span class="ident">width</span>() <span class="op">*</span> <span class="number">0.5</span>);
-        } <span class="kw">else</span> <span class="kw">if</span> <span class="ident">current_aspect</span> <span class="op">&gt;</span> <span class="ident">aspect</span> <span class="op">+</span> <span class="ident">epsilon</span> {
-            <span class="self">self</span>.<span class="ident">bounds</span>
-                .<span class="ident">expand_y</span>((<span class="ident">current_aspect</span> <span class="op">/</span> <span class="ident">aspect</span> <span class="op">-</span> <span class="number">1.0</span>) <span class="op">*</span> <span class="self">self</span>.<span class="ident">bounds</span>.<span class="ident">height</span>() <span class="op">*</span> <span class="number">0.5</span>);
+    <span class="kw">pub fn </span>set_aspect(<span class="kw-2">&amp;mut </span><span class="self">self</span>, aspect: f64) {
+        <span class="kw">let </span>epsilon = <span class="number">1e-5</span>;
+        <span class="kw">let </span>current_aspect = <span class="self">self</span>.get_aspect();
+        <span class="kw">if </span>current_aspect &lt; aspect - epsilon {
+            <span class="self">self</span>.bounds
+                .expand_x((aspect / current_aspect - <span class="number">1.0</span>) * <span class="self">self</span>.bounds.width() * <span class="number">0.5</span>);
+        } <span class="kw">else if </span>current_aspect &gt; aspect + epsilon {
+            <span class="self">self</span>.bounds
+                .expand_y((current_aspect / aspect - <span class="number">1.0</span>) * <span class="self">self</span>.bounds.height() * <span class="number">0.5</span>);
         }
     }
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../../../" data-current-crate="egui" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0 (a55dd71d5 2022-09-19)" ></div></body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../../../" data-current-crate="egui" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.66.1 (90743e729 2023-01-10)" ></div></body></html>

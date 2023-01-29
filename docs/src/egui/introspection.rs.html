@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/egui-0.16.1/src/introspection.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>introspection.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../egui/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../egui/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../egui/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/egui-0.16.1/src/introspection.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>introspection.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../normalize.css"><link rel="stylesheet" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../ayu.css" disabled><link rel="stylesheet" href="../../dark.css" disabled><link rel="stylesheet" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><div class="width-limiter"><nav class="sub"><a class="sub-logo-container" href="../../egui/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -172,179 +172,179 @@
 <span id="172">172</span>
 <span id="173">173</span>
 <span id="174">174</span>
-</pre><pre class="rust"><code><span class="doccomment">//! uis for egui types.</span>
-<span class="kw">use</span> <span class="kw">crate</span>::<span class="kw-2">*</span>;
+</pre><pre class="rust"><code><span class="doccomment">//! uis for egui types.
+</span><span class="kw">use crate</span>::<span class="kw-2">*</span>;
 
-<span class="kw">impl</span> <span class="ident">Widget</span> <span class="kw">for</span> <span class="kw-2">&amp;</span><span class="ident">epaint::FontImage</span> {
-    <span class="kw">fn</span> <span class="ident">ui</span>(<span class="self">self</span>, <span class="ident">ui</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Ui</span>) -&gt; <span class="ident">Response</span> {
-        <span class="kw">use</span> <span class="ident">epaint::Mesh</span>;
+<span class="kw">impl </span>Widget <span class="kw">for </span><span class="kw-2">&amp;</span>epaint::FontImage {
+    <span class="kw">fn </span>ui(<span class="self">self</span>, ui: <span class="kw-2">&amp;mut </span>Ui) -&gt; Response {
+        <span class="kw">use </span>epaint::Mesh;
 
-        <span class="ident">ui</span>.<span class="ident">vertical</span>(<span class="op">|</span><span class="ident">ui</span><span class="op">|</span> {
-            <span class="comment">// Show font texture in demo Ui</span>
-            <span class="ident">ui</span>.<span class="ident">label</span>(<span class="macro">format!</span>(
+        ui.vertical(|ui| {
+            <span class="comment">// Show font texture in demo Ui
+            </span>ui.label(<span class="macro">format!</span>(
                 <span class="string">&quot;Texture size: {} x {} (hover to zoom)&quot;</span>,
-                <span class="self">self</span>.<span class="ident">width</span>, <span class="self">self</span>.<span class="ident">height</span>
+                <span class="self">self</span>.width, <span class="self">self</span>.height
             ));
-            <span class="kw">if</span> <span class="self">self</span>.<span class="ident">width</span> <span class="op">&lt;</span><span class="op">=</span> <span class="number">1</span> <span class="op">|</span><span class="op">|</span> <span class="self">self</span>.<span class="ident">height</span> <span class="op">&lt;</span><span class="op">=</span> <span class="number">1</span> {
+            <span class="kw">if </span><span class="self">self</span>.width &lt;= <span class="number">1 </span>|| <span class="self">self</span>.height &lt;= <span class="number">1 </span>{
                 <span class="kw">return</span>;
             }
-            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">size</span> <span class="op">=</span> <span class="ident">vec2</span>(<span class="self">self</span>.<span class="ident">width</span> <span class="kw">as</span> <span class="ident">f32</span>, <span class="self">self</span>.<span class="ident">height</span> <span class="kw">as</span> <span class="ident">f32</span>);
-            <span class="kw">if</span> <span class="ident">size</span>.<span class="ident">x</span> <span class="op">&gt;</span> <span class="ident">ui</span>.<span class="ident">available_width</span>() {
-                <span class="ident">size</span> <span class="kw-2">*</span><span class="op">=</span> <span class="ident">ui</span>.<span class="ident">available_width</span>() <span class="op">/</span> <span class="ident">size</span>.<span class="ident">x</span>;
+            <span class="kw">let </span><span class="kw-2">mut </span>size = vec2(<span class="self">self</span>.width <span class="kw">as </span>f32, <span class="self">self</span>.height <span class="kw">as </span>f32);
+            <span class="kw">if </span>size.x &gt; ui.available_width() {
+                size <span class="kw-2">*</span>= ui.available_width() / size.x;
             }
-            <span class="kw">let</span> (<span class="ident">rect</span>, <span class="ident">response</span>) <span class="op">=</span> <span class="ident">ui</span>.<span class="ident">allocate_at_least</span>(<span class="ident">size</span>, <span class="ident">Sense::hover</span>());
-            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">mesh</span> <span class="op">=</span> <span class="ident">Mesh::default</span>();
-            <span class="ident">mesh</span>.<span class="ident">add_rect_with_uv</span>(
-                <span class="ident">rect</span>,
-                [<span class="ident">pos2</span>(<span class="number">0.0</span>, <span class="number">0.0</span>), <span class="ident">pos2</span>(<span class="number">1.0</span>, <span class="number">1.0</span>)].<span class="ident">into</span>(),
-                <span class="ident">Color32::WHITE</span>,
+            <span class="kw">let </span>(rect, response) = ui.allocate_at_least(size, Sense::hover());
+            <span class="kw">let </span><span class="kw-2">mut </span>mesh = Mesh::default();
+            mesh.add_rect_with_uv(
+                rect,
+                [pos2(<span class="number">0.0</span>, <span class="number">0.0</span>), pos2(<span class="number">1.0</span>, <span class="number">1.0</span>)].into(),
+                Color32::WHITE,
             );
-            <span class="ident">ui</span>.<span class="ident">painter</span>().<span class="ident">add</span>(<span class="ident">Shape::mesh</span>(<span class="ident">mesh</span>));
+            ui.painter().add(Shape::mesh(mesh));
 
-            <span class="kw">let</span> (<span class="ident">tex_w</span>, <span class="ident">tex_h</span>) <span class="op">=</span> (<span class="self">self</span>.<span class="ident">width</span> <span class="kw">as</span> <span class="ident">f32</span>, <span class="self">self</span>.<span class="ident">height</span> <span class="kw">as</span> <span class="ident">f32</span>);
+            <span class="kw">let </span>(tex_w, tex_h) = (<span class="self">self</span>.width <span class="kw">as </span>f32, <span class="self">self</span>.height <span class="kw">as </span>f32);
 
-            <span class="ident">response</span>
-                .<span class="ident">on_hover_cursor</span>(<span class="ident">CursorIcon::ZoomIn</span>)
-                .<span class="ident">on_hover_ui_at_pointer</span>(<span class="op">|</span><span class="ident">ui</span><span class="op">|</span> {
-                    <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">pos</span>) <span class="op">=</span> <span class="ident">ui</span>.<span class="ident">input</span>().<span class="ident">pointer</span>.<span class="ident">latest_pos</span>() {
-                        <span class="kw">let</span> (<span class="ident">_id</span>, <span class="ident">zoom_rect</span>) <span class="op">=</span> <span class="ident">ui</span>.<span class="ident">allocate_space</span>(<span class="ident">vec2</span>(<span class="number">128.0</span>, <span class="number">128.0</span>));
-                        <span class="kw">let</span> <span class="ident">u</span> <span class="op">=</span> <span class="ident">remap_clamp</span>(<span class="ident">pos</span>.<span class="ident">x</span>, <span class="ident">rect</span>.<span class="ident">x_range</span>(), <span class="number">0.0</span>..<span class="op">=</span><span class="ident">tex_w</span>);
-                        <span class="kw">let</span> <span class="ident">v</span> <span class="op">=</span> <span class="ident">remap_clamp</span>(<span class="ident">pos</span>.<span class="ident">y</span>, <span class="ident">rect</span>.<span class="ident">y_range</span>(), <span class="number">0.0</span>..<span class="op">=</span><span class="ident">tex_h</span>);
+            response
+                .on_hover_cursor(CursorIcon::ZoomIn)
+                .on_hover_ui_at_pointer(|ui| {
+                    <span class="kw">if let </span><span class="prelude-val">Some</span>(pos) = ui.input().pointer.latest_pos() {
+                        <span class="kw">let </span>(_id, zoom_rect) = ui.allocate_space(vec2(<span class="number">128.0</span>, <span class="number">128.0</span>));
+                        <span class="kw">let </span>u = remap_clamp(pos.x, rect.x_range(), <span class="number">0.0</span>..=tex_w);
+                        <span class="kw">let </span>v = remap_clamp(pos.y, rect.y_range(), <span class="number">0.0</span>..=tex_h);
 
-                        <span class="kw">let</span> <span class="ident">texel_radius</span> <span class="op">=</span> <span class="number">32.0</span>;
-                        <span class="kw">let</span> <span class="ident">u</span> <span class="op">=</span> <span class="ident">u</span>.<span class="ident">at_least</span>(<span class="ident">texel_radius</span>).<span class="ident">at_most</span>(<span class="ident">tex_w</span> <span class="op">-</span> <span class="ident">texel_radius</span>);
-                        <span class="kw">let</span> <span class="ident">v</span> <span class="op">=</span> <span class="ident">v</span>.<span class="ident">at_least</span>(<span class="ident">texel_radius</span>).<span class="ident">at_most</span>(<span class="ident">tex_h</span> <span class="op">-</span> <span class="ident">texel_radius</span>);
+                        <span class="kw">let </span>texel_radius = <span class="number">32.0</span>;
+                        <span class="kw">let </span>u = u.at_least(texel_radius).at_most(tex_w - texel_radius);
+                        <span class="kw">let </span>v = v.at_least(texel_radius).at_most(tex_h - texel_radius);
 
-                        <span class="kw">let</span> <span class="ident">uv_rect</span> <span class="op">=</span> <span class="ident">Rect::from_min_max</span>(
-                            <span class="ident">pos2</span>((<span class="ident">u</span> <span class="op">-</span> <span class="ident">texel_radius</span>) <span class="op">/</span> <span class="ident">tex_w</span>, (<span class="ident">v</span> <span class="op">-</span> <span class="ident">texel_radius</span>) <span class="op">/</span> <span class="ident">tex_h</span>),
-                            <span class="ident">pos2</span>((<span class="ident">u</span> <span class="op">+</span> <span class="ident">texel_radius</span>) <span class="op">/</span> <span class="ident">tex_w</span>, (<span class="ident">v</span> <span class="op">+</span> <span class="ident">texel_radius</span>) <span class="op">/</span> <span class="ident">tex_h</span>),
+                        <span class="kw">let </span>uv_rect = Rect::from_min_max(
+                            pos2((u - texel_radius) / tex_w, (v - texel_radius) / tex_h),
+                            pos2((u + texel_radius) / tex_w, (v + texel_radius) / tex_h),
                         );
-                        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">mesh</span> <span class="op">=</span> <span class="ident">Mesh::default</span>();
-                        <span class="ident">mesh</span>.<span class="ident">add_rect_with_uv</span>(<span class="ident">zoom_rect</span>, <span class="ident">uv_rect</span>, <span class="ident">Color32::WHITE</span>);
-                        <span class="ident">ui</span>.<span class="ident">painter</span>().<span class="ident">add</span>(<span class="ident">Shape::mesh</span>(<span class="ident">mesh</span>));
+                        <span class="kw">let </span><span class="kw-2">mut </span>mesh = Mesh::default();
+                        mesh.add_rect_with_uv(zoom_rect, uv_rect, Color32::WHITE);
+                        ui.painter().add(Shape::mesh(mesh));
                     }
                 });
         })
-        .<span class="ident">response</span>
+        .response
     }
 }
 
-<span class="kw">impl</span> <span class="ident">Widget</span> <span class="kw">for</span> <span class="kw-2">&amp;mut</span> <span class="ident">epaint::text::FontDefinitions</span> {
-    <span class="kw">fn</span> <span class="ident">ui</span>(<span class="self">self</span>, <span class="ident">ui</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Ui</span>) -&gt; <span class="ident">Response</span> {
-        <span class="ident">ui</span>.<span class="ident">vertical</span>(<span class="op">|</span><span class="ident">ui</span><span class="op">|</span> {
-            <span class="kw">for</span> (<span class="ident">text_style</span>, (<span class="ident">_family</span>, <span class="ident">size</span>)) <span class="kw">in</span> <span class="self">self</span>.<span class="ident">family_and_size</span>.<span class="ident">iter_mut</span>() {
-                <span class="comment">// TODO: radio button for family</span>
-                <span class="ident">ui</span>.<span class="ident">add</span>(
-                    <span class="ident">Slider::new</span>(<span class="ident">size</span>, <span class="number">4.0</span>..<span class="op">=</span><span class="number">40.0</span>)
-                        .<span class="ident">max_decimals</span>(<span class="number">0</span>)
-                        .<span class="ident">text</span>(<span class="macro">format!</span>(<span class="string">&quot;{:?}&quot;</span>, <span class="ident">text_style</span>)),
+<span class="kw">impl </span>Widget <span class="kw">for </span><span class="kw-2">&amp;mut </span>epaint::text::FontDefinitions {
+    <span class="kw">fn </span>ui(<span class="self">self</span>, ui: <span class="kw-2">&amp;mut </span>Ui) -&gt; Response {
+        ui.vertical(|ui| {
+            <span class="kw">for </span>(text_style, (_family, size)) <span class="kw">in </span><span class="self">self</span>.family_and_size.iter_mut() {
+                <span class="comment">// TODO: radio button for family
+                </span>ui.add(
+                    Slider::new(size, <span class="number">4.0</span>..=<span class="number">40.0</span>)
+                        .max_decimals(<span class="number">0</span>)
+                        .text(<span class="macro">format!</span>(<span class="string">&quot;{:?}&quot;</span>, text_style)),
                 );
             }
-            <span class="ident"><span class="kw">crate</span>::reset_button</span>(<span class="ident">ui</span>, <span class="self">self</span>);
+            <span class="kw">crate</span>::reset_button(ui, <span class="self">self</span>);
         })
-        .<span class="ident">response</span>
+        .response
     }
 }
 
-<span class="kw">impl</span> <span class="ident">Widget</span> <span class="kw">for</span> <span class="kw-2">&amp;</span><span class="ident">epaint::stats::PaintStats</span> {
-    <span class="kw">fn</span> <span class="ident">ui</span>(<span class="self">self</span>, <span class="ident">ui</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Ui</span>) -&gt; <span class="ident">Response</span> {
-        <span class="ident">ui</span>.<span class="ident">vertical</span>(<span class="op">|</span><span class="ident">ui</span><span class="op">|</span> {
-            <span class="ident">ui</span>.<span class="ident">label</span>(
+<span class="kw">impl </span>Widget <span class="kw">for </span><span class="kw-2">&amp;</span>epaint::stats::PaintStats {
+    <span class="kw">fn </span>ui(<span class="self">self</span>, ui: <span class="kw-2">&amp;mut </span>Ui) -&gt; Response {
+        ui.vertical(|ui| {
+            ui.label(
                 <span class="string">&quot;egui generates intermediate level shapes like circles and text. \
             These are later tessellated into triangles.&quot;</span>,
             );
-            <span class="ident">ui</span>.<span class="ident">add_space</span>(<span class="number">10.0</span>);
+            ui.add_space(<span class="number">10.0</span>);
 
-            <span class="ident">ui</span>.<span class="ident">style_mut</span>().<span class="ident">body_text_style</span> <span class="op">=</span> <span class="ident">TextStyle::Monospace</span>;
+            ui.style_mut().body_text_style = TextStyle::Monospace;
 
-            <span class="kw">let</span> <span class="ident">epaint::stats::PaintStats</span> {
-                <span class="ident">shapes</span>,
-                <span class="ident">shape_text</span>,
-                <span class="ident">shape_path</span>,
-                <span class="ident">shape_mesh</span>,
-                <span class="ident">shape_vec</span>,
-                <span class="ident">text_shape_vertices</span>,
-                <span class="ident">text_shape_indices</span>,
-                <span class="ident">clipped_meshes</span>,
-                <span class="ident">vertices</span>,
-                <span class="ident">indices</span>,
-            } <span class="op">=</span> <span class="self">self</span>;
+            <span class="kw">let </span>epaint::stats::PaintStats {
+                shapes,
+                shape_text,
+                shape_path,
+                shape_mesh,
+                shape_vec,
+                text_shape_vertices,
+                text_shape_indices,
+                clipped_meshes,
+                vertices,
+                indices,
+            } = <span class="self">self</span>;
 
-            <span class="ident">ui</span>.<span class="ident">label</span>(<span class="string">&quot;Intermediate:&quot;</span>);
-            <span class="ident">label</span>(<span class="ident">ui</span>, <span class="ident">shapes</span>, <span class="string">&quot;shapes&quot;</span>).<span class="ident">on_hover_text</span>(<span class="string">&quot;Boxes, circles, etc&quot;</span>);
-            <span class="ident">label</span>(<span class="ident">ui</span>, <span class="ident">shape_text</span>, <span class="string">&quot;text (mostly cached)&quot;</span>);
-            <span class="ident">label</span>(<span class="ident">ui</span>, <span class="ident">shape_path</span>, <span class="string">&quot;paths&quot;</span>);
-            <span class="ident">label</span>(<span class="ident">ui</span>, <span class="ident">shape_mesh</span>, <span class="string">&quot;nested meshes&quot;</span>);
-            <span class="ident">label</span>(<span class="ident">ui</span>, <span class="ident">shape_vec</span>, <span class="string">&quot;nested shapes&quot;</span>);
-            <span class="ident">ui</span>.<span class="ident">add_space</span>(<span class="number">10.0</span>);
+            ui.label(<span class="string">&quot;Intermediate:&quot;</span>);
+            label(ui, shapes, <span class="string">&quot;shapes&quot;</span>).on_hover_text(<span class="string">&quot;Boxes, circles, etc&quot;</span>);
+            label(ui, shape_text, <span class="string">&quot;text (mostly cached)&quot;</span>);
+            label(ui, shape_path, <span class="string">&quot;paths&quot;</span>);
+            label(ui, shape_mesh, <span class="string">&quot;nested meshes&quot;</span>);
+            label(ui, shape_vec, <span class="string">&quot;nested shapes&quot;</span>);
+            ui.add_space(<span class="number">10.0</span>);
 
-            <span class="ident">ui</span>.<span class="ident">label</span>(<span class="string">&quot;Text shapes:&quot;</span>);
-            <span class="ident">label</span>(<span class="ident">ui</span>, <span class="ident">text_shape_vertices</span>, <span class="string">&quot;vertices&quot;</span>);
-            <span class="ident">label</span>(<span class="ident">ui</span>, <span class="ident">text_shape_indices</span>, <span class="string">&quot;indices&quot;</span>)
-                .<span class="ident">on_hover_text</span>(<span class="string">&quot;Three 32-bit indices per triangles&quot;</span>);
-            <span class="ident">ui</span>.<span class="ident">add_space</span>(<span class="number">10.0</span>);
+            ui.label(<span class="string">&quot;Text shapes:&quot;</span>);
+            label(ui, text_shape_vertices, <span class="string">&quot;vertices&quot;</span>);
+            label(ui, text_shape_indices, <span class="string">&quot;indices&quot;</span>)
+                .on_hover_text(<span class="string">&quot;Three 32-bit indices per triangles&quot;</span>);
+            ui.add_space(<span class="number">10.0</span>);
 
-            <span class="ident">ui</span>.<span class="ident">label</span>(<span class="string">&quot;Tessellated (and culled):&quot;</span>);
-            <span class="ident">label</span>(<span class="ident">ui</span>, <span class="ident">clipped_meshes</span>, <span class="string">&quot;clipped_meshes&quot;</span>)
-                .<span class="ident">on_hover_text</span>(<span class="string">&quot;Number of separate clip rectangles&quot;</span>);
-            <span class="ident">label</span>(<span class="ident">ui</span>, <span class="ident">vertices</span>, <span class="string">&quot;vertices&quot;</span>);
-            <span class="ident">label</span>(<span class="ident">ui</span>, <span class="ident">indices</span>, <span class="string">&quot;indices&quot;</span>).<span class="ident">on_hover_text</span>(<span class="string">&quot;Three 32-bit indices per triangles&quot;</span>);
-            <span class="ident">ui</span>.<span class="ident">add_space</span>(<span class="number">10.0</span>);
+            ui.label(<span class="string">&quot;Tessellated (and culled):&quot;</span>);
+            label(ui, clipped_meshes, <span class="string">&quot;clipped_meshes&quot;</span>)
+                .on_hover_text(<span class="string">&quot;Number of separate clip rectangles&quot;</span>);
+            label(ui, vertices, <span class="string">&quot;vertices&quot;</span>);
+            label(ui, indices, <span class="string">&quot;indices&quot;</span>).on_hover_text(<span class="string">&quot;Three 32-bit indices per triangles&quot;</span>);
+            ui.add_space(<span class="number">10.0</span>);
 
-            <span class="comment">// ui.label(&quot;Total:&quot;);</span>
-            <span class="comment">// ui.label(self.total().format(&quot;&quot;));</span>
-        })
-        .<span class="ident">response</span>
+            <span class="comment">// ui.label(&quot;Total:&quot;);
+            // ui.label(self.total().format(&quot;&quot;));
+        </span>})
+        .response
     }
 }
 
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">label</span>(<span class="ident">ui</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Ui</span>, <span class="ident">alloc_info</span>: <span class="kw-2">&amp;</span><span class="ident">epaint::stats::AllocInfo</span>, <span class="ident">what</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) -&gt; <span class="ident">Response</span> {
-    <span class="ident">ui</span>.<span class="ident">add</span>(<span class="ident">Label::new</span>(<span class="ident">alloc_info</span>.<span class="ident">format</span>(<span class="ident">what</span>)).<span class="ident">wrap</span>(<span class="bool-val">false</span>))
+<span class="kw">pub fn </span>label(ui: <span class="kw-2">&amp;mut </span>Ui, alloc_info: <span class="kw-2">&amp;</span>epaint::stats::AllocInfo, what: <span class="kw-2">&amp;</span>str) -&gt; Response {
+    ui.add(Label::new(alloc_info.format(what)).wrap(<span class="bool-val">false</span>))
 }
 
-<span class="kw">impl</span> <span class="ident">Widget</span> <span class="kw">for</span> <span class="kw-2">&amp;mut</span> <span class="ident">epaint::TessellationOptions</span> {
-    <span class="kw">fn</span> <span class="ident">ui</span>(<span class="self">self</span>, <span class="ident">ui</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Ui</span>) -&gt; <span class="ident">Response</span> {
-        <span class="ident">ui</span>.<span class="ident">vertical</span>(<span class="op">|</span><span class="ident">ui</span><span class="op">|</span> {
-            <span class="kw">let</span> <span class="ident">epaint::TessellationOptions</span> {
-                <span class="ident">pixels_per_point</span>: <span class="kw">_</span>,
-                <span class="ident">aa_size</span>: <span class="kw">_</span>,
-                <span class="ident">anti_alias</span>,
-                <span class="ident">coarse_tessellation_culling</span>,
-                <span class="ident">round_text_to_pixels</span>,
-                <span class="ident">debug_paint_clip_rects</span>,
-                <span class="ident">debug_paint_text_rects</span>,
-                <span class="ident">debug_ignore_clip_rects</span>,
-            } <span class="op">=</span> <span class="self">self</span>;
-            <span class="ident">ui</span>.<span class="ident">checkbox</span>(<span class="ident">anti_alias</span>, <span class="string">&quot;Antialias&quot;</span>)
-                .<span class="ident">on_hover_text</span>(<span class="string">&quot;Turn off for small performance gain.&quot;</span>);
-            <span class="ident">ui</span>.<span class="ident">collapsing</span>(<span class="string">&quot;debug&quot;</span>, <span class="op">|</span><span class="ident">ui</span><span class="op">|</span> {
-                <span class="ident">ui</span>.<span class="ident">checkbox</span>(
-                    <span class="ident">coarse_tessellation_culling</span>,
+<span class="kw">impl </span>Widget <span class="kw">for </span><span class="kw-2">&amp;mut </span>epaint::TessellationOptions {
+    <span class="kw">fn </span>ui(<span class="self">self</span>, ui: <span class="kw-2">&amp;mut </span>Ui) -&gt; Response {
+        ui.vertical(|ui| {
+            <span class="kw">let </span>epaint::TessellationOptions {
+                pixels_per_point: <span class="kw">_</span>,
+                aa_size: <span class="kw">_</span>,
+                anti_alias,
+                coarse_tessellation_culling,
+                round_text_to_pixels,
+                debug_paint_clip_rects,
+                debug_paint_text_rects,
+                debug_ignore_clip_rects,
+            } = <span class="self">self</span>;
+            ui.checkbox(anti_alias, <span class="string">&quot;Antialias&quot;</span>)
+                .on_hover_text(<span class="string">&quot;Turn off for small performance gain.&quot;</span>);
+            ui.collapsing(<span class="string">&quot;debug&quot;</span>, |ui| {
+                ui.checkbox(
+                    coarse_tessellation_culling,
                     <span class="string">&quot;Do coarse culling in the tessellator&quot;</span>,
                 );
-                <span class="ident">ui</span>.<span class="ident">checkbox</span>(<span class="ident">round_text_to_pixels</span>, <span class="string">&quot;Align text positions to pixel grid&quot;</span>)
-                    .<span class="ident">on_hover_text</span>(<span class="string">&quot;Most text already is, so don&#39;t expect to see a large change.&quot;</span>);
+                ui.checkbox(round_text_to_pixels, <span class="string">&quot;Align text positions to pixel grid&quot;</span>)
+                    .on_hover_text(<span class="string">&quot;Most text already is, so don&#39;t expect to see a large change.&quot;</span>);
 
-                <span class="ident">ui</span>.<span class="ident">checkbox</span>(<span class="ident">debug_ignore_clip_rects</span>, <span class="string">&quot;Ignore clip rectangles&quot;</span>);
-                <span class="ident">ui</span>.<span class="ident">checkbox</span>(<span class="ident">debug_paint_clip_rects</span>, <span class="string">&quot;Paint clip rectangles&quot;</span>);
-                <span class="ident">ui</span>.<span class="ident">checkbox</span>(<span class="ident">debug_paint_text_rects</span>, <span class="string">&quot;Paint text bounds&quot;</span>);
+                ui.checkbox(debug_ignore_clip_rects, <span class="string">&quot;Ignore clip rectangles&quot;</span>);
+                ui.checkbox(debug_paint_clip_rects, <span class="string">&quot;Paint clip rectangles&quot;</span>);
+                ui.checkbox(debug_paint_text_rects, <span class="string">&quot;Paint text bounds&quot;</span>);
             });
         })
-        .<span class="ident">response</span>
+        .response
     }
 }
 
-<span class="kw">impl</span> <span class="ident">Widget</span> <span class="kw">for</span> <span class="kw-2">&amp;</span><span class="ident">memory::Interaction</span> {
-    <span class="kw">fn</span> <span class="ident">ui</span>(<span class="self">self</span>, <span class="ident">ui</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Ui</span>) -&gt; <span class="ident">Response</span> {
-        <span class="ident">ui</span>.<span class="ident">vertical</span>(<span class="op">|</span><span class="ident">ui</span><span class="op">|</span> {
-            <span class="ident">ui</span>.<span class="ident">label</span>(<span class="macro">format!</span>(<span class="string">&quot;click_id: {:?}&quot;</span>, <span class="self">self</span>.<span class="ident">click_id</span>));
-            <span class="ident">ui</span>.<span class="ident">label</span>(<span class="macro">format!</span>(<span class="string">&quot;drag_id: {:?}&quot;</span>, <span class="self">self</span>.<span class="ident">drag_id</span>));
-            <span class="ident">ui</span>.<span class="ident">label</span>(<span class="macro">format!</span>(<span class="string">&quot;drag_is_window: {:?}&quot;</span>, <span class="self">self</span>.<span class="ident">drag_is_window</span>));
-            <span class="ident">ui</span>.<span class="ident">label</span>(<span class="macro">format!</span>(<span class="string">&quot;click_interest: {:?}&quot;</span>, <span class="self">self</span>.<span class="ident">click_interest</span>));
-            <span class="ident">ui</span>.<span class="ident">label</span>(<span class="macro">format!</span>(<span class="string">&quot;drag_interest: {:?}&quot;</span>, <span class="self">self</span>.<span class="ident">drag_interest</span>));
+<span class="kw">impl </span>Widget <span class="kw">for </span><span class="kw-2">&amp;</span>memory::Interaction {
+    <span class="kw">fn </span>ui(<span class="self">self</span>, ui: <span class="kw-2">&amp;mut </span>Ui) -&gt; Response {
+        ui.vertical(|ui| {
+            ui.label(<span class="macro">format!</span>(<span class="string">&quot;click_id: {:?}&quot;</span>, <span class="self">self</span>.click_id));
+            ui.label(<span class="macro">format!</span>(<span class="string">&quot;drag_id: {:?}&quot;</span>, <span class="self">self</span>.drag_id));
+            ui.label(<span class="macro">format!</span>(<span class="string">&quot;drag_is_window: {:?}&quot;</span>, <span class="self">self</span>.drag_is_window));
+            ui.label(<span class="macro">format!</span>(<span class="string">&quot;click_interest: {:?}&quot;</span>, <span class="self">self</span>.click_interest));
+            ui.label(<span class="macro">format!</span>(<span class="string">&quot;drag_interest: {:?}&quot;</span>, <span class="self">self</span>.drag_interest));
         })
-        .<span class="ident">response</span>
+        .response
     }
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="egui" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0 (a55dd71d5 2022-09-19)" ></div></body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="egui" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.66.1 (90743e729 2023-01-10)" ></div></body></html>

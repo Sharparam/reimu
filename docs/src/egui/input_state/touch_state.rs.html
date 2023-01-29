@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/egui-0.16.1/src/input_state/touch_state.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>touch_state.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../storage.js"></script><script defer src="../../../source-script.js"></script><script defer src="../../../source-files.js"></script><script defer src="../../../main.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../../egui/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../../egui/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../../egui/index.html"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/egui-0.16.1/src/input_state/touch_state.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>touch_state.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../../normalize.css"><link rel="stylesheet" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../../ayu.css" disabled><link rel="stylesheet" href="../../../dark.css" disabled><link rel="stylesheet" href="../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../storage.js"></script><script defer src="../../../source-script.js"></script><script defer src="../../../source-files.js"></script><script defer src="../../../main.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><div class="width-limiter"><nav class="sub"><a class="sub-logo-container" href="../../../egui/index.html"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../wheel.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -329,336 +329,336 @@
 <span id="329">329</span>
 <span id="330">330</span>
 <span id="331">331</span>
-</pre><pre class="rust"><code><span class="kw">use</span> <span class="ident">std</span>::{<span class="ident">collections::BTreeMap</span>, <span class="ident">fmt::Debug</span>};
+</pre><pre class="rust"><code><span class="kw">use </span>std::{collections::BTreeMap, fmt::Debug};
 
-<span class="kw">use</span> <span class="kw">crate</span>::{
-    <span class="ident">data::input::TouchDeviceId</span>,
-    <span class="ident">emath</span>::{<span class="ident">normalized_angle</span>, <span class="ident">Pos2</span>, <span class="ident">Vec2</span>},
-    <span class="ident">Event</span>, <span class="ident">RawInput</span>, <span class="ident">TouchId</span>, <span class="ident">TouchPhase</span>,
+<span class="kw">use crate</span>::{
+    data::input::TouchDeviceId,
+    emath::{normalized_angle, Pos2, Vec2},
+    Event, RawInput, TouchId, TouchPhase,
 };
 
-<span class="doccomment">/// All you probably need to know about a multi-touch gesture.</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">MultiTouchInfo</span> {
-    <span class="doccomment">/// Point in time when the gesture started.</span>
-    <span class="kw">pub</span> <span class="ident">start_time</span>: <span class="ident">f64</span>,
+<span class="doccomment">/// All you probably need to know about a multi-touch gesture.
+</span><span class="kw">pub struct </span>MultiTouchInfo {
+    <span class="doccomment">/// Point in time when the gesture started.
+    </span><span class="kw">pub </span>start_time: f64,
 
-    <span class="doccomment">/// Position of the pointer at the time the gesture started.</span>
-    <span class="kw">pub</span> <span class="ident">start_pos</span>: <span class="ident">Pos2</span>,
+    <span class="doccomment">/// Position of the pointer at the time the gesture started.
+    </span><span class="kw">pub </span>start_pos: Pos2,
 
-    <span class="doccomment">/// Number of touches (fingers) on the surface. Value is ≥ 2 since for a single touch no</span>
-    <span class="doccomment">/// `MultiTouchInfo` is created.</span>
-    <span class="kw">pub</span> <span class="ident">num_touches</span>: <span class="ident">usize</span>,
+    <span class="doccomment">/// Number of touches (fingers) on the surface. Value is ≥ 2 since for a single touch no
+    /// `MultiTouchInfo` is created.
+    </span><span class="kw">pub </span>num_touches: usize,
 
-    <span class="doccomment">/// Proportional zoom factor (pinch gesture).</span>
-    <span class="doccomment">/// * `zoom = 1`: no change</span>
-    <span class="doccomment">/// * `zoom &lt; 1`: pinch together</span>
-    <span class="doccomment">/// * `zoom &gt; 1`: pinch spread</span>
-    <span class="kw">pub</span> <span class="ident">zoom_delta</span>: <span class="ident">f32</span>,
+    <span class="doccomment">/// Proportional zoom factor (pinch gesture).
+    /// * `zoom = 1`: no change
+    /// * `zoom &lt; 1`: pinch together
+    /// * `zoom &gt; 1`: pinch spread
+    </span><span class="kw">pub </span>zoom_delta: f32,
 
-    <span class="doccomment">/// 2D non-proportional zoom factor (pinch gesture).</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// For horizontal pinches, this will return `[z, 1]`,</span>
-    <span class="doccomment">/// for vertical pinches this will return `[1, z]`,</span>
-    <span class="doccomment">/// and otherwise this will return `[z, z]`,</span>
-    <span class="doccomment">/// where `z` is the zoom factor:</span>
-    <span class="doccomment">/// * `zoom = 1`: no change</span>
-    <span class="doccomment">/// * `zoom &lt; 1`: pinch together</span>
-    <span class="doccomment">/// * `zoom &gt; 1`: pinch spread</span>
-    <span class="kw">pub</span> <span class="ident">zoom_delta_2d</span>: <span class="ident">Vec2</span>,
+    <span class="doccomment">/// 2D non-proportional zoom factor (pinch gesture).
+    ///
+    /// For horizontal pinches, this will return `[z, 1]`,
+    /// for vertical pinches this will return `[1, z]`,
+    /// and otherwise this will return `[z, z]`,
+    /// where `z` is the zoom factor:
+    /// * `zoom = 1`: no change
+    /// * `zoom &lt; 1`: pinch together
+    /// * `zoom &gt; 1`: pinch spread
+    </span><span class="kw">pub </span>zoom_delta_2d: Vec2,
 
-    <span class="doccomment">/// Rotation in radians. Moving fingers around each other will change this value. This is a</span>
-    <span class="doccomment">/// relative value, comparing the orientation of fingers in the current frame with the previous</span>
-    <span class="doccomment">/// frame. If all fingers are resting, this value is `0.0`.</span>
-    <span class="kw">pub</span> <span class="ident">rotation_delta</span>: <span class="ident">f32</span>,
+    <span class="doccomment">/// Rotation in radians. Moving fingers around each other will change this value. This is a
+    /// relative value, comparing the orientation of fingers in the current frame with the previous
+    /// frame. If all fingers are resting, this value is `0.0`.
+    </span><span class="kw">pub </span>rotation_delta: f32,
 
-    <span class="doccomment">/// Relative movement (comparing previous frame and current frame) of the average position of</span>
-    <span class="doccomment">/// all touch points. Without movement this value is `Vec2::ZERO`.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// Note that this may not necessarily be measured in screen points (although it _will_ be for</span>
-    <span class="doccomment">/// most mobile devices). In general (depending on the touch device), touch coordinates cannot</span>
-    <span class="doccomment">/// be directly mapped to the screen. A touch always is considered to start at the position of</span>
-    <span class="doccomment">/// the pointer, but touch movement is always measured in the units delivered by the device,</span>
-    <span class="doccomment">/// and may depend on hardware and system settings.</span>
-    <span class="kw">pub</span> <span class="ident">translation_delta</span>: <span class="ident">Vec2</span>,
+    <span class="doccomment">/// Relative movement (comparing previous frame and current frame) of the average position of
+    /// all touch points. Without movement this value is `Vec2::ZERO`.
+    ///
+    /// Note that this may not necessarily be measured in screen points (although it _will_ be for
+    /// most mobile devices). In general (depending on the touch device), touch coordinates cannot
+    /// be directly mapped to the screen. A touch always is considered to start at the position of
+    /// the pointer, but touch movement is always measured in the units delivered by the device,
+    /// and may depend on hardware and system settings.
+    </span><span class="kw">pub </span>translation_delta: Vec2,
 
-    <span class="doccomment">/// Current force of the touch (average of the forces of the individual fingers). This is a</span>
-    <span class="doccomment">/// value in the interval `[0.0 .. =1.0]`.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// Note 1: A value of `0.0` either indicates a very light touch, or it means that the device</span>
-    <span class="doccomment">/// is not capable of measuring the touch force at all.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// Note 2: Just increasing the physical pressure without actually moving the finger may not</span>
-    <span class="doccomment">/// necessarily lead to a change of this value.</span>
-    <span class="kw">pub</span> <span class="ident">force</span>: <span class="ident">f32</span>,
+    <span class="doccomment">/// Current force of the touch (average of the forces of the individual fingers). This is a
+    /// value in the interval `[0.0 .. =1.0]`.
+    ///
+    /// Note 1: A value of `0.0` either indicates a very light touch, or it means that the device
+    /// is not capable of measuring the touch force at all.
+    ///
+    /// Note 2: Just increasing the physical pressure without actually moving the finger may not
+    /// necessarily lead to a change of this value.
+    </span><span class="kw">pub </span>force: f32,
 }
 
-<span class="doccomment">/// The current state (for a specific touch device) of touch events and gestures.</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>)]</span>
-<span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">struct</span> <span class="ident">TouchState</span> {
-    <span class="doccomment">/// Technical identifier of the touch device. This is used to identify relevant touch events</span>
-    <span class="doccomment">/// for this `TouchState` instance.</span>
-    <span class="ident">device_id</span>: <span class="ident">TouchDeviceId</span>,
-    <span class="doccomment">/// Active touches, if any.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// TouchId is the unique identifier of the touch. It is valid as long as the finger/pen touches the surface. The</span>
-    <span class="doccomment">/// next touch will receive a new unique ID.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// Refer to [`ActiveTouch`].</span>
-    <span class="ident">active_touches</span>: <span class="ident">BTreeMap</span><span class="op">&lt;</span><span class="ident">TouchId</span>, <span class="ident">ActiveTouch</span><span class="op">&gt;</span>,
-    <span class="doccomment">/// If a gesture has been recognized (i.e. when exactly two fingers touch the surface), this</span>
-    <span class="doccomment">/// holds state information</span>
-    <span class="ident">gesture_state</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">GestureState</span><span class="op">&gt;</span>,
+<span class="doccomment">/// The current state (for a specific touch device) of touch events and gestures.
+</span><span class="attribute">#[derive(Clone)]
+</span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">struct </span>TouchState {
+    <span class="doccomment">/// Technical identifier of the touch device. This is used to identify relevant touch events
+    /// for this `TouchState` instance.
+    </span>device_id: TouchDeviceId,
+    <span class="doccomment">/// Active touches, if any.
+    ///
+    /// TouchId is the unique identifier of the touch. It is valid as long as the finger/pen touches the surface. The
+    /// next touch will receive a new unique ID.
+    ///
+    /// Refer to [`ActiveTouch`].
+    </span>active_touches: BTreeMap&lt;TouchId, ActiveTouch&gt;,
+    <span class="doccomment">/// If a gesture has been recognized (i.e. when exactly two fingers touch the surface), this
+    /// holds state information
+    </span>gesture_state: <span class="prelude-ty">Option</span>&lt;GestureState&gt;,
 }
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
-<span class="kw">struct</span> <span class="ident">GestureState</span> {
-    <span class="ident">start_time</span>: <span class="ident">f64</span>,
-    <span class="ident">start_pointer_pos</span>: <span class="ident">Pos2</span>,
-    <span class="ident">pinch_type</span>: <span class="ident">PinchType</span>,
-    <span class="ident">previous</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">DynGestureState</span><span class="op">&gt;</span>,
-    <span class="ident">current</span>: <span class="ident">DynGestureState</span>,
+<span class="attribute">#[derive(Clone, Debug)]
+</span><span class="kw">struct </span>GestureState {
+    start_time: f64,
+    start_pointer_pos: Pos2,
+    pinch_type: PinchType,
+    previous: <span class="prelude-ty">Option</span>&lt;DynGestureState&gt;,
+    current: DynGestureState,
 }
 
-<span class="doccomment">/// Gesture data that can change over time</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">Debug</span>)]</span>
-<span class="kw">struct</span> <span class="ident">DynGestureState</span> {
-    <span class="doccomment">/// used for proportional zooming</span>
-    <span class="ident">avg_distance</span>: <span class="ident">f32</span>,
-    <span class="doccomment">/// used for non-proportional zooming</span>
-    <span class="ident">avg_abs_distance2</span>: <span class="ident">Vec2</span>,
-    <span class="ident">avg_pos</span>: <span class="ident">Pos2</span>,
-    <span class="ident">avg_force</span>: <span class="ident">f32</span>,
-    <span class="ident">heading</span>: <span class="ident">f32</span>,
+<span class="doccomment">/// Gesture data that can change over time
+</span><span class="attribute">#[derive(Clone, Copy, Debug)]
+</span><span class="kw">struct </span>DynGestureState {
+    <span class="doccomment">/// used for proportional zooming
+    </span>avg_distance: f32,
+    <span class="doccomment">/// used for non-proportional zooming
+    </span>avg_abs_distance2: Vec2,
+    avg_pos: Pos2,
+    avg_force: f32,
+    heading: f32,
 }
 
-<span class="doccomment">/// Describes an individual touch (finger or digitizer) on the touch surface. Instances exist as</span>
-<span class="doccomment">/// long as the finger/pen touches the surface.</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">Debug</span>)]</span>
-<span class="kw">struct</span> <span class="ident">ActiveTouch</span> {
-    <span class="doccomment">/// Current position of this touch, in device coordinates (not necessarily screen position)</span>
-    <span class="ident">pos</span>: <span class="ident">Pos2</span>,
-    <span class="doccomment">/// Current force of the touch. A value in the interval [0.0 .. 1.0]</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// Note that a value of 0.0 either indicates a very light touch, or it means that the device</span>
-    <span class="doccomment">/// is not capable of measuring the touch force.</span>
-    <span class="ident">force</span>: <span class="ident">f32</span>,
+<span class="doccomment">/// Describes an individual touch (finger or digitizer) on the touch surface. Instances exist as
+/// long as the finger/pen touches the surface.
+</span><span class="attribute">#[derive(Clone, Copy, Debug)]
+</span><span class="kw">struct </span>ActiveTouch {
+    <span class="doccomment">/// Current position of this touch, in device coordinates (not necessarily screen position)
+    </span>pos: Pos2,
+    <span class="doccomment">/// Current force of the touch. A value in the interval [0.0 .. 1.0]
+    ///
+    /// Note that a value of 0.0 either indicates a very light touch, or it means that the device
+    /// is not capable of measuring the touch force.
+    </span>force: f32,
 }
 
-<span class="kw">impl</span> <span class="ident">TouchState</span> {
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">device_id</span>: <span class="ident">TouchDeviceId</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">Self</span> {
-            <span class="ident">device_id</span>,
-            <span class="ident">active_touches</span>: <span class="ident">Default::default</span>(),
-            <span class="ident">gesture_state</span>: <span class="prelude-val">None</span>,
+<span class="kw">impl </span>TouchState {
+    <span class="kw">pub fn </span>new(device_id: TouchDeviceId) -&gt; <span class="self">Self </span>{
+        <span class="self">Self </span>{
+            device_id,
+            active_touches: Default::default(),
+            gesture_state: <span class="prelude-val">None</span>,
         }
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">begin_frame</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">time</span>: <span class="ident">f64</span>, <span class="ident">new</span>: <span class="kw-2">&amp;</span><span class="ident">RawInput</span>, <span class="ident">pointer_pos</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Pos2</span><span class="op">&gt;</span>) {
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">added_or_removed_touches</span> <span class="op">=</span> <span class="bool-val">false</span>;
-        <span class="kw">for</span> <span class="ident">event</span> <span class="kw">in</span> <span class="kw-2">&amp;</span><span class="ident">new</span>.<span class="ident">events</span> {
-            <span class="kw">match</span> <span class="kw-2">*</span><span class="ident">event</span> {
-                <span class="ident">Event::Touch</span> {
-                    <span class="ident">device_id</span>,
-                    <span class="ident">id</span>,
-                    <span class="ident">phase</span>,
-                    <span class="ident">pos</span>,
-                    <span class="ident">force</span>,
-                } <span class="kw">if</span> <span class="ident">device_id</span> <span class="op">==</span> <span class="self">self</span>.<span class="ident">device_id</span> =&gt; <span class="kw">match</span> <span class="ident">phase</span> {
-                    <span class="ident">TouchPhase::Start</span> =&gt; {
-                        <span class="self">self</span>.<span class="ident">active_touches</span>.<span class="ident">insert</span>(<span class="ident">id</span>, <span class="ident">ActiveTouch</span> { <span class="ident">pos</span>, <span class="ident">force</span> });
-                        <span class="ident">added_or_removed_touches</span> <span class="op">=</span> <span class="bool-val">true</span>;
+    <span class="kw">pub fn </span>begin_frame(<span class="kw-2">&amp;mut </span><span class="self">self</span>, time: f64, new: <span class="kw-2">&amp;</span>RawInput, pointer_pos: <span class="prelude-ty">Option</span>&lt;Pos2&gt;) {
+        <span class="kw">let </span><span class="kw-2">mut </span>added_or_removed_touches = <span class="bool-val">false</span>;
+        <span class="kw">for </span>event <span class="kw">in </span><span class="kw-2">&amp;</span>new.events {
+            <span class="kw">match </span><span class="kw-2">*</span>event {
+                Event::Touch {
+                    device_id,
+                    id,
+                    phase,
+                    pos,
+                    force,
+                } <span class="kw">if </span>device_id == <span class="self">self</span>.device_id =&gt; <span class="kw">match </span>phase {
+                    TouchPhase::Start =&gt; {
+                        <span class="self">self</span>.active_touches.insert(id, ActiveTouch { pos, force });
+                        added_or_removed_touches = <span class="bool-val">true</span>;
                     }
-                    <span class="ident">TouchPhase::Move</span> =&gt; {
-                        <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">touch</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">active_touches</span>.<span class="ident">get_mut</span>(<span class="kw-2">&amp;</span><span class="ident">id</span>) {
-                            <span class="ident">touch</span>.<span class="ident">pos</span> <span class="op">=</span> <span class="ident">pos</span>;
-                            <span class="ident">touch</span>.<span class="ident">force</span> <span class="op">=</span> <span class="ident">force</span>;
+                    TouchPhase::Move =&gt; {
+                        <span class="kw">if let </span><span class="prelude-val">Some</span>(touch) = <span class="self">self</span>.active_touches.get_mut(<span class="kw-2">&amp;</span>id) {
+                            touch.pos = pos;
+                            touch.force = force;
                         }
                     }
-                    <span class="ident">TouchPhase::End</span> <span class="op">|</span> <span class="ident">TouchPhase::Cancel</span> =&gt; {
-                        <span class="self">self</span>.<span class="ident">active_touches</span>.<span class="ident">remove</span>(<span class="kw-2">&amp;</span><span class="ident">id</span>);
-                        <span class="ident">added_or_removed_touches</span> <span class="op">=</span> <span class="bool-val">true</span>;
+                    TouchPhase::End | TouchPhase::Cancel =&gt; {
+                        <span class="self">self</span>.active_touches.remove(<span class="kw-2">&amp;</span>id);
+                        added_or_removed_touches = <span class="bool-val">true</span>;
                     }
                 },
-                <span class="kw">_</span> =&gt; (),
+                <span class="kw">_ </span>=&gt; (),
             }
         }
-        <span class="comment">// This needs to be called each frame, even if there are no new touch events.</span>
-        <span class="comment">// Otherwise, we would send the same old delta information multiple times:</span>
-        <span class="self">self</span>.<span class="ident">update_gesture</span>(<span class="ident">time</span>, <span class="ident">pointer_pos</span>);
+        <span class="comment">// This needs to be called each frame, even if there are no new touch events.
+        // Otherwise, we would send the same old delta information multiple times:
+        </span><span class="self">self</span>.update_gesture(time, pointer_pos);
 
-        <span class="kw">if</span> <span class="ident">added_or_removed_touches</span> {
-            <span class="comment">// Adding or removing fingers makes the average values &quot;jump&quot;. We better forget</span>
-            <span class="comment">// about the previous values, and don&#39;t create delta information for this frame:</span>
-            <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="kw-2">ref</span> <span class="kw-2">mut</span> <span class="ident">state</span>) <span class="op">=</span> <span class="kw-2">&amp;mut</span> <span class="self">self</span>.<span class="ident">gesture_state</span> {
-                <span class="ident">state</span>.<span class="ident">previous</span> <span class="op">=</span> <span class="prelude-val">None</span>;
+        <span class="kw">if </span>added_or_removed_touches {
+            <span class="comment">// Adding or removing fingers makes the average values &quot;jump&quot;. We better forget
+            // about the previous values, and don&#39;t create delta information for this frame:
+            </span><span class="kw">if let </span><span class="prelude-val">Some</span>(<span class="kw-2">ref mut </span>state) = <span class="kw-2">&amp;mut </span><span class="self">self</span>.gesture_state {
+                state.previous = <span class="prelude-val">None</span>;
             }
         }
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_active</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span> {
-        <span class="self">self</span>.<span class="ident">gesture_state</span>.<span class="ident">is_some</span>()
+    <span class="kw">pub fn </span>is_active(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; bool {
+        <span class="self">self</span>.gesture_state.is_some()
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">info</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">MultiTouchInfo</span><span class="op">&gt;</span> {
-        <span class="self">self</span>.<span class="ident">gesture_state</span>.<span class="ident">as_ref</span>().<span class="ident">map</span>(<span class="op">|</span><span class="ident">state</span><span class="op">|</span> {
-            <span class="comment">// state.previous can be `None` when the number of simultaneous touches has just</span>
-            <span class="comment">// changed. In this case, we take `current` as `previous`, pretending that there</span>
-            <span class="comment">// was no change for the current frame.</span>
-            <span class="kw">let</span> <span class="ident">state_previous</span> <span class="op">=</span> <span class="ident">state</span>.<span class="ident">previous</span>.<span class="ident">unwrap_or</span>(<span class="ident">state</span>.<span class="ident">current</span>);
+    <span class="kw">pub fn </span>info(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;MultiTouchInfo&gt; {
+        <span class="self">self</span>.gesture_state.as_ref().map(|state| {
+            <span class="comment">// state.previous can be `None` when the number of simultaneous touches has just
+            // changed. In this case, we take `current` as `previous`, pretending that there
+            // was no change for the current frame.
+            </span><span class="kw">let </span>state_previous = state.previous.unwrap_or(state.current);
 
-            <span class="kw">let</span> <span class="ident">zoom_delta</span> <span class="op">=</span> <span class="ident">state</span>.<span class="ident">current</span>.<span class="ident">avg_distance</span> <span class="op">/</span> <span class="ident">state_previous</span>.<span class="ident">avg_distance</span>;
+            <span class="kw">let </span>zoom_delta = state.current.avg_distance / state_previous.avg_distance;
 
-            <span class="kw">let</span> <span class="ident">zoom_delta2</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">state</span>.<span class="ident">pinch_type</span> {
-                <span class="ident">PinchType::Horizontal</span> =&gt; <span class="ident">Vec2::new</span>(
-                    <span class="ident">state</span>.<span class="ident">current</span>.<span class="ident">avg_abs_distance2</span>.<span class="ident">x</span> <span class="op">/</span> <span class="ident">state_previous</span>.<span class="ident">avg_abs_distance2</span>.<span class="ident">x</span>,
+            <span class="kw">let </span>zoom_delta2 = <span class="kw">match </span>state.pinch_type {
+                PinchType::Horizontal =&gt; Vec2::new(
+                    state.current.avg_abs_distance2.x / state_previous.avg_abs_distance2.x,
                     <span class="number">1.0</span>,
                 ),
-                <span class="ident">PinchType::Vertical</span> =&gt; <span class="ident">Vec2::new</span>(
+                PinchType::Vertical =&gt; Vec2::new(
                     <span class="number">1.0</span>,
-                    <span class="ident">state</span>.<span class="ident">current</span>.<span class="ident">avg_abs_distance2</span>.<span class="ident">y</span> <span class="op">/</span> <span class="ident">state_previous</span>.<span class="ident">avg_abs_distance2</span>.<span class="ident">y</span>,
+                    state.current.avg_abs_distance2.y / state_previous.avg_abs_distance2.y,
                 ),
-                <span class="ident">PinchType::Proportional</span> =&gt; <span class="ident">Vec2::splat</span>(<span class="ident">zoom_delta</span>),
+                PinchType::Proportional =&gt; Vec2::splat(zoom_delta),
             };
 
-            <span class="ident">MultiTouchInfo</span> {
-                <span class="ident">start_time</span>: <span class="ident">state</span>.<span class="ident">start_time</span>,
-                <span class="ident">start_pos</span>: <span class="ident">state</span>.<span class="ident">start_pointer_pos</span>,
-                <span class="ident">num_touches</span>: <span class="self">self</span>.<span class="ident">active_touches</span>.<span class="ident">len</span>(),
-                <span class="ident">zoom_delta</span>,
-                <span class="ident">zoom_delta_2d</span>: <span class="ident">zoom_delta2</span>,
-                <span class="ident">rotation_delta</span>: <span class="ident">normalized_angle</span>(<span class="ident">state</span>.<span class="ident">current</span>.<span class="ident">heading</span> <span class="op">-</span> <span class="ident">state_previous</span>.<span class="ident">heading</span>),
-                <span class="ident">translation_delta</span>: <span class="ident">state</span>.<span class="ident">current</span>.<span class="ident">avg_pos</span> <span class="op">-</span> <span class="ident">state_previous</span>.<span class="ident">avg_pos</span>,
-                <span class="ident">force</span>: <span class="ident">state</span>.<span class="ident">current</span>.<span class="ident">avg_force</span>,
+            MultiTouchInfo {
+                start_time: state.start_time,
+                start_pos: state.start_pointer_pos,
+                num_touches: <span class="self">self</span>.active_touches.len(),
+                zoom_delta,
+                zoom_delta_2d: zoom_delta2,
+                rotation_delta: normalized_angle(state.current.heading - state_previous.heading),
+                translation_delta: state.current.avg_pos - state_previous.avg_pos,
+                force: state.current.avg_force,
             }
         })
     }
 
-    <span class="kw">fn</span> <span class="ident">update_gesture</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>, <span class="ident">time</span>: <span class="ident">f64</span>, <span class="ident">pointer_pos</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Pos2</span><span class="op">&gt;</span>) {
-        <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">dyn_state</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">calc_dynamic_state</span>() {
-            <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="kw-2">ref</span> <span class="kw-2">mut</span> <span class="ident">state</span>) <span class="op">=</span> <span class="kw-2">&amp;mut</span> <span class="self">self</span>.<span class="ident">gesture_state</span> {
-                <span class="comment">// updating an ongoing gesture</span>
-                <span class="ident">state</span>.<span class="ident">previous</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">state</span>.<span class="ident">current</span>);
-                <span class="ident">state</span>.<span class="ident">current</span> <span class="op">=</span> <span class="ident">dyn_state</span>;
-            } <span class="kw">else</span> <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">pointer_pos</span>) <span class="op">=</span> <span class="ident">pointer_pos</span> {
-                <span class="comment">// starting a new gesture</span>
-                <span class="self">self</span>.<span class="ident">gesture_state</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">GestureState</span> {
-                    <span class="ident">start_time</span>: <span class="ident">time</span>,
-                    <span class="ident">start_pointer_pos</span>: <span class="ident">pointer_pos</span>,
-                    <span class="ident">pinch_type</span>: <span class="ident">PinchType::classify</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">active_touches</span>),
-                    <span class="ident">previous</span>: <span class="prelude-val">None</span>,
-                    <span class="ident">current</span>: <span class="ident">dyn_state</span>,
+    <span class="kw">fn </span>update_gesture(<span class="kw-2">&amp;mut </span><span class="self">self</span>, time: f64, pointer_pos: <span class="prelude-ty">Option</span>&lt;Pos2&gt;) {
+        <span class="kw">if let </span><span class="prelude-val">Some</span>(dyn_state) = <span class="self">self</span>.calc_dynamic_state() {
+            <span class="kw">if let </span><span class="prelude-val">Some</span>(<span class="kw-2">ref mut </span>state) = <span class="kw-2">&amp;mut </span><span class="self">self</span>.gesture_state {
+                <span class="comment">// updating an ongoing gesture
+                </span>state.previous = <span class="prelude-val">Some</span>(state.current);
+                state.current = dyn_state;
+            } <span class="kw">else if let </span><span class="prelude-val">Some</span>(pointer_pos) = pointer_pos {
+                <span class="comment">// starting a new gesture
+                </span><span class="self">self</span>.gesture_state = <span class="prelude-val">Some</span>(GestureState {
+                    start_time: time,
+                    start_pointer_pos: pointer_pos,
+                    pinch_type: PinchType::classify(<span class="kw-2">&amp;</span><span class="self">self</span>.active_touches),
+                    previous: <span class="prelude-val">None</span>,
+                    current: dyn_state,
                 });
             }
-        } <span class="kw">else</span> {
-            <span class="comment">// the end of a gesture (if there is any)</span>
-            <span class="self">self</span>.<span class="ident">gesture_state</span> <span class="op">=</span> <span class="prelude-val">None</span>;
+        } <span class="kw">else </span>{
+            <span class="comment">// the end of a gesture (if there is any)
+            </span><span class="self">self</span>.gesture_state = <span class="prelude-val">None</span>;
         }
     }
 
-    <span class="doccomment">/// `None` if less than two fingers</span>
-    <span class="kw">fn</span> <span class="ident">calc_dynamic_state</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">DynGestureState</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="ident">num_touches</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">active_touches</span>.<span class="ident">len</span>();
-        <span class="kw">if</span> <span class="ident">num_touches</span> <span class="op">&lt;</span> <span class="number">2</span> {
-            <span class="prelude-val">None</span>
-        } <span class="kw">else</span> {
-            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">state</span> <span class="op">=</span> <span class="ident">DynGestureState</span> {
-                <span class="ident">avg_distance</span>: <span class="number">0.0</span>,
-                <span class="ident">avg_abs_distance2</span>: <span class="ident">Vec2::ZERO</span>,
-                <span class="ident">avg_pos</span>: <span class="ident">Pos2::ZERO</span>,
-                <span class="ident">avg_force</span>: <span class="number">0.0</span>,
-                <span class="ident">heading</span>: <span class="number">0.0</span>,
+    <span class="doccomment">/// `None` if less than two fingers
+    </span><span class="kw">fn </span>calc_dynamic_state(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;DynGestureState&gt; {
+        <span class="kw">let </span>num_touches = <span class="self">self</span>.active_touches.len();
+        <span class="kw">if </span>num_touches &lt; <span class="number">2 </span>{
+            <span class="prelude-val">None
+        </span>} <span class="kw">else </span>{
+            <span class="kw">let </span><span class="kw-2">mut </span>state = DynGestureState {
+                avg_distance: <span class="number">0.0</span>,
+                avg_abs_distance2: Vec2::ZERO,
+                avg_pos: Pos2::ZERO,
+                avg_force: <span class="number">0.0</span>,
+                heading: <span class="number">0.0</span>,
             };
-            <span class="kw">let</span> <span class="ident">num_touches_recip</span> <span class="op">=</span> <span class="number">1.</span> <span class="op">/</span> <span class="ident">num_touches</span> <span class="kw">as</span> <span class="ident">f32</span>;
+            <span class="kw">let </span>num_touches_recip = <span class="number">1. </span>/ num_touches <span class="kw">as </span>f32;
 
-            <span class="comment">// first pass: calculate force and center of touch positions:</span>
-            <span class="kw">for</span> <span class="ident">touch</span> <span class="kw">in</span> <span class="self">self</span>.<span class="ident">active_touches</span>.<span class="ident">values</span>() {
-                <span class="ident">state</span>.<span class="ident">avg_force</span> <span class="op">+</span><span class="op">=</span> <span class="ident">touch</span>.<span class="ident">force</span>;
-                <span class="ident">state</span>.<span class="ident">avg_pos</span>.<span class="ident">x</span> <span class="op">+</span><span class="op">=</span> <span class="ident">touch</span>.<span class="ident">pos</span>.<span class="ident">x</span>;
-                <span class="ident">state</span>.<span class="ident">avg_pos</span>.<span class="ident">y</span> <span class="op">+</span><span class="op">=</span> <span class="ident">touch</span>.<span class="ident">pos</span>.<span class="ident">y</span>;
+            <span class="comment">// first pass: calculate force and center of touch positions:
+            </span><span class="kw">for </span>touch <span class="kw">in </span><span class="self">self</span>.active_touches.values() {
+                state.avg_force += touch.force;
+                state.avg_pos.x += touch.pos.x;
+                state.avg_pos.y += touch.pos.y;
             }
-            <span class="ident">state</span>.<span class="ident">avg_force</span> <span class="kw-2">*</span><span class="op">=</span> <span class="ident">num_touches_recip</span>;
-            <span class="ident">state</span>.<span class="ident">avg_pos</span>.<span class="ident">x</span> <span class="kw-2">*</span><span class="op">=</span> <span class="ident">num_touches_recip</span>;
-            <span class="ident">state</span>.<span class="ident">avg_pos</span>.<span class="ident">y</span> <span class="kw-2">*</span><span class="op">=</span> <span class="ident">num_touches_recip</span>;
+            state.avg_force <span class="kw-2">*</span>= num_touches_recip;
+            state.avg_pos.x <span class="kw-2">*</span>= num_touches_recip;
+            state.avg_pos.y <span class="kw-2">*</span>= num_touches_recip;
 
-            <span class="comment">// second pass: calculate distances from center:</span>
-            <span class="kw">for</span> <span class="ident">touch</span> <span class="kw">in</span> <span class="self">self</span>.<span class="ident">active_touches</span>.<span class="ident">values</span>() {
-                <span class="ident">state</span>.<span class="ident">avg_distance</span> <span class="op">+</span><span class="op">=</span> <span class="ident">state</span>.<span class="ident">avg_pos</span>.<span class="ident">distance</span>(<span class="ident">touch</span>.<span class="ident">pos</span>);
-                <span class="ident">state</span>.<span class="ident">avg_abs_distance2</span>.<span class="ident">x</span> <span class="op">+</span><span class="op">=</span> (<span class="ident">state</span>.<span class="ident">avg_pos</span>.<span class="ident">x</span> <span class="op">-</span> <span class="ident">touch</span>.<span class="ident">pos</span>.<span class="ident">x</span>).<span class="ident">abs</span>();
-                <span class="ident">state</span>.<span class="ident">avg_abs_distance2</span>.<span class="ident">y</span> <span class="op">+</span><span class="op">=</span> (<span class="ident">state</span>.<span class="ident">avg_pos</span>.<span class="ident">y</span> <span class="op">-</span> <span class="ident">touch</span>.<span class="ident">pos</span>.<span class="ident">y</span>).<span class="ident">abs</span>();
+            <span class="comment">// second pass: calculate distances from center:
+            </span><span class="kw">for </span>touch <span class="kw">in </span><span class="self">self</span>.active_touches.values() {
+                state.avg_distance += state.avg_pos.distance(touch.pos);
+                state.avg_abs_distance2.x += (state.avg_pos.x - touch.pos.x).abs();
+                state.avg_abs_distance2.y += (state.avg_pos.y - touch.pos.y).abs();
             }
-            <span class="ident">state</span>.<span class="ident">avg_distance</span> <span class="kw-2">*</span><span class="op">=</span> <span class="ident">num_touches_recip</span>;
-            <span class="ident">state</span>.<span class="ident">avg_abs_distance2</span> <span class="kw-2">*</span><span class="op">=</span> <span class="ident">num_touches_recip</span>;
+            state.avg_distance <span class="kw-2">*</span>= num_touches_recip;
+            state.avg_abs_distance2 <span class="kw-2">*</span>= num_touches_recip;
 
-            <span class="comment">// Calculate the direction from the first touch to the center position.</span>
-            <span class="comment">// This is not the perfect way of calculating the direction if more than two fingers</span>
-            <span class="comment">// are involved, but as long as all fingers rotate more or less at the same angular</span>
-            <span class="comment">// velocity, the shortcomings of this method will not be noticed. One can see the</span>
-            <span class="comment">// issues though, when touching with three or more fingers, and moving only one of them</span>
-            <span class="comment">// (it takes two hands to do this in a controlled manner). A better technique would be</span>
-            <span class="comment">// to store the current and previous directions (with reference to the center) for each</span>
-            <span class="comment">// touch individually, and then calculate the average of all individual changes in</span>
-            <span class="comment">// direction. But this approach cannot be implemented locally in this method, making</span>
-            <span class="comment">// everything a bit more complicated.</span>
-            <span class="kw">let</span> <span class="ident">first_touch</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">active_touches</span>.<span class="ident">values</span>().<span class="ident">next</span>().<span class="ident">unwrap</span>();
-            <span class="ident">state</span>.<span class="ident">heading</span> <span class="op">=</span> (<span class="ident">state</span>.<span class="ident">avg_pos</span> <span class="op">-</span> <span class="ident">first_touch</span>.<span class="ident">pos</span>).<span class="ident">angle</span>();
+            <span class="comment">// Calculate the direction from the first touch to the center position.
+            // This is not the perfect way of calculating the direction if more than two fingers
+            // are involved, but as long as all fingers rotate more or less at the same angular
+            // velocity, the shortcomings of this method will not be noticed. One can see the
+            // issues though, when touching with three or more fingers, and moving only one of them
+            // (it takes two hands to do this in a controlled manner). A better technique would be
+            // to store the current and previous directions (with reference to the center) for each
+            // touch individually, and then calculate the average of all individual changes in
+            // direction. But this approach cannot be implemented locally in this method, making
+            // everything a bit more complicated.
+            </span><span class="kw">let </span>first_touch = <span class="self">self</span>.active_touches.values().next().unwrap();
+            state.heading = (state.avg_pos - first_touch.pos).angle();
 
-            <span class="prelude-val">Some</span>(<span class="ident">state</span>)
+            <span class="prelude-val">Some</span>(state)
         }
     }
 }
 
-<span class="kw">impl</span> <span class="ident">TouchState</span> {
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ui</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">ui</span>: <span class="kw-2">&amp;mut</span> <span class="ident"><span class="kw">crate</span>::Ui</span>) {
-        <span class="ident">ui</span>.<span class="ident">label</span>(<span class="macro">format!</span>(<span class="string">&quot;{:?}&quot;</span>, <span class="self">self</span>));
+<span class="kw">impl </span>TouchState {
+    <span class="kw">pub fn </span>ui(<span class="kw-2">&amp;</span><span class="self">self</span>, ui: <span class="kw-2">&amp;mut </span><span class="kw">crate</span>::Ui) {
+        ui.label(<span class="macro">format!</span>(<span class="string">&quot;{:?}&quot;</span>, <span class="self">self</span>));
     }
 }
 
-<span class="kw">impl</span> <span class="ident">Debug</span> <span class="kw">for</span> <span class="ident">TouchState</span> {
-    <span class="comment">// This outputs less clutter than `#[derive(Debug)]`:</span>
-    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;mut</span> <span class="ident">std::fmt::Formatter</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>) -&gt; <span class="ident">std::fmt::Result</span> {
-        <span class="kw">for</span> (<span class="ident">id</span>, <span class="ident">touch</span>) <span class="kw">in</span> <span class="self">self</span>.<span class="ident">active_touches</span>.<span class="ident">iter</span>() {
-            <span class="ident">f</span>.<span class="ident">write_fmt</span>(<span class="macro">format_args!</span>(<span class="string">&quot;#{:?}: {:#?}\n&quot;</span>, <span class="ident">id</span>, <span class="ident">touch</span>))<span class="question-mark">?</span>;
+<span class="kw">impl </span>Debug <span class="kw">for </span>TouchState {
+    <span class="comment">// This outputs less clutter than `#[derive(Debug)]`:
+    </span><span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>std::fmt::Formatter&lt;<span class="lifetime">&#39;_</span>&gt;) -&gt; std::fmt::Result {
+        <span class="kw">for </span>(id, touch) <span class="kw">in </span><span class="self">self</span>.active_touches.iter() {
+            f.write_fmt(<span class="macro">format_args!</span>(<span class="string">&quot;#{:?}: {:#?}\n&quot;</span>, id, touch))<span class="question-mark">?</span>;
         }
-        <span class="ident">f</span>.<span class="ident">write_fmt</span>(<span class="macro">format_args!</span>(<span class="string">&quot;gesture: {:#?}\n&quot;</span>, <span class="self">self</span>.<span class="ident">gesture_state</span>))<span class="question-mark">?</span>;
+        f.write_fmt(<span class="macro">format_args!</span>(<span class="string">&quot;gesture: {:#?}\n&quot;</span>, <span class="self">self</span>.gesture_state))<span class="question-mark">?</span>;
         <span class="prelude-val">Ok</span>(())
     }
 }
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
-<span class="kw">enum</span> <span class="ident">PinchType</span> {
-    <span class="ident">Horizontal</span>,
-    <span class="ident">Vertical</span>,
-    <span class="ident">Proportional</span>,
+<span class="attribute">#[derive(Clone, Debug)]
+</span><span class="kw">enum </span>PinchType {
+    Horizontal,
+    Vertical,
+    Proportional,
 }
 
-<span class="kw">impl</span> <span class="ident">PinchType</span> {
-    <span class="kw">fn</span> <span class="ident">classify</span>(<span class="ident">touches</span>: <span class="kw-2">&amp;</span><span class="ident">BTreeMap</span><span class="op">&lt;</span><span class="ident">TouchId</span>, <span class="ident">ActiveTouch</span><span class="op">&gt;</span>) -&gt; <span class="self">Self</span> {
-        <span class="comment">// For non-proportional 2d zooming:</span>
-        <span class="comment">// If the user is pinching with two fingers that have roughly the same Y coord,</span>
-        <span class="comment">// then the Y zoom is unstable and should be 1.</span>
-        <span class="comment">// Similarly, if the fingers are directly above/below each other,</span>
-        <span class="comment">// we should only zoom on the Y axis.</span>
-        <span class="comment">// If the fingers are roughly on a diagonal, we revert to the proportional zooming.</span>
+<span class="kw">impl </span>PinchType {
+    <span class="kw">fn </span>classify(touches: <span class="kw-2">&amp;</span>BTreeMap&lt;TouchId, ActiveTouch&gt;) -&gt; <span class="self">Self </span>{
+        <span class="comment">// For non-proportional 2d zooming:
+        // If the user is pinching with two fingers that have roughly the same Y coord,
+        // then the Y zoom is unstable and should be 1.
+        // Similarly, if the fingers are directly above/below each other,
+        // we should only zoom on the Y axis.
+        // If the fingers are roughly on a diagonal, we revert to the proportional zooming.
 
-        <span class="kw">if</span> <span class="ident">touches</span>.<span class="ident">len</span>() <span class="op">==</span> <span class="number">2</span> {
-            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">touches</span> <span class="op">=</span> <span class="ident">touches</span>.<span class="ident">values</span>();
-            <span class="kw">let</span> <span class="ident">t0</span> <span class="op">=</span> <span class="ident">touches</span>.<span class="ident">next</span>().<span class="ident">unwrap</span>().<span class="ident">pos</span>;
-            <span class="kw">let</span> <span class="ident">t1</span> <span class="op">=</span> <span class="ident">touches</span>.<span class="ident">next</span>().<span class="ident">unwrap</span>().<span class="ident">pos</span>;
+        </span><span class="kw">if </span>touches.len() == <span class="number">2 </span>{
+            <span class="kw">let </span><span class="kw-2">mut </span>touches = touches.values();
+            <span class="kw">let </span>t0 = touches.next().unwrap().pos;
+            <span class="kw">let </span>t1 = touches.next().unwrap().pos;
 
-            <span class="kw">let</span> <span class="ident">dx</span> <span class="op">=</span> (<span class="ident">t0</span>.<span class="ident">x</span> <span class="op">-</span> <span class="ident">t1</span>.<span class="ident">x</span>).<span class="ident">abs</span>();
-            <span class="kw">let</span> <span class="ident">dy</span> <span class="op">=</span> (<span class="ident">t0</span>.<span class="ident">y</span> <span class="op">-</span> <span class="ident">t1</span>.<span class="ident">y</span>).<span class="ident">abs</span>();
+            <span class="kw">let </span>dx = (t0.x - t1.x).abs();
+            <span class="kw">let </span>dy = (t0.y - t1.y).abs();
 
-            <span class="kw">if</span> <span class="ident">dx</span> <span class="op">&gt;</span> <span class="number">3.0</span> <span class="op">*</span> <span class="ident">dy</span> {
-                <span class="ident"><span class="self">Self</span>::Horizontal</span>
-            } <span class="kw">else</span> <span class="kw">if</span> <span class="ident">dy</span> <span class="op">&gt;</span> <span class="number">3.0</span> <span class="op">*</span> <span class="ident">dx</span> {
-                <span class="ident"><span class="self">Self</span>::Vertical</span>
-            } <span class="kw">else</span> {
-                <span class="ident"><span class="self">Self</span>::Proportional</span>
+            <span class="kw">if </span>dx &gt; <span class="number">3.0 </span>* dy {
+                <span class="self">Self</span>::Horizontal
+            } <span class="kw">else if </span>dy &gt; <span class="number">3.0 </span>* dx {
+                <span class="self">Self</span>::Vertical
+            } <span class="kw">else </span>{
+                <span class="self">Self</span>::Proportional
             }
-        } <span class="kw">else</span> {
-            <span class="ident"><span class="self">Self</span>::Proportional</span>
+        } <span class="kw">else </span>{
+            <span class="self">Self</span>::Proportional
         }
     }
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="egui" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0 (a55dd71d5 2022-09-19)" ></div></body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="egui" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.66.1 (90743e729 2023-01-10)" ></div></body></html>

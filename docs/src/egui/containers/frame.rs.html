@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/egui-0.16.1/src/containers/frame.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>frame.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../storage.js"></script><script defer src="../../../source-script.js"></script><script defer src="../../../source-files.js"></script><script defer src="../../../main.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../../egui/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../../egui/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../../egui/index.html"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/egui-0.16.1/src/containers/frame.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>frame.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../../normalize.css"><link rel="stylesheet" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../../ayu.css" disabled><link rel="stylesheet" href="../../../dark.css" disabled><link rel="stylesheet" href="../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../storage.js"></script><script defer src="../../../source-script.js"></script><script defer src="../../../source-files.js"></script><script defer src="../../../main.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><div class="width-limiter"><nav class="sub"><a class="sub-logo-container" href="../../../egui/index.html"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../wheel.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -217,224 +217,224 @@
 <span id="217">217</span>
 <span id="218">218</span>
 <span id="219">219</span>
-</pre><pre class="rust"><code><span class="doccomment">//! Frame container</span>
+</pre><pre class="rust"><code><span class="doccomment">//! Frame container
 
-<span class="kw">use</span> <span class="kw">crate</span>::{<span class="ident">layers::ShapeIdx</span>, <span class="kw-2">*</span>};
-<span class="kw">use</span> <span class="ident">epaint</span>::<span class="kw-2">*</span>;
+</span><span class="kw">use crate</span>::{layers::ShapeIdx, <span class="kw-2">*</span>};
+<span class="kw">use </span>epaint::<span class="kw-2">*</span>;
 
-<span class="doccomment">/// Color and margin of a rectangular background of a [`Ui`].</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">Debug</span>, <span class="ident">Default</span>, <span class="ident">PartialEq</span>)]</span>
-<span class="attribute">#[<span class="ident">must_use</span> <span class="op">=</span> <span class="string">&quot;You should call .show()&quot;</span>]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Frame</span> {
-    <span class="doccomment">/// On each side</span>
-    <span class="kw">pub</span> <span class="ident">margin</span>: <span class="ident">Vec2</span>,
-    <span class="kw">pub</span> <span class="ident">corner_radius</span>: <span class="ident">f32</span>,
-    <span class="kw">pub</span> <span class="ident">shadow</span>: <span class="ident">Shadow</span>,
-    <span class="kw">pub</span> <span class="ident">fill</span>: <span class="ident">Color32</span>,
-    <span class="kw">pub</span> <span class="ident">stroke</span>: <span class="ident">Stroke</span>,
+<span class="doccomment">/// Color and margin of a rectangular background of a [`Ui`].
+</span><span class="attribute">#[derive(Clone, Copy, Debug, Default, PartialEq)]
+#[must_use = <span class="string">&quot;You should call .show()&quot;</span>]
+</span><span class="kw">pub struct </span>Frame {
+    <span class="doccomment">/// On each side
+    </span><span class="kw">pub </span>margin: Vec2,
+    <span class="kw">pub </span>corner_radius: f32,
+    <span class="kw">pub </span>shadow: Shadow,
+    <span class="kw">pub </span>fill: Color32,
+    <span class="kw">pub </span>stroke: Stroke,
 }
 
-<span class="kw">impl</span> <span class="ident">Frame</span> {
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">none</span>() -&gt; <span class="self">Self</span> {
-        <span class="ident"><span class="self">Self</span>::default</span>()
+<span class="kw">impl </span>Frame {
+    <span class="kw">pub fn </span>none() -&gt; <span class="self">Self </span>{
+        <span class="self">Self</span>::default()
     }
 
-    <span class="doccomment">/// For when you want to group a few widgets together within a frame.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">group</span>(<span class="ident">style</span>: <span class="kw-2">&amp;</span><span class="ident">Style</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">Self</span> {
-            <span class="ident">margin</span>: <span class="ident">Vec2::splat</span>(<span class="number">6.0</span>), <span class="comment">// symmetric looks best in corners when nesting</span>
-            <span class="ident">corner_radius</span>: <span class="ident">style</span>.<span class="ident">visuals</span>.<span class="ident">widgets</span>.<span class="ident">noninteractive</span>.<span class="ident">corner_radius</span>,
-            <span class="ident">stroke</span>: <span class="ident">style</span>.<span class="ident">visuals</span>.<span class="ident">widgets</span>.<span class="ident">noninteractive</span>.<span class="ident">bg_stroke</span>,
-            ..<span class="ident">Default::default</span>()
+    <span class="doccomment">/// For when you want to group a few widgets together within a frame.
+    </span><span class="kw">pub fn </span>group(style: <span class="kw-2">&amp;</span>Style) -&gt; <span class="self">Self </span>{
+        <span class="self">Self </span>{
+            margin: Vec2::splat(<span class="number">6.0</span>), <span class="comment">// symmetric looks best in corners when nesting
+            </span>corner_radius: style.visuals.widgets.noninteractive.corner_radius,
+            stroke: style.visuals.widgets.noninteractive.bg_stroke,
+            ..Default::default()
         }
     }
 
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">side_top_panel</span>(<span class="ident">style</span>: <span class="kw-2">&amp;</span><span class="ident">Style</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">Self</span> {
-            <span class="ident">margin</span>: <span class="ident">Vec2::new</span>(<span class="number">8.0</span>, <span class="number">2.0</span>),
-            <span class="ident">corner_radius</span>: <span class="number">0.0</span>,
-            <span class="ident">fill</span>: <span class="ident">style</span>.<span class="ident">visuals</span>.<span class="ident">window_fill</span>(),
-            <span class="ident">stroke</span>: <span class="ident">style</span>.<span class="ident">visuals</span>.<span class="ident">window_stroke</span>(),
-            ..<span class="ident">Default::default</span>()
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>side_top_panel(style: <span class="kw-2">&amp;</span>Style) -&gt; <span class="self">Self </span>{
+        <span class="self">Self </span>{
+            margin: Vec2::new(<span class="number">8.0</span>, <span class="number">2.0</span>),
+            corner_radius: <span class="number">0.0</span>,
+            fill: style.visuals.window_fill(),
+            stroke: style.visuals.window_stroke(),
+            ..Default::default()
         }
     }
 
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">central_panel</span>(<span class="ident">style</span>: <span class="kw-2">&amp;</span><span class="ident">Style</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">Self</span> {
-            <span class="ident">margin</span>: <span class="ident">Vec2::new</span>(<span class="number">8.0</span>, <span class="number">8.0</span>),
-            <span class="ident">corner_radius</span>: <span class="number">0.0</span>,
-            <span class="ident">fill</span>: <span class="ident">style</span>.<span class="ident">visuals</span>.<span class="ident">window_fill</span>(),
-            <span class="ident">stroke</span>: <span class="ident">Default::default</span>(),
-            ..<span class="ident">Default::default</span>()
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>central_panel(style: <span class="kw-2">&amp;</span>Style) -&gt; <span class="self">Self </span>{
+        <span class="self">Self </span>{
+            margin: Vec2::new(<span class="number">8.0</span>, <span class="number">8.0</span>),
+            corner_radius: <span class="number">0.0</span>,
+            fill: style.visuals.window_fill(),
+            stroke: Default::default(),
+            ..Default::default()
         }
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">window</span>(<span class="ident">style</span>: <span class="kw-2">&amp;</span><span class="ident">Style</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">Self</span> {
-            <span class="ident">margin</span>: <span class="ident">style</span>.<span class="ident">spacing</span>.<span class="ident">window_padding</span>,
-            <span class="ident">corner_radius</span>: <span class="ident">style</span>.<span class="ident">visuals</span>.<span class="ident">window_corner_radius</span>,
-            <span class="ident">shadow</span>: <span class="ident">style</span>.<span class="ident">visuals</span>.<span class="ident">window_shadow</span>,
-            <span class="ident">fill</span>: <span class="ident">style</span>.<span class="ident">visuals</span>.<span class="ident">window_fill</span>(),
-            <span class="ident">stroke</span>: <span class="ident">style</span>.<span class="ident">visuals</span>.<span class="ident">window_stroke</span>(),
+    <span class="kw">pub fn </span>window(style: <span class="kw-2">&amp;</span>Style) -&gt; <span class="self">Self </span>{
+        <span class="self">Self </span>{
+            margin: style.spacing.window_padding,
+            corner_radius: style.visuals.window_corner_radius,
+            shadow: style.visuals.window_shadow,
+            fill: style.visuals.window_fill(),
+            stroke: style.visuals.window_stroke(),
         }
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">menu</span>(<span class="ident">style</span>: <span class="kw-2">&amp;</span><span class="ident">Style</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">Self</span> {
-            <span class="ident">margin</span>: <span class="ident">Vec2::splat</span>(<span class="number">1.0</span>),
-            <span class="ident">corner_radius</span>: <span class="ident">style</span>.<span class="ident">visuals</span>.<span class="ident">widgets</span>.<span class="ident">noninteractive</span>.<span class="ident">corner_radius</span>,
-            <span class="ident">shadow</span>: <span class="ident">style</span>.<span class="ident">visuals</span>.<span class="ident">popup_shadow</span>,
-            <span class="ident">fill</span>: <span class="ident">style</span>.<span class="ident">visuals</span>.<span class="ident">window_fill</span>(),
-            <span class="ident">stroke</span>: <span class="ident">style</span>.<span class="ident">visuals</span>.<span class="ident">window_stroke</span>(),
+    <span class="kw">pub fn </span>menu(style: <span class="kw-2">&amp;</span>Style) -&gt; <span class="self">Self </span>{
+        <span class="self">Self </span>{
+            margin: Vec2::splat(<span class="number">1.0</span>),
+            corner_radius: style.visuals.widgets.noninteractive.corner_radius,
+            shadow: style.visuals.popup_shadow,
+            fill: style.visuals.window_fill(),
+            stroke: style.visuals.window_stroke(),
         }
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">popup</span>(<span class="ident">style</span>: <span class="kw-2">&amp;</span><span class="ident">Style</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">Self</span> {
-            <span class="ident">margin</span>: <span class="ident">style</span>.<span class="ident">spacing</span>.<span class="ident">window_padding</span>,
-            <span class="ident">corner_radius</span>: <span class="ident">style</span>.<span class="ident">visuals</span>.<span class="ident">widgets</span>.<span class="ident">noninteractive</span>.<span class="ident">corner_radius</span>,
-            <span class="ident">shadow</span>: <span class="ident">style</span>.<span class="ident">visuals</span>.<span class="ident">popup_shadow</span>,
-            <span class="ident">fill</span>: <span class="ident">style</span>.<span class="ident">visuals</span>.<span class="ident">window_fill</span>(),
-            <span class="ident">stroke</span>: <span class="ident">style</span>.<span class="ident">visuals</span>.<span class="ident">window_stroke</span>(),
+    <span class="kw">pub fn </span>popup(style: <span class="kw-2">&amp;</span>Style) -&gt; <span class="self">Self </span>{
+        <span class="self">Self </span>{
+            margin: style.spacing.window_padding,
+            corner_radius: style.visuals.widgets.noninteractive.corner_radius,
+            shadow: style.visuals.popup_shadow,
+            fill: style.visuals.window_fill(),
+            stroke: style.visuals.window_stroke(),
         }
     }
 
-    <span class="doccomment">/// dark canvas to draw on</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">dark_canvas</span>(<span class="ident">style</span>: <span class="kw-2">&amp;</span><span class="ident">Style</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">Self</span> {
-            <span class="ident">margin</span>: <span class="ident">Vec2::new</span>(<span class="number">10.0</span>, <span class="number">10.0</span>),
-            <span class="ident">corner_radius</span>: <span class="ident">style</span>.<span class="ident">visuals</span>.<span class="ident">widgets</span>.<span class="ident">noninteractive</span>.<span class="ident">corner_radius</span>,
-            <span class="ident">fill</span>: <span class="ident">Color32::from_black_alpha</span>(<span class="number">250</span>),
-            <span class="ident">stroke</span>: <span class="ident">style</span>.<span class="ident">visuals</span>.<span class="ident">window_stroke</span>(),
-            ..<span class="ident">Default::default</span>()
+    <span class="doccomment">/// dark canvas to draw on
+    </span><span class="kw">pub fn </span>dark_canvas(style: <span class="kw-2">&amp;</span>Style) -&gt; <span class="self">Self </span>{
+        <span class="self">Self </span>{
+            margin: Vec2::new(<span class="number">10.0</span>, <span class="number">10.0</span>),
+            corner_radius: style.visuals.widgets.noninteractive.corner_radius,
+            fill: Color32::from_black_alpha(<span class="number">250</span>),
+            stroke: style.visuals.window_stroke(),
+            ..Default::default()
         }
-    }
-}
-
-<span class="kw">impl</span> <span class="ident">Frame</span> {
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">fill</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">fill</span>: <span class="ident">Color32</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">self</span>.<span class="ident">fill</span> <span class="op">=</span> <span class="ident">fill</span>;
-        <span class="self">self</span>
-    }
-
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">stroke</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">stroke</span>: <span class="ident">Stroke</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">self</span>.<span class="ident">stroke</span> <span class="op">=</span> <span class="ident">stroke</span>;
-        <span class="self">self</span>
-    }
-
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">corner_radius</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">corner_radius</span>: <span class="ident">f32</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">self</span>.<span class="ident">corner_radius</span> <span class="op">=</span> <span class="ident">corner_radius</span>;
-        <span class="self">self</span>
-    }
-
-    <span class="doccomment">/// Margin on each side of the frame.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">margin</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">margin</span>: <span class="kw">impl</span> <span class="ident">Into</span><span class="op">&lt;</span><span class="ident">Vec2</span><span class="op">&gt;</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">self</span>.<span class="ident">margin</span> <span class="op">=</span> <span class="ident">margin</span>.<span class="ident">into</span>();
-        <span class="self">self</span>
-    }
-
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">shadow</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">shadow</span>: <span class="ident">Shadow</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">self</span>.<span class="ident">shadow</span> <span class="op">=</span> <span class="ident">shadow</span>;
-        <span class="self">self</span>
-    }
-
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">multiply_with_opacity</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">opacity</span>: <span class="ident">f32</span>) -&gt; <span class="self">Self</span> {
-        <span class="self">self</span>.<span class="ident">fill</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">fill</span>.<span class="ident">linear_multiply</span>(<span class="ident">opacity</span>);
-        <span class="self">self</span>.<span class="ident">stroke</span>.<span class="ident">color</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">stroke</span>.<span class="ident">color</span>.<span class="ident">linear_multiply</span>(<span class="ident">opacity</span>);
-        <span class="self">self</span>.<span class="ident">shadow</span>.<span class="ident">color</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">shadow</span>.<span class="ident">color</span>.<span class="ident">linear_multiply</span>(<span class="ident">opacity</span>);
-        <span class="self">self</span>
     }
 }
 
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Prepared</span> {
-    <span class="kw">pub</span> <span class="ident">frame</span>: <span class="ident">Frame</span>,
-    <span class="ident">where_to_put_background</span>: <span class="ident">ShapeIdx</span>,
-    <span class="kw">pub</span> <span class="ident">content_ui</span>: <span class="ident">Ui</span>,
+<span class="kw">impl </span>Frame {
+    <span class="kw">pub fn </span>fill(<span class="kw-2">mut </span><span class="self">self</span>, fill: Color32) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.fill = fill;
+        <span class="self">self
+    </span>}
+
+    <span class="kw">pub fn </span>stroke(<span class="kw-2">mut </span><span class="self">self</span>, stroke: Stroke) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.stroke = stroke;
+        <span class="self">self
+    </span>}
+
+    <span class="kw">pub fn </span>corner_radius(<span class="kw-2">mut </span><span class="self">self</span>, corner_radius: f32) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.corner_radius = corner_radius;
+        <span class="self">self
+    </span>}
+
+    <span class="doccomment">/// Margin on each side of the frame.
+    </span><span class="kw">pub fn </span>margin(<span class="kw-2">mut </span><span class="self">self</span>, margin: <span class="kw">impl </span>Into&lt;Vec2&gt;) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.margin = margin.into();
+        <span class="self">self
+    </span>}
+
+    <span class="kw">pub fn </span>shadow(<span class="kw-2">mut </span><span class="self">self</span>, shadow: Shadow) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.shadow = shadow;
+        <span class="self">self
+    </span>}
+
+    <span class="kw">pub fn </span>multiply_with_opacity(<span class="kw-2">mut </span><span class="self">self</span>, opacity: f32) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.fill = <span class="self">self</span>.fill.linear_multiply(opacity);
+        <span class="self">self</span>.stroke.color = <span class="self">self</span>.stroke.color.linear_multiply(opacity);
+        <span class="self">self</span>.shadow.color = <span class="self">self</span>.shadow.color.linear_multiply(opacity);
+        <span class="self">self
+    </span>}
 }
 
-<span class="kw">impl</span> <span class="ident">Frame</span> {
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">begin</span>(<span class="self">self</span>, <span class="ident">ui</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Ui</span>) -&gt; <span class="ident">Prepared</span> {
-        <span class="kw">let</span> <span class="ident">where_to_put_background</span> <span class="op">=</span> <span class="ident">ui</span>.<span class="ident">painter</span>().<span class="ident">add</span>(<span class="ident">Shape::Noop</span>);
-        <span class="kw">let</span> <span class="ident">outer_rect_bounds</span> <span class="op">=</span> <span class="ident">ui</span>.<span class="ident">available_rect_before_wrap</span>();
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">inner_rect</span> <span class="op">=</span> <span class="ident">outer_rect_bounds</span>.<span class="ident">shrink2</span>(<span class="self">self</span>.<span class="ident">margin</span>);
+<span class="kw">pub struct </span>Prepared {
+    <span class="kw">pub </span>frame: Frame,
+    where_to_put_background: ShapeIdx,
+    <span class="kw">pub </span>content_ui: Ui,
+}
 
-        <span class="comment">// Make sure we don&#39;t shrink to the negative:</span>
-        <span class="ident">inner_rect</span>.<span class="ident">max</span>.<span class="ident">x</span> <span class="op">=</span> <span class="ident">inner_rect</span>.<span class="ident">max</span>.<span class="ident">x</span>.<span class="ident">max</span>(<span class="ident">inner_rect</span>.<span class="ident">min</span>.<span class="ident">x</span>);
-        <span class="ident">inner_rect</span>.<span class="ident">max</span>.<span class="ident">y</span> <span class="op">=</span> <span class="ident">inner_rect</span>.<span class="ident">max</span>.<span class="ident">y</span>.<span class="ident">max</span>(<span class="ident">inner_rect</span>.<span class="ident">min</span>.<span class="ident">y</span>);
+<span class="kw">impl </span>Frame {
+    <span class="kw">pub fn </span>begin(<span class="self">self</span>, ui: <span class="kw-2">&amp;mut </span>Ui) -&gt; Prepared {
+        <span class="kw">let </span>where_to_put_background = ui.painter().add(Shape::Noop);
+        <span class="kw">let </span>outer_rect_bounds = ui.available_rect_before_wrap();
+        <span class="kw">let </span><span class="kw-2">mut </span>inner_rect = outer_rect_bounds.shrink2(<span class="self">self</span>.margin);
 
-        <span class="kw">let</span> <span class="ident">content_ui</span> <span class="op">=</span> <span class="ident">ui</span>.<span class="ident">child_ui</span>(<span class="ident">inner_rect</span>, <span class="kw-2">*</span><span class="ident">ui</span>.<span class="ident">layout</span>());
+        <span class="comment">// Make sure we don&#39;t shrink to the negative:
+        </span>inner_rect.max.x = inner_rect.max.x.max(inner_rect.min.x);
+        inner_rect.max.y = inner_rect.max.y.max(inner_rect.min.y);
 
-        <span class="comment">// content_ui.set_clip_rect(outer_rect_bounds.shrink(self.stroke.width * 0.5)); // Can&#39;t do this since we don&#39;t know final size yet</span>
+        <span class="kw">let </span>content_ui = ui.child_ui(inner_rect, <span class="kw-2">*</span>ui.layout());
 
-        <span class="ident">Prepared</span> {
-            <span class="ident">frame</span>: <span class="self">self</span>,
-            <span class="ident">where_to_put_background</span>,
-            <span class="ident">content_ui</span>,
+        <span class="comment">// content_ui.set_clip_rect(outer_rect_bounds.shrink(self.stroke.width * 0.5)); // Can&#39;t do this since we don&#39;t know final size yet
+
+        </span>Prepared {
+            frame: <span class="self">self</span>,
+            where_to_put_background,
+            content_ui,
         }
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">show</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span>(<span class="self">self</span>, <span class="ident">ui</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Ui</span>, <span class="ident">add_contents</span>: <span class="kw">impl</span> <span class="ident">FnOnce</span>(<span class="kw-2">&amp;mut</span> <span class="ident">Ui</span>) -&gt; <span class="ident">R</span>) -&gt; <span class="ident">InnerResponse</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span> {
-        <span class="self">self</span>.<span class="ident">show_dyn</span>(<span class="ident">ui</span>, <span class="ident">Box::new</span>(<span class="ident">add_contents</span>))
+    <span class="kw">pub fn </span>show&lt;R&gt;(<span class="self">self</span>, ui: <span class="kw-2">&amp;mut </span>Ui, add_contents: <span class="kw">impl </span>FnOnce(<span class="kw-2">&amp;mut </span>Ui) -&gt; R) -&gt; InnerResponse&lt;R&gt; {
+        <span class="self">self</span>.show_dyn(ui, Box::new(add_contents))
     }
 
-    <span class="kw">fn</span> <span class="ident">show_dyn</span><span class="op">&lt;</span><span class="lifetime">&#39;c</span>, <span class="ident">R</span><span class="op">&gt;</span>(
+    <span class="kw">fn </span>show_dyn&lt;<span class="lifetime">&#39;c</span>, R&gt;(
         <span class="self">self</span>,
-        <span class="ident">ui</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Ui</span>,
-        <span class="ident">add_contents</span>: <span class="ident">Box</span><span class="op">&lt;</span><span class="kw">dyn</span> <span class="ident">FnOnce</span>(<span class="kw-2">&amp;mut</span> <span class="ident">Ui</span>) -&gt; <span class="ident">R</span> <span class="op">+</span> <span class="lifetime">&#39;c</span><span class="op">&gt;</span>,
-    ) -&gt; <span class="ident">InnerResponse</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">prepared</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">begin</span>(<span class="ident">ui</span>);
-        <span class="kw">let</span> <span class="ident">ret</span> <span class="op">=</span> <span class="ident">add_contents</span>(<span class="kw-2">&amp;mut</span> <span class="ident">prepared</span>.<span class="ident">content_ui</span>);
-        <span class="kw">let</span> <span class="ident">response</span> <span class="op">=</span> <span class="ident">prepared</span>.<span class="ident">end</span>(<span class="ident">ui</span>);
-        <span class="ident">InnerResponse::new</span>(<span class="ident">ret</span>, <span class="ident">response</span>)
+        ui: <span class="kw-2">&amp;mut </span>Ui,
+        add_contents: Box&lt;<span class="kw">dyn </span>FnOnce(<span class="kw-2">&amp;mut </span>Ui) -&gt; R + <span class="lifetime">&#39;c</span>&gt;,
+    ) -&gt; InnerResponse&lt;R&gt; {
+        <span class="kw">let </span><span class="kw-2">mut </span>prepared = <span class="self">self</span>.begin(ui);
+        <span class="kw">let </span>ret = add_contents(<span class="kw-2">&amp;mut </span>prepared.content_ui);
+        <span class="kw">let </span>response = prepared.end(ui);
+        InnerResponse::new(ret, response)
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">paint</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">outer_rect</span>: <span class="ident">Rect</span>) -&gt; <span class="ident">Shape</span> {
-        <span class="kw">let</span> <span class="self">Self</span> {
-            <span class="ident">margin</span>: <span class="kw">_</span>,
-            <span class="ident">corner_radius</span>,
-            <span class="ident">shadow</span>,
-            <span class="ident">fill</span>,
-            <span class="ident">stroke</span>,
-        } <span class="op">=</span> <span class="kw-2">*</span><span class="self">self</span>;
+    <span class="kw">pub fn </span>paint(<span class="kw-2">&amp;</span><span class="self">self</span>, outer_rect: Rect) -&gt; Shape {
+        <span class="kw">let </span><span class="self">Self </span>{
+            margin: <span class="kw">_</span>,
+            corner_radius,
+            shadow,
+            fill,
+            stroke,
+        } = <span class="kw-2">*</span><span class="self">self</span>;
 
-        <span class="kw">let</span> <span class="ident">frame_shape</span> <span class="op">=</span> <span class="ident">Shape::Rect</span>(<span class="ident">epaint::RectShape</span> {
-            <span class="ident">rect</span>: <span class="ident">outer_rect</span>,
-            <span class="ident">corner_radius</span>,
-            <span class="ident">fill</span>,
-            <span class="ident">stroke</span>,
+        <span class="kw">let </span>frame_shape = Shape::Rect(epaint::RectShape {
+            rect: outer_rect,
+            corner_radius,
+            fill,
+            stroke,
         });
 
-        <span class="kw">if</span> <span class="ident">shadow</span> <span class="op">==</span> <span class="ident">Default::default</span>() {
-            <span class="ident">frame_shape</span>
-        } <span class="kw">else</span> {
-            <span class="kw">let</span> <span class="ident">shadow</span> <span class="op">=</span> <span class="ident">shadow</span>.<span class="ident">tessellate</span>(<span class="ident">outer_rect</span>, <span class="ident">corner_radius</span>);
-            <span class="kw">let</span> <span class="ident">shadow</span> <span class="op">=</span> <span class="ident">Shape::Mesh</span>(<span class="ident">shadow</span>);
-            <span class="ident">Shape::Vec</span>(<span class="macro">vec!</span>[<span class="ident">shadow</span>, <span class="ident">frame_shape</span>])
+        <span class="kw">if </span>shadow == Default::default() {
+            frame_shape
+        } <span class="kw">else </span>{
+            <span class="kw">let </span>shadow = shadow.tessellate(outer_rect, corner_radius);
+            <span class="kw">let </span>shadow = Shape::Mesh(shadow);
+            Shape::Vec(<span class="macro">vec!</span>[shadow, frame_shape])
         }
     }
 }
 
-<span class="kw">impl</span> <span class="ident">Prepared</span> {
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">outer_rect</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">Rect</span> {
-        <span class="self">self</span>.<span class="ident">content_ui</span>.<span class="ident">min_rect</span>().<span class="ident">expand2</span>(<span class="self">self</span>.<span class="ident">frame</span>.<span class="ident">margin</span>)
+<span class="kw">impl </span>Prepared {
+    <span class="kw">pub fn </span>outer_rect(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; Rect {
+        <span class="self">self</span>.content_ui.min_rect().expand2(<span class="self">self</span>.frame.margin)
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">end</span>(<span class="self">self</span>, <span class="ident">ui</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Ui</span>) -&gt; <span class="ident">Response</span> {
-        <span class="kw">let</span> <span class="ident">outer_rect</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">outer_rect</span>();
+    <span class="kw">pub fn </span>end(<span class="self">self</span>, ui: <span class="kw-2">&amp;mut </span>Ui) -&gt; Response {
+        <span class="kw">let </span>outer_rect = <span class="self">self</span>.outer_rect();
 
-        <span class="kw">let</span> <span class="ident">Prepared</span> {
-            <span class="ident">frame</span>,
-            <span class="ident">where_to_put_background</span>,
+        <span class="kw">let </span>Prepared {
+            frame,
+            where_to_put_background,
             ..
-        } <span class="op">=</span> <span class="self">self</span>;
+        } = <span class="self">self</span>;
 
-        <span class="kw">if</span> <span class="ident">ui</span>.<span class="ident">is_rect_visible</span>(<span class="ident">outer_rect</span>) {
-            <span class="kw">let</span> <span class="ident">shape</span> <span class="op">=</span> <span class="ident">frame</span>.<span class="ident">paint</span>(<span class="ident">outer_rect</span>);
-            <span class="ident">ui</span>.<span class="ident">painter</span>().<span class="ident">set</span>(<span class="ident">where_to_put_background</span>, <span class="ident">shape</span>);
+        <span class="kw">if </span>ui.is_rect_visible(outer_rect) {
+            <span class="kw">let </span>shape = frame.paint(outer_rect);
+            ui.painter().set(where_to_put_background, shape);
         }
 
-        <span class="ident">ui</span>.<span class="ident">allocate_rect</span>(<span class="ident">outer_rect</span>, <span class="ident">Sense::hover</span>())
+        ui.allocate_rect(outer_rect, Sense::hover())
     }
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="egui" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0 (a55dd71d5 2022-09-19)" ></div></body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="egui" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.66.1 (90743e729 2023-01-10)" ></div></body></html>
